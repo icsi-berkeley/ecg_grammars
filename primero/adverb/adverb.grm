@@ -1,0 +1,9 @@
+// Adverbs: added 8/4/14 (ST), mostly from Base
+
+/** In this grammar, only used to provide a base for "adverbial prepositions" (cerca de, etc.) - necessary if this is how we choose to represent these prepositions. */
+
+general construction Adverbial  
+  meaning
+  
+
+

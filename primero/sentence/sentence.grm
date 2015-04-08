@@ -1,0 +1,51 @@
+package primero
+
+//
+// sentence.grm
+//
+// The general cxn S is the root of most (all?) speech acts /
+
+general construction S
+    subcase of RootType 
+    meaning: EventDescriptor
+
+
+// This general cxn does the agreement between subj and verb
+// 6/17/14 (ST): made NP optional, because Spanish doesn't require an explicit subject (might need to modify this later)
+general construction S-With-Subj  
+    subcase of S
+    constructional
+        constituents
+            optional subj: NP
+            fin: HasVerbFeatures  // for modals, not VP
+        constraints
+        	fin.verbform <-- Finite	
+        	subj.features.person <--> fin.features.person
+        	subj.features.number <--> fin.features.number
+            subj.features.case <-- "nom"
+    meaning
+        constraints
+	       subj.m <--> self.m.profiledParticipant
+
+	       	
+construction Declarative
+    subcase of S-With-Subj
+    constructional
+        constituents
+	       fin: VP
+    form
+        constraints
+	       subj.f before fin.f
+    meaning
+        constraints
+           self.m <--> fin.ed
+		   fin.ed.profiledParticipant.ontological-category <--> subj.m.ontological-category  
+		   
+
+			
+
+
+            
+
+
+        

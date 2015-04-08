@@ -1,0 +1,19 @@
+package robots
+import starter
+
+construction ModifierPP
+	subcase of PP
+	constructional
+	 constituents
+	   prep: ModifierPreposition
+	form
+	  constraints
+	    prep.f before np.f
+	meaning: Modification
+	  constraints
+	     prep.m <--> self.m
+	     np.m <--> self.m.modifier
+	  
+	  
+	  
+	  

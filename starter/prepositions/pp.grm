@@ -1,0 +1,53 @@
+package starter
+
+general construction PP
+	subcase of RootType // answer to question, etc.   
+	constructional
+		constituents
+			prep: Preposition  
+			np: NP
+	
+// Spatial PPs
+					 
+general construction Spatial-PP  //literal
+	subcase of PP
+	constructional
+		constituents
+			prep: SpatialPreposition 
+			//optional np: NP  // overkill  11/26/12 *************
+	form
+		constraints
+			prep.f before np.f
+	meaning: TrajectorLandmark
+		constraints
+			self.m <--> prep.m
+			self.m.landmark  <--> np.m 
+			np.m.ontological-category <-- @region  //11/4/13 
+
+
+construction Path-PP  // central case 
+	subcase of PP 
+	constructional
+		constituents
+			prep: PathPreposition // e.g. into, to, from, through
+	form
+		constraints
+			prep.f before np.f
+	meaning: SPG
+		constraints
+		    // np.m.ontological-category <-- @container
+			self.m <--> prep.m	
+		    self.m.landmark  <--> np.m
+		    // self.m.landmark.ontological-category <--> np.m.ontological-category 
+ 
+ 
+construction Loc-PP  // static location 
+	subcase of Spatial-PP 
+	constructional
+		constituents
+			prep: LocativePreposition // e.g. at, in, inside, on, 
+	meaning //: TrajectorLandmark
+		constraints
+		np.m.ontological-category <-- @region  //11/4/13	      
+			// self.m <--> prep.m  inherited
+			//self.m.trajector <-- @physicalEntity  inherited

@@ -1,0 +1,46 @@
+package robots
+import starter
+
+construction NEAR-Locative
+   subcase of LocativePreposition 
+   form
+      constraints
+         self.f.orth <-- "near"
+   meaning 
+      evokes Proximity as p
+      constraints
+       self.m.landmark.ontological-category <--@region
+       self.m.profiledArea <--> p.proximalArea 
+       self.m.landmark <--> p.center   
+
+
+construction BEHIND-Path
+	subcase of PathPreposition
+	form
+	  constraints
+	    self.f.orth <-- "behind"
+	meaning: SPG
+	  evokes Proximity as p
+	  evokes Sidedness as side
+	    constraints
+	  	side.back <--> self.m.goal
+	  	self.m.landmark <--> self.side.obj
+	  	self.m.landmark <--> self.p.center
+	  	self.m.goal <--> p.proximalArea
+	  	self.m.goal.ontological-category <-- @region
+	  	
+
+general construction ModifierPreposition
+	subcase of Preposition
+	meaning: Modification
+
+construction OF-Modifier
+	subcase of ModifierPreposition
+	form
+	  constraints
+	    self.f.orth <-- "of"
+	  
+	  
+	  
+	  
+	  

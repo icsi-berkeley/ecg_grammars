@@ -1,0 +1,24 @@
+package motion
+import starter
+//import transitives
+
+construction ActiveMotionPath   // he moved to the block
+  subcase of IntransitiveArgumentStructure 
+  constructional
+    constituents
+       optional dis: SpatialQuantityNP  // for more general version
+       optional dir: Directional 
+       optional pp: Path-PP  
+  constraints
+        v.voice <-- NotPassive  
+  form 
+    constraints
+     // v.f before dis.f 
+      v.f before dir.f
+      dir.f before pp.f   
+  meaning: MotionPath
+    constraints 
+      self.m <--> v.m
+      self.m.spg.distance <--> dis.m 
+	  self.m.heading <--> dir.m 
+      self.m.spg <--> pp.m

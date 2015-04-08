@@ -1,0 +1,20 @@
+package starter
+import universal-schemas
+// 
+
+
+      
+
+ 
+schema VehicularMotion
+   subcase of MotionPath
+   roles
+     vehicleType: RD
+   constraints
+     vehicleType.ontological-category <-- @vehicle     
+
+
+
+
+
+

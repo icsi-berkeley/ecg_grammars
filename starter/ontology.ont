@@ -1,0 +1,746 @@
+//
+
+// ontology.ont
+
+//
+
+DEFS:
+
+(type shared)  // all elements of the shared ontology
+
+(type item)  // very top of our lattice, not all shared
+
+// (type countable sub item)  no longer needed
+
+(type entity sub item)  // possibly shared items; maybe all entities are shared ****
+
+(type hedgeVal sub shared)  // 4/8/13
+
+//(type point sub region)   // 11//4/13, removed 3/2/14
+
+(type location-concrete sub location )  //3/2/14
+
+(type location-metaphorical sub location )
+
+(type physicalEntity sub entity location-concrete )
+
+//(type physicalEntity sub entity location )  // no interior 11//4/13; 3/2/14
+
+(type abstract sub entity)
+
+(type agent sub  physicalEntity ) // will include metaphorical agents? 2/5/13
+
+(type effect sub entity)  // for EventRD, etc. 12/24/12
+
+(type eventTop sub effect)  // 12/28/12 reject event as agent
+
+(type event-kind sub enumeration) // conditional, serial
+
+(type crisis sub eventTop)  // 11/26/12
+
+(type money sub entity scale units) // ?? abstract or physical or both
+
+(type prices sub money)
+
+(type moveable sub physicalEntity)  //  used in animate
+
+(type socialProblem sub abstract) // severity scale
+
+(type problem sub socialProblem)  // difficulty scale
+
+(type idea sub abstract)  // importance, goodness scales
+
+(type abstractState sub abstract)
+
+(type depression sub abstractState) // emotional scale
+
+(type keyword sub shared)  // for use in N-tuples; meta-language, not in content ontology
+
+(type enumeration sub item)  // these are not sub entity, some in gramamr not shared
+
+(type sharedEnumeration sub enumeration shared)
+
+(type anaphor sub item)  // used in "his is red", etc.
+
+(type grouper sub shaped physicalEntity ) // ~boundary,  e.g. bunch
+
+(type bunch sub  grouper)  // hack, needed for Quantity NP***********fix
+
+// m4 test ontology additions 2/22/14
+
+(type poverty sub socialProblem abstractState)
+
+(type slide sub motion)
+
+// metaphors
+
+(type metaphors sub sharedEnumeration)  // names of known metaphors
+
+(type institutionAsPerson sub metaphors )
+
+(type stateAsLocation sub metaphors )  // Region ****
+
+(type SocialProblemsAsAnimateAgents sub metaphors )
+
+(type SocialProblemsAsDiseases sub metaphors )
+
+(type IdeasAsDiseases sub metaphors )
+
+(type MoneyASphysicalEntity sub metaphors )
+
+(type IdeasAsFood sub metaphors )
+
+(type DateAsMoveable sub metaphors )
+
+(type NaturalForcesAsAgents sub metaphors )  // 12/20/12
+
+//(type EntitiesAsAnimateBeings sub metaphors )
+
+//(type sizeAsDifficulty sub metaphors )
+
+// socialEntity
+
+(type socialEntity sub shaped entity )  // count,
+
+(type institution sub socialEntity  )
+
+(type group sub socialEntity )
+
+(type city-inst sub institution )  // 2 conceptualizations
+
+(type city-artifact sub artifact )
+
+(type disease sub physicalEntity ) // severity scale
+
+(type infection sub disease )
+
+(type food sub artifact)  // other parents and scales
+
+(type initiative sub idea )
+
+(type crime sub socialProblem)
+
+(type corruption sub crime)
+
+(type naturalForce sub physicalEntity )  // 12/29/12
+
+(type wind sub naturalForce )
+
+(type rain sub naturalForce )
+
+(type storm sub naturalForce eventTop )
+
+// modifier types
+
+//(type modifier-type  sub item)  // not sub entity **************
+
+//(type temporal sub modifier-type)
+
+// super-type and values for role values
+
+(type grammaticalValues  sub enumeration)  // not sub entity
+
+(type givennessValues  sub grammaticalValues)
+
+(type continuityValues  sub grammaticalValues)
+
+(type boundingValues  sub grammaticalValues)
+
+(type genderValues  sub grammaticalValues)
+
+(type male  sub genderValues)
+
+(type female  sub genderValues)
+
+(type neuter  sub genderValues)
+
+(type determinate sub boundingValues)
+
+(type indeterminate sub boundingValues)
+
+(type continuous  sub continuityValues )
+
+(type discrete  sub continuityValues )
+
+(type givennessValues  sub grammaticalValues)
+
+(type RDnumberValues  sub grammaticalValues)
+
+(type noNumber  sub RDnumberValues)  // for mass nouns
+
+(type singular  sub RDnumberValues)
+
+(type plural  sub RDnumberValues)
+
+(type dual  sub plural)
+
+(type typeIdentifiable  sub givennessValues)
+
+(type uniquelyIdentifiable  sub typeIdentifiable)
+
+(type familiar  sub uniquelyIdentifiable)
+
+(type distinct  sub typeIdentifiable)  // another box, etc. ????????????????
+
+(type activated  sub familiar)
+
+(type inFocus  sub activated)
+
+(type quantifierValues  sub grammaticalValues) // for QuantitySchema.values
+
+(type some sub quantifierValues)
+
+(type modifierKinds  sub grammaticalValues)
+
+(type comparative  sub modifierKinds )
+
+(type superlative sub modifierKinds )
+
+(type unmarked sub modifierKinds) // for adjectives, +
+
+(type deictic sub enumeration)  // ?? 11/20/12
+
+(type this sub deictic)
+
+// animate sentient
+
+(type animate sub shaped moveable agent physicalEntity)  // can also be numbered, etc.
+
+(type inanimate sub shaped physicalEntity)  // 10/23/12
+
+(type generic-person sub person)  // needs work - generics in general
+
+(type sheep sub animate)
+
+(type beast sub animate)  // for metaphor demo
+
+(type sentient sub physicalEntity agent) // intelligence scale? check against animate 2/6/13 *************
+
+(type person sub animate sentient)
+
+(type robot sub artifact sentient)
+
+// inanimate stuff
+
+(type shaped sub entity)  // contrast with mass
+
+(type artifact sub inanimate)
+
+(type block sub artifact physicalEntity )
+
+(type book sub artifact moveable)  // also sub story, which is abstract *****
+
+(type story sub artifact)  // 8/18/13  ****** change
+
+(type table sub artifact)
+
+// (type door sub artifact)  for HowTo
+
+(type instrument sub  physicalEntity)
+
+(type hammer sub instrument artifact moveable)
+
+(type vehicle sub instrument artifact moveable)  // 6/2/13
+
+(type car sub vehicle)
+
+(type bodyPart sub shaped physicalEntity) // 11/16/12
+
+(type hand sub bodyPart instrument moveable)
+
+(type head sub bodyPart)
+
+(type arm sub bodyPart instrument moveable)
+
+// containers
+
+(type container sub  artifact location entity)  //11/4/1/3
+
+(type box sub container)
+
+(type boxes sub container)
+
+(type room sub container)
+
+// mass
+
+(type mass sub physicalEntity )  // contrast with shaped, weight, volume scales
+
+(type discreteAble sub mass)
+
+(type beer sub discreteAble)
+
+(type mud sub mass)
+
+(type material sub mass)
+
+(type steel sub material)
+
+//
+
+// Instances
+
+//
+
+(type instance)
+
+(type john-instance sub instance person)
+
+(type box1-instance sub instance box)  // needs to be done right *************
+
+(type box2-instance sub instance box)
+
+(type block1-instance sub instance block)
+
+(type block2-instance sub instance block)
+
+(type block3-instance sub instance block)
+
+(type robot1-instance sub instance robot)
+
+(type robot2-instance sub instance robot)
+
+// Hedges
+
+(type fake sub hedgeVal)  //4/8/13
+
+(type none sub hedgeVal)
+
+// 	Enumerations
+
+//
+
+(type EventKind sub enumeration)
+
+(type lexicalORgerund sub EventKind)
+
+(type lexical sub lexicalORgerund)
+
+(type gerund sub lexicalORgerund)
+
+(type infinitive sub EventKind)
+
+(type process-kind sub enumeration)  //
+
+(type coprocess sub process-kind)   // 10/18/13
+
+(type serial sub process-kind)
+
+(type purpose sub serial ) // do X to do Y
+
+(type causal sub process-kind)
+
+(type interaction sub process-kind)
+
+(type measure sub enumeration)  // 11/20/12 shared??
+
+(type space sub measure)  // spatial domain
+
+(type time sub measure)  // temporal domain
+
+(type date sub time entity)
+
+(type conditional sub event-kind)
+
+(type serial sub event-kind)
+
+(type continuousOrDiscrete sub enumeration)  //values for RD role continuity
+
+(type continuous sub continuousOrDiscrete)
+
+(type discrete sub continuousOrDiscrete)
+
+(type possessionKind sub enumeration) // 12/1/12
+
+(type physical sub possessionKind)
+
+(type  ownership sub possessionKind)
+
+(type part sub possessionKind)
+
+(type property sub possessionKind)
+
+//
+
+// Regions
+
+//
+
+(type region sub  space entity)
+
+(type closedCurve sub region)
+
+(type location sub region) // source for stateAsLocation
+
+(type deicticCenter sub location)
+
+
+// anaphora
+
+(type antecedent sub physicalEntity)
+
+//
+
+// directions
+
+//
+
+(type heading sub enumeration space)
+
+(type towards sub heading)
+
+(type direction sub heading)
+
+(type straight sub direction)
+
+(type north sub direction)
+
+(type south sub direction)
+
+(type east sub direction)
+
+(type west sub direction)
+
+(type up sub direction)
+
+(type down sub direction)
+
+(type right sub direction)
+
+(type left sub direction)
+
+(type up sub direction)
+
+//================== process stages
+
+(type stage sub process)  // rename  *************
+
+(type start sub stage shared)
+
+(type stop sub stage shared)
+
+(type continue sub stage shared)
+
+// Voice
+
+(type voice sub item)
+
+(type  notPassive sub voice)
+
+(type passive sub voice)
+
+(type active sub notPassive)
+
+//==================
+
+(type process sub entity) // scales ??  10/18/13 is this right???
+
+(type block-verb sub process)
+
+(type stasis sub process)
+
+(type be sub stasis)
+
+(type be2 sub be)
+
+// (type inchoativestasis sub stasis)
+
+(type become sub stasis) // 2/14/13
+
+(type complexxnet sub process)
+
+(type routine sub process)
+
+(type motion sub process)
+
+(type perception sub process)
+
+(type see sub perception)  // 2/7/13  perception
+
+(type change sub statechange) // 2/17/13 ? subtype of ?
+
+(type effectormotion sub complexxnet)
+
+(type forceapplication sub routine)  // ?? why needed  2/28/13
+
+(type forcefulmotionaction sub complexxnet)
+
+(type agentiveimpactaction sub forcefulmotionaction)
+
+(type causeEffect sub complexxnet)
+
+// (type cut sub causeEffect)
+
+(type slap sub forcefulmotionaction)
+
+(type hit sub agentiveimpactaction)
+
+(type assault sub agentiveimpactaction)
+
+(type infect sub causeEffect)
+
+(type kick sub agentiveimpactaction)
+
+(type move sub motion)
+
+(type walk sub motion)
+
+(type enter sub motion)
+
+(type run sub motion)
+
+(type drive sub motion)  // 5/28/13
+
+(type push sub forceapplication )
+
+(type releasehold sub forceapplication)
+
+(type establishhold sub forceapplication)
+
+(type throw sub complexxnet)
+
+(type objecttransfer sub complexxnet)
+
+(type statechange sub routine)  //2/28/13
+
+(type make sub statechange)
+
+(type mentalProcess sub process)
+
+(type say sub mentalProcess)
+
+(type think sub mentalProcess)
+
+(type give sub objecttransfer)
+
+(type give-light  sub process)
+
+(type take sub objecttransfer)
+
+(type take-light  sub process)
+
+(type possess sub process)
+
+(type tell sub process)  // 8/15/13
+
+(type emotionKind sub scale)
+
+(type anger sub emotionKind)  // 3/29/13 verb
+
+(type help sub process)
+
+(type want sub process)
+
+(type cause sub process)
+
+(type enlarge sub process)
+
+(type prevent sub process)  // 1/22/13
+
+//
+
+// Distances
+
+//
+
+(type distance sub space)  // relate this to scales ****
+
+(type centimeter sub distance spatial-units)
+
+(type inch sub distance spatial-units)
+
+(type square sub distance spatial-units)  // for simple robot world
+
+(type squares sub distance spatial-units)
+
+// Units
+
+(type units sub entity shared)
+
+(type temporal-units sub time units)
+
+(type nontemporal-units sub units)
+
+(type spatial-units sub space nontemporal-units)
+
+//
+
+// Time
+
+//
+
+(type hour sub temporal-units)
+
+(type minutes sub temporal-units)
+
+(type seconds sub temporal-units)
+
+(type telicity sub time)   // change to temorality 11/26/12
+
+(type ongoing sub telicity)  // ????
+
+(type bounded sub telicity)
+
+//
+
+// Modifiers and Scales
+
+//
+
+(type modifier)  // shared ??
+
+(type quantifier sub modifier)  // cf. use in specializer
+
+(type adjective sub modifier)
+
+(type adverb sub modifier)
+
+(type scale sub object-property)  //3/2/13
+
+// (type noScale sub scale) //   not needed
+
+(type difficultyScale sub scale )
+
+(type intensityScale sub scale )
+
+(type size sub scale )  // revisit 11/12/12 *************
+
+(type fear sub scale) // desperate, etc.
+
+//(type scaleValue sub sharedEnumeration)  // not currently used 11/19/12
+
+(type verticality sub scale )  // a basic scale
+
+(type morality sub verticality )  // a basic scale
+
+(type length sub size) // another scale sub of size
+
+(type speed sub scale )  // fast, faster, etc
+
+(type hunger sub scale )
+
+(type distanceScale sub scale ) // near far ??comparatives??
+
+(type amountScale sub scale )  //12/17/12  not yet used
+
+(type few  sub amountScale )
+
+// Properties
+
+(type object-property sub shared)
+
+(type color sub object-property )  // cf. size, non-scalar property
+
+(type propValue sub sharedEnumeration )  // non-scale properties are sets
+
+(type colorValue sub propValue)
+
+(type sizeValue sub propValue)
+
+(type red sub colorValue)
+
+(type blue sub colorValue)
+
+// numbers
+
+(type number sub quantifier)
+
+(type one sub number)
+
+(type two sub number)
+
+(type three sub number)
+
+//
+
+// Verbs
+
+//
+
+(type verb)
+
+//
+
+// Temporality
+
+//
+
+(type temporality)
+
+//(type bounded sub temporality)
+
+//(type ongoing sub temporality)
+
+//(type bounded-ongoing sub temporality)
+
+//
+
+// Verb Tense
+
+//
+
+(type tense)
+
+(type present sub tense)
+
+(type past sub tense)
+
+(type future sub tense)
+
+//
+
+// Mood
+
+//
+
+(type mood)  // all of these are moodValue
+
+(type declarative sub mood)
+
+(type imperative sub mood)
+
+(type wh-question sub mood)
+
+(type yn-question sub mood)
+
+//
+
+// Modality
+
+//
+
+(type modality) // all of these are modalityValue
+
+(type can sub modality)
+
+(type cant sub modality)
+
+(type could sub modality)
+
+(type should sub modality)
+
+//
+
+// WH Stuff
+
+//
+
+(type wh-word)
+
+(type which sub wh-word)
+
+(type where sub wh-word)
+
+(type what sub wh-word)
+
+//
+
+// Numbers
+
+//
+
+//(type number sub entity)
+
+(type pencil sub entity artifact moveable)
+
+INSTS:

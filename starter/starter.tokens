@@ -1,0 +1,16 @@
+scarlet :: ColorType :: self.m.value <-- @red
+red :: ColorType :: self.m.value <-- @red
+blue :: ColorType :: self.m.value <-- @blue
+block   :: NounType  :: self.m.ontological-category <-- @block :: self.m.scale <-- @size
+move    :: SelfMotionType  :: self.m.actionary <-- @move
+walk    :: SelfMotionType  :: self.m.actionary <-- @walk :: self.m.speed <-- ".3"
+run     :: SelfMotionType  :: self.m.actionary <-- @run  :: self.m.speed <-- ".7" 
+box     :: NounType  :: self.m.ontological-category <-- @box :: self.m.scale <-- @size
+room    :: NounType  :: self.m.ontological-category <-- @room :: self.m.scale <-- @size
+be      :: BeCopula  :: self.m.actionary <-- @be
+see     :: PerceptionType :: self.m.actionary <-- @see
+sprint  :: SelfMotionType  :: self.m.actionary <-- @run  :: self.m.speed <-- ".8"
+jog  :: SelfMotionType  :: self.m.actionary <-- @run  :: self.m.speed <-- ".6"
+enter :: PathVerbType   :: self.m.actionary <-- @enter :: self.m.landmark.ontological-category <-- @container
+pencil :: NounType :: self.m.ontological-category <-- @pencil
+man :: NounType :: self.m.ontological-category <-- @person

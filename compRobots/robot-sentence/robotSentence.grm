@@ -1,0 +1,40 @@
+package robots
+import starter
+
+
+construction AddressedImperative
+	subcase of Utterance
+	constructional
+	   constituents
+	     core: Imperative
+	     addr: ProperNounNP
+	     optional comma: Comma
+	     optional end: IMark
+	form
+	   constraints
+	      addr.f meets comma.f
+	      comma.f meets core.f
+	meaning
+	   constraints
+	      self.m.addressee <--> addr.m
+	      self.m.mood <-- "Imperative"
+	      core.m.profiledParticipant <--> self.m.addressee
+
+construction AddressedConditionalImperative
+	subcase of Utterance
+	constructional
+	   constituents
+	     addr: NP
+	     optional comma: Comma
+	     core: ConditionalImperative
+	     optional end: IMark
+	form
+	   constraints
+	      addr.f meets comma.f
+	      comma.f meets core.f
+	      core.f meets end.f
+	meaning
+	   constraints
+	      self.m.addressee <--> addr.m
+	      self.m.mood <-- "Conditional-Imperative"
+	      core.m.profiledParticipant <--> self.m.addressee

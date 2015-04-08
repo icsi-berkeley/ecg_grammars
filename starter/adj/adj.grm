@@ -1,0 +1,49 @@
+package starter
+
+//
+// Adjectives
+// ========== 
+// 
+
+general construction Adjective  // parallel to Verb, etc. \
+	subcase of  RootType  // for testing
+	//subcase of HasNominalFeatures   **** for agreement in Spanish, etc.
+	meaning: Modification
+
+general construction LexicalAdjective
+   subcase of Adjective, Word
+    
+general construction PropertyAdjective  // parallel to Verb, etc. \
+	subcase of  LexicalAdjective
+	//subcase of HasNominalFeatures   **** for agreement in Spanish, etc.
+	meaning: PropertyModifier	
+
+general construction Color  //subcase of non-scale Adj
+  subcase of PropertyAdjective    
+   meaning: PropertyModifier
+    constraints
+       self.m.property <-- @color 
+	   self.m.domain <-- @physicalEntity
+
+construction ColorType  //subcase of non-scale Adj
+  subcase of PropertyAdjective, GeneralTypeCxn 
+   meaning: PropertyModifier
+    constraints
+       self.m.property <-- @color 
+	   self.m.domain <-- @physicalEntity
+	   self.m.value <-- @colorValue
+
+general construction ScalarAdjective
+   subcase of PropertyAdjective
+   meaning: ScalarModifier
+   
+construction SizeType
+	subcase of ScalarAdjective, GeneralTypeCxn
+	meaning
+	  constraints
+	    self.m.value <-- @sizeValue
+	    self.m.property <-- @size
+	    self.m.domain <-- @physicalEntity
+	    self.m.kind <-- @unmarked
+
+ 

@@ -1,0 +1,404 @@
+package starter
+//package transitives
+
+// *** 5/22/13 NOTE: need to remove 'test' from names at some point ***
+
+
+/*
+5/24/13 copy of cxn in vp.grm:
+
+general construction ArgumentStructure 
+  subcase of VP
+  constructional
+    constituents
+      v : Verb 
+    constraints
+      self.features <--> v.features
+      self.voice <--> v.voice
+   meaning
+     constraints
+       v.m  <--> ed.profiledProcess
+       self.m.p-features <--> v.m.p-features // 1/3/13 ????
+      // self.ed.eventProcess.p-features <--> self.ed.profiledProcess.p-features 1/15/13
+*/
+
+
+//GENERAL TRANSITIVE CONSTRUCTIONS
+
+general construction ActiveTransitive  // 5/14/13
+  subcase of ArgumentStructure
+  constructional
+    constituents
+      np: NP [1.0, .9]   // probablilties, check this !!
+    constraints
+      v.argform <-- Transitive
+      v.voice <-- NotPassive  // 2/1/13
+  form
+    constraints 
+      v.f before np.f
+  meaning: Process  //  5/14/13
+     evokes A123 as s //5/14/13 *****************
+    constraints
+      s.a1 <--> ed.profiledParticipant	//2/20/13 
+      s.a2 <--> np.m 
+	  v.m.p-features.voice <-- @active // 2/1/13 
+
+general construction CoreActiveTransitive  // 8/21/13
+	subcase of ActiveTransitive
+	meaning
+		constraints
+		self.m <--> v.m
+		
+
+construction ActiveTransitivePerception  // 8/21/13 he saw the block
+	subcase of CoreActiveTransitive
+	meaning: Perception
+		constraints
+		v.verbkind <-- Perceptual  // 10/3/13 possibly redundant with meaning
+		s.a1 <--> self.m.thinker	
+		s.a2 <--> self.m.content
+
+construction ActiveTransitiveChangeLocation  // 10/15/13  he entered the room
+	subcase of CoreActiveTransitive
+	meaning: ChangeLocation
+	  constraints
+		//v.verbkind <-- 
+		s.a1 <--> self.m.mover	
+		s.a2 <--> self.m.landmark  //source or goal
+
+construction ActiveTransitiveCausedMotion  // he moved the block
+  subcase of ActiveTransitive
+	meaning: CauseEffectProcess
+        evokes MotionPath as mp
+	constraints
+		v.m <--> mp
+		mp <--> self.m.affectedProcess
+		s.a1 <--> self.m.causer	
+		s.a2 <--> self.m.affected
+
+
+construction ActiveTransCausedLocationChange // he moved the block into the room
+  subcase of ActiveTransitiveCausedMotion 
+  constructional
+   constituents//one of these needs to be present
+      optional dis: SpatialQuantityNP
+      optional dir: Directional 
+      optional pp: Path-PP  // 
+   constraints
+	// v.argform <-->  ?????????????
+   form
+     constraints
+	   v.f before dis.f 
+       dis.f before dir.f
+       dir.f before pp.f   
+   meaning  //inherited? Along with evoked MotionPath??
+	constraints 
+          self.m.affectedProcess <--> mp // inherited?
+          self.m.affected <--> mp.mover //  inherited?
+    	   //self.m.affected <--> mp.spg.trajector
+    	    mp.spg <--> pp.m 
+   		mp.spg.distance <--> dis.m
+   		mp.heading <--> dir.m
+
+
+		
+/*
+construction ActiveTransitivePossession  // 10/4/13
+	subcase of CoreActiveTransitive
+	constructional
+	constituents
+	meaning: PossProcess
+		constraints
+		v.verbkind <-- PossessionKind
+		s.a1 <--> self.m.protagonist	
+		s.a2 <--> self.m.possessed
+
+*/
+//TESTING of new analysis of 'enter' 11/5/13
+
+schema ChangeLocation // protagonist changes location wrt a LM
+   subcase of Process  
+   evokes SPG as spg
+   roles
+      mover
+      landmark: RD
+     // source
+      //path
+      //goal
+   constraints  
+      mover <--> spg.trajector 
+	  mover <--> protagonist
+      landmark <--> spg.landmark
+	 // source <--> spg.source
+     // path <--> spg.path
+     // goal <--> spg.goal 
+      protagonist.ontological-category <-- @physicalEntity  // hack 10/23/12
+      
+
+
+
+		
+
+/*		
+general construction PassiveTransitive // 5/14/13
+  subcase of ArgumentStructure
+  constructional
+    constituents
+     v:Verb // inherited
+     optional byPhrase: ByAgentPhrase
+    constraints
+      v.argform <-- Transitive
+      v.voice <-- Passive  // 2/1/13
+ form
+    constraints
+      v.f before byPhrase.f
+  meaning: Process  
+     evokes A123 as s
+     constraints
+	   s.a1 <--> byPhrase.m.landmark 
+	   s.a2 <--> ed.profiledParticipant
+	   v.m.p-features.voice <-- @passive 
+
+	 	 
+
+/*TRANSITIVE cxns 
+   Several different kinds of situations can be described using 'transitive' a-s cxns: 
+    -- Trans_Causation --  Different subcases: 
+            + a1's actions at least potentially affect the state/location of a2 (e.g. cut, kick)
+			+ a2 process (effect) has an external cause (a1) (e.g. move, break)
+			+ a2 is effect, verb indicates type of 'cause' (e.g. cause, prevent)
+   	-- Trans_Perception: a1 percieves a2 (e.g. see, hear)
+    -- Trans_Possession: a1 posesses a2 (e.g. have, own, possess)
+    -- Trans_Imitiation??: a1's action/state is dependent on a1's action/state (e.g. a1 follows/copies a2)
+    -- Trans_MentalAttitude?? : a1 has mental attitude wrt a2 (e.g. likes, wants, fears)
+    -- Trans_Motion: a1 moves in relation to a2 (e.g. enter, leave)
+    -- Trans_Communication (e.g. tell a lie, say something)
+   
+Note that only some of these transitive cxns are in the current grammar. 
+
+In the analysis below, different general transitive cxns are defined for these different types
+    of situations/relations between a1 and a2.  For each , the general transitive cxn's meaning is identified with a schema
+    that represents the situation type.  Meaning constraints indicate how the situation roles are expressed.
+
+  The general Trans_Causation cxn, below, describes a prototypical 'causal' scenario.  
+  This meaning is reprsented using the Causation_test schema, shown here as a COMMENTED OUT DUPLICATE:
+ 
+     schema Causation_test // general causation schema   DUPLICATE
+       subcase of ComplexProcess
+   		roles
+   			causer
+			causalProcess
+			affected
+			affectedProcess
+			outcome // type??
+			//cause: eventRD
+			//effect: eventRD
+  		 constraints
+     		causalProcess <--> process1  
+      		affectedProcess <--> process2
+      		causer <--> protagonist
+      		affected <--> protagonist2
+	  		complexKind <-- @causal// causal relation between proc 1 and 2
+
+   (5/24/13): NOTE that the Causation_test schema does not currently have any constraints
+      on the ontological type of its participants. e.g. does not constrain them to be
+      @physicalEntity.  Such constraints could be added to the schema, and/or could be added
+      to specific constructions in which they are relevant. 
+
+
+
+
+general construction Trans_Causation // 
+  subcase of ArgumentStructure
+    meaning: Causation_test // Process schema
+     evokes A123 as s
+     constraints
+	    s.a1 <--> self.m.causer
+        s.a2 <--> self.m.affected
+
+
+
+//SUBCASES of Trans_Causation, for different verb types (grouped by how they elaborate Causation scene)
+//Active and Passive cxns are defined as further subcases
+
+ 
+//In the central subcase of Trans_Causation, the verb constituent incorporates Causation in its meaning, e.g. cut 
+
+general construction Trans_Causation_central 
+  subcase of Trans_Causation
+    meaning
+     constraints
+	    self.m <--> v.m
+
+construction ActiveTrans_Causation_central //he cut the box
+  subcase of ActiveTransitive, Trans_Causation_central     
+      
+/*
+construction PassiveTrans_Causation_central // the box was cut (by him)
+  subcase of PassiveTransitive, Trans_Causation_central    
+        
+
+// In the 'causalAction' subcase, the verb constituent has meaning related to force-application, e.g. push, slap 
+general construction Trans_Causation_causalAction 
+  subcase of Trans_Causation
+    meaning
+     evokes ForceApplication as fa
+     constraints
+	    v.m <--> fa
+        self.m.process1 <--> fa
+        fa.actedUpon <--> self.m.affected        
+       
+        
+construction  ActiveTrans_Causation_causalAction   // he pushed/slapped the box
+  subcase of ActiveTransitive, Trans_Causation_causalAction  
+/*  
+construction PassiveTrans_Causation_causalAction // the box was pushed/slapped (by him)
+  subcase of PassiveTransitive, Trans_Causation_causalAction         
+
+
+//// In the 'effectProcess' subcase, the verb constituent elaborates affectedProcess, e.g. move
+// ** NOTE: need to add verbKind constraints that block use of this cxn with 'transitive' verbs **
+
+general construction Trans_Causation_effectProcess_test2 // e.g. move 
+  subcase of Trans_Causation
+    meaning
+    constraints
+        v.m <--> self.m.affectedProcess
+
+construction ActiveTrans_Causation_effectProcess_test2 //he moved the box
+  subcase of ActiveTransitive, Trans_Causation_effectProcess_test2      
+   
+   /*     
+construction PassiveTrans_Causation_effectProcess_test2 // the box was moved (by him)
+  subcase of PassiveTransitive, Trans_Causation_effectProcess_test2               
+*/
+
+
+
+  
+// Event Causation
+/*		 	
+general construction Trans_Causation_eventCause // 
+  subcase of ArgumentStructure
+    meaning: Causation_test // Process schema
+     evokes A123 as s
+     constraints
+	  s.a1 <--> self.m.causalEvent
+      s.a2 <--> self.m.affected
+        
+
+general construction Trans_Causation_eventCause_effectProcess // e.g. move 
+  subcase of Trans_Causation_eventCause
+    meaning
+    constraints
+        v.m <--> self.m.affectedProcess
+
+//his pushing moved the box
+construction ActiveTrans_Causation_eventCause_effectProcess 
+  subcase of ActiveTransitive, Trans_Causation_eventCause_effectProcess
+        
+/*
+// the box was moved by his pushing
+construction PassiveTrans_Causation_eventCause_effectProcess 
+  subcase of PassiveTransitive, Trans_Causation_eventCause_effectProcess
+
+/*
+construction ActiveAgentEventTransitive // 2/5/13 he caused the crisis 
+  subcase of ActiveTransitive
+	meaning: AgentEventCausation
+		constraints
+			np.m <--> self.m.effect
+			self.m.causer <--> ed.profiledParticipant
+
+construction EventEventTransitive // 12/28/12
+  subcase of ActiveTransitive
+	meaning: EventEventCausation
+		constraints
+			np.m <--> self.m.effect
+			self.m.causer <--> ed.profiledParticipant
+
+construction PassiveAgentEventTransitive // 2/5/13 the crisis was caused by J.
+  subcase of PassiveTransitive
+constructional
+    constituents
+       byPhrase: ByAgentPhrase
+        v: Verb  
+  form
+    constraints
+      v.f before byPhrase.f
+  meaning: AgentEventCausation
+	constraints
+		byPhrase.m.landmark <--> self.m.causer
+		self.m.effect <--> ed.profiledParticipant
+
+construction PassiveEventEventTransitive // 2/5/13 the crisis was caused by his moving
+  subcase of PassiveTransitive
+constructional
+    constituents
+       byPhrase: ByAgentPhrase
+        v: Verb  
+  form
+    constraints
+      v.f before byPhrase.f
+  meaning: EventEventCausation
+	constraints
+		byPhrase.m.landmark <--> self.m.causer
+		self.m.effect <--> ed.profiledParticipant
+*/
+
+// Transitive Perception
+/*
+general construction Trans_Perception_central  // 10/7/13
+  subcase of ArgumentStructure
+  meaning: Perception
+    constraints
+      v.verbkind <-- Perceptual  // 10/3/13 possibly redundant with meaning
+      s.a1 <--> self.m.thinker	// perceiver 
+      s.a2 <--> self.m.content   // percept
+      self.m <--> v.m
+
+
+construction ActiveTrans_Perception_central //he saw the box
+  subcase of ActiveTransitive, Trans_Perception_central     
+        
+
+construction PassiveTrans_Perception_central // the box was seen (by him)
+  subcase of PassiveTransitive, Trans_Perception_central    
+
+       
+general construction TransCat_PresentPart_Perception // 10/7/13 
+  subcase of Trans_Perception_central
+  constructional
+    constituents
+	vp: VP
+    constraints
+      vp.features.verbform <-- PresentParticiple
+  meaning: Perception
+    constraints
+	vp.m <--> self.m.perceivedProcess
+
+construction ActiveTrans_TransCat_PresentPart_Perception //he saw the block moving into the box
+  subcase of ActiveTransitive, TransCat_PresentPart_Perception
+        
+
+construction PassiveTrans_TransCat_PresentPart_Perception // he was seen moving into the box
+  subcase of PassiveTransitive, TransCat_PresentPart_Perception
+      
+
+general construction TransCat_Base_Perception // 10/8/13
+  subcase of Trans_Perception_central
+  constructional
+    constituents
+	vp: VP
+    constraints
+      vp.features.verbform <-- Base
+  meaning: Perception
+    constraints
+	vp.m <--> self.m.perceivedProcess
+
+construction ActiveTrans_TransCat_Base_Perception //he saw the block move into the box
+  subcase of ActiveTransitive, TransCat_Base_Perception
+  
+//Note: this construction does not occur with Passive: *the block was seen move into the box.
+        
+*/

@@ -1,0 +1,92 @@
+package robots
+import starter
+
+
+general construction WH-Question  
+	subcase of  Question
+	
+construction WHQuesUtterance  
+    subcase of Utterance
+    constructional 
+        constituents
+            core: WH-Question
+            optional end: QMark  //    ?
+    form
+        constraints
+            core.f meets end.f 
+    meaning
+        constraints
+            self.m.mood <-- "WH-Question" // this is where we want mood
+ 			self.m.content <--> core.m
+ 			
+construction SubjWH-Question
+    subcase of WH-Question, S-With-Subj
+    constructional
+        constituents
+           subj: WH-NP
+    	   fin: VP
+        constraints
+    form
+        constraints
+	       subj.f before fin.f
+    meaning
+        constraints
+	       self.m <--> fin.ed 				
+
+
+// Construction for "what" - testing (added from Base or written here, 7/14/14, ST)
+
+general construction WH-NP
+   subcase of NP
+
+general construction WH-Specifier  // TODO these need work, questionRD?
+   	subcase of Specifier
+   	
+construction WhSpecifierPlusKernel
+  subcase of Specifier2PlusKernel, WH-NP
+  constructional
+    constituents   
+      s: WH-Specifier
+      k: Kernel
+   meaning
+	constraints
+		s.m <-> k.m
+
+
+construction What-Specifier
+   subcase of WH-Specifier
+   form
+      constraints
+         self.f.orth <-- "what"
+   meaning: QuestionRD
+      constraints
+ 		self.m.specificWh <-- @what
+
+
+construction Which-Specifer
+   subcase of WH-Specifier
+   form
+      constraints
+         self.f.orth <-- "which"
+   meaning: QuestionRD
+      constraints
+ 		self.m.specificWh <-- @which
+ 		 			
+construction What-WH-NP
+   subcase of WH-NP, Word
+   form
+      constraints
+         self.f.orth <-- "what"
+   meaning: QuestionRD
+      constraints
+ 		self.m.specificWh <-- @what
+ 		
+construction Where-WH-NP
+   subcase of WH-NP, Word
+   form
+      constraints
+         self.f.orth <-- "where"
+   meaning: QuestionRD
+      constraints
+ 		self.m.specificWh <-- @where 		
+

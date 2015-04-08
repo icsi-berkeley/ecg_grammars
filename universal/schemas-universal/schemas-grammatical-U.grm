@@ -1,0 +1,96 @@
+
+package universal-schemas
+
+// grammaticalschemas.grm
+//
+// A simple schema for the orthographic form associated with Word cxns
+schema WordForm 
+  roles
+    orth 
+    lemma
+  constraints
+     lemma <-- "*"
+     //orth <-- "*"
+
+
+// REFERENT DESCRIPTOR (RD) schemas
+
+schema RD // meaning of NP 
+  roles
+    ontological-category  
+    givenness: @givennessValues  
+    referent 
+    number 
+	gender: @genderValues
+	bounding 
+	scale: @scale 
+	
+	//hedge: @hedgeVal  // @fake, etc  
+	//continuity: @continuityValues 
+    //amount: Amount // schemas for quantifiers, etc. 
+    extensions: Extensions //  schemas for affordances, etc
+
+schema Extensions
+  roles
+    property: RD
+
+schema EntityRD  // 5/5/14 ; replace RD in many places
+	subcase of RD
+ roles
+    ontological-category: @entity
+    
+    
+schema EventRD  // 5/5/14  named event, e.g. crisis & more
+	subcase of RD 
+	roles 
+		description: EventDescriptor
+		// kind: @EventKind  1/19/13 move to ED.eventForm; lexical, gerund, infinitive, 
+	constraints
+		self.ontological-category <-- @eventTop //	 6/6/13
+		
+
+// EVENT DESCRIPTOR (ED) schemas
+
+schema EventDescriptor // meaning of S
+	roles
+		eventProcess: Process		
+		e-features: EventFeatures
+		profiledProcess: Process	
+		profiledParticipant: RD 		
+		eventForm: @EventKind 			
+
+schema EventFeatures  // voice: @voice   also in Process - Drop
+	roles
+		subord  // subordinating conjunction, 
+		telicity	// USED in temporal in/for
+		duration  // USED in TemporalVP  
+		tense: @tense  // USED
+		modality: @modality  // USED
+		negated  // USED
+
+
+// RD
+
+schema QuestionRD
+	subcase of RD
+	roles
+	  specificWh: @wh-word	 
+
+schema Amount   // general schema parent of all
+
+schema QuantitySchema  // numerical, some, "a few", etc.
+  subcase of Amount
+  roles
+  	value  // numbers ++
+  	number: @RDnumberValues
+  		  
+schema QuantifiedRD  // general case 
+	subcase of RD //, RelativizedRD  7/18/14
+	roles
+      	amount: QuantitySchema //subcases include numbers, “several”, etc. ****name?**
+ 		units	 
+ 		
+ schema QuantifiedSpatialRD
+	subcase of QuantifiedRD
+	roles
+      	units: @spatial-units	// check the typing wrt all kinds	  

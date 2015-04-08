@@ -1,0 +1,228 @@
+package universal-schemas
+// 
+schema Process 
+	roles
+    	protagonist: RD 
+      	actionary: @process	
+      	p-features: ProcessFeatures 
+      	ed:EventDescriptor 		
+
+schema ProcessFeatures // some values are set by Aux cxns
+	roles
+		tense: @tense 	// one of past, present, future
+		perfect 		// yes or blank
+		progressive 	// yes or blank
+		//lexicalAspect 	// state, punctual, activity, achievement, accomplishment
+		//particle  // for particle before or after
+		//timeUnits: @temporal-units  //@minutes, @seconds 3/22/13
+		voice: @voice	
+		negated  		// yes or blank	
+
+schema Motion
+   subcase of Process 
+   roles
+      mover: RD  
+      speed          // scale
+      heading		// untyped, North, towards Box2 
+      actionary: @motion
+   constraints
+     mover <--> protagonist 
+   
+
+schema MotionPath // (bounded) translational motion
+   subcase of Motion  
+   evokes SPG as spg
+   roles
+      direction //:RD  // 10/15/13  source or goal
+   constraints  
+      mover <--> spg.trajector
+      //mover.ontological-category <-- @physicalEntity       
+      
+      
+
+
+schema Perception  // "he saw the box"  
+   subcase of Process //  10/7/13
+   roles
+    	thinker: RD
+		//perceivedProcess: Process  for "he saw him running"
+    	content : RD // perceivedEntity  
+   constraints
+    	thinker <--> protagonist
+		thinker.ontological-category <-- @sentient
+		//content <--> perceivedProcess.protagonist
+
+
+schema ComplexProcess  // later make sub of CoProcess
+   subcase of Process
+   roles
+   	  complexKind: @process-kind	
+      //actionary//: @complexxnet  not used??
+      process1: Process
+      process2: Process
+      protagonist2: RD
+   constraints
+      protagonist <--> process1.protagonist
+      protagonist2 <--> process2.protagonist
+
+
+schema CauseEffectProcess
+   subcase of ComplexProcess 
+   roles
+      causer: RD
+      affected: RD
+      causalProcess
+      affectedProcess
+   constraints
+      causer <--> protagonist // binding to inherited role
+      affected <--> protagonist2 // binding to inherited role
+      causalProcess <--> process1 // binding to inherited role
+      affectedProcess <--> process2 // binding to inherited role
+      complexKind <-- @causal
+ 
+
+// Stasis -- used as the meaning of the copular use of 'be'
+schema Stasis
+   subcase of Process 
+   roles
+      protagonist: RD 	// 4/26/13
+      state 		// untyped here
+      actionary: @stasis // copula, etc.
+      temporality
+   constraints
+
+
+//TESTING SECTION  2/10/14
+
+schema EmbeddedProcess 
+  subcase of Process
+    roles
+      embeddedProcess: Process 
+      // actionary: @embeddedProcess	??
+      
+schema GeneralCausation // most general or abstract causation schema
+   roles
+   	cause // untyped – could be force, process, or event?
+	effect // untyped – event or state (outcome)?
+	fdTag // e.g. cause, prevent, enable. Default value could be ‘cause’ 
+
+
+// e.g. The explosion caused the damage; His kicking caused the damage
+schema CausalEvent // ‘cause’ is protagonist
+   subcase of GeneralCausation, Process  // or ComplexEvent
+   roles
+   	 cause: RD // or EventRD?
+     effect: RD // or EventRD?
+   constraints
+     cause <--> protagonist
+
+// e.g. The explosion moved the box; The explosion caused the box to move
+schema CausedProcess // elaborated effect, general cause
+   subcase of GeneralCausation, EmbeddedProcess
+   roles
+   	affectedEntity: RD  // physical entity
+    affectedProcess: Process
+    //causedProcessType:
+     cause: RD // Or EventRD? Or add tighter constraints in cxns?
+	//effect – could define as EventRD and bind aff Entity and process roles
+   constraints
+      affectedProcess <--> embeddedProcess
+      affectedEntity <--> 	affectedProcess.protagonist
+      cause <--> protagonist
+
+// e.g. He caused the damage 
+schema CausalAction // elaborated cause, general effect
+   subcase of GeneralCausation, Process
+   roles
+   	causalAgent: RD // in central case, is sentient entity 
+    effect: RD // Or EventRD?
+     //causalActionType: 
+   constraints
+      causalAgent <--> protagonist
+      // causalAgent.ontologicalType <-- @physicalEntity
+      //cause - could define as EventRD and bind causalAgent and Process roles
+
+
+// e.g. He caused the box to move; He moved the box
+schema CauseEffectAction // prototypical/central case of causation
+   subcase of GeneralCausation, ComplexProcess 
+   roles
+      causalAgent: RD
+      affectedEntity: RD
+      causalProcess
+      affectedProcess
+   constraints
+      causalAgent <--> protagonist // binding to inherited role
+      affectedEntity <--> protagonist2 // binding to inherited role
+      causalProcess <--> process1 // binding to inherited role
+      affectedProcess <--> process2 // binding to inherited role
+      complexKind <-- @causal
+ 	//effect – could define as EventRD and bind aff Entity and process roles
+      //cause - could define as EventRD and bind causalAgent and Process roles
+ 
+/* Unsure if this is final version of causation. */ 
+schema CauseEffect   // Direct Physical Causation
+   subcase of ComplexProcess 
+   roles
+      causalAgent: RD 
+      affectedEntity: RD
+      causalProcess: ForceApplication
+      affectedProcess
+   constraints
+      causalAgent <--> protagonist // binding to inherited role
+      affectedEntity <--> protagonist2 // binding to inherited role
+      causalProcess <--> process1 // binding to inherited role
+      affectedProcess <--> process2 // binding to inherited role
+      causalProcess.actedUpon <--> protagonist2
+      causalProcess.actionary <-- @forceapplication
+      complexKind <-- @causal
+      
+ schema MotorControl
+   subcase of Process
+   roles
+      actor: RD 
+      effector: RD
+      effort
+      routine : @routine
+   constraints
+   	  actor.ontological-category <-- @agent //  12/21/12
+      actor <--> protagonist  // protagonist inherited from Process
+      routine <--> actionary
+
+schema ForceTransfer 
+   evokes Contact as cont
+   roles
+      supplier: RD // @entity    
+      recipient: RD // @entity
+      amount  // name conflict ********
+   constraints 
+   	  // no replacement for the above since Contact constrains
+   	  // entity{1,2}.referent to @entity
+      supplier <--> cont.entity1
+      recipient <--> cont.entity2   
+
+schema ForceApplication
+   subcase of MotorControl     
+   evokes ForceTransfer as ft 
+   roles
+      actedUpon: RD // @entity
+      routine : @forceapplication
+      instrument: RD // @instrument
+   constraints
+      actor <-->  ft.supplier
+      actedUpon <--> ft.recipient
+      //other   <-->   ft.recipient // 4/30/13 ********    
+      instrument <--> effector
+      effort <-->  ft.amount    
+      actionary <-- @forceapplication
+
+      
+
+schema StagedProcess
+	subcase of Process
+	  roles
+	    stageRole: @stage
+
+
+
+

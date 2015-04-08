@@ -1,0 +1,70 @@
+package location
+import starter
+
+
+construction Part-Of-Whole 
+  subcase of Kernel  
+   constructional
+    constituents   
+      snp: Kernel
+      of-prep: OF-Modifier
+      np: NP
+   constraints
+      self.features <--> snp.features
+  form
+    constraints
+      snp.f meets of-prep.f
+      of-prep.f meets np.f	
+ meaning //RD
+	evokes PartWhole as pw  
+  	constraints
+  		self.m <--> snp.m  // percolate 
+  		//snp.m.ontological-category <-- @container // applies only to containers
+  		snp.m <--> self.pw.part
+  		snp.m.ontological-category <-- @part
+  		np.m <--> self.pw.whole
+  		snp.m.extensions <--> self.pw
+
+construction NP-ModifierPP
+	subcase of NP
+	constructional
+	  constituents
+	    np: NP
+	    modpp: ModifierPP
+	  constraints
+	    self.features <--> np.features
+	form
+	  constraints
+	    np.f meets modpp.f
+	meaning
+	  constraints
+	    np.m.ontological-category <-- @physicalEntity
+	    np.m <--> modpp.m.modifiedThing
+	    self.m <--> np.m
+
+
+construction LOCATION
+	subcase of Word, HasAgreementFeatures
+	form
+	  constraints
+	    self.f.orth <-- "location"
+     
+construction LocationNP
+	subcase of NP, Kernel
+	constructional
+	  constituents
+	    tag: LOCATION
+	    x: Quantifier
+	    optional comma: Comma
+	    y: Quantifier
+	form
+	  constraints
+	    tag.f meets x.f
+	    x.f meets comma.f
+	    comma.f meets y.f
+	meaning: Location2D
+	  constraints
+	    self.m.xCoord <--> x.m.value
+	    self.m.yCoord <--> y.m.value 
+	    
+	    	        

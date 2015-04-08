@@ -1,0 +1,14 @@
+package primero
+
+schema CoProcess
+	subcase of ComplexProcess
+	roles
+		process1: Process
+		process2: Process
+	constraints
+		protagonist <--> process1.protagonist
+		protagonist <--> process2.protagonist
+		process1.ed <--> process2.ed
+
+
+

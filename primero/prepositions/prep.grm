@@ -1,0 +1,202 @@
+
+general construction Preposition
+   subcase of Word, HasNominalFeatures // testing
+	
+ 
+ general construction SpatialPreposition
+   subcase of Preposition
+   meaning: TrajectorLandmark  
+
+
+general construction PathPreposition
+   subcase of SpatialPreposition 
+   meaning: SPG 
+
+
+general construction LocativePreposition
+   	subcase of SpatialPreposition
+
+
+// Attempt for Spanish preposition "en", which can be used to mean either English AT or English IN
+construction EN-Locative
+	subcase of LocativePreposition
+	form
+	   constraints
+	     self.f.orth <-- "en"
+	meaning
+	   evokes BoundedRegion as br
+	   evokes Proximity as p
+	   constraints
+	      self.m.landmark.ontological-category <-- @region
+	      //self.m.profiledArea <--> p.proximalArea
+	      self.m.landmark <--> p.center
+	      self.m.profiledArea <--> br.interior
+
+
+/** Construction for the path preposition "a" (meaning "to", as in "he ran to the block".)
+*/
+construction A-Path
+   subcase of PathPreposition, HasNominalFeatures
+   constructional
+     constraints
+       self.features.gender <-- @female
+   form
+      constraints
+         self.f.orth <-- "a"
+   meaning: SPG  
+     constraints
+        self.m.landmark <--> self.m.goal
+        
+/** Construction for the path preposition "a" (meaning "to", as in "he ran to the block".)
+*/
+construction Hacia-Path
+   subcase of PathPreposition
+   form
+      constraints
+         self.f.orth <-- "hacia"
+   meaning: SPG  
+     constraints
+        self.m.landmark <--> self.m.goal        
+ 
+ 
+/** Construction for the "of" preposition: "sickness of poverty" (metaphor), etc.
+This necessitated the addition of the "modifier preposition" construction, as well
+as the prepositional phrase for modifier prepositons (6/4/14, ST)
+*/            		
+general construction ModifierPreposition
+   subcase of Preposition
+   meaning: Modification
+   
+construction OF-Modifier
+   subcase of ModifierPreposition
+   form
+      constraints
+         self.f.orth <-- "de"      
+        
+
+
+/** Construction for "from" ("de", in Spanish), such as "salir de la sala". */
+construction FROM-Path
+   subcase of PathPreposition
+   form
+      constraints
+         self.f.orth <-- "de"
+   meaning: SPG  
+     constraints
+        self.m.landmark <--> self.m.source
+                
+ 
+ 
+ 
+ /** used in agentive prepositional phrase, like "by the dog". */     		
+ schema ByLandmark //2/6/13
+	roles 
+		landmark:RD     
+		profiledArea:RD
+    constraints
+        landmark.ontological-category <-- @region
+        profiledArea.ontological-category <-- @location		
+   
+   
+   
+ /** Testing for Spanish compound prepositions, like "cerca de", or "detras de". */
+ construction Compound-PrepositionLoc
+ 	subcase of LocativePreposition
+ 	constructional
+ 	   constituents
+ 	     p1: Locative-Adverb
+ 	     p2: PathPreposition //ModifierPreposition
+    form
+       constraints
+         p1.f before p2.f
+    meaning
+       constraints
+        p1.m.trajector <--> p2.m.trajector
+        self.m <--> p1.m
+
+  /** Testing for Spanish compound prepositions, like "cerca de", or "detras de". */
+ construction Compound-PrepositionPath
+ 	subcase of PathPreposition
+ 	constructional
+ 	   constituents
+ 	     p1: Path-Adverb
+ 	     p2: PathPreposition //ModifierPreposition
+    form
+       constraints
+         p1.f before p2.f
+    meaning
+       constraints
+        p1.m.trajector <--> p2.m.trajector
+        self.m <--> p1.m 
+        
+/** Testing for "adverb" type prepositions */
+
+  
+
+
+general construction Spatial-Adverb
+  subcase of Adverbial, Word
+  meaning: TrajectorLandmark
+  
+general construction Locative-Adverb
+  subcase of Spatial-Adverb
+
+general construction Path-Adverb
+  subcase of Spatial-Adverb
+  meaning: SPG
+  
+ /** Spanish version of "near": should be combined with "de" ("cerca de la caja") 
+Testing by making it a locative Adverb */
+ construction NEAR-Locative
+ 	subcase of Locative-Adverb //LocativePreposition
+ 	form
+ 	   constraints
+ 	      self.f.orth <-- "cerca"
+    meaning: TrajectorLandmark
+       evokes Proximity as p
+       constraints
+          self.m.landmark.ontological-category <-- @region
+          self.m.profiledArea <--> p.proximalArea
+          self.m.landmark <--> p.center			
+
+
+
+	      
+
+        
+          
+          
+// Below is testing for "al" construction, and "del" - Nominalized Preps (8/8/10, ST)
+
+general construction NominalizedPrep
+	subcase of Preposition, HasNominalFeatures //HasAgreementFeatures
+
+general construction NominalizedPathPrep
+	subcase of NominalizedPrep, PathPreposition
+	meaning: SPG
+		
+construction Al-Path
+	subcase of NominalizedPathPrep
+	constructional
+	  constraints
+	     self.features.gender <-- @male
+	form
+	  constraints
+	    self.f.orth <-- "al"
+	meaning
+	   constraints
+	     self.m.landmark <--> self.m.goal
+
+     
+construction Del-Path
+	subcase of NominalizedPathPrep
+	constructional
+	  constraints
+	     self.features.gender <-- @male
+	form
+	  constraints
+	    self.f.orth <-- "del"
+	meaning
+	   constraints
+	     self.m.landmark <--> self.m.goal	  
+          		

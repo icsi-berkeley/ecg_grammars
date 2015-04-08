@@ -1,0 +1,33 @@
+package robots
+import starter
+
+general construction ComplexVP
+  subcase of VP
+   constructional
+     constituents
+       v1: HasVerbFeatures
+       v2: VP
+     constraints
+       v1.features <--> self.features
+  meaning: ComplexProcess
+
+construction SerialVP
+  subcase of ComplexVP
+  constructional
+   constituents
+     v1: VP
+     conj: SerialConjunction
+     v2: VP
+  form
+   constraints
+     v1.f before conj
+     conj before v2.f
+  meaning: SerialProcess
+    constraints
+      self.m.protagonist <--> v1.m.protagonist
+      v2.m.protagonist <--> v1.m.protagonist
+      self.m.process1 <--> v1.m
+      self.m.process2 <--> v2.m
+      self.m.connective <--> conj.m
+      ed.profiledParticipant <--> self.m.protagonist
+

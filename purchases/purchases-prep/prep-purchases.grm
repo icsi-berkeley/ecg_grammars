@@ -1,0 +1,22 @@
+package purchases
+
+construction FROM-Marker
+	subcase of Preposition
+	form
+	  constraints
+	    self.f.orth <-- "from"
+	    
+
+construction FROM-pp
+	subcase of PP
+	constructional
+	  constituents
+	    prep: FROM-Marker
+	  
+
+
+	
+	
+	
+	
+	

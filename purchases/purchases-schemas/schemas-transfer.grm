@@ -1,0 +1,31 @@
+package purchases-testing
+
+schema ObjectTransfer
+	subcase of ComplexProcess, A123
+	roles 
+	 donor
+	 recipient
+	 theme: RD
+	 actionary: @objecttransfer
+	 process1: LosePossession
+	 process2: ReceivePossession
+	constraints
+	 protagonist <--> donor
+	 protagonist.ontological-category <-- @agent
+	 protagonist2.ontological-category <-- @person
+	 protagonist2 <--> recipient
+
+
+schema LosePossession
+	subcase of Process
+	roles 
+	  donor
+	  recipient
+	  theme
+
+schema ReceivePossession
+	subcase of Process
+	roles
+	  donor
+	  recipient
+	  theme

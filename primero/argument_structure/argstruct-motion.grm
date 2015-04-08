@@ -1,0 +1,114 @@
+package primero
+
+ construction ActiveMotionPath   // he moved to the block
+  subcase of IntransitiveArgumentStructure 
+  constructional
+    constituents
+      //optional dis: SpatialQuantityNP  // for more general version
+      //optional dir: Directional 
+       pp: PathPP // Path-PP  
+  constraints
+       v.voice <-- NotPassive  
+  form 
+    constraints
+     // v.f before dis.f 
+      v.f before pp.f
+     // dir.f before pp.f   
+  meaning: MotionPath
+    constraints 
+      self.m <--> v.m
+      //self.m.spg.distance <--> dis.m 
+	  //self.m.heading <--> dir.m 
+      self.m.spg <--> pp.m
+ 
+ 
+/** Need to make a construction for sentences like: "él entró a la sala" (or "en la sala").
+Should be Intransitive b/c there is prepositional phrase, but more meaning should derive from verb.
+*/   
+ construction ActiveMotionPath_VerbalPath   // he moved to the block
+  subcase of IntransitiveArgumentStructure 
+  constructional
+    constituents
+      //optional dis: SpatialQuantityNP  // for more general version
+      //optional dir: Directional 
+       pp: Path-PP  
+  constraints
+       v.voice <-- NotPassive   
+  form 
+    constraints
+     // v.f before dis.f 
+      v.f before pp.f
+     // dir.f before pp.f   
+  meaning: ChangeLocation
+    constraints 
+      self.m <--> v.m
+      //self.m.ed.profiledParticipant <--> pp.m.trajector
+      //self.m.landmark <--> pp.m.landmark
+      self.m.spg <--> pp.m
+      //self.m.spg.distance <--> dis.m 
+	  //self.m.heading <--> dir.m 
+      //self.m.spg <--> pp.m 
+ 
+
+/** This is a general construction for co-process, in which the protagonist is performing two related processes.
+It was originally made to be inherited by "motion co-process", in which the protagonist is engaged in both motion
+and a co-event.
+*/
+general construction CoProcess
+	subcase of ArgumentStructure
+	constructional
+	   constituents
+	     gerund: PresentParticiple
+	   constraints
+	     v.voice <-- NotPassive
+	form
+	   constraints
+	      v.f before gerund
+	meaning
+	   evokes CoProcess as cop
+	   constraints
+	     self.cop.process1 <--> v.m
+	     self.cop.process2 <--> gerund.m
+	
+/* This is an attempt to capture motion co processes, such as "he entered the room running",
+or "he went down the hall whistling". The form binds the first process to the verb,
+and the second process to the gerund following the verb. */
+  			
+construction MotionCoProcess
+	subcase of CoProcess, ActiveMotionPath_VerbalPath// ActiveTransitiveChangeLocation
+	constructional
+		constituents
+		  //optional np: NP
+		  optional pp: Path-PP
+		  gerund: PresentParticiple
+		constraints
+		  v.voice <-- NotPassive
+	form
+	    constraints
+	      //v.f before pp.f
+	      //pp.f before gerund
+	 meaning
+	     constraints
+		  //self.m.spg <--> pp.m
+
+	     // self.m.landmark <--> np.m
+
+
+ 	/*	
+construction MotionCoProcess3
+	subcase of ArgumentStructure
+	constructional
+		constituents
+		  optional np: NP
+		  gerund: PresentParticiple
+		constraints
+		  v.voice <-- NotPassive
+	form
+	    constraints
+	      v.f before np.f
+	      np.f before gerund
+	meaning: CoProcess
+		constraints
+			self.m.process1 <--> v.m
+			self.m.process2 <--> gerund.m
+			

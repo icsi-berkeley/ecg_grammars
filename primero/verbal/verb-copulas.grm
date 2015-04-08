@@ -1,0 +1,126 @@
+//
+// copulas.grm
+//  	
+
+
+general construction BeCopula  // all forms listed
+	subcase of LexicalVerb 
+     	constructional
+      		constraints
+          		argform <-- Copula_All
+     meaning: Stasis 
+		constraints
+        	self.m.actionary <-- @be
+
+
+     		
+     		
+// Spanish "be": we need both "estar" and "ser" because Spanish has two verb copulas (this uses the ser conjugation)      
+construction Ser_ThirdPerson
+   	subcase of BeCopula, PresentTense, Singular
+   	form
+		constraints
+        	self.f.orth <-- "es"
+     meaning 
+    	constraints   	
+     		pf <--> self.m.p-features
+     		self.m.temporality <-- @permanent
+     		
+construction Ser_ThirdPersonPlural
+   	subcase of BeCopula, PresentTense, Plural
+   	form
+		constraints
+        	self.f.orth <-- "son"
+     meaning 
+    	constraints   	
+     		pf <--> self.m.p-features
+     		self.m.temporality <-- @permanent     		
+     		
+     		
+// Spanish "estar"
+construction Estar_ThirdPerson
+	subcase of BeCopula, PresentTense, Singular
+	form
+	   constraints
+	      self.f.orth <-- "está"
+	meaning
+	   constraints
+	       pf <--> self.m.p-features
+	       self.m.temporality <-- @temporary
+	       
+construction Estar_ThirdPersonPlural
+	subcase of BeCopula, PresentTense, Plural
+	form
+	   constraints
+	      self.f.orth <-- "están"
+	meaning
+	   constraints
+	       pf <--> self.m.p-features
+	       self.m.temporality <-- @temporary	       
+        	
+construction BeCopulaBase 
+   	subcase of BeCopula, BaseForm
+   	form
+		constraints
+        	self.f.orth <-- "be"
+    
+
+construction BeCopulaPresentParticple  
+   	subcase of BeCopula, PresentParticiple
+   	form
+		constraints
+        	self.f.orth <-- "being"
+      
+ construction BeCopulaPastParticple  
+   	subcase of BeCopula, PastParticiple
+   	form
+		constraints
+        	self.f.orth <-- "been"
+ 
+ construction BeCopulaPresentPlural  //now evokes ProcessFeatures
+   	subcase of BeCopula, PresentTense, Plural
+   	form
+		constraints
+        	self.f.orth <-- "are"   	
+
+construction BeCopulaPastSing  //now evokes ProcessFeatures
+   	subcase of BeCopula, PastTense, Singular
+   	form
+		constraints
+        	self.f.orth <-- "was"
+        	
+construction NegBeCopulaPastSing  //now evokes ProcessFeatures
+   	subcase of BeCopula, PastTense, Singular
+   	form
+		constraints
+        	self.f.orth <-- "wasn't" 
+    meaning 
+    	constraints   		
+        	pf.negated <-- "yes"
+       	
+construction BeCopulaPastPlural  //now evokes ProcessFeatures
+   	subcase of BeCopula, PastTense, Plural
+   	form
+		constraints
+        	self.f.orth <-- "were"
+
+
+
+
+
+/** Spanish */
+construction BeCopulaSpanishPast
+   	subcase of BeCopula, PastTense, Singular
+   	form
+   	   constraints
+   	      self.f.orth <-- "fue"  // estar vs. ser ?   
+   	      
+/* fue infectado (1) vs. estaba infectado (2):    	 
+(1) implies a sort of passive inversion of "sickness infected him"
+(2) implies a state characteristic, like "he was infected at this time".
+*/
+
+
+
+       	
+        	

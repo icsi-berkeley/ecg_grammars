@@ -1,0 +1,88 @@
+package starter
+
+//
+// Singular Count Nouns
+//
+
+general construction SingularNoun
+  subcase of Noun, Singular
+   constructional
+     constraints
+      self.features.number <-- "singular"  
+   meaning
+    constraints
+      self.m.number <-- @singular
+	  self.m.bounding <-- @determinate
+
+
+//
+// Plural Count Nouns
+//
+general construction PluralNoun
+  subcase of Noun, Plural
+   constructional
+     constraints
+      self.features.number <-- "plural" 
+   meaning
+    constraints
+      //self.m.ontological-category <-- @multiplex // might restrict some
+      self.m.number <-- @plural
+      self.m.bounding <-- @indeterminate
+
+
+	  
+// Proper Nouns
+general construction ProperNounNP
+    subcase of NP, Word
+
+
+package john-package
+
+construction JOHN
+	subcase of ProperNounNP
+	form
+	  constraints
+	    self.f.orth <-- "John"
+
+package starter
+
+    
+// "Type" constructions
+construction NounType
+   subcase of Noun, GeneralTypeCxn, ThirdPerson
+   meaning
+      constraints
+        //self.m.number <-- @RDnumberValues
+        self.m.gender <-- @genderValues
+        self.m.ontological-category <-- @entity
+        self.m.scale <-- @scale
+
+ 
+ 
+// Stuff for argstruct-transitive       
+general construction UnitsNP // stands alone, no Specifier  11/24/12
+  subcase of NP
+  constructional
+    	constituents
+	  		num: Quantifier	//
+      		k: Noun 
+    	constraints
+      		self.features <--> k.features
+  form
+    	constraints
+      		num.f meets k.f
+  meaning: QuantifiedRD
+    constraints
+    	self.m <--> k.m
+    	//k.m.ontological-category <-- @spatial-units   generalized
+		self.m.units <-> k.m.ontological-category
+		self.m.amount.value <--> num.m.value
+		
+ construction SpatialQuantityNP // stands alone, no Specifier
+  subcase of UnitsNP
+  meaning: QuantifiedSpatialRD
+    constraints
+    	k.m.ontological-category <-- @spatial-units // only difference *** generalize 11/24/12  
+	    
+
+general construction Directional	    

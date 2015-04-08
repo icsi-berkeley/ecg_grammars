@@ -1,0 +1,13 @@
+package robots
+import starter
+
+
+   		
+construction NumberType   //rename, check digits
+	subcase of Quantifier, GeneralTypeCxn
+   	meaning: QuantitySchema
+   	  constraints
+   	    self.m.value <-- "?"
+   	    self.m.number <-- @RDnumberValues
+	
+	

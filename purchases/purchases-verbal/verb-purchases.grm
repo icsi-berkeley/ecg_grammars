@@ -1,0 +1,31 @@
+package purchases
+import purchases-testing
+
+construction GiveType
+	subcase of LexicalVerbType
+	meaning: ObjectTransfer
+	 constraints
+	   self.m.actionary <-- @give
+	   self.m.protagonist.ontological-category <-- @agent
+	   self.argform <-- DiTransitive
+	   
+// Used in Ditransitive constructions --> 
+// we will want transitive, too, like: "he sold the house." (in which one NP is optional/ null instantiated.)
+construction SellType
+	subcase of LexicalVerbType
+	meaning: GoodsTransfer
+	  constraints
+	    self.m.actionary <-- @give
+
+	    
+construction BuyType
+	subcase of LexicalVerbType
+	meaning: MoneyTransfer
+	 constraints 
+	   self.m.actionary <-- @take   
+
+	
+	
+	
+	
+	

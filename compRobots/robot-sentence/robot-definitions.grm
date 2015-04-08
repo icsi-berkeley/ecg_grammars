@@ -1,0 +1,176 @@
+package definitions
+import starter
+//import john-package
+
+
+
+// Define constructions listed below. used for "define visit QL1 as move to QL1 then return".
+	
+construction Define
+	subcase of LexicalVerb
+	form
+	   constraints 
+	     self.f.orth <-- "define"
+
+	
+schema Definition
+	subcase of EventDescriptor
+	roles
+	  sign
+	  signified
+
+	  
+
+construction As-Define
+	subcase of Preposition
+	form
+	   constraints
+	      self.f.orth <-- "as" 
+
+construction FunctionVerbType
+	subcase of LexicalVerbType
+	meaning
+	  constraints
+	    self.m.actionary <-- @function
+	       
+construction Define-As
+	subcase of S
+	constructional
+	   constituents
+	      def: Define 
+	      w: Word
+	      optional variable1: VariableType
+		  optional list: ConjNP
+	      a: As-Define
+	      means: Imperative
+	form
+	   constraints
+	      def.f before w.f
+	      w.f before a.f
+	      w.f before variable1.f
+	      variable1.f before list.f
+		  list.f before a.f
+	      a.f before means.f
+	meaning: Definition
+	   constraints
+	      self.m.sign <--> w.m  // more accurately, the word's orthographic form
+	      self.m.signified <--> means.m
+	      //self.m <--> self.m.signified
+
+
+
+construction Define-Utterance
+	subcase of Utterance
+	constructional
+	   constituents
+	      core: Define-As
+	meaning
+	   constraints
+	      self.m.mood <-- "Definition"
+
+
+
+general construction ComplexNP 
+   subcase of NP
+
+construction ConjNP  // self.m.number <- @plural
+	subcase of ComplexNP
+	constructional
+	    constituents   
+		 	connective: Conjunction   // and or etc.
+	        first: NP
+		    second: NP
+		constraints
+		   self.features.number <-- "plural"
+   	form
+		constraints		
+	      	first.f meets connective.f
+	      	connective.f meets second.f
+	meaning: ConjRD
+		constraints		
+			first.m <-> m.rd1
+        	second.m <-> m.rd2
+        	self.m.number <-- @plural
+        	self.m.bounding <--> first.m.bounding
+       		self.m.givenness <--> first.m.givenness
+       		self.m.ontological-category <--> first.m.ontological-category
+       		connective.m <-> m.connective
+
+//construction Variable
+construction VariableType
+	subcase of ProperNounNP, GeneralTypeCxn
+	meaning
+	  constraints
+	    self.m.referent <-- @variable
+
+/*	    
+construction ql1 // variable 7/18/14
+	subcase of Variable // ProperNounNP
+	form
+    	constraints
+			self.f.orth <-- "QL1"			
+	meaning
+	constraints
+      self.m.ontological-category <--  @location
+      self.m.referent <--  @variable
+      			
+construction ql2 // variable 7/18/14
+	subcase of Variable
+	form
+    	constraints
+			self.f.orth <-- "QL2"			
+	meaning
+	constraints
+      self.m.ontological-category <--  @location
+      self.m.referent <--  @variable
+      
+construction ql3 // variable 7/18/14
+	subcase of Variable
+	form
+    	constraints
+			self.f.orth <-- "QL3"			
+	meaning
+	constraints
+      self.m.ontological-category <--  @location
+      self.m.referent <--  @variable      
+      
+construction ql4 // variable 7/18/14
+	subcase of Variable
+	form
+    	constraints
+			self.f.orth <-- "QL4"			
+	meaning
+	constraints
+      self.m.ontological-category <--  @location
+      self.m.referent <--  @variable      
+
+construction qo1
+	subcase of Variable
+	form
+	   constraints
+	      self.f.orth <-- "QO1"
+	meaning
+	   constraints
+	      self.m.ontological-category <-- @physicalEntity
+	      self.m.referent <-- @variable
+	      
+construction qo2
+	subcase of Variable
+	form
+	   constraints
+	      self.f.orth <-- "QO2"
+	meaning
+	   constraints
+	      self.m.ontological-category <-- @physicalEntity
+	      self.m.referent <-- @variable		
+
+*/
+/**	
+construction VariableNP
+	subcase of NP
+	constructional
+	   constituents
+	     v1: Variable
+    meaning
+      constraints
+         self.m <--> v1.m */

@@ -1,0 +1,68 @@
+package robots
+import starter
+  
+/** Added from dropbox "robots" by Sean Trott, 2/4/15. Some of these call for units like "SpatialQuantityNP
+that aren't included in "starter", so I didn't want to clutter starter too much. The treatment for transitives
+will need to be sorted out, of course. */
+general construction ActiveTransitiveCauseEffect
+  subcase of ActiveTransitive
+	meaning: CauseEffect
+      constraints
+		s.a1 <--> self.m.causalAgent
+		s.a2 <--> self.m.affectedEntity
+
+
+construction ActiveTransitiveCauseEffect_central  // he pushed the block
+  subcase of ActiveTransitiveCauseEffect
+	meaning
+      constraints
+		v.m <--> self.m 
+	
+construction ActiveTransitiveCauseEffect_Motion  // he moved the block
+  subcase of ActiveTransitiveCauseEffect
+	meaning: CauseEffect
+        evokes MotionPath as mp
+       // evokes ForceApplication as fa
+	constraints
+		v.m <--> mp
+		self.m.actionary <-- @push_move
+		//self.m.causalProcess <--> fa  // added 8/22/14 (ST), testing
+		//self.m.affectedEntity <--> np.m // added 8/22/14 (ST), testing
+		//self.m.affectedEntity <--> fa.actedUpon // added 8/22/14 (ST), testing
+		self.m.affectedProcess <--> mp
+
+general construction ActiveTrans_CauseChangeLocation 
+  subcase of ActiveTransitiveCauseEffect
+  constructional
+   constituents
+      optional dis: SpatialQuantityNP
+      optional dir: Directional 
+      optional pp: Path-PP  // test 5/20/13 made this required rather than optional
+   constraints
+	  form
+     constraints
+	   v.f before dis.f 
+       dis.f before dir.f
+       dir.f before pp.f   
+   meaning // CauseEffect  // inherited 
+	evokes  MotionPath as mp 
+      constraints 
+       	self.m.affectedProcess <--> mp
+       	self.m.affectedEntity <--> mp.mover 
+    	self.m.affectedEntity <--> mp.spg.trajector
+    	self.m.actionary <-- @push_move   // specific to robot world of "pushing" as cause effect "Move Box1 North"
+    	mp.spg <--> pp.m 
+   		mp.spg.distance <--> dis.m 
+	    mp.heading <--> dir.m 
+	    		
+construction ActiveTrans_CauseChangeLocation_motion  // he moved the block into the room
+  subcase of ActiveTrans_CauseChangeLocation 
+	meaning
+      constraints
+		v.m <--> mp
+		
+construction ActiveTrans_CauseChangeLocation_causeMotion  // he pushed the block into the room
+  subcase of ActiveTrans_CauseChangeLocation 
+	meaning 
+    constraints
+		self.m <--> v.m	

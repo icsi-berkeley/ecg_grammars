@@ -1,0 +1,27 @@
+package robots
+import starter
+	 	
+      	
+      	
+schema Location2D
+	subcase of RD
+	roles
+	  xCoord: @number
+	  yCoord: @number
+   constraints
+     ontological-category <-- @location
+     number <-- @singular
+      	
+      	
+// added 8/4/14 (ST) from base
+schema ComplexRD
+   subcase of RD 
+   roles
+   complexKind // : NPkind
+   
+schema ConjRD
+   subcase of ComplexRD
+   roles
+   		connective   // and or etc.
+      	rd1: RD
+     	rd2: RD	      		  

@@ -1,0 +1,85 @@
+// Created 6/18/14 (ST)
+/* This grammar file is intended to contain constructions for Spanish "reflexive" verbs,
+which are distinguished from non-reflexive verbs in that they involve the performance
+of some action on the speaker (generally speaking). A good example is "deslizar", 
+which means "to slide":
+"deslizó el bloque": "he slid the block"
+"se deslizó": "he slid" (intransitive)
+
+More formally: the agent and patient of the verb are the same (subject and direct object, generally).
+
+Also, these reflexive cases are often used in "reciprocal" cases in Spanish, such as:
+"Se miran": "they look at each other"
+
+This is in progress, meaning it is still not entirely clear if and how reflexive verbs
+will be represented differently from non-reflexive verbs. 
+
+Ideas:
+-Reflexive verbs mandate the use of a reflexive pronoun, whereas most Spanish sentences
+don't require the use of a pronoun. Thus, find a way to constrain use of Reflexive Verbs so that
+they mandate a (reflexive) pronoun.
+-Distinguishing between reflexive and non-reflexive version: currently, this is done via constructions
+(bare intransitive vs. active transitive, etc.)
+*/
+
+/** Need to differentiate reflexive pronoun to such a degree that its definition doesn't overlap with 
+regular pronouns; don't want to parse it as you would a normal pronoun. 
+
+That said, you can use the same form ("me", for example) in both reflexive cases
+("me deslizo a la sala" - "I slide to the room") and non-reflexive ("me deslizó a la sala" - "he slid me to the room").
+
+Constraint to match agreement features of subject and verb.
+
+*/
+general construction ReflexivePronoun
+	subcase of Pronoun
+	constructional
+	   constraints
+	      self.features.case <-- "acc"
+
+// Added 6/23/14
+construction Reflexive_Se
+   subcase of ReflexivePronoun, Singular, ThirdPerson
+   form
+      constraints
+         self.f.orth <-- "se"
+   meaning
+    constraints
+      self.m.ontological-category <-- @person
+      self.m.number <-- @singular
+
+// Added 6/23/14 (ST) as a test case
+construction Reflexive_Me
+   subcase of ReflexivePronoun, Singular, FirstPerson, ObjectPronoun   // probably need a better way to do this (have Reflexive Pronoun related to Object Pronoun?)
+   form
+      constraints
+         self.f.orth <-- "me"
+   meaning
+      constraints
+         self.m.ontological-category <-- @person
+         self.m.number <-- @singular
+	       
+/** Maybe include reflexive as part of the argument structure?
+Thus, it's part of the verbal argument (requires a reflexive pronoun to come before the verb). 
+That way, NP ("ella", "tu", "yo", etc., is still optional).
+*/	       
+construction Reflexive_VerbPhrase    // Added 6/23/14
+	subcase of ArgumentStructure
+	constructional
+	   constituents
+	      np: ReflexivePronoun
+	      // optional NP?	me lavo los manos (I wash my hands)
+	      optional pp: PP
+	      optional np2: NP
+	   constraints
+	      np.features <--> v.features
+	      v.argform <-- Reflexive
+	      self.features <--> v.features
+	form
+	   constraints
+	      np.f before v.f
+    meaning
+       constraints
+           self.m <--> v.m
+           self.m.ed.profiledParticipant <--> np.m
+

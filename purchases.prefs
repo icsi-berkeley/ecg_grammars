@@ -1,0 +1,64 @@
+
+GRAMMAR_EXTENSIONS = grm
+
+
+PACKAGE_NAME ::== 
+	purchases
+	starter
+	universal-schemas
+	universal-constructions
+;
+
+ONTOLOGY_PATHS ::==
+	./purchases/ontology.ont
+	./purchases/purchases.ont
+;
+
+IMPORT_PATHS ::==
+	./purchases
+	./universal
+	./starter
+;
+
+
+MORPHOLOGY_PATH ::== 
+	./starter/celex.ecgmorph
+	./purchases/purchases.ecgmorph
+;
+
+TOKEN_PATH ::== 
+	./purchases/purchases.tokens
+	./starter/starter.tokens
+;
+
+MAPPING_PATH = ./purchases/purchases.mappings
+
+TABLE_PATH = ./starter/starter.morph
+
+ROBUST = FALSE 
+BEAM_SIZE = 20
+DEFAULT_OMISSION_PROB = .1
+DEBUG = FALSE
+//DEBUG = TRUE
+ANALYZE_IN_CONTEXT = FALSE
+//ANALYZE_IN_CONTEXT = TRUE
+NUM_ANALYSES_RETURNED = 4
+MULTI_ROOT_PENALTY = -3
+
+EXAMPLE_SENTENCES ::==
+ 
+the red block
+he moved
+he moved the blocks
+he saw the block
+the block was red
+was the block red
+he was at the block
+he moved to the block
+he entered the room
+he moved into the room
+he is in the room
+was he in the room
+he moved the block into the room
+the red blocks are in the room
+;

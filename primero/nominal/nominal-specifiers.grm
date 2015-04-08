@@ -1,0 +1,166 @@
+/***
+ ***
+ *** Specifiers (Determiners,  not RD)
+ ***
+ ***/
+
+general construction SpecifierPhrase
+  subcase of HasNominalFeatures
+  meaning: RD
+  
+general construction Specifier
+  subcase of Word, SpecifierPhrase
+  meaning: RD
+
+general construction Determiner
+   subcase of Specifier
+
+  
+
+ 
+construction El
+   subcase of Determiner
+   constructional
+      constraints
+         self.features.gender <-- @male
+         self.features.number <-- @singular  
+   form
+      constraints
+         self.f.orth <-- "el"
+   meaning
+      constraints
+         self.m.givenness <-- @uniquelyIdentifiable
+
+
+construction Los
+   subcase of Determiner
+   constructional
+      constraints
+         self.features.gender <-- @male
+         self.features.number <-- @plural   
+   form
+      constraints
+         self.f.orth <-- "los"
+   meaning
+      constraints
+         self.m.givenness <-- @uniquelyIdentifiable
+
+
+construction La
+   subcase of Determiner
+   constructional
+      constraints
+         self.features.gender <-- @female
+         self.features.number <-- @singular  
+   form
+      constraints
+         self.f.orth <-- "la"
+   meaning
+      constraints
+         self.m.givenness <-- @uniquelyIdentifiable
+       	 self.m.number <-- @singular
+
+
+construction Las
+   subcase of Determiner
+   constructional
+      constraints
+         self.features.gender <-- @female
+         self.features.number <-- @plural    
+   form
+      constraints
+         self.f.orth <-- "las"
+   meaning
+      constraints
+         self.m.givenness <-- @uniquelyIdentifiable
+       	 self.m.number <-- @plural
+
+construction Un
+   subcase of Determiner, Singular
+     constructional
+      constraints
+         self.features.gender <-- @male
+         self.features.number <-- @singular
+      form
+      constraints
+         self.f.orth <-- "un"
+   meaning
+      constraints
+         self.m.givenness <-- @typeIdentifiable
+         self.m.number <-- @singular
+         self.m.bounding <-- @determinate
+
+construction Una
+   subcase of Determiner, Singular
+     constructional
+      constraints
+         self.features.gender <-- @female
+         self.features.number <-- @singular
+      form
+      constraints
+         self.f.orth <-- "una"
+   meaning
+      constraints
+         self.m.givenness <-- @typeIdentifiable
+         self.m.number <-- @singular
+         self.m.bounding <-- @determinate
+
+         
+/** Quantifiers and numerical specifiers */
+// Numbers added 3/28/14
+general construction Quantifier // different meaning than Specifier  
+	subcase of Word, HasNominalFeatures
+	meaning: QuantitySchema
+   		
+general construction Number   //rename, check digits
+	subcase of Quantifier
+   	meaning: QuantitySchema
+      
+
+construction ZeroInDigits 
+     subcase of Number
+       form
+          constraints
+             self.f.orth <-- "0"
+       meaning: QuantitySchema
+        constraints
+              self.m.value <-- "0"
+
+construction OneInDigits
+     subcase of Number
+     constructional
+      constraints 
+          features.number <-- "singular"
+       form
+          constraints
+             self.f.orth <-- "1"
+       meaning: QuantitySchema
+        constraints
+              self.m.value <-- "1"
+              self.m.number <-- @singular
+
+construction TwoInDigits
+     subcase of Number
+      constructional
+      constraints 
+          features.number <-- "plural" 
+       form
+          constraints
+             self.f.orth <-- "2"
+       meaning: QuantitySchema
+        constraints
+            self.m.value <-- "2"
+			self.m.number <-- @plural
+			
+construction ThreeInDigits
+     subcase of Number
+     constructional
+      constraints 
+          features.number <-- "plural"   
+       form
+          constraints
+             self.f.orth <-- "3"
+       meaning: QuantitySchema
+        constraints
+            self.m.value <-- "3"
+			self.m.number <-- @plural

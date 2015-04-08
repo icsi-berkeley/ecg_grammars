@@ -1,0 +1,27 @@
+package robots
+import starter
+
+schema HeadingSchema
+   roles
+     tag: @heading
+     landmark: RD
+
+
+schema PartWhole
+	subcase of Extensions
+	roles
+	  whole
+	  part
+	  
+schema Sidedness
+	subcase of Extensions
+	evokes PartWhole as pw
+	roles
+	  front: RD
+	  back: RD
+	  obj
+	constraints
+	  obj <--> pw.whole
+	  front.ontological-category <-- @front
+	  back.ontological-category <-- @back
+	

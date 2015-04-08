@@ -1,0 +1,75 @@
+//
+// Singular Count Nouns
+//
+
+general construction SingularNoun
+  subcase of Noun, Singular
+   constructional
+     constraints
+      self.features.number <-- "singular"  
+   meaning
+    constraints
+      self.m.number <-- @singular
+	  self.m.bounding <-- @determinate
+	  
+construction NounType
+   subcase of Noun, GeneralTypeCxn, ThirdPerson
+   constructional
+     constraints
+        self.features.gender <-- @genderValues
+        //self.features.number <-- @numberValues
+   meaning
+      constraints
+        //self.m.number <-- @RDnumberValues
+        self.m.gender <-- @genderValues
+        self.m.ontological-category <-- @entity
+        self.m.scale <-- @scale
+        
+   
+
+
+     
+      
+
+
+
+//
+// Plural Count Nouns
+//
+
+general construction PluralNoun
+  subcase of Noun, Plural
+   constructional
+     constraints
+      self.features.number <-- @plural
+   meaning
+    constraints
+      //self.m.ontological-category <-- @multiplex // might restrict some
+      self.m.number <-- @plural
+      self.m.bounding <-- @indeterminate
+
+
+	  
+// Proper Nouns
+general construction ProperNounNP
+    subcase of NP, Word
+    
+construction JUAN
+    subcase of ProperNounNP, Singular, ThirdPerson
+    constructional
+    form
+        constraints
+            self.f.orth <-- "Juan"
+    meaning
+        constraints
+            self.m.referent <-- @john-instance
+            self.m.ontological-category <-- @person
+      		self.m.number <-- @singular
+			self.m.gender <-- @male
+
+
+
+      
+           
+	
+      

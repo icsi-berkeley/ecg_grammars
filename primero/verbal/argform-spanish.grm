@@ -1,0 +1,11 @@
+package primero
+
+// TESTING (6/25/14, ST)
+schema ReflexiveOrNotReflexive
+	subcase of ArgForm
+
+schema Reflexive
+	subcase of ReflexiveOrNotReflexive
+
+schema NotReflexive
+	subcase of ReflexiveOrNotReflexive

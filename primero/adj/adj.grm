@@ -1,0 +1,186 @@
+package primero
+
+//
+// Adjectives
+// ========== 
+// 
+
+general construction Adjective  // parallel to Verb, etc. \
+	subcase of  RootType, HasNominalFeatures  // **** for agreement in Spanish, etc.  // Ellen uncommented this 7/3/14
+	meaning: Modification
+
+general construction LexicalAdjective
+   subcase of Adjective, Word
+    
+general construction PropertyAdjective  // parallel to Verb, etc. \
+	subcase of  LexicalAdjective
+	//subcase of HasNominalFeatures   **** for agreement in Spanish, etc.
+	meaning: PropertyModifier	
+
+general construction Color  //subcase of non-scale Adj
+  subcase of PropertyAdjective    
+   meaning: PropertyModifier
+    constraints
+       self.m.property <-- @color 
+	   self.m.domain <-- @physicalEntity
+	   
+construction ColorType  //subcase of non-scale Adj
+  subcase of PropertyAdjective, GeneralTypeCxn 
+  constructional
+   constraints
+     self.features.gender <-- @genderValues
+     self.features.number <-- @RDnumberValues  
+  meaning: PropertyModifier
+    constraints
+       self.m.property <-- @color 
+	   self.m.domain <-- @physicalEntity
+	   self.m.value <-- @colorValue
+
+/*
+construction RedMale
+  subcase of Color
+   constructional
+   constraints
+      self.features.gender <-- @male  // Ellen added for testing 7/3/14
+      self.features.number <-- @singular // "singular"
+   form
+      constraints
+         self.f.orth <-- "rojo"  
+   meaning: PropertyModifier
+    constraints
+       	self.m.value <-- @red 
+       	//self.m.gender <-- @male
+       	
+construction RedFemale
+  subcase of Color
+   constructional
+   constraints
+      self.features.gender <-- @female  // Ellen added for testing 7/3/14
+      self.features.number <-- @singular
+   form
+      constraints
+         self.f.orth <-- "roja"  
+   meaning: PropertyModifier
+    constraints
+       	self.m.value <-- @red
+       	//self.m.gender <-- @female
+       	
+
+construction RedMalePlural
+  subcase of Color
+   constructional
+   constraints
+      self.features.gender <-- @male  // Ellen added for testing 7/3/14
+      self.features.number <-- @plural
+   form
+      constraints
+         self.f.orth <-- "rojos"  
+   meaning: PropertyModifier
+    constraints
+       	self.m.value <-- @red 
+       	//self.m.gender <-- @female 
+       	  	
+construction RedFemalePlural
+  subcase of Color
+   constructional
+   constraints
+      self.features.gender <-- @female  // Ellen added for testing 7/3/14
+      self.features.number <-- @plural
+   form
+      constraints
+         self.f.orth <-- "rojas"  
+   meaning: PropertyModifier
+    constraints
+       	self.m.value <-- @red 
+       	//self.m.gender <-- @female 
+ 
+*/      	
+ // Added for "robot" movement, 6/25/14 (ST)
+construction Blue
+  subcase of Color
+  constructional
+    constraints
+      self.features.number <-- "singular"  
+   form
+      constraints
+         self.f.orth <-- "azul"  
+   meaning: PropertyModifier
+    constraints
+       	self.m.value <-- @blue 
+       	//self.m.gender <-- @female
+ 
+ // Added for "robot" movement, 6/25/14 (ST)
+construction Green
+  subcase of Color
+  constructional
+    constraints
+      self.features.number <-- "singular"
+   form
+      constraints
+         self.f.orth <-- "verde"  
+   meaning: PropertyModifier
+    constraints
+       	self.m.value <-- @green 
+       	//self.m.gender <-- @female
+
+
+       	
+       	
+// ADDED 6/25/14 (ST), Testing complex adjectives like "big red block"
+general construction ScalarAdjective  // e.g. big
+	subcase of  PropertyAdjective
+	meaning: PropertyModifier // Should be ScalarModifier, but changed for now for testing purposes 
+
+// ADDED 6/25/14 (ST), Testing complex adjectives like "big red block"	
+construction Big  //  don't need @big, sizeValue  11/12/12
+  subcase of ScalarAdjective // PropertyAdjective ??? 
+   form 
+      constraints 
+       self.f.orth <-- "grande"
+   meaning: PropertyModifier//: ScalarModifier // inherited ??
+    constraints
+      self.m.value <-- @big
+      self.m.property <-- @size  
+	  self.m.domain <-- @physicalEntity 
+	  self.m.kind <-- @unmarked  // base case	
+
+// ADDED 6/25/14 (ST), Testing complex adjectives like "big red block"	
+construction Small-Male  //  don't need @big, sizeValue  11/12/12
+  subcase of ScalarAdjective // PropertyAdjective ??? 
+   constructional
+   constraints
+      self.features.gender <-- @male
+   form 
+      constraints 
+       self.f.orth <-- "pequeño"
+   meaning: PropertyModifier//: ScalarModifier // inherited ??
+    constraints
+      self.m.value <-- @small
+      self.m.property <-- @size  
+	  self.m.domain <-- @physicalEntity 
+	  self.m.kind <-- @unmarked  // base case	
+	  
+// ADDED 6/25/14 (ST), Testing complex adjectives like "big red block"	
+construction Small-Female  //  don't need @big, sizeValue  11/12/12
+  subcase of ScalarAdjective // PropertyAdjective ??? 
+   constructional
+   constraints
+      self.features.gender <-- @female
+   form 
+      constraints 
+       self.f.orth <-- "pequeña"
+   meaning: PropertyModifier//: ScalarModifier // inherited ??
+    constraints
+      self.m.value <-- @small
+      self.m.property <-- @size  
+	  self.m.domain <-- @physicalEntity 
+	  self.m.kind <-- @unmarked  // base case	  
+
+	
+		
+       		
+
+
+
+
+

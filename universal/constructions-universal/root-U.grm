@@ -1,0 +1,40 @@
+package universal-constructions
+import universal-schemas
+
+
+construction ROOT
+	constructional
+    	constituents
+	  		rootconstituent: RootType
+	meaning
+    	constraints
+	  		self.m <--> rootconstituent.m
+
+general construction RootType
+
+//A cxn for unknown orthographic strings, i.e. those that don't match
+// the word forms of any of the Word cxns in the current grammar
+
+construction UnknownWord 
+	subcase of Word, RootType
+  	form  
+    	constraints
+        	self.f.orth <-- "UNKNOWN-ITEM"
+
+
+general construction Word // ? add role for ontological-category
+  	subcase of RootType
+   		form: WordForm
+
+
+
+//For additional subcases of RootType, see individual files.  
+
+
+// "Type" construction: all types are subcase
+construction GeneralTypeCxn
+	subcase of Word
+	form 
+	  constraints
+	    self.f.orth <-- "*"
+

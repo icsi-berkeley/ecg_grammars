@@ -1,0 +1,194 @@
+package starter
+
+/******************************************************************************
+This file contains  constructions for kernel noun phrases.
+
+The assumption is that each NP has an RD structure as its meaning.
+This implies that proper nouns, pronouns, and mass/plural nouns make
+RD their meaning. For sake of uniformity, we also assume that common
+count nouns (which are not NPs) also denote an RD.
+
+
+******************************************************************************/
+
+ 
+/*** 
+ ***
+ *** The root constructions of the NP, Noun and Nominal  hierarchy
+ ***
+ ***/
+ 
+/*
+general construction UndeterminedNP  // various uses including:  white as snow 
+  subcase of NP  
+  meaning: RD
+    constraints
+      self.m.givenness <-- @typeIdentifiable // Michael
+	  self.m.bounding <-- @indeterminate   
+	  
+general construction NP 
+   subcase of RootType, HasNominalFeatures
+   meaning: RD
+
+
+// This is the root of nouns and noun noun compounds
+
+general construction Nominal 
+   subcase of HasNominalFeatures
+   meaning: RD 
+
+/* not needed ? 12/24/12
+general construction ProcessNominal 
+   subcase of Nominal 
+   meaning: ProcessRD 
+*/
+/*
+general construction Noun
+   subcase of Word, Nominal 
+*/
+/*
+ *
+ * Combining Adjectives and Nouns
+ *
+ */ 
+
+// Note that Kernel is NOT an NP 
+// it is  general because we need a supertype to cover the bracketed phrases in
+// 'the [big table]'  and 'the [big table and leather chair]'
+
+/*
+general construction  Kernel // both RD and Nominal
+	subcase of HasNominalFeatures //, RootType  // for testing only 
+	meaning: RD
+
+*/
+
+construction  KernelAdj // literal case
+  subcase of Kernel 
+  constructional
+    constituents
+      ap: PropertyAdjective // not optional PropertyAdj 4/26/13
+      n: Nominal
+    constraints
+      self.features <--> n.features
+  form
+    constraints
+      ap.f meets n.f
+  meaning: RD
+    constraints
+      self.m <--> n.m
+      self.m <--> ap.m.modifiedThing
+      //ap.m.property <--> n.m.scale  //4/26/13  ***** n.m.scale is implicit, e.g inch
+      //ap.m.domain <--> n.m.ontological-category //constraint
+ 
+ construction  KernelParticiple //   10/16/13
+  subcase of Kernel 
+  constructional
+    constituents
+      ap: PresentParticiple
+      n: Nominal
+    constraints
+      self.features <--> n.features
+  form
+    constraints
+      ap.f meets n.f
+  meaning: RD
+    evokes ParticipleModification as pm
+    constraints
+      self.m <--> n.m
+      self.m <--> pm.modifiedThing
+      ap.m <--> pm.modifier 
+      //ap.m.property <--> n.m.scale  //4/26/13  ***** n.m.scale is implicit, e.g inch
+      //ap.m.domain <--> n.m.ontological-category //constraint NOT here    
+
+
+ 
+construction Kernel-LocPP
+   subcase of Kernel
+   constructional
+     constituents
+       n: Nominal
+       pp: Loc-PP
+   form
+     constraints
+       n.f meets pp.f
+   meaning
+     constraints 
+       self.m <--> n.m
+       n.m <--> pp.m.trajector
+
+
+construction KernelAdj-LocPP
+	subcase of Kernel
+    constructional
+     constituents
+       ka: KernelAdj
+       pp: Loc-PP
+   form
+     constraints
+       ka.f meets pp.f
+   meaning
+     constraints 
+       self.m <--> ka.m
+       ka.n.m <--> pp.m.trajector
+       
+construction  KernelNoAdj // no adjective
+  subcase of Kernel
+  constructional
+    constituents
+      n: Nominal
+    constraints
+      self.features <--> n.features
+  form
+  meaning: RD
+    constraints
+      self.m <--> n.m
+ 
+
+
+// 	   SpecifierPlusKernel, 
+
+
+general construction SpecifierPlusKernel  // also subs Specifier3, QuantityNP(2)
+  subcase of NP
+ 
+general construction Specifier2PlusKernel   //also see Determiner, Wh, Possesive PN
+  subcase of SpecifierPlusKernel
+  constructional
+    constituents   
+      s: SpecifierPhrase                 //12/30/12
+      k: Kernel
+    constraints
+      self.features <--> k.features
+      self.features <--> s.features
+  form
+    constraints 
+      s.f before k.f
+  meaning
+    constraints
+      self.m <--> k.m
+      self.m <--> s.m
+
+
+construction DeterminerPlusKernel 
+  subcase of Specifier2PlusKernel
+  constructional
+    constituents   
+      s: Determiner  
+
+
+
+
+
+//  we now also have "his" as Possessive-NP, 
+
+construction PossessivePronounPlusKernel // 
+  subcase of Specifier2PlusKernel
+  constructional
+    constituents   
+      s: PossessivePronoun // no need to check case
+      k: Kernel 
+	meaning
+		constraints
+			s.m <-> k.m 
+

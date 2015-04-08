@@ -1,0 +1,82 @@
+package starter
+
+//
+// copulas.grm
+//  	
+
+construction BeCopula
+	subcase of LexicalVerbType
+     	constructional
+      		constraints
+          		argform <-- Copula_All
+     meaning: Stasis 
+		constraints
+        	self.m.actionary <-- @be
+ /*       	
+general construction BeCopula  // all forms listed
+	subcase of LexicalVerb 
+     	constructional
+      		constraints
+          		argform <-- Copula_All
+     meaning: Stasis 
+		constraints
+        	self.m.actionary <-- @be
+          	
+           
+construction BeCopulaPresentSing  
+   	subcase of BeCopula, PresentTense, Singular
+   	form
+		constraints
+        	self.f.orth <-- "is"
+     meaning 
+    	constraints   	
+     		pf <--> self.m.p-features
+        	
+construction BeCopulaBase 
+   	subcase of BeCopula, BaseForm
+   	form
+		constraints
+        	self.f.orth <-- "be"
+    
+
+construction BeCopulaPresentParticple  
+   	subcase of BeCopula, PresentParticiple
+   	form
+		constraints
+        	self.f.orth <-- "being"
+     
+ construction BeCopulaPastParticple  
+   	subcase of BeCopula, PastParticiple
+   	form
+		constraints
+        	self.f.orth <-- "been"
+ 
+ construction BeCopulaPresentPlural  //now evokes ProcessFeatures
+   	subcase of BeCopula, PresentTense, Plural
+   	form
+		constraints
+        	self.f.orth <-- "are"   	
+
+construction BeCopulaPastSing  //now evokes ProcessFeatures
+   	subcase of BeCopula, PastTense, Singular
+   	form
+		constraints
+        	self.f.orth <-- "was"
+        	
+construction NegBeCopulaPastSing  //now evokes ProcessFeatures
+   	subcase of BeCopula, PastTense, Singular
+   	form
+		constraints
+        	self.f.orth <-- "wasn't" 
+    meaning 
+    	constraints   		
+        	pf.negated <-- "yes"
+       	
+construction BeCopulaPastPlural  //now evokes ProcessFeatures
+   	subcase of BeCopula, PastTense, Plural
+   	form
+		constraints
+        	self.f.orth <-- "were"
+
+*/        	
+        	

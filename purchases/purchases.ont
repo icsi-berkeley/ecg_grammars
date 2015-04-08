@@ -1,0 +1,19 @@
+//
+
+// ontology.ont
+
+//
+
+//package purchases
+
+DEFS:
+
+(type pizza sub food)
+
+(type sell sub give)
+
+(type buy sub take)
+
+(type indigo sub colorValue)
+
+INSTS:

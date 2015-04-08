@@ -1,0 +1,58 @@
+package purchases-testing
+
+
+schema CommercialTransaction
+	subcase of ObjectTransfer
+	roles
+	  buyer
+	  goods
+	  money
+	  seller
+	  // process1: Money-Transfer
+	  // process2: Goods-Trnasfer
+	  // means
+	  // rate
+	  // unit
+	constraints
+	  //seller <--> giver
+	  //buyer <--> getter
+	
+
+schema MoneyTransfer
+   subcase of CommercialTransaction
+   constraints
+     protagonist <--> buyer
+     //protagonist2 <--> seller
+
+schema GoodsTransfer
+   subcase of CommercialTransaction
+   constraints
+     protagonist <--> seller
+     protagonist2 <--> buyer
+     process1.theme <--> theme
+     process2.theme <--> theme
+   
+      
+
+
+	
+/* FrameNet further breaks this down into perspectivized frames. E.g., Commerce-Sell
+ and Commerce-Buy, which focus the perspective on either the BUYER or the SELLER. 
+
+This perspective could be important for identifying bindings for various elements:
+-Purpose: "he bought a house for her" (she gets the goods) vs. "he sold a house for her" 
+(she gets the money)
+-Who receives the goods: "he bought her a pizza" (HE buys pizza, SHE receives it),
+"he bought a pizza" (HE buys pizza, HE receives it), "he sold her a pizza" (HE sells pizza, SHE receives
+it). This last one is more canonical and related to the standard object-transfer 
+(GIVER/AGENT gives GETTER/PATIENT a THEME). The harder one is the first, because 
+the BUYER role isn't necessarily bound to the GETTER role.
+
+In the analysis above, seller always binds to giver, and buyer always binds to getter. 
+But this may not always be correct.
+*/
+		
+	
+	
+	
+	

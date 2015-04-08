@@ -1,0 +1,74 @@
+package universal-schemas
+
+schema TrajectorLandmark  
+	roles
+		trajector: RD 
+		landmark: RD
+		profiledArea: RD //  defined with respect to Landmark  
+	constraints
+		trajector.ontological-category <-- @physicalEntity
+		landmark.ontological-category <-- @region  // added for 2/22/14 m4 test  
+		profiledArea.ontological-category <-- @location 
+
+schema SPG   
+	subcase of TrajectorLandmark
+	roles
+		source: RD
+		path: RD
+		goal: RD
+		distance  // ???*********7/17/13
+
+
+schema BoundedRegion
+	roles
+		boundary: RD 
+		interior: RD 
+		exterior: RD 
+	constraints
+		boundary.ontological-category <-- @closedCurve
+		interior.ontological-category <-- @region
+		exterior.ontological-category <-- @region
+		
+schema BoundedObject
+	subcase of BoundedRegion
+	roles
+		boundedObject: RD
+	constraints
+		boundedObject.ontological-category <-- @container
+
+schema SpatialRelation  //???????
+
+schema Proximity	
+	subcase of SpatialRelation
+	roles
+		center
+		proximalArea
+
+schema Contact // short version
+	subcase of SpatialRelation 
+	roles
+		entity1: RD // @entity 
+		entity2: RD // @entity
+	constraints
+		entity1.ontological-category <-- @entity
+		entity2.ontological-category <-- @entity
+		
+
+schema Possession  //revised 11/30/12
+   roles
+   	   kind:@possessionKind
+	   possessor:RD
+	   possessed:RD
+		
+
+schema RefRelation
+   roles
+     first: RD
+     second: RD
+     
+schema RefIdentity
+	subcase of RefRelation
+	constraints
+	  first.ontological-category <--> second.ontological-category
+	  first.number <--> second.number
+	  first.gender <--> second.gender

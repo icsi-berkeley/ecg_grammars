@@ -1,0 +1,82 @@
+package primero
+
+// Some Question types
+
+general construction Question  // both Aux and Finite inversions
+	subcase of S  
+
+general construction YN-Question  
+	subcase of  Question
+
+general construction S-With-Finite-Inversion  
+	subcase of S-With-Subj, YN-Question
+
+
+// is the box in the room?  		   
+construction  S-With-Copula-Inversion-PP //special case
+    subcase of S-With-Finite-Inversion
+    constructional
+        constituents
+    	   fin: BeCopula
+    	   pp: Loc-PP 
+        constraints    
+    form
+        constraints
+            fin.f meets subj.f 
+            subj.f before pp.f
+    meaning
+        constraints
+        	subj.m <--> self.m.profiledParticipant  // from S-With-Subj
+            fin.m.protagonist <--> subj.m
+            // pp.m.trajector <--> subj.m    // commented out for testing
+            self.fin.m.state <--> pp.m
+            self.m.eventProcess <--> fin.m
+            self.fin.m.actionary <-- @be2
+            self.fin.m.temporality <-- @temporary    // Added 7/29/14 (ST)
+            
+// is the box near the red box?
+construction  S-With-Copula-Inversion-CompoundPP //special case
+    subcase of S-With-Finite-Inversion
+    constructional
+        constituents
+    	   fin: BeCopula
+    	   pp: Compound-PP-Loc
+        constraints 
+    form
+        constraints
+            fin.f meets subj.f 
+            subj.f before pp.f
+    meaning
+        constraints
+        	subj.m <--> self.m.profiledParticipant  // from S-With-Subj
+            fin.m.protagonist <--> subj.m
+            // pp.m.trajector <--> subj.m    // commented out for testing
+            self.fin.m.state <--> pp.m
+            self.m.eventProcess <--> fin.m
+            self.fin.m.actionary <-- @be2    
+            self.fin.m.temporality <-- @temporary    // Added 7/29/14 (ST)     
+
+// is the box red?            
+construction S-With-Copula-Inversion-Adj // tested 10/29/12
+    subcase of S-With-Finite-Inversion
+    constructional
+        constituents
+    	   fin: BeCopula
+    	   adj: Adjective 
+    	   //optional end: QMark  // punctuation   ?
+        constraints
+            //fin.features.expectedVerbForm <--> vp.verbform 
+    form
+        constraints
+            fin.f meets subj.f 
+            subj.f before adj.f
+    meaning
+        constraints
+    		self.fin.m.actionary <-- @be2
+        	self.fin.m.protagonist <--> self.m.profiledParticipant
+        	// self.adj.m.modifiedThing <--> self.m.profiledParticipant
+        	self.adj.m.domain <--> self.m.profiledParticipant.ontological-category
+			self.fin.m.state <--> adj.m
+			self.m.eventProcess <--> fin.m
+			self.fin.m.temporality <-- @permanent // Added 7/29/14 (ST)
+        

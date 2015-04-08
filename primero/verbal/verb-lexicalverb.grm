@@ -1,0 +1,232 @@
+package primero 
+
+/* 
+general construction Verb
+   subcase of HasVerbFeatures
+   meaning: Process
+
+general construction ComplexVerb
+   subcase of Verb
+   
+general construction VerbChunk  
+	subcase of  RootType, ComplexVerb 
+
+general construction LexicalVerb
+	subcase of VerbChunk, Word
+	meaning
+		evokes ProcessFeatures as pf
+   	constraints
+   		pf <--> self.m.p-features
+   		
+
+construction LexicalVerbType
+	subcase of VerbChunk, GeneralTypeCxn
+	meaning
+		evokes ProcessFeatures as pf
+   	constraints
+   		pf <--> self.m.p-features
+   		//self.m.actionary <-- @process
+   		
+*/   		
+construction SelfMotionType
+	subcase of LexicalVerbType
+	meaning: MotionPath
+      constraints
+         self.m.actionary <-- @motion
+         self.m.speed <-- ".5"
+         
+/** For Spanish, a distinction will have to be made between self-propelled motion ("moverse") 
+and movement of other objects ("mover"). This will require implementation of the Reflexive cases.
+*/
+/*
+general construction Move  
+   	subcase of LexicalVerb
+	meaning: MotionPath 
+      	constraints
+         	self.m.actionary <-- @move      
+ 			self.argform <-- Reflexive
+ 
+ construction MoveImperative
+   	subcase of Move, ImperativeVerb
+   	form
+      	constraints
+         	self.f.orth <-- "muévete"  
+         	        	
+construction MovePast
+   subcase of Move, PastTense, ThirdPersonSingular
+   form
+      constraints
+         self.f.orth <-- "movió"
+
+construction MovePastParticiple
+   subcase of Move, PastParticiple
+   form
+      constraints
+         self.f.orth <-- "movido"
+         
+         
+*/
+ 
+/* Cosntruction for transitive version of Spanish verb "ver", meaning "to see".
+*/ 
+/*
+general construction VerT // 8/21/13 Transitive
+   subcase of LexicalVerb
+   meaning: Perception
+      constraints 
+         self.m.actionary <-- @see
+		 self.argform <-- Transitive
+ 		 self.verbkind <-- Perceptual  // 10/3/13
+
+ 		 
+	
+construction VerBaseT
+   subcase of VerT, BaseForm
+   form
+      constraints
+         self.f.orth <-- "ver"
+
+/* Third person singular, past tense conjugation of "ver". 
+construction SeePastT
+   subcase of VerT, PastTense, ThirdPersonSingular
+   form
+      constraints
+         self.f.orth <-- "vio"
+
+
+/** Again, a distinction must be made in Spanish between "deslizar" and "deslizarse" (non-reflexive
+vs. reflexive types)      
+general construction Slide  
+   	subcase of LexicalVerb
+	meaning: MotionPath 
+      	constraints
+         	self.m.actionary <-- @slide
+         	self.m.ed.profiledParticipant <--> self.m.mover  
+            self.argform <-- Reflexive 	 // temporary fix
+
+construction SlidePast
+   subcase of Slide, PastTense, ThirdPerson, Singular
+   form
+      constraints
+         self.f.orth <-- "deslizó"
+
+
+
+
+general construction Push   
+   	subcase of LexicalVerb
+     meaning: CauseEffect
+     evokes ForceApplication as fa
+     evokes MotionPath as mp
+       constraints
+         	self.m.actionary <-- @push_move
+         	self.m.protagonist.ontological-category <-- @agent  // 1/28/13, motor control constraint
+         	self.fa <--> self.m.causalProcess
+         	self.mp <--> self.m.affectedProcess
+         	self.fa.actedUpon <--> self.m.affectedEntity
+ 				
+ construction PushBase   
+   	subcase of Push, ImperativeVerb
+   	form
+      	constraints
+         	self.f.orth <-- "empuje"
+     
+ 
+ construction PushPast   
+   	subcase of Push, PastTense
+   	form
+      	constraints
+         	self.f.orth <-- "empujó"
+
+
+
+
+                      
+// Manner: motor program, influences on motor program (emotional state, purpose, comparison to other events)
+/* Construction for "Correr" (to run). Inherits from the Move lexical verb. */
+// change to motion-manner (path, location, NO source/goal)
+general construction Correr // added 6/8/14 (ST)
+	subcase of LexicalVerb
+	meaning: MotionPath	// probably needs more complex schema, like "motion manner" (as seen above)
+	   constraints
+	      self.m.mover <--> self.m.ed.profiledParticipant
+	      self.m.actionary <-- @run
+	      self.m.speed <-- ".7"
+
+
+construction CorrerCommand
+	subcase of Correr, ImperativeVerb
+	form
+	   constraints
+	      self.f.orth <-- "corra"
+	      
+
+/* Spanish construction for "Enter" (Entrar). Uses the ChangeLocation schema because 
+the mover changes location with regard to a landmark.
+*/
+general construction Entrar   // 10/15/13
+   subcase of LexicalVerb
+   meaning: ChangeLocation 
+      evokes BoundedObject as bo  
+     constraints
+         self.m.landmark <--> bo.boundedObject
+         self.m.spg.goal <--> bo.interior
+         self.m.spg.source <--> bo.exterior
+         self.m.landmark.ontological-category <-- @container
+         self.m.actionary <-- @enter
+		 //self.argform <-- NotReflexive
+
+
+construction EntrarCommand   // 6/18/14
+   subcase of Entrar, ImperativeVerb
+	form
+	   constraints
+	      self.f.orth <-- "entre"
+                  
+// Past tense entrar; further changes could be made if necessary
+construction EntrarPast
+	subcase of Entrar, PastTense, ThirdPersonSingular
+	form
+	  constraints
+ 	     self.f.orth <-- "entró"
+ 	meaning
+ 	   constraints
+ 	      self.features.number <-- @singular
+ 	      //self.m.ed.profiledParticipant.features.number <-- "singular"
+ 
+		  
+ /** Construction for Salir, meaning "to leave". Will have to investigate
+to see whether construction should be modified, such that you say, "salir de", rather than just "salir".
+*/
+general construction Salir   // 6/10/14 (ST)
+	subcase of LexicalVerb
+	meaning: ChangeLocation
+	   evokes BoundedObject as bo
+	   constraints
+	   	  self.m.landmark <--> bo.boundedObject
+	      self.m.spg.source <--> bo.interior
+	      self.m.spg.goal <--> bo.exterior  
+	      self.m.landmark.ontological-category <-- @container
+	      self.m.actionary <-- @exit
+
+	      
+construction SalirCommand
+	subcase of Salir, ImperativeVerb
+	   form
+	      constraints
+	         self.f.orth <-- "salga"
+
+construction SalirPast
+	subcase of Salir, PastTense, ThirdPersonSingular
+	form
+	   constraints
+	      self.f.orth <-- "salió"  
+
+
+	     
+
+
+
+   
+ 
+   

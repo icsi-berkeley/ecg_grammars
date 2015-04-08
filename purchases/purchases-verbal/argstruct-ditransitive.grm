@@ -1,0 +1,52 @@
+package purchases
+import purchases-testing
+
+
+/* 
+These are just some starter constructions to test some analyses of the purchasing frame.
+
+Ultimately, we will want finer-grained constructions. As described in schemas-purchase.grm,
+we want a construction that doesn't bind "buyer" to "getter" ("he bought her a pizza"). 
+
+*/
+
+//this is a general construction used for inheritance
+general construction ActiveDitransitive // he Xed Indirect Direct  8/16/13
+  subcase of ArgumentStructure
+  constructional
+    constituents
+      optional np1: NP
+      np2: NP  
+    constraints
+      v.argform <-- DiTransitive  //2/11/13
+      v.voice <-- NotPassive  // 1/14/14
+      np1.features.case <-- "dat"
+      np2.features.case <-- "acc"
+  form
+    constraints
+       v.f before np1.f
+       np1.f before np2.f
+  meaning:Process //  8/16/13
+     evokes A123 as s
+    constraints
+       s.a1 <--> ed.profiledParticipant
+       s.a2 <--> np1.m // recipient  // 8/22/13
+       s.a3 <--> np2.m  // theme  
+       
+
+//this cxn  binds the meaning of "give" to the meaning of the cxn
+
+construction CentralActiveDitransitiveTransfer   // 8/24/13
+  subcase of ActiveDitransitive
+  meaning: ObjectTransfer  // 2/11/13
+    constraints
+      	self.m <--> v.m
+  		self.m.donor <--> ed.profiledParticipant
+       	self.m.recipient <--> np1.m
+       	self.m.theme <--> np2.m
+
+	
+	
+	
+	
+	
