@@ -1,0 +1,2 @@
+red :: ColorType :: self.m.value <-- @red
+blue :: ColorType :: self.m.value <-- @blue
