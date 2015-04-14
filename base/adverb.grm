@@ -1,0 +1,191 @@
+// 
+// adverb.grm 
+//
+
+
+general construction Adverbial  // can be a phrase as well
+  meaning: AdverbModification
+  
+
+general construction Adverb
+  subcase of Word, Adverbial
+
+general construction MannerAdverb
+  subcase of Adverb
+
+general construction TemporalAdverb
+  subcase of Adverb
+
+  
+general construction ComplexAdverbial
+  subcase of Adverbial
+  
+construction SerialAdverb
+   subcase of Adverbial 
+   	constructional 
+   		constituents
+          	first: Adverb
+	    	second: Adverbial
+	form
+      constraints
+       	first.f meets second.f
+   meaning
+   	constraints
+		self.m <--> second.m
+		first.m.modifiedThing <--> second.m
+  
+  construction NegatedAdverb
+   subcase of Adverb
+   	constructional 
+   	 constituents
+          	first: Not-NP
+	    	second: Adverb
+	form
+       constraints
+       		first.f meets second.f
+   meaning
+   	constraints
+			self.m <--> second.m
+			self.m.negated <-- "yes"
+ 
+construction ComparativeAdverbPhrase  // Xed faster than John (Xed)
+   subcase of Adverbial 
+   	constructional 
+   		constituents
+          	first: Adverb
+	    	than: Than //serial Conj. now  12/9/13 ************
+	    	base: NP
+	form
+      constraints
+       	first.f meets than.f
+       	than.f meets base.f
+   meaning
+   	constraints
+   		first.m.kind <-- @comparative
+		self.m <--> first.m
+		//first.m.modifiedThing <--> second.m
+		
+
+general construction PolarityAdverb
+  subcase of Adverb
+  
+construction Now // sooner would be comparative 11/26/12
+  subcase of TemporalAdverb
+  form
+    constraints
+       self.f.orth <-- "now"
+  meaning: Modification
+	constraints
+		self.m.modifier <-- "now"
+		self.m.kind <-- @unmarked	
+
+construction Very // 
+  subcase of Adverb
+  form
+    constraints
+       self.f.orth <-- "very"
+  meaning: Modification
+	constraints
+		self.m.modifier <-- "very"
+		self.m.kind <-- @unmarked
+		
+construction So // 
+  subcase of Adverb
+  form
+    constraints
+       self.f.orth <-- "so"
+  meaning: Modification
+	constraints
+		self.m.modifier <-- "so"
+		self.m.kind <-- @unmarked  // not comparative
+				
+construction  Intensly
+  subcase of MannerAdverb
+  form
+    constraints
+       self.f.orth <-- "intensly"
+  meaning: Modification
+	constraints
+		self.m.modifier <-- "intensly"
+		self.m.kind <-- @unmarked  // not comparative
+		
+construction Not-event  // used with modalPlusVP, NegatedBeCopula **********check these *** 9/12/13
+subcase of Word
+  form
+      constraints
+        self.f.orth <-- "not"
+   meaning
+
+construction Not-NP  // used with Adj, Adv
+subcase of Word
+  form
+      constraints
+        self.f.orth <-- "not"
+   meaning
+   
+
+construction Fast 
+  subcase of Adverb
+  form
+    constraints
+       self.f.orth <-- "fast"
+  meaning: ScalarAdverbModifier
+	constraints 
+		self.m.property <-- @speed
+		self.m.value <-- "7"
+		self.m.kind <-- @unmarked
+
+construction Faster 
+  subcase of Adverb
+  form
+    constraints
+       self.f.orth <-- "faster"
+  meaning: ScalarAdverbModifier
+	constraints
+		self.m.property <-- @speed
+		self.m.value <-- "more"
+		self.m.kind <-- @comparative
+
+
+// Directionals NOT ADVERBS 
+
+
+construction Straight  //   not a noun
+   subcase of Word, Directional
+   form
+      constraints
+         self.f.orth <-- "straight"
+    meaning: HeadingSchema
+      constraints
+        self.m.tag <-- @straight
+				
+construction Right
+  subcase of Word, Directional
+  form
+    constraints
+       self.f.orth <-- "right"
+ meaning: HeadingSchema
+      constraints
+        self.m.tag <-- @right
+		
+
+construction Left
+  subcase of Word, Directional
+  form
+    constraints
+       self.f.orth <-- "left"
+  meaning: HeadingSchema
+  	constraints
+        self.m.tag <-- @left
+        
+construction Up-directional
+  subcase of Word, Directional
+  form
+    constraints 
+       self.f.orth <-- "up"
+ meaning: HeadingSchema
+      constraints
+        self.m.tag <-- @up
+		
+  	
+

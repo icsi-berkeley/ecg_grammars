@@ -1,0 +1,43 @@
+
+
+/*
+In order for the Analyzer to analyze a sentence or phrase, it must be analyzable as an instance of a ROOT construction 
+
+This file includes the ROOT construction and subcases for Word constructions.
+For additional subcases of RootType, see individual files.  
+As of 7/8/13, the direct subcases in Base grammar include:  Adjective, NP, PP, VerbChunk, VP, Utterance, S
+*/
+
+construction ROOT
+	constructional
+    	constituents
+	  		rootconstituent: RootType
+	meaning
+    	constraints
+	  		self.m <--> rootconstituent.m
+
+
+general construction RootType
+
+
+construction UnknownWord 
+	subcase of Word, RootType
+  	form  
+    	constraints
+        	self.f.orth <-- "UNKNOWN-ITEM"
+
+
+general construction Word // ? add role for ontological-category
+  	subcase of RootType
+   		form: WordForm
+
+
+/*
+For additional subcases of RootType, see individual files.  
+
+As of 7/8/13, direct subcases include:  Adjective, NP, PP, VerbChunk, VP, Utterance, S
+*/
+
+
+
+

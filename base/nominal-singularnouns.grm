@@ -1,0 +1,313 @@
+//
+// Singular Count Nouns
+//
+
+general construction SingularNoun
+  subcase of Noun, Singular
+   constructional
+     constraints
+      self.features.number <-- "singular"  
+   meaning
+    constraints
+      self.m.number <-- @singular
+	  self.m.bounding <-- @determinate
+
+construction Sheep1  
+   subcase of SingularNoun
+   form
+      constraints
+         self.f.orth <-- "sheep"
+      meaning
+    constraints
+      self.m.ontological-category <--  @sheep
+
+construction Man  
+   subcase of SingularNoun
+   form
+      constraints
+         self.f.orth <-- "man"
+      meaning
+    constraints
+      self.m.ontological-category <--  @person
+	  self.m.gender <--  @male
+	   
+construction Government 
+   subcase of SingularNoun
+   form
+      constraints 
+         self.f.orth <-- "government"
+      meaning
+    constraints
+      self.m.ontological-category <--  @institution
+	  self.m.scale <-- @difficultyScale
+	  
+construction Storm 
+   subcase of SingularNoun
+   form
+      constraints 
+         self.f.orth <-- "storm"
+      meaning: EventRD
+    constraints
+      self.m.ontological-category <--  @storm
+	  //self.m.scale <-- @size    7/16/14
+	  self.m.description.eventForm  <-- @lexical  // 1/19/13
+	  
+construction Rain  // 1/5/13 not an Event  ***revisit 7/15/14**
+  subcase of SingularNoun // 5/19/14 should be a mass noun
+   form
+      constraints
+         self.f.orth <-- "rain"
+   meaning: EventRD  // 1/5/12 for Metaphor, check
+    constraints
+      self.m.ontological-category <-- @rain
+	  self.m.scale <-- @size
+	  self.m.description.eventForm  <-- @lexical  // 1/19/13
+
+/* commented out for speed  ******
+construction Flu 
+   subcase of SingularNoun
+   form
+      constraints
+         self.f.orth <-- "flu"
+      meaning
+    constraints
+      self.m.ontological-category <--  @disease
+  
+  construction Infection 
+   subcase of SingularNoun
+   form
+      constraints
+         self.f.orth <-- "infection"
+      meaning
+    constraints
+      self.m.ontological-category <--  @disease // not in ontology, change ???
+  
+  construction Ininiative 
+   subcase of SingularNoun
+   form
+      constraints
+         self.f.orth <-- "initiative"
+      meaning
+    constraints
+      self.m.ontological-category <--  @initiative
+   
+  construction Problem2 // hack, want CountOrMass
+  subcase of SingularNoun
+   form
+      constraints
+         self.f.orth <-- "problem"
+   meaning 
+    constraints
+      self.m.ontological-category <-- @problem   
+      self.m.scale <-- @difficultyScale 
+
+  */ 
+  construction Depression
+   subcase of SingularNoun
+   form
+      constraints
+         self.f.orth <-- "depression"
+      meaning
+    constraints
+      self.m.ontological-category <--  @depression
+      self.m.scale <-- @difficultyScale 
+     
+  construction Crisis  // event, 11/26/12
+   subcase of SingularNoun
+   form
+      constraints
+         self.f.orth <-- "crisis"
+      meaning: EventRD
+    constraints
+      self.m.ontological-category <--  @crisis  // generalize ??
+      self.m.scale <-- @difficultyScale
+      self.m.description.eventForm    <-- @lexical  // moved to ED   1/18/13
+  
+  construction City-inst // 2 conceptualizations
+   subcase of SingularNoun
+   form
+      constraints
+         self.f.orth <-- "city"
+      meaning
+    constraints
+      self.m.ontological-category <--  @city-inst   
+
+ construction City-artifact 
+   subcase of SingularNoun
+   form
+      constraints
+         self.f.orth <-- "city"
+      meaning
+    constraints
+      self.m.ontological-category <--  @city-artifact  
+
+construction Box
+   subcase of SingularNoun
+   form
+      constraints
+         self.f.orth <-- "box"
+   meaning: EntityRD
+  	evokes Container as cont 
+    constraints
+     self.m.ontological-category <--  @box
+     self.m.extensions <--> cont  // conflict with number???
+     self.m.scale <-- @size
+
+construction Block
+   subcase of SingularNoun
+   form
+      constraints
+         self.f.orth <-- "block"
+      meaning
+    constraints
+      self.m.ontological-category <--  @block
+      self.m.scale <-- @size
+     
+construction Robot
+   subcase of SingularNoun
+   form
+      constraints
+         self.f.orth <-- "robot"
+      meaning
+    constraints
+      self.m.ontological-category <--  @robot
+
+construction Room
+   subcase of SingularNoun
+   form
+      constraints
+         self.f.orth <-- "room"
+      meaning
+    constraints
+      self.m.ontological-category <--  @room
+      self.m.scale <-- @size
+
+construction Car
+   subcase of SingularNoun
+   form
+      constraints
+         self.f.orth <-- "car"
+      meaning
+    constraints
+      self.m.ontological-category <--  @car
+      
+construction Square
+   subcase of SingularNoun
+   form
+      constraints
+         self.f.orth <-- "square"
+      meaning
+    constraints
+      self.m.ontological-category <--  @square
+ 
+ // groupers  sub @grouper
+ 
+ general construction GroupingWord
+ 	subcase of SingularNoun
+ 	meaning
+      constraints
+ 		self.m.scale <--  @size  // 11/17/12
+ 
+ construction Bunch  //  a bunch of blocks
+   subcase of GroupingWord
+   form
+      constraints
+         self.f.orth <-- "bunch"
+   meaning
+      constraints
+      	self.m.ontological-category <--  @bunch
+ 
+     
+construction Table 
+   subcase of SingularNoun
+   form
+      constraints
+         self.f.orth <-- "table"
+      meaning
+    constraints
+      self.m.ontological-category <--  @table
+
+
+construction Story
+   subcase of SingularNoun
+   form
+      constraints
+         self.f.orth <-- "story"
+   meaning
+    constraints
+      self.m.ontological-category <--  @story
+
+
+
+      
+construction Hammer  
+   subcase of SingularNoun
+   form
+      constraints
+         self.f.orth <-- "hammer"
+   meaning
+    evokes Artifact as art
+    constraints
+      self.m.ontological-category <--  @hammer
+      self.m.extensions <-->  art
+	  
+/*
+construction Centimeter
+   subcase of SingularNoun
+   form
+      constraints
+         self.f.orth <-- "cm"
+      meaning
+    constraints
+      self.m.ontological-category <--  @centimeter
+*/
+
+construction Inch
+   subcase of SingularNoun
+   form
+      constraints
+         self.f.orth <-- "inch"
+      meaning
+    constraints
+      self.m.ontological-category <-- @inch
+
+
+construction Hour
+   	subcase of SingularNoun
+   	form
+      	constraints
+         	self.f.orth <-- "hour"
+	meaning
+    	constraints
+      		self.m.ontological-category <--  @hour
+      		
+
+ construction Arm //
+   subcase of SingularNoun
+   form
+      constraints
+         self.f.orth <-- "arm"
+   meaning
+      constraints
+          self.m.ontological-category <--  @arm
+          
+construction Hand //
+   subcase of SingularNoun
+   form
+      constraints
+         self.f.orth <-- "hand"
+   meaning
+      constraints
+          self.m.ontological-category <--  @hand
+/*
+construction Head //temp for 10/31
+   subcase of SingularNoun
+   form
+      constraints
+         self.f.orth <-- "head"
+   meaning
+      constraints
+          self.m.ontological-category <--  @head
+
+ */     
+      

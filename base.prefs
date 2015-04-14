@@ -1,0 +1,46 @@
+
+GRAMMAR_EXTENSIONS = grm
+
+GRAMMAR_PATHS ::==
+	./base
+;
+
+IMPORT_PATHS ::==
+	./base
+;
+
+PACKAGE_NAME ::==
+	base
+;
+
+ONTOLOGY_PATHS ::==
+	./base/ontology.ont
+;
+
+MORPHOLOGY_PATH ::== 
+	./base/celex.ecgmorph
+;
+
+TOKEN_PATH ::== 
+	./base/base.tokens
+;
+TABLE_PATH = ./base/base.morph
+
+ROBUST = FALSE
+BEAM_SIZE = 40
+DEFAULT_OMISSION_PROB = .1
+DEBUG = FALSE
+//DEBUG = TRUE
+ANALYZE_IN_CONTEXT = FALSE
+// ANALYZE_IN_CONTEXT = TRUE
+NUM_ANALYSES_RETURNED = 3
+MULTI_ROOT_PENALTY = -3
+
+EXAMPLE_SENTENCES ::==
+
+he
+he moved
+he moved the block
+
+
+;

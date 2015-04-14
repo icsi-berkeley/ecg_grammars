@@ -10,10 +10,10 @@ schema ObjectTransfer
 	 process1: LosePossession
 	 process2: ReceivePossession
 	constraints
-	 protagonist <--> donor
+	 //protagonist <--> donor
 	 protagonist.ontological-category <-- @agent
 	 protagonist2.ontological-category <-- @person
-	 protagonist2 <--> recipient
+	 //protagonist2 <--> recipient
 
 
 schema LosePossession

@@ -1,0 +1,129 @@
+//
+// verb-copulas.grm
+//
+
+//schema Copula   		Now in argform+verbkind.grm
+//	subcase of ArgForm 10/2/13
+
+	
+general construction BecomeCopula  // 2/14/13
+	subcase of LexicalVerb 
+     	constructional
+      		constraints
+          		argform <-- Copula_Either_Nom_Adj  //1/31/14
+ 	meaning: Stasis //: ChangeIntoState 
+		constraints
+      		self.m.actionary <-- @become
+          	
+	
+general construction BeCopula  // also BeProgressive, BePassive
+	subcase of LexicalVerb // no longer subcase of Coplula
+     	constructional
+      		constraints
+      			self.verbform <-- Finite  // 1/31/14
+          		argform <-- Copula_All
+     meaning: Stasis 
+		constraints
+        	self.m.actionary <-- @be
+          	//pf <--> self.m.p-features  //why evoked in tensed ?
+ 
+ /* 5/17/13
+ construction NegatedBeCopula  // probably will work in general
+  	subcase of BeCopula
+    constructional
+     constituents
+        neg: Not-event  // just a marker, no meaning
+        v: BeCopula
+     constraints
+    form
+    	constraints
+    		v meets neg
+    meaning 
+    	constraints 		
+        	v.m.p-features.negated <-- "yes" // tag directly
+*/ 
+           
+construction BeCopulaPresentSing  //now evokes ProcessFeatures
+   	subcase of BeCopula, PresentTense, Singular
+   	form
+		constraints
+        	self.f.orth <-- "is"
+     meaning 
+    	constraints   	
+     		pf <--> self.m.p-features
+        	
+construction BeCopulaBase 
+   	subcase of BeCopula, BaseForm
+   	form
+		constraints
+        	self.f.orth <-- "be"
+    
+
+construction BeCopulaPresentParticple  
+   	subcase of BeCopula, PresentParticiple
+   	form
+		constraints
+        	self.f.orth <-- "being"
+     
+ construction BeCopulaPastParticple  
+   	subcase of BeCopula, PastParticiple
+   	form
+		constraints
+        	self.f.orth <-- "been"
+ 
+ construction BeCopulaPresentPlural  //now evokes ProcessFeatures
+   	subcase of BeCopula, PresentTense, Plural
+   	form
+		constraints
+        	self.f.orth <-- "are"   	
+
+construction BeCopulaPastSing  //now evokes ProcessFeatures
+   	subcase of BeCopula, PastTense, Singular
+   	form
+		constraints
+        	self.f.orth <-- "was"
+        	
+construction NegBeCopulaPastSing  //now evokes ProcessFeatures
+   	subcase of BeCopula, PastTense, Singular
+   	form
+		constraints
+        	self.f.orth <-- "wasn't" 
+    meaning 
+    	constraints   		
+        	pf.negated <-- "yes"
+       	
+construction BeCopulaPastPlural  //now evokes ProcessFeatures
+   	subcase of BeCopula, PastTense, Plural
+   	form
+		constraints
+        	self.f.orth <-- "were"
+ 
+    
+construction BecomeCopulaBase 
+   	subcase of BecomeCopula, BaseForm
+   	form
+		constraints
+        	self.f.orth <-- "become"
+    
+construction BecomeCopulaPresentParticple  
+   	subcase of BecomeCopula, PresentParticiple
+   	form
+		constraints
+        	self.f.orth <-- "becoming"
+     
+construction BecomeCopulaPastParticple  
+   	subcase of BecomeCopula, PastParticiple
+   	form
+		constraints
+        	self.f.orth <-- "become"
+        	
+construction BecomeCopulaPastSing  
+   	subcase of BecomeCopula, PastTense , Singular  //2/20/13 hack
+   	form
+		constraints
+        	self.f.orth <-- "became"
+          	
+        	
+        	
+        	
+        	

@@ -1,0 +1,192 @@
+
+
+// *** MOVE BODY PART cxns
+// as of 1/30/14, this file contains cxns for analyzing sentences such as:
+// He slapped at the table, He slapped his hand on the table
+
+
+//cxn for, e.g. He slapped his hand on the table
+general construction Trans_EffectorMotion_Test2 
+  subcase of Trans_AgentEffectCausation 
+  constructional
+   constituents
+      pp: Path-PP  //should constrain possible preps?
+   constraints
+	// v.argform <-->
+   form
+     constraints
+	   v.f before pp.f 
+   meaning //CauseEffect  inherited
+	evokes  ForcefulMotionAction_test as fma 
+      constraints 
+       	self.m.affectedEntity <--> fma.effector 
+    	self.m.affectedEntity <--> fma.spg.trajector
+    	fma.spg <--> pp.m
+    	fma.effector.ontological-category <-- @bodyPart
+   // need to add binding between fma and self.m 	
+
+/*DISCUSSION for Trans_EffectorMotion_Test2
+-- given current PP cxns, this cxn supports analysis of examples with Path preps (e.g. into), 
+   but not Loc preps (e.g. on, at).  To fix this Would need to add PP cxns that support path
+   interpretation of Loc preps
+
+*/
+    	
+// subcase for forceful motion actions, such as slap, kick   		
+general construction Trans_EffectorMotion_central_Test2 // e.g. slap
+  subcase of Trans_EffectorMotion_Test2 
+  meaning
+    constraints
+      fma <--> v.m     
+      
+
+construction ActiveTrans__EffectorMotion_central_Test2  //he slapped his hand at the box
+  subcase of ActiveTransitive, Trans_EffectorMotion_central_Test2     
+  form
+     constraints
+	   np.f before pp.f  
+	   
+// NOTE: didn't build Passive cxn for this: *His hand was slapped at the box
+
+
+
+// e.g.  He slapped at the box  ???? not here
+//
+construction EffectorMotionPath3   
+  subcase of ArgumentStructure  
+  constructional
+    constituents
+       pp: Spatial-PP    
+       //pp: Path-PP    //  11/12 test 
+    form
+      constraints
+       v.f before pp.f   
+  meaning: EffectorMotionPath
+    evokes ForcefulMotionAction as fma
+    constraints
+      fma <--> v.m  
+      self.m <--> fma.process2  
+      self.m.process2.spg <--> pp.m  // 10/31 demo
+      self.m.protagonist <--> ed.profiledParticipant
+
+
+// e.g.  He slapped his hand at the box
+// this one can't be passivized? 
+
+construction ActiveTransitiveEffectorMotionPath3
+  subcase of ArgumentStructure
+  constructional
+    constituents
+      np: NP
+      pp: Spatial-PP    // changed for 10/31 demo - maybe should be PathPrepPhrase2??  
+  form
+    constraints
+      v.f before np.f  
+      np.f before pp.f 
+  meaning: EffectorMotionPath
+    evokes ForcefulMotionAction as fma
+    constraints
+      fma <--> v.m     
+      self.m <--> fma.process2  
+      //self.m.process1.effector <--> np.m.referent 
+      self.m.process1.effector <--> np.m // changed for 10/31 demo
+      //self.m.effector <--> np.m 
+      self.m.process2.spg <--> pp.m
+      self.m.protagonist <--> ed.profiledParticipant
+
+
+
+
+      	      
+      
+// BODY  PART POSSESSOR CXNS  test 6/18/13
+// for analysis of examples such as 'he slapped her on the arm'
+
+// for BodyPartPossessor A-S cxn
+construction DefiniteDeterminerPlusKernel // body part only test 7/26/13 
+  subcase of DeterminerPlusKernel
+  constructional
+    constituents   
+      s: The 
+      k: Kernel
+  meaning
+    constraints
+     k.m.ontological-category <-- @bodyPart
+
+
+construction BodyPart-PP  // for BodyPartPossessor A-S cxn
+	subcase of PP
+	constructional
+		constituents
+		    prep: SpatialPreposition 
+		    np: DefiniteDeterminerPlusKernel  
+	form
+		constraints
+		    prep.f before np.f
+	meaning: TrajectorLandmark
+		constraints
+			self.m <--> prep.m
+			self.m.landmark  <--> np.m 
+			np.m.ontological-category <-- @bodyPart
+
+
+general construction PartPossessorAS // test 6/18/13 updated version
+ subcase of Trans_AgentEffectCausation
+  constructional
+    constituents
+       pp: BodyPart-PP 
+  form
+    constraints
+      v.f before pp.f  
+  meaning  // inherited from Trans_AgentEffectCausation -- could make more specific?
+    evokes ForcefulMotionAction_test as fma
+    evokes Possession as p
+    constraints
+      v.m <--> fma 
+      fma <--> self.m.process1
+      self.m.affectedEntity <--> p.possessor
+      //fma.spg.lm <--> pp.np.m 
+      pp.m.landmark <--> p.possessed
+      self.m.affectedEntity.ontological-category <-- @person
+      //p.possessor <-- @person
+      p.possessed.ontological-category <-- @bodyPart
+
+construction Active_PartPossessorAS //she slapped him on the arm
+  subcase of ActiveTransitive, PartPossessorAS   
+   form
+     constraints
+	   np.f before pp.f   
+        
+
+construction Passive_PartPossessorAS // she was slapped on the arm (by him)
+  subcase of PassiveTransitive, PartPossessorAS   
+        
+
+ 
+ /*** need to revise if we want to keep this 5/24/13 ****
+construction PartPossessorCauseEffectAS // demo for 10/31 
+ subcase of ArgumentStructure
+  constructional
+    constituents
+       np: NP
+       pp: Loc-PP 
+    //constraints
+	//pp.np must be Specifier2PlusKernel, with specifier = “the”
+  form
+    constraints
+      v.f before np.f  
+      np.f before pp.f 
+meaning: CauseEffectAction  // ForcefulMotionAction
+    evokes ForcefulMotionAction as fma
+    evokes Possession as p
+    constraints
+      v.m <--> fma 
+      fma.process1 <--> self.m.process1
+      self.m.affected <--> np.m
+      self.m.affected <--> p.possessor
+      //fma.process2.target <--> pp.np.m 
+      pp.np.m <--> p.possessed
+      //p.possessor <-- @person
+      //p.possessed <-- @bodyPart 
+  
+  */

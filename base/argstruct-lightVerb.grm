@@ -1,0 +1,75 @@
+
+
+// LIGHT VERBS  
+//
+//need to retest 1/20/14
+
+// 2/27/14:  these cxns need more work 
+
+
+
+construction LightVerbIntransitiveArgumentStructure  //  he took a walk
+  subcase of ArgumentStructure
+  constructional
+    constituents
+      v: LightVerb // take 
+      np: ProcessNP  
+  form  
+    constraints
+      v.f before np.f  
+   meaning: PerformAction
+     constraints
+	   self.ed.profiledParticipant <--> self.m.actor
+	   self.m.actor <--> np.m.action.protagonist
+	   self.m.action <--> np.m.action
+	   self.m.repetitions <--> np.m.repetitions 
+
+/*
+DISCUSSION of LightVerbIntranstive Argument strucutre
+-- as currently defined, cxn above applies to 'take an Action'
+-- for 'get', profiledParticipant is Experiencer/ActedUpond entity. 
+   Might also want optional 'from Actor' constituent 
+   
+*/	   
+
+
+
+construction LightVerbTransitiveArgumentStructure  
+  subcase of ArgumentStructure
+  constructional
+    constituents
+      v: LightVerb // give
+	  obj: NP
+      np: ProcessNP  
+  form
+    constraints
+      v.f before np.f
+      v.f meets obj.f
+	  obj.f meets np.f  
+   meaning: PerformAction
+     constraints
+	   self.ed.profiledParticipant <--> self.m.actor
+	   self.m.actor <--> np.m.action.protagonist
+	   self.m.action <--> np.m.action
+	   self.m.repetitions <--> np.m.repetitions
+	  // np.m.action.other  <-->  obj.m // ******************???? 10/2/13    	
+
+construction LightActiveDitransitive
+  subcase of ArgumentStructure
+  constructional
+    constituents
+     	np1: NP
+  		np2: ProcessNP  
+  		v: LightVerb 
+  	constraints
+  		//v.features.argform <-- Light // entailed
+  form
+    constraints
+       v.f before np1.f
+       np1.f before np2.f
+  meaning
+    constraints
+      self.m <--> v.m
+      self.m.protagonist <--> ed.profiledParticipant
+      np2.m.action.protagonist <--> ed.profiledParticipant
+      //np2.m.action.other <--> np1.m //check, ***************************

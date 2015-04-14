@@ -1,0 +1,60 @@
+
+  
+schema SPGProcess // protagonist changes location wrt a LM
+   subcase of Process  
+   evokes SPG as spg
+   roles
+      mover
+      landmark: RD
+      source
+      path
+      goal
+   constraints  
+      mover <--> spg.trajector 
+	  mover <--> protagonist
+      landmark <--> spg.landmark
+	  source <--> spg.source
+      path <--> spg.path
+      goal <--> spg.goal 
+      protagonist.ontological-category <-- @physicalEntity  // hack 10/23/12
+      
+general construction Enter2   // 10/15/13
+   subcase of LexicalVerb
+   meaning: SPGProcess 
+      evokes BoundedObject as bo   
+     constraints
+         self.m.landmark <--> bo.boundedObject
+         self.m.goal <--> bo.interior
+         self.m.landmark.ontological-category <-- @container
+         self.m.actionary <-- @enter
+
+construction EnterPast2
+   subcase of Enter2, PastTense
+   form
+      constraints
+         self.f.orth <-- "entered"
+
+construction ActiveTransitiveChangeLocation  // 10/15/13
+	subcase of CoreActiveTransitive
+	meaning: SPGProcess
+	  constraints
+		//v.verbkind <-- 
+		s.a1 <--> self.m.mover	
+		s.a2 <--> self.m.landmark  //source or goal
+		
+
+
+
+
+
+
+
+
+
+	    
+
+  
+
+
+
+            

@@ -1,0 +1,347 @@
+/***
+ ***
+ *** Specifiers (Determiners, Possessive Pronouns, wh-words, quantifiers - not RD)
+ ***
+ ***/
+
+general construction SpecifierPhrase
+  subcase of HasNominalFeatures
+  meaning: RD
+  
+construction SpecifierPhrasePossessive
+  subcase of SpecifierPhrase
+  constructional 
+    	constituents
+	  		np: NP
+      		poss: PossTag		
+    	constraints
+			//self.features.case <-- "poss"
+	form
+    	constraints
+			np.f meets poss.f
+	meaning: RD
+
+construction PossTag
+	subcase of Word
+	form
+      constraints
+         self.f.orth <-- "'s"
+	
+general construction Specifier
+  subcase of Word, SpecifierPhrase
+  meaning: RD
+
+general construction Determiner
+   subcase of Specifier
+
+general construction Demonstrative // this, etc.
+   subcase of Determiner
+    meaning: DeicticRD  // trying this
+    
+construction The
+   subcase of Determiner
+   form
+      constraints
+         self.f.orth <-- "the"
+   meaning
+      constraints
+         self.m.givenness <-- @uniquelyIdentifiable
+
+construction THE-Marker
+   subcase of Word
+   form
+      constraints
+         self.f.orth <-- "the"
+
+construction A
+   subcase of Determiner, Singular
+      form
+      constraints
+         self.f.orth <-- "a"
+   meaning
+      constraints
+         self.m.givenness <-- @typeIdentifiable
+         self.m.number <-- @singular
+         self.m.bounding <-- @determinate
+         
+construction BigA
+   subcase of Determiner, Singular
+      form
+      constraints
+         self.f.orth <-- "A"
+   meaning
+      constraints
+         self.m.givenness <-- @typeIdentifiable
+         self.m.number <-- @singular
+         self.m.bounding <-- @determinate
+         
+construction An 
+   subcase of Determiner, Singular
+      form
+      constraints
+         self.f.orth <-- "an"
+   meaning
+      constraints
+         self.m.givenness <-- @typeIdentifiable
+         self.m.number <-- @singular
+   		 self.m.bounding <-- @determinate
+   		 
+  construction Another //  another big block, cf. another 2 blocks ~ 2 more blocks
+   subcase of Determiner, Singular
+      form
+      constraints
+         self.f.orth <-- "another"
+   meaning
+      constraints
+         self.m.givenness <-- @distinct 
+         self.m.number <-- @singular
+   		 self.m.bounding <-- @determinate 		 
+   
+   construction This
+   subcase of Demonstrative, Singular 
+      form
+      constraints
+         self.f.orth <-- "this"
+   meaning
+      constraints
+         self.m.givenness <-- @uniquelyIdentifiable
+         self.m.number <-- @singular
+        // self.m.bounding <-- @determinate  // probably not
+        self.m.deicticValue <-- @this
+//
+// Quantifiers
+//
+
+general construction Quantifier // different meaning than Specifier  
+	subcase of Word, HasNominalFeatures
+	meaning: QuantitySchema
+   		
+   		
+construction Some 
+   subcase of Quantifier 
+     form
+      constraints
+         self.f.orth <-- "some"
+   meaning: QuantitySchema
+      constraints
+         //self.m.givenness <-- @typeIdentifiable  // change ************?
+         //self.m.bounding <-- @boundingValues
+         self.m.value <-- @some  // new 8/23/12
+         
+general construction Number   //rename, check digits
+	subcase of Quantifier
+   	meaning: QuantitySchema
+      
+ construction One
+ 	subcase of Number
+   	form
+      	constraints
+         	self.f.orth <-- "one" 
+   	meaning: QuantitySchema
+    	constraints
+      		self.m.value <-- "1"
+			self.m.number <-- @singular
+			
+construction Two
+  	subcase of Number
+	form
+      	constraints
+         	self.f.orth <-- "two"
+	meaning: QuantitySchema
+		constraints
+      		self.m.value <-- "2"
+			self.m.number <-- @plural
+			
+
+construction SpecifierPlusQuantifier
+  subcase of SpecifierPhrase
+   constructional
+    constituents   
+      s: Specifier
+      q: Quantifier
+    constraints
+      self.features <--> s.features
+      q.features.number <--> s.features.number
+  form
+    constraints
+      s.f before q.f
+  meaning: QuantifiedRD
+    constraints
+      self.m <--> s.m
+      self.m.amount <--> q.m
+   
+// WH-Specifiers
+
+general construction WH-Specifier  // TODO these need work, questionRD?
+   	subcase of Specifier
+
+/*	omit for now - fix later	
+construction What
+   subcase of WH-Specifier, WH-NP
+   form
+      constraints
+         self.f.orth <-- "what"
+   meaning
+      constraints
+         self.m.givenness <-- "???"
+*/
+
+construction Which-Specifier // Which robot ...
+   subcase of WH-Specifier
+   form
+      constraints
+         self.f.orth <-- "which"
+   meaning: QuestionRD
+      constraints
+		self.m.specificWh <-- @which // unify w/ Kernel
+
+
+construction Which-WH-NP  // Which is bigger …
+   subcase of WH-NP, Word
+   form
+      constraints
+         self.f.orth <-- "which"
+   meaning: QuestionRD
+      constraints
+ 		self.m.specificWh <-- @which
+		// self.m.givenness <-- "???"
+ 
+construction What-WH-NP
+   subcase of WH-NP, Word
+   form
+      constraints
+         self.f.orth <-- "what"
+   meaning: QuestionRD
+      constraints
+ 		self.m.specificWh <-- @what
+ 
+construction Where-WH-NP
+   subcase of WH-NP, Word
+   form
+      constraints
+         self.f.orth <-- "Where"
+   meaning: QuestionRD
+      constraints
+ 		self.m.specificWh <-- @where
+  		
+/*
+construction Who // needs work
+   subcase of WH-Specifier, WH-NP
+   form
+      constraints
+         self.f.orth <-- "who"
+   meaning QuestionRD
+      constraints
+         self.m.givenness <-- "???"
+		//self.m.specificWh <-- @who	
+
+*/	
+
+// Digits
+
+construction ZeroInDigits 
+     subcase of Number
+       form
+          constraints
+             self.f.orth <-- "0"
+       meaning: QuantitySchema
+        constraints
+              self.m.value <-- "0"
+
+construction OneInDigits
+     subcase of Number
+     constructional
+      constraints 
+          features.number <-- "singular"
+       form
+          constraints
+             self.f.orth <-- "1"
+       meaning: QuantitySchema
+        constraints
+              self.m.value <-- "1"
+              self.m.number <-- @singular
+
+construction TwoInDigits
+     subcase of Number
+      constructional
+      constraints 
+          features.number <-- "plural" 
+       form
+          constraints
+             self.f.orth <-- "2"
+       meaning: QuantitySchema
+        constraints
+            self.m.value <-- "2"
+			self.m.number <-- @plural
+
+
+construction ThreeInDigits
+     subcase of Number
+     constructional
+      constraints 
+          features.number <-- "plural"   
+       form
+          constraints
+             self.f.orth <-- "3"
+       meaning: QuantitySchema
+        constraints
+            self.m.value <-- "3"
+			self.m.number <-- @plural
+			
+/*   also need to fix these			
+construction FourInDigits
+     subcase of Number
+       form
+          constraints
+             self.f.orth <-- "4"
+       meaning: QuantitySchema
+        constraints
+              self.m.value <-- "4"
+
+construction FiveInDigits
+     subcase of Number
+       form
+          constraints
+             self.f.orth <-- "5"
+       meaning: QuantitySchema
+        constraints
+              self.m.value <-- "5"
+
+construction SixInDigits
+     subcase of Number
+       form
+          constraints
+             self.f.orth <-- "6"
+       meaning: QuantitySchema
+        constraints
+              self.m.value <-- "6"
+
+construction SevenInDigits
+     subcase of Number
+       form
+          constraints
+             self.f.orth <-- "7"
+       meaning: QuantitySchema
+        constraints
+              self.m.value <-- "7"
+
+construction EightInDigits
+     subcase of Number
+       form
+          constraints
+             self.f.orth <-- "8"
+       meaning: QuantitySchema
+        constraints
+              self.m.value <-- "8"
+
+construction NineInDigits
+     subcase of Number
+       form
+          constraints
+             self.f.orth <-- "9"
+       meaning: QuantitySchema
+        constraints
+              self.m.value <-- "9"
+
+*/
+

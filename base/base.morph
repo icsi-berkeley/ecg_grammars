@@ -1,0 +1,38 @@
+Constructional
+Plural :: self.features.number, "plural" :: NounType
+Singular :: self.features.number, "singular" :: NounType, HasNominalFeatures
+PresentTense,Singular,ThirdPerson :: self.verbform, Present, self.features.person, "3", self.features.number, "singular" :: LexicalVerbType
+FirstPerson,PresentTense,Singular :: self.verbform, Present, self.features.person, "1", self.features.number, "singular" :: LexicalVerbType
+FirstPerson,PastTense,Singular :: self.verbform, Past, self.features.person, "3", self.features.number, "singular" :: LexicalVerbType
+PresentTense,SecondPerson,Singular :: self.verbform, Present, self.features.person, "2", self.features.number, "singular" :: LexicalVerbType
+PastTense,Plural :: self.verbform, Past, self.features.person, "3", self.features.number, "plural" :: LexicalVerbType
+Plural,PresentTense :: self.verbform, Present, self.features.person, "3", self.features.number, "plural" :: LexicalVerbType
+PastTense,Singular,ThirdPerson :: self.verbform, Past, self.features.person, "3", self.features.number, "singular" :: LexicalVerbType
+PastTense,SecondPerson,Singular :: self.verbform, Past, self.features.person, "2", self.features.number, "singular" :: LexicalVerbType
+FirstPerson,PastTense,Singular :: self.verbform, Past, self.features.person, "1", self.features.number, "singular" :: LexicalVerbType
+Infinitive :: self.verbform, BaseOrInfinitive :: LexicalVerbType
+Comparative :: , :: Adjective
+Superlative :: , :: Adjective
+Positive :: , :: Adjective, DirectionalType
+Participle,PresentTense :: self.verbform, PresentParticiple :: LexicalVerbType
+Participle,PastTense :: self.verbform, PastParticiple :: LexicalVerbType
+NoMorphology :: , :: Pronoun
+Meaning
+Plural :: self.m.number, @plural, self.m.bounding, @indeterminate :: NounType
+Singular :: self.m.number, @singular, self.m.bounding, @determinate :: NounType, HasNominalFeatures
+PastTense,Singular,ThirdPerson :: self.pf.tense, @past :: LexicalVerbType
+PastTense,SecondPerson,Singular :: self.pf.tense, @past :: LexicalVerbType
+PastTense,Plural :: self.pf.tense, @present :: LexicalVerbType
+FirstPerson,PresentTense,Singular :: self.pf.tense, @present :: LexicalVerbType
+FirstPerson,PastTense,Singular :: self.pf.tense, @past :: LexicalVerbType
+PresentTense,SecondPerson,Singular :: self.pf.tense, @present :: LexicalVerbType
+Plural,PresentTense :: self.pf.tense, @present :: LexicalVerbType
+PastTense,Plural :: self.pf.tense, @past :: LexicalVerbType
+PresentTense,Singular,ThirdPerson :: self.pf.tense, @present :: LexicalVerbType
+Comparative :: self.m.kind, @comparative :: Adjective
+Superlative :: self.m.kind, @superlative :: Adjective
+Infinitive :: , :: LexicalVerbType
+Positive :: , :: Adjective, DirectionalType
+Participle,PresentTense :: self.pf.tense, @present :: LexicalVerbType
+Participle,PastTense :: , :: LexicalVerbType"
+NoMorphology :: , :: Pronoun

@@ -1,0 +1,254 @@
+
+general construction Preposition
+   subcase of Word
+	
+general construction ModifierPreposition
+   subcase of Preposition
+   //meaning: NP-PP-Modifier  
+   
+
+construction OF-Modifier
+   subcase of ModifierPreposition
+   form
+      constraints
+         self.f.orth <-- "of"
+         
+construction OF-Marker
+   subcase of Word
+   form
+      constraints
+         self.f.orth <-- "of"
+  
+construction WITH-Modifier
+   subcase of ModifierPreposition
+   form
+      constraints
+         self.f.orth <-- "with" 
+ 
+ general construction InstrumentPreposition
+   subcase of Preposition
+   
+ 
+construction WITH-Instrument
+   subcase of InstrumentPreposition
+   form
+      constraints
+         self.f.orth <-- "with"
+  
+general construction SpatialPreposition
+   subcase of Preposition
+   meaning: TrajectorLandmark  
+
+
+
+general construction PathPreposition
+   subcase of SpatialPreposition 
+   meaning: SPG 
+
+
+general construction LocativePreposition
+   	subcase of SpatialPreposition
+
+general construction DirectionalPreposition
+   	subcase of PathPreposition			
+	meaning: SPG 
+
+general construction Particle // Value is a string
+   	subcase of Preposition			
+	meaning: Value 
+     	//constraints
+      
+construction UP-Particle
+   subcase of Particle
+   form
+      constraints
+         self.f.orth <-- "up"
+   meaning: Value 
+     constraints
+      self.m.val <-- "up"      
+
+construction TO-Path
+   subcase of PathPreposition
+   form
+      constraints
+         self.f.orth <-- "to"
+   meaning: SPG  
+     constraints
+        self.m.landmark <--> self.m.goal
+        
+construction FROM-Path
+   subcase of PathPreposition
+   form
+      constraints
+         self.f.orth <-- "from"
+   meaning: SPG  
+     constraints
+        self.m.landmark <--> self.m.source
+   
+   construction THROUGH-Path
+   subcase of PathPreposition
+   form
+      constraints
+         self.f.orth <-- "through"
+   meaning: SPG  
+     constraints
+        self.m.landmark <--> self.m.path     
+
+/* probably not, ~ directional
+construction UP-Path  // up North, also need up to Box1  !!!!
+   subcase of PathPreposition
+   form
+      constraints
+         self.f.orth <-- "up"
+   meaning: SPG  
+     constraints
+        self.m.landmark <--> self.m.goal
+*/
+construction AS-Marker
+   subcase of Preposition
+   form
+      constraints
+         self.f.orth <-- "as"
+                 
+construction TO-Marker
+   subcase of Preposition
+   form
+      constraints
+         self.f.orth <-- "to"
+
+construction TO-Purpose
+   subcase of Word
+   form
+      constraints
+         self.f.orth <-- "to"
+
+construction FROM-Marker  // FDArgStructFrom
+   subcase of Preposition
+   form
+      constraints
+         self.f.orth <-- "from"
+ 
+
+construction IN-Locative //
+   subcase of LocativePreposition
+   form
+      constraints
+         self.f.orth <-- "in"
+   meaning  
+      evokes BoundedObject as bo
+      constraints 
+         //self.m.landmark <--> bo.boundedObject.referent
+         self.m.landmark <--> bo.boundedObject
+         self.m.profiledArea <--> bo.interior
+      
+       
+construction TOWARDS  
+   subcase of DirectionalPreposition
+   form
+      constraints
+         self.f.orth <-- "towards"
+         
+         
+general construction TemporalPreposition
+	subcase of Preposition
+	meaning: TemporalModifier
+		
+construction FOR-Temporal
+	subcase of TemporalPreposition
+   	form
+      	constraints
+         	self.f.orth <-- "for"
+	meaning
+      	constraints
+	   		self.m.telicity <-- @ongoing
+
+construction IN-Temporal
+   subcase of TemporalPreposition
+   form
+      constraints
+         self.f.orth <-- "in"
+	meaning
+      	constraints
+	   		self.m.telicity <-- @bounded
+
+
+construction  INTO-Path // container?? 6/7/13
+   subcase of PathPreposition
+   form
+      constraints
+         self.f.orth <-- "into"
+   meaning: SPG  
+      evokes BoundedObject as bo
+      constraints 
+         //self.m.landmark <--> bo.boundedObject.referent
+         self.m.landmark <--> bo.boundedObject
+         self.m.landmark.hedge <-- @none // not fake, etc. 4/8/13
+         self.m.goal <--> bo.interior
+         self.m.source <--> bo.exterior
+
+construction THROUGH
+   subcase of PathPreposition
+   form
+      constraints
+         self.f.orth <-- "through"
+   meaning: SPG  
+      constraints 
+          //self.m.path <-- @physicalEntity
+          self.m.landmark <--> self.m.path  // like to, from - needs work
+
+construction AT-Locative
+   subcase of LocativePreposition 
+   form
+      constraints
+         self.f.orth <-- "at"
+   meaning: TrajectorLandmark 
+      evokes Proximity as p
+      constraints
+        self.m.profiledArea <--> p.proximalArea 
+        self.m.landmark <--> p.center 
+
+
+construction NEAR-Locative  // trying 11/26/12
+   subcase of LocativePreposition //, Loc-PP 
+   form
+      constraints
+         self.f.orth <-- "near"
+   meaning: TrajectorLandmark 
+      evokes Proximity as p
+      constraints
+        self.m.profiledArea <--> p.proximalArea 
+        self.m.landmark <--> p.center 
+
+construction ON-Locative
+   subcase of LocativePreposition 
+   form
+      constraints
+         self.f.orth <-- "on"
+   meaning: TrajectorLandmark 
+      evokes BoundedObject as bo
+      constraints
+         self.m.profiledArea <--> bo.boundary // surface         
+         self.m.landmark <--> bo.boundedObject
+
+/*
+construction BY-Locative
+   subcase of LocativePreposition 
+   form
+      constraints
+         self.f.orth <-- "by"
+   meaning: TrajectorLandmark 
+*/
+
+construction BY-Agent
+   subcase of Preposition 
+   form
+      constraints
+         self.f.orth <-- "by"
+   meaning 
+
+
+construction TO-Infinitive-Marker
+  subcase of Word	// TODO: Particle?
+   form
+      constraints
+         self.f.orth <-- "to"

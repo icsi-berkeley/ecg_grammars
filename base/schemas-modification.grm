@@ -1,0 +1,111 @@
+   //
+// Modifier Schemas
+//
+
+
+// A simple modifier schema which is the root of the modifier schema hierarchy
+
+schema Modification
+	roles
+		domain: @entity  // constraint on modifier 10/27/12
+		kind // @modifier-type   comparative, etc.
+    	modifier
+     	modifiedThing  // could be verb, etc.
+     	negated //@yes or blank
+
+schema AdverbModification  // 3/3/13
+	subcase of Modification 
+	roles
+
+schema AdjectiveModification  // 3/3/13  
+	subcase of Modification 
+	roles
+	modifiedThing: RD
+	constraints
+		domain <--> modifiedThing.ontological-category  // 3/3/13 only for RD
+		
+schema ParticipleModification  // 10/16/13  
+	subcase of AdjectiveModification 
+	roles
+		modifiedThing: RD	
+		modifier: Process  // meaning of PresentParticiple
+	constraints
+		ignore domain <--> modifiedThing.ontological-category	
+		 
+// A simple modifier schema for properties like "big" or "red"
+schema PropertyModifier  
+	subcase of AdjectiveModification // does not use modifier role
+   	roles
+     	  domain: @entity //or below
+     	  property // becomes scale ?? object-property, other uses ??
+     	  value //string, number - profiled value 
+	 constraints
+		
+schema ScalarModifier 
+	subcase of PropertyModifier  // does not use modifier role
+   	roles
+     	  property: @scale  
+	 constraints 
+	 
+schema EmotionModifier 
+	subcase of ScalarModifier  // does not use modifier role
+   	roles
+   		polarity //  +/_
+   		// value ~ intensity	 
+
+schema ComparativeAdjModifier //   bigger than base
+	subcase of ScalarModifier  // does not use modifier role
+   	roles
+     	  base:RD  
+	 constraints
+	 	base.ontological-category <--> domain // type match
+
+schema PropertyChange  //2/15/13
+	subcase of PropertyModifier
+   	roles
+	  oldValue // it changed from red to blue
+
+schema ScalarChange  //2/20/13
+	subcase of ScalarModifier, PropertyChange
+   	roles
+	  oldValue // it changed (from small) to big
+
+// adverbs
+
+schema ScalarAdverbModifier 
+	subcase of AdverbModification  // does not use modifier role
+   	roles
+     	property: @scale
+        value //string, number    
+	 constraints
+
+
+// A simple (atomic) attribute-filler modifier (e.g. someone's name)
+
+schema AttributeFiller  // Not currently used
+	subcase of Modification
+	roles
+		relationName
+		filler
+
+schema NP-PP-Modifier //used 12/13/12
+	subcase of Modification
+	roles
+		modifier
+
+schema NounNounModifier //used 12/13/12, tighten
+	subcase of Modification
+	roles
+		modifier:RD
+		modifiedThing:RD
+
+// Adjuncts
+
+schema AdjunctModification // for AdjunctVP, used 12/13/12
+	subcase of Modification
+	roles
+		kind // adjunct kind  instrument, etc.
+		adjunct  //unyped here
+	
+	
+	

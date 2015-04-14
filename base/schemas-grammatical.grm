@@ -1,0 +1,161 @@
+//
+// grammaticalschemas.grm
+//
+
+
+// REFERENT DESCRIPTOR (RD) schemas
+
+schema RD // meaning of NP
+  roles
+    ontological-category //: @entity  
+    givenness: @givennessValues  
+    referent 
+    number // : @RDnumberValues
+	gender: @genderValues
+	bounding: @boundingValues
+	scale: @scale // 11/3/12 ideally from ontological-category
+	hedge: @hedgeVal  // @fake, etc  4/8/13
+	//continuity: @continuityValues ?? percolated up NP ???
+    amount: Amount // various schemas for quantifiers, etc. ???? 11/23/12
+    extensions: Extensions // various schemas for affordances, etc
+
+
+
+schema EntityRD  // 2/4/14
+	subcase of RD
+ roles
+    ontological-category: @entity 
+    
+schema QuantifiedRD  // general case
+	subcase of RD//, RelativizedRD
+	roles
+      	amount: QuantitySchema //subcases include numbers, “several”, etc. ****name?**
+ 		units
+
+schema QuantifiedSpatialRD
+	subcase of QuantifiedRD
+	roles
+      	units: @spatial-units	// check the typing wrt all kinds
+
+schema QuantifiedTemporalRD
+	subcase of QuantifiedRD
+    roles
+       	units: @temporal-units
+		
+schema QuantifiedMoneyRD
+	subcase of QuantifiedRD
+    roles
+       	units: @money
+       	
+schema DeicticRD  
+	subcase of RD//, RelativizedRD
+	roles
+      	deicticValue: @deictic
+      	  
+// e.g. a slap, three kicks
+schema ProcessRD   // still a subcase of RD: 8/14/12
+	subcase of RD
+	roles
+		ontological-category: @process
+		action: Process
+		repetitions
+		
+schema QuestionRD
+	subcase of RD, EventRD // 7/16/14
+	roles
+		specificWh: @wh-word		
+
+	
+schema EventRD  // 12/24/12  named event, e.g. crisis & more
+	subcase of RD  
+	roles 
+		description: EventDescriptor
+	constraints
+		//self.ontological-category <--> @eventTop //	 7/16/14
+
+/*
+schema RelativizedRD  // deleted 7/15/14
+	subcase of RD 
+	roles 
+		relativizer  // that, etc may not be needed
+		description: EventDescriptor // fill ProfiledParticpant role 	
+		
+*/
+
+// EVENT DESCRIPTOR (ED) schemas
+
+schema EventDescriptor // meaning of S
+	roles
+		eventProcess: Process		
+		e-features: EventFeatures
+		profiledProcess: Process	
+		profiledParticipant: RD 		
+		//profiledStage // not used
+		eventForm: @EventKind 
+				
+
+
+schema EventFeatures  // voice: @voice   also in Process - Drop
+	roles
+		subord  // subordinating conjunction, that ...NOT USED Yet
+		telicity	// USED in temporal in/for
+		duration  // USED in TemporalVP  
+		tense: @tense  // USED
+		modality: @modality  // USED
+		negated  // USED
+
+schema ComplexED
+   subcase of EventDescriptor
+   roles
+   		complexKind: @event-kind
+   		ed1: EventDescriptor
+		ed2: EventDescriptor
+
+
+schema SerialED
+   subcase of ComplexED
+   roles
+    	connective //: SerialConjunction  //  then, etc.
+	constraints  
+		profiledParticipant <--> ed1.profiledParticipant
+		e-features	<--> ed1.e-features
+
+
+
+//OTHER grammatical schemas
+
+
+
+// A simple schema for a word
+schema WordForm
+  roles
+    orth
+    lemma
+  constraints
+    orth <-- "*"
+    lemma <-- "*"
+
+
+
+/*
+schema Speech_Act // not currently used ~ Utterance
+    roles
+        speaker: RD
+        addressee: RD
+        content: EventDescriptor
+	constraints 
+		speaker.ontological-category <-- @sentient
+		addressee.ontological-category <-- @sentient
+*/
+
+schema DiscourseElement //meaning of Utterance
+    roles
+        speaker: RD 	// used to be @generic-person
+        addressee: RD 	// used to be @generic-person
+        attentional_focus  // not used yet
+        content: EventDescriptor  // for clauses, though some discourse elements may have a different type of content
+        // epistemic: epistemic status, probability   
+        mood: @mood			// one of declarative, imperative, ...
+    constraints
+		speaker.ontological-category <-- @sentient
+		addressee.ontological-category <-- @sentient

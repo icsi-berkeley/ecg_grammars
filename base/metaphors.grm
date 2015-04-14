@@ -1,0 +1,222 @@
+
+
+
+// Metaphors, Base Grammar should work w/o any of these
+
+ 
+schema MetaphoricalRD  
+	subcase of RD, QuantifiedRD  // maybe others as well
+	roles
+		met: MetaphorSchema  //name, source, target  
+		
+schema MetaphorSchema // in progress  
+	roles
+	  name: @metaphors 
+	  source: @entity
+	  target: @entity 	
+
+general construction MetaphoricalNP  // 10/26/12
+	subcase of NP 
+    constructional
+        constituents
+	       core: NP
+    meaning:  MetaphoricalRD // met: MetaphorSchema
+        constraints   
+		  self.m.number <--> core.m.number
+    	  self.m.bounding <--> core.m.bounding  // maybe more roles
+ 		  self.m.scale <--> core.m.scale
+ 		  self.m.amount <--> core.m.amount
+ 		  self.m.givenness <--> core.m.givenness
+ 
+ construction MetaphoricalNPNaturalForcesAsAgents  // punch line **************
+	subcase of MetaphoricalNP
+	meaning
+       constraints 
+		 self.m.met <-- @NaturalForcesAsAgents
+    	 core.m.ontological-category <-- @naturalForce
+    	 self.m.ontological-category <-- @agent
+  //end of naturalForces metaphor stuff
+      	 		  
+ 
+ schema InstitutionAsPersonMetaphor   
+    subcase of MetaphorSchema
+		roles 
+	 		name:  @institutionAsPerson
+	 		source: @person 
+	 		target:  @institution
+	 		
+  schema stateAsLocationMetaphor  // rename to region   
+    subcase of MetaphorSchema
+		roles 
+	 		name:  @stateAsLocation  // rename
+	 		source: @region
+	 		target:  @abstractState 		
+
+/*  Most commented out for now   
+ 		
+ // specific Metaphor Schemas - no current way to use directly
+
+schema IdeasAsDiseaseMetaphor   
+    subcase of MetaphorSchema
+		roles 
+	 		name:  @IdeasAsDiseases
+	 		source: @disease
+	 		target:  @idea
+	 		
+schema SocProbAsDiseasesMetaphor   
+    subcase of MetaphorSchema
+		roles 
+	 		name:  @SocialProblemsAsDiseases
+	 		source: @disease
+	 		target:  @socialProblem
+	 		
+schema SocialProblemsAsAnimateAgentsMetaphor   
+    subcase of MetaphorSchema
+		roles 
+	 		name:  @SocialProblemsAsAnimateAgents
+	 		source: @animate
+	 		target:  @socialProblem
+	
+
+
+schema dateAsMoveableMetaphor
+subcase of MetaphorSchema
+		roles 
+	 		name:  @DateAsMoveable
+	 		source: @moveable
+	 		target:  @date		
+
+schema moneyASphysicalEntityMetaphor
+subcase of MetaphorSchema
+		roles 
+	 		name:  @MoneyASphysicalEntity
+	 		source: @physicalEntity
+	 		target:  @money 		
+
+// Metaphorical NP
+*/ 		  
+ construction MetaphoricalNPinstitutionAsPerson  // punch line **************
+	subcase of MetaphoricalNP
+	meaning
+       constraints 
+		 self.m.met <-- InstitutionAsPersonMetaphor
+    	 core.m.ontological-category <-- @institution
+    	 self.m.ontological-category <-- @person
+
+
+	
+construction MetaphoricalNPstateAsLocation  // rename
+	subcase of MetaphoricalNP
+	meaning
+       constraints 
+		 self.m.met <-- stateAsLocationMetaphor
+    	 core.m.ontological-category <-- @abstractState
+    	 self.m.ontological-category <-- @region
+/*
+  
+ construction MetaphoricalNPsocProbAsDiseases 
+  subcase of MetaphoricalNP
+     meaning 
+       constraints
+     		core.m.ontological-category <-- @socialProblem
+     		self.m.ontological-category <-- @disease
+   		    self.m.met <-- SocProbAsDiseasesMetaphor   
+ 
+ 
+ construction MetaphoricalNPSocialProblemsAsAnimateAgents
+    subcase of MetaphoricalNP
+    meaning
+        constraints
+        core.m.ontological-category <--@socialProblem
+		self.m.ontological-category <--@animate
+		self.m.met <-- SocialProblemsAsAnimateAgentsMetaphor 
+		
+ construction MetaphoricalNPideasAsDisease
+  subcase of MetaphoricalNP
+	 meaning
+		 constraints
+     		core.m.ontological-category <-- @idea
+     		self.m.ontological-category <-- @disease
+   		    self.m.met <-- IdeasAsDiseaseMetaphor
+  
+  construction MetaphoricalNPmoneyAsPhysicalEntity
+  subcase of MetaphoricalNP
+     meaning 
+       constraints
+     		core.m.ontological-category <-- @money
+     		self.m.ontological-category <-- @physicalEntity
+   		    self.m.met <-- moneyASphysicalEntityMetaphor 
+ 
+ construction MetaphoricalNPdateAsMoveable // sub physicalEntity 11/26/12
+  subcase of MetaphoricalNP
+     meaning 
+       constraints
+     	core.m.ontological-category <-- @date
+     	self.m.ontological-category <-- @moveable
+   		self.m.met <-- dateAsMoveableMetaphor //schema
+
+
+
+// KernelAdjMetaphoric N and Adj Cases
+*/
+general construction  KernelAdjMetaphoricN  // the desperate government
+     subcase of Kernel 
+  constructional
+    constituents
+      ap: Adjective // not optional
+      n: Nominal
+    constraints
+      self.features <--> n.features  // probably OK
+	form
+    constraints
+      ap.f meets n.f
+  meaning: MetaphoricalRD
+    constraints
+    	self.m.ontological-category <--> ap.m.domain  // new RD is source domain, e.g @person
+    	self.m.number <--> n.m.number
+    	self.m.bounding <--> n.m.bounding
+    	self.m.scale <--> n.m.scale
+        self.m <--> ap.m.modifiedThing
+        
+construction KernelInstAsPerson   
+  subcase of KernelAdjMetaphoricN
+     meaning 
+       constraints
+     		ap.m.domain <-- @person
+     		n.m.ontological-category <-- @institution
+   			self.m.met <-- @institutionAsPerson   
+  
+ construction KernelStateAsLocation   
+  subcase of KernelAdjMetaphoricN
+     meaning 
+       constraints
+     		ap.m.domain <-- @region
+     		n.m.ontological-category <-- @abstractState
+   			self.m.met <-- @stateAsLocation  
+ /*  			 
+construction KernelSocProbAsDiseases  // 11/1/12
+  subcase of KernelAdjMetaphoricN
+     meaning 
+       constraints
+     		ap.m.domain <-- @disease
+     		n.m.ontological-category <-- @socialProblem
+   			self.m.met <-- @SocialProblemsAsDiseases
+ 
+construction KernelIdeasAsDiseases  // 11/1/12
+  subcase of KernelAdjMetaphoricN
+     meaning 
+       constraints
+     		ap.m.domain <-- @disease
+     		n.m.ontological-category <-- @idea
+   			self.m.met <-- @IdeasAsDiseases 	
+
+construction KernelMoneyASphysicalEntity
+  subcase of KernelAdjMetaphoricN
+     meaning 
+       constraints
+     		ap.m.domain <-- @physicalEntity
+     		n.m.ontological-category <-- @money
+   			self.m.met <-- @MoneyASphysicalEntity	
+
+*/
+ 

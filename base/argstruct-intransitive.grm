@@ -1,0 +1,187 @@
+
+// Intransitive Argument Structure
+
+/*
+The Intransitive cxns inherit from ArgumentStructure
+ -- commented out copy shown here (for original, see vp.grm)
+
+general construction ArgumentStructure //make an agentive subcase?
+  subcase of VP
+  constructional
+    constituents
+      v : Verb 
+    constraints
+      self.features <--> v.features
+      self.voice <--> v.voice
+   meaning
+     evokes A123 as s  // 8/17/13 used in all subcases??
+     constraints
+       v.m  <--> ed.profiledProcess
+       self.m.p-features <--> v.m.p-features // 1/3/13 ????
+      // self.ed.eventProcess.p-features <--> self.ed.profiledProcess.p-features 1/15/13
+
+*/
+general construction IntransitiveArgumentStructure  //  Proposed 8/21/13
+  subcase of ArgumentStructure
+   constructional
+  	constraints
+   		v.argform <-- NotTransitive
+   		//v.verbform <-- Finite   //1/20/14 -- prob don't want this
+  meaning: Process 
+    // evokes A123 as s inherited
+    constraints
+      s.a1 <--> ed.profiledParticipant // ‘active’ voice 
+      s.a1 <--> self.m.protagonist 
+      s.a1.ontological-category <--> ed.profiledParticipant.ontological-category
+      v.m.p-features.voice <--  @notPassive 
+	  
+/*
+DISCUSSION for IntransitiveArgumentStructure cxn:
+-- consider use of NotTransitive constraint at this level
+--  Note that A123 is actually inherited from ArgumentStructure. 
+      Might consider what function, if any, it is playing in this construction.
+
+SUBCASES of IntransitiveArgumentStructure:
+-- ActiveMotionPath (as of 1/30/14, this is in argstruct-motion.grm)
+
+
+*/
+
+construction BareIntransitive  
+  subcase of IntransitiveArgumentStructure  
+  meaning 
+    constraints
+      self.m <--> v.m
+
+/*
+DISCUSSION for BareIntransitive cxn:
+ -- in absence of other constituents, verb is key source of self.m 
+ -- self.m <--> v.m binding serves to link verb protagonist to self.m.protagonist
+
+*/
+
+// INTRANSITIVE Communication/thought:  [V + FiniteClause], FiniteClause elaborates cognitive content 
+
+// currently, cxns are for [V + 'that'-FiniteClause]
+
+
+construction IntransitiveCommunication2  //  he said that Block1 was big
+  subcase of BareIntransitive //, CommunicationCxN  
+  constructional
+        constituents
+        	  v: MentalVerb
+        	  core: SubordinateDeclarative-that // add an RD version ?
+		  	optional ToPhrase: Path-PP // hack fix later   
+	form
+         constraints
+        	 v.f before core.f
+	meaning: Communication  
+    	 constraints
+  			core.m <--> self.m.content
+  			self.m.listener <--> ToPhrase.m.landmark 
+
+/*
+DISCUSSION for IntransitiveCommunication2:
+  -- tighter constraint on verb meaning? This cxn would currently allow both 'say' and 'tell' 
+  -- verbs that occur in this pattern include: say, state, declare, claim
+*/
+
+  			
+construction IntransitiveThought2  //  he thought that Block2 was big
+  subcase of BareIntransitive 
+  constructional
+        constituents 
+        	v: MentalVerb
+        	core: SubordinateDeclarative-that // add an RD version?	
+         constraints  
+	form
+         constraints 
+        	v.f before core.f
+	meaning: Thought  // currently also for Perception  8/28/13
+    	constraints
+  			core.m <--> self.m.content
+
+/*
+DISCUSSION for IntransitiveThought2:
+ -- might rename IntransitiveCognitiveContent
+ --  are there other relevant subordinating conjunctions (besides 'that')?
+ -- several verbs appear in this pattern, including: 
+        - coming to know: learn, discover
+        - coming to know via perception/communication: see, hear
+        - knowing: know, think, understand, believe
+
+*/
+
+/*
+ALTERNATIVE ANALYSES
+The IntransitiveCommunication/Thought Cxns below are alternative versions of those above.  
+The ones above anaylze the 'that clause' as an indpendent constituent, whereas the ones below
+ analyze it as two constiutents within the argument strucutre cxn.  
+
+ // test 8/16/13 -
+construction IntransitiveCommunication  //  Proposed 8/16/13
+  subcase of IntransitiveArgumentStructure, CommunicationCxN  
+  constructional
+        constituents
+        	conj: That-Subordinating //  later how,...
+        	core: Declarative // add an RD version ?
+			optional ToPhrase: Path-PP // hack fix later   
+	form
+         constraints
+        	 v.f before ToPhrase.f
+	     	v.f before conj.f
+			conj.f before core.f
+	meaning: Communication  
+    	constraints
+    	self.m <--> v.m
+  		core.m <--> self.m.content
+  		s.a1 <--> self.m.speaker  // redundant?
+  		s.a3 <--> ToPhrase.m.landmark 
+		//conj.m <--> self.m.conjunct   // 8/23/13  ************
+	   
+	   
+
+construction IntransitiveThought  //  Proposed 8/19/13
+  subcase of BareIntransitive 
+  constructional
+        constituents 
+        	conj: That-Subordinating //  later how, ...	
+        	core: Declarative // add an RD version?	
+         constraints  
+	form
+         constraints 
+        	v.f before conj.f
+			conj.f before core.f
+	meaning: Thought  // could duplicate for Perception  8/21/13
+    	constraints
+  			core.m <--> self.m.content
+			//conj.m <--> self.m.conjunct   // 8/23/13  ************
+
+*/   
+
+//INTRANSITIVE Thinking about:  [V + (about) + NP], where NP is cognitive content
+
+construction IntransitiveThought-NP  //  he thought about NP
+  subcase of BareIntransitive 
+  constructional
+        constituents 
+        	v: MentalVerb
+        	ab: About-Subordinating 
+        	core: NP	
+         constraints  
+	form
+         constraints 
+        	v.f before ab.f
+        	ab.f before core.f
+	meaning: Thought  // check also for Perception  1/20/14
+    	constraints
+  			core.m <--> self.m.content  //untyped for now
+
+/*
+DISCUSSION for IntransitiveThought-NP
+-- 'he thought about X' is semantically similar to 'he contemplated/considered X'
+-- Also, this cxn has an NP constituent (rather than, e.g. a finite Clause)
+    For both of these reasons, we might want to group this with other 'indirect transitive' cxns 
+*/
+
+

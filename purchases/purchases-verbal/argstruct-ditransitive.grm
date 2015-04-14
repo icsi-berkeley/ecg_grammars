@@ -45,8 +45,8 @@ construction CentralActiveDitransitiveTransfer   // 8/24/13
        	self.m.recipient <--> np1.m
        	self.m.theme <--> np2.m
 
-	
-	
-	
-	
+
+
+
+
 	

@@ -1,0 +1,230 @@
+
+/*
+ 4/30/13
+The Property schema is intended to capture the association between an entity and some kind
+ of property/state/attribute.  At any given time, a given entity will presumably be 
+ associated with some specific value for that property.  For attributed properties, we would also
+need an 'attributor' role.
+
+For initial test, will assume that Scalar Property and change don't need separate subcases.
+Will need to see whether this works or not. 
+ */
+
+
+schema Property  
+	//subcase of ??
+   	roles
+     	  propertyHolder //constraints via binding with other schemas. @entity? RD?
+     	  property // various ontological types, including scale ??
+     	  value //string, number - profiled value 
+	 constraints
+	 
+schema PropertyComparison  
+	subcase of Property
+   	roles
+	  valueStandard //
+	  delta // difference between value and valueStandard (pos/neg, amount)??? 
+	 
+// The Property schemas above can then be utilized in AdjectiveModification (below)
+// and 'Stasis' and 'State Change' schemas, further below. 	
+	 
+// MODIFICATION SCHEMAS
+
+schema PropertyModifier_test // would replace current PropertyModifier  
+	subcase of AdjectiveModification // does not use modifier role
+   	evokes Property as p
+   	roles
+     	  domain: @entity //or below
+     	  property // becomes scale ?? object-property, other uses ??
+     	  value //string, number - profiled value 
+	 constraints
+		  modifiedThing <--> p.propertyHolder
+		  property <--> p.property // can become scale
+     	  value <--> p.value
+
+// May need to revise ComparativeAdjModifier cxn to evoke PropertyComparison schema and
+// to link value of base to valueStandard of PropertyComparison schema.  And incorporate
+// delta role somehow??   NEEDS WORK
+
+// NEED TO ADD SOME Adj cxns to test Modifier cxns
+
+general construction PropertyAdjective_test  // add _test to existing PropertyAdjective cxn
+	subcase of  LexicalAdjective
+	//subcase of HasNominalFeatures   **** for agreement in Spanish, etc.
+	meaning: PropertyModifier_test
+
+construction Hungry  //  don't need @big, sizeValue  11/12/12
+  subcase of PropertyAdjective_test 
+   form 
+      constraints 
+       self.f.orth <-- "hungry"
+   meaning // inherited ??
+    constraints
+      self.m.property <-- @hunger // added to ontology as sub of scale 
+	  self.m.value <-- "7"
+	  self.m.domain <-- @animate 
+	  self.m.kind <-- @unmarked  // base case
+
+construction  KernelAdj_test //*** get rid of this when done testing!! ***
+  subcase of Kernel 
+  constructional
+    constituents
+      ap: PropertyAdjective_test // this is the only diff from original
+      n: Nominal
+    constraints
+      self.features <--> n.features
+  form
+    constraints
+      ap.f meets n.f
+  meaning: RD
+    constraints
+      self.m <--> n.m
+      self.m <--> ap.m.modifiedThing
+      ap.m.property <--> n.m.scale  
+      ap.m.domain <--> n.m.ontological-category 
+      
+// PROCESS SCHEMAS:
+
+schema Property_process  // property evaluation over time?
+	subcase of Process
+   	evokes PropertyComparison as pc
+   	roles
+     	  profiledProperty // property of protagonist that is being focussed on
+     	  propertyValue1 // evaluation of profiledProperty at some point in time
+     	  propertyValue2 // evaluation of profiledProperty at some later point in time
+     	  comparison // whether two states are same/different 
+	 constraints 
+	 	  profiledProperty <--> pc.property
+     	  propertyValue1 <--> pc.valueStandard
+     	  propertyValue2 <--> pc.value
+     	  comparison <--> pc.delta
+     	  //protagonist <--> pc.propertyHolder ???
+	 
+schema PropertyStasis_process  // aka Stasis
+	subcase of Property_process
+   	roles
+     	  // actionary: @stasis
+    constraints 
+	 	  //comparison <-- zero -- values stay the same over time
+	 	  
+schema PropertyChange_process  // aka StateChange
+	subcase of Property_process
+   	roles
+     	  //actionary: @statechange
+    constraints 
+	 	 // comparison <-- non-zero -- values differ over time
+
+
+	 	  
+// These schemas can then be used to define scenes for intransitive and transtive
+// 'resultative' A-S cxns in which the relevant domain is State Change (rather than motion).
+// Also, should look at how PropertyStasis_process schema might be used in Copular-adj cxn.
+// NEED TO use them to make some verb cxns too. 
+
+/*
+schema PropertyChangeScene_test //  Proposed 
+	subcase of PropertyChange_process, Scene  	 
+*/
+
+	
+construction PropertyChange_ArgStruct_test   // he grew hungry
+  subcase of IntransitiveArgumentStructure 
+  constructional
+    constituents//one of these needs to be present
+      ap: PropertyAdjective_test
+   constraints
+   form 
+    constraints
+      v.f before ap.f 
+  meaning: PropertyChange_process 
+    constraints 
+      self.m <--> v.m
+      self.m.propertyValue2 <--> ap.m.value 
+	  self.m.protagonist <--> ap.m.modifiedThing
+	  self.m.profiledProperty <--> ap.m.property 
+	  
+general construction Grow  // test 4/30/13
+   subcase of LexicalVerb
+   meaning: PropertyChange_process
+      constraints
+         self.m.comparison <-- "increase"
+         //need to indicate that (initial) propertyValue is lower value than propertyValue2
+         // e.g. specify that 'delta' is positive
+         //prototypical profiledProperty is 'size', but may be other things too
+         
+construction GrowPast
+   subcase of Grow, PastTense
+   form
+      constraints
+         self.f.orth <-- "grew" 
+         
+construction GrowParticiple   
+   	subcase of Grow, PastParticiple
+   	form
+      	constraints
+         	self.f.orth <-- "grown"   
+
+
+general construction Shrink  // test 7/9/13
+   subcase of LexicalVerb
+   meaning: PropertyChange_process
+      constraints
+         self.m.profiledProperty <-- @size
+         self.m.comparison <-- "decrease"
+         //need to indicate that (initial) propertyValue is greater value than propertyValue2
+         // e.g. specify that 'delta' is negative
+ 
+        
+construction ShrinkPast
+   subcase of Shrink, PastTense
+   form
+      constraints
+         self.f.orth <-- "shrank" 
+         
+construction ShrinkParticiple   
+   	subcase of Shrink, PastParticiple
+   	form
+      	constraints
+         	self.f.orth <-- "shrunken"   
+
+
+
+
+
+// 5/2/13 this next section is a first pass at some transtive property change cxns
+/*
+general construction Trans_CausePropertyChange_Test 
+  subcase of ArgumentStructure  // should this be more specific?
+  constructional
+   constituents//one of these needs to be present
+      ap: PropertyAdjective_test
+   constraints
+	// v.argform <-->
+   form
+     constraints
+	   v.f before ap.f 
+  meaning: EntityCauseEntityScene_test 
+	evokes  PropertyChange_process as pcp
+     constraints 
+       	self.m.affectedProcess <--> pcp
+       	self.m.affected <--> pcp.protagonist 
+    	pcp.propertyValue2 <--> ap.m.value 
+	    pcp.protagonist <--> ap.m.modifiedThing
+	    pcp.profiledProperty <--> ap.m.property // couldn't this also come from verb?
+	 
+general construction Trans_CausePropertyChange_pchange_test  
+  subcase of Trans_CausePropertyChange_Test 
+  meaning
+    constraints
+      self.m.process2 <--> v.m     
+      
+construction ActiveTrans__CausePropertyChange_pchange_test //he grew the plant big (?)
+  subcase of ActiveTransitive, Trans_CausePropertyChange_pchange_test     
+  form
+     constraints
+	   np.f before ap.f  
+	   
+construction PassiveTrans__CausePropertyChange_pchange_test //the plant was grown big (by him)
+  subcase of PassiveTransitive, Trans_CausePropertyChange_pchange_test     
+               
+*/	    

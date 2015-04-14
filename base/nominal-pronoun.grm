@@ -1,0 +1,219 @@
+/***
+ ***
+ *** Pronouns
+ ***
+ ***/
+
+general construction Pronoun
+   subcase of NP, Word
+   meaning
+    constraints
+      self.m.givenness <-- @inFocus 
+      self.m.bounding <-- @determinate
+      
+general construction PossessivePronoun  // recheck this 12/30/12
+   subcase of Word, Specifier
+   meaning  //RD
+     evokes Possession as possession
+     evokes RD as possessor
+     constraints
+       self.m <--> possession.possessed
+       possessor <--> possession.possessor
+       //possessor.givenness <-- "in-focus"
+       
+
+construction His
+   subcase of PossessivePronoun
+   form
+      constraints
+         self.f.orth <-- "his"
+   meaning
+      constraints
+         possessor.ontological-category <-- @person
+         possessor.gender <-- @male
+
+general construction  Possessive-NP
+	subcase of NP
+
+	
+construction HisNP  // his is red   can combine
+   subcase of Possessive-NP, Word  //Fix, should not match deverbalKernel
+   form
+      constraints
+         self.f.orth <-- "his"
+   meaning
+   evokes Possession as poss
+   evokes RD as possessed
+     constraints
+       self.m <--> poss.possessor 
+	   poss.possessed.ontological-category <-- @anaphor
+	   self.m.gender <-- @male
+	   self.m.ontological-category <-- @person
+	   self.m.number <-- @singular
+
+construction HerPoss
+   subcase of PossessivePronoun
+   form
+      constraints
+         self.f.orth <-- "her"
+   meaning
+      constraints
+         possessor.ontological-category <-- @person
+		self.m.gender <-- @female
+
+construction It
+   subcase of Pronoun, Singular, ThirdPerson
+   constructional
+     constraints
+       self.features.case <-- "nom"
+   form
+      constraints
+         self.f.orth <-- "it"
+   meaning
+    constraints
+      self.m.number <-- @singular
+	  self.m.ontological-category <-- @inanimate
+	  self.m.gender <-- @neuter
+		
+// need to link the meaning of this cxn to addressee role in DiscourseElement schema?
+construction YouNomSing
+   subcase of Pronoun, Singular, SecondPerson
+   constructional
+     constraints
+       self.features.case <-- "nom"
+   form
+      constraints
+         self.f.orth <-- "you"
+   meaning
+    constraints
+      self.m.ontological-category <-- @person
+      self.m.number <-- @singular
+
+construction YouDatSing
+   subcase of Pronoun, Singular, SecondPerson
+   constructional
+     constraints
+       self.features.case <-- "dat"
+   form
+      constraints
+         self.f.orth <-- "you"
+   meaning
+    constraints
+      self.m.ontological-category <-- @person
+      self.m.number <-- @singular      
+
+construction He
+   subcase of Pronoun, Singular, ThirdPerson
+   constructional
+     constraints
+       self.features.case <-- "nom"
+   form
+      constraints
+         self.f.orth <-- "he"
+   meaning: EntityRD
+    constraints
+      self.m.ontological-category <-- @person  
+      self.m.number <-- @singular
+      self.m.gender <-- @male  
+            
+
+construction They
+   subcase of Pronoun, Plural, ThirdPerson
+   constructional
+     constraints
+       self.features.case <-- "nom"
+   form
+      constraints
+         self.f.orth <-- "they"
+   meaning
+    constraints
+      self.m.ontological-category <-- @entity  
+      self.m.number <-- @plural
+      
+construction HimDat
+   subcase of Pronoun, Singular, ThirdPerson
+   constructional
+     constraints
+       self.features.case <-- "dat"
+   form
+      constraints
+         self.f.orth <-- "him"
+   meaning
+    constraints
+      self.m.ontological-category <-- @person 
+      self.m.number <-- @singular
+	  self.m.gender <-- @male
+
+general construction ReflexivePronoun  // 2/13/13
+   subcase of Pronoun
+   meaning  //RD
+   		
+construction Himself  // he wanted himself to move
+   subcase of ReflexivePronoun, Singular, ThirdPerson 
+   constructional
+     constraints
+       self.features.case <-- "dat"
+   form
+      constraints
+         self.f.orth <-- "himself"
+   meaning
+   constraints
+      self.m.ontological-category <-- @person 
+      self.m.number <-- @singular
+	  self.m.gender <-- @male
+	  
+construction HimAcc
+   subcase of Pronoun, Singular
+   constructional
+     constraints
+       self.features.case <-- "acc"
+   form
+      constraints
+         self.f.orth <-- "him"
+   meaning
+    constraints
+      self.m.ontological-category <-- @person
+      self.m.number <-- @singular
+	  self.m.gender <-- @male
+
+construction She
+   subcase of Pronoun, Singular, ThirdPerson
+   constructional
+     constraints
+       self.features.case <-- "nom"
+   form
+      constraints
+         self.f.orth <-- "she"
+   meaning
+    constraints
+      self.m.ontological-category <-- @person
+      self.m.number <-- @singular
+	  self.m.gender  <-- @female
+
+construction HerDat
+   subcase of Pronoun, Singular, ThirdPerson
+   constructional
+     constraints
+       self.features.case <-- "dat"
+   form
+      constraints
+         self.f.orth <-- "her"
+   meaning
+    constraints
+      self.m.ontological-category <-- @person
+      self.m.number <-- @singular
+	  self.m.gender  <-- @female
+
+construction HerAcc
+   subcase of Pronoun, Singular, ThirdPerson
+   constructional
+     constraints
+       self.features.case <-- "acc"
+   form
+      constraints
+         self.f.orth <-- "her"
+   meaning
+    constraints
+      self.m.ontological-category <-- @person
+      self.m.number <-- @singular
+      self.m.gender  <-- @female

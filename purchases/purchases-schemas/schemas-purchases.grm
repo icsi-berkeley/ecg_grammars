@@ -16,6 +16,7 @@ schema CommercialTransaction
 	constraints
 	  //seller <--> giver
 	  //buyer <--> getter
+	  theme <--> goods
 	
 
 schema MoneyTransfer
@@ -33,7 +34,6 @@ schema GoodsTransfer
      process2.theme <--> theme
    
       
-
 
 	
 /* FrameNet further breaks this down into perspectivized frames. E.g., Commerce-Sell

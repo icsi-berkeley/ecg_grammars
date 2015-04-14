@@ -1,0 +1,163 @@
+
+//***************************************************
+//Jack gave Jill a cake
+//***************************************************
+
+//this is a general construction used for inheritance
+general construction ActiveDitransitive // he Xed Indirect Direct  8/16/13
+  subcase of ArgumentStructure
+  constructional
+    constituents
+      np1: NP
+      np2: NP  
+    constraints
+      v.argform <-- DiTransitive  //2/11/13
+      v.voice <-- NotPassive  // 1/14/14
+      np1.features.case <-- "dat"
+      np2.features.case <-- "acc"
+  form
+    constraints
+       v.f before np1.f
+       np1.f before np2.f
+  meaning:Process //  8/16/13
+     evokes A123 as s
+    constraints
+       s.a1 <--> ed.profiledParticipant
+       s.a2 <--> np1.m // recipient  // 8/22/13
+       s.a3 <--> np2.m  // theme  
+
+//this cxn  binds the meaning of "give" to the meaning of the cxn
+
+construction CentralActiveDitransitiveTransfer   // 8/24/13
+  subcase of ActiveDitransitive
+  meaning: ObjectTransfer  // 2/11/13
+    constraints
+      	self.m <--> v.m
+  		self.m.giver <--> ed.profiledParticipant
+       	self.m.getter <--> np1.m
+       	self.m.theme <--> np2.m
+
+// construction LightActiveDitransitive -- in argstruct-lightVerb.grm
+
+
+
+     
+//***************************************************
+//Specific Scene cases
+//***************************************************
+
+
+
+// test 8/16/13 
+construction DitransitiveCommunication-NP  //  Proposed 8/16/13 he told him a story
+  subcase of ActiveDitransitive //, CommunicationCxN  
+	form
+         constraints
+         	v.f before np1.f 
+	meaning: Communication
+		evokes A123 as s
+        constraints
+         	self.m <--> v.m
+  			s.a3 <--> self.m.content
+  			s.a1 <--> self.m.speaker
+			s.a2 <--> self.m.listener
+ 			v.m.actionary <--> self.m.actionary  // needed?
+
+
+
+general construction CommunicationCxN // 8/16/13, used in DitransitiveCxns below  
+  subcase of ArgumentStructure
+    meaning: Communication  // filters verb
+     evokes A123 as s
+     constraints
+	    s.a1 <--> self.m.speaker
+        s.a3 <--> self.m.listener 
+        v.m.actionary <--> self.m.actionary  // needed???
+
+
+/*		
+construction DitransitiveCommunication-S // he told J. that ... 8/21/13
+  subcase of ArgumentStructure, CommunicationCxN
+  constructional 
+    constituents
+		v: MentalVerb  // constraint
+      	np1: NP
+      	conj: That-Subordinating //  later how,...
+      	core: Declarative // add an RD version ?
+    constraints
+      	v.argform <-- DiTransitive  // 2/11/13
+      	np1.features.case <-- "dat"
+  form
+    constraints
+       	v.f before np1.f
+       	np1.f before conj.f
+		conj.f before core.f
+   meaning: Communication
+     //evokes A123 as s
+     constraints
+     	self.m <--> v.m
+     	self.m.content <--> core.m   //  content 
+      	self.m.speaker <--> ed.profiledParticipant 
+ 		self.m.listener <--> np1.m   // listener
+*/
+
+construction DitransitiveCommunication-S // he told J. that ... 8/28/13 Active **
+  subcase of ArgumentStructure, CommunicationCxN  //check use 1/14/14, does work
+  constructional 
+    constituents
+		v: Verb  // constraint    10/3/13
+		np1: NP
+      	core: SubordinateDeclarative-that 
+    constraints
+      	v.argform <-- DiTransitive  // 2/11/13
+      	np1.features.case <-- "dat"
+  form
+    constraints
+		v.f before np1.f
+       	np1.f before core.f	
+   meaning: Communication
+     constraints
+     	self.m <--> v.m
+     	self.m.content <--> core.m   //  content 
+     	self.m.speaker <--> ed.profiledParticipant 
+ 		self.m.listener <--> np1.m   // listener
+ 		v.verbkind <-- Communicational   //    10/3/13
+
+
+//***************************************************
+//Jack threw Jill a cake -- very old
+//***************************************************
+
+
+construction ActiveDitransitiveCauseMotion
+  subcase of CentralActiveDitransitiveTransfer  //2/11/13 Not tested
+  meaning
+    evokes CauseMotion as cm //formerly CauseMotionPathAction 
+    constraints
+	ignore  self.m <--> v.m
+      cm <--> v.m
+      cm.process1 <--> self.m.process1
+	self.m.getter <--> cm.process2.spg.goal
+
+
+
+//***************************************************
+//Jack baked Jill a cake
+//***************************************************
+/*
+construction ActiveCreationDitransitive
+  subcase of CentralActiveDitransitiveTransfer //2/11/13 Not tested
+  meaning
+    evokes CreationAction as ca
+    evokes Intention as int
+    constraints
+      v.m <--> ca
+      ca.creator <--> int.actor
+      int.intendedAct <--> self.m.process1
+      ca.creator <--> self.m.giver
+      ca.createdThing <--> self.m.theme
+
+*/
+
+
+  
