@@ -30,6 +30,13 @@ construction UnknownWord
 general construction Word // ? add role for ontological-category
   	subcase of RootType
    		form: WordForm
+   		
+
+construction GeneralTypeCxn
+	subcase of Word
+	form
+	  constraints
+	     self.f.orth <-- "*"
 
 
 /*

@@ -46,4 +46,3 @@ construction SizeType
 	    self.m.domain <-- @physicalEntity
 	    self.m.kind <-- @unmarked
 
- 

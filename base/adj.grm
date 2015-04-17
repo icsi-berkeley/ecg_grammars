@@ -36,6 +36,7 @@ general construction HedgeAdjective  // 4/8/13
 
 // comparative and superlative adjectives
 
+
 general construction ComparativeAdjective   
 	subcase of Adjective
 	meaning: ScalarModifier
@@ -233,6 +234,8 @@ general construction Color  //subcase of non-scale Adj
     constraints
        self.m.property <-- @color 
 	   self.m.domain <-- @physicalEntity
+
+
 
 
 construction Red
