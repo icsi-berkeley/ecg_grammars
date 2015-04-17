@@ -1,12 +1,12 @@
 scarlet :: ColorType :: self.m.value <-- @red
 red :: ColorType :: self.m.value <-- @red
 blue :: ColorType :: self.m.value <-- @blue
-block   :: NounType  :: self.m.ontological-category <-- @block :: self.m.scale <-- @size
-move    :: SelfMotionType  :: self.m.actionary <-- @move
+block   :: NounType  :: self.m.ontological-category <-- @block
+move    :: SelfMotionType  :: self.m.actionary <-- @move :: self.m.speed <-- ".5"
 walk    :: SelfMotionType  :: self.m.actionary <-- @walk :: self.m.speed <-- ".3"
 run     :: SelfMotionType  :: self.m.actionary <-- @run  :: self.m.speed <-- ".7" 
-box     :: NounType  :: self.m.ontological-category <-- @box :: self.m.scale <-- @size
-room    :: NounType  :: self.m.ontological-category <-- @room :: self.m.scale <-- @size
+box     :: NounType  :: self.m.ontological-category <-- @box
+room    :: NounType  :: self.m.ontological-category <-- @room
 be      :: BeCopula  :: self.m.actionary <-- @be
 see     :: PerceptionType :: self.m.actionary <-- @see
 sprint  :: SelfMotionType  :: self.m.actionary <-- @run  :: self.m.speed <-- ".8"

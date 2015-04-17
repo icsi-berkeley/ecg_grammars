@@ -24,7 +24,8 @@ construction BuyType
 	 constraints 
 	   self.m.actionary <-- @take   
 
-	
+
+
 	
 	
 	

@@ -36,5 +36,5 @@ Superlative :: self.m.kind, @superlative :: Adjective
 Infinitive :: , :: LexicalVerbType
 Positive :: , :: Adjective, DirectionalType
 Participle,PresentTense :: self.pf.tense, @present :: LexicalVerbType
-Participle,PastTense :: , :: LexicalVerbType"
+Participle,PastTense :: , :: LexicalVerbType
 NoMorphology :: , :: Pronoun
