@@ -374,7 +374,6 @@ DEFS:
 
 (type deicticCenter sub location)
 
-
 // anaphora
 
 (type antecedent sub physicalEntity)
@@ -742,5 +741,7 @@ DEFS:
 //(type number sub entity)
 
 (type pencil sub entity artifact moveable)
+
+
 
 INSTS:
