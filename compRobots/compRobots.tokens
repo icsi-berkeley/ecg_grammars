@@ -53,3 +53,4 @@ amble :: SelfMotionType :: self.m.speed <-- ".3" :: self.m.actionary <-- @amble
 stop :: StageVerbType :: self.m.actionary <-- @stop :: self.expectedVerbForm <-- PresentParticiple
 start :: StageVerbType :: self.m.actionary <-- @start 
 continue :: StageVerbType :: self.m.actionary <-- @continue
+
