@@ -25,12 +25,6 @@ construction NounType
         self.m.ontological-category <-- @entity
         self.m.scale <-- @scale
         
-   
-
-
-     
-      
-
 
 
 //
@@ -47,7 +41,6 @@ general construction PluralNoun
       //self.m.ontological-category <-- @multiplex // might restrict some
       self.m.number <-- @plural
       self.m.bounding <-- @indeterminate
-
 
 	  
 // Proper Nouns

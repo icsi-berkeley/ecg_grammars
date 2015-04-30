@@ -2,6 +2,8 @@
 
 /** In this grammar, only used to provide a base for "adverbial prepositions" (cerca de, etc.) - necessary if this is how we choose to represent these prepositions. */
 
+package primero
+
 general construction Adverbial  
   meaning
   

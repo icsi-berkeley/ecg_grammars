@@ -54,3 +54,5 @@ stop :: StageVerbType :: self.m.actionary <-- @stop :: self.expectedVerbForm <--
 start :: StageVerbType :: self.m.actionary <-- @start 
 continue :: StageVerbType :: self.m.actionary <-- @continue
 
+##quickly :: ScalarAdverbType :: self.m.property <-- @speed :: self.m.value <-- ".7"
+##slowly :: ScalarAdverbType :: self.m.property <-- @speed :: self.m.value <-- ".3"
