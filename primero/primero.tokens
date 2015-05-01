@@ -17,3 +17,10 @@ ver :: PerceptionType :: self.m.actionary <-- @see
 deslizar :: SlideType :: self.m.actionary <-- @slide
 empujar :: PushType :: self.m.actionary <-- @push_move
 salir :: SalirType :: self.m.actionary <-- @exit
+viejo :: AgeType :: self.m.value <-- ".8" :: self.features.gender <-- @male
+vieja :: AgeType :: self.m.value <-- ".8" :: self.features.gender <-- @female
+viejo :: DurationType :: self.m.value <-- ".8" :: self.features.gender <-- @male
+vieja :: DurationType :: self.m.value <-- ".8" :: self.features.gender <-- @female
+amigo :: RelationType :: self.m.gender <-- @male :: self.m.ontological-category <-- @friend
+amiga :: RelationType :: self.m.ontological-category <-- @friend :: self.m.gender <-- @female
+

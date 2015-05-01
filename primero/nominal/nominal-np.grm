@@ -1,4 +1,17 @@
 package primero
+import relations
+
+// to test "mi viejo amigo" (my longtime friend)
+construction RelationKernelAdj
+	subcase of KernelPriorAdj
+	constructional
+	  constituents
+	    n: RelationType
+	meaning
+	  evokes Relationship as r
+	  constraints
+	    n.m.extensions <--> r
+	    ap.m.value <--> r.duration
 
 
 general construction  KernelAdj // literal case
@@ -137,52 +150,12 @@ construction DeterminerPlusKernel
 
 
 
-   
-       
- 
- 
-	  
-	  	      
-
-
-/*
-construction MaterialArtifactCompound  // trying new design 8/21/12 
-   subcase of Nominal
-   constructional
-      constituents
-        mod: Nominal 
-        head: Nominal
-      constraints
-        self.features <--> head.features
-  form
-     constraints
-       mod.f meets head.f
-    meaning
-      evokes Artifact as art  // hack, but seems OK
-     constraints
-       head.m.ontological-category <-- @artifact
-       self.m <--> head.m
-       mod.m.ontological-category <-- @material
-       art.material  <--> mod.m  //sets value directly
-       self.m.extensions <--> art 
-
-construction ContainerContentsCompound  // trying new design 8/21/12  
-   subcase of Nominal
-   constructional
-      constituents
-        mod: Nominal 
-        head: Nominal
-      constraints
-        self.features <--> head.features
-  form
-     constraints
-       mod.f meets head.f
-    meaning
-      evokes Container as cont  
-     constraints
-       head.m.ontological-category <-- @container
-       self.m <--> head.m
-       mod.m.bounding <-- @indeterminate // physicalEntity
-	self.m.extensions <--> cont
-	cont.contents <-> mod.m
-*/
+construction PossessivePronounPlusKernel
+	subcase of Specifier2PlusKernel
+	constructional
+	  constituents
+	    s: PossessivePronoun
+	    k: Kernel
+	meaning 
+	  constraints
+	    s.m <--> k.m

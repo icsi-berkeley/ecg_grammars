@@ -1,5 +1,7 @@
 package primero
 
+import relations
+
 //
 // Adjectives
 // ========== 
@@ -45,6 +47,34 @@ construction SizeType  // e.g. big
 	    self.m.property <-- @size
 	    self.m.domain <-- @physicalEntity
 	    self.m.kind <-- @unmarked
+	    
+	    
+// 5/1/15 (ST), more for testing "mi viejo amigo" vs. "mi amigo viejo"
+construction AgeType  // e.g. big
+  subcase of  ScalarAdjective, GeneralTypeCxn, PosteriorAdjective
+  constructional
+   constraints
+     self.features.gender <-- @genderValues
+     self.features.number <-- @RDnumberValues  
+	meaning: ScalarModifier
+	  constraints
+	    self.m.value <-- @scale
+	    self.m.property <-- @age
+	    self.m.domain <-- @physicalEntity
+	    self.m.kind <-- @unmarked
+
+// for things like "viejo", meaning longtime (modifying the relationship of the two agents)	    
+construction DurationType
+	subcase of  ScalarAdjective, GeneralTypeCxn, PriorAdjective
+    constructional
+      constraints
+     	self.features.gender <-- @genderValues
+     	self.features.number <-- @RDnumberValues  
+	meaning: ScalarModifier
+	  constraints
+	    self.m.property <-- @duration
+	    self.m.value <-- @scale
+	
 
 
 construction Gran  // e.g. big
