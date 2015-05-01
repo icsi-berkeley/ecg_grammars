@@ -20,7 +20,7 @@ general construction PropertyAdjective  // parallel to Verb, etc. \
 
 	   
 construction ColorType  //subcase of non-scale Adj
-  subcase of PropertyAdjective, GeneralTypeCxn 
+  subcase of PropertyAdjective, GeneralTypeCxn, PosteriorAdjective
   constructional
    constraints
      self.features.gender <-- @genderValues
@@ -34,7 +34,7 @@ construction ColorType  //subcase of non-scale Adj
 	
 // ADDED 6/25/14 (ST), Testing complex adjectives like "big red block"
 construction SizeType  // e.g. big
-	subcase of  ScalarAdjective, GeneralTypeCxn
+	subcase of  ScalarAdjective, GeneralTypeCxn, PosteriorAdjective
   constructional
    constraints
      self.features.gender <-- @genderValues
@@ -45,6 +45,37 @@ construction SizeType  // e.g. big
 	    self.m.property <-- @size
 	    self.m.domain <-- @physicalEntity
 	    self.m.kind <-- @unmarked
+
+
+construction Gran  // e.g. big
+  subcase of  ScalarAdjective, PriorAdjective
+  constructional
+   constraints
+     self.features.gender <-- @genderValues
+     self.features.number <-- @singular  
+   form
+     constraints
+       self.f.orth <-- "gran"
+  meaning: ScalarModifier // Should be ScalarModifier, but changed for now for testing purposes 
+	  constraints
+	    self.m.value <-- @sizeValue
+	    self.m.property <-- @size
+	    self.m.domain <-- @physicalEntity
+	    self.m.kind <-- @unmarked
+
+
+// 5/30/15 (ST): Posterior/Prior adjectives used to differentiate between kernel-adj phrases
+// in which the ordering between noun and adjective is switched.
+// More work is needed on the semantics of prior adjectives.
+// (E.g., some research indicates it "reinforces" the noun, in some cases;
+// or at other times, changes the adjective's meaning. "mi viejo amigo" vs. "mi amigo viejo".
+// The first means "my longtime (old) friend", the second means "my elderly (old) friend". It would
+// be nice to capture this distinction at the constructional rather than lexical level. )
+general construction PosteriorAdjective
+	subcase of PropertyAdjective
+
+general construction PriorAdjective
+	subcase of PropertyAdjective
 
        	
        	

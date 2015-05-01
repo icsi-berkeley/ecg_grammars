@@ -1,7 +1,7 @@
 package primero
 
 
-construction  KernelAdj // literal case
+general construction  KernelAdj // literal case
   subcase of Kernel 
   constructional
     constituents
@@ -10,9 +10,6 @@ construction  KernelAdj // literal case
     constraints
       self.features <--> n.features
       n.features <--> ap.features  //Ellen testing 7/3/14 
-  form
-    constraints
-      n.f meets ap.f
   meaning: RD
     constraints
       self.m <--> n.m
@@ -20,6 +17,25 @@ construction  KernelAdj // literal case
       // ap.m.property <--> n.m.scale  //4/26/13  ***** n.m.scale is implicit, e.g inch
       //ap.m.domain <--> n.m.ontological-category //constraint	
      // n.m.extensions.property.ontological-category <--> ap.m.value
+
+construction  KernelPosteriorAdj // literal case
+  subcase of KernelAdj
+  constructional
+    constituents
+      ap: PosteriorAdjective
+  form
+    constraints
+      n.f before ap.f
+
+construction KernelPriorAdj
+  subcase of KernelAdj
+  constructional
+    constituents
+      ap: PriorAdjective
+  form
+    constraints
+      ap.f before n.f
+
 
  
  construction  KernelParticiple //   10/16/13
@@ -38,12 +54,12 @@ construction  KernelAdj // literal case
     evokes ParticipleModification as pm
     constraints
       self.m <--> n.m
+      // this constrains the noun
+      n.m.ontological-category <--> v.m.protagonist.ontological-category
       self.m <--> pm.modifiedThing
       pm.modifiedThing <--> v.m.ed.profiledParticipant
       v.m <--> pm.modifier 
-      pm.modifiedThing.ontological-category <-- @physicalEntity
-      //ap.m.property <--> n.m.scale  //4/26/13  ***** n.m.scale is implicit, e.g inch
-      //ap.m.domain <--> n.m.ontological-category //constraint NOT here    
+      pm.modifiedThing.ontological-category <-- @physicalEntity   
 
 construction  KernelNoAdj // no adjective
   subcase of Kernel

@@ -1,5 +1,6 @@
 rojo :: ColorType :: self.features.gender <-- @male :: self.m.value <-- @red
 roja :: ColorType :: self.features.gender <-- @female :: self.m.value <-- @red 
+hombre :: NounType :: self.features.gender <-- @male :: self.m.ontological-category <-- @man
 ##rojas :: ColorType :: self.features.gender <-- @female :: self.m.value <-- @red :: self.features.number <-- @plural
 ##rojos :: ColorType :: self.features.gender <-- @male :: self.m.value <-- @red :: self.features.number <-- @plural
 caja :: NounType :: self.features.gender <-- @female :: self.m.ontological-category <-- @box :: self.m.scale <-- @size
@@ -14,3 +15,5 @@ pequeño :: SizeType :: self.m.value <-- @small :: self.features.gender <-- @mal
 entrar :: EntrarType :: self.m.actionary <-- @enter
 ver :: PerceptionType :: self.m.actionary <-- @see
 deslizar :: SlideType :: self.m.actionary <-- @slide
+empujar :: PushType :: self.m.actionary <-- @push_move
+salir :: SalirType :: self.m.actionary <-- @exit

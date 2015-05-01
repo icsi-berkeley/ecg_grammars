@@ -6,6 +6,7 @@ construction SelfMotionType
       constraints
          self.m.actionary <-- @motion
          self.m.speed <-- ".5"
+         self.m.protagonist.ontological-category <-- @animate
          
 
 
@@ -39,32 +40,7 @@ construction PushType
          	self.fa <--> self.m.causalProcess
          	self.mp <--> self.m.affectedProcess
          	self.fa.actedUpon <--> self.m.affectedEntity
- 				
- construction PushBase   
-   	subcase of Push, ImperativeVerb
-   	form
-      	constraints
-         	self.f.orth <-- "empuje"
-     
- 
- construction PushPast   
-   	subcase of Push, PastTense
-   	form
-      	constraints
-         	self.f.orth <-- "empujó"
 
-
-
-construction PathVerbType
-   subcase of LexicalVerbType
-   meaning: ChangeLocation
-     constraints 
-       self.m.actionary <-- @motion
-       self.m.landmark.ontological-category <-- @location
-	  
-
-
-	      
 
 /* Spanish construction for "Enter" (Entrar). Uses the ChangeLocation schema because 
 the mover changes location with regard to a landmark.
@@ -80,16 +56,13 @@ construction EntrarType   // 10/15/13
          self.m.landmark.ontological-category <-- @container
          self.m.actionary <-- @enter
 		 //self.argform <-- NotReflexive
-
-
-
  
 		  
  /** Construction for Salir, meaning "to leave". Will have to investigate
 to see whether construction should be modified, such that you say, "salir de", rather than just "salir".
 */
-general construction Salir   // 6/10/14 (ST)
-	subcase of LexicalVerb
+construction SalirType   // 6/10/14 (ST)
+	subcase of LexicalVerbType
 	meaning: ChangeLocation
 	   evokes BoundedObject as bo
 	   constraints
@@ -99,24 +72,5 @@ general construction Salir   // 6/10/14 (ST)
 	      self.m.landmark.ontological-category <-- @container
 	      self.m.actionary <-- @exit
 
-	      
-construction SalirCommand
-	subcase of Salir, ImperativeVerb
-	   form
-	      constraints
-	         self.f.orth <-- "salga"
 
-construction SalirPast
-	subcase of Salir, PastTense, ThirdPersonSingular
-	form
-	   constraints
-	      self.f.orth <-- "salió"  
-
-
-	     
-
-
-
- 
- 
    

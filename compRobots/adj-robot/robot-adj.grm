@@ -1,5 +1,6 @@
 package robots
 import starter
+import adverbs
 
 general construction ComplexAdjective
 	subcase of Adjective
