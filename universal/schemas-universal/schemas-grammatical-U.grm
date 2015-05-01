@@ -28,7 +28,7 @@ schema RD // meaning of NP
 	//hedge: @hedgeVal  // @fake, etc  
 	//continuity: @continuityValues 
     //amount: Amount // schemas for quantifiers, etc. 
-    extensions: Extensions //  schemas for affordances, etc
+    extensions //: Extensions //  schemas for affordances, etc
 
 schema Extensions
   roles

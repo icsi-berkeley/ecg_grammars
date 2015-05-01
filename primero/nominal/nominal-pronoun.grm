@@ -12,6 +12,24 @@ general construction Pronoun
       self.m.bounding <-- @determinate
       
 
+general construction PossessivePronoun
+	subcase of Word, Specifier
+	meaning
+	  evokes Possession as possession
+	  evokes RD as possessor
+	  constraints
+	    self.m <--> possession.possessed
+	    possessor <--> possession.possessor
+
+// somehow imply "1st" person?
+construction Mi
+	subcase of PossessivePronoun
+	form
+	  constraints
+	    self.f.orth <-- "mi"
+	meaning
+	  constraints
+	    possessor.ontological-category <-- @person
 
 
 // Él is the third-person male Spanish pronoun.
@@ -117,4 +135,6 @@ construction DO_Feminine
       self.m.ontological-category <-- @physicalEntity
       self.m.referent <-- @antecedent
       self.m.number <-- @singular
-      self.m.gender  <-- @female      
+      self.m.gender  <-- @female    
+      
+        

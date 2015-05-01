@@ -13,7 +13,7 @@ FirstPerson,PastTense,Singular :: self.verbform, Past, self.features.person, "1"
 Infinitive :: self.verbform, BaseOrInfinitive :: LexicalVerbType
 Comparative :: , :: Adjective
 Superlative :: , :: Adjective
-Positive :: , :: Adjective, DirectionalType
+Positive :: , :: Adjective, DirectionalType, Adverb
 Participle,PresentTense :: self.verbform, PresentParticiple :: LexicalVerbType
 Participle,PastTense :: self.verbform, PastParticiple :: LexicalVerbType
 NoMorphology :: , :: Pronoun
@@ -32,7 +32,7 @@ PresentTense,Singular,ThirdPerson :: self.pf.tense, @present :: LexicalVerbType
 Comparative :: self.m.kind, @comparative :: Adjective
 Superlative :: self.m.kind, @superlative :: Adjective
 Infinitive :: , :: LexicalVerbType
-Positive :: , :: Adjective, DirectionalType
+Positive :: , :: Adjective, DirectionalType, Adverb
 Participle,PresentTense :: self.pf.tense, @present :: LexicalVerbType
 Participle,PastTense :: , :: LexicalVerbType
 NoMorphology :: , :: Pronoun

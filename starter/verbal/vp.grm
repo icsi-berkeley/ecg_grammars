@@ -26,7 +26,6 @@ construction StagedVP
 	    self.m.protagonist <--> ed.profiledParticipant
 	    self.m.stageRole <--> v.m.actionary
 	    ed.profiledProcess <--> vp.m
-	    self.m <--> v.m
 	    ed.profiledParticipant <--> vp.ed.profiledParticipant
 
 

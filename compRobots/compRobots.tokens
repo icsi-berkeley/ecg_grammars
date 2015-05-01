@@ -49,7 +49,9 @@ shelf :: NounType :: self.m.ontological-category <-- @shelf
 shelf1 :: ProperNPInstance :: self.m.ontological-category <-- @shelf :: self.m.referent <-- @shelf1
 pink :: ColorType :: self.m.value <-- @pink
 large :: SizeType :: self.m.value <-- @large
-amble :: SelfMotionType :: self.m.speed <-- ".3" :: self.m.actionary <-- @amble
+amble :: SelfMotionType :: self.m.speed <-- ".2" :: self.m.actionary <-- @amble
 stop :: StageVerbType :: self.m.actionary <-- @stop :: self.expectedVerbForm <-- PresentParticiple
 start :: StageVerbType :: self.m.actionary <-- @start 
 continue :: StageVerbType :: self.m.actionary <-- @continue
+quickly :: ScalarAdverbType :: self.m.property <-- @speed :: self.m.value <-- ".7"
+slowly :: ScalarAdverbType :: self.m.property <-- @speed :: self.m.value <-- ".3"

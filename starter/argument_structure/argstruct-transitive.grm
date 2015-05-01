@@ -77,6 +77,9 @@ construction ActiveTransitiveCausedMotion  // he moved the block
 		s.a2 <--> self.m.affected
 
 
+// this taken out for testing
+package transitive-testing
+
 construction ActiveTransCausedLocationChange // he moved the block into the room
   subcase of ActiveTransitiveCausedMotion 
   constructional
@@ -115,6 +118,8 @@ construction ActiveTransitivePossession  // 10/4/13
 
 */
 //TESTING of new analysis of 'enter' 11/5/13
+
+package starter
 
 schema ChangeLocation // protagonist changes location wrt a LM
    subcase of Process  
