@@ -1,0 +1,44 @@
+rojo		rojo Positive
+roja		roja Positive
+rojos		rojos Positive
+rojas		rojas Positive
+
+caja		caja  Singular
+cajas		caja  Plural
+bloque		bloque	Singular
+bloques		bloque  Plural
+corrió		correr PastTense/Singular/ThirdPerson
+corriendo	correr Participle/PresentTense
+corra		correr Infinitive
+correr		correr Infinitive
+corro		correr FirstPerson/PresentTense/Singular
+corres      correr PresentTense/SecondPerson/Singular
+corre       correr PresentTense/Singular/ThirdPerson
+corremos    correr PresentTense/Plural/FirstPerson
+corréis		correr PresentTense/Plural/FirstPerson
+corren	    correr PresentTense/Plural/ThirdPerson
+
+
+petit		petit Singular
+petite		petite Singular
+petits		petit Plural
+petites		petite Plural
+
+rouge		rouge Singular
+rouges		rouge Plural
+
+boîte		boîte Singular
+boîtes		boîte Plural
+bloc		bloc Singular
+blocs		bloc Plural
+courir		courir Infinitive
+cours		courir FirstPerson/SecondPerson/PresentTense/Singular	
+court		courir ThirdPerson/PresentTense/Singular
+courons		courir FirstPerson/PresentTense/Plural
+courez		courir SecondPerson/PresentTense/Plural
+courent		courir ThirdPerson/PresentTense/Plural
+courut		courir PastTense/Singular/ThirdPerson
+couru		courir Participle/PresentTense
+
+va			aller Imperative/SecondPerson/Singular
+allait		aller ThirdPerson/Singular/PastTense

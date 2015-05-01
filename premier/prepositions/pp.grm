@@ -1,0 +1,122 @@
+ 
+
+// Nominalized PP - currently inherits from RootType so "Kernel" constituent doesn't conflict with "NP" constituent in PP.	        
+general construction NominalizedPP
+	subcase of RootType
+	constructional
+	  constituents
+	    prep: NominalizedPrep
+	    np: Kernel
+	  constraints
+	    prep.features.gender <--> np.features.gender			
+
+
+construction Nominalized-Path-PP  // central case 
+	subcase of NominalizedPP, PathPP
+	constructional
+		constituents
+			prep: NominalizedPathPrep
+	form
+		constraints
+			prep.f before np.f
+	meaning //: SPG
+		constraints
+		   // np.m.ontological-category <-- @container
+			self.m <--> prep.m	
+		    self.m.landmark  <--> np.m 	   
+		    
+
+
+general construction PP
+	subcase of RootType // answer to question, etc.   
+	constructional
+		constituents
+			prep: Preposition  
+			np: NP
+	  constraints
+	    prep.features.gender <--> np.features.gender				
+	
+
+// constructional tree
+
+construction Path-PP
+	subcase of PP, PathPP
+	constructional
+	   constituents
+	     prep: PathPreposition
+	meaning: SPG
+	   constraints
+		self.m <--> prep.m	
+	    self.m.landmark  <--> np.m 
+
+
+					 
+general construction Spatial-PP  //literal
+	subcase of PP, SpatialPP
+	constructional
+		constituents
+			prep: SpatialPreposition 
+	form
+		constraints
+			prep.f before np.f
+	meaning: TrajectorLandmark
+		constraints
+			self.m <--> prep.m
+			self.m.landmark  <--> np.m 
+			np.m.ontological-category <-- @region  //11/4/13 
+						
+
+construction Loc-PP
+	subcase of Spatial-PP
+	constructional
+	  constituents
+	    prep: LocativePreposition
+	meaning 
+		constraints
+		np.m.ontological-category <-- @region  //11/4/13	      
+			// self.m <--> prep.m  inherited
+			//self.m.trajector <-- @physicalEntity  inherited
+
+
+// Meaning tree
+
+general construction SpatialPP
+   subcase of RootType
+	meaning: TrajectorLandmark
+
+
+general construction PathPP
+	subcase of SpatialPP
+	meaning: SPG
+	
+general construction LocativePP
+	subcase of SpatialPP
+	meaning: TrajectorLandmark
+
+
+	
+    		
+    		
+ // The entire prepositional phrase, "cerca de la caja", etc. *  
+construction Compound-PP-Loc
+	subcase of PP
+	constructional
+	  constituents
+	    prep: Compound-PrepositionLoc
+	meaning
+	   constraints
+	     prep.p1.m.landmark <--> np.m
+	     prep.p2.m.source <--> np.m
+	     self.m <--> prep.m   		
+    		
+// The entire prepositional phrase, "cerca de la caja", etc.    
+construction Compound-PP-Path
+	subcase of PP
+	constructional
+	  constituents
+	    prep: Compound-PrepositionPath
+	meaning
+	   constraints
+	     prep.p1.m.landmark <--> np.m
+	     prep.p2.m.source <--> np.m
+	     self.m <--> prep.m     		    		

@@ -1,0 +1,54 @@
+
+GRAMMAR_EXTENSIONS = grm
+
+GRAMMAR_PATHS ::==
+	./premier
+;
+
+PACKAGE_NAME ::== 
+	premier
+	motion
+	universal-constructions
+	universal-schemas
+	
+;
+
+ONTOLOGY_PATHS ::==
+	./premier/ontology.ont
+;
+
+IMPORT_PATHS ::==
+	./premier
+	./universal
+;
+
+
+MORPHOLOGY_PATH ::== 
+	./premier/premier.ecgmorph
+;
+
+TOKEN_PATH ::== 
+	./premier/premier.tokens
+;
+
+TABLE_PATH = ./premier/premier.morph
+
+ROBUST = FALSE 
+BEAM_SIZE = 20
+DEFAULT_OMISSION_PROB = .1
+DEBUG = FALSE
+//DEBUG = TRUE
+ANALYZE_IN_CONTEXT = FALSE
+//ANALYZE_IN_CONTEXT = TRUE
+NUM_ANALYSES_RETURNED = 4
+MULTI_ROOT_PENALTY = -3
+
+EXAMPLE_SENTENCES ::==
+ 
+le bloc est rouge
+le bloc rouge
+elle court à la boîte
+elle court au bloc
+elles courent au bloc
+
+;
