@@ -1,8 +1,8 @@
-boîte :: NounType :: self.features.gender <-- @female :: self.m.ontological-category <-- @box 
+boîte :: NounType :: self.m.ontological-category <-- @box 
 
 
 
-bloc :: NounType :: self.features.gender <-- @male :: self.m.ontological-category <-- @block 
+bloc :: NounType :: self.m.ontological-category <-- @block 
 courir :: SelfMotionType :: self.m.actionary <-- @run :: self.m.speed <-- ".7"
 aller :: SelfMotionType :: self.m.actionary <-- @move :: self.m.speed <-- ".5"
 

@@ -48,10 +48,10 @@ ind:pas:2p :: self.pf.tense, @past :: LexicalVerbType
 ind:pas:3p :: self.pf.tense, @past :: LexicalVerbType
 Plural :: self.m.number, @plural, self.m.bounding, @indeterminate :: NounType, HasNominalFeatures
 Singular :: self.m.number, @singular, self.m.bounding, @determinate :: NounType, HasNominalFeatures
-Male,Singular :: self.m.number, @singular, self.m.bounding, @determinate :: self.m.gender, @male :: NounType, HasNominalFeatures 
-Male,Plural :: self.m.number, @plural, self.m.bounding, @indeterminate :: self.m.gender, @male :: NounType, HasNominalFeatures
-Female,Singular :: self.m.number, @singular, self.m.bounding, @determinate :: self.m.gender, @female :: NounType, HasNominalFeatures
-Female,Plural :: self.m.number, @plural, self.m.bounding, @indeterminate :: self.m.gender, @female :: NounType, HasNominalFeatures
+Male,Singular :: self.m.number, @singular, self.m.bounding, @determinate :: NounType, HasNominalFeatures 
+Male,Plural :: self.m.number, @plural, self.m.bounding, @indeterminate :: NounType, HasNominalFeatures
+Female,Singular :: self.m.number, @singular, self.m.bounding, @determinate :: NounType, HasNominalFeatures
+Female,Plural :: self.m.number, @plural, self.m.bounding, @indeterminate :: NounType, HasNominalFeatures
 Comparative :: self.m.kind, @comparative :: Adjective
 imp:pre:2s :: , :: LexicalVerbType
 imp:pre:1p :: , :: LexicalVerbType
