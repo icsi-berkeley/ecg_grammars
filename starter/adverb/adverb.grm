@@ -1,0 +1,38 @@
+package adverbs
+
+general construction Adverbial  // can be a phrase as well
+  meaning: AdverbModification
+  
+
+general construction Adverb
+  subcase of Word, Adverbial
+  
+
+
+
+construction ScalarAdverbType
+	subcase of Adverb, GeneralTypeCxn
+	meaning: ScalarAdverbModifier
+	  constraints
+	     self.m.property <-- @scale
+	     self.m.value <-- "*"
+	     self.m.kind <-- @unmarked
+
+		
+
+construction ModifiedVerb  // should not be copula, ?needed  11/21/12
+  	subcase of Verb
+   	constructional 
+   		constituents
+			modifier: Adverbial
+			modifiedVerb: Verb
+		constraints
+			self.features <--> modifiedVerb.features
+	form
+	  constraints
+	     modifiedVerb.f before modifier.f
+	meaning
+		constraints
+			modifier.m.modifiedThing <--> modifiedVerb.m
+			self.m <--> modifiedVerb.m
+			  

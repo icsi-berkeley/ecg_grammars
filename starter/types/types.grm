@@ -1,0 +1,18 @@
+package types
+// This is a package containing the general type constructions
+// needed to sync with the morphology file.
+
+// "Type" construction: all types are subcase
+construction GeneralTypeCxn
+	subcase of Word
+	form 
+	  constraints
+	    self.f.orth <-- "*"
+
+construction LexicalVerbType
+	subcase of VerbChunk, GeneralTypeCxn
+	meaning
+		evokes ProcessFeatures as pf
+   	constraints
+   		pf <--> self.m.p-features
+	
