@@ -1,0 +1,86 @@
+package primero
+
+// Simple imperative, testing
+general construction Imperative
+  subcase of S
+
+construction SimpleImperative
+  subcase of Imperative
+  constructional
+    constituents
+      vp: VP
+    constraints
+      vp.verbform <-- Imperative
+  meaning
+    constraints
+      self.m <--> vp.ed  
+
+			
+//  Utterance, Discourse Element -- Questions
+// Uncomment all this below to fully analyze "was the block red ? "
+
+
+general construction Utterance
+    subcase of RootType 
+    constructional 
+        constituents
+            core: S
+            optional end: EMark  // punctuation like . ! ?
+    form 
+        constraints  
+            core.f meets end.f
+    meaning: DiscourseElement
+        constraints
+          self.m.content <--> core.m
+          
+construction YNQuesUtterance  
+    subcase of Utterance
+    constructional 
+        constituents
+            core: YN-Question
+            end: QMark    
+    form
+        constraints
+            core.f meets end.f 
+    meaning 
+        constraints
+            self.m.mood <-- "YN-Question" // this is where we want mood	
+            self.m.content <--> core.m
+            
+general construction EMark  
+    subcase of Word
+
+construction IMark
+   subcase of EMark
+   form
+      constraints
+         self.f.orth <-- "!"
+         
+construction PMark
+	subcase of EMark
+	form
+	  constraints
+	    self.f.orth <-- "."         
+
+construction Comma
+	subcase of Word
+	form
+	   constraints
+	      self.f.orth <-- ","
+
+construction QMark
+    subcase of EMark 
+    form 
+        constraints
+            self.f.orth <-- "?" 
+
+schema DiscourseElement //meaning of Utterance
+    roles
+        speaker: RD 	
+        addressee: RD 	
+        attentional_focus  
+        content: EventDescriptor
+        mood: @mood			// one of declarative, imperative, ...
+    constraints
+		speaker.ontological-category <-- @sentient
+		addressee.ontological-category <-- @sentient
