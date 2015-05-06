@@ -28,6 +28,17 @@ construction LexicalVerbType
    		//self.m.actionary <-- @process
    		
 */   		
+
+
+// STAGE VERBS
+general construction StageVerb
+	subcase of LexicalVerb
+	constructional 
+	 constraints
+	   self.verbkind <-- Stage
+	   self.expectedVerbForm <-- PresentParticipleOrInfinitive 
+
+
 construction SelfMotionType
 	subcase of LexicalVerbType
 	meaning: MotionPath

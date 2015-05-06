@@ -11,6 +11,7 @@ PACKAGE_NAME ::==
 
 ONTOLOGY_PATHS ::==
 	./french-compRobots/ontology.ont
+	./premier/ontology.ont
 ;
 
 IMPORT_PATHS ::==
@@ -21,7 +22,7 @@ IMPORT_PATHS ::==
 
 
 MORPHOLOGY_PATH ::== 
-	./french-compRobots/celex.ecgmorph
+	./premier/premier.ecgmorph
 	./french-compRobots/robot.ecgmorph
 ;
 

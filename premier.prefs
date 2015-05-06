@@ -24,14 +24,14 @@ IMPORT_PATHS ::==
 
 
 MORPHOLOGY_PATH ::== 
-	./premier/premier.ecgmorph
+	./premier/lexiqueuctf16.ecgmorph
 ;
 
 TOKEN_PATH ::== 
 	./premier/premier.tokens
 ;
 
-TABLE_PATH = ./premier/premier.morph
+TABLE_PATH = ./premier/lexique.morph
 
 ROBUST = FALSE 
 BEAM_SIZE = 20

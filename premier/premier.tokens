@@ -1,21 +1,23 @@
-rojo :: ColorType :: self.features.gender <-- @male :: self.m.value <-- @red :: self.features.number <-- @singular
-roja :: ColorType :: self.features.gender <-- @female :: self.m.value <-- @red :: self.features.number <-- @singular
-rojas :: ColorType :: self.features.gender <-- @female :: self.m.value <-- @red :: self.features.number <-- @plural
-rojos :: ColorType :: self.features.gender <-- @male :: self.m.value <-- @red :: self.features.number <-- @plural
-caja :: NounType :: self.features.gender <-- @female :: self.m.ontological-category <-- @box :: self.m.scale <-- @size
-sala :: NounType :: self.features.gender <-- @female :: self.m.ontological-category <-- @room :: self.m.scale <-- @size
-bloque :: NounType :: self.features.gender <-- @male :: self.m.ontological-category <-- @block :: self.m.scale <-- @size
-correr :: SelfMotionType :: self.m.actionary <-- @run :: self.m.speed <-- ".7"
-
-
 boîte :: NounType :: self.features.gender <-- @female :: self.m.ontological-category <-- @box 
+
+
+
 bloc :: NounType :: self.features.gender <-- @male :: self.m.ontological-category <-- @block 
 courir :: SelfMotionType :: self.m.actionary <-- @run :: self.m.speed <-- ".7"
 aller :: SelfMotionType :: self.m.actionary <-- @move :: self.m.speed <-- ".5"
 
 rouge :: ColorType :: self.features.gender <-- @genderValues :: self.m.value <-- @red
 
+bleu :: ColorType :: self.features.gender <-- @male :: self.m.value <-- @blue
+bleue :: ColorType :: self.features.gender <-- @female :: self.m.value <-- @blue
 
+vert :: ColorType :: self.features.gender <-- @male :: self.m.value <-- @green
+verte :: ColorType :: self.features.gender <-- @female :: self.m.value <-- @green
 
 petit :: SizeType :: self.features.gender <-- @male :: self.m.value <-- @small 
 petite :: SizeType :: self.features.gender <-- @female :: self.m.value <-- @small 
+
+grand :: SizeType :: self.features.gender <-- @male :: self.m.value <-- @big
+grande :: SizeType :: self.features.gender <-- @female :: self.m.value <-- @big 
+
+

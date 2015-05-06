@@ -120,7 +120,7 @@ construction CopularVPCompound
         ed.profiledParticipant <--> pred.prep.p1.m.trajector 
         self.m.protagonist <--> ed.profiledParticipant
         self.m.state <--> pred.m 
-        self.m.temporality <-- @temporary // Added 7/29/14 (ST) 
+       
  		
 		
  

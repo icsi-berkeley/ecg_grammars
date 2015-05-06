@@ -8,6 +8,7 @@ DEFS:
 
 (type shared)  // all elements of the shared ontology
 
+
 (type variable sub shared)
 
 (type item)  // very top of our lattice, not all shared

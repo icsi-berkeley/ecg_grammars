@@ -130,3 +130,28 @@ construction DO_Feminine
       self.m.referent <-- @antecedent
       self.m.number <-- @singular
       self.m.gender  <-- @female      
+
+      
+construction DP-Omission
+	subcase of Kernel
+	constructional 
+		constituents
+			adj: PropertyAdjective
+			optional DP: DemonstratifPronoun-Celle
+	meaning
+		constraints 
+			self.m <--> DP.m 
+			self.m.ontological-category <-- @antecedent
+			self.m <--> adj.m.modifiedThing	
+	
+construction DemonstratifPronoun-Celle
+	subcase of SingularNoun
+	constructional 
+		constraints
+			self.features.case <-- "nom"
+	form
+		constraints
+			self.f.orth <-- "celle"
+	meaning
+	  constraints
+	  	self.m.ontological-category <-- @antecedent

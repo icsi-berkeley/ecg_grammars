@@ -758,6 +758,9 @@ DEFS:
 
 //
 
+(type antecedent sub entity)
+
+
 //(type number sub entity)
 
 // variable functions
