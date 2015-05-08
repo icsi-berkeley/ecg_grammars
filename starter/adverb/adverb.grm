@@ -18,7 +18,8 @@ construction ScalarAdverbType
 	     self.m.value <-- "*"
 	     self.m.kind <-- @unmarked
 
-		
+
+
 
 construction ModifiedVerb  // should not be copula, ?needed  11/21/12
   	subcase of Verb

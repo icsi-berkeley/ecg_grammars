@@ -93,7 +93,29 @@ construction S-With-Copula-Inversion-Adj // tested 10/29/12
 			self.fin.m.state <--> adj.m
 			self.m.eventProcess <--> fin.m
 	
-	
+construction S-With-Copula-Inversion-Nominal // tested 10/29/12
+    subcase of S-With-Finite-Inversion
+    constructional
+        constituents
+    	   fin: BeCopula
+    	   nominal: NP 
+    	   //optional end: QMark  // punctuation   ?
+        constraints
+            //fin.features.expectedVerbForm <--> vp.features.verbform 
+    form
+        constraints
+            fin.f meets subj.f 
+            subj.f before nominal.f
+    meaning
+        evokes RefIdentity as ri
+        constraints
+            fin.m.state <--> ri
+        	ri.first <--> self.m.profiledParticipant
+        	ri.second <--> nominal.m   
+    		self.fin.m.actionary <-- @be2
+        	self.fin.m.protagonist <--> self.m.profiledParticipant
+			self.m.eventProcess <--> fin.m
+				
 // Simple imperative, testing
 general construction Imperative
   subcase of S

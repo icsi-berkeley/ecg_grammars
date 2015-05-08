@@ -1,5 +1,7 @@
 package starter
 
+import adverbs
+
 //
 // Adjectives
 // ========== 
@@ -36,6 +38,7 @@ construction ColorType  //subcase of non-scale Adj
        self.m.property <-- @color 
 	   self.m.domain <-- @physicalEntity
 	   self.m.value <-- @colorValue
+	   //self.m.kind <-- @unmarked
 
 general construction ScalarAdjective
    subcase of PropertyAdjective
@@ -48,7 +51,7 @@ construction SizeType
 	    self.m.value <-- @sizeValue
 	    self.m.property <-- @size
 	    self.m.domain <-- @physicalEntity
-	    self.m.kind <-- @unmarked
+	    //self.m.kind <-- @unmarked
 
 
 

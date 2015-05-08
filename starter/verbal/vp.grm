@@ -111,21 +111,6 @@ Nominal copulas (e.g. "it is a box") could be analyzed using a CopuluarVPNominal
 such as the one shown below, whcih is a subcase of the general CopularVP cxn above.
 Note that the current first grammar does not contain the RefIdentity schema referred to by this cxn.
 
-construction CopularVPNominal // 2/14/13
-  subcase of CopularVP
-  constructional  
-    constituents
-      	nominal: NP
-  form
-    constraints
-      	cop.f meets nominal.f
-  meaning: Stasis
-    evokes RefIdentify as ri
-   constraints
-        self.m.state <--> ri
-        ri.first <--> ed.profiledParticipant
-        ri.second <--> nominal.m   
- 
 
 Sentences such as "he is moving" can potentially be analyzed in various ways.
 One way is through the use of a CopularVPParticiple cxn such as the one shown below.
