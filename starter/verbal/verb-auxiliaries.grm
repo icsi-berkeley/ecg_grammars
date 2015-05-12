@@ -1,0 +1,68 @@
+package auxiliaries-testing
+
+general construction Aux
+	subcase of HasVerbFeatures
+	meaning: ProcessFeatures
+
+general construction LexicalAux
+	subcase of Word, Aux
+	
+general construction bhAux
+	subcase of Aux
+
+general construction BeAux
+	subcase of LexicalAux, bhAux
+
+construction BeAuxType
+	subcase of BeAux, VerbConjugation, GeneralTypeCxn
+	meaning
+	  constraints
+	    pf <--> self.m
+	    self.m.voice <-- @voice
+
+construction BeAuxType2
+	subcase of BeAuxType
+	form 
+	  constraints
+	    self.f.orth <-- "is"
+	meaning
+	  constraints
+	    pf <--> self.m
+	    self.m.voice <-- @voice
+
+general construction AuxPlusVerb  // removed optional subj  
+   	subcase of ComplexVerb
+   	constructional 
+   		constituents
+			aux: Aux
+			// optional subj: NP  // why was this in ??
+			main: ComplexVerb
+	    constraints
+			self.features <--> aux.features
+			self.argform <--> main.argform
+			self.verbkind <--> main.verbkind
+			//aux.expectedVerbForm <--> main.features.verbform
+   form
+      constraints
+       		aux.f before main.f
+       		// aux.f meets subj.f   // why was this in ??
+   meaning
+      constraints
+			aux.m <--> main.m.p-features
+			self.m <--> main.m
+			self.m.p-features <--> main.m.p-features
+			//aux.m.voice <-- @voice // over-ridden by Passive case
+			// subj.m <--> self.m.protagonist  // bind it if it appears 
+			
+construction ProgressiveAuxPlusVerb  // was moving, has been moving
+   	subcase of AuxPlusVerb
+   	constructional 
+   		constituents
+			aux: Aux  
+			main: ComplexVerb
+	    constraints
+			self.voice <--> main.voice 
+			main.verbform <-- PresentParticiple
+	meaning
+		constraints
+			aux.m.progressive <-- "yes"

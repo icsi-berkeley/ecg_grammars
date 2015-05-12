@@ -58,7 +58,7 @@ empuja       empujar PresentTense/Singular/ThirdPerson
 empujamos    empujar PresentTense/Plural/FirstPerson
 empujáis		empujar PresentTense/Plural/FirstPerson
 empujan	    empujar PresentTense/Plural/ThirdPerson
-empuje		empujar Imperative
+empuje		empujar Imperative/Singular/ThirdPerson
 salir		salir Infinitve
 salió		salir PastTense/Singular/ThirdPerson
 saliendo	salir Participle/PresentTense
@@ -68,7 +68,7 @@ sale       salir PresentTense/Singular/ThirdPerson
 salimos    salir PresentTense/Plural/FirstPerson
 salís		salir PresentTense/Plural/FirstPerson
 salen	    salir PresentTense/Plural/ThirdPerson
-salga		salir Imperative
+salga		salir Imperative/Singular/ThirdPerson
 sala		sala Singular
 salas		sala Plural
 hombre		hombre Singular

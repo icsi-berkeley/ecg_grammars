@@ -64,12 +64,13 @@ construction ComparativeAdjectivePhrase
 	    than.f meets ground.f
 	meaning: ComparativeAdjModifier
 	  constraints 
-	    //comp.m.kind <-- @comparative   
+	    //comp.m.kind <-- @comparative 
+	    //comp.m.value <-- @big  
 	    self.m.base <--> ground.m
 	    self.m <--> comp.m
 	    self.m.kind <-- @comparative
 
-
+/*
 construction Bigger
 	subcase of ScalarAdjective	
 	form
@@ -81,5 +82,5 @@ construction Bigger
 	   self.m.property <-- @size
 	   self.m.domain <-- @physicalEntity
 	   self.m.kind <-- @comparative  
-	  
+*/  
 	     
