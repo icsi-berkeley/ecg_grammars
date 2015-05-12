@@ -83,6 +83,7 @@ general construction  KernelAdj // literal case
      // n.m.extensions.property.ontological-category <--> ap.m.value
 
  
+ //Particular to French, some adjectives can be only behind or only before the noun
  construction  KernelAdj1 // literal case 
  subcase of KernelAdj
  constructional
@@ -100,11 +101,7 @@ construction  KernelAdj2 // literal case
   form
     constraints
       ap.f before n.f
-  	
- 
- 
- 
- 
+  
  
  construction  KernelParticiple //   10/16/13
   subcase of Kernel 
@@ -200,14 +197,6 @@ construction DeterminerPlusKernel
   constructional
     constituents   
       s: Determiner  
-
-
-
-   
-       
- 
- 
-	  
 	  	      
 
 

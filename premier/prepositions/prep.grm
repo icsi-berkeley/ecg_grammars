@@ -32,10 +32,34 @@ construction A-Locative
 	      //self.m.profiledArea <--> p.proximalArea
 	      self.m.landmark <--> p.center
 	      self.m.profiledArea <--> br.interior
+	      
 
-
-/** Construction for the path preposition "à" (meaning "to", as in "he ran to the block".)
+/** Construction for the path preposition "à" and jusqu'à (meaning "to", as in "he ran to the block".)
 */
+construction Jusqua-Path
+   subcase of PathPreposition, HasNominalFeatures
+   constructional
+     constraints
+       self.features.gender <-- @female
+   form
+      constraints
+         self.f.orth <-- "jusqu'à"
+   meaning: SPG  
+     constraints
+        self.m.landmark <--> self.m.goal
+        
+construction Jusquau-Path
+   subcase of PathPreposition, HasNominalFeatures
+   constructional
+     constraints
+       self.features.gender <-- @male
+   form
+      constraints
+         self.f.orth <-- "jusqu'au"
+   meaning: SPG  
+     constraints
+        self.m.landmark <--> self.m.goal
+                
 construction A-Path
    subcase of PathPreposition, HasNominalFeatures
    constructional
@@ -51,7 +75,7 @@ construction A-Path
 /** Construction for the path preposition "vers" (meaning "to", as in "he ran to the block".)
 */
 construction Vers-Path
-   subcase of PathPreposition
+   subcase of PathPreposition, HasNominalFeatures
    form
       constraints
          self.f.orth <-- "vers"
@@ -74,7 +98,6 @@ construction OF-Modifier
       constraints
          self.f.orth <-- "de"      
         
-
 
 /** Construction for "from" ("de", in Spanish), such as "salir de la sala". */
 construction FROM-Path
@@ -100,7 +123,7 @@ construction FROM-Path
    
    
    
- /** Testing for French compound prepositions, like "près de", or "derrière de". */
+ /** Testing for French compound prepositions, like "près de", or "derrière". */
  construction Compound-PrepositionLoc
  	subcase of LocativePreposition
  	constructional
@@ -150,18 +173,13 @@ Testing by making it a locative Adverb */
  	subcase of Locative-Adverb //LocativePreposition
  	form
  	   constraints
- 	      self.f.orth <-- "près"
+ 	      self.f.orth <-- "près de"
     meaning: TrajectorLandmark
        evokes Proximity as p
        constraints
           self.m.landmark.ontological-category <-- @region
           self.m.profiledArea <--> p.proximalArea
           self.m.landmark <--> p.center			
-
-
-
-	      
-
         
           
           
@@ -170,6 +188,7 @@ Testing by making it a locative Adverb */
 
 general construction NominalizedPrep
 	subcase of Preposition, HasNominalFeatures //HasAgreementFeatures
+	
 
 general construction NominalizedPathPrep
 	subcase of NominalizedPrep, PathPreposition

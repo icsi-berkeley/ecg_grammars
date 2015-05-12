@@ -47,7 +47,7 @@ construction LOCATION
 	subcase of Word, HasAgreementFeatures
 	form
 	  constraints
-	    self.f.orth <-- "location"
+	    self.f.orth <-- "emplacement"
      
 construction LocationNP
 	subcase of NP, Kernel

@@ -53,21 +53,48 @@ construction WhSpecifierPlusKernel
 		s.m <-> k.m
 
 
-construction What-Specifier
-   subcase of WH-Specifier
-   form
-      constraints
-         self.f.orth <-- "what"
-   meaning: QuestionRD
-      constraints
- 		self.m.specificWh <-- @what
-
-
 construction Which-Specifer
    subcase of WH-Specifier
    form
       constraints
          self.f.orth <-- "which"
+   meaning: QuestionRD
+      constraints
+ 		self.m.specificWh <-- @which
+ 		
+ 		
+ construction Quel-Specifer
+   subcase of WH-Specifier
+   form
+      constraints
+         self.f.orth <-- "quel"
+   meaning: QuestionRD
+      constraints
+ 		self.m.specificWh <-- @which
+ 		
+ construction Quels-Specifer
+   subcase of WH-Specifier
+   form
+      constraints
+         self.f.orth <-- "quels"
+   meaning: QuestionRD
+      constraints
+ 		self.m.specificWh <-- @which
+ 		
+ construction Quelle-Specifer
+   subcase of WH-Specifier
+   form
+      constraints
+         self.f.orth <-- "quelle"
+   meaning: QuestionRD
+      constraints
+ 		self.m.specificWh <-- @which
+ 		
+ construction Quelles-Specifer
+   subcase of WH-Specifier
+   form
+      constraints
+         self.f.orth <-- "quelles"
    meaning: QuestionRD
       constraints
  		self.m.specificWh <-- @which
@@ -81,12 +108,13 @@ construction What-WH-NP
       constraints
  		self.m.specificWh <-- @what
  		
-construction Where-WH-NP
+ 		
+construction Ou-WH-NP
    subcase of WH-NP, Word
    form
       constraints
-         self.f.orth <-- "where"
+         self.f.orth <-- "où"
    meaning: QuestionRD
       constraints
- 		self.m.specificWh <-- @where 		
+ 		self.m.specificWh <-- @where 	
 

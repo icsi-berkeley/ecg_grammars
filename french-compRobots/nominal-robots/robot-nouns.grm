@@ -1,8 +1,6 @@
 package robots
 import premier
 
-
-
 construction ProperNPInstance
 	subcase of ProperNounNP, ThirdPerson, GeneralTypeCxn // Third person testing here ("Robot1")
 	meaning
@@ -11,21 +9,17 @@ construction ProperNPInstance
 		self.m.ontological-category <-- @physicalEntity
 		self.m.gender <-- @genderValues
 
-
-construction DirectionalType
-	subcase of Directional, GeneralTypeCxn
+construction HeadingType
+	subcase of NounType
 	meaning: HeadingSchema
 	  constraints
 	    self.m.tag <-- @heading
-
-	    
-
 	
 construction Side
 	subcase of SingularNoun
 	form
 	  constraints
-	    self.f.orth <-- "side"
+	    self.f.orth <-- "côté"
 	meaning: RD
 	  evokes PartWhole as pw
 	    constraints

@@ -6,15 +6,15 @@ construction NEAR-Locative
    subcase of LocativePreposition 
    form
       constraints
-         self.f.orth <-- "near"
+         self.f.orth <-- "à côté de"
    meaning 
       evokes Proximity as p
       constraints
        self.m.landmark.ontological-category <--@region
        self.m.profiledArea <--> p.proximalArea 
        self.m.landmark <--> p.center   
-
 */
+
 construction BEHIND-Path
 	subcase of PathPreposition
 	form

@@ -24,7 +24,7 @@ IMPORT_PATHS ::==
 
 
 MORPHOLOGY_PATH ::== 
-	./premier/lexiqueuctf16.ecgmorph
+	./premier/lexique.ecgmorph
 ;
 
 TOKEN_PATH ::== 

@@ -14,7 +14,6 @@ general construction SingularNoun
 	  self.m.bounding <-- @determinate
 	  
 	  
-	  
 construction NounType
    subcase of Noun, GeneralTypeCxn, ThirdPerson
    constructional
@@ -64,7 +63,7 @@ construction JUAN
 			self.m.gender <-- @male
 
 
-general construction Directional	
+general construction Directional
       
            
 	

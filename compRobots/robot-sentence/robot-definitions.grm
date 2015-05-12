@@ -19,8 +19,6 @@ schema Definition
 	  sign
 	  signified
 
-	  
-
 construction As-Define
 	subcase of Preposition
 	form
@@ -57,8 +55,6 @@ construction Define-As
 	      self.m.signified <--> means.m
 	      //self.m <--> self.m.signified
 
-
-
 construction Define-Utterance
 	subcase of Utterance
 	constructional
@@ -67,8 +63,6 @@ construction Define-Utterance
 	meaning
 	   constraints
 	      self.m.mood <-- "Definition"
-
-
 
 general construction ComplexNP 
    subcase of NP

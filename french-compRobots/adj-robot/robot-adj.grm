@@ -43,13 +43,12 @@ construction SideAdj-Type
 	    self.m.property <-- @side
 	    self.m.domain <-- @part	
 
-  
-	    
 
 // Uses comparative modifier, which is subcase of "scalar modifier".
 // Can only compare scalars with this model. No "greener than box1", etc.
 // Also, "kind" constraint overly limits parses; not sure why. 
 // "bigger than box1" works but now "bigger than box2".
+
 construction ComparativeAdjectivePhrase
 	subcase of ComplexAdjective
 	constructional
@@ -57,10 +56,13 @@ construction ComparativeAdjectivePhrase
 	    comp: Adjective
 	    than: SerialConjunction
 	    ground: NP
+	    plus: SerialConjunction
 	form
 	  constraints
+	  	plus.f meets comp.f
 	    comp.f meets than.f
 	    than.f meets ground.f
+	    
 	meaning: ComparativeAdjModifier
 	  constraints 
 	    //comp.m.kind <-- @comparative   

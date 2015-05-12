@@ -3,6 +3,7 @@
  *** Pronouns
  ***
  ***/
+package premier
 
 general construction Pronoun
    subcase of NP, Word
@@ -57,6 +58,22 @@ construction Elle
       self.m.number <-- @singular
       self.m.gender <-- @female   
       
+      
+construction Tu
+   subcase of Pronoun, Singular, SecondPerson
+   constructional
+     constraints
+       self.features.case <-- "nom"
+   form
+      constraints
+         self.f.orth <-- "tu"
+   meaning
+    constraints
+      self.m.ontological-category <-- @person  
+      self.m.number <-- @singular
+      self.m.gender <-- @genderValues
+      
+            
 construction Elles
    subcase of Pronoun, Plural, ThirdPerson
    constructional
@@ -85,7 +102,7 @@ general construction IOPronoun
 	     self.features.case <-- "dat"
 	meaning
 	   constraints
-	      self.m.ontological-category <-- @person
+	      self.m.ontological-category <-- @physicalEntity
 	      
 general construction DOPronoun
 	subcase of ObjectPronoun
@@ -94,9 +111,9 @@ general construction DOPronoun
 	     self.features.case <-- "acc"
 	meaning
 	   constraints
-	      self.m.ontological-category <-- @person
+	      self.m.ontological-category <-- @physicalEntity
 	      	      
-construction HerDat
+construction IO-Lui
    subcase of IOPronoun, Singular, ThirdPerson
    form
       constraints
@@ -105,7 +122,28 @@ construction HerDat
     constraints
       self.m.ontological-category <-- @person
       self.m.number <-- @singular
-      //self.m.gender  <-- @female
+
+construction IO-Y
+   subcase of IOPronoun, Singular, ThirdPerson
+   form
+      constraints
+         self.f.orth <-- "y"
+   meaning
+    constraints
+      self.m.ontological-category <-- @person
+      self.m.number <-- @singular
+      self.m.number <-- @genderValues
+      
+construction IO-En
+   subcase of IOPronoun, Singular, ThirdPerson
+   form
+      constraints
+         self.f.orth <-- "en"
+   meaning
+    constraints
+      self.m.ontological-category <-- @person
+      self.m.number <-- @singular
+      self.m.number <-- @genderValues
 	            
 construction DO_Masculine
    subcase of DOPronoun, Singular, ThirdPerson
@@ -114,7 +152,7 @@ construction DO_Masculine
          self.f.orth <-- "le"
    meaning
     constraints
-      self.m.ontological-category <-- @physicalEntity
+      self.m.ontological-category <-- @person
       self.m.number <-- @singular
       self.m.gender  <-- @male
       self.m.referent <-- @antecedent
@@ -126,11 +164,22 @@ construction DO_Feminine
          self.f.orth <-- "la"
    meaning
     constraints
-      self.m.ontological-category <-- @physicalEntity
+      self.m.ontological-category <-- @person
       self.m.referent <-- @antecedent
       self.m.number <-- @singular
       self.m.gender  <-- @female      
 
+construction DO_Neutral
+   subcase of DOPronoun, Singular, ThirdPerson
+   form
+      constraints
+         self.f.orth <-- "en"
+   meaning
+    constraints
+      self.m.ontological-category <-- @person
+      self.m.referent <-- @antecedent
+      self.m.number <-- @singular
+      self.m.gender  <-- @genderValues 
       
 construction DP-Omission
 	subcase of Kernel
@@ -142,7 +191,7 @@ construction DP-Omission
 		constraints 
 			self.m <--> DP.m 
 			self.m.ontological-category <-- @antecedent
-			self.m <--> adj.m.modifiedThing	
+			self.m <--> adj.m.modifiedThing
 	
 construction DemonstratifPronoun-Celle
 	subcase of SingularNoun

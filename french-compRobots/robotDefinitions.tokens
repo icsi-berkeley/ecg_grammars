@@ -6,10 +6,10 @@ qo1 :: VariableType :: self.m.ontological-category <-- @physicalEntity
 qo2 :: VariableType :: self.m.ontological-category <-- @physicalEntity
 qo3 :: VariableType :: self.m.ontological-category <-- @physicalEntity
 qo4 :: VariableType :: self.m.ontological-category <-- @physicalEntity
-visit :: FunctionVerbType :: self.m.actionary <-- @visit
-tour :: FunctionVerbType :: self.m.actionary <-- @tour
-join :: FunctionVerbType :: self.m.actionary <-- @join
-task :: FunctionVerbType :: self.m.actionary <-- @task
+visiter :: FunctionVerbType :: self.m.actionary <-- @visit
+voyager :: FunctionVerbType :: self.m.actionary <-- @tour
+rejoindre :: FunctionVerbType :: self.m.actionary <-- @join
+tâche :: FunctionVerbType :: self.m.actionary <-- @task
 
 
 

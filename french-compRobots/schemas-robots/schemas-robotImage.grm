@@ -2,9 +2,11 @@ package robots
 import premier
 
 schema HeadingSchema
+   subcase of RD
    roles
      tag: @heading
      landmark: RD
+     ontological-category: @heading
 
 
 schema PartWhole

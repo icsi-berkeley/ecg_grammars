@@ -1,4 +1,4 @@
-package definitions
+package robots
 import premier
 //import john-package
 
@@ -10,7 +10,7 @@ construction Define
 	subcase of LexicalVerb
 	form
 	   constraints 
-	     self.f.orth <-- "define"
+	     self.f.orth <-- "definie"
 
 	
 schema Definition
@@ -19,13 +19,11 @@ schema Definition
 	  sign
 	  signified
 
-	  
-
 construction As-Define
 	subcase of Preposition
 	form
 	   constraints
-	      self.f.orth <-- "as" 
+	      self.f.orth <-- "comme" 
 
 construction FunctionVerbType
 	subcase of LexicalVerbType

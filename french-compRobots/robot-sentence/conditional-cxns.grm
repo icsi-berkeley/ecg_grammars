@@ -13,18 +13,43 @@ general construction Conjunction
 
 general construction SerialConjunction
    subcase of Conjunction
-
-construction Then-Serial
+ 			
+construction Ensuite-Serial
    subcase of SerialConjunction
    form
       constraints
-        self.f.orth <-- "then"
-        
+      	self.f.orth <-- "ensuite"
+      
+construction Puis-Serial
+   subcase of SerialConjunction
+   form
+      constraints
+        self.f.orth <-- "puis"
+         
+construction Et-Serial
+   subcase of SerialConjunction
+   form
+   	constraints
+   		self.f.orth <-- "et" 
+       
 construction Than
 	subcase of SerialConjunction
 	form
 	  constraints
-	    self.f.orth <-- "than"
+	    self.f.orth <-- "que"
+
+construction Sup-sup
+	subcase of SerialConjunction
+	form
+	  constraints
+	    self.f.orth <-- "plus"
+	    
+construction Sup-inf
+	subcase of SerialConjunction
+	form
+	  constraints
+	    self.f.orth <-- "moins"
+
 
 general construction Conditional
   subcase of Word
@@ -33,25 +58,26 @@ construction Then-Conditional
   subcase of Conditional
   form
     constraints
-      self.f.orth <-- "then"
+      self.f.orth <-- "alors"
 
 construction If
   subcase of Conjunction
   form
     constraints
-      self.f.orth <-- "if"
+      self.f.orth <-- "si"
+
       
 construction ConditionalImperative
 	subcase of Imperative
 	constructional
-	  constituents
+	  constituents 
 	    cond: If
 	    bool: Declarative
 	    optional c: Comma
 	    optional then2: Then-Conditional
 	    core: SimpleImperative
 	  constraints
-	    core.vp.verbform <-- Base
+	    core.vp.verbform <-- Imperative
 	form
 	  constraints
 	    cond.f meets bool.f
@@ -63,4 +89,7 @@ construction ConditionalImperative
 	    self.m.ed1 <--> bool.m
 	    self.m.ed2 <--> core.m
 	    self.m.complexKind <-- @conditional
+
+
+
 	          

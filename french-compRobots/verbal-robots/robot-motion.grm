@@ -8,7 +8,7 @@ construction ActiveMotionPath   // he moved to the block
     constituents
        optional dis: SpatialQuantityNP  // for more general version
        optional dir: Directional 
-       optional pp: Path-PP  
+       optional pp: PathPP  
   constraints
         v.voice <-- NotPassive  
   form 

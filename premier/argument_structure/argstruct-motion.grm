@@ -31,7 +31,7 @@ Should be Intransitive b/c there is prepositional phrase, but more meaning shoul
     constituents
       //optional dis: SpatialQuantityNP  // for more general version
       optional dir: Directional 
-       pp: Path-PP  
+       pp: PathPP
   constraints
        v.voice <-- NotPassive   
   form 

@@ -12,9 +12,6 @@ construction StageVerbType
 	  constraints
 	    self.m.actionary <-- @stage
 
-
-
-
 construction CauseEffectType
 	subcase of LexicalVerbType, GeneralTypeCxn
 	meaning: CauseEffect

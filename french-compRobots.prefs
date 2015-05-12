@@ -22,7 +22,7 @@ IMPORT_PATHS ::==
 
 
 MORPHOLOGY_PATH ::== 
-	./premier/premier.ecgmorph
+	./premier/lexique.ecgmorph
 	./french-compRobots/robot.ecgmorph
 ;
 
@@ -33,7 +33,7 @@ TOKEN_PATH ::==
 
 MAPPING_PATH = ./french-compRobots/robot.mappings
 
-TABLE_PATH = ./premier/premier.morph
+TABLE_PATH = ./premier/lexique.morph
 
 ROBUST = FALSE 
 BEAM_SIZE = 20

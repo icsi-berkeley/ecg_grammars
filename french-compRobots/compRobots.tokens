@@ -1,8 +1,8 @@
-north :: DirectionalType :: self.m.tag <-- @north
-south :: DirectionalType :: self.m.tag <-- @south
-east :: DirectionalType :: self.m.tag <-- @east
-west :: DirectionalType :: self.m.tag <-- @west
-pencil :: NounType :: self.m.ontological-category <-- @pencil
+nord :: HeadingType :: self.m.tag <-- @north
+sud :: HeadingType :: self.m.tag <-- @south
+est :: HeadingType :: self.m.tag <-- @east
+ouest :: HeadingType :: self.m.tag <-- @west
+crayon :: NounType :: self.m.ontological-category <-- @pencil
 robot1 :: ProperNPInstance :: self.m.ontological-category <-- @robot :: self.m.referent <-- @robot1-instance
 robot :: NounType :: self.m.ontological-category <-- @robot
 box1 :: ProperNPInstance :: self.m.referent <-- @box1-instance :: self.m.ontological-category <-- @box
@@ -10,14 +10,14 @@ box2 :: ProperNPInstance :: self.m.referent <-- @box2-instance :: self.m.ontolog
 box3 :: ProperNPInstance :: self.m.referent <-- @box3-instance :: self.m.ontological-category <-- @box
 box4 :: ProperNPInstance :: self.m.referent <-- @box4-instance :: self.m.ontological-category <-- @box
 box5 :: ProperNPInstance :: self.m.referent <-- @box5-instance :: self.m.ontological-category <-- @box
-green :: ColorType :: self.m.value <-- @green
-purple :: ColorType :: self.m.value <-- @purple
-big :: SizeType :: self.m.value <-- @big
-small :: SizeType :: self.m.value <-- @small
-push :: CauseEffectType :: self.m.actionary <-- @push_move
-return :: ReturnType :: self.m.actionary <-- @move
-one :: NumberType :: self.m.value <-- "1"
-two :: NumberType :: self.m.value <-- "2"
+vert :: ColorType :: self.m.value <-- @green
+mauve :: ColorType :: self.m.value <-- @purple
+grand :: SizeType :: self.m.value <-- @big
+petit :: SizeType :: self.m.value <-- @small
+pousser :: CauseEffectType :: self.m.actionary <-- @push_move
+retourner :: ReturnType :: self.m.actionary <-- @move
+un :: NumberType :: self.m.value <-- "1"
+deux :: NumberType :: self.m.value <-- "2"
 0 :: NumberType :: self.m.value <-- "0"
 1 :: NumberType :: self.m.value <-- "1"
 2 :: NumberType :: self.m.value <-- "2"
@@ -31,24 +31,24 @@ two :: NumberType :: self.m.value <-- "2"
 -1 :: NumberType :: self.m.value <-- "-1"
 orange :: ColorType :: self.m.value <-- @orange
 magenta :: ColorType :: self.m.value <-- @magenta
-dash :: SelfMotionType :: self.m.actionary <-- @dash :: self.m.speed <-- ".8"
-north :: SideAdj-Type :: self.m.value <-- @northSide
-south :: SideAdj-Type :: self.m.value <-- @southSide
-east :: SideAdj-Type :: self.m.value <-- @eastSide
-west :: SideAdj-Type :: self.m.value <-- @westSide
+filer :: SelfMotionType :: self.m.actionary <-- @dash :: self.m.speed <-- ".8"
+nord :: SideAdj-Type :: self.m.value <-- @northSide
+sud :: SideAdj-Type :: self.m.value <-- @southSide
+est :: SideAdj-Type :: self.m.value <-- @eastSide
+ouest :: SideAdj-Type :: self.m.value <-- @westSide
 inch :: NounType :: self.m.ontological-category <-- @inch
-dart :: SelfMotionType :: self.m.actionary <-- @dart :: self.m.speed <-- ".7"
+fonce :: SelfMotionType :: self.m.actionary <-- @dart :: self.m.speed <-- ".9"
 scamper :: SelfMotionType :: self.m.actionary <-- @scamper
-gallop :: SelfMotionType :: self.m.actionary <-- @gallop :: self.m.speed <-- ".7"
+courir :: SelfMotionType :: self.m.actionary <-- @gallop :: self.m.speed <-- ".7"
 crimson :: ColorType :: self.m.value <-- @crimson
-desk :: NounType :: self.m.ontological-category <-- @desk
+bureau :: NounType :: self.m.ontological-category <-- @desk
 desk1 :: ProperNPInstance :: self.m.referent <-- @desk1 :: self.m.ontological-category <-- @desk
-white :: ColorType :: self.m.value <-- @white
-shelf :: NounType :: self.m.ontological-category <-- @shelf
+blanc :: ColorType :: self.m.value <-- @white
+étagère :: NounType :: self.m.ontological-category <-- @shelf
 shelf1 :: ProperNPInstance :: self.m.ontological-category <-- @shelf :: self.m.referent <-- @shelf1
-pink :: ColorType :: self.m.value <-- @pink
+rose :: ColorType :: self.m.value <-- @pink
 large :: SizeType :: self.m.value <-- @large
-amble :: SelfMotionType :: self.m.speed <-- ".3" :: self.m.actionary <-- @amble
+piétiner :: SelfMotionType :: self.m.speed <-- ".1" :: self.m.actionary <-- @amble
 stop :: StageVerbType :: self.m.actionary <-- @stop :: self.expectedVerbForm <-- PresentParticiple
-start :: StageVerbType :: self.m.actionary <-- @start 
-continue :: StageVerbType :: self.m.actionary <-- @continue
+démarrer :: StageVerbType :: self.m.actionary <-- @start 
+continuer :: StageVerbType :: self.m.actionary <-- @continue

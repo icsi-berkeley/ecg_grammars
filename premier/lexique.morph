@@ -19,6 +19,8 @@ ind:fut:2p :: self.features.person, "2", self.verbform, Future, self.features.nu
 ind:fut:3p :: self.features.person, "3", self.verbform, Future, self.features.number, "plural" :: LexicalVerbType
 Plural :: self.features.number, "plural" :: NounType, HasNominalFeatures
 Singular :: self.features.number, "singular" :: NounType, HasNominalFeatures
+Male :: self.features.gender, "male" :: NounType, HasNominalFeatures
+Female :: self.features.gender, "female" :: NounType, HasNominalFeatures
 Male,Singular :: self.features.number, "singular" :: self.features.gender, "male" :: NounType, HasNominalFeatures 
 Male,Plural :: self.features.number, "plural":: self.features.gender, "male" :: NounType, HasNominalFeatures
 Female,Singular :: self.features.number, "singular" :: self.features.gender, "female" :: NounType, HasNominalFeatures
@@ -48,6 +50,8 @@ ind:pas:2p :: self.pf.tense, @past :: LexicalVerbType
 ind:pas:3p :: self.pf.tense, @past :: LexicalVerbType
 Plural :: self.m.number, @plural, self.m.bounding, @indeterminate :: NounType, HasNominalFeatures
 Singular :: self.m.number, @singular, self.m.bounding, @determinate :: NounType, HasNominalFeatures
+Male :: , :: NounType, HasNominalFeatures
+Female :: , :: NounType, HasNominalFeatures
 Male,Singular :: self.m.number, @singular, self.m.bounding, @determinate :: NounType, HasNominalFeatures 
 Male,Plural :: self.m.number, @plural, self.m.bounding, @indeterminate :: NounType, HasNominalFeatures
 Female,Singular :: self.m.number, @singular, self.m.bounding, @determinate :: NounType, HasNominalFeatures
