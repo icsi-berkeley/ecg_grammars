@@ -56,4 +56,4 @@ start :: StageVerbType :: self.m.actionary <-- @start
 continue :: StageVerbType :: self.m.actionary <-- @continue
 quickly :: ScalarAdverbType :: self.m.property <-- @speed :: self.m.value <-- ".7"
 slowly :: ScalarAdverbType :: self.m.property <-- @speed :: self.m.value <-- ".3"
-system :: ProperNPInstance :: self.m.ontological-category <-- @physicalEntity :: self.m.referent <-- @system_instance
+team :: ProperNPInstance :: self.m.ontological-category <-- @physicalEntity :: self.m.referent <-- @team-instance
