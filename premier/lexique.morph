@@ -1,5 +1,5 @@
 Constructional
-ind:pre:1s :: self.features.person, "1", self.verbform, Present, self.features.number, "singular" :: LexicalVerbType
+#ind:pre:1s :: self.features.person, "1", self.verbform, Present, self.features.number, "singular" :: LexicalVerbType
 ind:pre:2s :: self.features.person, "2", self.verbform, Present, self.features.number, "singular" :: LexicalVerbType
 ind:pre:3s :: self.features.person, "3", self.verbform, Present, self.features.number, "singular" :: LexicalVerbType
 ind:pre:1p :: self.features.person, "1", self.verbform, Present, self.features.number, "plural" :: LexicalVerbType
@@ -17,6 +17,11 @@ ind:fut:3s :: self.features.person, "3", self.verbform, Future, self.features.nu
 ind:fut:1p :: self.features.person, "1", self.verbform, Future, self.features.number, "plural" :: LexicalVerbType
 ind:fut:2p :: self.features.person, "2", self.verbform, Future, self.features.number, "plural" :: LexicalVerbType
 ind:fut:3p :: self.features.person, "3", self.verbform, Future, self.features.number, "plural" :: LexicalVerbType
+
+#NOT TRUE, NEED TO BE CHANGE 
+sub:pre:1s :: self.features.person, "1", self.verbform, Present, self.features.number, "singular" :: LexicalVerbType
+
+
 Plural :: self.features.number, "plural" :: NounType, HasNominalFeatures
 Singular :: self.features.number, "singular" :: NounType, HasNominalFeatures
 Male :: self.features.gender, "male" :: NounType, HasNominalFeatures
@@ -36,7 +41,7 @@ par:pre :: self.verbform, PresentParticiple :: LexicalVerbType
 par:pas :: self.verbform, PastParticiple :: LexicalVerbType
 Nomorphology :: , :: Pronoun
 Meaning
-ind:pre:1s :: self.pf.tense, @present :: LexicalVerbType
+#ind:pre:1s :: self.pf.tense, @present :: LexicalVerbType
 ind:pre:2s :: self.pf.tense, @present :: LexicalVerbType
 ind:pre:3s :: self.pf.tense, @present :: LexicalVerbType
 ind:pre:1p :: self.m.number, @plural, self.m.bounding, @indeterminate :: LexicalVerbType
@@ -48,6 +53,11 @@ ind:pas:3s :: self.pf.tense, @past :: LexicalVerbType
 ind:pas:1p :: self.pf.tense, @past :: LexicalVerbType
 ind:pas:2p :: self.pf.tense, @past :: LexicalVerbType
 ind:pas:3p :: self.pf.tense, @past :: LexicalVerbType
+
+#NOT TRUE, NEED TO BE CHANGE 
+sub:pre:1s :: self.pf.tense, @present :: LexicalVerbType
+
+
 Plural :: self.m.number, @plural, self.m.bounding, @indeterminate :: NounType, HasNominalFeatures
 Singular :: self.m.number, @singular, self.m.bounding, @determinate :: NounType, HasNominalFeatures
 Male :: , :: NounType, HasNominalFeatures

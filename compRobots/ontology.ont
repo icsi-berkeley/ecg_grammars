@@ -826,4 +826,6 @@ DEFS:
 
 (type amble sub motion)
 
+(type system-instance sub instance)
+
 INSTS:
