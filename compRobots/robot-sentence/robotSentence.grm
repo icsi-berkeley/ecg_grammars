@@ -1,12 +1,16 @@
 package robots
 import starter
 
-
-construction AddressedImperative
+// This construction requires a SimpleImperative. The reasoning
+// is that for the robot commands, conditional imperatives would often
+// be subsumed under this construction, so the mood wouldn't be specified
+// properly - this impacts the Specializer routing/n-tuple creation.
+// There might be a better way to do this down the line.
+construction AddressedSimpleImperative
 	subcase of Utterance
 	constructional
 	   constituents
-	     core: Imperative
+	     core: SimpleImperative 
 	     addr: ProperNounNP
 	     optional comma: Comma
 	     optional end: IMark
@@ -38,3 +42,21 @@ construction AddressedConditionalImperative
 	      self.m.addressee <--> addr.m
 	      self.m.mood <-- "Conditional-Imperative"
 	      core.m.profiledParticipant <--> self.m.addressee
+	      core.m.complexKind <-- @conditional
+
+	      
+// "Robot1, move to the blue box if it is near the green box!"	      
+construction InverseConditional	
+	subcase of ConditionalImperative 
+	form
+	  constraints
+	  	core.f meets cond.f
+	    cond.f meets bool.f
+	meaning
+	  constraints
+	   	self.m.ed2 <--> bool.m
+	    self.m.ed1 <--> core.m
+	    
+	    	    
+	    
+	        

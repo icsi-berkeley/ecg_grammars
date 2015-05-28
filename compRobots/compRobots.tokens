@@ -42,7 +42,6 @@ dart :: SelfMotionType :: self.m.actionary <-- @dart :: self.m.speed <-- ".7"
 scamper :: SelfMotionType :: self.m.actionary <-- @scamper
 gallop :: SelfMotionType :: self.m.actionary <-- @gallop :: self.m.speed <-- ".7"
 crimson :: ColorType :: self.m.value <-- @crimson
-drive :: AgentDriveType :: self.m.actionary <-- @drive
 desk :: NounType :: self.m.ontological-category <-- @desk
 desk1 :: ProperNPInstance :: self.m.referent <-- @desk1 :: self.m.ontological-category <-- @desk
 white :: ColorType :: self.m.value <-- @white

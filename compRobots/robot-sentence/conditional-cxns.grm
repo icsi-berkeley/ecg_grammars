@@ -40,8 +40,8 @@ construction If
   form
     constraints
       self.f.orth <-- "if"
-      
-construction ConditionalImperative
+
+general construction ConditionalImperative
 	subcase of Imperative
 	constructional
 	  constituents
@@ -52,15 +52,23 @@ construction ConditionalImperative
 	    core: SimpleImperative
 	  constraints
 	    core.vp.verbform <-- Base
+	 meaning: ComplexED
+	  constraints
+	    self.m.profiledParticipant <--> core.m.profiledParticipant
+	    //self.m.ed1 <--> bool.m
+	    //self.m.ed2 <--> core.m
+	    self.m.complexKind <-- @conditional
+      
+construction StandardConditionalImperative
+	subcase of ConditionalImperative
 	form
 	  constraints
 	    cond.f meets bool.f
 	    bool.f meets then2.f
 	    bool.f before core.f
-	meaning: ComplexED
+	meaning
 	  constraints
-	    self.m.profiledParticipant <--> core.m.profiledParticipant
-	    self.m.ed1 <--> bool.m
+	   	self.m.ed1 <--> bool.m
 	    self.m.ed2 <--> core.m
-	    self.m.complexKind <-- @conditional
+
 	          

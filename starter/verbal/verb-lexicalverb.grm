@@ -45,15 +45,17 @@ construction PathVerbType
        self.m.actionary <-- @motion
        self.m.landmark.ontological-category <-- @location
 
+/*
 construction AgentDriveType
 	subcase of LexicalVerbType
 	meaning: VehicularMotion
 	  constraints
+	  	 //ignore self.m.actionary <-- @process
 	     self.m.actionary <-- @drive
 	     self.m.vehicleType.ontological-category <-- @vehicle
 	     self.m.protagonist.ontological-category <-- @agent
 
-
+*/
 
          
         

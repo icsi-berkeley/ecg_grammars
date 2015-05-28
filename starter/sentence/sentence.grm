@@ -67,7 +67,7 @@ construction  S-With-Copula-Inversion-PP //special case
         	fin.m.actionary <-- @be2
         	subj.m <--> self.m.profiledParticipant  // from S-With-Subj
             fin.m.protagonist <--> subj.m
-            pp.m.trajector <--> subj.m
+            //pp.m.trajector <--> subj.m
             self.m.eventProcess <--> fin.m
             self.fin.m.state <--> pp.m
             
@@ -88,7 +88,7 @@ construction S-With-Copula-Inversion-Adj // tested 10/29/12
         constraints
     		self.fin.m.actionary <-- @be2
         	self.fin.m.protagonist <--> self.m.profiledParticipant
-        	self.adj.m.modifiedThing <--> self.m.profiledParticipant
+        	//self.adj.m.modifiedThing <--> self.m.profiledParticipant
         	self.adj.m.domain <--> self.m.profiledParticipant.ontological-category
 			self.fin.m.state <--> adj.m
 			self.m.eventProcess <--> fin.m
@@ -119,6 +119,9 @@ construction S-With-Copula-Inversion-Nominal // tested 10/29/12
 // Simple imperative, testing
 general construction Imperative
   subcase of S
+  constructional
+    constituents
+      optional end: IMark
 
 construction SimpleImperative
   subcase of Imperative
