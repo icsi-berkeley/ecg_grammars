@@ -21,4 +21,14 @@ schema ComplexED
 	  ed1: EventDescriptor
 	  ed2: EventDescriptor
 	  
+schema ComplexConditionalED
+	subcase of ComplexED
+	roles
+	  boolean
+	  command
+	constraints
+	  boolean <--> ed1
+	  command <--> ed2
+	  
+	  
   		  

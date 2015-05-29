@@ -109,6 +109,7 @@ construction S-With-Copula-Inversion-Nominal // tested 10/29/12
     meaning
         evokes RefIdentity as ri
         constraints
+        	//ignore ri.first.ontological-category <--> ri.second.ontological-category
             fin.m.state <--> ri
         	ri.first <--> self.m.profiledParticipant
         	ri.second <--> nominal.m   
