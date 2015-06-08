@@ -15,7 +15,7 @@ general construction ActiveDitransitive // he Xed Indirect Direct  8/16/13
   subcase of ArgumentStructure
   constructional
     constituents
-      optional np1: NP
+      np1: NP
       np2: NP  
     constraints
       v.argform <-- DiTransitive  //2/11/13
@@ -47,6 +47,38 @@ construction CentralActiveDitransitiveTransfer   // 8/24/13
 
 
 
+construction GoodsTransferCxn
+  subcase of ActiveDitransitive
+  constructional
+    constituents
+      optional np1: NP
+  meaning: GoodsTransfer  // 2/11/13
+    constraints
+        np1.m.ontological-category <-- @sentient
+      	self.m <--> v.m
+  		self.m.donor <--> ed.profiledParticipant
+       	self.m.recipient <--> np1.m
+       	self.m.theme <--> np2.m
+
+
+// np1 is optional: "he bought a pizza". "he bought the man a pizza"
+construction MoneyTransferCxn 
+  subcase of ActiveDitransitive
+  constructional
+    constituents
+      optional np1: NP
+      optional source: FROM-pp
+   form
+    constraints
+       np2.f before source.f
+  meaning: MoneyTransfer  // 2/11/13
+    constraints
+        np1.m.ontological-category <-- @sentient
+      	self.m <--> v.m
+  		self.m.donor <--> ed.profiledParticipant
+       	self.m.recipient <--> np1.m
+       	self.m.theme <--> np2.m
+       	source.np.m <--> self.m.seller
 
 
 	

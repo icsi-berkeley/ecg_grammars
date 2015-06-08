@@ -16,4 +16,6 @@ DEFS:
 
 (type indigo sub colorValue)
 
+(type vendor sub person)
+
 INSTS:

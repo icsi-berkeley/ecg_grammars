@@ -7,8 +7,8 @@ schema ObjectTransfer
 	 recipient
 	 theme: RD
 	 actionary: @objecttransfer
-	 process1: LosePossession
-	 process2: ReceivePossession
+	 process1: Process //: LosePossession
+	 process2: Process //  ReceivePossession
 	constraints
 	 //protagonist <--> donor
 	 protagonist.ontological-category <-- @agent

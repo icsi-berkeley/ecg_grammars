@@ -1,0 +1,12 @@
+package submarine
+import starter
+
+schema Location3D
+	subcase of Location2D
+	roles
+	  //xCoord: @number
+	  //yCoord: @number
+	  zCoord: @number
+   constraints
+     ontological-category <-- @location
+     number <-- @singular
