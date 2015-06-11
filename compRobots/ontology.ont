@@ -328,6 +328,8 @@ DEFS:
 
 (type process-kind sub enumeration)  //
 
+(type joint sub process-kind)
+
 (type coprocess sub process-kind)   // 10/18/13
 
 (type serial sub process-kind)

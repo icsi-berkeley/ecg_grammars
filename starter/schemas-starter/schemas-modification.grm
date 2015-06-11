@@ -6,5 +6,7 @@ schema ScalarAdverbModifier
    	roles
      	property: @scale
         value //string, number    
-	 constraints		
+	 constraints	
+	 
+
 	

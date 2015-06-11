@@ -22,10 +22,11 @@ construction UnknownWord
         	self.f.orth <-- "UNKNOWN-ITEM"
 
 
+
+    
 general construction Word // ? add role for ontological-category
   	subcase of RootType
    		form: WordForm
-
 
 
 //For additional subcases of RootType, see individual files.  

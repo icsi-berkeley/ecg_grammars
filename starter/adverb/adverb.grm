@@ -29,9 +29,9 @@ construction ModifiedVerb  // should not be copula, ?needed  11/21/12
 			modifiedVerb: Verb
 		constraints
 			self.features <--> modifiedVerb.features
-	form
-	  constraints
-	     modifiedVerb.f before modifier.f
+	//form
+	//  constraints
+	//     modifiedVerb.f meets modifier.f
 	meaning
 		constraints
 			modifier.m.modifiedThing <--> modifiedVerb.m

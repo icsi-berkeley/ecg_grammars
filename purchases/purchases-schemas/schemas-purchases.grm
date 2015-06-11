@@ -30,6 +30,7 @@ schema GoodsTransfer
    constraints
      protagonist <--> seller
      protagonist2 <--> buyer
+     buyer <--> recipient
      //process1.theme <--> theme
      //process2.theme <--> theme
    
