@@ -57,7 +57,7 @@ construction NounType
         self.m.ontological-category <-- @entity
         self.m.scale <-- @scale
 
- 
+
  
 // Stuff for argstruct-transitive       
 general construction UnitsNP // stands alone, no Specifier  11/24/12

@@ -32,6 +32,19 @@ construction His
       constraints
          possessor.ontological-category <-- @person
          possessor.gender <-- @male
+
+       
+construction His2
+   subcase of His
+   form
+      constraints
+         self.f.orth <-- "his"
+   meaning
+      constraints
+         //ignore possessor.ontological-category <-- @person
+         possessor.ontological-category <-- @generic-person 
+         possessor.gender <-- @male
+ 
          
 construction HerDat
    subcase of Pronoun, Singular, ThirdPerson
