@@ -10,6 +10,9 @@ import starter
 
 general construction Conjunction
    subcase of Word
+   
+general construction LogicalConjunction
+	subcase of Conjunction
 
 general construction SerialConjunction
    subcase of Conjunction
@@ -25,7 +28,13 @@ construction Than
 	form
 	  constraints
 	    self.f.orth <-- "than"
-
+	    
+construction And-Conjunction
+	subcase of LogicalConjunction
+	form
+	  constraints
+	    self.f.orth <-- "and"
+	    
 general construction Conditional
   subcase of Word
 

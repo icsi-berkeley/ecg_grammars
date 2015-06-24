@@ -492,6 +492,8 @@ DEFS:
 
 (type push sub forceapplication )
 
+(type push_move sub push motion)
+
 (type releasehold sub forceapplication)
 
 (type establishhold sub forceapplication)

@@ -70,31 +70,7 @@ construction Define-Utterance
 
 
 
-general construction ComplexNP 
-   subcase of NP
 
-construction ConjNP  // self.m.number <- @plural
-	subcase of ComplexNP
-	constructional
-	    constituents   
-		 	connective: Conjunction   // and or etc.
-	        first: NP
-		    second: NP
-		constraints
-		   self.features.number <-- "plural"
-   	form
-		constraints		
-	      	first.f meets connective.f
-	      	connective.f meets second.f
-	meaning: ConjRD
-		constraints		
-			first.m <-> m.rd1
-        	second.m <-> m.rd2
-        	self.m.number <-- @plural
-        	self.m.bounding <--> first.m.bounding
-       		self.m.givenness <--> first.m.givenness
-       		self.m.ontological-category <--> first.m.ontological-category
-       		connective.m <-> m.connective
 
 //construction Variable
 construction VariableType

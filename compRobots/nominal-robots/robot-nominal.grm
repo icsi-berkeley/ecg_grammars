@@ -1,6 +1,43 @@
 package location
 import starter
 
+general construction ComplexNP
+	subcase of NP
+
+construction ConjNP
+	subcase of ComplexNP
+	constructional
+	  constituents
+	     connective: LogicalConjunction
+	     first: NP
+	     second: NP
+	  constraints
+	     self.features.number <-- "plural"
+	form 
+	   constraints
+	      first.f meets connective.f
+	      connective.f meets second.f
+ 	meaning: ConjRD
+ 	   constraints
+ 	      first.m <--> self.m.rd1
+ 	      second.m <--> self.m.rd2
+ 	      self.m.number <-- @plural
+ 	      self.m.bounding <--> first.m.bounding
+ 	      self.m.givenness <--> first.m.givenness
+ 	      //self.m.ontological-category <--> first.m.ontological-category
+ 	      connective.m <--> self.m.connective
+
+
+// Necessary to get "robot1 and robot2, push the box west" to parse.
+// Addressed-imperative requires "ProperNounNP".
+construction ConjProperNP
+	subcase of ConjNP, ProperNounNP
+	constructional
+	  constituents
+	     connective: LogicalConjunction
+	     first: ProperNounNP
+	     second: ProperNounNP
+
 
 construction Part-Of-Whole 
   subcase of Kernel  
