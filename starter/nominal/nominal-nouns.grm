@@ -52,12 +52,32 @@ construction NounType
    subcase of Noun, GeneralTypeCxn, ThirdPerson
    meaning
       constraints
-        //self.m.number <-- @RDnumberValues
+        self.m.number <-- @RDnumberValues
         self.m.gender <-- @genderValues
         self.m.ontological-category <-- @entity
         self.m.scale <-- @scale
 
+// "Type" constructions
+construction PhysicalEntityNoun
+   subcase of NounType
+   meaning
+      constraints
+        self.m.ontological-category <-- @physicalEntity
 
+ 
+// "Type" constructions
+construction ArtifactNoun
+   subcase of PhysicalEntityNoun
+   meaning
+      constraints
+        self.m.ontological-category <-- @artifact 
+        
+// "Type" constructions
+construction SentientNoun
+   subcase of PhysicalEntityNoun
+   meaning
+      constraints
+        self.m.ontological-category <-- @sentient         
  
 // Stuff for argstruct-transitive       
 general construction UnitsNP // stands alone, no Specifier  11/24/12

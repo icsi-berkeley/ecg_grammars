@@ -772,7 +772,7 @@ DEFS:
 
 (type task sub function)
 
-(type pencil sub entity artifact moveable)
+(type pencil sub physicalEntity artifact moveable)
 
 (type box3-instance sub instance box)
 

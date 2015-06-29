@@ -48,9 +48,6 @@ construction SideAdj-Type
 	    
 
 // Uses comparative modifier, which is subcase of "scalar modifier".
-// Can only compare scalars with this model. No "greener than box1", etc.
-// Also, "kind" constraint overly limits parses; not sure why. 
-// "bigger than box1" works but now "bigger than box2".
 construction ComparativeAdjectivePhrase
 	subcase of ComplexAdjective
 	constructional
@@ -70,17 +67,5 @@ construction ComparativeAdjectivePhrase
 	    self.m <--> comp.m
 	    self.m.kind <-- @comparative
 
-/*
-construction Bigger
-	subcase of ScalarAdjective	
-	form
-	 constraints
-	   self.f.orth <-- "bigger"
-	meaning: ScalarModifier
-	 constraints
-	   self.m.value <-- @big
-	   self.m.property <-- @size
-	   self.m.domain <-- @physicalEntity
-	   self.m.kind <-- @comparative  
-*/  
+
 	     

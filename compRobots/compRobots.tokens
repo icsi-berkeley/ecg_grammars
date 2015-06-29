@@ -2,10 +2,10 @@ north :: DirectionalType :: self.m.tag <-- @north
 south :: DirectionalType :: self.m.tag <-- @south
 east :: DirectionalType :: self.m.tag <-- @east
 west :: DirectionalType :: self.m.tag <-- @west
-pencil :: NounType :: self.m.ontological-category <-- @pencil
+pencil :: ArtifactNoun :: self.m.ontological-category <-- @pencil
 robot1 :: ProperNPInstance :: self.m.ontological-category <-- @robot :: self.m.referent <-- @robot1-instance
 robot2 :: ProperNPInstance :: self.m.ontological-category <-- @robot :: self.m.referent <-- @robot2-instance
-robot :: NounType :: self.m.ontological-category <-- @robot
+robot :: SentientNoun :: self.m.ontological-category <-- @robot
 box1 :: ProperNPInstance :: self.m.referent <-- @box1-instance :: self.m.ontological-category <-- @box
 box2 :: ProperNPInstance :: self.m.referent <-- @box2-instance :: self.m.ontological-category <-- @box
 box3 :: ProperNPInstance :: self.m.referent <-- @box3-instance :: self.m.ontological-category <-- @box
@@ -42,10 +42,10 @@ dart :: SelfMotionType :: self.m.actionary <-- @dart :: self.m.speed <-- ".7"
 scamper :: SelfMotionType :: self.m.actionary <-- @scamper
 gallop :: SelfMotionType :: self.m.actionary <-- @gallop :: self.m.speed <-- ".7"
 crimson :: ColorType :: self.m.value <-- @crimson
-desk :: NounType :: self.m.ontological-category <-- @desk
+desk :: ArtifactNoun :: self.m.ontological-category <-- @desk
 desk1 :: ProperNPInstance :: self.m.referent <-- @desk1 :: self.m.ontological-category <-- @desk
 white :: ColorType :: self.m.value <-- @white
-shelf :: NounType :: self.m.ontological-category <-- @shelf
+shelf :: ArtifactNoun :: self.m.ontological-category <-- @shelf
 shelf1 :: ProperNPInstance :: self.m.ontological-category <-- @shelf :: self.m.referent <-- @shelf1
 pink :: ColorType :: self.m.value <-- @pink
 large :: SizeType :: self.m.value <-- @large
