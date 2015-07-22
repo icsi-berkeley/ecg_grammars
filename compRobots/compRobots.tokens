@@ -13,9 +13,6 @@ box4 :: ProperNPInstance :: self.m.referent <-- @box4-instance :: self.m.ontolog
 box5 :: ProperNPInstance :: self.m.referent <-- @box5-instance :: self.m.ontological-category <-- @box
 green :: ColorType :: self.m.value <-- @green
 purple :: ColorType :: self.m.value <-- @purple
-big :: SizeType :: self.m.value <-- @big
-small :: SizeType :: self.m.value <-- @small
-push :: CauseEffectType :: self.m.actionary <-- @push_move
 return :: ReturnType :: self.m.actionary <-- @move
 one :: NumberType :: self.m.value <-- "1"
 two :: NumberType :: self.m.value <-- "2"
@@ -50,9 +47,6 @@ shelf1 :: ProperNPInstance :: self.m.ontological-category <-- @shelf :: self.m.r
 pink :: ColorType :: self.m.value <-- @pink
 large :: SizeType :: self.m.value <-- @large
 amble :: SelfMotionType :: self.m.speed <-- ".2" :: self.m.actionary <-- @amble
-stop :: StageVerbType :: self.m.actionary <-- @stop :: self.expectedVerbForm <-- PresentParticiple
-start :: StageVerbType :: self.m.actionary <-- @start 
-continue :: StageVerbType :: self.m.actionary <-- @continue
 quickly :: ScalarAdverbType :: self.m.property <-- @speed :: self.m.value <-- ".7"
 slowly :: ScalarAdverbType :: self.m.property <-- @speed :: self.m.value <-- ".3"
 team :: ProperNPInstance :: self.m.ontological-category <-- @physicalEntity :: self.m.number <-- @plural :: self.m.referent <-- @team-instance

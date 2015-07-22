@@ -43,7 +43,8 @@ NUM_ANALYSES_RETURNED = 5
 MULTI_ROOT_PENALTY = -3
 
 EXAMPLE_SENTENCES ::==
- 
+boxes are big
+cats are small 
 the red block
 he moved
 he moved the blocks

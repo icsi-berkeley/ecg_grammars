@@ -1,51 +1,7 @@
 package robots
-import starter
+import utterance
 
-// This construction requires a SimpleImperative. The reasoning
-// is that for the robot commands, conditional imperatives would often
-// be subsumed under this construction, so the mood wouldn't be specified
-// properly - this impacts the Specializer routing/n-tuple creation.
-// There might be a better way to do this down the line.
-construction AddressedSimpleImperative
-	subcase of Utterance
-	constructional
-	   constituents
-	     core: SimpleImperative 
-	     optional addr: ProperNounNP
-	     optional comma: Comma
-	     optional end: IMark
-	form
-	   constraints
-	      addr.f meets comma.f
-	      comma.f meets core.f
-	meaning
-	   constraints
-	      self.m.addressee <--> addr.m
-	      self.m.mood <-- "Imperative"
-	      core.m.profiledParticipant <--> self.m.addressee
 
-construction AddressedConditionalImperative
-	subcase of Utterance
-	constructional
-	   constituents
-	     optional addr: NP
-	     optional comma: Comma
-	     core: ConditionalImperative
-	     optional end: IMark
-	form
-	   constraints
-	      addr.f meets comma.f
-	      comma.f meets core.f
-	      core.f meets end.f
-	meaning
-	   constraints
-	      self.m.addressee <--> addr.m
-	      self.m.mood <-- "Conditional-Imperative"
-	      core.m.profiledParticipant <--> self.m.addressee
-	      core.m.complexKind <-- @conditional
-
-	      
-	    
 	    	    
 	    
 	        

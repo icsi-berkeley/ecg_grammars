@@ -5,7 +5,7 @@ block   :: ArtifactNoun  :: self.m.ontological-category <-- @block
 move    :: SelfMotionType  :: self.m.actionary <-- @move :: self.m.speed <-- ".5"
 walk    :: SelfMotionType  :: self.m.actionary <-- @walk :: self.m.speed <-- ".3"
 run     :: SelfMotionType  :: self.m.actionary <-- @run  :: self.m.speed <-- ".7" 
-box     :: ArtifactNoun  :: self.m.ontological-category <-- @box
+box     :: ContainerNoun  :: self.m.ontological-category <-- @box
 room    :: ArtifactNoun  :: self.m.ontological-category <-- @room
 be      :: BeCopula  :: self.m.actionary <-- @be
 see     :: PerceptionType :: self.m.actionary <-- @see
@@ -15,4 +15,24 @@ enter :: PathVerbType   :: self.m.actionary <-- @enter :: self.m.landmark.ontolo
 pencil :: ArtifactNoun :: self.m.ontological-category <-- @pencil
 man :: SentientNoun :: self.m.ontological-category <-- @person :: self.m.gender <-- @male
 woman :: SentientNoun :: self.m.ontological-category <-- @person :: self.m.gender <-- @female
-
+big :: SizeType :: self.m.value <-- @big
+small :: SizeType :: self.m.value <-- @small
+john :: ProperNPInstance :: self.m.ontological-category <-- @person :: self.m.referent <-- @john-instance :: self.m.gender <-- @male :: self.m.number <-- @singular
+push :: CauseEffectType :: self.m.actionary <-- @push_move
+stop :: StageVerbType :: self.m.actionary <-- @stop :: self.expectedVerbForm <-- PresentParticiple
+start :: StageVerbType :: self.m.actionary <-- @start 
+continue :: StageVerbType :: self.m.actionary <-- @continue
+drive :: AgentDriveType :: self.m.actionary <-- @drive
+dog :: SentientNoun :: self.m.ontological-category <-- @dog
+cat :: SentientNoun :: self.m.ontological-category <-- @cat
+quickly :: ScalarAdverbType :: self.m.value <-- ".7" :: self.m.property <-- @speed
+slowly :: ScalarAdverbType :: self.m.value <-- ".3" :: self.m.property <-- @speed
+drive :: DriveVehicleType :: self.m.actionary <-- @drive
+car :: ArtifactNoun :: self.m.ontological-category <-- @car
+mud :: MassNoun :: self.m.ontological-category <-- @mud
+brown :: ColorType :: self.m.value <-- @brown
+crime :: SocialProblem :: self.m.ontological-category <-- @crime
+poverty :: SocialProblem :: self.m.ontological-category <-- @poverty
+sister :: SentientNoun :: self.m.ontological-category <-- @person :: self.m.referent <-- @sister
+doctor :: SentientNoun :: self.m.ontological-category <-- @doctor
+idea :: AbstractNoun :: self.m.ontological-category <-- @idea

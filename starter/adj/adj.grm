@@ -1,6 +1,6 @@
 package starter
 
-import adverbs
+import starter-modification
 
 //
 // Adjectives
@@ -22,12 +22,8 @@ general construction PropertyAdjective  // parallel to Verb, etc. \
 
 
 
-general construction Color  //subcase of non-scale Adj
-  subcase of PropertyAdjective    
-   meaning: PropertyModifier
-    constraints
-       self.m.property <-- @color 
-	   self.m.domain <-- @physicalEntity
+
+
 	   
 
 
@@ -36,9 +32,8 @@ construction ColorType  //subcase of non-scale Adj
    meaning: PropertyModifier
     constraints
        self.m.property <-- @color 
-	   self.m.domain <-- @physicalEntity
+	   self.m.domain <-- @physicalEntity 
 	   self.m.value <-- @colorValue
-	   //self.m.kind <-- @unmarked
 
 general construction ScalarAdjective
    subcase of PropertyAdjective
@@ -53,6 +48,12 @@ construction SizeType
 	    self.m.domain <-- @physicalEntity
 	    //self.m.kind <-- @unmarked
 
-
+construction SideAdj-Type
+	subcase of GeneralTypeCxn, PropertyAdjective
+	meaning
+	  constraints
+	    self.m.value <-- @sideValue
+	    self.m.property <-- @side
+	    self.m.domain <-- @part	
 
  

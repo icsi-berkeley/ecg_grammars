@@ -2,70 +2,7 @@ package robots
 import starter
 import adverbs
 
-general construction ComplexAdjective
-	subcase of Adjective
 
-construction SerialAdjective
-	subcase of ComplexAdjective
-	constructional
-	  constituents
-	    first: Adjective
-	    second: Adjective
-	form
-	  constraints
-	    first.f meets second.f
-	meaning
-	  constraints
-	    self.m <--> first.m
-	    self.m.modifiedThing <--> second.m.modifiedThing
-
-construction ComplexAdjKernel
-	subcase of Kernel
-	constructional
-	 constituents
-	  ap: SerialAdjective
-	  n: Nominal
-	 constraints
-	  self.features <--> n.features
-	form
-	  constraints
-	    ap.f before n.f
-	meaning: RD
-	  constraints
-	    self.m <--> n.m
-	    self.m <--> ap.m.modifiedThing
-	
-
-construction SideAdj-Type
-	subcase of GeneralTypeCxn, PropertyAdjective
-	meaning
-	  constraints
-	    self.m.value <-- @sideValue
-	    self.m.property <-- @side
-	    self.m.domain <-- @part	
-
-  
-	    
-
-// Uses comparative modifier, which is subcase of "scalar modifier".
-construction ComparativeAdjectivePhrase
-	subcase of ComplexAdjective
-	constructional
-	  constituents
-	    comp: Adjective
-	    than: SerialConjunction
-	    ground: NP
-	form
-	  constraints
-	    comp.f meets than.f
-	    than.f meets ground.f
-	meaning: ComparativeAdjModifier
-	  constraints 
-	    //comp.m.kind <-- @comparative 
-	    //comp.m.value <-- @big  
-	    self.m.base <--> ground.m
-	    self.m <--> comp.m
-	    self.m.kind <-- @comparative
 
 
 	     

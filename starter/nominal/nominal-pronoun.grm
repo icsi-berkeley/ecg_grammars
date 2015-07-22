@@ -33,6 +33,16 @@ construction His
          possessor.ontological-category <-- @person
          possessor.gender <-- @male
 
+
+construction My
+   subcase of PossessivePronoun
+   form
+      constraints
+         self.f.orth <-- "my"
+   meaning
+      constraints
+         possessor.ontological-category <-- @person
+         //possessor.gender <-- @male
        
 construction His2
    subcase of His
@@ -102,7 +112,7 @@ construction It
          self.f.orth <-- "it"
    meaning
     constraints
-      self.m.ontological-category <-- @inanimate  
+      self.m.ontological-category <-- @physicalEntity  
       self.m.number <-- @singular
       self.m.gender <-- @neuter
       self.m.referent <-- @antecedent

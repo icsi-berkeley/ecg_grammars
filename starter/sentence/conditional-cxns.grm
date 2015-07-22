@@ -1,4 +1,4 @@
-package robots
+package conditionals
 import starter
 
 
@@ -92,4 +92,33 @@ construction InverseConditional
 	   	self.m.ed1 <--> bool.m
 	    self.m.ed2 <--> core.m
 
+// ConditionalDeclarative
+general construction ConditionalDeclarative
+	subcase of S
+	constructional
+	  constituents
+	    cond: If
+	    bool: Declarative
+	    optional c: Comma
+	    optional then2: Then-Conditional
+	    core: Declarative
+	 meaning: ComplexED
+	  constraints
+	    self.m.profiledParticipant <--> core.m.profiledParticipant
+	    //self.m.ed1 <--> bool.m
+	    //self.m.ed2 <--> core.m
+	    self.m.complexKind <-- @conditional	    
+
+
+construction StandardConditionalDeclarative
+	subcase of ConditionalDeclarative
+	form
+	  constraints
+	    cond.f meets bool.f
+	    bool.f meets then2.f
+	    bool.f before core.f
+	meaning
+	  constraints
+	   	self.m.ed1 <--> bool.m
+	    self.m.ed2 <--> core.m	    
 	          

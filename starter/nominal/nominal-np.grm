@@ -1,4 +1,5 @@
 package starter
+import adjectives
 
 /******************************************************************************
 This file contains  constructions for kernel noun phrases.
@@ -12,62 +13,26 @@ count nouns (which are not NPs) also denote an RD.
 ******************************************************************************/
 
  
-/*** 
- ***
- *** The root constructions of the NP, Noun and Nominal  hierarchy
- ***
- ***/
- 
-/*
-general construction UndeterminedNP  // various uses including:  white as snow 
-  subcase of NP  
+
+// Not sure that this is the analysis we want, but it works: "cats are small", "boxes are red"
+// 
+construction UndeterminedNP_Kernel  // various uses including:  white as snow 
+  subcase of UndeterminedNP
+  constructional
+    constituents
+      k: Kernel  
   meaning: RD
     constraints
       self.m.givenness <-- @typeIdentifiable // Michael
 	  self.m.bounding <-- @indeterminate   
+	  self.m <--> k.m
 	  
-general construction NP 
-   subcase of RootType, HasNominalFeatures
-   meaning: RD
-
-
-// This is the root of nouns and noun noun compounds
-
-general construction Nominal 
-   subcase of HasNominalFeatures
-   meaning: RD 
-
-/* not needed ? 12/24/12
-general construction ProcessNominal 
-   subcase of Nominal 
-   meaning: ProcessRD 
-*/
-/*
-general construction Noun
-   subcase of Word, Nominal 
-*/
-/*
- *
- * Combining Adjectives and Nouns
- *
- */ 
-
-// Note that Kernel is NOT an NP 
-// it is  general because we need a supertype to cover the bracketed phrases in
-// 'the [big table]'  and 'the [big table and leather chair]'
-
-/*
-general construction  Kernel // both RD and Nominal
-	subcase of HasNominalFeatures //, RootType  // for testing only 
-	meaning: RD
-
-*/
-
 construction  KernelAdj // literal case
   subcase of Kernel 
   constructional
     constituents
-      ap: PropertyAdjective // not optional PropertyAdj 4/26/13
+     // Why was Adjective "property adjective"?
+      ap: Adjective //PropertyAdjective // not optional PropertyAdj 4/26/13
       n: Nominal
     constraints
       self.features <--> n.features

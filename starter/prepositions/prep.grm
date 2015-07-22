@@ -2,6 +2,7 @@ package starter
 
 general construction Preposition
    subcase of Word
+
 	
  
  general construction SpatialPreposition
@@ -43,6 +44,7 @@ construction IN-Locative // 11/4/13
        self.m.profiledArea <--> p.proximalArea 
        self.m.landmark <--> p.center   
 
+
 construction TO-Path
    subcase of PathPreposition
    form
@@ -65,7 +67,35 @@ construction  INTO-Path // container 11/5/13
          self.m.goal <--> bo.interior
          self.m.source <--> bo.exterior
   
- 
+
+
+construction NEAR-Locative
+   subcase of LocativePreposition 
+   form
+      constraints
+         self.f.orth <-- "near"
+   meaning 
+      evokes Proximity as p
+      constraints
+       self.m.landmark.ontological-category <--@region
+       self.m.profiledArea <--> p.proximalArea 
+       self.m.landmark <--> p.center   
+
+
+construction BEHIND-Path
+	subcase of PathPreposition
+	form
+	  constraints
+	    self.f.orth <-- "behind"
+	meaning: SPG
+	  evokes Proximity as p
+	  evokes Sidedness as side
+	    constraints
+	  	side.back <--> self.m.goal
+	  	self.m.landmark <--> self.side.obj
+	  	self.m.landmark <--> self.p.center
+	  	self.m.goal <--> p.proximalArea
+	  	self.m.goal.ontological-category <-- @region 
  
 // taken from Base, 3/30/15  
 construction TO-Infinitive-Marker
@@ -73,3 +103,14 @@ construction TO-Infinitive-Marker
 	form
 	  constraints
 	    self.f.orth <-- "to"
+	    
+	    
+general construction ModifierPreposition
+	subcase of Preposition
+	meaning: Modification
+
+construction OF-Modifier
+	subcase of ModifierPreposition
+	form
+	  constraints
+	    self.f.orth <-- "of"

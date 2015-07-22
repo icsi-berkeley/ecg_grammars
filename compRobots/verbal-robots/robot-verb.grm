@@ -3,29 +3,7 @@ import starter
 //import transitives
 
 
-construction StageVerbType
-	subcase of StageVerb, LexicalVerbType
-	constructional
-	  constraints
-	    self.expectedVerbForm <-- PresentParticipleOrInfinitive
-	meaning
-	  constraints
-	    self.m.actionary <-- @stage
 
-
-
-
-construction CauseEffectType
-	subcase of LexicalVerbType, GeneralTypeCxn
-	meaning: CauseEffect
-	 evokes ForceApplication as fa
-	 evokes MotionPath as mp
-	  constraints
-	    self.m.actionary <-- @motion
-	    self.m.protagonist.ontological-category <-- @agent
-	    self.fa <--> self.m.causalProcess
-	    self.mp <--> self.m.affectedProcess
-	    self.fa.actedUpon <--> self.m.affectedEntity
 
 construction ReturnType
 	subcase of LexicalVerbType
@@ -33,5 +11,14 @@ construction ReturnType
 	 constraints
 	   self.m.actionary <-- @move
 	   self.m.spg.goal <-- @home
-	   
-	   
+
+
+
+construction Move2
+	subcase of LexicalVerb, PastTense
+	form
+	   constraints
+	      self.f.orth <-- "moved"
+	meaning: Motion
+	 constraints
+	   self.m.actionary <-- @move
