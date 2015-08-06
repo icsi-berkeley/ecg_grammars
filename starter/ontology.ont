@@ -665,6 +665,14 @@ DEFS:
 
 (type blue sub colorValue)
 
+//
+
+(type boolean sub shared)
+
+(type yes sub boolean)
+
+(type no sub boolean)
+
 // numbers
 
 (type number sub quantifier)

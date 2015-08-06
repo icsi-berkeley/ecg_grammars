@@ -1,18 +1,33 @@
-package auxiliaries-testing
+package starter
 
 general construction Aux
 	subcase of HasVerbFeatures
-	meaning: ProcessFeatures
 
 general construction LexicalAux
 	subcase of Word, Aux
 	
+	
 general construction bhAux
 	subcase of Aux
+	
+general construction DoAux
+	subcase of LexicalAux
+	constructional
+	  constraints
+	    self.expectedVerbForm <-- Base
+
+construction DoAuxPast
+	subcase of DoAux, PastTense
+	form
+	  constraints
+	     self.f.orth <-- "did"
+	meaning
+      constraints
+         pf <--> self.m
 
 general construction BeAux
 	subcase of LexicalAux, bhAux
-
+/*
 construction BeAuxType
 	subcase of BeAux, VerbConjugation, GeneralTypeCxn
 	meaning
@@ -29,7 +44,7 @@ construction BeAuxType2
 	  constraints
 	    pf <--> self.m
 	    self.m.voice <-- @voice
-
+*/
 general construction AuxPlusVerb  // removed optional subj  
    	subcase of ComplexVerb
    	constructional 
@@ -53,7 +68,7 @@ general construction AuxPlusVerb  // removed optional subj
 			self.m.p-features <--> main.m.p-features
 			//aux.m.voice <-- @voice // over-ridden by Passive case
 			// subj.m <--> self.m.protagonist  // bind it if it appears 
-			
+/*		
 construction ProgressiveAuxPlusVerb  // was moving, has been moving
    	subcase of AuxPlusVerb
    	constructional 
@@ -66,3 +81,4 @@ construction ProgressiveAuxPlusVerb  // was moving, has been moving
 	meaning
 		constraints
 			aux.m.progressive <-- "yes"
+			*/

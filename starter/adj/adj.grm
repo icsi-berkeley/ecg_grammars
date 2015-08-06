@@ -43,7 +43,7 @@ construction SizeType
 	subcase of ScalarAdjective, GeneralTypeCxn
 	meaning
 	  constraints
-	    self.m.value <-- @sizeValue
+	    self.m.value <-- @scale
 	    self.m.property <-- @size
 	    self.m.domain <-- @physicalEntity
 	    //self.m.kind <-- @unmarked

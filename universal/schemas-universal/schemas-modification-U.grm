@@ -13,7 +13,7 @@ schema Modification
 		kind // @modifier-type   comparative, etc.
     	modifier
      	modifiedThing  // could be verb, etc.
-     	negated //@yes or blank
+     	negated: @boolean //@yes or blank
      	/// Gender? depends how we want to handle Spanish noun-adj agreement
      	// (Should be constructional, not semantic, but we also want it in SemSpec for ref res.)
 

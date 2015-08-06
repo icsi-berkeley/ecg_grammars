@@ -106,7 +106,7 @@ construction CopularVPAdjective
     	self.m <--> cop.m
         self.m.protagonist <--> ed.profiledParticipant
         self.m.state <--> adj.m
-        self.adj.m.modifiedThing <--> ed.profiledParticipant  // might be enough for Adj-N agreement 10/27/12
+        //self.adj.m.modifiedThing <--> ed.profiledParticipant  // might be enough for Adj-N agreement 10/27/12
  		self.adj.m.domain <--> ed.profiledParticipant.ontological-category // Adj-N agreement 10/27/12
  
 construction CopularVPNominal // 2/14/13

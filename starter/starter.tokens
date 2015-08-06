@@ -15,8 +15,8 @@ enter :: PathVerbType   :: self.m.actionary <-- @enter :: self.m.landmark.ontolo
 pencil :: ArtifactNoun :: self.m.ontological-category <-- @pencil
 man :: SentientNoun :: self.m.ontological-category <-- @person :: self.m.gender <-- @male
 woman :: SentientNoun :: self.m.ontological-category <-- @person :: self.m.gender <-- @female
-big :: SizeType :: self.m.value <-- @big
-small :: SizeType :: self.m.value <-- @small
+big :: SizeType :: self.m.value <-- ".7"
+small :: SizeType :: self.m.value <-- ".3"
 john :: ProperNPInstance :: self.m.ontological-category <-- @person :: self.m.referent <-- @john-instance :: self.m.gender <-- @male :: self.m.number <-- @singular
 push :: CauseEffectType :: self.m.actionary <-- @push_move
 stop :: StageVerbType :: self.m.actionary <-- @stop :: self.expectedVerbForm <-- PresentParticiple
