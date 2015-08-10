@@ -500,7 +500,7 @@ DEFS:
 
 (type walk sub motion)
 
-(type enter sub motion)
+(type exit sub motion)  //  7/8/15
 
 (type run sub motion)
 

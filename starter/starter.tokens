@@ -11,6 +11,7 @@ be      :: BeCopula  :: self.m.actionary <-- @be
 see     :: PerceptionType :: self.m.actionary <-- @see
 sprint  :: SelfMotionType  :: self.m.actionary <-- @run  :: self.m.speed <-- ".8"
 jog  :: SelfMotionType  :: self.m.actionary <-- @run  :: self.m.speed <-- ".6"
-enter :: PathVerbType   :: self.m.actionary <-- @enter :: self.m.landmark.ontological-category <-- @container
+enter :: PathVerbIn   :: self.m.actionary <-- @enter :: self.m.landmark.ontological-category <-- @container
+exit  :: PathVerbOut  :: self.m.actionary <-- @exit :: self.m.landmark.ontological-category <-- @container
 pencil :: NounType :: self.m.ontological-category <-- @pencil
 man :: NounType :: self.m.ontological-category <-- @person

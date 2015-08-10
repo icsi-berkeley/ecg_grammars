@@ -116,23 +116,17 @@ construction ActiveTransitivePossession  // 10/4/13
 */
 //TESTING of new analysis of 'enter' 11/5/13
 
-schema ChangeLocation // protagonist changes location wrt a LM
+schema ChangeLocation // protagonist changes location wrt a LM  7/7/15
    subcase of Process  
    evokes SPG as spg
    roles
-      mover
+      mover:RD
       landmark: RD
-     // source
-      //path
-      //goal
    constraints  
       mover <--> spg.trajector 
 	  mover <--> protagonist
       landmark <--> spg.landmark
-	 // source <--> spg.source
-     // path <--> spg.path
-     // goal <--> spg.goal 
-      protagonist.ontological-category <-- @physicalEntity  // hack 10/23/12
+      mover.ontological-category <-- @physicalEntity  // hack 10/23/12
       
 
 

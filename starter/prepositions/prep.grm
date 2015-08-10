@@ -23,7 +23,7 @@ construction IN-Locative // 11/4/13
    form
       constraints
          self.f.orth <-- "in" 
-   meaning  
+   meaning: TrajectorLandmark // inherited
      evokes BoundedObject as bo
      constraints
          //self.m.landmark.ontological-category <-- @container  // 2/22/14 commented out for m4 test

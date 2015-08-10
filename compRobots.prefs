@@ -12,6 +12,7 @@ PACKAGE_NAME ::==
 
 ONTOLOGY_PATHS ::==
 	./compRobots/ontology.ont
+	./starter/ontology.ont
 ;
 
 IMPORT_PATHS ::==

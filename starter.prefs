@@ -14,6 +14,7 @@ PACKAGE_NAME ::==
 
 ONTOLOGY_PATHS ::==
 	./starter/ontology.ont
+	./universal/O2.ont  // 7/29/15 new clean version
 ;
 
 IMPORT_PATHS ::==
@@ -21,7 +22,6 @@ IMPORT_PATHS ::==
 	./starter
 ;
 
-ONTOLOGY_PATHS = ./starter/ontology.ont
 
 MORPHOLOGY_PATH ::== 
 	./starter/celex.ecgmorph

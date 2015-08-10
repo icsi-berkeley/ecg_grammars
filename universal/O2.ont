@@ -6,17 +6,43 @@
 
 DEFS:
 
-(type shared)  // all elements of the shared ontology
+(type shared)  // all elements of the shared (with App) ontology
+
+(type keyword sub shared)  // for use in N-tuples;  not in content ontology ?? needed??
 
 (type item)  // very top of our lattice, not all shared
 
-// (type countable sub item)  no longer needed
+// top of ontological lattice _____________________________________________
 
-(type entity sub item)  // possibly shared items; maybe all entities are shared ****
+(type enumeration sub item)  // these are not sub entity, some in gramamr not shared
 
-(type hedgeVal sub shared)  // 4/8/13
+(type entity sub item)  // possibly shared items; maybe all entities are shared ****?
 
-//(type point sub region)   // 11//4/13, removed 3/2/14
+(type anaphor sub item)  // used in "his is red", etc.
+
+//(type modifier-type  sub item)  // not sub entity **************~temporal, needed ???
+
+// entities - Several others joint sub ; more in starter__________________________________
+
+(type abstract sub entity)
+
+(type effect sub entity)  // for EventRD, etc. 12/24/12
+
+(type process sub entity) // scales ??  10/18/13 is this right???  7/30/15
+
+//___________________________________
+
+(type measure sub enumeration)  // 11/20/12 shared??
+
+(type space sub measure)  // spatial domain
+
+(type time sub measure)  // temporal domain
+
+(type region sub  space entity)
+
+(type closedCurve sub region) 
+
+(type location sub region) // source for stateAsLocation
 
 (type location-concrete sub location )  //3/2/14
 
@@ -24,13 +50,7 @@ DEFS:
 
 (type physicalEntity sub entity location-concrete )
 
-//(type physicalEntity sub entity location )  // no interior 11//4/13; 3/2/14
-
-(type abstract sub entity)
-
 (type agent sub  physicalEntity ) // will include metaphorical agents? 2/5/13
-
-(type effect sub entity)  // for EventRD, etc. 12/24/12
 
 (type eventTop sub effect)  // 12/28/12 reject event as agent
 
@@ -54,89 +74,25 @@ DEFS:
 
 (type depression sub abstractState) // emotional scale
 
-(type keyword sub shared)  // for use in N-tuples; meta-language, not in content ontology
 
-(type enumeration sub item)  // these are not sub entity, some in gramamr not shared
-
-(type sharedEnumeration sub enumeration shared)
-
-(type anaphor sub item)  // used in "his is red", etc.
 
 (type grouper sub shaped physicalEntity ) // ~boundary,  e.g. bunch
 
 (type bunch sub  grouper)  // hack, needed for Quantity NP***********fix
 
-// m4 test ontology additions 2/22/14
+(type slide sub motion)  // think about actions and O2 ************************
 
-(type poverty sub socialProblem abstractState)
+(type hedgeVal sub shared)  // 4/8/13
 
-(type slide sub motion)
+(type sharedEnumeration sub enumeration shared) // if needed
 
-// metaphors
+// modifier types  ___________________________
 
-(type metaphors sub sharedEnumeration)  // names of known metaphors
 
-(type institutionAsPerson sub metaphors )
-
-(type stateAsLocation sub metaphors )  // Region ****
-
-(type SocialProblemsAsAnimateAgents sub metaphors )
-
-(type SocialProblemsAsDiseases sub metaphors )
-
-(type IdeasAsDiseases sub metaphors )
-
-(type MoneyASphysicalEntity sub metaphors )
-
-(type IdeasAsFood sub metaphors )
-
-(type DateAsMoveable sub metaphors )
-
-(type NaturalForcesAsAgents sub metaphors )  // 12/20/12
-
-//(type EntitiesAsAnimateBeings sub metaphors )
-
-//(type sizeAsDifficulty sub metaphors )
-
-// socialEntity
-
-(type socialEntity sub shaped entity )  // count,
-
-(type institution sub socialEntity  )
-
-(type group sub socialEntity )
-
-(type city-inst sub institution )  // 2 conceptualizations
-
-(type city-artifact sub artifact )
-
-(type disease sub physicalEntity ) // severity scale
-
-(type infection sub disease )
-
-(type food sub artifact)  // other parents and scales
-
-(type initiative sub idea )
-
-(type crime sub socialProblem)
-
-(type corruption sub crime)
-
-(type naturalForce sub physicalEntity )  // 12/29/12
-
-(type wind sub naturalForce )
-
-(type rain sub naturalForce )
-
-(type storm sub naturalForce eventTop )
-
-// modifier types
-
-//(type modifier-type  sub item)  // not sub entity **************
 
 //(type temporal sub modifier-type)
 
-// super-type and values for role values
+// super-type and values for role values ____________________________
 
 (type grammaticalValues  sub enumeration)  // not sub entity
 
@@ -202,7 +158,7 @@ DEFS:
 
 (type this sub deictic)
 
-// animate sentient
+// animate sentient  __________________________________
 
 (type animate sub shaped moveable agent physicalEntity)  // can also be numbered, etc.
 
@@ -220,7 +176,7 @@ DEFS:
 
 (type robot sub artifact sentient)
 
-// inanimate stuff
+// inanimate stuff  _____________________________________
 
 (type shaped sub entity)  // contrast with mass
 
@@ -262,7 +218,7 @@ DEFS:
 
 (type room sub container)
 
-// mass
+// mass  ________________________________________
 
 (type mass sub physicalEntity )  // contrast with shaped, weight, volume scales
 
@@ -278,7 +234,7 @@ DEFS:
 
 //
 
-// Instances
+// Instances   ???????????? do we need this
 
 //
 
@@ -332,11 +288,7 @@ DEFS:
 
 (type interaction sub process-kind)
 
-(type measure sub enumeration)  // 11/20/12 shared??
 
-(type space sub measure)  // spatial domain
-
-(type time sub measure)  // temporal domain
 
 (type date sub time entity)
 
@@ -366,11 +318,7 @@ DEFS:
 
 //
 
-(type region sub  space entity)
 
-(type closedCurve sub region)
-
-(type location sub region) // source for stateAsLocation
 
 (type deicticCenter sub location)
 
@@ -423,7 +371,7 @@ DEFS:
 
 // Voice
 
-(type voice sub item)
+(type voice sub item)  // change this ~ voiceValue 7/30/15  *********************
 
 (type  notPassive sub voice)
 
@@ -433,9 +381,9 @@ DEFS:
 
 //==================
 
-(type process sub entity) // scales ??  10/18/13 is this right???
 
-(type block-verb sub process)
+
+(type block-verb sub process)  // process currently sub entity
 
 (type stasis sub process)
 
@@ -486,8 +434,6 @@ DEFS:
 (type walk sub motion)
 
 (type enter sub motion)
-
-(type exit sub motion)
 
 (type run sub motion)
 
@@ -705,11 +651,7 @@ DEFS:
 
 (type yn-question sub mood)
 
-//
-
 // Modality
-
-//
 
 (type modality) // all of these are modalityValue
 
@@ -720,12 +662,7 @@ DEFS:
 (type could sub modality)
 
 (type should sub modality)
-
-//
-
-// WH Stuff
-
-//
+///
 
 (type wh-word)
 
@@ -735,14 +672,6 @@ DEFS:
 
 (type what sub wh-word)
 
-//
 
-// Numbers
-
-//
-
-//(type number sub entity)
-
-(type pencil sub entity artifact moveable)
 
 INSTS:

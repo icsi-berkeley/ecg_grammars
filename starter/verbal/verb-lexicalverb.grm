@@ -36,12 +36,27 @@ construction PerceptionType
 
 
 
-construction PathVerbType
-   subcase of LexicalVerbType
+general construction PathVerbType
+   subcase of LexicalVerbType  // 7/8/15
    meaning: ChangeLocation
+    evokes BoundedObject as bo
      constraints 
        self.m.actionary <-- @motion
        self.m.landmark.ontological-category <-- @location
+       self.m.landmark <--> bo.boundedObject 
+       
+  construction PathVerbIn  //7/8/15
+	subcase of  PathVerbType  
+       meaning: ChangeLocation
+       constraints
+       self.m.spg.goal <--> bo.interior
+       
+ construction PathVerbOut  //7/8/15
+	subcase of  PathVerbType  
+       meaning: ChangeLocation
+       constraints
+       self.m.spg.goal <--> bo.exterior
+       
 
 construction AgentDriveType
 	subcase of LexicalVerbType
