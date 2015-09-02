@@ -1,0 +1,206 @@
+ /***
+ ***
+ *** Pronouns
+ ***
+ ***/
+package premier
+
+general construction Pronoun
+   subcase of NP, Word
+   meaning
+    constraints
+      self.m.givenness <-- @inFocus 
+      self.m.bounding <-- @determinate
+      
+
+// Il is the third-person male French pronoun.
+construction Il
+   subcase of Pronoun, Singular, ThirdPerson
+   constructional
+     constraints
+       self.features.case <-- "nom"
+   form
+      constraints
+         self.f.orth <-- "il"
+   meaning
+    constraints
+      self.m.ontological-category <-- @person  
+      self.m.number <-- @singular
+      self.m.gender <-- @male
+      
+construction Ils
+   subcase of Pronoun, Plural, ThirdPerson
+   constructional
+     constraints
+       self.features.case <-- "nom"
+   form
+      constraints
+         self.f.orth <-- "Ils"
+   meaning
+    constraints
+      self.m.ontological-category <-- @person  
+      self.m.number <-- @plural
+      self.m.gender <-- @male
+
+
+// Elle is the third-person female French pronoun.
+construction Elle
+   subcase of Pronoun, Singular, ThirdPerson
+   constructional
+     constraints
+       self.features.case <-- "nom"
+   form
+      constraints
+         self.f.orth <-- "elle"
+   meaning
+    constraints
+      self.m.ontological-category <-- @person  
+      self.m.number <-- @singular
+      self.m.gender <-- @female   
+      
+      
+construction Tu
+   subcase of Pronoun, Singular, SecondPerson
+   constructional
+     constraints
+       self.features.case <-- "nom"
+   form
+      constraints
+         self.f.orth <-- "tu"
+   meaning
+    constraints
+      self.m.ontological-category <-- @person  
+      self.m.number <-- @singular
+      self.m.gender <-- @genderValues
+      
+            
+construction Elles
+   subcase of Pronoun, Plural, ThirdPerson
+   constructional
+     constraints
+       self.features.case <-- "nom"
+   form
+      constraints
+         self.f.orth <-- "elles"
+   meaning
+    constraints
+      self.m.ontological-category <-- @person  
+      self.m.number <-- @plural
+      self.m.gender <-- @female           
+	  
+general construction ObjectPronoun
+	subcase of Pronoun
+	constructional
+	   constraints
+	     // self.features.case <-- "acc"
+	                 
+
+general construction IOPronoun
+	subcase of ObjectPronoun
+	constructional
+	   constraints
+	     self.features.case <-- "dat"
+	meaning
+	   constraints
+	      self.m.ontological-category <-- @physicalEntity
+	      
+general construction DOPronoun
+	subcase of ObjectPronoun
+	constructional
+	   constraints
+	     self.features.case <-- "acc"
+	meaning
+	   constraints
+	      self.m.ontological-category <-- @physicalEntity
+	      	      
+construction IO-Lui
+   subcase of IOPronoun, Singular, ThirdPerson
+   form
+      constraints
+         self.f.orth <-- "lui"
+   meaning
+    constraints
+      self.m.ontological-category <-- @person
+      self.m.number <-- @singular
+
+construction IO-Y
+   subcase of IOPronoun, Singular, ThirdPerson
+   form
+      constraints
+         self.f.orth <-- "y"
+   meaning
+    constraints
+      self.m.ontological-category <-- @person
+      self.m.number <-- @singular
+      self.m.number <-- @genderValues
+      
+construction IO-En
+   subcase of IOPronoun, Singular, ThirdPerson
+   form
+      constraints
+         self.f.orth <-- "en"
+   meaning
+    constraints
+      self.m.ontological-category <-- @person
+      self.m.number <-- @singular
+      self.m.number <-- @genderValues
+	            
+construction DO_Masculine
+   subcase of DOPronoun, Singular, ThirdPerson
+   form
+      constraints
+         self.f.orth <-- "le"
+   meaning
+    constraints
+      self.m.ontological-category <-- @person
+      self.m.number <-- @singular
+      self.m.gender  <-- @male
+      self.m.referent <-- @antecedent
+	            
+construction DO_Feminine
+   subcase of DOPronoun, Singular, ThirdPerson
+   form
+      constraints
+         self.f.orth <-- "la"
+   meaning
+    constraints
+      self.m.ontological-category <-- @person
+      self.m.referent <-- @antecedent
+      self.m.number <-- @singular
+      self.m.gender  <-- @female      
+
+construction DO_Neutral
+   subcase of DOPronoun, Singular, ThirdPerson
+   form
+      constraints
+         self.f.orth <-- "en"
+   meaning
+    constraints
+      self.m.ontological-category <-- @person
+      self.m.referent <-- @antecedent
+      self.m.number <-- @singular
+      self.m.gender  <-- @genderValues 
+      
+construction DP-Omission
+	subcase of Kernel
+	constructional 
+		constituents
+			adj: PropertyAdjective
+			optional DP: DemonstratifPronoun-Celle
+	meaning
+		constraints 
+			self.m <--> DP.m 
+			self.m.ontological-category <-- @antecedent
+			self.m <--> adj.m.modifiedThing
+	
+construction DemonstratifPronoun-Celle
+	subcase of SingularNoun
+	constructional 
+		constraints
+			self.features.case <-- "nom"
+	form
+		constraints
+			self.f.orth <-- "celle"
+	meaning
+	  constraints
+	  	self.m.ontological-category <-- @antecedent
