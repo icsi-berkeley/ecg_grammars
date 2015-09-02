@@ -9,6 +9,12 @@ construction ProperNPInstance
 		self.m.gender <-- @genderValues
 		self.m.number <-- @RDnumberValues
 
+// e.g. "what color is box1?"
+construction PropertyNoun
+	subcase of NounType
+	meaning
+	  constraints
+	     self.m.ontological-category <-- @object-property
     
 // "Type" constructions
 construction NounType

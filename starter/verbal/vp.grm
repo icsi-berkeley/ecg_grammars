@@ -83,7 +83,7 @@ construction CopularVPLocative
   meaning: Stasis
     constraints
     	self.m <--> cop.m
-        ed.profiledParticipant <--> pred.m.trajector 
+        //ed.profiledParticipant <--> pred.m.trajector 
         self.m.protagonist <--> ed.profiledParticipant
         self.m.state <--> pred.m 
       

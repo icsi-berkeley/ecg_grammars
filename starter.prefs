@@ -21,8 +21,6 @@ IMPORT_PATHS ::==
 	./starter
 ;
 
-ONTOLOGY_PATHS = ./starter/ontology.ont
-
 MORPHOLOGY_PATH ::== 
 	./starter/celex.ecgmorph
 ;
@@ -30,7 +28,12 @@ MORPHOLOGY_PATH ::==
 TOKEN_PATH ::== 
 	./starter/starter.tokens
 ;
+
 TABLE_PATH = ./starter/starter.morph
+
+//GRAMMAR_PARAMS_PATHS ::== 
+//	./starter/test.sem
+//;
 
 ROBUST = FALSE 
 BEAM_SIZE = 20

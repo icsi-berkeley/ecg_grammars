@@ -1,10 +1,2 @@
 package purchases
 import purchases-testing
-
-construction ProperNPInstance
-	subcase of ProperNounNP, ThirdPerson, GeneralTypeCxn // Third person testing here ("Robot1")
-	meaning
-	  constraints
-		self.m.referent <-- @instance
-		self.m.ontological-category <-- @physicalEntity
-		self.m.gender <-- @genderValues

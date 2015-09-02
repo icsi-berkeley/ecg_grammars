@@ -208,3 +208,24 @@ schema DiscourseElement //meaning of Utterance
 		addressee.ontological-category <-- @sentient
 
 
+construction There-Copula
+	subcase of S
+	constructional
+	  constituents
+	    there1: THERE
+	    fin: VP
+	  constraints
+	    fin.verbform <-- Copula
+	form
+	  constraints
+	    there1.f before fin.f
+	meaning
+	  constraints
+	    self.m <--> fin.ed
+	   
+
+construction THERE
+	subcase of Word
+	form
+	  constraints
+	    self.f.orth <-- "there"
