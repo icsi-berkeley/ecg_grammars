@@ -31,6 +31,8 @@ TOKEN_PATH ::==
 	./starter/starter.tokens
 ;
 
+
+
 MAPPING_PATH = ./purchases/purchases.mappings
 
 TABLE_PATH = ./starter/starter.morph
@@ -47,6 +49,12 @@ MULTI_ROOT_PENALTY = -3
 
 EXAMPLE_SENTENCES ::==
  
+he sold the man a pizza
+he bought a pizza from the man
+he bought a pizza from the vendor
+he bought the man a pizza
+he sold a pizza
+
 the red block
 he moved
 he moved the blocks

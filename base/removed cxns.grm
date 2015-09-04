@@ -1,0 +1,922 @@
+
+
+
+//  ***  ARGUMENT STRUCTURE CXNS ****
+
+/*
+
+// if we want to keep this, would have to make other ArgumentStructure cxns a subcase of this one
+general construction ArgumentStructureAdverb  // 10/18/13
+  subcase of ArgumentStructure
+  constructional
+    constituents
+      adv: Adverbial 
+ meaning   
+	constraints
+        adv.m.modifiedThing <--> self.m
+
+
+
+
+Commented out for 3/20/13 test
+construction IntransitiveArgumentStructure_old  
+  subcase of ArgumentStructure
+  meaning: Scene 
+    constraints
+      self.m.a1 <--> ed.profiledParticipant
+      self.m.protagonist <--> ed.profiledParticipant //a1
+      self.m <--> v.m
+      v.m.p-features.voice <--  @notPassive
+
+ 
+// *** TRANSITIVE CXNS ***
+
+// NOTE:  need to build new cxns for Experiencer-Stimulus transitives
+// and Possession transitives
+	 
+   
+// the two cxns below seem to only have been used for testing:
+
+construction  CoreActiveTransitive   // 2/7/13  hack, for debug
+  subcase of ActiveTransitive
+	meaning: SeeScene  		
+
+construction  CorePassiveTransitive   // 2/8/13, hack
+  subcase of PassiveTransitive
+	meaning: SeeScene  
+		constraints
+		 	self.m.a2 <--> ed.profiledParticipant	
+
+And the SeeScene schema seems to only have been used in the 2 cxns above
+schema SeeScene //  2/7/13 hack to get a minimal Scene
+	subcase of Scene
+	roles
+	   experiencer
+	   seen
+	constraints
+		 experiencer <--> a1
+		 seen <--> a2
+
+  recheck with new Scene design 2/2/13  **********************************************
+construction ActivePossessionArgStruct//  12/1/12
+  subcase of ActiveTransitive 
+  constructional
+    constituents
+      v : PossessionVerb // own, have, evokes Possession
+   meaning
+	evokes Possession as poss  // needed for analyzer
+	constraints
+	  self.poss.possessor <--> ed.profiledParticipant
+	  self.poss.possessed <--> np.m
+	  v.m.extra <--> self.poss  // brings in Possession.kind
+
+
+*/
+
+/*
+// the Trans_Causation cxns below were superceded by cxns that use the CauseEffect schema rather than the Causation_test
+// as their meaning (3/20/14)
+
+  The general Trans_Causation cxn, below, describes a prototypical 'causal' scenario.  
+  This meaning is reprsented using the Causation_test schema, shown here as a COMMENTED OUT DUPLICATE:
+ 
+     schema Causation_test // general causation schema   DUPLICATE
+       subcase of ComplexProcess
+   		roles
+   			causer
+			causalProcess
+			affected
+			affectedProcess
+			outcome // type??
+			//cause: eventRD
+			//effect: eventRD
+  		 constraints
+     		causalProcess <--> process1  
+      		affectedProcess <--> process2
+      		causer <--> protagonist
+      		affected <--> protagonist2
+	  		complexKind <-- @causal// causal relation between proc 1 and 2
+
+   (5/24/13): NOTE that the Causation_test schema does not currently have any constraints
+      on the ontological type of its participants. e.g. does not constrain them to be
+      @physicalEntity.  Such constraints could be added to the schema, and/or could be added
+      to specific constructions in which they are relevant. 
+
+ 
+general construction Trans_Causation // 
+  subcase of ArgumentStructure
+    meaning: Causation_test // Process schema
+     evokes A123 as s
+     constraints
+	    s.a1 <--> self.m.causer
+        s.a2 <--> self.m.affected 
+
+//SUBCASES of Trans_Causation are defined for different verb types (grouped by how they elaborate Causation scene)
+//Active and Passive cxns are defined as further subcases
+
+ 
+//In the central subcase of Trans_Causation, the verb constituent incorporates Causation in its meaning, e.g. cut 
+
+//this cxn commmented out for 2/11/14 test
+general construction Trans_Causation_central 
+  subcase of Trans_Causation
+    meaning
+     constraints
+	    self.m <--> v.m
+
+
+// In the 'causalAction' subcase, the verb constituent has meaning related to force-application, e.g. push, slap 
+
+// cxn commmented out for 2/11/14 test
+general construction Trans_Causation_causalAction 
+  subcase of Trans_Causation
+    meaning
+     evokes ForceApplication as fa
+     constraints
+	    v.m <--> fa
+        self.m.process1 <--> fa
+        fa.actedUpon <--> self.m.affected        
+
+
+this cxn commmented out for 2/12/14 test
+general construction Trans_Causation_effectProcess_test2 // e.g. move 
+  subcase of Trans_Causation
+    meaning
+    constraints
+        v.m <--> self.m.affectedProcess
+   
+*/
+
+
+/*
+3/22/13 testing
+added Causation schema that would probably replace CauseEffectAction, CauseEffectProces, 
+and PhysicalCauseEffect schemas.
+
+Also added EntityCauseEntity scene.  This works as subcase of current Scene schema,
+but note that if we define causal scenes in which a1 or a2 are bound to events, we
+will need to revise Scene schema (specifically, need to remove binding constraints)
+
+The two new transitive cxns below successfully support analysis of He pushed the box and 
+He moved the box.  
+
+The ATrans_CauseChangeLoc cxns support analysis of:
+He moved the box two inches / up / into the block
+He pushed the box up / into the block
+
+
+schema EntityCauseEntityScene_test // proposed
+   subcase of Causation_test, Scene  // tried A123  5/8/13  ***************
+      constraints
+      a1 <--> causer
+      a2 <--> affected
+
+
+testing 3/25/13 
+old version, in which meaning: Scene (rather than evoking A123, as in new version)
+ 
+
+
+construction A_Trans_Causation_causalAction_test //he pushed the box
+  subcase of ActiveTransitive
+    meaning: EntityCauseEntityScene_test // Scene
+     evokes ForceApplication as fa
+     constraints
+	    v.m <--> fa
+        self.m.process1 <--> fa
+        fa.actedUpon <--> self.m.affected
+*/      
+
+/*
+the following six constructions have been replaced by ones above with same names, plus "2"
+the difference is that new cxns have Process meaning rather than Scene meaning
+
+general construction Trans_Causation_causalAction_test //he pushed the box
+  subcase of ArgumentStructure
+    meaning: EntityCauseEntityScene_test // Scene
+     evokes ForceApplication as fa
+     constraints
+	    v.m <--> fa
+        self.m.process1 <--> fa
+        fa.actedUpon <--> self.m.affected        
+        
+        
+construction ActiveTrans_Causation_causalAction_test //he pushed the box
+  subcase of ActiveTransitive, Trans_Causation_causalAction_test      
+        
+construction PassiveTrans_Causation_causalAction_test // the box was pushed (by him)
+  subcase of PassiveTransitive, Trans_Causation_causalAction_test           
+
+
+general construction Trans_Causation_effectProcess_test //he moved the box
+  subcase of ArgumentStructure // more specific?
+    meaning: EntityCauseEntityScene_test // Scene
+    constraints
+        v.m <--> self.m.affectedProcess
+
+construction ActiveTrans_Causation_effectProcess_test //he moved the box
+  subcase of ActiveTransitive, Trans_Causation_effectProcess_test      
+        
+construction PassiveTrans_Causation_effectProcess_test // the box was moved (by him)
+  subcase of PassiveTransitive, Trans_Causation_effectProcess_test               
+ 
+ 
+5/2/13 -- testing change to diff approach to active/passive distinction 
+
+general construction ATrans_CauseChangeLocation_Test 
+  subcase of ActiveTransitive
+  constructional
+   constituents//one of these needs to be present
+      optional dis: SpatialQuantityNP
+      optional dir: Directional 
+      optional pp: Path-PP  
+   constraints
+	// v.argform <-->
+   form
+     constraints
+	   np.f before dis.f 
+       dis.f before dir.f
+       dir.f before pp.f   
+   meaning: EntityCauseEntityScene_test 
+	evokes  MotionPath as mp 
+      // evokes  SourcePathGoal as spg
+     constraints 
+       	self.m.affectedProcess <--> mp
+       	self.m.affected <--> mp.mover 
+    	self.m.affected <--> mp.spg.trajector
+    	mp.spg <--> pp.m
+   		// spg <--> mp.spg
+    	mp.spg.distance <--> dis.m 
+	    //spg.distance <--> dis.m 
+	    mp.heading <--> dir.m 
+
+construction ATrans_CauseChangeLoc_mp_test  
+  subcase of ATrans_CauseChangeLocation_Test 
+  meaning
+    constraints
+      mp <--> v.m      
+
+construction ATrans_CauseChangeLoc_fa_test  
+  subcase of ATrans_CauseChangeLocation_Test 
+  meaning
+  evokes ForceApplication as fa
+     constraints
+	    v.m <--> fa
+        self.m.process1 <--> fa 
+        fa.actedUpon <--> self.m.affected // for transitive resultative only    
+*/
+
+/* 5/1/13 test for change in active/passive analysis
+
+
+general construction Trans_CauseChangeLocation_Test 
+  subcase of ArgumentStructure  // should this be more specific? Trans_Causation? 
+  constructional
+   constituents//one of these needs to be present
+      optional dis: SpatialQuantityNP
+      optional dir: Directional 
+      optional pp: Path-PP  
+   constraints
+	// v.argform <-->
+   form
+     constraints
+	   v.f before dis.f 
+       dis.f before dir.f
+       dir.f before pp.f   
+   meaning: EntityCauseEntityScene_test 
+	evokes  MotionPath as mp 
+      // evokes  SourcePathGoal as spg
+     constraints 
+       	self.m.affectedProcess <--> mp
+       	self.m.affected <--> mp.mover 
+    	self.m.affected <--> mp.spg.trajector
+    	mp.spg <--> pp.m
+   		// spg <--> mp.spg
+    	mp.spg.distance <--> dis.m 
+	    //spg.distance <--> dis.m 
+	    mp.heading <--> dir.m 
+
+general construction Trans_CauseChangeLoc_mp_test  
+  subcase of Trans_CauseChangeLocation_Test 
+  meaning
+    constraints
+      mp <--> v.m     
+      
+construction ActiveTrans__CauseChangeLoc_mp_test //he moved the block into the box
+  subcase of ActiveTransitive, Trans_CauseChangeLoc_mp_test     
+  form
+     constraints
+	   np.f before dis.f  
+	   
+construction PassiveTrans__CauseChangeLoc_mp_test //The block was moved into the box (by him)
+  subcase of PassiveTransitive, Trans_CauseChangeLoc_mp_test  
+  
+
+// 5/20/13 change meaning from Scene to Process
+//define as subcase of Trans_Causation
+
+//general construction Trans_CauseChangeLocation_Test2 
+//MOVED to motion.grm
+
+  
+*/
+	    
+
+
+//The ActiveTranstive and PassiveTransitive cxns, which identify their meaning with
+// the Scene schema below were replaced by cxns of same/similar
+//name which identify meaning with Process and evoke A123
+
+// General Active Transitive
+
+/*  11/4/13 temp
+general construction ActiveTransitive  // 12/1/12
+  subcase of ArgumentStructure
+  constructional
+    constituents
+      np: NP [1.0, .9]   // probablilties, check this !!
+    constraints
+      v.argform <-- Transitive
+      v.voice <-- NotPassive  // 2/1/13
+  form
+    constraints 
+      v.f before np.f
+  meaning: Scene  //2/2/13  
+  // evokes A123 as s //5/8/13 *****************
+    constraints
+     // v.m <--> self.m central case only
+      self.m.a1 <--> ed.profiledParticipant	//2/20/13 
+      np.m <--> self.m.a2 
+	  v.m.p-features.voice <-- @active // 2/1/13 
+ 11/4/13 temp
+ */
+
+ // General Passive Transitive
+ 
+//changes made in PassiveTransitive cxn  in argstruct-transitive.grm 11/4/13
+/*   11/4/13 temp
+general construction PassiveTransitive  // he was Xed 2/8/13
+  subcase of ArgumentStructure
+  constructional
+    constituents
+     v:Verb // inherited
+     optional byPhrase: ByAgentPhrase
+    constraints
+      v.argform <-- Transitive
+      v.voice <-- Passive  // 2/1/13
+ form
+    constraints
+      v.f before byPhrase.f
+  meaning: Scene  // need to change to Process 5/14/13
+  //need to evoke A123 as s    5/14/13
+    constraints
+	 v.m.p-features.voice <-- @passive
+	 self.m.a1 <--> byPhrase.m.landmark //change to s.a1 
+	 self.m.a2 <--> ed.profiledParticipant //change to s.a2
+
+11/4/13 temp
+ */
+
+/*
+
+
+// Subcases of the ActiveTransitive and PassiveTransitive cxns above were also replaced 
+
+// ACTIVE cxns
+// previous versions that define seperate Passive hierarchy    
+ general construction ActiveTransitiveCEA  //2/2/13 
+  subcase of ActiveTransitive
+  constructional
+    constituents
+      optional prep: Particle
+  form
+    constraints
+      	v.f before np.f
+      	np.f before prep.f
+  meaning: CauseEffectAction
+    constraints
+  		np.m.ontological-category <-- @physicalEntity 
+		v.m.p-features.particle <--> prep.m // TODO 
+ 
+     
+      test 2/2/13 replace old one below?
+general construction ActiveTransitiveCEA2  
+  subcase of ArgumentStructure
+  constructional
+    constituents
+      np: NP  // [1.0, .9]   probablilties, check this !!
+      optional prep: Particle
+    constraints
+      v.argform <-- Transitive
+  form
+    constraints
+      v.f before np.f
+      np.f before prep.f
+  meaning: CauseEffectAction // maybe a general verb class 1/31/13
+    constraints
+      self.m.affected <--> np.m
+	  np.m.ontological-category <-- @physicalEntity  // 11/21/12
+	  v.m.p-features.particle <--> prep.m.val // TODO,   *** change Process?
+
+
+// causative action, Causer profiled
+// 5/24/13 replaced by ActiveTrans_Causation_causalAction
+
+
+construction ActiveTransitiveProfiledCauser // e.g.  he slapped the table
+  subcase of ActiveTransitiveCEA
+  meaning: CauseEffectAction 
+    evokes ForcefulMotionAction as fma
+    constraints
+      v.m <--> fma
+      self.m.process1 <--> fma.process1
+      self.m.actionary <--> fma.routine
+      self.m.causer <--> ed.profiledParticipant 
+
+
+// commented out for demo 10/31
+// causative action,  Instrument profiled
+// e.g.  The hammer hit the table
+
+construction ActiveTransitiveProfiledInstrument
+  subcase of ActiveTransitiveCEA
+  meaning: CauseEffectAction   
+    evokes ForcefulMotionAction as fma
+    constraints
+      v.m <--> fma
+      self.m.process1 <--> fma.process1
+      self.m.actionary <--> fma.routine
+      self.m.process1.instrument <--> ed.profiledParticipant
+	  self.m.process1.instrument <-- @instrument  
+
+
+
+// Agentively caused process, Causer profiled
+// 5/24/13 replaced by ActiveTrans_Causation_effectProcess
+
+construction ActiveTransitiveProfiledCauserResultMotion // e.g.  He slid the box
+  subcase of ActiveTransitiveCEA
+  meaning: CauseEffectAction 
+    evokes Motion as mp
+    constraints
+      mp <--> v.m
+      self.m.process2 <--> mp
+      self.m.causer <--> ed.profiledParticipant // also a1 <-->
+
+
+//ActiveTransitiveForceApplication is defined as direct subcase of ActiveTransitive rather than ActiveTransitiveCEA
+// 5/24/13: ActiveTransitiveForceApplication is replaced by ActiveTrans_Causation_causalAction 
+
+construction ActiveTransitiveForceApplication  // he pushed the box 2/2/13
+  subcase of ActiveTransitive
+   meaning: CauseEffectAction
+    evokes ForceApplication as fa
+     constraints
+	  v.m <--> fa
+      self.m.process1 <--> fa
+      self.m.affected  <--> np.m  //a2
+      self.m.causer <--> ed.profiledParticipant  //a1
+	  //self.m.affected.ontological-category <--> np.m.ontological-category
+	  //self.m.causer.ontological-category <--> ed.profiledParticipant.ontological-category
+
+
+// ActiveTransitiveCentralCase identifies its meaning with a subcase of Scene schema.
+// Also, it is defined as a direct subcase of ArgumentStructure rather than ActiveTransitive.
+// As of 5/24/13, it is replaced by ActiveTrans_Causation_central 
+
+construction ActiveTransitiveCentralCase  // should use ActiveTransitive
+  subcase of ArgumentStructure
+  constructional
+    constituents
+      np: NP [1.0, .9]   // probablilties, check this !!
+      // optional prep: Particle
+    constraints
+      v.argform <-- Transitive
+  form
+    constraints
+      v.f before np.f
+      //np.f before prep.f
+  meaning: CauseEffectAction
+    constraints
+      v.m <--> self.m
+      self.m.affected <--> np.m // also other 12/31/12
+      self.m.affected.ontological-category <--> np.m.ontological-category
+	  //v.m.p-features.particle <--> prep.m.val // TODO,   *** change Process?
+	  self.m.causer.ontological-category <--> ed.profiledParticipant.ontological-category
+	  self.m.causer <--> ed.profiledParticipant
+	  ed.profiledParticipant.ontological-category <-- @physicalEntity  // 11/21/12
+
+
+// PASSIVE cxns
+// previous versions that define seperate Passive hierarchy
+
+general construction PassiveCEA  // new 2/3/31 
+  subcase of PassiveTransitive
+constructional
+    constituents
+       optional byPhrase: ByAgentPhrase
+        v: Verb  
+  form
+    constraints
+      v.f before byPhrase.f
+  meaning: CauseEffectAction
+    constraints
+       	self.m.affected <--> ed.profiledParticipant
+
+//5/24/13 replaced by PassiveTrans_Causation_causalAction
+// e.g. he was slapped (by her)
+construction PassiveCEACauserBYPhrase  // require byPhrase ??
+  subcase of PassiveCEA
+  meaning
+      evokes ForcefulMotionAction as fma
+    constraints
+      v.m <--> fma
+      self.m.process1 <--> fma.process1 
+      self.m.causer <--> byPhrase.m.landmark
+      self.m.actionary <--> fma.routine
+
+//5/24/13 replaced by PassiveTrans_Causation_effectProcess_test2
+// e.g. the box was moved (by him)
+construction PassiveCEACauserBYPhraseResultMotion //1/31/13
+  subcase of PassiveCEA
+  meaning
+    evokes Motion as mp  // too specific  1/28/13
+    constraints
+      mp <--> v.m
+      self.m.process2 <--> mp
+      self.m.causer <--> byPhrase.m.landmark  // also a1  <-->  
+
+
+// 5/24/13: PassiveCEA1 and PassiveCEA2 cxns don't have any specific subcases
+general construction PassiveCEA1
+  subcase of PassiveCEA
+  constructional
+    constraints
+       v.features.verbform <-- PastParticiple //  OK, @passive
+  
+general construction PassiveCEA2
+  subcase of PassiveCEA
+  constructional
+    constraints
+       //v.features.verbform <-- PastParticiple //  Not in this case
+  meaning: CauseEffectAction
+    constraints
+		v.m.p-features.voice <-- @passive  // alternative constraint
+
+
+
+// PassiveCauseEffect
+//older version, direct subcase of ArgumentStructure, has Scene meaning, 
+
+construction PassiveTransitiveCentralCase // test 10/16/12
+  subcase of ArgumentStructure
+  constructional
+    constituents
+       optional byPhrase: ByAgentPhrase
+       v: Verb
+    constraints
+       v.voice <-- Passive
+  form
+    constraints
+      v.f before byPhrase.f
+  meaning: CauseEffectAction
+    constraints
+      self.m <--> v.m
+      self.m.affected <--> ed.profiledParticipant
+	  v.m.p-features.voice <-- @passive	  
+      self.m.affected.ontological-category <--> ed.profiledParticipant.ontological-category 
+      self.m.causer <--> byPhrase.m.landmark
+      //self.m.causer.ontological-category <--> byPhrase.m.landmark.ontological-category
+
+      
+ 
+//still older version, direct subcase of ArgumentStructure
+
+general construction PassiveCEA
+  subcase of ArgumentStructure
+constructional
+    constituents
+       optional byPhrase: ByAgentPhrase
+       v: Verb
+    constraints
+       v.voice <-- Passive
+  form
+    constraints
+      v.f before byPhrase.f
+  meaning: CauseEffectAction
+    constraints
+       	self.m.affected <--> ed.profiledParticipant
+		v.m.p-features.voice <-- @passive	  
+
+
+
+// commented out for demo 10/31
+construction PassiveCEAInstrumentBYPhrase
+  subcase of PassiveCEA
+  meaning
+      evokes ForcefulMotionAction as fma
+    constraints
+      v.m <--> fma
+      self.m.process1 <--> fma.process1
+      self.m.process1.instrument <--> byPhrase.m.landmark
+      self.m.actionary <--> fma.routine
+	  self.m.process1.instrument <-- @instrument
+
+
+  
+This set of cxns seem to only have been used for testing compositional
+approach to active and passive.
+
+general construction ActiveTransitiveForm  // test 10/29
+  subcase of ArgumentStructure
+  constructional
+    constituents
+      np: NP [1.0, .9]   // probablilties, check this !!
+      // optional prep: Particle
+    constraints
+      // v.argform <-- Transitive
+  form
+    constraints
+      v.f before np.f
+      //np.f before prep.f
+  meaning: ComplexProcess  //further constraint: protag is not bound to protag2
+    constraints
+      self.m.protagonist2 <--> np.m
+      self.m.protagonist <--> ed.profiledParticipant
+      
+general construction CauseEffectAS  // test 10/29
+  subcase of ArgumentStructure
+  meaning: CauseEffectAction
+    constraints
+
+
+ schema CauseEffectProcess
+   subcase of ComplexProcess 
+   roles
+      process1: Process
+      process2: Process   // result
+      causer: RD
+      affected: RD
+   constraints
+      protagonist <--> causer
+      protagonist2 <--> affected
+      complexKind <-- @causal
+      
+ // Infecting schema below used for demo
+schema Infecting
+   subcase of CauseEffectProcess
+   roles
+      infection
+      victim
+   constraints
+      protagonist <--> infection
+      protagonist2 <--> victim
+            
+
+
+
+schema PhysicalCauseEffect
+   subcase of  CauseEffectProcess
+   roles
+      process1: Process
+      process2: Process   // result
+      causer: RD
+      affected: RD
+   constraints
+      causer.ontological-category <-- @physicalEntity
+      affected.ontological-category <-- @physicalEntity
+      protagonist <--> causer
+      protagonist2 <--> affected
+      complexKind <-- @causal
+
+
+// e.g. cut
+general construction CauseEffectAS_central  // test 10/29
+  subcase of CauseEffectAS
+  meaning: PhysicalCauseEffect
+    constraints
+		self.m <--> v.m
+		
+//e.g. he cut the box
+construction ActiveCauseEffectAS  // test 10/30
+  subcase of ActiveTransitiveForm, CauseEffectAS_central
+  
+//e.g. hit
+general construction CauseEffectASProfiledCause2
+ subcase of CauseEffectAS
+
+//e.g. he hit the box
+construction ActiveCauseEffectASProfiledCause2  // test 10/30
+  subcase of ActiveTransitiveForm, CauseEffectASProfiledCause2
+
+  meaning: CauseEffectAction
+    evokes ForcefulMotionAction as fma
+    constraints
+      v.m <--> fma 
+      fma.process1 <--> self.m.process1
+
+
+// Event Causation constructions, e.g. The storm/his pushing moved the box
+// The constructions below were replaced by Trans_effectCausation cxn and subcases 3/20/14       
+
+general construction Trans_Causation_eventCause // 
+  subcase of ArgumentStructure
+    meaning: Causation_test // Process schema
+     evokes A123 as s
+     constraints
+	  s.a1 <--> self.m.causalEvent
+      s.a2 <--> self.m.affected
+        
+
+general construction Trans_Causation_eventCause_effectProcess // e.g. move 
+  subcase of Trans_Causation_eventCause
+    meaning
+    constraints
+        v.m <--> self.m.affectedProcess
+
+//his pushing moved the box
+construction ActiveTrans_Causation_eventCause_effectProcess 
+  subcase of ActiveTransitive, Trans_Causation_eventCause_effectProcess
+        
+
+// the box was moved by his pushing
+construction PassiveTrans_Causation_eventCause_effectProcess 
+  subcase of PassiveTransitive, Trans_Causation_eventCause_effectProcess
+
+
+//  *** MOTION CXNS ***
+
+//Intransitive Motion
+
+construction ActiveMotionPath1   // he moved to the box
+  subcase of ArgumentStructure 
+  constructional
+    constituents
+      pp: Path-PP     
+  constraints
+        v.voice <-- NotPassive  //2/4/13
+  form 
+    constraints
+       v.f before pp.f 
+  meaning: MotionPath 
+    constraints 
+      self.m <--> v.m
+      self.m.spg <--> pp.m
+      self.m.mover <--> ed.profiledParticipant // active voice profiles the Mover role
+ 	  
+
+construction ActiveMotionDirection   // Passive has Cause
+  subcase of ArgumentStructure
+  constructional
+    constituents
+      dir: Directional     
+  constraints
+        v.voice <-- NotPassive
+  form
+    constraints
+      v.f before dir.f  
+  meaning: MotionPath 
+    constraints
+      self.m <--> v.m
+      self.m.heading <--> self.dir.m 
+      self.m.mover <--> ed.profiledParticipant //  profiles the Mover role
+
+construction ActiveMotionDistance // optional direction 
+  subcase of ArgumentStructure
+  constructional
+    constituents
+      dis: SpatialQuantityNP 
+      optional dir: Directional      
+   constraints
+        v.voice <-- NotPassive
+  form
+    constraints
+      v.f before dis.f 
+      dir.f before dis.f
+      v.f before dir.f   
+  meaning: MotionPath 
+    constraints
+      self.m <--> v.m
+      self.m.p-features.particle <--> self.dir.m 
+      self.m.spg.distance <--> dis.m 
+      self.m.mover <--> ed.profiledParticipant // active voice profiles the Mover role
+
+
+// this schema has been replaced by CauseMotion  4/17/2014
+schema CauseMotionPathAction
+  subcase of CauseEffectAction
+  roles
+    process2: MotionPath
+
+
+
+
+
+construction ActiveTransCausedMotionPath_FMA  //temp for 10/31
+  subcase of ArgumentStructure
+  constructional
+    constituents
+      np: NP
+      pp: Spatial-PP
+  form
+    constraints
+      v.f before np.f
+  	  np.f before pp.f   
+ meaning: CauseMotionPathAction
+    evokes ForcefulMotionAction as fma
+    constraints
+      fma <--> v.m     
+      self.m.process1 <--> fma.process1
+      self.m.affected <--> np.m 
+      self.m.protagonist <--> ed.profiledParticipant
+      self.m.process2.spg <--> pp.m
+
+
+//Transitive Motion
+construction ActiveTransitiveCausedMotionPath  //distance, direction, pp
+  subcase of ArgumentStructure
+  constructional
+    constituents
+      np: NP
+      optional dis: SpatialQuantityNP
+      optional dir: Directional 
+      optional pp: Path-PP  //12/31/12
+    constraints
+      v.argform <-- Transitive      
+  form
+    constraints
+      v.f before np.f
+  	  np.f before dis.f
+  	  dis.f before dir.f
+      dir.f before pp.f   
+  meaning: CauseMotionPathAction
+    evokes MotionPath as mp
+    constraints
+      mp <--> v.m     
+      self.m.process2 <--> mp 
+      self.m.affected <--> np.m 
+      self.m.protagonist <--> ed.profiledParticipant
+      //mp.p-features.heading <--> dir.m  // maybe change
+	  mp.spg.distance <--> dis.m 
+	  self.m.process2.spg <--> pp.m 
+
+
+  	
+general construction PassiveTransitiveCausedMotionPath  // check this ***********
+  subcase of ArgumentStructure
+  constructional
+    constituents
+      pp: Spatial-PP      
+      //optional byPhrase: ByPhrase
+    constraints
+      //features.verbform <-- PastParticiple
+  form
+    constraints
+      v.f before pp.f  
+      //pp.f before byPhrase.f
+  meaning: CauseMotionPathAction  
+    evokes MotionPath as mp
+    constraints
+      //mp <--> v.m     
+      //self.m.process2 <--> mp  
+      //self.m.process2.spg <--> pp.m
+      //self.m.affected <--> ed.profiledParticipant
+
+
+construction ActiveTransitiveMoveBodyPart
+  subcase of ArgumentStructure
+  constructional
+    constituents
+      np: NP
+  form
+    constraints
+      v.f before np.f  
+  meaning: MoveBodyPart
+    constraints
+      self.m <--> v.m  
+      self.m.effector <--> np.m 
+      self.m.protagonist <--> ed.profiledParticipant
+*/
+
+
+//
+//  **** Removed NP cxns   ****
+// 
+
+//replaced by Gerund, Bare Gerund, and AccNPGerund cxns 
+/*
+  construction  DeverbalKernelGerund   // 12/24/12 his moving, 
+  subcase of Kernel //1/10/13
+  constructional
+   constituents 
+        vp: VP 
+     constraints
+      	vp.verbform <--  PresentParticiple    
+	meaning: EventRD  // EventRDAgent ???? 
+	constraints
+		self.m.description <--> vp.m.ed
+		self.m.number <-- @singular  //hack
+		self.m.ontological-category  <-- @eventTop
+		self.m.description.eventForm   <-- @gerund // 1/19/13
+		
+*/

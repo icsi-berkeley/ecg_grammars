@@ -18,7 +18,7 @@ construction ActiveMotionPath   // he moved to the block
       dir.f before pp.f   
   meaning: MotionPath
     constraints 
-      self.m <--> v.m
+      v.m <--> self.m
       self.m.spg.distance <--> dis.m 
 	  self.m.heading <--> dir.m 
       self.m.spg <--> pp.m

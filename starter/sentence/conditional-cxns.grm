@@ -1,0 +1,124 @@
+package conditionals
+import starter
+
+
+ // Imports a motion package declared in 
+ // compRobots directory (distinguished from same-name package in first)
+ // For the purposes of testing and practicality.
+//import motion
+
+
+general construction Conjunction
+   subcase of Word
+   
+general construction LogicalConjunction
+	subcase of Conjunction
+
+general construction SerialConjunction
+   subcase of Conjunction
+
+construction Then-Serial
+   subcase of SerialConjunction
+   form
+      constraints
+        self.f.orth <-- "then"
+        
+construction Than
+	subcase of SerialConjunction
+	form
+	  constraints
+	    self.f.orth <-- "than"
+	    
+construction And-Conjunction
+	subcase of LogicalConjunction
+	form
+	  constraints
+	    self.f.orth <-- "and"
+	    
+general construction Conditional
+  subcase of Word
+
+construction Then-Conditional
+  subcase of Conditional
+  form
+    constraints
+      self.f.orth <-- "then"
+
+construction If
+  subcase of Conjunction
+  form
+    constraints
+      self.f.orth <-- "if"
+
+general construction ConditionalImperative
+	subcase of Imperative
+	constructional
+	  constituents
+	    cond: If
+	    bool: Declarative
+	    optional c: Comma
+	    optional then2: Then-Conditional
+	    core: SimpleImperative
+	  constraints
+	    core.vp.verbform <-- Base
+	 meaning: ComplexED
+	  constraints
+	    self.m.profiledParticipant <--> core.m.profiledParticipant
+	    //self.m.ed1 <--> bool.m
+	    //self.m.ed2 <--> core.m
+	    self.m.complexKind <-- @conditional
+      
+construction StandardConditionalImperative
+	subcase of ConditionalImperative
+	form
+	  constraints
+	    cond.f meets bool.f
+	    bool.f meets then2.f
+	    bool.f before core.f
+	meaning
+	  constraints
+	   	self.m.ed1 <--> bool.m
+	    self.m.ed2 <--> core.m
+	    
+// "Robot1, move to the blue box if it is near the green box!"	      
+construction InverseConditional	
+	subcase of ConditionalImperative 
+	form
+	  constraints
+	  	core.f meets cond.f
+	    cond.f meets bool.f
+	meaning
+	  constraints
+	   	self.m.ed1 <--> bool.m
+	    self.m.ed2 <--> core.m
+
+// ConditionalDeclarative
+general construction ConditionalDeclarative
+	subcase of S
+	constructional
+	  constituents
+	    cond: If
+	    bool: Declarative
+	    optional c: Comma
+	    optional then2: Then-Conditional
+	    core: Declarative
+	 meaning: ComplexED
+	  constraints
+	    self.m.profiledParticipant <--> core.m.profiledParticipant
+	    //self.m.ed1 <--> bool.m
+	    //self.m.ed2 <--> core.m
+	    self.m.complexKind <-- @conditional	    
+
+
+construction StandardConditionalDeclarative
+	subcase of ConditionalDeclarative
+	form
+	  constraints
+	    cond.f meets bool.f
+	    bool.f meets then2.f
+	    bool.f before core.f
+	meaning
+	  constraints
+	   	self.m.ed1 <--> bool.m
+	    self.m.ed2 <--> core.m	    
+	          

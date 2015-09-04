@@ -1,0 +1,203 @@
+
+
+//As of 1/30/14 this file contains cxns which support analysis of examples such as:
+// The box moved (five inches) (north) into the room
+// He moved the box (five inches) (north) (into the room)
+
+
+
+//INTRANSITIVE MOTION cxns
+
+/*
+Intransitive motion cxns should ultimately handle various combinations of 'path' descriptor constituents:
+  distance -- e.g. two inches
+  direction -- e.g up, north
+  path -- e.g. into the box
+
+The ActiveMotionPath cxn below supports analysis of many possible patterns by making all of
+ these constituents optional. But, are two problems with this approach:
+    -- this cxn also fits sentences in which none of these constiutents are present, e.g. He moved.  
+    -- it doesn't handle some of the possible orderings of these constituents, e.g. He moved up two inches.
+
+One solution would be to make three different IntransitiveMotion cxns, to handle the following patterns:
+    CXN1: (dist) (dir) pp
+       The box moved to the block    			    pp
+       The box moved two inches to the left		    dist pp
+       The box moved north across the room		    dir pp [Duplicate]
+       The box moved two inches north to the block	dist dir pp
+
+    CXN2:  dir (dist) (pp)
+       The box moved up				             	dir
+       The box moved north across the room	    	dir pp  [Duplicate]
+       The box moved up two inches			        dir dist
+       The box moved up two inches from the floor	dir dist pp
+
+    CXN3:  dist (dir)
+       The box moved two inches			        	dist
+       The box moved two inches up /north		    dist dir
+
+
+**COMMENTS**:
+  --- We will need to define additional cxns if we want to be able to analyze 
+      examples in which the verb elaborates some 'co-process' to motion, such as sound emission
+      as in: Robot1 rattled into the room. This might be handled by redefining MotionPath as a
+      complex process (then, could bind  Process2 to verb meaning and/or an additional evoked 
+      process such as soundEmission).   
+
+  --- 5/14/13 -- would probably need additional cxn(s) to handle 'affected' landmarks 
+      (e.g. He ran into the tree; The tree was run into).
+
+  --- 5/21/13 -- probably need to define a different/additional cxn to handle verbs whose meaning is
+      Motion rather than MotionPath (e.g. spin). One method would be have A-S cxn with Motion meaning that 
+      evokes SPG and makes appropriate bindings.  Then, if v.m = self.m, would unify both with
+      Motion and with MotionPath cxns, I think. NOTE that same problem arises in Transitve Cause Motion. 
+
+Given the sucess of the ActiveMotionPath cxn, the following cxns have been commented out and placed in removed cxns.grm:
+     ActiveMotionPath1        
+     ActiveMotionDirection
+     ActiveMotionDistance 
+*/
+     
+ construction ActiveMotionPath   // he moved (up) (two inches) to the box
+  subcase of IntransitiveArgumentStructure 
+  constructional
+    constituents//one of these needs to be present
+      optional dis: SpatialQuantityNP
+      optional dir: Directional 
+      optional pp: Path-PP  
+  constraints
+        v.voice <-- NotPassive  //2/4/13  --should this be moved to IntranstiveArgumentStructure cxn??
+  form 
+    constraints
+      v.f before dis.f 
+      dis.f before dir.f
+      dir.f before pp.f   
+  meaning: MotionPath
+    constraints 
+      self.m <--> v.m
+      self.m.spg.distance <--> dis.m 
+	  self.m.heading <--> dir.m 
+      self.m.spg <--> pp.m
+//NOTE: cxn inherits binding between self.m.protagonist and profiledParticipant               
+
+/*
+     ***DUPLICATE***,  shows parent of ActiveMotionPath cxn
+
+general construction IntransitiveArgumentStructure  //  ***DUPLICATE ****
+  subcase of ArgumentStructure
+  meaning: Process // changed from Scene 5/2/13
+    evokes A123 as s // added  5/9/13
+    constraints
+      s.a1 <--> ed.profiledParticipant // ‘active’ voice // change 5/2/13 5/8/13
+      s.a1 <--> self.m.protagonist // 5/8/13
+      v.m.p-features.voice <--  @notPassive 
+*/
+
+
+
+// TRANSITIVE MOTION CXNS
+
+/*
+
+The transitive motion constructions below inherit from the Trans_AgentEffectCausation cxn. 
+This constrains both a1 and a2 to be some kind of (physical) entity, e.g. He moved the block into the room
+A different cxn would be needed to support analysis of, e.g., The explosion/His jumping moved the block into the room.  
+
+// Trans_AgentEffectCausation cxn below is a DUPLICATE --- original is in argstruct-transitive.grm
+
+general construction Trans_AgentEffectCausation // DUPLICATE
+  subcase of ArgumentStructure // or sub of more general cxn
+    meaning: CauseEffect
+     //evokes A123 as s
+     constraints
+	    s.a1 <--> self.m.causalAgent  
+        s.a2 <--> self.m.affectedEntity
+ */       
+
+
+general construction Trans_CauseChangeLocation 
+  subcase of Trans_AgentEffectCausation // changed from Trans_Causation 3/6/14 
+  constructional
+   constituents//one of these needs to be present
+      optional dis: SpatialQuantityNP
+      optional dir: Directional 
+      pp: Path-PP  // test 5/20/13 made this required rather than optional
+   constraints
+	// v.argform <-->  ?????????????
+   form
+     constraints
+	   v.f before dis.f 
+       dis.f before dir.f
+       dir.f before pp.f   
+   meaning // CauseEffect  // inherited 
+	evokes  MotionPath as mp 
+      constraints 
+       	self.m.affectedProcess <--> mp
+       	self.m.affectedEntity <--> mp.mover 
+    	self.m.affectedEntity <--> mp.spg.trajector
+    	mp.spg <--> pp.m 
+   		mp.spg.distance <--> dis.m 
+	    mp.heading <--> dir.m 
+	    
+	    
+// Subcases of Trans_CauseChangeLocation cxn, for different types of verbs 
+
+general construction Trans_CauseChangeLoc_central // e.g. throw 
+  subcase of Trans_CauseChangeLocation
+  meaning
+    constraints
+      self.m <--> v.m     
+      
+construction ActiveTrans__CauseChangeLoc_central //he threw the block into the box
+  subcase of ActiveTransitive, Trans_CauseChangeLoc_central     
+  form
+     constraints
+	   np.f before dis.f  
+	   
+construction PassiveTrans__CauseChangeLoc_central //The block was thrown into the box (by him)
+  subcase of PassiveTransitive, Trans_CauseChangeLoc_central 
+
+
+general construction Trans_CauseChangeLoc_mp // e.g. move
+  subcase of Trans_CauseChangeLocation
+  meaning
+    constraints
+      mp <--> v.m   
+          
+      
+construction ActiveTrans__CauseChangeLoc_mp //he moved the block into the box
+  subcase of ActiveTransitive, Trans_CauseChangeLoc_mp    
+  form
+     constraints
+	   np.f before dis.f  
+	   
+construction PassiveTrans__CauseChangeLoc_mp //The block was moved into the box (by him)
+  subcase of PassiveTransitive, Trans_CauseChangeLoc_mp  
+  
+  
+general construction Trans_CauseChangeLoc_causalAction// e.g. push, slap
+  subcase of Trans_CauseChangeLocation
+    meaning
+     evokes ForceApplication as fa
+     constraints
+	    v.m <--> fa
+        self.m.process1 <--> fa
+        fa.actedUpon <--> self.m.affectedEntity        
+        
+        
+construction ActiveTrans_CauseChangeLoc_causalAction //he pushed the block into the box
+  subcase of ActiveTransitive, Trans_CauseChangeLoc_causalAction  
+  
+construction PassiveTrans_CauseChangeLoc_causalAction// the box was pushed (by him)
+  subcase of PassiveTransitive, Trans_CauseChangeLoc_causalAction       
+
+
+
+
+
+
+	    
+      
+
+
+

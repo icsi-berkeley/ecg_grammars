@@ -66,37 +66,7 @@ DEFS:
 
 (type bunch sub  grouper)  // hack, needed for Quantity NP***********fix
 
-// m4 test ontology additions 2/22/14
 
-(type poverty sub socialProblem abstractState)
-
-(type slide sub motion)
-
-// metaphors
-
-(type metaphors sub sharedEnumeration)  // names of known metaphors
-
-(type institutionAsPerson sub metaphors )
-
-(type stateAsLocation sub metaphors )  // Region ****
-
-(type SocialProblemsAsAnimateAgents sub metaphors )
-
-(type SocialProblemsAsDiseases sub metaphors )
-
-(type IdeasAsDiseases sub metaphors )
-
-(type MoneyASphysicalEntity sub metaphors )
-
-(type IdeasAsFood sub metaphors )
-
-(type DateAsMoveable sub metaphors )
-
-(type NaturalForcesAsAgents sub metaphors )  // 12/20/12
-
-//(type EntitiesAsAnimateBeings sub metaphors )
-
-//(type sizeAsDifficulty sub metaphors )
 
 // socialEntity
 
@@ -220,19 +190,30 @@ DEFS:
 
 (type robot sub artifact sentient)
 
+(type animal sub animate)
+
+(type pet sub animate)
+
 // inanimate stuff
 
 (type shaped sub entity)  // contrast with mass
 
 (type artifact sub inanimate)
 
-(type block sub artifact physicalEntity )
+(type block sub artifact physicalEntity moveable)
 
 (type book sub artifact moveable)  // also sub story, which is abstract *****
 
 (type story sub artifact)  // 8/18/13  ****** change
 
 (type table sub artifact)
+
+
+// profession ontology? ("my sister is a doctor")
+
+(type profession sub entity sentient)
+
+(type doctor sub profession)
 
 // (type door sub artifact)  for HowTo
 
@@ -256,9 +237,9 @@ DEFS:
 
 (type container sub  artifact location entity)  //11/4/1/3
 
-(type box sub container)
+(type box sub container moveable)
 
-(type boxes sub container)
+(type boxes sub container moveable)
 
 (type room sub container)
 
@@ -332,11 +313,6 @@ DEFS:
 
 (type interaction sub process-kind)
 
-(type measure sub enumeration)  // 11/20/12 shared??
-
-(type space sub measure)  // spatial domain
-
-(type time sub measure)  // temporal domain
 
 (type date sub time entity)
 
@@ -364,7 +340,11 @@ DEFS:
 
 // Regions
 
-//
+(type measure sub enumeration)  // 8/28/15
+
+(type space sub measure)  // spatial domain
+
+(type time sub measure)  // temporal domain
 
 (type region sub  space entity)
 
@@ -375,11 +355,6 @@ DEFS:
 (type deicticCenter sub location)
 
 
-// anaphora
-
-(type antecedent sub physicalEntity)
-
-//
 
 // directions
 
@@ -494,6 +469,8 @@ DEFS:
 (type drive sub motion)  // 5/28/13
 
 (type push sub forceapplication )
+
+(type push_move sub push motion)
 
 (type releasehold sub forceapplication)
 
@@ -639,9 +616,19 @@ DEFS:
 
 (type sizeValue sub propValue)
 
+(type sideValue sub propValue)
+
 (type red sub colorValue)
 
 (type blue sub colorValue)
+
+//
+
+(type boolean sub shared)
+
+(type yes sub boolean)
+
+(type no sub boolean)
 
 // numbers
 
@@ -690,9 +677,7 @@ DEFS:
 (type future sub tense)
 
 //
-
 // Mood
-
 //
 
 (type mood)  // all of these are moodValue
@@ -735,14 +720,60 @@ DEFS:
 
 (type what sub wh-word)
 
-//
+////Mereonymy
 
-// Numbers
+(type part sub physicalEntity)
+
+(type side sub part )
+
+(type back sub side )
+
+(type front sub side)
+
+(type antecedent sub physicalEntity)
 
 //
 
 //(type number sub entity)
 
 (type pencil sub entity artifact moveable)
+
+(type big sub sizeValue)
+
+(type small sub sizeValue)
+
+(type dog sub sentient pet animal)
+
+(type cat sub sentient pet animal)
+
+(type brown sub colorValue)
+
+(type sister sub sentient person)
+
+// metaphors
+
+(type metaphors sub sharedEnumeration)  // names of known metaphors
+
+(type institutionAsPerson sub metaphors )
+
+(type stateAsLocation sub metaphors )  // Region ****
+
+(type SocialProblemsAsAnimateAgents sub metaphors )
+
+(type SocialProblemsAsDiseases sub metaphors )
+
+(type IdeasAsDiseases sub metaphors )
+
+(type MoneyASphysicalEntity sub metaphors )
+
+(type IdeasAsFood sub metaphors )
+
+(type DateAsMoveable sub metaphors )
+
+(type NaturalForcesAsAgents sub metaphors )  // 12/20/12
+
+//(type EntitiesAsAnimateBeings sub metaphors )
+
+//(type sizeAsDifficulty sub metaphors )
 
 INSTS:

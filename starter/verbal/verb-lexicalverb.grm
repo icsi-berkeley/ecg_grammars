@@ -1,4 +1,6 @@
 package starter
+//import auxiliaries-testing
+
 
 // STAGE VERBS
 general construction StageVerb
@@ -9,7 +11,29 @@ general construction StageVerb
 	   self.expectedVerbForm <-- PresentParticipleOrInfinitive 
 
 
+construction StageVerbType
+	subcase of StageVerb, LexicalVerbType
+	constructional
+	  constraints
+	    self.expectedVerbForm <-- PresentParticipleOrInfinitive
+	meaning
+	  constraints
+	    self.m.actionary <-- @stage
 
+
+
+
+construction CauseEffectType
+	subcase of LexicalVerbType, GeneralTypeCxn
+	meaning: CauseEffect
+	 evokes ForceApplication as fa
+	 evokes MotionPath as mp
+	  constraints
+	    self.m.actionary <-- @motion
+	    self.m.protagonist.ontological-category <-- @agent
+	    self.fa <--> self.m.causalProcess
+	    self.mp <--> self.m.affectedProcess
+	    self.fa.actedUpon <--> self.m.affectedEntity
 
 // VERB Types:
 
@@ -20,7 +44,6 @@ construction SelfMotionType
       constraints
          self.m.actionary <-- @motion
          self.m.speed <-- ".5"
-
 
 
 // You could imagine adding another constraint here on the 
@@ -58,16 +81,23 @@ general construction PathVerbType
        self.m.spg.goal <--> bo.exterior
        
 
+import vehicles
+
 construction AgentDriveType
-	subcase of LexicalVerbType
+	subcase of SelfMotionType
 	meaning: VehicularMotion
 	  constraints
 	     self.m.actionary <-- @drive
 	     self.m.vehicleType.ontological-category <-- @vehicle
+	     //self.m.protagonist.ontological-category <-- @agent
+
+construction DriveVehicleType
+	subcase of LexicalVerbType, GeneralTypeCxn
+	meaning: ControlledVehicularMotion
+	  constraints
+	     self.m.actionary <-- @drive
+	     self.m.process2.vehicleType.ontological-category <-- @vehicle
 	     self.m.protagonist.ontological-category <-- @agent
 
-
-
-         
-        
+      
          

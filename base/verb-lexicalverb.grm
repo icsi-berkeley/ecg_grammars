@@ -1,0 +1,1115 @@
+
+ 
+general construction Verb
+   subcase of HasVerbFeatures
+   meaning: Process
+ 
+general construction VerbChunk  
+	subcase of ComplexVerb, RootType
+
+general construction LexicalVerb
+	subcase of VerbChunk, Word
+	meaning
+		evokes ProcessFeatures as pf
+   	constraints
+   		pf <--> self.m.p-features
+   		
+construction InfinitiveCxN // check names
+	subcase of VerbChunk
+	constructional  
+    	constituents
+    		first: TO-Infinitive-Marker
+    		second: VerbChunk
+    	constraints
+    		second.verbform <-- Base
+    		self.verbform <-- Infinitive // check names
+    		self.argform <--> second.argform
+    		self.verbkind <--> second.verbkind
+    		self.voice <--> second.voice
+	form
+		constraints
+       		first.f meets second.f  //no split inf.
+	meaning
+		constraints
+			self.m <-> second.m
+
+construction FromGerundCxN
+	subcase of VerbChunk
+	constructional  
+    	constituents
+    		first: FROM-Marker
+    		second: VerbChunk
+    	constraints
+    		second.verbform <-- PresentParticiple
+    		self.verbform <-- FromGerund
+    		self.argform <--> second.argform
+    		self.verbkind <--> second.verbkind
+    		self.voice <--> second.voice
+	form
+		constraints
+       		first.f meets second.f  //no split 
+	meaning
+		constraints
+			self.m <-> second.m
+
+				
+general construction ModifiedVerbChunk  // stub - singing with gusto 
+	subcase of VerbChunk
+	
+/* 5/17/13
+construction ConjVerbChunk  // we also have a Verb and VP version 
+	subcase of VerbChunk
+	constructional  
+    	constituents
+      		first: VerbChunk
+			conjoiner: And-Logical //: @conjunction
+      		second: VerbChunk
+		constraints
+  			first.features <-> second.features
+			self.features <-> second.features
+	form 
+    		constraints
+       		first.f meets conjoiner.f
+			conjoiner.f meets second.f 
+	meaning: ConjProcess
+		constraints
+			self.m.process1 <--> first.m  
+			self.m.process2 <--> second.m
+			self.m.connective <--> conjoiner.m
+
+*/
+//Lexical Verbs  
+
+//CAUSAL/ F-D Interaction verbs, e.g. cause, prevent, help
+
+// cause
+general construction Cause  // 12/28/12
+   subcase of LexicalVerb 
+   constructional  
+    	constraints
+    		self.verbkind <-- ForceDynamic
+   meaning: GeneralCausation // changed from EventCausation 3/20/14
+      constraints
+         self.m.actionary <-- @cause
+         //self.m.protagonist.ontological-category <-- @agent  //commented out 3/20/14
+         self.argform <-- Transitive
+         
+construction CausePast
+   subcase of Cause, PastTense
+   form
+      constraints
+         self.f.orth <-- "caused"      
+
+construction CausePastParticiple
+   subcase of Cause, PastParticiple
+   form
+      constraints
+         self.f.orth <-- "caused" 
+
+
+general construction Help // Agentive, ? how to capture
+   subcase of ControlVerbComplex // AgentiveVerb?
+   constructional  
+    	constraints
+    		self.verbkind <-- ForceDynamic
+    		self.expectedVerbForm <-- Infinitive
+   meaning: Process
+      constraints
+         self.m.actionary <-- @help
+ 		 self.m.protagonist.ontological-category <-- @sentient
+  
+  construction HelpBase
+   subcase of Help, BaseForm
+   form
+      constraints
+         self.f.orth <-- "help"
+ 
+
+  construction HelpPast
+   subcase of Help, PastTense
+   form
+      constraints
+         self.f.orth <-- "helped"
+		
+construction HelpPresentParticiple
+   subcase of Help, PresentParticiple
+   form
+      constraints
+         self.f.orth <-- "helping"
+         		
+// also do prevent, different expectedVerbForm 1/22/13
+
+general construction Prevent 
+   subcase of ControlVerbComplex
+   constructional  
+    	constraints
+    		self.verbkind <-- ForceDynamic
+    		self.expectedVerbForm <-- PresentParticiple
+   meaning: Process
+      constraints
+         self.m.actionary <-- @prevent
+         
+construction PreventBase
+   subcase of Prevent, BaseForm
+   form
+      constraints
+         self.f.orth <-- "prevent"
+
+  construction PreventPast
+   subcase of Prevent, PastTense
+   form
+      constraints
+       self.f.orth <-- "prevented"
+		
+// Want
+
+ general construction Want-Complex
+   subcase of  ControlVerbComplex  // 1/7/13
+  constructional  
+    	constraints
+   meaning
+      constraints
+         self.m.actionary <-- @want
+         self.m.protagonist.ontological-category <-- @sentient
+                    
+construction WantPast-Complex
+   subcase of Want-Complex, PastTense
+   form
+      constraints
+         self.f.orth <-- "wanted"
+
+general construction Want  // 1/7/13 
+   subcase of LexicalVerb, ControlVerbSimple  // also intention 
+  constructional  
+    	constraints
+   meaning
+      constraints
+         self.m.actionary <-- @want
+         self.m.protagonist.ontological-category <-- @sentient
+
+construction WantPresentThirdPersonSingular
+   subcase of Want, PresentTense, ThirdPersonSingular
+   form
+      constraints
+         self.f.orth <-- "wants"
+     
+construction WantPresent
+   subcase of Want, PresentTense
+   form
+      constraints
+         self.f.orth <-- "want"
+         
+construction WantPast
+   subcase of Want, PastTense
+   form
+      constraints
+         self.f.orth <-- "wanted"
+
+construction WantBase
+   subcase of Want, BaseForm
+   form
+      constraints
+         self.f.orth <-- "want"
+         
+construction WantPresentParticiple
+   subcase of Want, PresentParticiple
+   form
+      constraints
+         self.f.orth <-- "wanting"
+
+
+// Try
+
+general construction Try  // 1/7/13 
+   subcase of LexicalVerb, ControlVerbSimple  // also intention 
+  constructional  
+    	constraints
+   meaning
+      constraints
+         self.m.actionary <-- @try
+         self.m.protagonist.ontological-category <-- @sentient
+   
+   construction TryPast
+   subcase of Try, PastTense
+   form
+      constraints
+         self.f.orth <-- "tried"      
+         
+                  
+
+// Mental Verbs  say, think, tell
+
+general construction MentalVerb // 8/21/13
+   subcase of  LexicalVerb // AgentiveVerb? ~ see, etc.
+   constructional  
+   meaning
+      constraints
+         //self.m.actionary <--  @mentalVerb in ontology  ??? do we want this ???
+ 		 self.m.protagonist.ontological-category <-- @sentient
+		 self.verbkind <-- Mental  // 10/3/13
+
+general construction Say // 8/21/13
+   subcase of MentalVerb // AgentiveVerb? 
+   meaning: Communication
+      constraints
+         self.m.actionary <-- @say
+ 		 self.argform <-- NotTransitive
+ 		 ignore self.verbkind <-- Mental
+ 		 self.verbkind <-- Communicational  // 10/3/13
+ 		 
+  
+ construction SayPastParticiple
+   subcase of Say, PastParticiple
+   form
+      constraints
+         self.f.orth <-- "said"
+
+  construction SayPast
+   subcase of Say, PastTense
+   form
+      constraints
+         self.f.orth <-- "said"
+         
+         
+general construction Think // 8/21/13 
+   subcase of  MentalVerb // AgentiveVerb?
+   meaning: Thought
+      constraints
+         self.m.actionary <-- @think
+ 		 self.argform <-- NotTransitive
+  
+ construction ThinkPastParticiple
+   subcase of Think, PastParticiple
+   form
+      constraints
+         self.f.orth <-- "thought"
+
+  construction ThinkPast
+   subcase of Think, PastTense
+   form
+      constraints
+         self.f.orth <-- "thought"
+
+general construction Tell // 8/21/13
+   subcase of MentalVerb
+   meaning: Communication
+      constraints
+         self.m.actionary <-- @tell
+		 self.argform <-- DiTransitive
+		 ignore self.verbkind <-- Mental
+ 		 self.verbkind <-- Communicational  // 10/3/13
+ 		   
+		
+construction TellBase
+   subcase of Tell, BaseForm
+   form
+      constraints
+         self.f.orth <-- "tell"
+
+construction TellPast
+   subcase of Tell, PastTense
+   form
+      constraints
+         self.f.orth <-- "told"
+
+// 
+general construction SeeT // 8/21/13 Transitive
+   subcase of MentalVerb
+   meaning: Perception
+      constraints
+         self.m.actionary <-- @see
+		 self.argform <-- Transitive
+		 ignore self.verbkind <-- Mental
+ 		 self.verbkind <-- Perceptual  // 10/3/13
+ 		 
+	
+construction SeeBaseT
+   subcase of SeeT, BaseForm
+   form
+      constraints
+         self.f.orth <-- "see"
+
+construction SeePastT
+   subcase of SeeT, PastTense
+   form
+      constraints
+         self.f.orth <-- "saw"
+         
+construction SeePastParticipleT
+   subcase of SeeT, PastParticiple
+   form
+      constraints
+         self.f.orth <-- "seen"
+         
+general construction SeeI // 8/21/13 NotTransitive ("I see" -- metaphorical)
+   subcase of MentalVerb
+   meaning: Thought
+      constraints
+         self.m.actionary <-- @see
+		 self.argform <-- NotTransitive
+		
+construction SeeBaseI
+   subcase of SeeI, BaseForm
+   form
+      constraints
+         self.f.orth <-- "see"
+
+construction SeePastI
+   subcase of SeeI, PastTense
+   form
+      constraints
+         self.f.orth <-- "saw"
+
+// Aspectualizers
+
+general construction StageVerb
+   subcase of LexicalVerb  
+   constructional
+     constraints
+       self.verbkind <-- Stage
+       self.expectedVerbForm <-- PresentParticipleOrInfinitive
+
+general construction Start
+   subcase of StageVerb
+   meaning 
+      constraints
+		self.m.actionary <-- @start
+		       
+construction StartBase
+   subcase of Start,BaseForm
+   form
+      constraints
+         self.f.orth <-- "start" 
+		
+construction StartPast
+   subcase of Start, PastTense
+   form
+      constraints
+         self.f.orth <-- "started"
+         
+construction StartPastParticple
+   subcase of Start, PastParticiple
+   form
+      constraints
+         self.f.orth <-- "started"
+
+construction StartPresentParticiple
+   subcase of Start, PresentParticiple
+   form
+      constraints
+         self.f.orth <-- "starting"
+
+general construction Stop  // stop walking ...
+   subcase of StageVerb  
+   constructional
+     constraints
+      self.expectedVerbForm <-- PresentParticiple
+    meaning
+   	  constraints   
+     	self.m.actionary <-- @stop
+     		
+construction StopBase  // stop walking ...
+   subcase of Stop, BaseForm
+   form
+      	constraints
+      		self.f.orth <-- "stop"
+
+  construction StopPast
+   subcase of Stop, PastTense
+   form
+      constraints
+         self.f.orth <-- "stopped"
+
+ /* omit for now  
+
+construction StopPresentParticiple
+   subcase of Stop, PresentParticiple
+   form
+      constraints
+         self.f.orth <-- "stopping"
+  
+construction ContinueBase
+   subcase of StageVerb, BaseForm
+   form
+   constraints
+      self.f.orth <-- "continue"
+   meaning 
+      constraints
+		self.m.actionary <-- @continue
+		
+construction ContinuePast
+  subcase of StageVerb, PastTense
+   form
+      constraints
+         self.f.orth <-- "continued"
+  
+construction ContinuePresentParticiple
+   subcase of StageVerb, PresentParticiple
+   form
+      constraints
+         self.f.orth <-- "continuing"
+
+//
+// Force Dynamic Verbs
+//
+
+general construction Stop-FD 
+   subcase of  LexicalVerb
+   constructional  
+    	constraints
+    		self.verbkind <-- ForceDynamic
+    		self.expectedVerbForm <-- PresentParticiple
+   meaning: Process
+      constraints
+         self.m.actionary <-- @stop
+
+construction FDStopBase
+   subcase of Stop-FD, BaseForm
+   form
+      constraints
+         self.f.orth <-- "prevent"
+
+construction FDStopPast 
+   subcase of Stop-FD, PastTense
+   form
+      constraints
+         self.f.orth <-- "stopped"
+
+ 
+// light verbs; also action for give
+
+general construction Take-light
+   subcase of LightVerb
+   constructional  
+		constraints
+		self.argform <-- NotTransitive
+   meaning 
+      constraints
+         self.m.actionary <-- @take-light
+
+construction Take-lightBase
+   subcase of Take-light, BaseForm
+   form
+      constraints
+         self.f.orth <-- "take"
+
+construction Take-lightPast
+   subcase of Take-light, PastTense
+   form
+      constraints
+         self.f.orth <-- "took"
+         
+construction Take-lightPresentParticiple
+   subcase of Take-light, PresentParticiple
+   form
+      constraints
+         self.f.orth <-- "taking"
+
+general construction GiveLight
+   subcase of LightVerb
+   meaning 
+      constraints
+         self.m.actionary <-- @give-light
+
+construction GiveLightBase  // only light form for now
+   subcase of GiveLight, BaseForm
+   form
+      constraints
+         self.f.orth <-- "give"
+
+construction GiveLightPast  // only light form for now
+   subcase of GiveLight, PastTense
+   form
+      constraints
+         self.f.orth <-- "gave"
+*/         
+general construction Give
+   subcase of LexicalVerb
+   meaning: ObjectTransfer
+      constraints
+         self.m.actionary <-- @give
+		 self.m.protagonist.ontological-category <-- @agent
+		 self.argform <-- DiTransitive  
+		
+
+construction GiveBase
+   subcase of Give, BaseForm
+   form
+      constraints
+         self.f.orth <-- "give"
+         
+construction GivePresent
+   subcase of Give, PresentTense
+   form
+      constraints
+         self.f.orth <-- "give"
+
+construction GivePast
+   subcase of Give, PastTense
+   form
+      constraints
+         self.f.orth <-- "gave"
+
+construction GivePresentParticiple
+   subcase of Give, PresentParticiple
+   form
+      constraints
+         self.f.orth <-- "giving"
+
+
+         
+         
+         
+                
+/*   Hit needs to be fixed, use Slap
+construction Hit
+   subcase of LexicalVerb   // may be subcase of FA Verbs and of EMP Verbs
+   form
+      constraints
+         self.f.orth <-- "hit"
+   meaning: AgentiveImpactAction  
+      constraints
+         self.m.routine <-- @hit
+         self.m.protagonist.ontological-category <-- @person // test 10/4/12
+
+ shrink for speed
+construction Assaulting
+   subcase of LexicalVerb, PresentParticiple   
+   form
+      constraints
+         self.f.orth <-- "assaulting"
+   meaning: Attacking  
+      constraints
+         self.m.routine <-- @assault
+        // self.m.protagonist.ontological-category <-- @animate
+ 
+ general construction Infect
+   subcase of LexicalVerb   
+   meaning: Infecting
+      constraints
+         self.m.actionary <-- @infect
+         self.m.protagonist.ontological-category <-- @disease
+         self.m.protagonist2.ontological-category <-- @animate // test 10/15/12
+         
+construction InfectPresentParticiple
+   subcase of Infect, PresentParticiple
+   form
+      constraints
+         self.f.orth <-- "infecting"   
+  
+ construction InfectPastParticiple
+   subcase of Infect, PastParticiple
+   form
+      constraints
+         self.f.orth <-- "infected"               
+*/
+         
+general construction Move  
+   	subcase of LexicalVerb
+	meaning: MotionPath 
+      	constraints
+         	self.m.actionary <-- @move
+         	//self.m.protagonist.ontological-category <-- @moveable //both cases
+         	self.m.protagonist.ontological-category <-- @physicalEntity  
+		
+	
+construction MoveBase 
+   	subcase of Move, BaseForm
+   	form
+      	constraints
+         	self.f.orth <-- "move"
+         
+
+construction MovePresent
+   	subcase of Move, PresentTense
+   	form
+      	constraints
+         	self.f.orth <-- "move"     
+
+
+construction MovePresentThirdSing
+   	subcase of Move, PresentTense, ThirdPersonSingular
+   	form
+      	constraints
+         	self.f.orth <-- "moves"
+  
+
+construction MovePresentParticiple
+   subcase of Move, PresentParticiple
+   form
+      constraints
+         self.f.orth <-- "moving"    
+
+construction MovePast
+   subcase of Move, PastTense 
+   form
+      constraints
+         self.f.orth <-- "moved"
+
+construction MovePastParticiple
+   subcase of Move, PastParticiple
+   form
+      constraints
+         self.f.orth <-- "moved"
+ 
+ //drive
+ /* commented out 6/7/13
+general construction Drive1    //6/2/13  mover is vehicle
+   	subcase of LexicalVerb
+	meaning: VehicularMotion 
+      	constraints
+         	self.m.actionary <-- @drive
+         	self.m.vehicleType <-- @car // suppose always a car, for now
+         	self.m.protagonist.ontological-category <-- @vehicle
+         	
+ construction DrivePast1
+   subcase of Drive1, PastTense 
+   form
+      constraints
+         self.f.orth <-- "drove"     	
+
+general construction Drive2    //6/2/13 mover is agent
+   	subcase of LexicalVerb
+	meaning: VehicularMotion 
+      	constraints
+         	self.m.actionary <-- @drive
+         	self.m.vehicleType <-- @car // suppose always a car, for now
+         	self.m.protagonist.ontological-category <-- @agent
+         	
+ construction DrivePast2
+   subcase of Drive2, PastTense 
+   form
+      constraints
+         self.f.orth <-- "drove" 
+*/
+//below is set of 'drive' verb cxns that are alternative analysis to those above
+/*
+general construction Drive_vMotion   //6/4/13  mover is vehicle
+   	subcase of LexicalVerb
+	meaning: VehicleMotion 
+      	constraints
+         	self.m.actionary <-- @drive
+         	self.m.protagonist.ontological-category <-- @car //  a car, for now 6/7/13
+     	
+         	
+ construction Drive_vMotionPast
+   subcase of  Drive_vMotion, PastTense // 6/7/13
+   form
+      constraints
+         self.f.orth <-- "drove"     	
+
+general construction Drive_rMotion   //  mover is rider
+   	subcase of LexicalVerb
+	meaning: MoveInVehicle 
+      	constraints
+         	self.m.actionary <-- @drive
+         	self.m.protagonist.ontological-category <-- @animate  // 6/7/13
+         	     	
+         	
+ construction Drive_rMotionPast
+   subcase of Drive_rMotion, PastTense 
+   form
+      constraints
+         self.f.orth <-- "drove" 
+
+construction Drive_vMotionPastParticiple
+   subcase of Drive_vMotion, PastParticiple 
+   form
+      constraints
+         self.f.orth <-- "driven" 
+ // anger
+ 
+ general construction AngerVerb   // 3/29/13
+   	subcase of PropertyChangerVerb
+     meaning 
+         constraints
+         	self.m.prop.property <-- @anger
+            self.m.prop.value <-- "6"
+         	self.m.protagonist.ontological-category <-- @agent 
+         	self.verbkind <-- Emotional  // 10/3/13
+ 				
+ construction AngerBase   
+   	subcase of AngerVerb, BaseForm
+   	form
+      	constraints
+         	self.f.orth <-- "anger"
+     		
+
+construction AngerVerbPast   
+   	subcase of AngerVerb, PastTense
+   	form
+      	constraints
+         	self.f.orth <-- "angered"
+ 
+ construction AngerVerbParticiple   
+   	subcase of AngerVerb, PastParticiple
+   	form
+      	constraints
+         	self.f.orth <-- "angered"
+
+*/
+// cut
+// the Cut cxn below constrains protagonist to be physicalEntity.  So, will support analysis
+// of both 'She cut the box' and 'The block cut the box'.  To capture more specific meanings of 'cut'
+// could use more specific schema and/or add more constraints
+
+general construction Cut   // 5/20/13 test
+   	subcase of LexicalVerb
+     meaning: CauseEffect // changed 2/11/14
+         constraints
+         	//self.m.actionary <-- @cut // need to add to ontology
+         	self.m.protagonist.ontological-category <-- @physicalEntity // 5/21/13, allows non-agent physical object
+ 				
+ construction CutBase   
+   	subcase of Cut, BaseForm
+   	form
+      	constraints
+         	self.f.orth <-- "cut"
+     
+construction CutPast   
+   	subcase of Cut, PastTense
+   	form
+      	constraints
+         	self.f.orth <-- "cut"
+
+construction CutParticiple   
+   	subcase of Cut, PastParticiple
+   	form
+      	constraints
+         	self.f.orth <-- "cut"
+
+construction CutPresentParticiple   
+   	subcase of Cut, PresentParticiple
+   	form
+      	constraints
+         	self.f.orth <-- "cutting"      
+
+// push
+
+general construction Push   
+   	subcase of LexicalVerb
+     meaning: ForceApplication // sub MotorControl, change
+         constraints
+         	self.m.actionary <-- @push
+         	self.m.protagonist.ontological-category <-- @agent  // 1/28/13, motor control constraint
+ 				
+ construction PushBase   
+   	subcase of Push, BaseForm
+   	form
+      	constraints
+         	self.f.orth <-- "push"
+     
+construction PushPast   
+   	subcase of Push, PastTense
+   	form  
+      	constraints
+         	self.f.orth <-- "pushed"
+ 
+ construction PushParticiple   
+   	subcase of Push, PastParticiple
+   	form
+      	constraints
+         	self.f.orth <-- "pushed"
+         	        	
+construction PushPresentParticiple   
+   	subcase of Push, PresentParticiple
+   	form
+      	constraints
+         	self.f.orth <-- "pushing"     	
+
+/*
+
+general construction Throw   // 5/20/13 test
+   	subcase of LexicalVerb
+     meaning: CauseMotion
+         constraints
+         	self.m.actionary <-- @throw 
+         	self.m.protagonist.ontological-category <-- @agent  // 1/28/13, motor control constraint
+ 				
+ construction ThrowBase   
+   	subcase of Throw, BaseForm
+   	form
+      	constraints
+         	self.f.orth <-- "throw"
+     
+construction ThrowPast   
+   	subcase of Throw, PastTense
+   	form
+      	constraints
+         	self.f.orth <-- "threw" 
+         	
+construction ThrowParticiple   
+   	subcase of Throw, PastParticiple
+   	form
+      	constraints
+         	self.f.orth <-- "thrown"
+
+construction ThrowPresentParticiple   
+   	subcase of Throw, PresentParticiple
+   	form
+      	constraints
+         	self.f.orth <-- "throwing" 
+*/
+
+// change
+   
+general construction Change  // 2/17/13
+   subcase of LexicalVerb
+   meaning
+      constraints
+         self.m.actionary <-- @change
+         //self.argform <-- Transitive   2/2/14 
+         
+construction ChangePast
+   subcase of Change, PastTense
+   form
+      constraints
+         self.f.orth <-- "changed"    
+  
+  construction ChangeParticiple   
+   	subcase of Change, PastParticiple
+   	form
+      	constraints
+         	self.f.orth <-- "changed"
+
+// make-change
+
+general construction Make-change // 2/28/13   
+   	subcase of LexicalVerb
+     meaning
+         constraints
+         	self.m.actionary <-- @make
+         	self.m.protagonist.ontological-category <-- @agent  // 1/28/13
+   			self.argform <-- Transitive 
+   			
+  construction MakePast
+   subcase of Make-change, PastTense
+   form
+      constraints
+         self.f.orth <-- "made"        	
+         	         	        	             	   	
+construction MakeParticiple
+   subcase of Make-change, PastParticiple
+   form
+      constraints
+         self.f.orth <-- "made"    
+ 
+ // enlarge, PropertyChanger
+ 
+general construction PropertyChangerVerb   // 4/1/13
+  subcase of LexicalVerb
+  	meaning:  PropertyChangerScene
+      constraints
+		self.argform <-- PropertyChanger  // sub Transitive
+ 
+ general construction Enlarge // 4/1/13   
+   	subcase of PropertyChangerVerb
+     meaning  
+         constraints 
+            self.m.prop.property <-- @size
+            self.m.prop.value <-- "6"
+         	self.m.actionary <-- @enlarge
+         	self.m.protagonist.ontological-category <-- @agent  
+   			   			
+construction EnlargePast
+   subcase of Enlarge, PastTense
+   form
+      constraints
+         self.f.orth <-- "enlarged"    
+         
+// Possesion
+
+general construction PossessionVerb  // 10/3/13
+	subcase of LexicalVerb
+    constructional
+    meaning: PossProcess
+    constraints  
+    	self.verbkind <-- PossessionKind  // 10/3/13
+    	self.argform <-- Transitive  
+     
+general construction Have-Poss
+    subcase of PossessionVerb
+    meaning
+    constraints
+    	self.m.extra.kind <-- @physical
+
+construction HaveBase-Poss
+    subcase of Have-Poss, BaseForm
+ form
+      constraints
+         self.f.orth <-- "have"
+  
+construction HavePast-Poss
+    subcase of Have-Poss, PastTense
+ form
+      constraints
+         self.f.orth <-- "had"
+         
+general construction Own  // 11/16/12
+    subcase of PossessionVerb
+    meaning
+    constraints
+    	self.m.extra.kind <-- @ownership
+
+construction OwnPast
+    subcase of Own, PastTense
+ form
+      constraints
+         self.f.orth <-- "owned"
+
+
+construction OwnBase
+    subcase of Own, BaseForm
+ form
+      constraints
+         self.f.orth <-- "own"         
+// ~~~~~~~~~~  walk ~~~~
+
+/*
+general construction Enter   // 10/15/13
+   subcase of LexicalVerb
+   meaning: MotionPath 
+    evokes SPG as spg
+      constraints
+         spg.goal.ontological-category <-- @container
+         self.m.actionary <-- @enter 
+        self.m.direction <-->  self.m.spg.goal    
+
+construction EnterPast
+   subcase of Enter, PastTense
+   form
+      constraints
+         self.f.orth <-- "entered"
+ */        
+general construction Walk
+   subcase of LexicalVerb
+   meaning: MotionPath // It should have motor control
+      constraints
+         self.m.actionary <-- @walk      
+
+construction WalkBase
+   subcase of Walk, BaseForm
+   form
+      constraints
+         self.f.orth <-- "walk"
+
+
+
+
+/*
+construction Stride
+   subcase of Walk, BaseForm
+   form
+      constraints
+         self.f.orth <-- "stride"    
+     meaning //MotionPath
+        evokes Modification as mod
+        constraints
+          mod.modifiedThing <-> self.m
+          mod.modifier <-- "intense"  // ??? 3/2/13
+*/
+    
+
+/* shrink the grammar for now
+construction WalkPresent
+   subcase of Walk, PresentTense
+   form
+      constraints
+         self.f.orth <-- "walk"
+
+construction WalkPresentThirdPersonSingular
+   subcase of Walk, PresentTense, ThirdPersonSingular
+   form
+      constraints
+         self.f.orth <-- "walks"
+*/
+construction WalkPast
+   subcase of Walk, PastTense
+   form
+      constraints
+         self.f.orth <-- "walked"
+
+construction WalkPresentParticiple
+   subcase of Walk, PresentParticiple
+   form
+      constraints
+         self.f.orth <-- "walking"
+/*
+construction WalkPastParticiple
+   subcase of Walk, PastParticiple
+   form
+      constraints
+         self.f.orth <-- "walked"
+*/       
+
+// slap
+
+general construction Slap   // temp for 10/31
+   	subcase of LexicalVerb
+     meaning: ForcefulMotionAction 
+         constraints
+         	self.m.actionary <-- @slap
+         	self.m.protagonist.ontological-category <-- @agent  //12/22/12
+         	self.m.process1.effector.ontological-category <-- @hand
+         	        	
+ construction SlapBase   // temp for 10/31
+   	subcase of Slap, BaseForm
+   	form
+      	constraints
+         	self.f.orth <-- "slap"
+     
+construction SlapPast   // temp for 10/31
+   	subcase of Slap, PastTense
+   	form
+      	constraints
+         	self.f.orth <-- "slapped"
+ 
+ construction SlapParticiple   // temp for 10/31
+   	subcase of Slap, PastParticiple
+   	form
+      	constraints
+         	self.f.orth <-- "slapped"
+         	        	
+construction SlapPresentParticiple   // temp for 10/31
+   	subcase of Slap, PresentParticiple
+   	form
+      	constraints
+         	self.f.orth <-- "slapping"    
+
+
+
+// these SLAP verbs use a version of FMA that is not a sub of ComplexProcess
+general construction Slap2   // 
+   	subcase of LexicalVerb
+     meaning: ForcefulMotionAction_test 
+         constraints
+         	//self.m.actionary <-- @slap
+         	self.m.protagonist.ontological-category <-- @agent  
+         	self.m.instrument.ontological-category <-- @hand
+         	        	
+ construction SlapBase2   // 
+   	subcase of Slap2, BaseForm
+   	form
+      	constraints
+         	self.f.orth <-- "slap"
+     
+construction SlapPast2   
+   	subcase of Slap2, PastTense
+   	form
+      	constraints
+         	self.f.orth <-- "slapped"
+ 
+ construction SlapParticiple2   
+   	subcase of Slap2, PastParticiple
+   	form
+      	constraints
+         	self.f.orth <-- "slapped"
+         	
+construction SlapPresentParticiple2   
+   	subcase of Slap2, PresentParticiple
+   	form
+      	constraints
+         	self.f.orth <-- "slapping"
+         	
+
+        

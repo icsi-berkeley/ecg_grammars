@@ -1,0 +1,115 @@
+/**********
+***
+*** Plural Nouns
+***
+***********/ 
+
+general construction PluralNoun
+  subcase of Noun, Plural
+   constructional
+     constraints
+      self.features.number <-- "plural" 
+   meaning
+    constraints
+      //self.m.ontological-category <-- @multiplex // might restrict some
+      self.m.number <-- @plural
+      self.m.bounding <-- @indeterminate
+
+construction Prices  // ?? mass noun
+   subcase of PluralNoun
+   form
+      constraints
+         self.f.orth <-- "prices"
+      meaning: RD
+    constraints
+      self.m.ontological-category <--  @prices
+      self.m.scale <-- @money  
+
+construction Sheep  
+   subcase of PluralNoun
+   form
+      constraints
+         self.f.orth <-- "sheep"
+      meaning
+    constraints
+      self.m.ontological-category <--  @sheep
+     
+      
+construction Centimeters
+   subcase of PluralNoun
+   form
+      constraints
+         self.f.orth <-- "cm"
+      meaning
+    constraints
+      self.m.ontological-category <--  @centimeter
+
+construction Inches
+   subcase of PluralNoun
+   form
+      constraints
+         self.f.orth <-- "inches"
+      meaning// RD, is this right ????? 11/24/12
+    constraints
+      self.m.ontological-category <--  @inch
+
+construction Squares
+   subcase of PluralNoun
+   form
+      constraints
+         self.f.orth <-- "squares"
+      meaning
+    constraints
+      self.m.ontological-category <--  @square
+
+construction Robots
+   subcase of PluralNoun
+   form
+      constraints
+         self.f.orth <-- "robots"
+      meaning
+    constraints
+      self.m.ontological-category <--  @robot
+
+construction Blocks
+   subcase of PluralNoun
+   form
+      constraints
+         self.f.orth <-- "blocks"
+      meaning
+      evokes Artifact as art
+    constraints
+      self.m.ontological-category <--  @block
+	  self.m.extensions <--> art
+
+construction Boxes
+   subcase of PluralNoun
+   form
+      constraints
+         self.f.orth <-- "boxes"
+      meaning 
+      evokes Container as cont 
+    constraints
+      self.m.ontological-category <--  @box
+      self.m.extensions <--> cont
+      
+
+construction Minutes
+   	subcase of PluralNoun
+   	form
+      	constraints
+         	self.f.orth <-- "minutes"
+	meaning: QuantifiedTemporalRD
+    	constraints
+      		self.m.ontological-category <-- @minutes
+      		
+construction Dollars
+   	subcase of PluralNoun
+   	form
+      	constraints
+         	self.f.orth <-- "dollars"
+	meaning: QuantifiedMoneyRD
+    	constraints
+      		self.m.ontological-category <-- @money
+
+      

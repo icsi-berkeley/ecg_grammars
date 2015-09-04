@@ -1,0 +1,742 @@
+/******************************************************************************
+This file contains (possible) constructions for kernel noun phrases.
+
+The assumption is that each NP has an RD structure as its meaning.
+This implies that proper nouns, pronouns, and mass/plural nouns make
+RD their meaning. For sake of uniformity, we also assume that common
+count nouns (which are not NPs) also denote an RD.
+
+
+******************************************************************************/
+
+ 
+/*** 
+ ***
+ *** The root constructions of the NP, Noun and Nominal  hierarchy
+ ***
+ ***/
+
+general construction NP 
+   subcase of RootType, HasNominalFeatures
+   meaning: RD
+
+
+general construction ProcessNP
+	subcase of NP
+	meaning: ProcessRD
+
+/*	
+
+//  e.g. a slap   used in light verb a-s cxns
+
+construction deverbalActionNominal  // needs constraints 1/21/14, may change this
+	subcase of ProcessNP
+	constructional
+      constituents
+       v: Verb
+     constraints
+       v.verbform <--  Infinitive
+    meaning
+     constraints    
+         v.m.actionary <--> self.m.ontological-category
+*/	
+	
+general construction EventNP//  12/19/12
+	subcase of NP
+	meaning: EventRD	
+
+// some special stuff for early robot domain
+schema Location2D
+	subcase of RD		 
+	roles
+		xCoord: @number
+		yCoord: @number
+	constraints
+		ontological-category <-- @location
+ 		number <-- @singular
+
+construction LOCATION  // maybe a convention for key words
+	subcase of Word, HasAgreementFeatures
+	form
+    	constraints
+			self.f.orth <-- "location"
+		
+construction LocationNP
+	subcase of Kernel, NP
+  	constructional
+    	constituents
+		  	tag: LOCATION
+			x: Number
+			optional comma: Comma
+			y: Number
+	form
+    	constraints
+      		tag.f meets x.f
+			x.f meets comma.f
+			comma.f meets y.f
+  meaning: Location2D
+    	constraints
+      		self.m.xCoord <--> x.m.value
+			self.m.yCoord <--> y.m.value
+
+/* 5/17/13			
+construction RelativizedNP  // box (that) he moved, revisit
+	subcase of Kernel, NP
+  	constructional
+    	constituents
+		  	core: Kernel
+			 specific: Conjunction //: SpecializerPhrase // that, removed optional 12/18/12
+			description: Declarative  // he pushed
+		constraints
+			self.features <--> core.features
+	form 
+		constraints	
+			core.f meets specific.f 
+			core.f before description.f		
+  	meaning: RelativizedRD
+  	constraints
+			self.m <--> core.m //RD
+			self.m.description <--> description.m
+			// self.m.relativizer <--> specific.m  specific relativizer if needed
+	
+	construction RelativizedNP-VP // box (that) moved, was moved
+	subcase of Kernel, NP
+  	constructional
+    	constituents
+		  	core: Kernel
+			 specific: Conjunction //:  that, removed optional 12/18/12
+            description: VP
+		constraints
+			self.features <--> core.features
+	form
+		constraints	
+			core.f meets specific.f
+			core.f before description.f		
+  	meaning: RelativizedRD
+  		constraints
+			self.m <--> core.m //RD
+			self.m.description <--> description.m.ed // uses ed role of VP
+			//self.m <--> description.m.ed.profiledParticipant
+			// self.m.relativizer <--> specific.m  specific relativizer if needed
+
+/*		commented out	12/18/12
+construction RelativizedNP-Comp // a box  bigger than Box2 ??needed 
+	subcase of Kernel, NP
+  	constructional
+    	constituents
+		  	core: Kernel
+		 specific: Conjunction //  that is, removed optional 12/18/12
+            description: VP //: fix
+		constraints
+			self.features <--> core.features
+	form
+		constraints	
+			core.f meets specific.f
+			core.f before description.f		
+  	meaning: RelativizedRD		// maybe
+*/
+
+// This is the root of nouns and noun noun compounds
+
+general construction Nominal 
+   subcase of HasNominalFeatures
+   meaning: RD 
+
+/* not needed ? 12/24/12
+general construction ProcessNominal 
+   subcase of Nominal
+   meaning: ProcessRD 
+*/
+general construction Noun
+   subcase of Word, Nominal 
+
+/*
+ *
+ * Combining Adjectives and Nouns
+ *
+ */ 
+
+// Note that Kernel is NOT an NP 
+// it is  general because we need a supertype to cover the bracketed phrases in
+// 'the [big table]'  and 'the [big table and leather chair]'
+
+general construction  Kernel // both RD and Nominal
+	subcase of HasNominalFeatures //, RootType   for testing only 
+	meaning: RD
+
+construction  KernelAdj // literal case
+  subcase of Kernel 
+  constructional
+    constituents
+     // ap: PropertyAdjective // not optional PropertyAdj 4/26/13
+      ap: Adjective
+      n: Nominal
+    constraints
+      self.features <--> n.features
+  form
+    constraints
+      ap.f meets n.f
+  meaning: RD
+    constraints
+      self.m <--> n.m
+      self.m <--> ap.m.modifiedThing
+      //ap.m.property <--> n.m.scale  //4/26/13  ***** n.m.scale is implicit, e.g inch
+      //ap.m.domain <--> n.m.ontological-category //constraint  out 7/16/14 **
+ 
+ construction  KernelParticiple //   10/16/13
+  subcase of Kernel 
+  constructional
+    constituents
+      ap: PresentParticiple
+      n: Nominal
+    constraints
+      self.features <--> n.features
+  form
+    constraints
+      ap.f meets n.f
+  meaning: RD
+    evokes ParticipleModification as pm
+    constraints
+      self.m <--> n.m
+      self.m <--> pm.modifiedThing
+      ap.m <--> pm.modifier 
+      //ap.m.property <--> n.m.scale  //4/26/13  ***** n.m.scale is implicit, e.g inch
+      //ap.m.domain <--> n.m.ontological-category //constraint NOT here    
+
+construction  KernelNoAdj // no adjective
+  subcase of Kernel
+  constructional
+    constituents
+      n: Nominal
+    constraints
+      self.features <--> n.features
+  form
+  meaning: RD
+    constraints
+      self.m <--> n.m
+ 
+/* 5/17/13     
+construction  ConjunctiveNominal  // just conjunction for now 
+  subcase of Nominal
+  constructional
+    constituents
+      connective: LogicalConjunction   // and or etc.
+      first: Nominal
+      second: Nominal
+    constraints
+      self.features.number <-- "plural"
+  form
+    constraints
+      first.f meets connective.f
+	  connective.f meets second.f    
+  meaning: ConjRD
+    constraints	
+		first.m <-> m.rd1
+        second.m <-> m.rd2  
+       	connective.m <-> m.connective
+		self.m.number <-- @plural
+		self.m.bounding <-> first.m.bounding
+		self.m.ontological-category  <-> first.m.ontological-category
+
+*/
+
+ general construction  Gerund   // 
+  subcase of NP // 
+  constructional
+   constituents 
+        vp: ArgumentStructure //use AS for testing – should be more general
+     constraints
+      	vp.verbform <--  PresentParticiple   
+        vp.features.number <-- "singular" //agreement if Gerund is Subj of Cop. cxn  
+  meaning: EventRD  
+    constraints
+	   self.m.description <--> vp.m.ed
+	   self.m.number <-- @singular  //hack.  
+	   self.m.ontological-category  <-- @eventTop
+	   self.m.description.eventForm   <-- @gerund // 1/19/13
+
+
+
+construction  BareGerund   // moving the box 
+  subcase of Gerund  
+
+ construction  PossGerund   // his moving the box 
+  subcase of Gerund  
+  constructional
+   constituents 
+        s: PossessivePronoun 
+   form
+     constraints
+      	s.f before vp.f
+   meaning: EventRD  
+    constraints
+	   self.m.description.profiledParticipant <--> s.possessor
+	
+/* test later 2/4/14
+construction  AccNPGerund   // him moving the box 
+  subcase of Gerund  
+  constructional
+     constituents 
+        np: NP
+    constraints
+ 	np.feautres.case  “acc”
+  form
+    	constraints
+      	  np.f before vp.f
+  meaning: EventRD  
+    constraints
+	self.m.description.profiledParticipant <--> np.m
+*/
+
+
+/*
+2/5/14 current plan  is to revise this cxn.  Until then, it has been commented out
+
+construction  DeverbalNP-Infinitive   // 12/28/12 John to move
+  subcase of NP
+  constructional
+     constituentsPosse
+		np:NP
+		vp: VP
+constraints
+      	vp.verbform <--  Infinitive
+      	np.features.case <-- "dat"  // "acc"?    
+form
+    constraints
+		np.f before vp.f
+meaning: EventRD  
+	constraints
+		self.m.description <--> vp.m.ed
+		self.m.number <-- @singular  //hack
+		self.m.ontological-category  <-- @eventTop
+		self.m.description.eventForm   <-- @infinitive 
+		np.m <--> vp.m.ed.profiledParticipant
+		//np.case ~ dative // for pronouns
+*/
+		
+//
+	
+/* 5/17/13	
+construction NP-ModifierPP  // general case, others could be subcases
+  subcase of NP
+  constructional
+    constituents   
+      snp: SpecifierPlusKernel  // should this be NP? 8/2/13
+      modpp: ModifierPP  // different subcases for mass, plural
+   constraints
+      self.features <--> snp.features
+  form
+    constraints
+      snp.f meets modpp.f
+  meaning
+  	constraints
+	  snp.m <--> modpp.m.modifiedThing
+	  self.m <--> snp.m	
+
+
+construction NP-ModifierPP-Material 
+  subcase of NP  
+   constructional
+    constituents   
+      snp: SpecifierPlusKernel
+      modpp: ModifierPP
+   constraints
+      self.features <--> snp.features
+  form
+    constraints
+      snp.f meets modpp.f
+  	meaning
+  	 evokes Artifact as art  // hack, seems to be needed
+  	constraints
+  	  self.m <--> snp.m  // percolate 
+  	  snp.m.ontological-category <-- @artifact // applies only to artifacts
+      modpp.obj.m.ontological-category <-- @material
+      art.material <--> modpp.obj.m
+      self.m.extensions <--> art
+      
+ 
+construction NP-ModifierPP-Container // try -Group variant
+  subcase of NP  
+   constructional
+    constituents   
+      snp: SpecifierPlusKernel
+      modpp: ModifierPP
+   constraints
+      self.features <--> snp.features
+  form
+    constraints
+      snp.f meets modpp.f
+  	meaning
+	evokes Container as cont  // hack, seems to be needed
+  	constraints
+  		self.m <--> snp.m  // percolate 
+  		snp.m.ontological-category <-- @container // applies only to containers
+  		modpp.obj.m.bounding <-- @indeterminate
+  		cont.contents <-> modpp.obj.m
+  		self.m.extensions <--> cont
+ 	  
+construction NP-ModifierPP-Group // try -Group variant
+  subcase of NP  
+   constructional
+    constituents   
+      snp: SpecifierPlusKernel
+      modpp: ModifierPP
+   constraints
+      self.features <--> snp.features //OK, “singular”
+  form
+    constraints
+      snp.f meets modpp.f
+  	meaning
+	evokes Group as group  //  seems to be needed
+  	constraints
+  		self.m <--> snp.m  // percolate 
+  	  	snp.m.ontological-category <--  @grouper 
+  		modpp.obj.m.number <-- @plural
+		group.contents <-> modpp.obj.m
+		group.value <-> snp.m.ontological-category  // specific grouper
+  		self.m.extensions <--> group
+
+
+
+construction NP-LocativePP
+  subcase of NP
+  constructional
+    constituents   
+      snp: SpecifierPlusKernel
+      modpp: Loc-PP
+   constraints
+      self.features <--> snp.features
+  form
+    constraints
+      snp.f meets modpp.f
+  meaning
+  	constraints
+	  snp.m <--> modpp.m.trajector
+	  self.m <--> snp.m  // percolate  11/16/12
+	  
+	  
+
+/* notes 8/2/13 
+
+Both mass and plural count nouns can be used as NP constituents without a preceding Specifier.  
+E.g. He moved boxes across the room, I ate cake.
+Also, generics such as: Hammers are tools; Mud is sticky.
+Furthermore, these 'undetermined' nouns can also have modifiers (he moved heavy boxes).
+So, it seems we actually want to say that certain 'undetermined' Kernels can be used as NPs.
+
+ISSUES: 
+-- Should cxn below be defined as a subcase of Kernel and NP, or should it have a 
+single constituent of type Kernel?
+-- need to define a non-general cxn
+
+This is the previously defined cxn:
+
+general construction UndeterminedNP  // various uses including:  white as snow 
+  subcase of NP 
+  meaning: RD
+    constraints
+      self.m.givenness <-- @typeIdentifiable // Michael
+	  self.m.bounding <-- @indeterminate
+*/
+
+
+// 	   SpecifierPlusKernel, cf.also QuantityNP below
+
+
+
+general construction SpecifierPlusKernel  // also subs Specifier3, QuantityNP(2)
+  subcase of NP
+ 
+general construction Specifier2PlusKernel   //also see Determiner, Wh, Possesive PN
+  subcase of SpecifierPlusKernel
+  constructional
+    constituents   
+      s: SpecifierPhrase   //12/30/12
+      k: Kernel
+    constraints
+      self.features <--> k.features
+      self.features <--> s.features
+  form
+    constraints 
+      s.f before k.f
+  meaning
+    constraints
+      s.m <--> k.m // 7/16/14 test
+      self.m <--> k.m
+      self.m <--> s.m
+
+/*
+construction Specifier3PlusKernel // indeterminate  determinate, “a beer” 3/1/13 recheck
+  subcase of SpecifierPlusKernel  // TODO: Quant case 
+  constructional
+    constituents   
+      s: Specifier //subcase to exclude “some”, etc.
+      k: Kernel
+    constraints
+     self.features <--> k.features  
+     self.features <--> s.features   //number, case ~ his beer
+  form
+    constraints
+      s.f before k.f
+  meaning
+	evokes Discretization as disc
+    constraints
+	k.m.ontological-category <-- @discreteAble// not multiplex here
+ 	disc.contents <--> k.m
+	self.m.extensions <--> disc
+    self.m.ontological-category <--> k.m.ontological-category //percolate some roles, not bounding
+    self.m <--> s.m //quant case is totally different, 
+*/
+
+general construction SpecifierPhrasePlusKernel // later
+  subcase of SpecifierPlusKernel
+  constructional
+    constituents   
+      s: SpecifierPlusQuantifier
+      k: Kernel
+    constraints
+      self.features <--> k.features
+      self.features <--> s.features
+  form
+    constraints
+      s.f before k.f
+  meaning: QuantifiedRD
+    constraints
+      self.m <--> k.m
+      self.m <--> s.m
+ 
+ /*     
+general construction SpecifierPlusDeverbalKernel  // commented out 12/19/12
+  subcase of ProcessNP
+  constructional
+    constituents   
+      s: Specifier
+      k: DeverbalKernel
+    constraints
+      self.features <--> k.features
+      self.features <--> s.features
+  form
+    constraints
+      s.f meets k.f
+  meaning
+    constraints
+      self.m <--> k.m
+      self.m <--> s.m
+ */  
+
+construction DeterminerPlusKernel 
+  subcase of Specifier2PlusKernel
+  constructional
+    constituents   
+      s: Determiner  
+
+/*
+construction DeterminerPlusDeverbalKernel // commented out 12/19/12
+  subcase of SpecifierPlusDeverbalKernel, ProcessNP
+  constructional
+    constituents   
+      s: Determiner  
+*/
+
+
+
+
+//  we now also have "his" as Possessive-NP, 
+
+construction PossessivePronounPlusKernel // expand to N's, check case
+  subcase of Specifier2PlusKernel
+  constructional
+    constituents   
+      s: PossessivePronoun // no need to check case
+      k: Kernel 
+	meaning
+		constraints
+			s.m <-> k.m 
+
+
+
+// Quantity NPs
+
+construction QuantityNP  //distinct case of SpecifierPlusKernel, ~ 2 blocks 
+	subcase of SpecifierPlusKernel
+  	constructional 
+    	constituents
+	  		q: Quantifier	// now also some, etc.
+      		k: Kernel 
+    	constraints
+      		self.features <--> k.features
+      		q.features.number <--> k.features.number 
+  	form
+    	constraints
+      		q.f before k.f
+     meaning: QuantifiedRD  //has Amount:QuantitySchema
+    	constraints
+    		//k.m.ontological-category <-- @shaped // messes up next binding
+      		self.m <--> k.m
+      		self.m.number <--> q.m.number // 11/6/12
+      		self.m.amount <--> q.m    
+      		self.m.givenness <-- @uniquelyIdentifiable
+      		
+construction QuantityOfNP  //  2 of the red blocks
+	subcase of QuantityNP
+  	constructional
+    	constituents
+	  		o1: OF-Marker
+	  		th1: THE-Marker 
+  	form
+    	constraints
+    		q.f meets o1.f
+    		o1.f meets th1.f
+    		th1.f meets k.f
+      		q.f before k.f   		
+  	meaning
+ 
+ construction QuantityDeterNP  // indeterminate  determinate, “1 beer”
+	subcase of SpecifierPlusKernel
+  	constructional
+    	constituents
+	  		q: Quantifier	// now also some, etc.
+      		k: Kernel 
+    	constraints
+      		self.features <--> k.features
+      		q.features.number <--> k.features.number 
+  	form
+    	constraints
+      		q.f before k.f
+    meaning: QuantifiedRD  //has amount:QuantitySchema
+	evokes Discretization as disc
+      constraints
+		k.m.ontological-category <-- @discreteAble // not multiplex here
+ 		disc.contents <--> k.m
+		self.m.extensions <--> disc
+      	self.m.ontological-category <--> k.m.ontological-category  //maybe others
+      	self.m.amount <--> q.m
+      	self.m.number <--> q.m.number
+ 		self.m.bounding <-- @determinate
+ 
+general construction UnitsNP // stands alone, no Specifier  11/24/12
+  subcase of NP
+  constructional
+    	constituents
+	  		num: Quantifier	//
+      		k: Noun 
+    	constraints
+      		self.features <--> k.features
+  form
+    	constraints
+      		num.f meets k.f
+  meaning: QuantifiedRD
+    constraints
+    	self.m <--> k.m
+    	//k.m.ontological-category <-- @spatial-units   generalized
+		self.m.units <-> k.m.ontological-category
+		self.m.amount.value <--> num.m
+		
+ construction SpatialQuantityNP // stands alone, no Specifier
+  subcase of UnitsNP
+  meaning: QuantifiedSpatialRD
+    constraints
+    	k.m.ontological-category <-- @spatial-units // only difference *** generalize 11/24/12
+			
+construction TemporalQuantityNP  // could merge these 2 CxN, add others	
+  subcase of UnitsNP
+  meaning: QuantifiedTemporalRD
+      constraints
+      k.m.ontological-category <-- @temporal-units
+      	    
+construction MoneyQuantityNP  // could merge these 3 CxN, add others	
+  subcase of UnitsNP
+  meaning: QuantifiedMoneyRD
+      constraints
+      k.m.ontological-category <-- @money
+      
+/*
+construction  ProcessUndeterminedNP  // fix later **********
+  subcase of ProcessNP, DeverbalKernel
+  meaning
+    constraints
+      self.m.givenness <-- @typeIdentifiable // Michael
+*/
+
+// NounNounCompounds
+
+/* 5/17/13 
+construction NounNounCompound // general, no known relation
+   subcase of Nominal
+   constructional
+      constituents
+        mod: Nominal  
+        head: Nominal
+      constraints
+        self.features <--> head.features
+   form
+     constraints
+       mod.f meets head.f
+   meaning
+     evokes NounNounModifier as nnm
+     constraints
+       self.m <--> head.m     
+       nnm.modifiedThing <--> head.m
+       nnm.modifier <--> mod.m       
+
+construction MaterialArtifactCompound  // trying new design 8/21/12 
+   subcase of Nominal
+   constructional
+      constituents
+        mod: Nominal 
+        head: Nominal
+      constraints
+        self.features <--> head.features
+  form
+     constraints
+       mod.f meets head.f
+    meaning
+      evokes Artifact as art  // hack, but seems OK
+     constraints
+       head.m.ontological-category <-- @artifact
+       self.m <--> head.m
+       mod.m.ontological-category <-- @material
+       art.material  <--> mod.m  //sets value directly
+       self.m.extensions <--> art 
+
+construction ContainerContentsCompound  // trying new design 8/21/12  
+   subcase of Nominal
+   constructional
+      constituents
+        mod: Nominal 
+        head: Nominal
+      constraints
+        self.features <--> head.features
+  form
+     constraints
+       mod.f meets head.f
+    meaning
+      evokes Container as cont  
+     constraints
+       head.m.ontological-category <-- @container
+       self.m <--> head.m
+       mod.m.bounding <-- @indeterminate // physicalEntity
+	self.m.extensions <--> cont
+	cont.contents <-> mod.m
+
+/***
+ *** WH NPs can be be wh pronouns or NPs in which 'which' and 'what' are the specifiers
+ ***
+ ***/
+
+general construction WH-NP
+   subcase of NP
+
+
+construction WhSpecifierPlusKernel
+  subcase of Specifier2PlusKernel, WH-NP
+  constructional
+    constituents   
+      s: WH-Specifier
+      k: Kernel
+   meaning
+	constraints
+		s.m <-> k.m
+	
+		
+      

@@ -1,4 +1,4 @@
- 
+package primero 
 
 // Nominalized PP - currently inherits from RootType so "Kernel" constituent doesn't conflict with "NP" constituent in PP.	        
 general construction NominalizedPP

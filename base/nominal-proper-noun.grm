@@ -1,0 +1,206 @@
+
+
+
+//
+// Proper nouns.
+//
+
+general construction ProperNounNP
+    subcase of NP, Word
+
+construction Xmas
+   subcase of ProperNounNP, Singular 
+   form
+      constraints
+         self.f.orth <-- "Xmas"
+      meaning
+      constraints
+      self.m.ontological-category <--  @date
+      self.m.number <-- @singular
+	  
+
+construction JOHN
+    subcase of ProperNounNP, Singular, ThirdPerson
+    constructional
+    form
+        constraints
+            self.f.orth <-- "John"
+    meaning
+        constraints
+            self.m.referent <-- @john-instance
+            self.m.ontological-category <-- @person
+      		self.m.number <-- @singular
+			self.m.gender <-- @male
+
+construction LAURA
+    subcase of ProperNounNP, Singular, ThirdPerson
+    form
+        constraints
+            self.f.orth <-- "Laura"
+    meaning
+        constraints
+            self.m.ontological-category <-- @person
+      		self.m.number <-- @singular
+			self.m.gender <-- @female
+
+construction ROBOT1
+    subcase of ProperNounNP, Singular, ThirdPerson
+    form
+        constraints
+            self.f.orth <-- "Robot1"
+    meaning
+        constraints
+        	self.m.referent <-- @robot1-instance
+            self.m.ontological-category <-- @robot
+      		self.m.number <-- @singular
+			self.m.gender <-- @neuter
+			
+construction ROBOT2
+    subcase of ProperNounNP, Singular, ThirdPerson
+    form
+        constraints
+            self.f.orth <-- "Robot2"
+    meaning
+        constraints
+        	self.m.referent <-- @robot2-instance
+            self.m.ontological-category <-- @robot
+      		self.m.number <-- @singular
+			self.m.gender <-- @neuter
+			
+construction Box1
+   subcase of ProperNounNP, Singular, ThirdPerson
+   form
+      constraints
+         self.f.orth <-- "Box1"
+      meaning
+      evokes Container as cont  // could have a general Box schema
+      constraints
+      self.m.referent <--  @box1-instance
+      self.m.ontological-category <--  @box
+      self.m.number <-- @singular
+	  self.m.extensions <--> cont
+	  
+construction Box2
+   subcase of ProperNounNP, Singular, ThirdPerson
+   form
+      constraints
+         self.f.orth <-- "Box2"
+      meaning
+        evokes Container as cont 
+    constraints
+      self.m.referent <--  @box2-instance
+      self.m.ontological-category <--  @box
+      self.m.number <-- @singular
+      self.m.extensions <--> cont
+/*
+construction Box3
+   subcase of ProperNounNP, Singular, ThirdPerson
+   form
+      constraints
+         self.f.orth <-- "Box3"
+      meaning
+    constraints
+      self.m.referent <--  @box3-instance
+      self.m.ontological-category <--  @box
+      self.m.number <-- @singular
+
+construction Box4
+   subcase of ProperNounNP, Singular, ThirdPerson
+   form
+      constraints
+         self.f.orth <-- "Box4"
+      meaning
+    constraints
+      self.m.referent <--  @box4-instance
+      self.m.ontological-category <--  @box
+      self.m.number <-- @singular
+*/
+
+construction Block1
+   subcase of ProperNounNP, Singular, ThirdPerson
+   form
+      constraints
+         self.f.orth <-- "Block1"
+      meaning
+    constraints
+      self.m.referent <--  @block1-instance
+      self.m.ontological-category <--  @block
+      self.m.number <-- @singular
+
+construction Block2
+   subcase of ProperNounNP, Singular, ThirdPerson
+   form
+      constraints
+         self.f.orth <-- "Block2"
+      meaning
+    constraints
+      self.m.referent <--  @block2-instance
+      self.m.ontological-category <--  @block
+      self.m.number <-- @singular
+/*
+construction Block3
+   subcase of ProperNounNP, Singular, ThirdPerson
+   form
+      constraints
+         self.f.orth <-- "Block3"
+      meaning
+    constraints
+      self.m.ontological-category <--  @entity
+      self.m.number <-- @singular
+*/
+
+general construction Directional  //also DirectionalPP, etc.
+
+
+
+construction North  //  maybe not a noun
+   subcase of Word, Directional
+   form
+      constraints
+         self.f.orth <-- "North"
+    meaning: HeadingSchema
+      constraints
+        self.m.tag <-- @north
+      
+      
+construction South
+   subcase of Word, Directional
+   form
+      constraints
+         self.f.orth <-- "South"
+   meaning: HeadingSchema
+    constraints
+     self.m.tag <-- @south
+      
+
+construction West
+   subcase of Word, Directional
+   form
+      constraints
+         self.f.orth <-- "West"
+      meaning: HeadingSchema
+    constraints
+      self.m.tag <-- @west
+
+construction East
+   subcase of Word, Directional
+   form
+      constraints
+         self.f.orth <-- "East"
+      meaning: HeadingSchema
+    constraints
+     self.m.tag <-- @east
+      
+/* not currently used but do need something like this *************
+construction Location
+   subcase of ProperNounNP, Singular
+   form
+      constraints
+         self.f.orth <-- "Location"
+      meaning
+    constraints
+      self.m.ontological-category <--  @location
+      self.m.number <-- @singular
+
+*/
+

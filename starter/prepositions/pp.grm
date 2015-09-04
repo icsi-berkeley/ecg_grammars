@@ -51,3 +51,18 @@ construction Loc-PP  // static location
 		np.m.ontological-category <-- @region  //11/4/13	      
 			// self.m <--> prep.m  inherited
 			//self.m.trajector <-- @physicalEntity  inherited
+			
+			
+construction ModifierPP
+	subcase of PP
+	constructional
+	 constituents
+	   prep: ModifierPreposition
+	form
+	  constraints
+	    prep.f before np.f
+	meaning: Modification
+	  constraints
+	     prep.m <--> self.m
+	     np.m <--> self.m.modifier
+	  			

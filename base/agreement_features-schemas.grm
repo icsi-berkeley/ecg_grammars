@@ -1,0 +1,51 @@
+
+// Constructional Agreement Features  Make separate file 1/6/13
+
+schema AgreementFeatureSet
+  roles
+    number  // "singualar" or "plural"
+    person
+
+schema AgreementFeatures
+  roles
+    features: AgreementFeatureSet
+
+
+schema NominalFeatureSet
+  subcase of AgreementFeatureSet
+  roles
+    case // "nom","acc" or "dat"
+    reflexive  // 1/19/13  semantic feature??
+
+schema NominalFeatures
+  subcase of AgreementFeatures
+  roles
+    features: NominalFeatureSet
+
+/* not needed 1/28/13
+schema AuxFeatureSet
+  subcase of VerbFeatureSet
+  roles
+    expectedVerbForm // ?now not needed
+*/
+schema AuxFeatures  // 1/28/13
+	subcase of VerbFeatures
+
+schema VerbFeatures
+  subcase of AgreementFeatures
+  roles
+    verbform: FiniteOrNonFinite
+    voice: PassiveOrNotPassive
+    verbkind: VerbKind
+	expectedVerbForm: FiniteOrNonFinite  //1/6/13
+	argform: ArgForm //10/3/13
+		
+
+// schemas for 'voice' role
+schema PassiveOrNotPassive
+   
+schema NotPassive
+  subcase of  PassiveOrNotPassive 
+  
+schema Passive
+  subcase of  PassiveOrNotPassive 

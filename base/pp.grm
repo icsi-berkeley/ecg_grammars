@@ -1,0 +1,179 @@
+
+general construction PP
+	subcase of RootType // answer to question, etc.   
+	constructional
+		constituents
+			prep: Preposition  
+			np: NP
+
+/*
+construction testPP  // no constraints 
+	subcase of PP   
+*/		
+		
+general construction Complex-PP  // general 12/13/12
+	subcase of PP
+
+/* 5/17/13
+construction Disjunctive-PP  // where to mark the connective?
+	subcase of Complex-PP
+	constructional
+	    constituents   
+		 	connective: Or // and or etc.
+		    second: PP
+   	form
+		constraints		
+	      	np.f meets connective.f
+	      	connective.f meets second.f	
+
+general construction Conjunctive-PP // to do
+	subcase of Complex-PP
+
+*/
+// more specific PP
+					 
+general construction Spatial-PP  //literal
+	subcase of PP
+	constructional
+		constituents
+			prep: SpatialPreposition 
+			optional np: NP  // overkill  11/26/12 *************
+	form
+		constraints
+			prep.f before np.f
+	meaning: TrajectorLandmark
+		constraints
+			self.m <--> prep.m
+			self.m.landmark  <--> np.m 
+			np.m.ontological-category <-- @location
+
+
+construction Path-PP  // central case 
+	subcase of PP 
+	constructional
+		constituents
+			prep: PathPreposition // e.g. into, to, from, through
+	form
+		constraints
+			prep.f before np.f
+	meaning: SPG
+		constraints
+			self.m <--> prep.m	
+		    self.m.landmark  <--> np.m 
+ 
+ construction Path-PPSerial // 12/13/12 
+	subcase of Path-PP
+	constructional
+		constituents // inherits np, prep			
+			pp2: Path-PP
+		 	optional conj:Comma  // also and, then, etc.
+	form
+		constraints		
+	      		np.f meets conj.f  // np from first PP
+	      		conj.f  meets pp2.f
+	meaning: SPG2  // serial path plus
+		constraints
+			//self.m <--> prep.m inherited
+			self.m.p2 <--> pp2.m
+
+construction Loc-PP  // static location 
+	subcase of Spatial-PP 
+	constructional
+		constituents
+			prep: LocativePreposition // e.g. at, in, inside, on, 
+	meaning: TrajectorLandmark
+		constraints
+			self.m <--> prep.m 
+			//self.m.trajector <-- @physicalEntity  inherited
+			// prep.m.p.center <-- @entity  // test nested evokes - Fails!
+		
+construction DirectionalPP  // extension for directional preps
+	subcase of PP, Directional
+	constructional
+		constituents
+			prep: DirectionalPreposition // e.g. towards 
+	form
+		constraints
+			prep.f before np.f
+	meaning: SPG  //inherited
+		evokes HeadingSchema as hs
+		constraints
+			self.m.landmark <--> np.m 
+		    hs.landmark <--> np.m
+			hs.tag <-- @towards
+
+
+//    Adjuncts  
+			
+general construction AdjunctPP 
+    subcase of PP  
+    form
+		constraints
+			prep.f before np.f
+			
+ construction InstrumentPP 
+    subcase of AdjunctPP 
+    constructional
+    	constituents
+      		prep: InstrumentPreposition  // with, ...
+	meaning
+    	constraints
+    		np.m.ontological-category <-- @instrument
+ 
+   
+general construction ModifierPP
+	constructional
+        constituents
+            prep: ModifierPreposition // e.g. , of, ...
+            obj: Kernel
+  	form
+		constraints
+			prep.f before obj.f
+  	meaning: NP-PP-Modifier
+    	constraints
+      		prep.m <--> self.m	
+    		obj.m <--> self.m.modifier		
+
+construction ModifierPP-Mass //  11/17/12 Mass Nouns
+	subcase of  ModifierPP 
+  	meaning: NP-PP-Modifier
+    	constraints
+      		obj.m.ontological-category <-- @mass
+      		
+      		
+construction ModifierPP-Plural //  11/17/12
+	subcase of  ModifierPP 
+  	meaning: NP-PP-Modifier
+    	constraints
+      		obj.m.number <-- @plural // is also physicalEntity
+
+construction ByAgentPhrase  // 2/6/13
+	subcase of PP
+  	constructional
+    	constituents
+      		prep: BY-Agent
+      		np: NP
+  	form
+   	 	constraints
+      		prep.f meets np.f
+  	meaning: ByLandmark  //2/6/13
+    	constraints
+      		np.m <--> self.m.landmark
+      				
+
+construction TemporalPhrase // revising 8/19/12
+	subcase of AdjunctPP
+  	constructional
+    	constituents
+      		prep: TemporalPreposition
+      		np: TemporalQuantityNP
+  	form
+   	 	constraints
+      		prep.f meets np.f
+  	meaning: TemporalModifier
+    	constraints
+      		np.m.ontological-category <-- @temporal-units
+      		self.m <--> prep.m
+			self.m.ti.timeUnits <--> np.m.units
+			self.m.ti.length <--> np.m.amount.value 
+

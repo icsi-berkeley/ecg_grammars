@@ -1,0 +1,20 @@
+
+
+// schemas to fill the amount role in RD
+
+schema Amount   // general schema parent of all
+
+schema QuantitySchema  // numerical, some, "a few", etc.
+  subcase of Amount
+  roles
+  	value  // numbers ++
+  	number: @RDnumberValues
+ 
+  schema AmountSchema  // non-numerical: some, 
+  subcase of Amount
+  roles  
+    value  // not numbers ++
+    
+ schema Other  // stub
+  subcase of Amount
+  

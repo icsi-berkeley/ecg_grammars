@@ -1,0 +1,133 @@
+ 
+schema Possession  //revised 11/30/12
+   roles
+   	   kind:@possessionKind
+	   possessor:RD
+	   possessed:RD
+
+schema BoundedRegion
+	roles
+		boundary: RD 
+		interior: RD 
+		exterior: RD 
+	constraints
+		boundary.ontological-category <-- @closedCurve
+		interior.ontological-category <-- @region
+		exterior.ontological-category <-- @region
+		
+schema BoundedObject
+	subcase of BoundedRegion
+	roles
+		boundedObject: RD
+	constraints
+
+schema SpatialRelation  //???????
+
+schema Proximity	
+	subcase of SpatialRelation
+	roles
+		center
+		proximalArea
+
+schema Contact // short version
+	subcase of SpatialRelation 
+	roles
+		entity1: RD // @entity 
+		entity2: RD // @entity
+	constraints
+		entity1.ontological-category <-- @entity
+		entity2.ontological-category <-- @entity
+		
+
+schema TrajectorLandmark
+	roles
+		trajector: RD 
+		landmark: RD
+		 profiledArea: RD //  defined with respect to Landmark  
+	constraints
+		trajector.ontological-category <-- @physicalEntity
+		landmark.ontological-category <-- @location // + object as location
+		profiledArea.ontological-category <-- @location 
+
+schema ByLandmark //2/6/13
+	roles 
+		landmark:RD
+
+schema SPG   // constraints ??
+	subcase of TrajectorLandmark
+	roles
+		source: RD
+		path: RD
+		goal: RD
+		distance  // ???*********7/17/13
+
+schema SPG2   // serial path 12/12/12
+	subcase of SPG  // first PP identified with complex
+		roles
+		  p2//:SPG  second PP is added on
+
+schema BlockedSPG   // blocked path 12/13/12
+	subcase of SPG
+	roles
+		agent:RD 
+		object:RD 
+	constraints	
+		agent.ontological-category <--  @sentient
+		object.ontological-category <-- @physicalEntity
+	
+schema Scale  // not yet used; using only ontology scales
+	roles
+	  //category for particular types, probably not
+	  measure // size, etc.  11/19/12
+	  units// pounds
+	  bottom // "1"
+	  top // "5"
+	  numericalValue // currently strings 0..9  
+	constraints
+
+// Relation Schemas, currently for copula, need to be more general 11/27/12
+
+schema RefRelation  // general form  11/10/12
+   roles
+   		first: RD
+   		second: RD
+   
+schema RefIdentify  // used in base CopularVPNominal, too general 11/15/12
+    subcase of RefRelation
+	constraints
+   	first.ontological-category <--> second.ontological-category
+   	first.number <--> second.number
+   	first.gender <--> second.gender
+   	
+
+schema RefScaleRelation // used in X comparative Y, ontology values only
+   subcase of RefRelation
+   roles
+     prop:@scale // optional, not always a scalar relation
+     value
+   constraints
+   	first.scale <--> second.scale
+	prop <--> first.scale
+
+schema DistanceRelation // X is far from Y, similarity may need ont-cat match
+   subcase of RefRelation
+   roles
+     prop:@distanceScale 
+     value
+   constraints
+
+// Temporal stuff
+
+schema TemporalInterval
+	roles
+		start
+		end
+		length
+		timeUnits: @temporal-units  //@minutes, @seconds
+		
+schema TemporalModifier
+    roles
+      	telicity // one of @bounded, @ongoing
+      	ti: TemporalInterval
+            
+		

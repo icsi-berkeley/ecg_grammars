@@ -1,6 +1,8 @@
 //
 // Singular Count Nouns
 //
+package primero
+import relations // for friendtype
 
 general construction SingularNoun
   subcase of Noun, Singular
@@ -25,13 +27,17 @@ construction NounType
         self.m.ontological-category <-- @entity
         self.m.scale <-- @scale
         
-   
 
 
-     
-      
-
-
+construction RelationType
+	subcase of NounType
+	constructional
+     constraints
+        self.features.gender <-- @genderValues
+    meaning
+      evokes Relationship as r
+      constraints
+        self.m.extensions <--> r
 
 //
 // Plural Count Nouns
@@ -47,7 +53,6 @@ general construction PluralNoun
       //self.m.ontological-category <-- @multiplex // might restrict some
       self.m.number <-- @plural
       self.m.bounding <-- @indeterminate
-
 
 	  
 // Proper Nouns

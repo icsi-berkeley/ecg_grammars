@@ -40710,7 +40710,8 @@ movers	mover Plural
 moves	move Plural move Singular/PresentTense/ThirdPerson
 movie	movie Singular
 movies	movie Plural movies Singular
-moving	move PresentTense/Participle moving Positive
+moving	move PresentTense/Participle 
+moving  moving Positive
 movingly	movingly Positive
 mow	mow Infinitive mow Singular/PresentTense/FirstPerson mow Singular/PresentTense/SecondPerson mow Plural/PresentTense
 mowed	mow Singular/PastTense/FirstPerson mow Singular/PastTense/SecondPerson mow Singular/PastTense/ThirdPerson mow Plural/PastTense mow PastTense/Participle

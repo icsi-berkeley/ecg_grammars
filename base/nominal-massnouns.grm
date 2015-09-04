@@ -1,0 +1,80 @@
+//
+// Mass Nouns 
+//
+
+general construction MassNoun  // can be undetermined NP 11/15/12
+  subcase of NP, Noun, Singular
+   meaning
+    constraints
+      self.m.bounding <-- @indeterminate  // may want to change this 11/17/12
+      self.m.number <-- @noNumber
+
+construction Crime
+  subcase of MassNoun
+   form
+      constraints
+         self.f.orth <-- "crime"
+   meaning
+    constraints
+      self.m.ontological-category <-- @crime
+      self.m.scale <-- @intensityScale
+
+construction Corruption
+  subcase of MassNoun
+   form
+      constraints
+         self.f.orth <-- "corruption"
+   meaning
+    constraints
+      self.m.ontological-category <-- @corruption
+      self.m.scale <-- @intensityScale
+
+ /*     singular noun now      
+construction Problem
+  subcase of MassNoun
+   form
+      constraints
+         self.f.orth <-- "problem"
+   meaning
+    constraints
+      self.m.ontological-category <-- @problem
+  */
+   
+ 
+
+construction Mud  // scales for these ???
+  subcase of MassNoun
+   form
+      constraints
+         self.f.orth <-- "mud"
+   meaning
+    constraints
+      self.m.ontological-category <-- @mud
+
+construction Wind  // 12/29/12
+  subcase of MassNoun
+   form
+      constraints
+         self.f.orth <-- "wind"
+   meaning
+    constraints
+      self.m.ontological-category <-- @wind
+
+construction Beer
+  subcase of MassNoun
+   form
+      constraints
+         self.f.orth <-- "beer"
+   meaning
+    constraints
+      self.m.ontological-category <-- @beer
+      
+construction Steel
+  subcase of MassNoun
+   form
+      constraints
+         self.f.orth <-- "steel"
+   meaning
+    constraints
+      self.m.ontological-category <-- @steel    
+      

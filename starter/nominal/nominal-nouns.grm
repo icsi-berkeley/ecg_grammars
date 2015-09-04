@@ -11,9 +11,8 @@ general construction SingularNoun
       self.features.number <-- "singular"  
    meaning
     constraints
-      self.m.number <-- @singular
-	  self.m.bounding <-- @determinate
-
+      //self.m.number <-- @singular
+	  //self.m.bounding <-- @determinate
 
 //
 // Plural Count Nouns
@@ -35,29 +34,7 @@ general construction PluralNoun
 general construction ProperNounNP
     subcase of NP, Word
 
-
-package john-package
-
-construction JOHN
-	subcase of ProperNounNP
-	form
-	  constraints
-	    self.f.orth <-- "John"
-
-package starter
-
-    
-// "Type" constructions
-construction NounType
-   subcase of Noun, GeneralTypeCxn, ThirdPerson
-   meaning
-      constraints
-        //self.m.number <-- @RDnumberValues
-        self.m.gender <-- @genderValues
-        self.m.ontological-category <-- @entity
-        self.m.scale <-- @scale
-
- 
+       
  
 // Stuff for argstruct-transitive       
 general construction UnitsNP // stands alone, no Specifier  11/24/12

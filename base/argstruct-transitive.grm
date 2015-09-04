@@ -1,0 +1,462 @@
+
+//
+
+/*
+/*
+Transitive cxns inherit from the general ArgumentStructure cxn
+ 
+-- 1/28/14 copy of cxn in vp.grm:
+
+general construction ArgumentStructure 
+  subcase of VP
+  constructional
+    constituents
+      v : Verb 
+    constraints
+      self.features <--> v.features
+      self.voice <--> v.voice
+   meaning
+     evokes A123 as s  // 8/17/13 used in all subcases??
+     constraints
+       v.m  <--> ed.profiledProcess
+       self.m.p-features <--> v.m.p-features // 1/3/13 ????
+      // self.ed.eventProcess.p-features <--> self.ed.profiledProcess.p-features 1/15/13
+
+*/
+
+//GENERAL TRANSITIVE CONSTRUCTIONS
+
+// the ActiveTransitive and PassiveTransitive cxns capture syntactic generalizations
+// over a range of 'transitive' cxns: 
+//   * active voice pattern   =  a1 V a2
+//   * passive voice pattern  =  a2 V-ppl (by a1)
+
+general construction ActiveTransitive  // formerly ActiveTransitive_test 11/4/13
+  subcase of ArgumentStructure
+  constructional
+    constituents
+      np: NP [1.0, .9]   // probablilties, check this !!
+    constraints
+      v.argform <-- Transitive
+      v.voice <-- NotPassive  // 2/1/13
+  form
+    constraints 
+      v.f before np.f
+  meaning: Process  //  5/14/13
+     //evokes A123 as s //5/14/13 ***** // inherited from ArgumentStructure
+    constraints
+      s.a1 <--> ed.profiledParticipant	//2/20/13 
+      s.a2 <--> np.m 
+	  v.m.p-features.voice <-- @active // 2/1/13 
+
+
+general construction PassiveTransitive  // changed name from PassiveTransitive_test 11/4/13
+  subcase of ArgumentStructure
+  constructional
+    constituents
+     v:Verb // inherited
+     optional byPhrase: ByAgentPhrase
+    constraints
+      v.argform <-- Transitive
+      v.voice <-- Passive  // 2/1/13
+ form
+    constraints
+      v.f before byPhrase.f
+  meaning: Process
+   evokes A123 as s    
+    constraints
+	 v.m.p-features.voice <-- @passive
+	 s.a1 <--> byPhrase.m.landmark
+	 s.a2 <--> ed.profiledParticipant 	 
+
+
+/*
+   Description of different types of TRANSITIVE cxns: 
+
+   Several different kinds of situations can be described using 'transitive' a-s cxns: 
+    -- Causal Transitive cxns --  Different subcases: 
+            + a1's actions at least potentially affect the state/location of a2 (e.g. cut, kick)
+			+ a2 is the protagonist of a process (the 'effect') that has an external cause (a1) (e.g. move, break)
+			+ a2 describes the effect, while the verb indicates type of 'cause' (e.g. cause, prevent)
+   	-- Trans_Perception: a1 percieves a2 (e.g. see, hear)
+    -- Trans_Possession: a1 posesses a2 (e.g. have, own, possess)
+    -- Trans_Imitiation??: a1's action/state is dependent on a2's action/state (e.g. a1 follows/copies a2)
+    -- Trans_MentalAttitude?? : a1 has mental attitude wrt a2 (e.g. likes, wants, fears)
+    -- Trans_Motion: a1 moves in relation to a2 (e.g. enter, leave)
+    -- Trans_Communication: a1 is communicator, a2 is the thing communicated (e.g. tell a lie, say something)
+   
+Note that only some of these transitive cxns are in the current grammar. 
+
+   In the section below, different sets of transitive cxns are defined for these different types
+    of situations/relations between a1 and a2.  For each:
+      * a general 'semantic' transitive cxn's meaning is identified with a schema that represents the situation 
+         type (e.g. CauseEffect)
+      * Meaning constraints indicate how the situation roles are expressed (e.g. a1 <--> self.m.causer)
+
+   Active and passive expressions of these 'semantically transitive' scenes are specified compositionally by defining
+   cxns which are subcases both of a general 'syntactic' and a general'semantic' transitive cxn. 
+
+
+
+/** CAUSAL transitive constructions (Trans_Causation)
+
+
+/*
+
+The general Trans_AgentEffectCausation cxn, below, is used to describe a prototypical 'causal' scenario:  
+  a causalAgent performs some action (the causalProcess, which typically involves a transfer of force)
+  on an affectedEntity, at least potentially resulting in some sort of effect to this entity (the affectedProcess).
+
+  This scenario is reprsented using the CauseEFfect schema, shown here as a COMMENTED OUT DUPLICATE
+  (the original is in  schemas-process.grm):
+ 
+    schema CauseEffect// prototypical/central case of causation
+   	  subcase of GeneralCausation, ComplexProcess 
+   		  roles
+      		causalAgent: RD  // could tighten constraint to EntityRD
+      		affectedEntity: RD // could tighten constraint to EntityRD
+      		causalProcess
+      		affectedProcess
+   	  constraints
+      		causalAgent <--> protagonist // binding to inherited role
+      		affectedEntity <--> protagonist2 // binding to inherited role
+      		causalProcess <--> process1 // binding to inherited role
+      		affectedProcess <--> process2 // binding to inherited role
+      		complexKind <-- @causal
+ 			//effect – could define as EventRD and bind aff Entity and process roles
+      		//cause - could define as EventRD and bind causalAgent and Process roles
+
+ (3/20/14): NOTE that the CauseEffect schema does not currently have any constraints
+      on the ontological type of its participants: it does not constrain them to be @physicalEntity, 
+      nor does it constrain the RD type (e.g. it could have tighter constraint of being EntityRD).  
+      Such constraints could be added to the schema, and/or could be added to specific constructions in which they are relevant.
+      Absent such constraints, this schema will also support analysis of 'event-like' causes (e.g. His pushing moved the box). 
+*/
+
+
+
+// The Trans_AgentEffectCausation cxn specifies a common 'transtive' pattern for the expression of CauseEffect schema 
+// roles: a1 = causalAgent, and a2 = affectedEntity.  E.g. He cut the bread. 
+
+general construction Trans_AgentEffectCausation //  added 2/11/14
+  subcase of ArgumentStructure // or sub of some more general transitive causal cxn?
+    meaning: CauseEffect
+     //evokes A123 as s
+     constraints
+	    s.a1 <--> self.m.causalAgent
+        s.a2 <--> self.m.affectedEntity
+        
+
+//SUBCASES of Trans_AgentEffect Causation are defined to specify how different groups of verbs serve to elaborate different aspects of the CauseEffect scene)
+//Constructions for Active and Passive patterns are defined as further subcases of these cxns (inheriting also from ActiveTransitive and
+//  PassiveTransitive, respectively) 
+
+ 
+//In the central subcase of Trans_Causation, the verb constituent incorporates Causation in its meaning, e.g. cut 
+general construction Trans_Causation_central 
+  subcase of Trans_AgentEffectCausation
+    meaning
+     constraints
+	    self.m <--> v.m
+	    
+construction ActiveTrans_Causation_central //he cut the box
+  subcase of ActiveTransitive, Trans_Causation_central     
+        
+
+construction PassiveTrans_Causation_central // the box was cut (by him)
+  subcase of PassiveTransitive, Trans_Causation_central    
+        
+
+
+// In the 'causalAction' subcase, the verb constituent has meaning related to force-application (the causalProcess), e.g. push, slap 
+
+// next  cxns added 2/11/14 
+
+general construction Trans_Causation_causalAction  
+  subcase of Trans_AgentEffectCausation
+    meaning
+     evokes ForceApplication as fa
+     constraints
+	    v.m <--> fa
+        self.m.process1 <--> fa  // self.m.process1 is CauseEffect.causalProcess
+        fa.actedUpon <--> self.m.affectedEntity   
+
+        
+construction  ActiveTrans_Causation_causalAction   // he pushed/slapped the box
+  subcase of ActiveTransitive, Trans_Causation_causalAction  
+  
+construction PassiveTrans_Causation_causalAction // the box was pushed/slapped (by him)
+  subcase of PassiveTransitive, Trans_Causation_causalAction         
+
+
+//// In the 'effectProcess' subcase, the verb constituent elaborates the affectedProcess, e.g. move
+
+// ** NOTE: need to add verbKind constraints that block over-use of Trans_Causation_effectProcess cxns
+//      'transitive' verbs -- as currently defined (as of 3/20/14), pretty much any verb can occur here
+        
+
+general construction Trans_Causation_effectProcess // e.g. move 
+  subcase of Trans_AgentEffectCausation
+    meaning
+    constraints
+        v.m <--> self.m.affectedProcess
+
+construction ActiveTrans_Causation_effectProcess //he moved the box
+  subcase of ActiveTransitive, Trans_Causation_effectProcess      
+        
+construction PassiveTrans_Causation_effectProcess // the box was moved (by him)
+  subcase of PassiveTransitive, Trans_Causation_effectProcess               
+
+
+
+//** EVENT CAUSATION
+/*
+The general Trans_effectCausation cxn, below, is used to describe a somewhat less prototypical 'causal' scenario:  
+  a cause (e.g. some sort of event) affects the affectedEntity in some way.  In simple transitive expressions,
+  the affectedProcess may be elaborated by the verb.  E.g. in 'The explosion/ his pushing moved the box' the verb
+  indicates that the affectedProcess is one of motion.
+ 
+  This scenario is reprsented using the CausedProcess schema, shown here as a COMMENTED OUT DUPLICATE
+  (the original is in  schemas-process.grm):
+
+schema CausedProcess // elaborated effect, general cause
+   subcase of GeneralCausation, EmbeddedProcess
+   roles
+   	affectedEntity: RD  // physical entity
+    affectedProcess: Process
+    //causedProcessType:
+     cause: EventRD // using EventRD instead of RD should reduce number of analyses 
+	//effect – could define as EventRD and bind to affectedEntity and affectedProcess roles
+   constraints
+      affectedProcess <--> embeddedProcess
+      affectedEntity <--> 	affectedProc
+*/
+
+// next  cxns were added 3/7/14 
+
+general construction Trans_effectCausation // 
+  subcase of ArgumentStructure // or sub of more general cxn
+    meaning: CausedProcess
+     //evokes A123 as s
+     constraints
+	    s.a1 <--> self.m.cause // currently constrained in schema to be EventRD
+        s.a2 <--> self.m.affectedEntity
+
+general construction Trans_effectCausation_effectProcess // e.g. move 
+  subcase of Trans_effectCausation
+    meaning
+    constraints
+        v.m <--> self.m.affectedProcess
+
+construction ActiveTrans_effectCausation_effectProcess //the storm moved the box
+  subcase of ActiveTransitive, Trans_effectCausation_effectProcess      
+        
+construction PassiveTrans_effectCausation_effectProcess // the box was moved (by the storm)
+  subcase of PassiveTransitive, Trans_effectCausation_effectProcess 
+  
+
+
+// Causation -- Causal verbs (e.g. cause, prevent)
+	 	
+
+//Testing 3/20/14
+
+// CausalAction scenario -- a protagonist [causalAgent] affects an event [effect]
+// e.g. He caused the crisis
+
+general construction Trans_AgentEventCausation //  
+  subcase of ArgumentStructure // or sub of some more general transitive causal cxn?
+   constructional  
+    	constraints
+    		v.verbkind <-- ForceDynamic //this should constrain this cxn to 'causal' verbs, e.g. cause, prevent
+  meaning: CausalAction
+     //evokes A123 as s
+     constraints
+	       s.a1 <--> self.m.causalAgent
+           s.a2 <--> self.m.effect
+           v.m <--> self.m
+       // need to add constraint that restricts this to causal verbs 
+
+construction ActiveTrans_AgentEventCausation //he caused the crisis 
+  subcase of ActiveTransitive, Trans_AgentEventCausation 
+        
+
+construction PassiveTrans_AgentEventCausation // the crisis was caused by him
+  subcase of PassiveTransitive, Trans_AgentEventCausation 
+
+
+
+// EventCausation scenario -- one event [cause] affects another event [effect] 
+
+general construction Trans_EventCausation 
+  subcase of ArgumentStructure // or sub of some more general transitive causal cxn?
+   constructional  
+    	constraints
+    		v.verbkind <-- ForceDynamic //this should constrain this cxn to 'causal' verbs, e.g. cause, prevent
+  meaning: GeneralCausation  // should this be CausalEvent instead?
+     //evokes A123 as s
+     constraints
+	       s.a1 <--> self.m.cause
+           s.a2 <--> self.m.effect
+           v.m <--> self.m
+       // need to add constraint that restricts this to causal verbs 
+
+construction ActiveTrans_EventCausation // his moving caused a crisis
+  subcase of ActiveTransitive, Trans_EventCausation 
+        
+
+construction PassiveTrans_EventCausation // a crisis was caused by his moving
+  subcase of PassiveTransitive, Trans_EventCausation 
+
+
+/*
+// the set of cxns below defines active and passive variants of causal transitives
+// using separate Active and Passive hierarchies.
+
+construction ActiveAgentEventTransitive // 2/5/13 he caused the crisis 
+  subcase of ActiveTransitive
+	meaning: AgentEventCausation
+		constraints
+			np.m <--> self.m.effect
+			self.m.causer <--> ed.profiledParticipant
+
+
+construction EventEventTransitive // 12/28/12
+  subcase of ActiveTransitive
+	meaning: EventEventCausation
+		constraints
+			np.m <--> self.m.effect
+			self.m.causer <--> ed.profiledParticipant
+
+construction PassiveAgentEventTransitive // 2/5/13 the crisis was caused by J.
+  subcase of PassiveTransitive
+constructional
+    constituents
+       byPhrase: ByAgentPhrase
+        v: Verb  
+  form
+    constraints
+      v.f before byPhrase.f
+  meaning: AgentEventCausation
+	constraints
+		byPhrase.m.landmark <--> self.m.causer
+		self.m.effect <--> ed.profiledParticipant
+
+construction PassiveEventEventTransitive // 2/5/13 the crisis was caused by his moving
+  subcase of PassiveTransitive
+constructional
+    constituents
+       byPhrase: ByAgentPhrase
+        v: Verb  
+  form
+    constraints
+      v.f before byPhrase.f
+  meaning: EventEventCausation
+	constraints
+		byPhrase.m.landmark <--> self.m.causer
+		self.m.effect <--> ed.profiledParticipant
+*/
+
+
+// Transitive Perception
+
+general construction Trans_Perception_central  // 10/7/13
+  subcase of ArgumentStructure
+  meaning: Perception
+    constraints
+      v.verbkind <-- Perceptual  // 10/3/13 possibly redundant with meaning
+      s.a1 <--> self.m.thinker	// perceiver 
+      s.a2 <--> self.m.content   // percept
+      self.m <--> v.m
+
+
+construction ActiveTrans_Perception_central //he saw the box
+  subcase of ActiveTransitive, Trans_Perception_central     
+        
+
+construction PassiveTrans_Perception_central // the box was seen (by him)
+  subcase of PassiveTransitive, Trans_Perception_central    
+        
+        
+general construction TransCat_PresentPart_Perception // 10/7/13 
+  subcase of Trans_Perception_central
+  constructional
+    constituents
+	vp: VP
+    constraints
+      vp.verbform <-- PresentParticiple
+  meaning: Perception
+    constraints
+	vp.m <--> self.m.perceivedProcess
+
+construction ActiveTrans_TransCat_PresentPart_Perception //he saw the block moving into the box
+  subcase of ActiveTransitive, TransCat_PresentPart_Perception
+        
+
+construction PassiveTrans_TransCat_PresentPart_Perception // he was seen moving into the box
+  subcase of PassiveTransitive, TransCat_PresentPart_Perception
+       
+
+general construction TransCat_Base_Perception // 10/8/13
+  subcase of Trans_Perception_central
+  constructional
+    constituents
+	vp: VP
+    constraints
+      vp.verbform <-- Base
+  meaning: Perception
+    constraints
+	vp.m <--> self.m.perceivedProcess
+
+construction ActiveTrans_TransCat_Base_Perception //he saw the block move into the box
+  subcase of ActiveTransitive, TransCat_Base_Perception
+  
+//Note: this construction does not occur with Passive: *the block was seen move into the box.
+        
+
+        
+//  ***********************
+// Subcases of ActiveTransitive cxn in which A-S cxn meaning is bound to meaning of verb constituent
+//
+// note that passives (if any) would require definition of a parallel set of passive cxns
+//  ***********************
+
+general construction CoreActiveTransitive  // 8/21/13
+	subcase of ActiveTransitive
+	meaning
+		constraints
+		self.m <--> v.m
+
+
+/*		
+doesn't give correct semspec 11/4/13
+
+construction ActiveTransitiveMotion  // 10/15/13
+	subcase of CoreActiveTransitive
+	meaning: MotionPath
+		constraints
+		//v.verbkind <-- Perceptual  // 10/3/13 possibly redundant with meaning
+		s.a1 <--> self.m.mover	
+*/
+
+// e.g. he saw the box
+construction ActiveTransitivePerception  // 8/21/13 
+	subcase of CoreActiveTransitive
+	meaning: Perception
+		constraints
+		v.verbkind <-- Perceptual  // 10/3/13 possibly redundant with meaning
+		s.a1 <--> self.m.thinker	
+		s.a2 <--> self.m.content
+		
+// e.g. he had/owned the box
+construction ActiveTransitivePossession  // 10/4/13
+	subcase of CoreActiveTransitive
+	constructional
+	constituents
+	meaning: PossProcess
+		constraints
+		v.verbkind <-- PossessionKind
+		s.a1 <--> self.m.protagonist	
+		s.a2 <--> self.m.possessed
+		
+        

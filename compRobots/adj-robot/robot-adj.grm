@@ -1,84 +1,8 @@
 package robots
 import starter
-
-general construction ComplexAdjective
-	subcase of Adjective
-
-construction SerialAdjective
-	subcase of ComplexAdjective
-	constructional
-	  constituents
-	    first: Adjective
-	    second: Adjective
-	form
-	  constraints
-	    first.f meets second.f
-	meaning
-	  constraints
-	    self.m <--> first.m
-	    self.m.modifiedThing <--> second.m.modifiedThing
-
-construction ComplexAdjKernel
-	subcase of Kernel
-	constructional
-	 constituents
-	  ap: SerialAdjective
-	  n: Nominal
-	 constraints
-	  self.features <--> n.features
-	form
-	  constraints
-	    ap.f before n.f
-	meaning: RD
-	  constraints
-	    self.m <--> n.m
-	    self.m <--> ap.m.modifiedThing
-	
-
-construction SideAdj-Type
-	subcase of GeneralTypeCxn, PropertyAdjective
-	meaning
-	  constraints
-	    self.m.value <-- @sideValue
-	    self.m.property <-- @side
-	    self.m.domain <-- @part	
-
-  
-	    
-
-// Uses comparative modifier, which is subcase of "scalar modifier".
-// Can only compare scalars with this model. No "greener than box1", etc.
-// Also, "kind" constraint overly limits parses; not sure why. 
-// "bigger than box1" works but now "bigger than box2".
-construction ComparativeAdjectivePhrase
-	subcase of ComplexAdjective
-	constructional
-	  constituents
-	    comp: Adjective
-	    than: SerialConjunction
-	    ground: NP
-	form
-	  constraints
-	    comp.f meets than.f
-	    than.f meets ground.f
-	meaning: ComparativeAdjModifier
-	  constraints 
-	    //comp.m.kind <-- @comparative   
-	    self.m.base <--> ground.m
-	    self.m <--> comp.m
-	    self.m.kind <-- @comparative
+import adverbs
 
 
-construction Bigger
-	subcase of ScalarAdjective	
-	form
-	 constraints
-	   self.f.orth <-- "bigger"
-	meaning: ScalarModifier
-	 constraints
-	   self.m.value <-- @big
-	   self.m.property <-- @size
-	   self.m.domain <-- @physicalEntity
-	   self.m.kind <-- @comparative  
-	  
+
+
 	     

@@ -69,6 +69,7 @@ schema RefRelation
 schema RefIdentity
 	subcase of RefRelation
 	constraints
-	  first.ontological-category <--> second.ontological-category
+	  //first.ontological-category <--> second.ontological-category
+	  //first.referent <--> second.referent
 	  first.number <--> second.number
 	  first.gender <--> second.gender

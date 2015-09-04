@@ -16,24 +16,25 @@ schema CommercialTransaction
 	constraints
 	  //seller <--> giver
 	  //buyer <--> getter
+	  theme <--> goods
 	
 
 schema MoneyTransfer
    subcase of CommercialTransaction
    constraints
      protagonist <--> buyer
-     //protagonist2 <--> seller
+     protagonist2 <--> seller
 
 schema GoodsTransfer
    subcase of CommercialTransaction
    constraints
      protagonist <--> seller
      protagonist2 <--> buyer
-     process1.theme <--> theme
-     process2.theme <--> theme
+     buyer <--> recipient
+     //process1.theme <--> theme
+     //process2.theme <--> theme
    
       
-
 
 	
 /* FrameNet further breaks this down into perspectivized frames. E.g., Commerce-Sell

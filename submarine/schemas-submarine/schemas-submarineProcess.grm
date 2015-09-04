@@ -1,0 +1,11 @@
+package submarine
+import starter
+
+
+
+
+schema VerticalMotionPath
+	subcase of MotionPath
+	evokes Verticality as vert
+	  
+  		  

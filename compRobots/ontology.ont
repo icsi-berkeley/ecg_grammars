@@ -328,6 +328,8 @@ DEFS:
 
 (type process-kind sub enumeration)  //
 
+(type joint sub process-kind)
+
 (type coprocess sub process-kind)   // 10/18/13
 
 (type serial sub process-kind)
@@ -770,7 +772,7 @@ DEFS:
 
 (type task sub function)
 
-(type pencil sub entity artifact moveable)
+(type pencil sub physicalEntity artifact moveable)
 
 (type box3-instance sub instance box)
 
@@ -825,5 +827,7 @@ DEFS:
 (type trudge sub motion)
 
 (type amble sub motion)
+
+(type team-instance sub instance)
 
 INSTS:

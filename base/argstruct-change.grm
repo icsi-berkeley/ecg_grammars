@@ -1,0 +1,198 @@
+
+// Change
+
+/*
+
+//Intranstive CHANGE
+
+// commented out for 3/20/13 test
+
+
+general construction IntransitiveChangeTo  // B2 changed to Red/Big 3/3/13
+  subcase of IntransitiveArgumentStructure_old
+  constructional
+     constituents
+       prep: TO-Marker  // below w/ FROM
+	   adj: PropertyAdjective
+   constraints
+	// v.argform <-->
+   form
+     constraints
+	   v.f before prep.f
+	   prep.f before adj.f
+   meaning: Scene
+     constraints
+	  adj.m <--> self.m.a3  // note ******
+
+schema PropertyChangeScene //  3/4/13
+	subcase of Scene 
+evokes  PropertyChange as pc
+    constraints
+      a1 <--> pc.modifiedThing  
+	  pc <--> a3  // both Modification
+
+construction IntransitiveStateChange
+	subcase of IntransitiveChangeTo
+	 meaning: PropertyChangeScene 
+
+
+construction IntransitiveScaleChange
+	subcase of IntransitiveChangeTo
+	 meaning: ScaleChangeScene
+
+schema ScaleChangeScene //  3/4/13
+	subcase of Scene 
+evokes  ScalarChange as pc
+    constraints
+      pc.property <-- @scale
+      a1 <--> pc.modifiedThing  
+	  pc <--> a3  // both Modification
+	
+*/		
+//if we keep this schema, need to change meaning to Process, and change self.m.a1 to s.a1
+
+construction IntransitiveStateChange2  // B2 changed (from blue)to red 2/2/14
+  subcase of IntransitiveArgumentStructure
+  constructional
+     constituents
+         prep: TO-Marker  // later optional FROM
+	   adj: PropertyAdjective
+     	 fr: FROM-Marker
+	   adj2: PropertyAdjective
+ constraints
+	// v.argform <-->
+   form
+     constraints
+	   v.f before fr.f 
+	   fr.f before adj2.f
+	   adj2.f before prep.f
+       prep.f before adj.f
+  meaning  
+	evokes  PropertyChange as pc
+    constraints
+      s.a1 <--> pc.modifiedThing
+	  pc <--> adj.m  // both Modification
+ 	  pc.oldValue <--> adj2.m.value
+ 	  pc.property <--> adj2.m.property  // same property
+
+
+
+
+//PASSIVE TRANSITIVE CHANGE
+
+general construction PassiveTransitiveChange  // B2 was changed to blue/big 3/4/13
+   subcase of PassiveTransitive  
+   constructional
+     constituents
+        prep: TO-Marker  // later optional FROM
+		adj: Adjective
+   constraints
+	// v.argform <--> 
+	form
+     constraints
+	  	v.f before prep.f
+	  	prep.f before adj.f
+	meaning: Process // changed from Scene 11/4/13
+
+construction PassiveTransitiveStateChange // changed to blue
+	subcase of PassiveTransitiveChange
+	meaning: Process // changed from Scene 11/4/13
+	evokes  PropertyChange as pc 
+	constraints
+		//self.m.a1 <--> byPhrase.m.landmark, inherited
+		//self.m.a2 <--> ed.profiledParticipant  inherited
+		s.a2 <--> pc.modifiedThing
+	 	pc <--> adj.m  // both Modification	
+
+construction PassiveTransitiveScaleChange  // B2 was changed (from red) to blue
+   subcase of PassiveTransitiveChange 
+   meaning: Process // changed from Scene 11/4/13
+    evokes  ScalarChange as pc 
+	constraints
+		//self.m.a1 <--> byPhrase.m.landmark, inherited
+		pc.property <-- @scale
+		// s.a2 <--> ed.profiledParticipant, inherited
+		s.a2 <--> pc.modifiedThing
+	 	pc <--> adj.m  // both Modification	 
+	 	 
+
+
+// ACTIVE TRANSITIVE CHANGE
+construction ActiveTransitiveChangeScale //  he enlarged Block2   	
+	subcase of ActiveTransitive
+	constructional
+		constraints
+      		v.argform <-- PropertyChanger
+	meaning: PropertyChangerScene // this schema is now subcase of Process 11/4/13
+		constraints
+		v.m <--> self.m
+		self.m.prop.modifiedThing <--> s.a2
+		self.m.prop.domain <--> self.m.prop.modifiedThing.ontological-category // 4/24/13
+		self.m.protagonist <--> s.a1
+		
+
+
+general construction ActiveTransitiveChange // he changed it (from red) to blue 2/20/13
+   subcase of ActiveTransitive  
+   constructional
+     constituents
+       prep: TO-Marker  // later optional FROM
+	   adj: PropertyAdjective
+	form
+     constraints
+	  	np.f before prep.f
+	  	prep.f before adj.f
+
+		
+  construction ActiveTransitiveStateChangeTo // he changed it (from red) to blue 2/20/13
+   subcase of ActiveTransitiveChange  
+   meaning
+	evokes  PropertyChange as pc
+	 constraints
+		//self.m  <--> v.m    // central case
+		s.a2 <--> pc.modifiedThing
+		pc <--> adj.m  // both Modification 
+ 
+ construction ActiveTransitiveScaleChangeTo // he changed it to big 3/3/13
+   subcase of ActiveTransitiveChange  
+   meaning
+	evokes  ScalarChange as pc
+	 constraints
+	 	adj.m.property <-- @scale
+		//self.m  <--> v.m    // central case
+		np.m <--> pc.modifiedThing
+		pc <--> adj.m  // both Modification 
+					 
+/*			 Commented out for now 10/15/13		 
+general construction ActiveTransitiveMakeAdj // he made it red/big  Problem 10/15/13 *************
+   subcase of ActiveTransitive  
+   constructional
+     constituents
+	   adj: PropertyAdjective
+  form
+     constraints
+	  	v.f before np.f
+	  	np.f before adj.f  
+  
+construction ActiveTransitiveMakeProperty // he made it red  3/3/13
+   	subcase of ActiveTransitiveMakeAdj
+    meaning
+		evokes  PropertyModifier as pc
+	 	constraints
+	 		//v.m.actionary <-- @statechange  // make, etc.  ???? check
+			//self.m  <--> v.m    // central case
+			np.m <--> pc.modifiedThing
+			pc <--> adj.m  // both Modification
+
+construction ActiveTransitiveMakeScale // he made it big  3/3/13
+   	subcase of ActiveTransitiveMakeAdj
+   	 meaning
+		evokes  ScalarModifier as pc
+	 	constraints
+	 		pc.property <-- @scale
+	 		//v.m.actionary <-- @statechange  // make, etc. ???? check
+			//self.m  <--> v.m    // central case
+			s.a2 <--> pc.modifiedThing
+			pc <--> adj.m  // both Modification
+*/		
+	 	 

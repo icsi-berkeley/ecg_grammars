@@ -1,0 +1,47 @@
+// maybe rename to Expansion  6/17/14
+// Lexical CxN set self.m.parent <-> self
+
+schema Extensions  // parent of all Extension schemas
+
+Schema NoExtension  //prevents unify when RD.extensions is unfilled
+	subcase of Extensions
+
+schema Artifact  
+	subcase of Extensions
+	roles
+		affordances: RD // later 
+		material: RD // @material
+	constraints
+		material.ontological-category <-- @material
+		
+schema Group  // for BoundedMultiplicity, "bunch of blocks"
+	subcase of Extensions
+	roles
+		value // specific, @bunch, etc
+		contents: RD // 
+	constraints
+		contents.number <-- @plural  // --> singular
+
+schema Container // short version
+	subcase of Artifact, BoundedObject  //  6/24/13
+	roles
+		contents: RD // @entity
+	constraints
+		contents.bounding <-- @indeterminate  // not for plurals
+
+
+schema Discretization // QuantityDeterNP, etc., 1 beer
+	subcase of Extensions
+	roles
+		contents: RD // @entity
+	constraints
+		contents.bounding <-- @indeterminate  //@ type ~ @mass
+
+schema Contrast // not currently used 
+	subcase of Extensions  // other, bigger, etc.
+	roles
+		value // specific
+		//scale:Scale
+		base: RD // @entity
+	constraints
+		

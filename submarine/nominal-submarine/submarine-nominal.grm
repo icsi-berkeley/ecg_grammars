@@ -1,0 +1,16 @@
+package submarine
+import starter
+
+construction Location3DNP
+	subcase of LocationNP
+	constructional
+	  constituents
+	    optional comma2: Comma
+	    z: Quantifier
+	form
+	  constraints
+	    y.f meets comma2.f
+	    comma2.f meets z.f
+	meaning: Location3D
+	  constraints
+	    self.m.zCoord <--> z.m.value

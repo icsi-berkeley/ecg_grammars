@@ -1,5 +1,7 @@
 package primero
 
+import relations
+
 //
 // Adjectives
 // ========== 
@@ -17,15 +19,10 @@ general construction PropertyAdjective  // parallel to Verb, etc. \
 	//subcase of HasNominalFeatures   **** for agreement in Spanish, etc.
 	meaning: PropertyModifier	
 
-general construction Color  //subcase of non-scale Adj
-  subcase of PropertyAdjective    
-   meaning: PropertyModifier
-    constraints
-       self.m.property <-- @color 
-	   self.m.domain <-- @physicalEntity
+
 	   
 construction ColorType  //subcase of non-scale Adj
-  subcase of PropertyAdjective, GeneralTypeCxn 
+  subcase of PropertyAdjective, GeneralTypeCxn, PosteriorAdjective
   constructional
    constraints
      self.features.gender <-- @genderValues
@@ -36,147 +33,134 @@ construction ColorType  //subcase of non-scale Adj
 	   self.m.domain <-- @physicalEntity
 	   self.m.value <-- @colorValue
 
-/*
-construction RedMale
-  subcase of Color
-   constructional
-   constraints
-      self.features.gender <-- @male  // Ellen added for testing 7/3/14
-      self.features.number <-- @singular // "singular"
-   form
-      constraints
-         self.f.orth <-- "rojo"  
-   meaning: PropertyModifier
-    constraints
-       	self.m.value <-- @red 
-       	//self.m.gender <-- @male
-       	
-construction RedFemale
-  subcase of Color
-   constructional
-   constraints
-      self.features.gender <-- @female  // Ellen added for testing 7/3/14
-      self.features.number <-- @singular
-   form
-      constraints
-         self.f.orth <-- "roja"  
-   meaning: PropertyModifier
-    constraints
-       	self.m.value <-- @red
-       	//self.m.gender <-- @female
-       	
-
-construction RedMalePlural
-  subcase of Color
-   constructional
-   constraints
-      self.features.gender <-- @male  // Ellen added for testing 7/3/14
-      self.features.number <-- @plural
-   form
-      constraints
-         self.f.orth <-- "rojos"  
-   meaning: PropertyModifier
-    constraints
-       	self.m.value <-- @red 
-       	//self.m.gender <-- @female 
-       	  	
-construction RedFemalePlural
-  subcase of Color
-   constructional
-   constraints
-      self.features.gender <-- @female  // Ellen added for testing 7/3/14
-      self.features.number <-- @plural
-   form
-      constraints
-         self.f.orth <-- "rojas"  
-   meaning: PropertyModifier
-    constraints
-       	self.m.value <-- @red 
-       	//self.m.gender <-- @female 
- 
-*/      	
- // Added for "robot" movement, 6/25/14 (ST)
-construction Blue
-  subcase of Color
+	
+// ADDED 6/25/14 (ST), Testing complex adjectives like "big red block"
+construction SizeType  // e.g. big
+	subcase of  ScalarAdjective, GeneralTypeCxn, PosteriorAdjective
   constructional
-    constraints
-      self.features.number <-- "singular"  
-   form
-      constraints
-         self.f.orth <-- "azul"  
-   meaning: PropertyModifier
-    constraints
-       	self.m.value <-- @blue 
-       	//self.m.gender <-- @female
- 
- // Added for "robot" movement, 6/25/14 (ST)
-construction Green
-  subcase of Color
+   constraints
+     self.features.gender <-- @genderValues
+     self.features.number <-- @RDnumberValues  
+	meaning: ScalarModifier // Should be ScalarModifier, but changed for now for testing purposes 
+	  constraints
+	    self.m.value <-- @sizeValue
+	    self.m.property <-- @size
+	    self.m.domain <-- @physicalEntity
+	    self.m.kind <-- @unmarked
+	    
+	    
+// 5/1/15 (ST), more for testing "mi viejo amigo" vs. "mi amigo viejo"
+construction AgeType  // e.g. big
+  subcase of  ScalarAdjective, GeneralTypeCxn, PosteriorAdjective
   constructional
-    constraints
-      self.features.number <-- "singular"
-   form
-      constraints
-         self.f.orth <-- "verde"  
-   meaning: PropertyModifier
-    constraints
-       	self.m.value <-- @green 
-       	//self.m.gender <-- @female
+   constraints
+     self.features.gender <-- @genderValues
+     self.features.number <-- @RDnumberValues  
+	meaning: ScalarModifier
+	  constraints
+	    self.m.value <-- @scale
+	    self.m.property <-- @age
+	    self.m.domain <-- @physicalEntity
+	    self.m.kind <-- @unmarked
 
+// for things like "viejo", meaning longtime (modifying the relationship of the two agents)	    
+construction DurationType
+	subcase of  ScalarAdjective, GeneralTypeCxn, PriorAdjective
+    constructional
+      constraints
+     	self.features.gender <-- @genderValues
+     	self.features.number <-- @RDnumberValues  
+	meaning: ScalarModifier
+	  constraints
+	    self.m.property <-- @duration
+	    self.m.value <-- @scale
+	
+
+
+construction Gran  // e.g. big
+  subcase of  ScalarAdjective, PriorAdjective
+  constructional
+   constraints
+     self.features.gender <-- @genderValues
+     self.features.number <-- @singular  
+   form
+     constraints
+       self.f.orth <-- "gran"
+  meaning: ScalarModifier // Should be ScalarModifier, but changed for now for testing purposes 
+	  constraints
+	    self.m.value <-- @sizeValue
+	    self.m.property <-- @size
+	    self.m.domain <-- @physicalEntity
+	    self.m.kind <-- @unmarked
+
+
+// 5/30/15 (ST): Posterior/Prior adjectives used to differentiate between kernel-adj phrases
+// in which the ordering between noun and adjective is switched.
+// More work is needed on the semantics of prior adjectives.
+// (E.g., some research indicates it "reinforces" the noun, in some cases;
+// or at other times, changes the adjective's meaning. "mi viejo amigo" vs. "mi amigo viejo".
+// The first means "my longtime (old) friend", the second means "my elderly (old) friend". It would
+// be nice to capture this distinction at the constructional rather than lexical level. )
+general construction PosteriorAdjective
+	subcase of PropertyAdjective
+
+general construction PriorAdjective
+	subcase of PropertyAdjective
 
        	
        	
 // ADDED 6/25/14 (ST), Testing complex adjectives like "big red block"
 general construction ScalarAdjective  // e.g. big
 	subcase of  PropertyAdjective
-	meaning: PropertyModifier // Should be ScalarModifier, but changed for now for testing purposes 
-
-// ADDED 6/25/14 (ST), Testing complex adjectives like "big red block"	
-construction Big  //  don't need @big, sizeValue  11/12/12
-  subcase of ScalarAdjective // PropertyAdjective ??? 
-   form 
-      constraints 
-       self.f.orth <-- "grande"
-   meaning: PropertyModifier//: ScalarModifier // inherited ??
-    constraints
-      self.m.value <-- @big
-      self.m.property <-- @size  
-	  self.m.domain <-- @physicalEntity 
-	  self.m.kind <-- @unmarked  // base case	
-
-// ADDED 6/25/14 (ST), Testing complex adjectives like "big red block"	
-construction Small-Male  //  don't need @big, sizeValue  11/12/12
-  subcase of ScalarAdjective // PropertyAdjective ??? 
-   constructional
-   constraints
-      self.features.gender <-- @male
-   form 
-      constraints 
-       self.f.orth <-- "pequeño"
-   meaning: PropertyModifier//: ScalarModifier // inherited ??
-    constraints
-      self.m.value <-- @small
-      self.m.property <-- @size  
-	  self.m.domain <-- @physicalEntity 
-	  self.m.kind <-- @unmarked  // base case	
-	  
-// ADDED 6/25/14 (ST), Testing complex adjectives like "big red block"	
-construction Small-Female  //  don't need @big, sizeValue  11/12/12
-  subcase of ScalarAdjective // PropertyAdjective ??? 
-   constructional
-   constraints
-      self.features.gender <-- @female
-   form 
-      constraints 
-       self.f.orth <-- "pequeña"
-   meaning: PropertyModifier//: ScalarModifier // inherited ??
-    constraints
-      self.m.value <-- @small
-      self.m.property <-- @size  
-	  self.m.domain <-- @physicalEntity 
-	  self.m.kind <-- @unmarked  // base case	  
-
+	meaning: PropertyModifier // Should be ScalarModifier, but changed for now for testing purposes
 	
+
+
+general construction ComplexAdjective
+	subcase of Adjective
+	
+
+construction SerialAdjective
+   subcase of Adjective
+   	constructional 
+   	 constituents
+          	first: Adjective
+          	joiner: Conjunction
+	    	second: Adjective
+	  constraints
+	     first.features <--> second.features
+	     self.features <--> first.features
+	form
+       constraints
+       		first.f meets joiner.f
+       		joiner.f meets second.f
+   meaning
+   	constraints
+			self.m <--> first.m
+			self.m.modifiedThing <--> second.m.modifiedThing 
+	
+
+
+// Need to work out a better meaning / synthesis of adjective values
+construction ComplexKernel
+	subcase of Kernel
+	constructional
+    constituents
+      ap: SerialAdjective 
+      n: Nominal
+    constraints
+      self.features <--> n.features
+      ap.features <--> n.features
+  form
+    constraints
+      n.f before ap.f
+  meaning: RD
+    constraints
+      self.m <--> n.m
+      self.m <--> ap.m.modifiedThing
+      //ap.m.property <--> n.m.scale  //4/26/13 
+      //ap.m.domain <--> n.m.ontological-category //constraint
+      // n.m.extensions.property.ontological-category <--> ap.m.value
 		
        		
 

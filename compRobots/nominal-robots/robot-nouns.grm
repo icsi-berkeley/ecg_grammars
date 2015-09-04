@@ -1,13 +1,9 @@
 package robots
 import starter
 
-construction ProperNPInstance
-	subcase of ProperNounNP, ThirdPerson, GeneralTypeCxn // Third person testing here ("Robot1")
-	meaning
-	  constraints
-		self.m.referent <-- @instance
-		self.m.ontological-category <-- @physicalEntity
-		self.m.gender <-- @genderValues
+
+
+
 
 
 construction DirectionalType
@@ -15,9 +11,6 @@ construction DirectionalType
 	meaning: HeadingSchema
 	  constraints
 	    self.m.tag <-- @heading
-
-	    
-
 	
 construction Side
 	subcase of SingularNoun
@@ -30,3 +23,5 @@ construction Side
 	      self.m <--> pw.part
 	      self.m.ontological-category <-- @side
 	      self.m.extensions <--> pw
+	      
+	      

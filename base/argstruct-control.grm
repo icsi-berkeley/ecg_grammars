@@ -1,0 +1,168 @@
+
+ 
+
+construction SubjectControl  // simple 1/5/13, he wanted to move, he tried walking
+   subcase of ArgumentStructure
+   constructional
+     constituents
+        v: ControlVerbSimple
+        vp: ArgumentStructure // for testing -- will need to make more general 1/23/14
+     constraints
+        vp.verbform <-- PresentParticipleOrInfinitive // usually Infinitive
+        v.argform <-- Control
+        v.expectedVerbForm <--> vp.verbform //1/8/13
+   form 
+     constraints
+       v.f before vp.f
+   meaning: EmbeddedEventProcessSimple
+     constraints
+       	self.m.protagonist <--> ed.profiledParticipant
+       	vp.m.protagonist.ontological-category <-- @sentient // should work, 12/20/12
+       	vp.ed.profiledParticipant <--> ed.profiledParticipant
+		self.m <--> v.m
+		self.m.event <--> vp.m  // untyped event role - a problem ?? 1/5/13
+/*
+DISCUSSION for SubjectControl cxn
+Currently this cxn allows VPs with either infinitive or presentParticiple forms. E.g. it will support analysis of 
+both "he tried to walk" and "he tried walking".
+But, verbs differ as to which forms they co-occur with.  And, there might be meaning differences as well. 
+One step might be to make this a general cxn, and make subcases for the two different forms. 
+This might be accompanied by creating two different types of ControlVerb categories (i.e. diff ones for Inf and PPart)
+
+*/
+/*
+2/5/14 -- current plan is to revise the ObjectControlComplex-Inf cxn.  Commented out until then. 
+
+construction ObjectControlComplex-Inf // he wanted John to move 1/5/13
+   subcase of ArgumentStructure
+   constructional
+     constituents
+        v: ControlVerbComplex
+	 dvnpi: DeverbalNP-Infinitive
+    constraints 
+        dvnpi.vp.verbform <-- NonFinite 
+        v.verbkind <-- Control
+        v.expectedVerbForm <-->  dvnpi.vp.verbform //1/8/13
+   form 
+     constraints
+	v.f before dvnpi.f	
+  meaning: EmbeddedEventProcessComplex
+     constraints
+       	self.m.protagonist <--> self.m.ed.profiledParticipant 
+       	self.m.protagonist.ontological-category <-- @sentient // maybe from verb
+		self.m.event <--> dvnpi.m // EventRD
+
+DISCUSSION for ObjectControlComplex-Inf cxn
+-- Should replace dvnpi constituent with two constituents: np and vp (with verbform <-- NonFinite)
+-- consider distinction between 'object raising' verbs (e.g.  cause, ask, force) and
+    'raising to object' verbs (e.g. believe, expect).  Note that in addition to semantic difference, 
+    the second group allows optional 'for' preceding the object NP.
+-- revisit commented out FDArgStruct cxns below
+*/
+ 
+construction ObjectControlComplex-FromPresParticiple //  stopped John from moving 3/26/13 ?? move this ??
+   subcase of ArgumentStructure
+   constructional
+     constituents
+        v: Verb // special type 
+        np: NP
+	  tag1: FROM-Marker 
+        vp: VP
+   constraints
+       vp.verbform <-- PresentParticiple  
+	  v.expectedVerbForm <--> vp.verbform
+   form 
+     constraints
+       	v.f before np.f
+ 		np.f before tag1.f
+		tag1.f before vp.f
+  meaning: InteractionProcess //1/25/13 
+     constraints
+       	self.m.process1 <--> v.m
+		self.m.process2 <--> vp.m 
+        self.m.process2.protagonist <--> np.m
+
+
+
+/*  rethink this !!! 
+construction SubjObjRaising 
+  subcase of ArgumentStructure
+  constructional
+    constituents
+		v: ControlVerb
+		np: NP
+		vp: VP
+    constraints
+		vp.verbform <-- Infinitive
+		np.features.case <-- "acc"  //?? used
+  form
+    constraints
+      	v.f before np.f
+      	np.f before vp.f
+  meaning
+    constraints
+		self.m.protagonist <--> ed.profiledParticipant
+      	//np.m.referent <--> vp.ed.profiledParticipant
+      	np.m <--> vp.ed.profiledParticipant
+		//ed.eventProcess <--> ed.profiledProcess
+		self.m <--> v.m
+		vp.ed <--> v.m.event
+*/
+
+/* All of these FD CxN have been replaced by SubjectControlComplex..
+
+general construction FDArgStruct  //  helped John to move
+   subcase of ArgumentStructure
+   constructional
+     constituents
+        v: Verb 
+        np: NP
+        vp: VP
+     constraints
+        vp.verbform <-- NonFinite
+        v.verbkind <-- ForceDynamic  // 1/7/13  ***
+	    self.features <--> v.features // inherited
+	    v.expectedVerbForm <--> vp.verbform // test
+   form 
+     constraints
+       	v.f before np.f
+ 		np.f before vp.f
+   meaning: AgentAgentProcess  
+     constraints
+       	self.m.process1 <--> v.m
+       	self.m.protagonist <--> ed.profiledParticipant // from ArgStruct
+       	self.m.other  <--> vp.ed.profiledParticipant  //*******************
+		self.m.process2 <--> vp.m 
+        self.m.other <--> np.m
+      
+
+construction FDArgStructInf  //  helped John to move (Box1)
+   subcase of FDArgStruct
+   constructional
+     constraints         
+
+construction FDArgStructFrom  //   stopped John from moving
+   subcase of FDArgStruct
+   constructional
+     constituents
+        v: Verb // special type 
+        np: NP
+	    tag1: FROM-Marker // replace with  FromGerund 1/21/13
+        vp: VP
+       // gvp: FromGerundCxN
+     constraints
+       vp.verbform <-- PresentParticiple  
+   form 
+     constraints
+       	v.f before np.f
+ 		np.f before tag1.f
+		tag1.f before vp.f
+  meaning: AgentAgentProcess  
+     constraints
+       	self.m.process1 <--> v.m
+       	// self.m.protagonist <--> ed.profiledParticipant // from ArgStruct
+       //	self.m.other  <--> gvp.second.ed.profiledParticipant  //****************
+		self.m.process2 <--> vp.m 
+        self.m.other <--> np.m
+
+ */ 

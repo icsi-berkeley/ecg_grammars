@@ -1,0 +1,448 @@
+
+
+/*********************************************************
+*** This file provides a starting point for incorporating 
+*** auxes into the base grammar. Johno used Sag, Wasow and Bender's 
+*** "Syntactic Theory" as a guide to the linguistics of auxes, but
+*** the approach taken here is quite different in that auxes don't 
+*** specify an argument structure, and no lexical rules are needed.
+***
+This file also includes Modals (as of 3/8/12) -- see bottom of file
+
+**********************************************************/
+
+general construction Aux
+   	subcase of HasVerbFeatures
+	meaning: ProcessFeatures
+
+general construction LexicalAux
+	subcase of Word, Aux
+
+
+/* Ellen
+general construction AuxPlusAux // Compose
+   	subcase of Aux
+	constructional 
+    	constituents
+      		first: Aux
+      		second: Aux
+      	constraints
+      	self.features <-> first.features
+  	form
+    	constraints
+       		first.f meets second.f
+      meaning: ProcessFeatures
+   	  	constraints
+		 first.m <-> second.m
+		 self.m <-> first.m    //unify features
+
+
+general construction AuxPlusNot // subcase DoAuxPlusNot, base form
+   	subcase of Aux
+	constructional 
+    	constituents
+      		first: Aux
+			second: Not-Aux // ProcessFeatures, negated
+  		constraints
+      		self.features <-> first.features
+     form
+      constraints
+       		first.f meets second.f
+    meaning
+   	  	constraints
+		 	first.m <-> second.m
+		 	self.m <-> first.m
+
+construction BeAuxPlusNot 
+   	subcase of AuxPlusNot, BeAux
+	constructional 
+    	constituents
+      		first: BeAux
+			second: Not-Aux // ProcessFeatures, negated
+
+construction HaveAuxPlusNot 
+   	subcase of AuxPlusNot, HaveAux
+	constructional 
+    	constituents
+      		first: HaveAux
+			second: Not-Aux // ProcessFeatures, negated
+
+/***
+ ***
+ *** This is the rule that combines a NonFiniteAux with a VP
+ ***
+ ***/
+
+/*
+construction NonFiniteAuxPlusVP
+  subcase of VP
+  constructional 
+    constituents
+      aux: Aux
+      vp: VP
+    constraints
+      aux.features.verbform <-- NonFinite
+      self.features <--> aux.features 
+      aux.features.expectedVerbForm <--> vp.verbform
+  form
+    constraints
+       aux.f meets vp.f //is this right?
+  meaning
+    constraints
+      self.m <--> vp.m //I assume the semantics comes from the vp
+      ed <--> vp.ed
+      //how should the semantics of the aux interact with this cxn?
+
+
+/***
+***
+*** This is the rule that combines a FiniteAux with a VP.  
+*** Note that this rule is not used for inversion.
+***
+*** Motivation for this rule being separate from the NonFiniteAux 
+*** rule is form
+        constraints
+ optional polarity items like "not", "so" and "too"
+*** can (sort of) only occur after the finite aux, and the vp consituent
+*** can be elided in this rule, but not the NonFinite rule.
+*** Additionally, since modals only occur as finite verbs, this covers 
+*** the modals at the front constraint for free.
+***
+
+
+But the following should probably go - 1/28/13 replaced
+
+construction FiniteAuxPlusVP  //1/28/13 repaired aux.expectedVerbForm
+  subcase of VP
+  constructional 
+    constituents
+      aux: Aux
+      vp: VP
+      //optional pol: PolarityAdverb
+    constraints
+      aux.features.verbform <-- Finite
+      self.features <--> aux.features 
+      aux.expectedVerbForm <--> vp.verbform
+  form
+    constraints
+       aux.f before vp.f
+       //aux.f meets pol.f
+  meaning
+    constraints
+      self.m <--> vp.m //I assume the semantics comes from the vp
+      ed <--> vp.ed
+      // how should the semantics of the aux interact with this cxn?
+      // how does the semantics of a polarity item interact with the ED?
+      //pol.m.modifiedThing <--> self.m
+
+*/
+
+/**************************
+***
+*** Be Aux Examples
+***
+***************************/
+// 1/28/13 restoring some passives
+
+
+general construction bhAux // BeAux, HaveAux
+	subcase of Aux
+	
+general construction BeAux  
+	subcase of LexicalAux, bhAux
+	constructional
+		constraints
+			//self.expectedVerbForm <-- Participle
+				
+construction BePastSing  
+   subcase of BeAux, PastTense, Singular  // PastTense evokes pf ~ ProcessFeatures
+   form
+      constraints
+         self.f.orth <-- "was"
+   meaning
+   	  constraints
+   		pf <--> self.m
+
+/* 5/17/13
+
+construction NegBePastSing  
+   subcase of BePastSing
+   form
+      constraints
+         self.f.orth <-- "wasnt"
+   meaning
+   	  constraints
+   		pf <--> self.m	
+   		pf.negated <-- "yes"
+   			
+construction BeAuxPastPlural 
+   subcase of BeAux, PastTense, Plural
+   form
+      constraints
+         self.f.orth <-- "were"
+   meaning
+   	  constraints
+   		pf <--> self.m      
+
+construction BeAuxPresentPlural 
+   subcase of BeAux, PresentTense, Plural
+   form
+      constraints
+         self.f.orth <-- "are"
+   meaning
+   	  constraints
+   		pf <--> self.m      
+
+construction BeAuxPresentSing 
+   subcase of BeAux, PresentTense, Singular
+   form
+      constraints
+         self.f.orth <-- "is"
+   meaning
+   	  constraints
+   		pf <--> self.m      
+
+
+
+construction BeAuxPastParticiple
+   subcase of BeAux, PastParticiple
+   form
+      constraints
+         self.f.orth <-- "been"
+   meaning
+   	  constraints
+   		pf <--> self.m      
+
+construction BeAuxPresentParticiple
+   subcase of BeAux, PresentParticiple
+   form
+      constraints
+         self.f.orth <-- "being"
+   meaning
+   	  constraints
+   		pf <--> self.m      
+
+construction BeAuxBase
+   subcase of BeAux, BaseForm
+   form
+      constraints
+         self.f.orth <-- "be"  
+
+/* Ellen
+construction Not-Aux 
+   subcase of HasVerbFeatures, Word
+   form
+      constraints
+         self.f.orth <-- "not"
+ 	meaning: ProcessFeatures
+   	  constraints
+   		 self.m.negated <-- "yes" 
+
+
+// was being moved
+construction BePlusBeing  
+   	subcase of AuxPlusAux
+  	constructional
+     	constituents
+     		first: BeAux //marks  tense
+     		second: BeAuxPresentParticiple // being
+     	constraints
+        	self.expectedVerbForm <-- PastParticiple
+   	meaning
+     	constraints	
+			self.m.progressive <-- "yes" //both 
+
+/***
+ ***
+ *** Have Aux Examples 
+ ***
+ ***/
+
+/* 5/17/13
+general construction HaveAux 
+  subcase of LexicalAux, bhAux
+  constructional
+	constraints
+		self.expectedVerbForm <-- PastParticiple
+   meaning //ProcessFeatures
+	constraints
+		self.m.perfect <-- "yes"
+
+construction HaveAuxPast
+   	subcase of HaveAux, PastTense //PastTense sets the speech time and verbform to Past(Finite)
+   	form
+      	constraints
+         	self.f.orth <-- "had"
+	meaning
+   	  	constraints     
+   			pf <--> self.m    
+
+construction HaveAuxBase
+   	subcase of HaveAux, BaseForm
+   	form
+      	constraints
+         	self.f.orth <-- "have"
+     meaning
+   	  	constraints     
+   			pf <--> self.m      
+ 
+   			
+construction HaveAuxPresent3rdSingular // *** test case -generalize !
+   	subcase of HaveAux, PresentTense, Singular, ThirdPerson
+   	form
+      	constraints
+         	self.f.orth <-- "has"
+     meaning
+   	  	constraints
+   			pf <--> self.m      		
+ 
+ 			
+construction HavePlusBeenActive 
+   subcase of AuxPlusAux
+  	constructional
+     	   constituents
+     			first: HaveAux // marks perfect, tense
+     			second: BeAuxPastParticiple // been
+     	   constraints
+        		self.expectedVerbForm <-- PresentParticiple
+	meaning
+		constraints	
+				self.m.tense <--> first.m.tense   				
+				self.m.progressive <-- "yes"
+   	     	
+construction HavePlusBeenPassive 
+   	subcase of AuxPlusAux
+  	constructional
+    	constituents
+     		first: HaveAux 
+     		second: BeAuxPastParticiple // been
+     	constraints
+        	self.expectedVerbForm <-- PastParticiple
+	meaning
+     	constraints	
+			self.m.voice <-- @passive  
+
+/*
+construction HavePlusBeenPlusBeing // OLD
+   	subcase of AuxPlusAux
+  	constructional
+		constituents
+     		first: HavePlusBeenActive // marks perfect,progressive, tense
+     		second: BeAuxPresentParticiple // being
+	constraints
+        	self.features.expectedVerbForm <-- PastParticiple
+	meaning
+		constraints	
+			self.m.tense <--> first.m.tense   				
+			self.m.voice <-- @passive
+   			
+/***
+ ***
+ *** Do Aux Examples 
+ ***
+ *** In these examples Johno followed Sag et al by saying that aux do only occurs in 
+ *** finite forms.
+ ***
+ ***/
+
+
+general construction DoAux
+  subcase of LexicalAux
+  constructional
+     constraints
+        self.expectedVerbForm <-- Base
+   
+
+construction DoAuxPast
+   subcase of DoAux, PastTense 
+   form
+      constraints
+         self.f.orth <-- "did"
+	meaning
+   	  constraints
+   		pf <--> self.m
+
+/* 5/17/13   		
+construction DoAuxPresent1stSing
+   subcase of DoAux, PresentTense, Singular, FirstPerson
+   form
+      constraints
+         self.f.orth <-- "do"
+
+construction DoAuxPresent2ndSing
+   subcase of DoAux, PresentTense, Singular, SecondPerson
+   form
+      constraints
+         self.f.orth <-- "do"
+
+construction DoAuxPresent3rdSing
+   subcase of DoAux, PresentTense, Singular, ThirdPerson
+   form
+      constraints
+         self.f.orth <-- "does"
+
+
+construction DoAuxPresentPlural
+   subcase of DoAux, PresentTense, Plural
+   form
+      constraints
+         self.f.orth <-- "do"
+
+
+/**************************
+***
+***  Modals
+***
+Modals are added to VP cxns via the Modal
+
+***************************/
+
+general construction Modal
+   	subcase of HasVerbFeatures
+   	constructional //inherits VerbFeatures
+	   constraints
+		self.expectedVerbForm <-- Base
+		self.verbform <-- Finite
+       meaning: EventFeatures
+       
+construction Can-Modal 
+   	subcase of Modal, Word
+   		form
+      		constraints
+         		self.f.orth <-- "can"
+ 	meaning: EventFeatures
+   	  constraints
+   		 self.m.modality <-- @can 
+   		 self.m.tense <-- @present
+   		 
+/* Commenting out for speed 12/16/12 **********file 
+construction Cant-Modal 
+
+   	subcase of Modal, Word
+   		form
+      		constraints
+         		self.f.orth <-- "can't"
+ 	meaning: EventFeatures
+   	  constraints
+   		 self.m.modality <-- @cant 
+		 self.m.tense <-- @present
+		
+construction Could-Modal   // revisit 
+   subcase of Modal, Word
+   form
+      constraints
+         self.f.orth <-- "could"
+	meaning: EventFeatures
+   	  constraints
+   		 self.m.modality <-- @could
+   		  
+// Will, future 
+
+construction Will-Modal 
+   	subcase of Modal, Word
+   		form
+      		constraints
+         		self.f.orth <-- "will"
+ 	meaning: EventFeatures
+   	  constraints	 
+   		 self.m.tense <-- @future

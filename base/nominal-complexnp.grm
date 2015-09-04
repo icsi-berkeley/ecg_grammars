@@ -1,0 +1,64 @@
+//
+// complexnp.grm
+//
+
+schema ComplexRD
+   subcase of RD 
+   roles
+   complexKind // : NPkind 
+
+schema ConjRD
+   subcase of ComplexRD
+   roles
+   		connective   // and or etc.
+      	rd1: RD
+     	rd2: RD
+
+/* 5/17/13
+
+general construction ComplexNP 
+   subcase of NP
+
+construction ConjNP  // self.m.number <- @plural
+	subcase of ComplexNP
+	constructional
+	    constituents   
+		 	connective: LogicalConjunction   // and or etc.
+	        first: NP
+		    second: NP
+		constraints
+		   self.features.number <-- "plural"
+   	form
+		constraints		
+	      	first.f meets connective.f
+	      	connective.f meets second.f
+	meaning: ConjRD
+		constraints		
+			first.m <-> m.rd1
+        	second.m <-> m.rd2
+        	self.m.number <-- @plural
+        	self.m.bounding <--> first.m.bounding
+       		self.m.givenness <--> first.m.givenness
+       		self.m.ontological-category <--> first.m.ontological-category
+       		connective.m <-> m.connective
+
+
+construction DisjNP
+	subcase of ComplexNP
+	constructional
+	    constituents   
+		 	connective: Or // and or etc.
+	        first: NP
+		    second: NP
+   	constraints
+		   self.features.number <--> first.features.number
+   	form
+		constraints		
+	      	first.f meets connective.f
+	      	connective.f meets second.f
+	meaning: ConjRD
+		constraints		
+			first.m <-> m.rd1
+        	second.m <-> m.rd2
+       		connective.m <-> m.connective
+       		self.m <--> first.m // unify all

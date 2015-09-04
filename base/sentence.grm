@@ -1,0 +1,524 @@
+//
+// sentence.grm
+//
+
+
+general construction Utterance
+    subcase of RootType // need to review this type 
+    constructional 
+        constituents
+            core: S
+            end: EMark  // punctuation like . ! ?
+    form 
+        constraints  
+            core.f meets end.f
+    meaning: DiscourseElement
+        constraints
+          self.m.content <--> core.m
+          
+          
+construction DeclarativeUtterance
+    subcase of Utterance // need to review this type 
+    constructional 
+        constituents
+            core: S
+            end: PMark  // sentence ends with a period
+    form 
+        constraints  
+            core.f meets end.f
+    meaning
+        constraints
+           	self.m.mood <-- "Declarative" // this is where we want mood
+ 
+
+
+
+
+// Question Utterances
+
+general construction Question  // both Aux and Finite inversions
+	subcase of S  
+
+general construction YN-Question  
+	subcase of  Question
+
+general construction WH-Question  
+	subcase of  Question
+		 
+construction YNQuesUtterance  
+    subcase of Utterance
+    constructional 
+        constituents
+            core: YN-Question
+            end: QMark    
+    form
+        constraints
+            core.f meets end.f 
+    meaning 
+        constraints
+            self.m.mood <-- "YN-Question" // this is where we want mood	
+            self.m.content <--> core.m
+            
+construction WHQuesUtterance  
+    subcase of Utterance
+    constructional 
+        constituents
+            core: WH-Question
+            end: QMark  //    ?
+    form
+        constraints
+            core.f meets end.f 
+    meaning
+        constraints
+            self.m.mood <-- "WH-Question" // this is where we want mood
+ 			self.m.content <--> core.m
+/* 
+construction AddressedQuestionUtternace  // needs work !!!
+    subcase of Utterance
+    constructional 
+        constituents
+        	core: Question
+            addr: NP
+            comma: Comma 
+            end: EMark 
+    form
+        constraints
+            addr.f meets comma.f 
+            comma.f meets core.f
+            core.f meets end.f
+    meaning
+        constraints
+            self.m.addressee <--> addr.m  
+*/			
+            
+
+// The general cxn S is the root of most (all?) speech acts***/
+
+general construction S
+    subcase of RootType // Maybe not?  TODO!!
+    meaning: EventDescriptor
+
+
+general construction ComplexS // several kinds
+    subcase of S 
+	meaning: ComplexED
+
+ 
+construction SerialS // several kinds
+    subcase of ComplexS 
+	constructional 
+        constituents
+         s1:S
+         conj:LogicalConjunction
+         s2:S
+      form
+        constraints
+	       s1.f before conj
+	       conj before s2.f
+        meaning: SerialED
+        constraints
+        	self.m.ed1 <--> s1.m 
+        	self.m.ed2 <--> s2.m
+			self.m.connective <--> conj.m
+			self.m.complexKind <-- @serial
+
+  construction SplusAdv // 10/15/13
+    subcase of S 
+	constructional 
+        constituents
+         s1:S
+         adverb:Adverbial
+      form
+        constraints
+   			s1 meets adverb
+   	   meaning
+   	    constraints
+   	     self.m <--> s1.m
+   	     adverb.m.modifiedThing <--> s1.m  	  
+   	        
+ // IMPERATIVES               
+// e.g.  Robot1, move into the box!
+construction AddressedImperative  // replace AddressedUtterance, only uses Imperative.
+    subcase of Utterance
+    constructional 
+        constituents
+        	core: Imperative
+            addr: NP
+            comma: Comma
+            end: IMark     
+    form
+        constraints
+            addr.f meets comma.f 
+            comma.f meets core.f
+    meaning
+        constraints
+        	addr.m.ontological-category  <-- @sentient  //2/12/14
+            self.m.addressee <--> addr.m  // also profiledParticipant
+			self.m.mood <-- "Imperative" 
+			core.m.profiledParticipant <--> self.m.addressee
+
+general construction Imperative
+	subcase of S 
+  constructional // 8/9/13
+        constituents
+         optional  end :IMark  
+
+
+construction SimpleImperative  
+    subcase of Imperative  // S
+    constructional 
+        constituents
+            vp: VP
+        constraints 
+            vp.verbform <-- Base
+    meaning
+        constraints
+            self.m <--> vp.ed
+
+
+construction ConditionalImperative 		// test 2/12/14
+    subcase of Imperative
+    constructional 
+        constituents
+			cond: If  //: if
+			bool:Declarative //you hit a bump, the box is too big, etc. 
+			optional then2: Then-Conditional
+            core: SimpleImperative
+        constraints 
+            core.vp.verbform <-- Base
+	form
+		constraints  // if bool (then) core
+			cond.f meets bool.f
+			bool.f meets then2.f
+			bool.f before core.f
+			//then2.f meets core.f
+    meaning: ComplexED
+        constraints
+        	self.m.profiledParticipant <--> core.m.profiledParticipant
+            self.m.ed1 <--> bool.m
+			self.m.ed2 <--> core.m
+			self.m.complexKind <-- @conditional
+/* 5/17/13
+construction ConditionalDeclarative 		//new
+    subcase of S
+    constructional 
+        constituents
+			cond: If  //: if
+			bool:Declarative //you hit a bump, the box is too big, etc. 
+			optional then2: Then-Conditional
+            core: Declarative
+        constraints 
+            //core.vp.verbform <-- Base
+	form
+		constraints  // if bool (then) core
+			cond.f meets bool.f
+			bool.f meets then2.f
+			bool.f before core.f
+			//then2.f meets core.f
+    meaning: ComplexED
+        constraints
+        	self.m.profiledParticipant <--> core.m.profiledParticipant
+            self.m.ed1 <--> bool.m
+			self.m.ed2 <--> core.m
+			self.m.complexKind <-- @conditional
+/*
+Old, need to redo 11/23/12
+     
+construction TemporalImperative  // embedded VP for (temporal) tag
+    subcase of Imperative
+    constructional 
+        constituents
+            tvp: TemporalVP  // generalize to purpose, etc.
+        constraints 
+            tvp.vp.verbform <-- Base  // one level deeper
+    meaning
+        constraints
+            self.m <--> tvp.ed
+*/
+
+// This general cxn does the agreement between subj and verb
+general construction S-With-Subj  
+    subcase of S
+    constructional
+        constituents
+            subj: NP
+            fin: HasVerbFeatures  // for modals, not VP
+        constraints
+        	fin.verbform <-- Finite	
+        	subj.features.person <--> fin.features.person
+        	subj.features.number <--> fin.features.number
+            subj.features.case <-- "nom"		// set for pronouns
+    meaning
+        constraints
+	       subj.m <--> self.m.profiledParticipant
+
+ 	
+construction Declarative
+    subcase of S-With-Subj
+    constructional
+        constituents
+	       fin: VP
+    form
+        constraints
+	       subj.f before fin.f
+    meaning
+        constraints
+           self.m <--> fin.ed
+		   fin.ed.profiledParticipant.ontological-category <--> subj.m.ontological-category  // test 10/4/12
+		   
+
+construction SubordinateDeclarative-that // Subordinate    
+    constructional
+        constituents
+        	conj: That-Subordinating // that, later how, etc.
+			core: Declarative
+         constraints   
+	form
+        constraints
+			conj.f before core.f		
+	meaning: EventDescriptor
+        constraints
+          self.m <--> core.m
+		 core.m.e-features.subord <--> conj.m // subordinator
+		   
+
+// Aux Inversions  5/15/13 
+
+general construction S-With-Aux-Inversion  
+    subcase of YN-Question   
+	constructional
+        constituents
+        	fin: Aux  
+			subj: NP
+        	vp: VP          
+       constraints
+       		subj.features.person <--> fin.features.person
+        	subj.features.number <--> fin.features.number
+            fin.expectedVerbForm <--> vp.verbform
+            fin.verbform <-- Finite
+    form
+        constraints
+            fin.f meets subj.f 
+            subj.f meets vp.f
+    meaning: EventDescriptor  // from S
+     	constraints
+    		subj.m <--> self.m.profiledParticipant
+    		self.m <--> vp.ed // unifies event descriptors
+    		//subj.m <--> vp.m.protagonist // not true for passive
+    		vp.m.p-features <--> fin.m
+    		
+ 
+ construction S-With-Do-Inversion  
+    subcase of S-With-Aux-Inversion
+    constructional
+        constituents
+        	fin: DoAux 
+
+  /*   5/17/13   	 
+// has he been moving ?   
+construction S-With-Have-Inversion  
+    subcase of S-With-Aux-Inversion
+    constructional
+        constituents
+        	fin: HaveAux 
+ 
+*/       	
+// Was the box moving / being moved?
+construction S-With-BeProgressive-Inversion
+    subcase of S-With-Aux-Inversion 
+    constructional
+        constituents
+        	fin: BeAux 
+        constraints
+            vp.verbform <-- PresentParticiple
+    meaning  
+        constraints
+			fin.m.progressive <-- "yes"
+
+// Was the box moved?
+construction S-With-BePassive-Inversion
+    subcase of S-With-Aux-Inversion     
+      constructional
+        constituents
+        	fin: BeAux // not Get  
+        constraints
+            vp.verbform <-- PastParticiple
+            vp.voice <-- Passive   
+       meaning  
+        constraints
+			fin.m.voice <-- @passive  
+
+
+
+
+// Finite Inversions
+
+  
+general construction S-With-Finite-Inversion  
+	subcase of S-With-Subj, YN-Question
+  
+/*
+construction S-With-Modal-Inversion
+    subcase of S-With-Finite-Inversion
+    constructional
+        constituents
+        	fin: Modal
+        	vp: VP
+        	//optional end: QMark  // punctuation   ?
+        constraints
+            //modal.features.expectedVerbForm <--> vp.VerbForm  ????
+           vp.verbform <-- Base 
+    form
+        constraints
+            fin.f meets subj.f 
+            subj.f before vp.f
+            //vp.f meets end
+    meaning  // inherited meaning: EventDescriptor
+        constraints
+            vp.ed <--> self.m
+			fin.m <--> self.m.e-features
+*/			
+
+construction  S-With-Copula-Inversion-PP //special case
+    subcase of S-With-Finite-Inversion
+    constructional
+        constituents
+    	   fin: BeCopula
+    	   pp: Loc-PP 
+        constraints
+            //fin.features.expectedVerbForm <--> vp.verbform 
+    form
+        constraints
+            fin.f meets subj.f 
+            subj.f before pp.f
+    meaning
+        constraints
+        	subj.m <--> self.m.profiledParticipant  // from S-With-Subj
+            fin.m.protagonist <--> subj.m
+            pp.m.trajector <--> subj.m
+
+construction S-With-Copula-Inversion-Adj // tested 10/29/12
+    subcase of S-With-Finite-Inversion
+    constructional
+        constituents
+    	   fin: BeCopula
+    	   adj: Adjective 
+    	   //optional end: QMark  // punctuation   ?
+        constraints
+            //fin.features.expectedVerbForm <--> vp.verbform 
+    form
+        constraints
+            fin.f meets subj.f 
+            subj.f before adj.f
+    meaning
+        constraints
+    		self.fin.m.actionary <-- @be2
+        	self.fin.m.protagonist <--> self.m.profiledParticipant
+        	self.adj.m.modifiedThing <--> self.m.profiledParticipant
+        	self.adj.m.domain <--> self.m.profiledParticipant.ontological-category
+			self.fin.m.state <--> adj.m
+			self.m.eventProcess <--> fin.m
+
+construction S-With-Copula-Inversion-NP // special case
+    subcase of S-With-Finite-Inversion
+    constructional
+        constituents
+    	   fin: BeCopula 
+    	   np: NP
+    	   //optional end: QMark  // punctuation   ?
+        constraints
+    form
+        constraints
+            fin.f meets subj.f 
+            subj.f before np.f
+    meaning
+	    evokes PredicateNom as pn
+        constraints
+	        self.fin.m.protagonist <--> self.m.profiledParticipant
+	        pn.modifier <--> np.m
+	        self.fin.m <--> pn
+			self.m.eventProcess <--> fin.m
+   
+construction SubjWH-Question
+    subcase of WH-Question, S-With-Subj
+    constructional
+        constituents
+           subj: WH-NP
+    	   fin: VP
+        constraints
+    form
+        constraints
+	       subj.f before fin.f
+    meaning
+        constraints
+	       self.m <--> fin.ed
+
+/* 5/17/13  may not be useful
+// Old Johno version - only use of extraposed
+ Commenting out for speed 12/16/12 ********** 
+construction Fronted-WH-Question
+	subcase of Question
+	constructional
+    	constituents
+			extraposed qnp: WH-NP
+			subj: NP
+			fin: Aux
+			argstruct: ArgumentStructure
+  form
+    constraints
+      	qnp.f meets fin.f	
+		fin.f meets subj.f
+		subj.f meets argstruct.f
+*/		
+
+// There-locative, not inverted yet
+
+construction There-Locative  // there is a block at location 2,3
+    subcase of S
+    constructional
+        constituents
+           there1: THERE-Loc
+    	   fin: CopularVPLocative
+        constraints
+    form
+        constraints  // there is an X at Y
+	       there1 before fin.f
+    meaning
+        constraints
+	       	self.m <--> fin.ed						
+
+construction THERE-Loc
+	subcase of Word
+	 form
+        constraints
+        self.f.orth <-- "there"
+
+// Punctuation
+
+general construction EMark 
+    subcase of Word
+
+construction PMark
+    subcase of EMark
+    form 
+        constraints
+            self.f.orth <-- "."
+            
+construction QMark
+    subcase of EMark
+    form 
+        constraints
+            self.f.orth <-- "?"
+            
+construction IMark
+    subcase of EMark
+    form 
+        constraints
+            self.f.orth <-- "!"
+
+construction Comma
+    subcase of Word
+    form 
+        constraints
+            self.f.orth <-- ","
+

@@ -1,0 +1,398 @@
+//
+// Adjectives
+// ==========
+//
+// This file has constructions for abstract adjectives and adjectival phrases
+// As well as example lexical adjectives.
+
+
+  
+general construction Adjective  // parallel to Verb, etc. 
+	subcase of  RootType  // for testing
+	//subcase of HasNominalFeatures   **** for agreement in Spanish, etc.
+	meaning: Modification
+
+general construction ComplexAdjective
+   subcase of Adjective
+
+general construction LexicalAdjective
+   subcase of Adjective, Word
+    
+general construction PropertyAdjective  // e.g. red
+	subcase of  LexicalAdjective
+	meaning: PropertyModifier	
+	
+general construction ScalarAdjective  // e.g. big
+	subcase of  PropertyAdjective
+	meaning: ScalarModifier
+
+general construction EmotionAdjective  // e.g. angry
+	subcase of  ScalarAdjective
+	meaning: EmotionModifier	
+	
+general construction HedgeAdjective  // 4/8/13
+	subcase of  LexicalAdjective
+	meaning: Modification
+
+// comparative and superlative adjectives
+
+general construction ComparativeAdjective   
+	subcase of Adjective
+	meaning: ScalarModifier
+	constraints
+	  self.m.kind <-- @comparative
+	
+
+general construction SuperlativeAdjective  
+	subcase of Adjective
+	meaning: ScalarModifier
+	constraints
+	  self.m.kind <-- @superlative
+	  self.m.value <-- "10"
+	  
+construction MostSuperlativeAdjective  // any scalar property
+	 subcase of SuperlativeAdjective
+	 constructional
+	 	constituents
+          	first: Most-super
+	    	second: PropertyAdjective
+	 form
+       constraints
+       		first.f meets second.f
+	meaning 
+		constraints
+	  		second.m.kind <-- @unmarked
+	  		self.m.property <--> second.m.property
+	  		self.m.modifiedThing <--> second.m.modifiedThing
+	  		
+	  		
+construction Most-super
+	subcase of Word
+	form
+       constraints
+       	self.f.orth <-- "most"
+
+
+construction PreModifiedAdjective  // very big block
+   subcase of ComplexAdjective
+   	constructional 
+   	 constituents
+          	first: Adverb
+	    	second: Adjective
+	form
+       constraints
+       		first.f meets second.f
+   meaning
+   	constraints
+			self.m <--> second.m
+			first.m.modifiedThing <-> second.m
+
+/* 5/17/13
+construction PostModifiedAdjective  // red as a block ; only predicatively
+   subcase of ComplexAdjective
+   	constructional 
+   	 constituents
+   	 		optional opt: AS-Marker
+          	first: Adjective
+	    	link: AS-Marker
+	    	second: NP
+	form
+       constraints
+       		first.f meets link.f
+       		link.f meets second.f
+   meaning
+   		evokes Modification as mm
+   	constraints
+			self.m <--> first.m
+			mm.modifiedThing <-> first.m
+			mm.modifier <-> second.m
+						
+construction SerialAdjective  // big red   block 
+   subcase of ComplexAdjective
+   	constructional 
+   	 constituents
+          	first: Adjective
+	    	second: Adjective
+	form
+       constraints
+       		first.f meets second.f
+   meaning
+   	constraints 
+			self.m <--> second.m 
+			first.m.modifiedThing <--> second.m.modifiedThing
+
+construction ConjunctiveAdjective  // big and red block Logical
+   subcase of ComplexAdjective
+   	constructional 
+   	 constituents
+        first: Adjective
+		conj: And-Logical
+	    second: Adjective
+	form
+       constraints
+       	first.f meets conj.f
+		conj.f meets second.f	
+   meaning  // new Modification schema
+   	constraints 
+		self.m.kind <--> first.m.kind
+		self.m.kind <--> second.m.kind
+		self.m.modifiedThing <--> first.m.modifiedThing
+		self.m.modifiedThing <--> second.m.modifiedThing
+
+
+construction NegatedAdjective
+   subcase of ComplexAdjective
+   	constructional 
+   	 constituents
+          	first: Not-NP
+	    	second: Adjective
+	form
+       constraints
+       		first.f meets second.f
+   meaning
+   	constraints
+			self.m <--> second.m
+			self.m.negated <-- "yes"
+	
+construction AdjectivePhrase  // near the red box 
+   subcase of ComplexAdjective
+   	constructional 
+   	 constituents
+        adj: Adjective 
+        optional prep: PathPreposition   // far from the  block
+		np: NP
+	form
+       constraints
+        adj.f meets prep.f
+       	prep.f meets np.f
+   	meaning
+   	constraints
+		self.m <--> adj.m
+
+/* may not be needed cf. CopularVPComparative
+construction ComparativeAdjectivePhrase  // bigger than the red box  
+   subcase of ComplexAdjective
+   	constructional 
+   	 constituents
+        comp: ComparativeAdjective
+	    than: SerialConjunction
+		ground: NP
+	form
+       constraints
+       	comp.f meets than.f
+		than.f meets ground.f
+   	meaning
+   	constraints
+		//self.m.base <--> ground.m
+*/
+
+//
+// Example Adjectives  -- lexical constructions
+  
+  construction Angry  
+  subcase of EmotionAdjective
+   form
+      constraints
+         self.f.orth <-- "angry"  
+   meaning: EmotionModifier
+    constraints
+       self.m.value <-- "5" // inherited ~ intensity; 
+       self.m.property <-- @anger
+	   self.m.domain <-- @person
+	   self.m.kind <-- @unmarked 
+	   self.m.polarity <-- "-"
+
+construction Angrier  
+  subcase of Word, ComparativeAdjective 
+   form
+      constraints
+         self.f.orth <-- "angrier"
+   meaning: EmotionModifier 
+    constraints
+     self.m.value <-- "more"  
+     self.m.property <-- @anger
+     self.m.domain <-- @person
+     self.m.kind <-- @comparative
+	 self.m.polarity <-- "-"
+
+construction Desperate
+  subcase of PropertyAdjective
+   form
+      constraints
+         self.f.orth <-- "desperate"  
+   meaning: ScalarModifier
+    constraints
+       self.m.value <-- "1"
+       self.m.property <-- @fear
+	   self.m.domain <-- @person
+	   self.m.kind <-- @unmarked  
+
+general construction Color  //subcase of non-scale Adj
+  subcase of PropertyAdjective    
+   meaning: PropertyModifier
+    constraints
+       self.m.property <-- @color 
+	   self.m.domain <-- @physicalEntity
+
+construction ColorType  //subcase of non-scale Adj
+  subcase of PropertyAdjective    
+   meaning: PropertyModifier
+    constraints
+       self.m.property <-- @color 
+	   self.m.domain <-- @physicalEntity
+	   self.m.value <-- @colorValue
+
+
+construction Red
+  subcase of Color
+   form
+      constraints
+         self.f.orth <-- "red"  
+   meaning: PropertyModifier
+    constraints
+       	self.m.value <-- @red 
+	  
+construction Blue
+  subcase of Color
+   form
+      constraints
+         self.f.orth <-- "blue"
+   meaning: PropertyModifier
+    constraints
+      	self.m.value <-- @blue 
+     
+/*
+construction Invisible
+  subcase of LexicalAdjective
+   form
+      constraints
+         self.f.orth <-- "invisible"
+   meaning: Modification
+    constraints
+      self.m.modifier <-- "invisible"
+*/
+//
+// Sizes
+//
+
+construction Big  //  don't need @big, sizeValue  11/12/12
+  subcase of ScalarAdjective // PropertyAdjective ??? 
+   form 
+      constraints 
+       self.f.orth <-- "big"
+   meaning: ScalarModifier // inherited ??
+    constraints
+      self.m.value <-- "7"
+      self.m.property <-- @size  
+	  self.m.domain <-- @physicalEntity 
+	  self.m.kind <-- @unmarked  // base case
+
+construction Small
+  subcase of PropertyAdjective 
+   form
+      constraints
+         self.f.orth <-- "small"
+   meaning: ScalarModifier
+    constraints
+      self.m.value <-- "2"
+      self.m.property <-- @size 
+      self.m.domain <-- @physicalEntity
+      
+construction Bigger  
+  subcase of Word, ComparativeAdjective 
+   form
+      constraints
+         self.f.orth <-- "bigger"
+   meaning: ScalarModifier 
+    constraints
+     self.m.value <-- "more"  
+     self.m.property <-- @size
+     self.m.domain <-- @physicalEntity
+     self.m.kind <-- @comparative
+ 
+ construction Biggest  
+  subcase of Word, SuperlativeAdjective // superlative ??
+   form
+      constraints
+         self.f.orth <-- "biggest"
+   meaning: ScalarModifier 
+    constraints
+     self.m.property <-- @size
+     self.m.domain <-- @physicalEntity
+       
+
+construction Long
+  subcase of LexicalAdjective
+   form
+      constraints
+         self.f.orth <-- "long"
+   meaning: ScalarModifier
+    constraints
+      self.m.value <-- "8"
+      self.m.property <-- @length  
+	  self.m.domain <-- @physicalEntity
+
+construction High
+  subcase of LexicalAdjective 
+   form 
+      constraints
+         self.f.orth <-- "high"
+   meaning: ScalarModifier
+    constraints
+      self.m.value <-- "9"
+      self.m.property <-- @verticality 
+      self.m.domain <-- @physicalEntity
+
+construction Near-Adj  
+  subcase of PropertyAdjective  
+   form 
+      constraints 
+       self.f.orth <-- "near"
+   meaning: ScalarModifier // inherited ??
+    constraints
+      self.m.value <-- "1"
+      self.m.property <-- @distanceScale  
+	  self.m.domain <-- @entity 
+	  self.m.kind <-- @unmarked  // base case
+
+construction Fast-Adj  
+  subcase of PropertyAdjective  
+   form 
+      constraints 
+       self.f.orth <-- "fast"
+   meaning: ScalarModifier // inherited ??
+    constraints
+      self.m.value <-- "6"
+      self.m.property <-- @distanceScale  // should be speedScale
+	  self.m.domain <-- @entity 
+	  self.m.kind <-- @unmarked  // base case
+
+construction Fake				// 4/8/13
+  subcase of LexicalAdjective  
+   form 
+      constraints 
+       self.f.orth <-- "fake"
+   meaning: AdjectiveModification
+    constraints
+    self.m.modifiedThing.hedge <-- @fake
+/*
+construction Evil
+  subcase of LexicalAdjective 
+   form
+      constraints
+         self.f.orth <-- "evil"
+   meaning: ScalarModifier
+    constraints
+      self.m.value <-- "1"
+      self.m.property <-- @morality
+      self.m.domain <-- @person
+*/
+
+ // Contrast  already can do "not unhappy", etc.
+ 
+
+
+       
+       
+      
+      

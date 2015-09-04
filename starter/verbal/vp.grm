@@ -1,11 +1,28 @@
 package starter
-
+import adverbs
 //
 // vp.grm
 
-// Staged VP
 
 
+//To add: VP-participle-VP: "he walked into the room pushing a box".
+
+// Added from base 6/10/15 (ST)
+construction AdverbialVP
+	subcase of VP
+	constructional
+	  constituents
+	   modifier: Adverbial
+	   modifiedVP: VP
+	  constraints
+	    self.features <--> modifiedVP.features
+	meaning
+	  constraints
+	    modifier.m.modifiedThing <--> modifiedVP.m
+	    self.m <--> modifiedVP.m
+	    //ed.profiledProcess <--> mo
+	    
+// Staged VP	    
 
 construction StagedVP
 	subcase of VP
@@ -26,7 +43,6 @@ construction StagedVP
 	    self.m.protagonist <--> ed.profiledParticipant
 	    self.m.stageRole <--> v.m.actionary
 	    ed.profiledProcess <--> vp.m
-	    self.m <--> v.m
 	    ed.profiledParticipant <--> vp.ed.profiledParticipant
 
 
@@ -90,7 +106,7 @@ construction CopularVPAdjective
     	self.m <--> cop.m
         self.m.protagonist <--> ed.profiledParticipant
         self.m.state <--> adj.m
-        self.adj.m.modifiedThing <--> ed.profiledParticipant  // might be enough for Adj-N agreement 10/27/12
+        //self.adj.m.modifiedThing <--> ed.profiledParticipant  // might be enough for Adj-N agreement 10/27/12
  		self.adj.m.domain <--> ed.profiledParticipant.ontological-category // Adj-N agreement 10/27/12
  
 construction CopularVPNominal // 2/14/13
@@ -107,42 +123,29 @@ construction CopularVPNominal // 2/14/13
         self.m.state <--> ri
         ri.first <--> ed.profiledParticipant
         ri.second <--> nominal.m     
-/*
+ /*
 Nominal copulas (e.g. "it is a box") could be analyzed using a CopuluarVPNominal cxn
 such as the one shown below, whcih is a subcase of the general CopularVP cxn above.
 Note that the current first grammar does not contain the RefIdentity schema referred to by this cxn.
 
-construction CopularVPNominal // 2/14/13
-  subcase of CopularVP
-  constructional  
-    constituents
-      	nominal: NP
-  form
-    constraints
-      	cop.f meets nominal.f
-  meaning: Stasis
-    evokes RefIdentify as ri
-   constraints
-        self.m.state <--> ri
-        ri.first <--> ed.profiledParticipant
-        ri.second <--> nominal.m   
- 
 
 Sentences such as "he is moving" can potentially be analyzed in various ways.
 One way is through the use of a CopularVPParticiple cxn such as the one shown below.
 Note that while the current grammar has a general PresentParticiple cxn, it does not
 have any specific lexical cxns for present participles.  Also, the current first grammar
 does not contain a ParticipleModification schema.   
-  
+   */
 
 construction CopularVPParticiple // 10/16/13
   subcase of VP
   constructional  
     constituents
       	cop: Verb
-      	pp: PresentParticiple
+      	pp: Verb
+      	//pp: PresentParticiple
   	constraints
   		self.features <--> cop.features
+  		pp.verbform <-- PresentParticiple
   		cop.argform <-- Copula  // check this ********** 
 	form
     constraints
@@ -159,6 +162,6 @@ construction CopularVPParticiple // 10/16/13
  		//self.adj.m.domain <--> ed.profiledParticipant.ontological-category // Adj-N agreement 10/27/12
  
  
- */
+
  
         

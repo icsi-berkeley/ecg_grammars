@@ -1,0 +1,85 @@
+//
+// conjunctions.grm
+//
+
+general construction Conjunction
+	subcase of Word
+	
+
+construction If
+	subcase of Conjunction
+   	form
+		constraints
+         	self.f.orth <-- "if"
+ 
+ construction Then-Conditional
+	subcase of Conditional
+   	form
+		constraints
+         	self.f.orth <-- "then"
+
+ general construction Conditional  // just the above for now
+	subcase of Word
+
+        	        	
+general construction SerialConjunction 
+	subcase of Conjunction
+	
+/* 5/17/13 
+construction Then-Serial
+	subcase of SerialConjunction
+   	form
+		constraints
+         	self.f.orth <-- "then"
+         	
+construction Before-Serial
+	subcase of SerialConjunction
+   	form
+		constraints
+         	self.f.orth <-- "before"
+
+general construction SerialVPConjunction 
+	subcase of SerialConjunction
+	
+
+construction And-Serial  // 12/19/12
+	subcase of SerialConjunction
+   	form
+		constraints
+         	self.f.orth <-- "and" 
+	
+*/	
+construction That-Subordinating 
+	subcase of Conjunction
+   	form 
+		constraints
+         	self.f.orth <-- "that"
+   
+construction About-Subordinating 
+	subcase of Conjunction
+   	form
+		constraints
+         	self.f.orth <-- "about"
+         	
+general construction LogicalConjunction 
+	subcase of Conjunction
+	
+
+construction And-Logical
+	subcase of LogicalConjunction
+   	form
+		constraints
+         	self.f.orth <-- "and"
+
+construction Or
+	subcase of Conjunction
+   	form
+		constraints
+         	self.f.orth <-- "or"
+		
+construction Than
+	subcase of SerialConjunction
+   	form
+		constraints
+         	self.f.orth <-- "than"
+	

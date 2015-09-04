@@ -16,6 +16,7 @@ construction SellType
 	meaning: GoodsTransfer
 	  constraints
 	    self.m.actionary <-- @give
+	    
 
 	    
 construction BuyType
@@ -23,8 +24,9 @@ construction BuyType
 	meaning: MoneyTransfer
 	 constraints 
 	   self.m.actionary <-- @take   
+	   
 
-	
+
 	
 	
 	
