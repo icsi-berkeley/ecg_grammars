@@ -3,20 +3,20 @@ red :: ColorType :: self.m.value <-- @red
 blue :: ColorType :: self.m.value <-- @blue
 block   :: ArtifactNoun  :: self.m.ontological-category <-- @block
 move    :: SelfMotionType  :: self.m.actionary <-- @move :: self.m.speed <-- ".5"
-walk    :: SelfMotionType  :: self.m.actionary <-- @walk :: self.m.speed <-- ".3"
-run     :: SelfMotionType  :: self.m.actionary <-- @run  :: self.m.speed <-- ".7" 
+walk    :: SelfMotionType  :: self.m.actionary <-- @walk :: self.m.speed <-- ".3" :: self.argform <-- NotTransitive
+run     :: SelfMotionType  :: self.m.actionary <-- @run  :: self.m.speed <-- ".7" :: self.argform <-- NotTransitive
 box     :: ContainerNoun  :: self.m.ontological-category <-- @box
 room    :: ArtifactNoun  :: self.m.ontological-category <-- @room
 be      :: BeCopula  :: self.m.actionary <-- @be
 see     :: PerceptionType :: self.m.actionary <-- @see
-sprint  :: SelfMotionType  :: self.m.actionary <-- @run  :: self.m.speed <-- ".8"
-jog  :: SelfMotionType  :: self.m.actionary <-- @run  :: self.m.speed <-- ".6"
+sprint  :: SelfMotionType  :: self.m.actionary <-- @run  :: self.m.speed <-- ".8" :: self.argform <-- NotTransitive
+jog  :: SelfMotionType  :: self.m.actionary <-- @run  :: self.m.speed <-- ".6" :: self.argform <-- NotTransitive
 enter :: PathVerbIn   :: self.m.actionary <-- @enter :: self.m.landmark.ontological-category <-- @container
-exit  :: PathVerbOut  :: self.m.actionary <-- @exit :: self.m.landmark.ontological-category <-- @container
+exit :: PathVerbOut   :: self.m.actionary <-- @exit :: self.m.landmark.ontological-category <-- @container
 man :: SentientNoun :: self.m.ontological-category <-- @person :: self.m.gender <-- @male
 woman :: SentientNoun :: self.m.ontological-category <-- @person :: self.m.gender <-- @female
-big :: SizeType :: self.m.value <-- ".7"
-small :: SizeType :: self.m.value <-- ".3"
+big :: SizeType :: self.m.value <-- @big
+small :: SizeType :: self.m.value <-- @small
 john :: ProperNPInstance :: self.m.ontological-category <-- @person :: self.m.referent <-- @john :: self.m.gender <-- @male :: self.m.number <-- @singular
 push :: CauseEffectType :: self.m.actionary <-- @push_move
 stop :: StageVerbType :: self.m.actionary <-- @stop :: self.expectedVerbForm <-- PresentParticiple
@@ -26,4 +26,3 @@ drive :: AgentDriveType :: self.m.actionary <-- @drive
 quickly :: ScalarAdverbType :: self.m.value <-- ".7" :: self.m.property <-- @speed
 slowly :: ScalarAdverbType :: self.m.value <-- ".3" :: self.m.property <-- @speed
 drive :: DriveVehicleType :: self.m.actionary <-- @drive
-

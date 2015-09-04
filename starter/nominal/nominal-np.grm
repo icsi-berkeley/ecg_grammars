@@ -72,7 +72,7 @@ construction Kernel-LocPP
    subcase of Kernel
    constructional
      constituents
-       n: Nominal
+       n: Kernel
        pp: Loc-PP
    form
      constraints

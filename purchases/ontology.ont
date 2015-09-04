@@ -220,8 +220,6 @@ DEFS:
 
 (type person sub animate sentient)
 
-(type man sub person)
-
 (type robot sub artifact sentient)
 
 // inanimate stuff

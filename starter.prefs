@@ -30,7 +30,12 @@ MORPHOLOGY_PATH ::==
 TOKEN_PATH ::== 
 	./starter/starter.tokens
 ;
+
 TABLE_PATH = ./starter/starter.morph
+
+//GRAMMAR_PARAMS_PATHS ::== 
+//	./starter/test.sem
+//;
 
 ROBUST = FALSE 
 BEAM_SIZE = 20

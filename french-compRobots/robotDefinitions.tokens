@@ -1,0 +1,15 @@
+ql1 :: VariableType :: self.m.referent <-- @variable :: self.m.ontological-category <-- @location
+ql2 :: VariableType :: self.m.referent <-- @variable :: self.m.ontological-category <-- @location
+ql3 :: VariableType :: self.m.referent <-- @variable :: self.m.ontological-category <-- @location
+ql4 :: VariableType :: self.m.referent <-- @variable :: self.m.ontological-category <-- @location
+qo1 :: VariableType :: self.m.ontological-category <-- @physicalEntity
+qo2 :: VariableType :: self.m.ontological-category <-- @physicalEntity
+qo3 :: VariableType :: self.m.ontological-category <-- @physicalEntity
+qo4 :: VariableType :: self.m.ontological-category <-- @physicalEntity
+visiter :: FunctionVerbType :: self.m.actionary <-- @visit
+voyager :: FunctionVerbType :: self.m.actionary <-- @tour
+rejoindre :: FunctionVerbType :: self.m.actionary <-- @join
+tâche :: FunctionVerbType :: self.m.actionary <-- @task
+
+
+

@@ -208,7 +208,6 @@ DEFS:
 
 (type table sub artifact)
 
-
 // profession ontology? ("my sister is a doctor")
 
 (type profession sub entity sentient)
@@ -265,21 +264,21 @@ DEFS:
 
 (type instance)
 
-(type john-instance sub instance person)
+(type john sub instance person)
 
-(type box1-instance sub instance box)  // needs to be done right *************
+(type box1 sub instance box)  // needs to be done right *************
 
-(type box2-instance sub instance box)
+(type box2 sub instance box)
 
-(type block1-instance sub instance block)
+(type block1 sub instance block)
 
-(type block2-instance sub instance block)
+(type block2 sub instance block)
 
-(type block3-instance sub instance block)
+(type block3 sub instance block)
 
-(type robot1-instance sub instance robot)
+(type robot1 sub instance robot)
 
-(type robot2-instance sub instance robot)
+(type robot2 sub instance robot)
 
 // Hedges
 
@@ -608,7 +607,7 @@ DEFS:
 
 (type object-property sub shared)
 
-(type color sub object-property )  // cf. size, non-scalar property
+(type color sub object-property)  // cf. size, non-scalar property
 
 (type propValue sub sharedEnumeration )  // non-scale properties are sets
 
@@ -750,6 +749,7 @@ DEFS:
 
 (type sister sub sentient person)
 
+<<<<<<< HEAD
 // metaphors
 
 (type metaphors sub sharedEnumeration)  // names of known metaphors
@@ -775,5 +775,10 @@ DEFS:
 //(type EntitiesAsAnimateBeings sub metaphors )
 
 //(type sizeAsDifficulty sub metaphors )
+=======
+(type man sub person)
+
+(type cerulean sub colorValue  shared)
+>>>>>>> d39c4661c7be8e2f28acf4887eae19042b88ae8a
 
 INSTS:

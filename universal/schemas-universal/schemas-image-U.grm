@@ -2,11 +2,11 @@ package universal-schemas
 
 schema TrajectorLandmark  
 	roles
-		trajector: RD 
+		trajector: RD
 		landmark: RD
 		profiledArea: RD //  defined with respect to Landmark  
 	constraints
-		trajector.ontological-category <-- @physicalEntity
+		trajector.ontological-category <-- @physicalEntity 
 		landmark.ontological-category <-- @region  // added for 2/22/14 m4 test  
 		profiledArea.ontological-category <-- @location 
 

@@ -565,6 +565,10 @@ DEFS:
 
 (type blue sub colorValue)
 
+(type big sub sizeValue)
+
+(type small sub sizeValue)
+
 // Booleans
 
 (type boolean sub shared)

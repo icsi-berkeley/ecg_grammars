@@ -35,6 +35,12 @@ construction And-Conjunction
 	  constraints
 	    self.f.orth <-- "and"
 	    
+construction That-Subordinating
+	subcase of Conjunction
+	form
+	  constraints
+	     self.f.orth <-- "that"
+	    
 general construction Conditional
   subcase of Word
 

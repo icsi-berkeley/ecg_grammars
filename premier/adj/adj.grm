@@ -1,0 +1,67 @@
+package premier
+
+//
+// Adjectives
+// ========== 
+// 
+
+general construction Adjective  // parallel to Verb, etc. \
+	subcase of  RootType, HasNominalFeatures  // **** for agreement in French, etc.  // Ellen uncommented this 7/3/14
+	meaning: Modification
+
+general construction LexicalAdjective
+   subcase of Adjective, Word
+    
+general construction PropertyAdjective  // parallel to Verb, etc. \
+	subcase of  LexicalAdjective
+	//subcase of HasNominalFeatures   **** for agreement in Spanish, etc.
+	meaning: PropertyModifier	
+
+general construction Color  //subcase of non-scale Adj
+  subcase of PropertyAdjective    
+   meaning: PropertyModifier
+    constraints
+       self.m.property <-- @color 
+	   self.m.domain <-- @physicalEntity
+	   
+construction ColorType  //subcase of non-scale Adj
+  subcase of PropertyAdjective, GeneralTypeCxn, Adj-Epitete-After
+  constructional
+   constraints
+     self.features.gender <-- @genderValues
+     self.features.number <-- @RDnumberValues  
+  meaning: PropertyModifier
+    constraints
+       self.m.property <-- @color 
+	   self.m.domain <-- @physicalEntity
+	   self.m.value <-- @colorValue
+
+       	
+// ADDED 6/25/14 (ST), Testing complex adjectives like "petit bloc rouge"
+general construction ScalarAdjective  // e.g. big
+	subcase of  PropertyAdjective
+	meaning: PropertyModifier // Should be ScalarModifier, but changed for now for testing purposes 
+
+construction SizeType
+	subcase of ScalarAdjective, GeneralTypeCxn, Adj-Epitete-Before
+	constructional
+     constraints
+       self.features.gender <-- @genderValues
+       self.features.number <-- @RDnumberValues  
+	meaning
+	  constraints
+	    self.m.value <-- @sizeValue
+	    self.m.property <-- @size
+	    self.m.domain <-- @physicalEntity
+	    //self.m.kind <-- @unmarked
+
+//ADDED 4/29/15 (AA), Testing with "le petit bloc", "le bloc rouge" 
+//Some of the adjectives have to be put before, other have to be put after and finally some of them can be put before or after the noun
+general construction Adj-Epitete-After
+	subcase of PropertyAdjective
+
+general construction Adj-Epitete-Before
+	subcase of PropertyAdjective
+
+general construction Adj-Epitete-BeforeOrAfter
+	subcase of Adj-Epitete-After, Adj-Epitete-Before

@@ -10,7 +10,7 @@ PACKAGE_NAME ::==
 ;
 
 ONTOLOGY_PATHS ::==
-	./purchases/ontology.ont
+	./starter/ontology.ont
 	./purchases/purchases.ont
 ;
 

@@ -44,7 +44,10 @@ construction SelfMotionType
       constraints
          self.m.actionary <-- @motion
          self.m.speed <-- ".5"
-
+         self.argform <-- ArgForm
+         
+         
+       
 
 // You could imagine adding another constraint here on the 
 // ontological category of the "Content" of the perception;

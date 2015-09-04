@@ -1,4 +1,5 @@
 package starter
+import motion
 //package transitives
 
 // *** 5/22/13 NOTE: need to remove 'test' from names at some point ***

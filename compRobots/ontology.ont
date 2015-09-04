@@ -292,9 +292,9 @@ DEFS:
 
 (type john-instance sub instance person)
 
-(type box1-instance sub instance box)  // needs to be done right *************
+(type box1 sub instance box)  // needs to be done right *************
 
-(type box2-instance sub instance box)
+(type box2 sub instance box)
 
 (type block1-instance sub instance block)
 
@@ -302,9 +302,9 @@ DEFS:
 
 (type block3-instance sub instance block)
 
-(type robot1-instance sub instance robot)
+(type robot1 sub instance robot)
 
-(type robot2-instance sub instance robot)
+(type robot2 sub instance robot)
 
 // Hedges
 
@@ -774,11 +774,11 @@ DEFS:
 
 (type pencil sub physicalEntity artifact moveable)
 
-(type box3-instance sub instance box)
+(type box3 sub instance box)
 
-(type box4-instance sub instance box)
+(type box4 sub instance box)
 
-(type box5-instance sub instance box)
+(type box5 sub instance box)
 
 (type green sub colorValue)
 
@@ -829,5 +829,7 @@ DEFS:
 (type amble sub motion)
 
 (type team-instance sub instance)
+
+(type indigo sub colorValue)
 
 INSTS:

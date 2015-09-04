@@ -3,14 +3,14 @@ south :: DirectionalType :: self.m.tag <-- @south
 east :: DirectionalType :: self.m.tag <-- @east
 west :: DirectionalType :: self.m.tag <-- @west
 pencil :: ArtifactNoun :: self.m.ontological-category <-- @pencil
-robot1 :: ProperNPInstance :: self.m.ontological-category <-- @robot :: self.m.referent <-- @robot1-instance
-robot2 :: ProperNPInstance :: self.m.ontological-category <-- @robot :: self.m.referent <-- @robot2-instance
+robot1 :: ProperNPInstance :: self.m.ontological-category <-- @robot :: self.m.referent <-- @robot1
+robot2 :: ProperNPInstance :: self.m.ontological-category <-- @robot :: self.m.referent <-- @robot2
 robot :: SentientNoun :: self.m.ontological-category <-- @robot
-box1 :: ProperNPInstance :: self.m.referent <-- @box1-instance :: self.m.ontological-category <-- @box
-box2 :: ProperNPInstance :: self.m.referent <-- @box2-instance :: self.m.ontological-category <-- @box
-box3 :: ProperNPInstance :: self.m.referent <-- @box3-instance :: self.m.ontological-category <-- @box
-box4 :: ProperNPInstance :: self.m.referent <-- @box4-instance :: self.m.ontological-category <-- @box
-box5 :: ProperNPInstance :: self.m.referent <-- @box5-instance :: self.m.ontological-category <-- @box
+box1 :: ProperNPInstance :: self.m.referent <-- @box1 :: self.m.ontological-category <-- @box
+box2 :: ProperNPInstance :: self.m.referent <-- @box2 :: self.m.ontological-category <-- @box
+box3 :: ProperNPInstance :: self.m.referent <-- @box3 :: self.m.ontological-category <-- @box
+box4 :: ProperNPInstance :: self.m.referent <-- @box4 :: self.m.ontological-category <-- @box
+box5 :: ProperNPInstance :: self.m.referent <-- @box5 :: self.m.ontological-category <-- @box
 green :: ColorType :: self.m.value <-- @green
 purple :: ColorType :: self.m.value <-- @purple
 return :: ReturnType :: self.m.actionary <-- @move
@@ -45,7 +45,7 @@ white :: ColorType :: self.m.value <-- @white
 shelf :: ArtifactNoun :: self.m.ontological-category <-- @shelf
 shelf1 :: ProperNPInstance :: self.m.ontological-category <-- @shelf :: self.m.referent <-- @shelf1
 pink :: ColorType :: self.m.value <-- @pink
-large :: SizeType :: self.m.value <-- ".8"
+large :: SizeType :: self.m.value <-- @large
 amble :: SelfMotionType :: self.m.speed <-- ".2" :: self.m.actionary <-- @amble
 quickly :: ScalarAdverbType :: self.m.property <-- @speed :: self.m.value <-- ".7"
 slowly :: ScalarAdverbType :: self.m.property <-- @speed :: self.m.value <-- ".3"
