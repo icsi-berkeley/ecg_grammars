@@ -64,7 +64,7 @@ Given the sucess of the ActiveMotionPath cxn, the following cxns have been comme
     constituents//one of these needs to be present
       optional dis: SpatialQuantityNP
       optional dir: Directional 
-      optional pp: Path-PP  
+      pp: Path-PP  // 4/23/15 made this required rather than optional
   constraints
         v.voice <-- NotPassive  //2/4/13  --should this be moved to IntranstiveArgumentStructure cxn??
   form 
@@ -193,6 +193,66 @@ construction PassiveTrans_CauseChangeLoc_causalAction// the box was pushed (by h
 
 
 
+//WAY construction and constituents
+
+
+construction Way_MotionPath_means   //verb elaborates causal 'means' by which path is created, e.g. he pushed his way into the room 
+  subcase of ArgumentStructure
+  constructional
+    constituents
+       //v: Verb
+       way: Way_NP 
+       pp: Path-PP  
+  constraints
+       // v.voice <-- NotPassive
+  form 
+    constraints
+      v.f before way.f
+      way.f before pp.f
+  meaning: MotionPath
+    evokes CauseEffect as ce
+    constraints 
+      self.m.spg <--> pp.m
+      self.m.spg <--> way.spg
+      ed.profiledParticipant <--> self.m.protagonist
+      self.m.protagonist <--> v.m.protagonist
+      //v.m.p-features.voice <-- @notPassive
+	  v.m <--> self.ce  //constrains verbs that will unify with this particular construction: has to be a causal verb, e.g push, cut
+
+construction Way_MotionPath_means_fa //verb elaborates causal 'means' by which path is created, e.g. he pushed his way into the room 
+  subcase of Way_MotionPath_means
+    meaning
+    evokes ForceApplication as fa
+    constraints 
+      ignore v.m <--> self.ce
+	  v.m <--> self.ce.process1  //constrains verbs that will unify with this particular construction: has to be a causal verb, e.g push, cut	  
+	  v.m <--> self.fa
+	  
+construction Way_NP
+  subcase of NP
+  constructional
+    constituents   
+      s: PossessivePronoun 
+      way: Way_noun
+   form 
+    constraints
+      s.f before way.f
+	meaning
+		evokes SPG as spg
+		constraints
+			self.m <--> way.m
+			s.m <-> way.m 
+			s.possession.possessor <--> spg.trajector
+			way.m <--> spg.path
+
+			
+construction Way_noun
+   subcase of SingularNoun
+   form
+      constraints
+         self.f.orth <-- "way"
+      meaning
+      
 
 
 

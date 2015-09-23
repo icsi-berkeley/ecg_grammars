@@ -9,21 +9,28 @@ IMPORT_PATHS ::==
 	./base
 ;
 
+
 PACKAGE_NAME ::==
+
 	base
+
 ;
 
 ONTOLOGY_PATHS ::==
 	./base/ontology.ont
 ;
-
 MORPHOLOGY_PATH ::== 
+	
 	./base/celex.ecgmorph
+
 ;
 
 TOKEN_PATH ::== 
+
 	./base/base.tokens
+
 ;
+
 TABLE_PATH = ./base/base.morph
 
 ROBUST = FALSE

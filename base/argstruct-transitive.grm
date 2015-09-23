@@ -191,7 +191,7 @@ construction PassiveTrans_Causation_causalAction // the box was pushed/slapped (
 
 //// In the 'effectProcess' subcase, the verb constituent elaborates the affectedProcess, e.g. move
 
-// ** NOTE: need to add verbKind constraints that block over-use of Trans_Causation_effectProcess cxns
+// ** NOTE: need to add verbForm constraints that block over-use of Trans_Causation_effectProcess cxns
 //      'transitive' verbs -- as currently defined (as of 3/20/14), pretty much any verb can occur here
         
 

@@ -408,7 +408,7 @@ schema MotorControl
    roles
       actor: RD 
       effector: RD
-      effort
+      effort: @scale 
       routine : @routine
    constraints
    	  actor.ontological-category <-- @agent //  12/21/12

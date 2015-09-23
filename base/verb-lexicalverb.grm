@@ -14,6 +14,14 @@ general construction LexicalVerb
    	constraints
    		pf <--> self.m.p-features
    		
+construction LexicalVerbType
+	subcase of VerbChunk, GeneralTypeCxn
+	meaning
+		evokes ProcessFeatures as pf
+   	constraints
+   		pf <--> self.m.p-features
+   		 
+
 construction InfinitiveCxN // check names
 	subcase of VerbChunk
 	constructional  
@@ -163,15 +171,15 @@ construction PreventBase
 		
 // Want
 
- general construction Want-Complex
-   subcase of  ControlVerbComplex  // 1/7/13
+general construction Want-Complex
+   subcase of  ControlVerbComplex  // 
   constructional  
     	constraints
    meaning
       constraints
          self.m.actionary <-- @want
          self.m.protagonist.ontological-category <-- @sentient
-                    
+                
 construction WantPast-Complex
    subcase of Want-Complex, PastTense
    form
@@ -216,7 +224,6 @@ construction WantPresentParticiple
    form
       constraints
          self.f.orth <-- "wanting"
-
 
 // Try
 
@@ -604,15 +611,18 @@ construction InfectPresentParticiple
          self.f.orth <-- "infected"               
 */
          
-general construction Move  
-   	subcase of LexicalVerb
+construction Move  
+   	subcase of LexicalVerbType
+	constructional
+	     constraints
+	       self.argform <-- ArgForm
 	meaning: MotionPath 
       	constraints
          	self.m.actionary <-- @move
          	//self.m.protagonist.ontological-category <-- @moveable //both cases
          	self.m.protagonist.ontological-category <-- @physicalEntity  
 		
-	
+/*	
 construction MoveBase 
    	subcase of Move, BaseForm
    	form
@@ -651,6 +661,8 @@ construction MovePastParticiple
    form
       constraints
          self.f.orth <-- "moved"
+*/
+
  
  //drive
  /* commented out 6/7/13
@@ -758,7 +770,7 @@ general construction Cut   // 5/20/13 test
      meaning: CauseEffect // changed 2/11/14
          constraints
          	//self.m.actionary <-- @cut // need to add to ontology
-         	self.m.protagonist.ontological-category <-- @physicalEntity // 5/21/13, allows non-agent physical object
+         	self.m.protagonist.ontological-category <-- @agent // 5/21/13, allows non-agent physical object
  				
  construction CutBase   
    	subcase of Cut, BaseForm
@@ -786,13 +798,14 @@ construction CutPresentParticiple
 
 // push
 
-general construction Push   
-   	subcase of LexicalVerb
-     meaning: ForceApplication // sub MotorControl, change
+construction Push   
+   	subcase of LexicalVerbType
+    meaning: ForceApplication // sub MotorControl, change
          constraints
          	self.m.actionary <-- @push
          	self.m.protagonist.ontological-category <-- @agent  // 1/28/13, motor control constraint
- 				
+			self.m.effort <-- @scale
+/* 				
  construction PushBase   
    	subcase of Push, BaseForm
    	form
@@ -816,7 +829,7 @@ construction PushPresentParticiple
    	form
       	constraints
          	self.f.orth <-- "pushing"     	
-
+*/
 /*
 
 general construction Throw   // 5/20/13 test
@@ -981,12 +994,14 @@ construction EnterPast
       constraints
          self.f.orth <-- "entered"
  */        
-general construction Walk
-   subcase of LexicalVerb
-   meaning: MotionPath // It should have motor control
+
+construction Walk  
+   	subcase of LexicalVerbType
+    meaning: MotionPath // meaning should include motor control, e.g. use a SelfMotion schema of some kind
       constraints
          self.m.actionary <-- @walk      
 
+/*
 construction WalkBase
    subcase of Walk, BaseForm
    form
@@ -994,23 +1009,6 @@ construction WalkBase
          self.f.orth <-- "walk"
 
 
-
-
-/*
-construction Stride
-   subcase of Walk, BaseForm
-   form
-      constraints
-         self.f.orth <-- "stride"    
-     meaning //MotionPath
-        evokes Modification as mod
-        constraints
-          mod.modifiedThing <-> self.m
-          mod.modifier <-- "intense"  // ??? 3/2/13
-*/
-    
-
-/* shrink the grammar for now
 construction WalkPresent
    subcase of Walk, PresentTense
    form
@@ -1022,7 +1020,7 @@ construction WalkPresentThirdPersonSingular
    form
       constraints
          self.f.orth <-- "walks"
-*/
+
 construction WalkPast
    subcase of Walk, PastTense
    form
@@ -1034,13 +1032,46 @@ construction WalkPresentParticiple
    form
       constraints
          self.f.orth <-- "walking"
-/*
+
 construction WalkPastParticiple
    subcase of Walk, PastParticiple
    form
       constraints
          self.f.orth <-- "walked"
 */       
+construction Run 
+   	subcase of LexicalVerb
+    meaning: MotionPath // meaning should include motor control, e.g. use a SelfMotion schema of some kind
+      constraints
+         //self.m.actionary  
+
+
+
+construction RunPast
+   subcase of Walk, PastTense
+   form
+      constraints
+         self.f.orth <-- "ran"
+
+
+
+construction RunPastParticiple
+   subcase of Run, PastParticiple
+   form
+      constraints
+         self.f.orth <-- "ran"
+/*
+construction Stride
+   subcase of Walk, BaseForm
+   form
+      constraints
+         self.f.orth <-- "stride"    
+     meaning //MotionPath  
+        evokes Modification as mod
+        constraints
+          mod.modifiedThing <-> self.m
+          mod.modifier <-- "intense"  // ??? 3/2/13
+*/
 
 // slap
 

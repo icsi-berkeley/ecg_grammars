@@ -1,7 +1,7 @@
 //
 // vp.grm
 //
-//The general VP construction, below, captures distributional and meaning similarities of its many subcases.
+//The general VP construction, below, captures the distributional and meaning similarities of its many subcases.
 // Because these subcases differ as to the types of constituents they contain, this general VP construction
 // does not list any constituents (see ComplexVP, below, for further comments).
 //
@@ -16,7 +16,7 @@ general construction VP
 
 
 
-general construction ArgumentStructure //make an agentive subcase?
+general construction ArgumentStructure //
   subcase of VP
   constructional
     constituents

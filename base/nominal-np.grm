@@ -45,41 +45,10 @@ general construction EventNP//  12/19/12
 	subcase of NP
 	meaning: EventRD	
 
-// some special stuff for early robot domain
-schema Location2D
-	subcase of RD		 
-	roles
-		xCoord: @number
-		yCoord: @number
-	constraints
-		ontological-category <-- @location
- 		number <-- @singular
 
-construction LOCATION  // maybe a convention for key words
-	subcase of Word, HasAgreementFeatures
-	form
-    	constraints
-			self.f.orth <-- "location"
-		
-construction LocationNP
-	subcase of Kernel, NP
-  	constructional
-    	constituents
-		  	tag: LOCATION
-			x: Number
-			optional comma: Comma
-			y: Number
-	form
-    	constraints
-      		tag.f meets x.f
-			x.f meets comma.f
-			comma.f meets y.f
-  meaning: Location2D
-    	constraints
-      		self.m.xCoord <--> x.m.value
-			self.m.yCoord <--> y.m.value
 
-/* 5/17/13			
+
+/*5/17/13			
 construction RelativizedNP  // box (that) he moved, revisit
 	subcase of Kernel, NP
   	constructional
@@ -98,13 +67,18 @@ construction RelativizedNP  // box (that) he moved, revisit
 			self.m <--> core.m //RD
 			self.m.description <--> description.m
 			// self.m.relativizer <--> specific.m  specific relativizer if needed
-	
-	construction RelativizedNP-VP // box (that) moved, was moved
-	subcase of Kernel, NP
+*/	
+// this cxn has problems wrt which RD schema to use to represent its meaning
+// Need an RD that includes a role for the vp's ED to bind to.  
+// But, current RD schema relations, that RD will generally not be compatible with other RD schemas. 
+// See comments on meaning pole. 
+
+	construction RelativizedNP-VP // box that moved, was moved
+	subcase of  Kernel
   	constructional
     	constituents
 		  	core: Kernel
-			 specific: Conjunction //:  that, removed optional 12/18/12
+			specific: That-Subordinating //:  that, removed optional 12/18/12
             description: VP
 		constraints
 			self.features <--> core.features
@@ -112,11 +86,11 @@ construction RelativizedNP  // box (that) he moved, revisit
 		constraints	
 			core.f meets specific.f
 			core.f before description.f		
-  	meaning: RelativizedRD
+  	meaning: RelativizedRD// this won't work because it conflicts with type constraints on most NP subjects (which are typically entityRDs)
   		constraints
 			self.m <--> core.m //RD
 			self.m.description <--> description.m.ed // uses ed role of VP
-			//self.m <--> description.m.ed.profiledParticipant
+			self.m <--> description.m.ed.profiledParticipant
 			// self.m.relativizer <--> specific.m  specific relativizer if needed
 
 /*		commented out	12/18/12
@@ -738,5 +712,39 @@ construction WhSpecifierPlusKernel
 	constraints
 		s.m <-> k.m
 	
+/*
+// some special stuff for early robot domain
+schema Location2D
+	subcase of RD		 
+	roles
+		xCoord: @number
+		yCoord: @number
+	constraints
+		ontological-category <-- @location
+ 		number <-- @singular
+
+construction LOCATION  // maybe a convention for key words
+	subcase of Word, HasAgreementFeatures
+	form
+    	constraints
+			self.f.orth <-- "location"
 		
+construction LocationNP
+	subcase of Kernel, NP
+  	constructional
+    	constituents
+		  	tag: LOCATION
+			x: Number
+			optional comma: Comma
+			y: Number
+	form
+    	constraints
+      		tag.f meets x.f
+			x.f meets comma.f
+			comma.f meets y.f
+  meaning: Location2D
+    	constraints
+      		self.m.xCoord <--> x.m.value
+			self.m.yCoord <--> y.m.value
+*/		
       

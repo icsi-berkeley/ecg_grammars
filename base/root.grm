@@ -39,6 +39,8 @@ construction GeneralTypeCxn
 	     self.f.orth <-- "*"
 
 
+
+
 /*
 For additional subcases of RootType, see individual files.  
 

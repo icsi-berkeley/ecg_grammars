@@ -2,6 +2,48 @@
 // Singular Count Nouns
 //
 
+// 
+// Lexical nouns defined using ypes and tokens
+
+construction NounType
+	subcase of Noun, GeneralTypeCxn, ThirdPerson
+	
+construction CountNounType
+	subcase of NounType
+	meaning
+     constraints
+     	//self.m.ontological-category <--@entity 
+     	
+construction AnimalNoun
+	subcase of CountNounType
+	meaning
+     constraints
+     	self.m.ontological-category <--@animate
+   
+     	
+
+construction Man_lemma  
+   subcase of CountNounType
+   meaning
+     constraints
+      self.m.ontological-category <--  @person
+      self.m.gender <--  @male
+
+
+
+construction Box_lemma
+   subcase of CountNounType
+   meaning: EntityRD
+  	evokes Container as cont 
+    constraints
+     self.m.ontological-category <--  @box
+     self.m.extensions <--> cont  // conflict with number???
+     self.m.scale <-- @size
+
+
+
+// Lexical constructions defined without types and tokens
+
 general construction SingularNoun
   subcase of Noun, Singular
    constructional
@@ -12,6 +54,9 @@ general construction SingularNoun
       self.m.number <-- @singular
 	  self.m.bounding <-- @determinate
 
+
+
+/*
 construction Sheep1  
    subcase of SingularNoun
    form
@@ -20,6 +65,7 @@ construction Sheep1
       meaning
     constraints
       self.m.ontological-category <--  @sheep
+
 
 construction Man  
    subcase of SingularNoun
@@ -30,7 +76,61 @@ construction Man
     constraints
       self.m.ontological-category <--  @person
 	  self.m.gender <--  @male
-	   
+   
+
+construction Box
+   subcase of SingularNoun
+   form
+      constraints
+         self.f.orth <-- "box"
+   meaning: EntityRD
+  	evokes Container as cont 
+    constraints
+     self.m.ontological-category <--  @box
+     self.m.extensions <--> cont  // conflict with number???
+     self.m.scale <-- @size
+*/
+construction Block
+   subcase of SingularNoun
+   form
+      constraints
+         self.f.orth <-- "block"
+      meaning
+    constraints
+      self.m.ontological-category <--  @block
+      self.m.scale <-- @size
+     
+construction Robot
+   subcase of SingularNoun
+   form
+      constraints
+         self.f.orth <-- "robot"
+      meaning
+    constraints
+      self.m.ontological-category <--  @robot
+
+construction Room
+   subcase of SingularNoun
+   form
+      constraints
+         self.f.orth <-- "room"
+      meaning
+    constraints
+      self.m.ontological-category <--  @room
+      self.m.scale <-- @size
+
+construction Car
+   subcase of SingularNoun
+   form
+      constraints
+         self.f.orth <-- "car"
+      meaning
+    constraints
+      self.m.ontological-category <--  @car
+
+
+
+
 construction Government 
    subcase of SingularNoun
    form
@@ -141,56 +241,7 @@ construction Flu
     constraints
       self.m.ontological-category <--  @city-artifact  
 
-construction Box
-   subcase of SingularNoun
-   form
-      constraints
-         self.f.orth <-- "box"
-   meaning: EntityRD
-  	evokes Container as cont 
-    constraints
-     self.m.ontological-category <--  @box
-     self.m.extensions <--> cont  // conflict with number???
-     self.m.scale <-- @size
 
-construction Block
-   subcase of SingularNoun
-   form
-      constraints
-         self.f.orth <-- "block"
-      meaning
-    constraints
-      self.m.ontological-category <--  @block
-      self.m.scale <-- @size
-     
-construction Robot
-   subcase of SingularNoun
-   form
-      constraints
-         self.f.orth <-- "robot"
-      meaning
-    constraints
-      self.m.ontological-category <--  @robot
-
-construction Room
-   subcase of SingularNoun
-   form
-      constraints
-         self.f.orth <-- "room"
-      meaning
-    constraints
-      self.m.ontological-category <--  @room
-      self.m.scale <-- @size
-
-construction Car
-   subcase of SingularNoun
-   form
-      constraints
-         self.f.orth <-- "car"
-      meaning
-    constraints
-      self.m.ontological-category <--  @car
-      
 construction Square
    subcase of SingularNoun
    form

@@ -17,7 +17,7 @@ schema RD // meaning of NP
 	hedge: @hedgeVal  // @fake, etc  4/8/13
 	//continuity: @continuityValues ?? percolated up NP ???
     amount: Amount // various schemas for quantifiers, etc. ???? 11/23/12
-    extensions: Extensions // various schemas for affordances, etc
+    extensions//: Extensions // various schemas for affordances, etc
 
 
 
@@ -73,14 +73,14 @@ schema EventRD  // 12/24/12  named event, e.g. crisis & more
 	constraints
 		//self.ontological-category <--> @eventTop //	 7/16/14
 
-/*
-schema RelativizedRD  // deleted 7/15/14
-	subcase of RD 
+
+schema RelativizedRD  // rev 6/17/15
+	subcase of EntityRD 
 	roles 
-		relativizer  // that, etc may not be needed
+		//relativizer  // that, etc may not be needed
 		description: EventDescriptor // fill ProfiledParticpant role 	
 		
-*/
+
 
 // EVENT DESCRIPTOR (ED) schemas
 

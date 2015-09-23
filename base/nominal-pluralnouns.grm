@@ -24,7 +24,7 @@ construction Prices  // ?? mass noun
     constraints
       self.m.ontological-category <--  @prices
       self.m.scale <-- @money  
-
+/*
 construction Sheep  
    subcase of PluralNoun
    form
@@ -33,7 +33,7 @@ construction Sheep
       meaning
     constraints
       self.m.ontological-category <--  @sheep
-     
+*/     
       
 construction Centimeters
    subcase of PluralNoun
@@ -81,7 +81,7 @@ construction Blocks
     constraints
       self.m.ontological-category <--  @block
 	  self.m.extensions <--> art
-
+/*
 construction Boxes
    subcase of PluralNoun
    form
@@ -92,7 +92,7 @@ construction Boxes
     constraints
       self.m.ontological-category <--  @box
       self.m.extensions <--> cont
-      
+*/      
 
 construction Minutes
    	subcase of PluralNoun

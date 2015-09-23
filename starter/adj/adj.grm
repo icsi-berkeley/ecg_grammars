@@ -18,12 +18,16 @@ general construction PropertyAdjective  // parallel to Verb, etc. \
 	//subcase of HasNominalFeatures   **** for agreement in Spanish, etc.
 	meaning: PropertyModifier	
 
+
+
 general construction Color  //subcase of non-scale Adj
   subcase of PropertyAdjective    
    meaning: PropertyModifier
     constraints
        self.m.property <-- @color 
 	   self.m.domain <-- @physicalEntity
+	   
+
 
 construction ColorType  //subcase of non-scale Adj
   subcase of PropertyAdjective, GeneralTypeCxn 
@@ -46,3 +50,9 @@ construction SizeType
 	    self.m.domain <-- @physicalEntity
 	    self.m.kind <-- @unmarked
 
+<<<<<<< HEAD
+=======
+
+
+ 
+>>>>>>> 3d140d47ea25b0adcba3925b890de944d1efed83

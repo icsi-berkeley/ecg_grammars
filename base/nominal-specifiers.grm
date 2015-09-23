@@ -21,6 +21,7 @@ construction SpecifierPhrasePossessive
 			np.f meets poss.f
 	meaning: RD
 
+
 construction PossTag
 	subcase of Word
 	form
