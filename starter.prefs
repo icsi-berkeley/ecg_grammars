@@ -14,7 +14,7 @@ PACKAGE_NAME ::==
 
 ONTOLOGY_PATHS ::==
 	//./starter/ontology.ont
-	./universal/O2.ont 
+	./universal/core.ont 
 ;
 
 IMPORT_PATHS ::==

@@ -127,5 +127,6 @@ construction One-Anaphora
          self.f.orth <-- "one"
    meaning
     constraints
-      self.m.ontological-category <-- @antecedent  
+      //self.m.ontological-category <-- @antecedent 
+      self.m.referent <-- @anaphora 
       self.m.number <-- @singular    

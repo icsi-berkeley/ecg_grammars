@@ -3,11 +3,10 @@ import starter-modification
 
  
 construction Fronted-Wh-Question
-	subcase of S-With-Subj, WH-Question
+	subcase of WH-Question, S-With-Subj
 	constructional
 	  constituents
 	    extraposed qnp: WH-NP
-	    //qnp: WH-NP
 	    fin: LexicalAux
 	    subj: NP
 	    argstruct: ArgumentStructure
@@ -19,6 +18,9 @@ construction Fronted-Wh-Question
 	meaning: EventDescriptor
 	  constraints
 	     self.m <--> argstruct.m.ed
+	     //self.m.profiledParticipant <--> qnp.m
+	     //argstruct.m.ed.profiledProcess <--> self.m.profiledProcess
+	     //self.m.profiledProcess <--> self.m.eventProcess
 	     //self.m.discourseSegment.speechAct <-- "WH-Question"
 
  // "The box he moved" 

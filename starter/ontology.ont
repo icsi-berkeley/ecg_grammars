@@ -66,7 +66,29 @@ DEFS:
 
 (type bunch sub  grouper)  // hack, needed for Quantity NP***********fix
 
+(type metaphors sub sharedEnumeration)  // names of known metaphors
 
+(type institutionAsPerson sub metaphors )
+
+(type stateAsLocation sub metaphors )  // Region ****
+
+(type SocialProblemsAsAnimateAgents sub metaphors )
+
+(type SocialProblemsAsDiseases sub metaphors )
+
+(type IdeasAsDiseases sub metaphors )
+
+(type MoneyASphysicalEntity sub metaphors )
+
+(type IdeasAsFood sub metaphors )
+
+(type DateAsMoveable sub metaphors )
+
+(type NaturalForcesAsAgents sub metaphors )  // 12/20/12
+
+//(type EntitiesAsAnimateBeings sub metaphors )
+
+//(type sizeAsDifficulty sub metaphors )
 
 // socialEntity
 
@@ -749,36 +771,13 @@ DEFS:
 
 (type sister sub sentient person)
 
-<<<<<<< HEAD
 // metaphors
 
-(type metaphors sub sharedEnumeration)  // names of known metaphors
 
-(type institutionAsPerson sub metaphors )
-
-(type stateAsLocation sub metaphors )  // Region ****
-
-(type SocialProblemsAsAnimateAgents sub metaphors )
-
-(type SocialProblemsAsDiseases sub metaphors )
-
-(type IdeasAsDiseases sub metaphors )
-
-(type MoneyASphysicalEntity sub metaphors )
-
-(type IdeasAsFood sub metaphors )
-
-(type DateAsMoveable sub metaphors )
-
-(type NaturalForcesAsAgents sub metaphors )  // 12/20/12
-
-//(type EntitiesAsAnimateBeings sub metaphors )
-
-//(type sizeAsDifficulty sub metaphors )
-=======
 (type man sub person)
 
 (type cerulean sub colorValue  shared)
->>>>>>> d39c4661c7be8e2f28acf4887eae19042b88ae8a
+
+
 
 INSTS:

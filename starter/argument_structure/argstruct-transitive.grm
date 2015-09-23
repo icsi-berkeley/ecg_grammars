@@ -304,7 +304,7 @@ general construction Trans_Causation_central
 
 construction ActiveTrans_Causation_central //he cut the box
   subcase of ActiveTransitive, Trans_Causation_central     
-      
+    */  
 /*
 construction PassiveTrans_Causation_central // the box was cut (by him)
   subcase of PassiveTransitive, Trans_Causation_central    
