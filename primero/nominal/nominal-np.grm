@@ -1,71 +1,20 @@
 package primero
+import relations
 
-/******************************************************************************
-This file contains  constructions for kernel noun phrases.
-
-The assumption is that each NP has an RD structure as its meaning.
-This implies that proper nouns, pronouns, and mass/plural nouns make
-RD their meaning. For sake of uniformity, we also assume that common
-count nouns (which are not NPs) also denote an RD.
-
-
-******************************************************************************/
-
- 
-/*** 
- ***
- *** The root constructions of the NP, Noun and Nominal  hierarchy
- ***
- ***/
-
-// Testing
-/*
-general construction UndeterminedNP  // various uses including:  white as snow 
-  subcase of NP  
-  meaning: RD
-    constraints
-      self.m.givenness <-- @typeIdentifiable // Michael
-	  self.m.bounding <-- @indeterminate   
-	  
-general construction NP 
-   subcase of RootType, HasNominalFeatures
-   meaning: RD
+// to test "mi viejo amigo" (my longtime friend)
+construction RelationKernelAdj
+	subcase of KernelPriorAdj
+	constructional
+	  constituents
+	    n: RelationType
+	meaning
+	  evokes Relationship as r
+	  constraints
+	    n.m.extensions <--> r
+	    ap.m.value <--> r.duration
 
 
-// This is the root of nouns and noun noun compounds
-
-general construction Nominal 
-   subcase of HasNominalFeatures
-   meaning: RD 
-
-/* not needed ? 12/24/12
-general construction ProcessNominal 
-   subcase of Nominal 
-   meaning: ProcessRD 
-*/
-/*
-general construction Noun
-   subcase of Word, Nominal 
-*/
-/*
- *
- * Combining Adjectives and Nouns
- *
- */ 
-
-// Note that Kernel is NOT an NP 
-// it is  general because we need a supertype to cover the bracketed phrases in
-// 'the [big table]'  and 'the [big table and leather chair]'
-
-/*
-general construction  Kernel // both RD and Nominal
-	subcase of HasNominalFeatures //, RootType  // for testing only 
-	meaning: RD
-
-*/
-
-
-construction  KernelAdj // literal case
+general construction  KernelAdj // literal case
   subcase of Kernel 
   constructional
     constituents
@@ -74,9 +23,6 @@ construction  KernelAdj // literal case
     constraints
       self.features <--> n.features
       n.features <--> ap.features  //Ellen testing 7/3/14 
-  form
-    constraints
-      n.f meets ap.f
   meaning: RD
     constraints
       self.m <--> n.m
@@ -84,6 +30,25 @@ construction  KernelAdj // literal case
       // ap.m.property <--> n.m.scale  //4/26/13  ***** n.m.scale is implicit, e.g inch
       //ap.m.domain <--> n.m.ontological-category //constraint	
      // n.m.extensions.property.ontological-category <--> ap.m.value
+
+construction  KernelPosteriorAdj // literal case
+  subcase of KernelAdj
+  constructional
+    constituents
+      ap: PosteriorAdjective
+  form
+    constraints
+      n.f before ap.f
+
+construction KernelPriorAdj
+  subcase of KernelAdj
+  constructional
+    constituents
+      ap: PriorAdjective
+  form
+    constraints
+      ap.f before n.f
+
 
  
  construction  KernelParticiple //   10/16/13
@@ -102,12 +67,12 @@ construction  KernelAdj // literal case
     evokes ParticipleModification as pm
     constraints
       self.m <--> n.m
+      // this constrains the noun
+      n.m.ontological-category <--> v.m.protagonist.ontological-category
       self.m <--> pm.modifiedThing
       pm.modifiedThing <--> v.m.ed.profiledParticipant
       v.m <--> pm.modifier 
-      pm.modifiedThing.ontological-category <-- @physicalEntity
-      //ap.m.property <--> n.m.scale  //4/26/13  ***** n.m.scale is implicit, e.g inch
-      //ap.m.domain <--> n.m.ontological-category //constraint NOT here    
+      pm.modifiedThing.ontological-category <-- @physicalEntity   
 
 construction  KernelNoAdj // no adjective
   subcase of Kernel
@@ -185,52 +150,12 @@ construction DeterminerPlusKernel
 
 
 
-   
-       
- 
- 
-	  
-	  	      
-
-
-/*
-construction MaterialArtifactCompound  // trying new design 8/21/12 
-   subcase of Nominal
-   constructional
-      constituents
-        mod: Nominal 
-        head: Nominal
-      constraints
-        self.features <--> head.features
-  form
-     constraints
-       mod.f meets head.f
-    meaning
-      evokes Artifact as art  // hack, but seems OK
-     constraints
-       head.m.ontological-category <-- @artifact
-       self.m <--> head.m
-       mod.m.ontological-category <-- @material
-       art.material  <--> mod.m  //sets value directly
-       self.m.extensions <--> art 
-
-construction ContainerContentsCompound  // trying new design 8/21/12  
-   subcase of Nominal
-   constructional
-      constituents
-        mod: Nominal 
-        head: Nominal
-      constraints
-        self.features <--> head.features
-  form
-     constraints
-       mod.f meets head.f
-    meaning
-      evokes Container as cont  
-     constraints
-       head.m.ontological-category <-- @container
-       self.m <--> head.m
-       mod.m.bounding <-- @indeterminate // physicalEntity
-	self.m.extensions <--> cont
-	cont.contents <-> mod.m
-*/
+construction PossessivePronounPlusKernel
+	subcase of Specifier2PlusKernel
+	constructional
+	  constituents
+	    s: PossessivePronoun
+	    k: Kernel
+	meaning 
+	  constraints
+	    s.m <--> k.m

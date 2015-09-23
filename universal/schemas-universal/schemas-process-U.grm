@@ -27,6 +27,10 @@ schema Motion
       actionary: @motion
    constraints
      mover <--> protagonist 
+     
+     
+
+     
    
 
 schema MotionPath // (bounded) translational motion

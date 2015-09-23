@@ -15,7 +15,7 @@ general construction ActiveDitransitive // he Xed Indirect Direct  8/16/13
   subcase of ArgumentStructure
   constructional
     constituents
-      optional np1: NP
+      np1: NP
       np2: NP  
     constraints
       v.argform <-- DiTransitive  //2/11/13
@@ -36,7 +36,7 @@ general construction ActiveDitransitive // he Xed Indirect Direct  8/16/13
 
 //this cxn  binds the meaning of "give" to the meaning of the cxn
 
-construction CentralActiveDitransitiveTransfer   // 8/24/13
+general construction CentralActiveDitransitiveTransfer   // 8/24/13
   subcase of ActiveDitransitive
   meaning: ObjectTransfer  // 2/11/13
     constraints
@@ -46,7 +46,59 @@ construction CentralActiveDitransitiveTransfer   // 8/24/13
        	self.m.theme <--> np2.m
 
 
+// "he sold the man a pizza"
+// "
+construction GoodsTransferDiTransitiveCxn
+  subcase of ActiveDitransitive
+  constructional
+    constituents
+      optional np1: NP
+  meaning: GoodsTransfer  // 2/11/13
+    constraints
+        np1.m.ontological-category <-- @sentient
+      	self.m <--> v.m
+      	self.m.recipient <--> np1.m
+  		self.m.donor <--> ed.profiledParticipant
+       	self.m.buyer <--> np1.m
+       	self.m.theme <--> np2.m
+       //	self.m.recipient <--> np1.m // maybe?
+       	self.m.seller <--> self.m.ed.profiledParticipant
+
+construction GoodsTransferTO-PP
+  subcase of ActiveTransitive
+  constructional
+    constituents
+      pp: TO-pp
+  meaning: GoodsTransfer  // 2/11/13
+    constraints
+        //pp.np.m.ontological-category <-- @sentient
+        // Not sentient: "he sold the goods back to the bank..."?
+      	self.m <--> v.m
+      	self.m.recipient <--> pp.np.m
+  		self.m.donor <--> ed.profiledParticipant
+       	self.m.theme <--> np.m
+       	self.m.seller <--> self.m.ed.profiledParticipant
+       	self.m.buyer <--> pp.np.m
 
 
+// np1 is optional: "he bought a pizza". "he bought the man a pizza"
+construction MoneyTransferCxn 
+  subcase of ActiveDitransitive
+  constructional
+    constituents
+      optional np1: NP
+      optional source: FROM-pp
+   form
+    constraints
+       np2.f before source.f
+  meaning: MoneyTransfer  // 2/11/13
+    constraints
+        np1.m.ontological-category <-- @sentient
+      	self.m <--> v.m
+  		self.m.donor <--> ed.profiledParticipant
+       	self.m.recipient <--> np1.m
+       	self.m.theme <--> np2.m
+       	source.np.m <--> self.m.seller
+		self.m.buyer <--> self.m.ed.profiledParticipant
 
 	

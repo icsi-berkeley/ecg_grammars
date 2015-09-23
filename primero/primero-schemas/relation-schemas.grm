@@ -1,0 +1,16 @@
+/* To be used for expressing relations between objects and people. Developed originally
+to express friendship relations, such as "mi amigo viejo", etc. */
+
+package relations
+
+
+
+schema Relationship
+	// subcase of Relation (eventually)
+	roles
+	  partner1
+	  partner2
+	  duration
+	constraints
+	  duration <-- @scale
+	  

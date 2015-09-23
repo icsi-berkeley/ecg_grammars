@@ -1,0 +1,58 @@
+package starter
+import starter-modification
+
+ 
+construction Fronted-Wh-Question
+	subcase of WH-Question, S-With-Subj
+	constructional
+	  constituents
+	    extraposed qnp: WH-NP
+	    fin: LexicalAux
+	    subj: NP
+	    argstruct: ArgumentStructure
+	form
+	  constraints
+	    qnp.f before fin.f
+	    fin.f meets subj.f
+	    subj.f meets argstruct.f 
+	meaning: EventDescriptor
+	  constraints
+	     self.m <--> argstruct.m.ed
+	     //self.m.profiledParticipant <--> qnp.m
+	     //argstruct.m.ed.profiledProcess <--> self.m.profiledProcess
+	     //self.m.profiledProcess <--> self.m.eventProcess
+	     //self.m.discourseSegment.speechAct <-- "WH-Question"
+
+ // "The box he moved" 
+construction RelativizedNP
+	subcase of NP
+	constructional
+	  constituents
+	    extraposed core: NP
+	    //core: NP
+	    //qnp: WH-NP
+	    optional that: That-Subordinating
+	    np: NP
+	    fin: ActiveTransitive //Perception
+	form
+	  constraints
+	    core.f before that.f
+	    that.f before np.f
+	    //core.f meets np.f
+	    np.f meets fin.f
+	meaning
+	  constraints
+	     self.m <--> core.m
+	     np.m <--> fin.m.protagonist
+	     //self.m.discourseSegment.speechAct <-- "WH-Question" 
+	     
+
+schema Test
+	subcase of RD
+
+construction LexTest
+	subcase of Noun, Word
+	form
+	  constraints
+	    self.f.orth <-- "test"
+	meaning: Test

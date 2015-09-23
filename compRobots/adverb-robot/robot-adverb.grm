@@ -1,0 +1,27 @@
+package robots
+import starter
+import adverbs
+
+schema ProcessAdverbModification
+	subcase of AdverbModification
+	roles 
+	  value: @process-kind
+	  property: @process-kind
+	constraints
+	  //value <-- @process-kind
+	  //property <-- @process-kind
+	
+	
+construction ProcessAdverb
+	subcase of Adverb, GeneralTypeCxn
+	meaning: ProcessAdverbModification
+	  constraints
+	    self.m.value <-- @process-kind
+	    self.m.modifiedThing.protagonist.number <-- @plural
+	
+construction JointProcessAdverb
+	subcase of ProcessAdverb
+	meaning
+	  constraints
+	    self.m.modifiedThing.protagonist.number <-- @plural	
+	

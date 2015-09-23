@@ -1,4 +1,3 @@
-
 package universal-schemas
 
 // grammaticalschemas.grm
@@ -22,13 +21,12 @@ schema RD // meaning of NP
     referent 
     number 
 	gender: @genderValues
-	bounding 
+	bounding // @determinate, etc.
 	scale: @scale 
-	
 	//hedge: @hedgeVal  // @fake, etc  
 	//continuity: @continuityValues 
     //amount: Amount // schemas for quantifiers, etc. 
-    extensions: Extensions //  schemas for affordances, etc
+    extensions //: Extensions //  schemas for affordances, etc
 
 schema Extensions
   roles
@@ -59,7 +57,7 @@ schema EventDescriptor // meaning of S
 		profiledParticipant: RD 		
 		eventForm: @EventKind 			
 
-schema EventFeatures  // voice: @voice   also in Process - Drop
+schema EventFeatures  // voice: @voice   also in Process - Dropped here, maybe not used // 7/29/15
 	roles
 		subord  // subordinating conjunction, 
 		telicity	// USED in temporal in/for

@@ -1,14 +1,13 @@
 red :: ColorType :: self.m.value <-- @red
 blue :: ColorType :: self.m.value <-- @blue
-
 move :: Move :: self.m.actionary <-- @move
 walk :: Walk :: self.m.actionary <-- @walk
 push :: Push :: self.m.actionary <-- @push
 sheep :: AnimalNoun :: self.m.ontological-category <-- @sheep
 man :: Man_lemma :: self.m.gender <-- @male
-
 shove :: Push :: self.m.effort <-- "7" :: self.m.actionary <-- @shove
 box :: Box_lemma :: self.m.ontological-category <-- @box
-
 dog :: AnimalNoun :: self.m.ontological-category <-- @dog
 go :: Move :: self.argform <-- NotTransitive :: self.m.actionary <-- @go
+green :: ColorType :: self.m.value <-- @blue
+

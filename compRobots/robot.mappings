@@ -9,7 +9,16 @@
 @run :: $move
 @crimson :: $red
 @drive :: $move
-@box5_instance :: $box5
+@box5 :: $box5
 @block :: $box
 @large :: $big
 @cherry :: $red
+@amble :: $move
+@robot1 :: $robot1_instance
+@robot2 :: $robot2_instance
+@box1 :: $box1_instance
+@box2 :: $box2_instance
+@box3 :: $box3_instance
+@box4 :: $box4_instance
+@box4 :: $box4_instance
+@box5 :: $box5_instance

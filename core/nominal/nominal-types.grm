@@ -1,0 +1,85 @@
+package starter
+
+construction ProperNPInstance
+	subcase of ProperNounNP, ThirdPerson, GeneralTypeCxn // Third person testing here ("Robot1")
+	meaning
+	  constraints
+		self.m.referent <-- @entity
+		self.m.ontological-category <-- @physicalEntity
+		self.m.gender <-- @genderValues
+		self.m.number <-- @RDnumberValues
+
+// e.g. "what color is box1?"
+construction PropertyNoun
+	subcase of NounType
+	meaning
+	  constraints
+	     self.m.ontological-category <-- @object-property
+    
+// "Type" constructions
+construction NounType
+   subcase of Noun, GeneralTypeCxn, ThirdPerson
+   meaning
+      constraints
+        self.m.number <-- @RDnumberValues
+        self.m.gender <-- @genderValues
+        self.m.ontological-category <-- @entity
+        self.m.scale <-- @scale
+        //self.m.referent <-- @item
+        
+//
+construction AbstractNoun
+	subcase of NounType
+	meaning
+	  constraints 
+	    self.m.ontological-category <-- @abstract        
+
+// "Type" constructions
+construction PhysicalEntityNoun
+   subcase of NounType
+   meaning
+      constraints
+        self.m.ontological-category <-- @physicalEntity
+
+ 
+// "Type" constructions
+construction ArtifactNoun
+   subcase of PhysicalEntityNoun
+   meaning
+      constraints
+        self.m.ontological-category <-- @artifact 
+ 
+ 
+// "Type" constructions
+construction ContainerNoun
+   subcase of ArtifactNoun
+   meaning
+      evokes BoundedObject as cont
+      constraints
+        self.m.ontological-category <-- @container 
+        self.m.extensions <--> cont
+                
+// "Type" constructions
+construction SentientNoun
+   subcase of PhysicalEntityNoun
+   meaning
+      constraints
+        self.m.ontological-category <-- @sentient  
+        self.m.referent <-- @sentient
+        
+        
+// "Mass" Noun type
+construction MassNoun
+	subcase of NP, GeneralTypeCxn
+	  meaning
+	    constraints
+	      self.m.bounding <-- @indeterminate
+	      self.m.number <-- @noNumber    
+	      self.m.ontological-category <-- @entity  
+	      
+// "Mass" Noun type
+construction SocialProblem
+	subcase of MassNoun
+	  meaning
+	    constraints 
+	      self.m.ontological-category <-- @socialProblem	        

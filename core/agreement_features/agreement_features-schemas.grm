@@ -1,0 +1,10 @@
+package starter
+// Constructional Agreement Features  Make separate file 1/6/13
+
+import universal-schemas
+
+schema NominalFeatureSet
+  subcase of AgreementFeatureSet
+  roles
+    case
+    reflexive  // 1/19/13  semantic feature??

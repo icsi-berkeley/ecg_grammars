@@ -58,9 +58,10 @@ general construction CoProcess
 	subcase of ArgumentStructure
 	constructional
 	   constituents
-	     gerund: PresentParticiple
+	     gerund: Verb
 	   constraints
 	     v.voice <-- NotPassive
+	     gerund.verbform <-- PresentParticiple
 	form
 	   constraints
 	      v.f before gerund
@@ -73,14 +74,11 @@ general construction CoProcess
 /* This is an attempt to capture motion co processes, such as "he entered the room running",
 or "he went down the hall whistling". The form binds the first process to the verb,
 and the second process to the gerund following the verb. */
-  			
 construction MotionCoProcess
 	subcase of CoProcess, ActiveMotionPath_VerbalPath// ActiveTransitiveChangeLocation
 	constructional
 		constituents
-		  //optional np: NP
 		  optional pp: Path-PP
-		  gerund: PresentParticiple
 		constraints
 		  v.voice <-- NotPassive
 	form
@@ -93,22 +91,4 @@ construction MotionCoProcess
 
 	     // self.m.landmark <--> np.m
 
-
- 	/*	
-construction MotionCoProcess3
-	subcase of ArgumentStructure
-	constructional
-		constituents
-		  optional np: NP
-		  gerund: PresentParticiple
-		constraints
-		  v.voice <-- NotPassive
-	form
-	    constraints
-	      v.f before np.f
-	      np.f before gerund
-	meaning: CoProcess
-		constraints
-			self.m.process1 <--> v.m
-			self.m.process2 <--> gerund.m
 			

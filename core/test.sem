@@ -1,0 +1,5 @@
+TrajectorLandmark	Test	landmark	.1
+RD			@person 	ontological-category	0.1
+RD			@artifact	ontological-category	.99
+
+

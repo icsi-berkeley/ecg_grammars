@@ -8,6 +8,8 @@
 
 DEFS:
 
+(type food sub artifact)
+
 (type pizza sub food)
 
 (type sell sub give)
@@ -15,5 +17,9 @@ DEFS:
 (type buy sub take)
 
 (type indigo sub colorValue)
+
+(type vendor sub person)
+
+(type man sub person)
 
 INSTS:

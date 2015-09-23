@@ -8,6 +8,8 @@ DEFS:
 
 (type shared)  // all elements of the shared ontology
 
+(type shared)
+
 (type variable sub shared)
 
 (type item)  // very top of our lattice, not all shared
@@ -220,6 +222,10 @@ DEFS:
 
 (type person sub animate sentient)
 
+(type man sub person)
+
+(type woman sub person)
+
 (type robot sub artifact sentient)
 
 // inanimate stuff
@@ -361,6 +367,12 @@ DEFS:
 (type part sub possessionKind)
 
 (type property sub possessionKind)
+
+// testing: 5/1/15 (ST)
+
+(type age sub property)
+
+(type duration sub property)
 
 //
 
@@ -801,5 +813,7 @@ DEFS:
 (type eastSide sub sideValue)
 
 (type westSide sub sideValue)
+
+(type friend sub entity animate)
 
 INSTS:

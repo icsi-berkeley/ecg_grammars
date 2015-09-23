@@ -1,0 +1,11 @@
+package submarine
+import starter
+
+/* Could be used metaphorically too. */
+construction DiveType
+	subcase of LexicalVerbType
+	meaning: VerticalMotionPath
+	  constraints
+	     self.m.actionary <-- @motion
+	     self.m.spg.goal <--> self.m.vert.down
+	     self.m.spg.source <--> self.m.vert.up

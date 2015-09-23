@@ -284,11 +284,7 @@ DEFS:
 
 //
 
-(type desk sub physicalEntity artifact)
-
 (type instance)
-
-(type desk1 sub desk instance)
 
 (type john-instance sub instance person)
 
@@ -502,6 +498,8 @@ DEFS:
 
 (type enter sub motion)
 
+(type exit sub motion)
+
 (type run sub motion)
 
 (type drive sub motion)  // 5/28/13
@@ -684,6 +682,10 @@ DEFS:
 
 (type temporality)
 
+(type permanent sub temporality) // ??
+
+(type temporary sub temporality) // ??
+
 //(type bounded sub temporality)
 
 //(type ongoing sub temporality)
@@ -756,6 +758,8 @@ DEFS:
 
 //
 
+
+
 //(type number sub entity)
 
 // variable functions
@@ -775,8 +779,6 @@ DEFS:
 (type box3-instance sub instance box)
 
 (type box4-instance sub instance box)
-
-(type box5-instance sub instance box)
 
 (type green sub colorValue)
 
@@ -801,29 +803,5 @@ DEFS:
 (type eastSide sub sideValue)
 
 (type westSide sub sideValue)
-
-(type violet sub colorValue)
-
-(type dart sub motion)
-
-(type scamper sub motion)
-
-(type gallop sub motion)
-
-(type crimson sub colorValue)
-
-(type white sub colorValue)
-
-(type shelf sub entity physicalEntity artifact)
-
-(type shelf1 sub instance)
-
-(type pink sub colorValue)
-
-(type large sub sizeValue)
-
-(type trudge sub motion)
-
-(type amble sub motion)
 
 INSTS:

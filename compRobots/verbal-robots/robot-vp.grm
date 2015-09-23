@@ -20,8 +20,8 @@ construction SerialVP
      v2: VP
   form
    constraints
-     v1.f before conj
-     conj before v2.f
+     v1.f before conj.f
+     conj.f before v2.f
   meaning: SerialProcess
     constraints
       self.m.protagonist <--> v1.m.protagonist

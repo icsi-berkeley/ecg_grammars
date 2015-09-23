@@ -1,12 +1,6 @@
 package robots
 import starter
 
-schema ComparativeAdjModifier
-	subcase of ScalarModifier
-	roles
-	  base: RD
-	constraints
-	  base.ontological-category <--> domain
-	  //kind <-- @comparative
+
 
 	

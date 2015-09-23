@@ -61,7 +61,7 @@ schema VerbFeatureSet  // could add kind ~ control, etc.
 */
 
 // schemas for 'voice' role of VerbFeatures	schema
-schema PassiveOrNotPassive
+schema PassiveOrNotPassive  // 7/29/15  do we want to keep this style ????
    
 schema NotPassive
   subcase of  PassiveOrNotPassive 
