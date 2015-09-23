@@ -1,0 +1,16 @@
+package starter
+
+//
+// copulas.grm
+//  	
+
+construction BeCopula
+	subcase of LexicalVerbType
+     	constructional
+      		constraints
+          		argform <-- Copula_All
+     meaning: Stasis 
+		constraints
+        	self.m.actionary <-- @be
+
+
