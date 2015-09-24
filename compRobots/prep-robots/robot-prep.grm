@@ -2,7 +2,22 @@ package robots
 import starter
 
 
-	  	
+
+
+
+
+construction BETWEEN-Path
+	subcase of PathPreposition
+	form
+	   constraints
+	      self.f.orth <-- "between"
+	meaning
+	   evokes InteriorRelation as ir
+	   constraints
+	      self.m.goal <--> ir.profiledArea
+	      self.m.goal.ontological-category <-- @region
+	      self.m.landmark <--> ir.landmark
+	
 
 
 	  
