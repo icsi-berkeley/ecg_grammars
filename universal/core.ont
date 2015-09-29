@@ -40,6 +40,12 @@ DEFS:
 
 (type givennessValues  sub grammaticalValues)
 
+(type connective sub grammaticalValues)
+
+(type and sub connective)
+
+(type or sub connective)
+
 (type continuityValues  sub grammaticalValues)
 
 (type boundingValues  sub grammaticalValues)

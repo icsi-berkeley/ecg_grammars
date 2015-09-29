@@ -45,12 +45,3 @@ construction RelativizedNP
 	     //self.m.discourseSegment.speechAct <-- "WH-Question" 
 	     
 
-schema Test
-	subcase of RD
-
-construction LexTest
-	subcase of Noun, Word
-	form
-	  constraints
-	    self.f.orth <-- "test"
-	meaning: Test

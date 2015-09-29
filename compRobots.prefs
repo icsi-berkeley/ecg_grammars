@@ -12,14 +12,13 @@ PACKAGE_NAME ::==
 
 ONTOLOGY_PATHS ::==
 	./compRobots/robot.ont
-	//./starter/ontology.ont
 	./universal/core.ont
 ;
 
 IMPORT_PATHS ::==
 	./compRobots
 	./universal
-	./starter
+	./core
 ;
 
 
@@ -30,12 +29,12 @@ MORPHOLOGY_PATH ::==
 
 TOKEN_PATH ::== 
 	./compRobots/compRobots.tokens
-	./starter/starter.tokens
+	./core/core.tokens
 ;
 
 MAPPING_PATH = ./compRobots/robot.mappings
 
-TABLE_PATH = ./starter/starter.morph
+TABLE_PATH = ./core/core.morph
 
 ROBUST = FALSE 
 BEAM_SIZE = 20
