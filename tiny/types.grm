@@ -1,0 +1,41 @@
+
+package tiny
+
+construction GeneralTypeCxn
+	subcase of Word
+	form
+	   constraints
+	      self.f.orth <-- "*"
+
+construction UnknownWord 
+	subcase of Word, RootType
+  	form  
+    	constraints
+        	self.f.orth <-- "UNKNOWN-ITEM"
+
+
+construction ROOT
+	constructional
+    	constituents
+	  		rootconstituent: RootType
+	meaning
+    	constraints
+	  		self.m <--> rootconstituent.m
+
+general construction RootType
+
+general construction Word // ? add role for ontological-category
+  	subcase of RootType
+   		form: WordForm
+
+// A simple schema for the orthographic form associated with Word cxns
+schema WordForm 
+  roles
+    orth 
+    lemma
+  constraints
+     lemma <-- "*"
+     //orth <-- "*"
+     
+     
+   
