@@ -5,6 +5,7 @@ schema TrajectorLandmark
 		trajector: RD
 		landmark: RD
 		profiledArea: RD //  defined with respect to Landmark  
+		temporality: @temporality // for expressing @atemporal/@bounded relations
 	constraints
 		trajector.ontological-category <-- @physicalEntity 
 		landmark.ontological-category <-- @region  // added for 2/22/14 m4 test  
@@ -73,3 +74,11 @@ schema RefIdentity
 	  //first.referent <--> second.referent
 	  first.number <--> second.number
 	  first.gender <--> second.gender
+	  
+	  
+// Scale
+schema Scale
+   roles
+     measure // weight
+     units // pound
+     value // .7

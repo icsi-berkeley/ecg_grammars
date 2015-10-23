@@ -7,14 +7,9 @@ import starter
  // For the purposes of testing and practicality.
 //import motion
 
-schema Conjunction
-   roles
-     connective: @connective
-
 
 general construction Conjunction
    subcase of Word
-   meaning: Conjunction
    
 general construction LogicalConjunction
 	subcase of Conjunction
@@ -39,20 +34,7 @@ construction And-Conjunction
 	form
 	  constraints
 	    self.f.orth <-- "and"
-	meaning
-	   constraints
-	      self.m.connective <-- @and
-
-
-construction Or-Conjunction
-	subcase of LogicalConjunction
-	form
-	  constraints
-	    self.f.orth <-- "or"
-	meaning
-	   constraints
-	      self.m.connective <-- @or
-	      	    
+	    
 construction That-Subordinating
 	subcase of Conjunction
 	form

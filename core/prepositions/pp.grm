@@ -52,7 +52,9 @@ construction Loc-PP  // static location
 			// self.m <--> prep.m  inherited
 			//self.m.trajector <-- @physicalEntity  inherited
 			
-			
+
+// (the color) of the box
+// (the size) of the building			
 construction ModifierPP
 	subcase of PP
 	constructional
@@ -64,5 +66,5 @@ construction ModifierPP
 	meaning: Modification
 	  constraints
 	     prep.m <--> self.m
-	     np.m <--> self.m.modifier
+	     np.m <--> self.m.modifiedThing
 	  			

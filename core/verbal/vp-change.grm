@@ -1,0 +1,39 @@
+package starter
+
+// Constructions for VP-change: "the box changed from red to blue"
+// "the box changed to blue"
+// "the plant grew"
+
+general construction VPChange
+   subcase of VP
+   constructional
+	  constituents
+	    v: Verb
+	  constraints
+	    self.features <--> v.features
+	   // v.argform <-- StateChangeArg
+	   //v.argform <-- Change_Adj
+	meaning: Change
+	  constraints
+	    self.m <--> v.m
+	    self.m.temporality <-- @bounded
+	    self.m.protagonist <--> ed.profiledParticipant
+   
+
+construction VPChangeAdj
+	subcase of VPChange
+	constructional
+	  constituents
+	    adj: Adjective
+	 form
+	   constraints
+	     v.f before adj.f
+	meaning: Change
+	  constraints
+	    self.m.temporality <-- @bounded
+	    ed.profiledParticipant <--> adj.m.modifiedThing
+	    self.m.state <--> adj.m
+	    //self.m.temporality <--> adj.m.temporality
+	    //self.m.state <--> adj.m
+	    //self.m.state.property <--> adj.m.property
+        

@@ -38,8 +38,38 @@ schema ControlledVehicularMotion
 	  driver <--> protagonist
 	  driver.ontological-category <-- @agent
 	
+// Should be more general type, e.g. "MeasureProcess" 
+// The ticket costs 6 bucks, the box weighs 5 pounds, etc.
+// This is distinct from "weigh-assess" ("he weighed the evidence", "he weighed the box")	
+schema Measure // Interim (ST, 10/14/15)
+	subcase of Process
+	roles
+	  object: RD
+	  measurement: QuantifiedRD
+	  dimension
+	constraints
+	  object <--> protagonist
+	  
 	
-
-
-
+schema Change
+	subcase of Process
+	roles
+	  state: ChangedState
+	  actionary: @statechange
+	  temporality: @bounded
+// State Change processes: "the box changed from red to blue"
+schema StateChange
+	subcase of Change
+	roles
+	  state: ChangedState
+	  actionary: @statechange
+	  temporality: @bounded
+	
+// State Change processes: "the box changed from red to blue"
+schema ScaleChange
+	subcase of Change
+	roles
+	  state: ChangedScale
+	  actionary: @scalechange
+	  temporality: @bounded
 

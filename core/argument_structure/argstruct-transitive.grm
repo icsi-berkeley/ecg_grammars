@@ -59,6 +59,22 @@ construction ActiveTransitivePerception  // 8/21/13 he saw the block
 		s.a1 <--> self.m.thinker	
 		s.a2 <--> self.m.content
 
+
+// Should be more general: "transitive measure?"
+// x costs {}, x weighs {}, etc.
+construction ActiveTransitiveMeasure  // Interim (ST, 10/14/15)
+	subcase of CoreActiveTransitive
+	constructional 
+	  constituents
+	    np: UnitsNP [1.0, .9]
+	meaning: Measure
+		constraints
+		self.m <--> v.m
+		s.a1 <--> self.m.object	
+		np.m <--> self.m.measurement
+		self.m.dimension <--> self.m.measurement.property
+
+
 construction ActiveTransitiveChangeLocation  // 10/15/13  he entered the room
 	subcase of CoreActiveTransitive
 	meaning: ChangeLocation
@@ -103,7 +119,7 @@ construction ActiveTransCausedLocationChange // he moved the block into the room
     	   //self.m.affected <--> mp.spg.trajector
     	    mp.spg <--> pp.m 
    		mp.spg.distance <--> dis.m
-   		mp.heading <--> dir.m
+   		mp.heading <--> dir.m.tag
 
 
 		
@@ -177,7 +193,7 @@ general construction ActiveTrans_CauseChangeLocation
     	self.m.actionary <-- @push_move   // specific to robot world of "pushing" as cause effect "Move Box1 North"
     	mp.spg <--> pp.m 
    		mp.spg.distance <--> dis.m 
-	    mp.heading <--> dir.m 
+	    mp.heading <--> dir.m.tag 
 	    //self.m.affectedEntity.ontological-category <-- @moveable
 	    		
 construction ActiveTrans_CauseChangeLocation_motion  // he moved the block into the room

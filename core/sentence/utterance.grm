@@ -30,7 +30,25 @@ construction SubjWH-Question
         constraints
 	       self.m <--> fin.ed 				
 
-
+//Testing, Hack (ST)
+/*
+construction Where-Question
+    subcase of WH-Question, S-With-Subj
+    constructional
+        constituents
+           subj: Where-WH-NP
+    	   fin: VP
+        constraints
+    form
+        constraints
+	       subj.f before fin.f
+    meaning
+    	evokes RefIdentity as ri
+        constraints
+	       self.m <--> fin.ed
+	       subj.m <--> ri.first
+	       ri.first <--> ri.second
+*/
 // Construction for "WH"-questions - testing (added from Base or written here, 7/14/14, ST)
 
 general construction WH-NP
@@ -96,7 +114,7 @@ construction DeclarativeUtterance
 	     //optional addr: NP
 	     //optional comma: Comma
 	     core: Declarative
-	     optional end: EMark
+	     optional end: PMark
 	form
 	   constraints
 	      core.f meets end.f
@@ -148,9 +166,10 @@ construction AddressedConditionalImperative
 	meaning
 	   constraints
 	      self.m.addressee <--> addr.m
+	      self.m.content <--> core.m
 	      self.m.mood <-- "Conditional-Imperative"
 	      core.m.profiledParticipant <--> self.m.addressee
-	      core.m.complexKind <-- @conditional	                 
+	      core.m.complexKind <-- @conditional_imperative	                 
 
 // Conditional imperative
 construction ConditionalDeclarativeUtterance
@@ -165,5 +184,6 @@ construction ConditionalDeclarativeUtterance
 	meaning
 	   constraints
 	      self.m.mood <-- "Conditional-Declarative"
+	      self.m.content <--> core.m
 	      //core.m.profiledParticipant <--> self.m.addressee
-	      core.m.complexKind <-- @conditional		     			
+	      core.m.complexKind <-- @conditional_declarative		     			

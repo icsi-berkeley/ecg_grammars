@@ -21,7 +21,39 @@ construction StageVerbType
 	    self.m.actionary <-- @stage
 
 
+// Used for measure/dimension: "the box weighs 5 pounds"
+construction MeasureType
+	subcase of LexicalVerbType
+	meaning: Measure
+	  constraints
+	    self.m.actionary <-- @process
+	    self.m.dimension <-- @measure
 
+
+// State Change Type
+construction ChangeType
+	subcase of LexicalVerbType
+	constructional 
+	  constraints
+	    self.argform <-- ArgForm
+	meaning: Change
+	  constraints
+	    self.m.actionary <-- @statechange
+	    self.m.state.property <-- @object-property
+	    //self.m.state.oldValue <-- @propValue
+	    
+// State Change Type
+construction ScaleChangeType
+	subcase of LexicalVerbType
+	constructional 
+	  constraints
+	    self.argform <-- ArgForm
+	meaning: ScaleChange
+	  constraints
+	    self.m.actionary <-- @scalechange
+	    self.m.state.property <-- @object-property
+	    self.m.state.direction <-- @comparison
+	    //self.m.state.oldValue <-- @propValue
 
 construction CauseEffectType
 	subcase of LexicalVerbType, GeneralTypeCxn
@@ -43,6 +75,7 @@ construction SelfMotionType
 	meaning: MotionPath
       constraints
          self.m.actionary <-- @motion
+         self.m.speed <-- @scalarValue
          self.m.speed <-- ".5"
          self.argform <-- ArgForm
          
@@ -92,6 +125,7 @@ construction AgentDriveType
 	  constraints
 	     self.m.actionary <-- @drive
 	     self.m.vehicleType.ontological-category <-- @vehicle
+	     self.m.speed <-- ".5"
 	     //self.m.protagonist.ontological-category <-- @agent
 
 construction DriveVehicleType

@@ -6,8 +6,8 @@ import starter
 schema Location2D
 	subcase of RD
 	roles
-	  xCoord: @number
-	  yCoord: @number
+	  xCoord: @scalarValue
+	  yCoord: @scalarValue
    constraints
      ontological-category <-- @location
      number <-- @singular

@@ -37,6 +37,12 @@ schema Light
 
 	
 // Copulas - more than needed for First
+
+schema Change_Adj
+	subcase of NotTransitive
+
+schema Change_No_Adj
+	subcase of NotTransitive
 		
 schema Copula 
 	subcase of NotTransitive

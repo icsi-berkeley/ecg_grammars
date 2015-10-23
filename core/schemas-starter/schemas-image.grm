@@ -19,4 +19,9 @@ schema Sidedness
 	  front.ontological-category <-- @front
 	  back.ontological-category <-- @back 
 
+schema HeadingSchema
+   roles
+     tag: @heading
+     landmark: RD
+
 					

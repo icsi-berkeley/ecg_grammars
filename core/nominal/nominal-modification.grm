@@ -1,0 +1,41 @@
+package noun-noun
+
+
+construction NounNounCompound
+	subcase of Nominal
+	constructional
+	  constituents
+	    mod: Nominal
+	    head: Nominal
+	  constraints
+	    self.features <--> head.features
+	form
+	  constraints
+	    mod.f before head.f
+	meaning
+	  evokes NounNounModifier as nnm
+	   constraints
+	     self.m <--> head.m
+	     nnm.modifiedThing <--> head.m
+	     nnm.modifier <--> mod.m
+	
+	
+// 2 inch box, 2 man team	
+construction QuantityNounCompound
+	subcase of Nominal	
+	constructional
+	  constituents
+	    mod: QuantityNP
+	    head: Nominal
+	  constraints
+	    self.features <--> head.features
+	form
+	  constraints
+	    mod.f before head.f
+	meaning
+	  constraints
+	    self.m <--> head.m
+	    //self.m.amount <--> mod.m.amount
+	
+	
+	

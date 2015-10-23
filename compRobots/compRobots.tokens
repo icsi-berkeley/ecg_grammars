@@ -44,10 +44,8 @@ desk1 :: ProperNPInstance :: self.m.referent <-- @desk1 :: self.m.ontological-ca
 white :: ColorType :: self.m.value <-- @white
 shelf :: ArtifactNoun :: self.m.ontological-category <-- @shelf
 pink :: ColorType :: self.m.value <-- @pink
-large :: SizeType :: self.m.value <-- @large
+large :: ScalarAdjectiveType :: self.m.value <-- ".7"
 amble :: SelfMotionType :: self.m.speed <-- ".2" :: self.m.actionary <-- @amble
-quickly :: ScalarAdverbType :: self.m.property <-- @speed :: self.m.value <-- ".7"
-slowly :: ScalarAdverbType :: self.m.property <-- @speed :: self.m.value <-- ".3"
 team :: ProperNPInstance :: self.m.ontological-category <-- @physicalEntity :: self.m.number <-- @plural :: self.m.referent <-- @team-instance
 jointly :: JointProcessAdverb :: self.m.value <-- @joint
 together :: JointProcessAdverb :: self.m.value <-- @joint

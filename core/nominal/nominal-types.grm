@@ -1,5 +1,20 @@
 package starter
 
+
+construction DirectionalType
+	subcase of Directional, GeneralTypeCxn
+	meaning: HeadingSchema
+	  constraints
+	    self.m.tag <-- @heading
+	    
+
+construction NumberType   //rename, check digits
+	subcase of Quantifier, GeneralTypeCxn
+   	meaning: QuantitySchema
+   	  constraints
+   	    self.m.value <-- "?"
+   	    self.m.number <-- @RDnumberValues
+
 construction ProperNPInstance
 	subcase of ProperNounNP, ThirdPerson, GeneralTypeCxn // Third person testing here ("Robot1")
 	meaning
@@ -15,7 +30,17 @@ construction PropertyNoun
 	meaning
 	  constraints
 	     self.m.ontological-category <-- @object-property
-    
+   
+   
+ // e.g. "what color is box1?"
+construction UnitType
+	subcase of NounType
+	meaning: QuantifiedRD
+	  constraints
+	     self.m.ontological-category <-- @measure
+	     self.m.property <-- @measure
+	     
+	        
 // "Type" constructions
 construction NounType
    subcase of Noun, GeneralTypeCxn, ThirdPerson
@@ -52,7 +77,7 @@ construction ArtifactNoun
  
 // "Type" constructions
 construction ContainerNoun
-   subcase of ArtifactNoun
+   subcase of PhysicalEntityNoun
    meaning
       evokes BoundedObject as cont
       constraints

@@ -40,12 +40,6 @@ DEFS:
 
 (type givennessValues  sub grammaticalValues)
 
-(type connective sub grammaticalValues)
-
-(type and sub connective)
-
-(type or sub connective)
-
 (type continuityValues  sub grammaticalValues)
 
 (type boundingValues  sub grammaticalValues)
@@ -129,6 +123,10 @@ DEFS:
 (type event-kind sub enumeration) // conditional, serial
 
 (type conditional sub event-kind)
+
+(type conditional_imperative sub conditional)
+
+(type conditional_declarative sub conditional)
 
 (type serial sub event-kind)
 
@@ -400,11 +398,9 @@ DEFS:
 
 // (type inchoativestasis sub stasis)
 
-(type become sub stasis) // 2/14/13
+(type become sub statechange) // 2/14/13
 
 (type complexxnet sub process)
-
-(type routine sub process)
 
 (type motion sub process)
 
@@ -416,7 +412,7 @@ DEFS:
 
 (type effectormotion sub complexxnet)
 
-(type forceapplication sub routine)  // ?? why needed  2/28/13
+(type forceapplication sub process)  
 
 (type forcefulmotionaction sub complexxnet)
 
@@ -462,7 +458,7 @@ DEFS:
 
 (type drive sub motion)  // 5/28/13
 
-(type push sub forceapplication )
+(type push sub forceapplication ) // is forceapplication needed? Not used directly
 
 (type push_move sub push motion)
 
@@ -474,7 +470,9 @@ DEFS:
 
 (type objecttransfer sub complexxnet)
 
-(type statechange sub routine)  //2/28/13
+(type statechange sub process)  //2/28/13
+
+(type scalechange sub statechange)
 
 (type make sub statechange)
 
@@ -525,8 +523,6 @@ DEFS:
 (type size sub scale )  // revisit 11/12/12
 
 (type fear sub scale) // desperate, etc.
-
-//(type scaleValue sub sharedEnumeration)  // not currently used 11/19/12
 
 (type verticality sub scale )  // a basic scale
 
@@ -602,6 +598,12 @@ DEFS:
 
 //(type bounded-ongoing sub temporality)
 
+(type temporality)
+
+(type bounded sub temporality)
+
+(type atemporal sub temporality)
+
 // Modality
 
 (type modality) // all of these are modalityValue  ??? stil needed ??????????????????
@@ -627,5 +629,39 @@ DEFS:
 //tokens
 
 (type brown sub colorValue  shared)
+
+(type weight sub object-property scale measure)
+
+(type pound-weight sub shared weight)
+
+(type pound-price sub shared price)
+
+(type dollar sub shared price)
+
+(type weigh sub process  shared measure)
+
+(type weightValue sub propValue)
+
+(type heavy sub weightValue  shared)
+
+(type light sub weightValue  shared)
+
+(type cost sub process shared)
+
+(type price sub measure scale)
+
+(type grow sub scalechange)
+
+(type shrink sub scalechange)
+
+(type scalarValue sub object-property)
+
+(type comparison sub measure)
+
+(type increase sub comparison)
+
+(type decrease sub comparison)
+
+(type john sub person)
 
 INSTS:

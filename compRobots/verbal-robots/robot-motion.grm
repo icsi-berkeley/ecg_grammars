@@ -20,5 +20,5 @@ construction ActiveMotionPath   // he moved to the block
     constraints 
       v.m <--> self.m
       self.m.spg.distance <--> dis.m 
-	  self.m.heading <--> dir.m 
+	  self.m.heading <--> dir.m.tag
       self.m.spg <--> pp.m

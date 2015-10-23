@@ -1,4 +1,4 @@
-include core.prefs
+include ./core.prefs
 
 
 PACKAGE_NAME ::== 
@@ -8,7 +8,7 @@ PACKAGE_NAME ::==
 ;
 
 IMPORT_PATHS ::==
-	../test/test
+	../test/test/compRobots
 ;
 
 TOKEN_PATH ::== 

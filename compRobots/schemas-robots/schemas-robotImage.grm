@@ -1,23 +1,7 @@
 package robots
 import starter
 
-schema HeadingSchema
-   roles
-     tag: @heading
-     landmark: RD
-     
 
-
-
-
-schema InteriorRelation
-	subcase of TrajectorLandmark
-	roles 
-	  landmark: ConjRD // "between box1 and box2" ??
-	  profiledArea
-
-	   
-	   
 
 
 

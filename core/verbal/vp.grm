@@ -83,9 +83,11 @@ construction CopularVPLocative
   meaning: Stasis
     constraints
     	self.m <--> cop.m
-        //ed.profiledParticipant <--> pred.m.trajector 
+        ed.profiledParticipant <--> pred.m.trajector 
         self.m.protagonist <--> ed.profiledParticipant
+        pred.m.temporality <-- @bounded
         self.m.state <--> pred.m 
+        //pred.m.temporality <-- @bounded
       
 //Used to analyze, e.g., "the block is red"
 construction CopularVPAdjective  
@@ -106,8 +108,11 @@ construction CopularVPAdjective
     	self.m <--> cop.m
         self.m.protagonist <--> ed.profiledParticipant
         self.m.state <--> adj.m
-        //self.adj.m.modifiedThing <--> ed.profiledParticipant  // might be enough for Adj-N agreement 10/27/12
+        adj.m.temporality <-- @bounded
+        self.adj.m.modifiedThing <--> ed.profiledParticipant  // might be enough for Adj-N agreement 10/27/12
  		self.adj.m.domain <--> ed.profiledParticipant.ontological-category // Adj-N agreement 10/27/12
+ 
+ 
  
 construction CopularVPNominal // 2/14/13
   subcase of CopularVP
@@ -123,6 +128,20 @@ construction CopularVPNominal // 2/14/13
         self.m.state <--> ri
         ri.first <--> ed.profiledParticipant
         ri.second <--> nominal.m     
+ 
+ construction CopularVPNominalModification // 2/14/13
+  subcase of CopularVP
+  constructional  
+    constituents
+      	nominal: UnitsNP
+  form
+    constraints
+      	cop.f meets nominal.f
+  meaning: Stasis
+   constraints
+        self.m.state <--> nominal.m
+        self.m.temporality <-- @bounded
+        //self.m.
  /*
 Nominal copulas (e.g. "it is a box") could be analyzed using a CopuluarVPNominal cxn
 such as the one shown below, whcih is a subcase of the general CopularVP cxn above.

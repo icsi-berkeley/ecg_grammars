@@ -1,0 +1,55 @@
+package robots
+import starter
+
+
+
+construction THROUGH-Path
+	subcase of PathPreposition
+	form
+	  constraints
+	    self.f.orth <-- "through"
+	meaning: SPG
+	  constraints
+	    self.m.landmark <--> self.m.path
+
+
+construction BETWEEN-Path
+	subcase of PathPreposition
+	form
+	   constraints
+	      self.f.orth <-- "between"
+	meaning
+	   evokes InteriorRelation as ir
+	   constraints
+	      self.m.goal <--> ir.profiledArea
+	      self.m.goal.ontological-category <-- @region
+	      self.m.landmark <--> ir.landmark
+
+
+construction FROM-Path
+	subcase of PathPreposition
+	form
+	  constraints
+	    self.f.orth <-- "from"
+	meaning: SPG
+	  constraints
+	    self.m.landmark <--> self.m.source
+
+construction BETWEEN-Locative
+	subcase of LocativePreposition
+	form
+	   constraints
+	      self.f.orth <-- "between"
+	meaning
+	   evokes InteriorRelation as ir
+	   constraints
+	      //self.m.goal <--> ir.profiledArea
+	      //self.m.goal.ontological-category <-- @region
+	      self.m.landmark <--> ir.landmark
+	      self.m.profiledArea <--> ir.profiledArea
+	      self.m.trajector <--> ir.trajector
+	  
+	  
+	  
+	  
+	  

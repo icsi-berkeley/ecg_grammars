@@ -26,9 +26,7 @@ MORPHOLOGY_PATH ::==
 	./core/celex.ecgmorph
 ;
 
-TOKEN_PATH ::== 
-	./core/core.tokens
-;
+
 
 TABLE_PATH = ./core/core.morph
 

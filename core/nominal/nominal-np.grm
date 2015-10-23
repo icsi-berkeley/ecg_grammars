@@ -43,6 +43,7 @@ construction  KernelAdj // literal case
     constraints
       self.m <--> n.m
       self.m <--> ap.m.modifiedThing
+      ap.m.temporality <-- @atemporal
       //ap.m.property <--> n.m.scale  //4/26/13  ***** n.m.scale is implicit, e.g inch
       //ap.m.domain <--> n.m.ontological-category //constraint
  
@@ -81,6 +82,7 @@ construction Kernel-LocPP
      constraints 
        self.m <--> n.m
        n.m <--> pp.m.trajector
+       pp.m.temporality <-- @atemporal
 
 
 construction KernelAdj-LocPP
@@ -96,6 +98,7 @@ construction KernelAdj-LocPP
      constraints 
        self.m <--> ka.m
        ka.n.m <--> pp.m.trajector
+       pp.m.temporality <-- @atemporal
        
 construction  KernelNoAdj // no adjective
   subcase of Kernel
@@ -142,6 +145,25 @@ construction DeterminerPlusKernel
       s: Determiner  
 
 
+construction QuantityNP
+  subcase of SpecifierPlusKernel
+  constructional
+    constituents
+      q: Quantifier
+      k: Kernel
+    constraints
+      self.features <--> k.features
+      //q.features.number <--> k.features.number
+  form
+    constraints
+      q.f before k.f
+  meaning: QuantifiedRD
+    constraints
+      self.m <--> k.m
+      //self.m.number <--> q.m.number
+      self.m.amount <--> q.m
+      self.m.givenness <-- @uniquelyIdentifiable
+      self.m.units <--> self.m.ontological-category
 
 
 
@@ -157,3 +179,25 @@ construction PossessivePronounPlusKernel //
 		constraints
 			s.m <-> k.m 
 
+
+// Modifier NP-PP
+// the weight of the box
+// the color of the building
+construction Kernel-ModifierPP
+	subcase of Kernel
+	constructional
+	  constituents
+	    k: Kernel
+	    mod: ModifierPP
+	form
+	  constraints
+	    k.f before mod.f
+	meaning
+	  constraints
+	    self.m <--> mod.np.m
+	    k.m <--> mod.m.modifier
+	    
+	  
+	
+	
+	

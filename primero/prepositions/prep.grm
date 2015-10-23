@@ -146,7 +146,7 @@ general construction Path-Adverb
   meaning: SPG
   
  /** Spanish version of "near": should be combined with "de" ("cerca de la caja") 
-Testing by making it a locative Adverb */
+Testing by making it a locative adverb */
  construction NEAR-Locative
  	subcase of Locative-Adverb //LocativePreposition
  	form

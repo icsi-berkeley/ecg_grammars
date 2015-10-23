@@ -1,0 +1,47 @@
+scarlet :: ColorType :: self.m.value <-- @red
+john :: ProperNPInstance :: self.m.referent <-- @john :: self.m.ontological-category <-- @person
+red :: ColorType :: self.m.value <-- @red
+blue :: ColorType :: self.m.value <-- @blue
+block   :: ArtifactNoun  :: self.m.ontological-category <-- @block
+move    :: SelfMotionType  :: self.m.actionary <-- @move :: self.m.speed <-- ".5"
+walk    :: SelfMotionType  :: self.m.actionary <-- @walk :: self.m.speed <-- ".3" :: self.argform <-- NotTransitive
+run     :: SelfMotionType  :: self.m.actionary <-- @run  :: self.m.speed <-- ".7" :: self.argform <-- NotTransitive
+box     :: ContainerNoun  :: self.m.ontological-category <-- @box
+room    :: ArtifactNoun  :: self.m.ontological-category <-- @room
+be      :: BeCopula  :: self.m.actionary <-- @be
+see     :: PerceptionType :: self.m.actionary <-- @see
+sprint  :: SelfMotionType  :: self.m.actionary <-- @run  :: self.m.speed <-- ".8" :: self.argform <-- NotTransitive
+jog  :: SelfMotionType  :: self.m.actionary <-- @run  :: self.m.speed <-- ".6" :: self.argform <-- NotTransitive
+enter :: PathVerbIn   :: self.m.actionary <-- @enter :: self.m.landmark.ontological-category <-- @container
+exit :: PathVerbOut   :: self.m.actionary <-- @exit :: self.m.landmark.ontological-category <-- @container
+man :: SentientNoun :: self.m.ontological-category <-- @person :: self.m.gender <-- @male
+woman :: SentientNoun :: self.m.ontological-category <-- @person :: self.m.gender <-- @female
+big :: ScalarAdjectiveType :: self.m.value <-- ".7" :: self.m.property <-- @size
+small :: ScalarAdjectiveType :: self.m.value <-- ".3" :: self.m.property <-- @size
+john :: ProperNPInstance :: self.m.ontological-category <-- @person :: self.m.referent <-- @john :: self.m.gender <-- @male :: self.m.number <-- @singular
+push :: CauseEffectType :: self.m.actionary <-- @push_move
+stop :: StageVerbType :: self.m.actionary <-- @stop :: self.expectedVerbForm <-- PresentParticiple
+start :: StageVerbType :: self.m.actionary <-- @start 
+continue :: StageVerbType :: self.m.actionary <-- @continue
+drive :: AgentDriveType :: self.m.actionary <-- @drive
+quickly :: ScalarAdverbType :: self.m.value <-- ".7" :: self.m.property <-- @speed
+slowly :: ScalarAdverbType :: self.m.value <-- ".3" :: self.m.property <-- @speed
+drive :: DriveVehicleType :: self.m.actionary <-- @drive
+brown :: ColorType :: self.m.value <-- @brown
+inch :: UnitType :: self.m.ontological-category <-- @inch
+weight :: PropertyNoun :: self.m.ontological-category <-- @weight
+cost :: PropertyNoun :: self.m.ontological-category <-- @price
+color :: PropertyNoun :: self.m.ontological-category <-- @color
+pound :: UnitType :: self.m.ontological-category <-- @pound-weight :: self.m.property <-- @weight
+pound :: UnitType :: self.m.ontological-category <-- @pound-price :: self.m.property <-- @price
+dollar :: UnitType :: self.m.ontological-category <-- @dollar
+weigh :: MeasureType :: self.m.actionary <-- @weigh :: self.m.dimension <-- @weight
+cost :: MeasureType :: self.m.actionary <-- @cost :: self.m.dimension <-- @price
+heavy :: ScalarAdjectiveType :: self.m.value <-- ".7" :: self.m.property <-- @weight
+hefty :: ScalarAdjectiveType :: self.m.value <-- ".8" :: self.m.property <-- @weight
+light :: ScalarAdjectiveType :: self.m.value <-- ".3" :: self.m.property <-- @weight
+become :: ChangeType :: self.m.actionary <-- @become
+#change :: StateChangeType :: self.m.actionary <-- @change
+grow :: ScaleChangeType :: self.m.actionary <-- @grow :: self.m.state.property <-- @size :: self.m.state.direction <-- @increase
+shrink :: ScaleChangeType :: self.m.actionary <-- @shrink :: self.m.state.property <-- @size :: self.m.state.direction <-- @decrease 
+team :: SentientNoun :: self.m.ontological-category <-- @person :: self.m.number <-- @plural

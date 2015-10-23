@@ -38,8 +38,10 @@ schema MotionPath // (bounded) translational motion
    evokes SPG as spg
    roles
       direction //:RD  // 10/15/13  source or goal
+      distance
    constraints  
       mover <--> spg.trajector
+      distance <--> spg.distance
       //mover.ontological-category <-- @physicalEntity       
       
       
@@ -178,7 +180,7 @@ schema CauseEffect   // Direct Physical Causation
       causalProcess <--> process1 // binding to inherited role
       affectedProcess <--> process2 // binding to inherited role
       causalProcess.actedUpon <--> protagonist2
-      causalProcess.actionary <-- @forceapplication
+      causalProcess.actionary <-- @forceapplication  // Why?
       complexKind <-- @causal
       
  schema MotorControl
@@ -187,7 +189,7 @@ schema CauseEffect   // Direct Physical Causation
       actor: RD 
       effector: RD
       effort
-      routine : @routine
+      routine : @process
    constraints
    	  actor.ontological-category <-- @agent //  12/21/12
       actor <--> protagonist  // protagonist inherited from Process

@@ -1,4 +1,6 @@
 
+
+
 GRAMMAR_EXTENSIONS = grm
 
 
@@ -29,7 +31,7 @@ MORPHOLOGY_PATH ::==
 
 TOKEN_PATH ::== 
 	./compRobots/compRobots.tokens
-	./core/core.tokens
+	./research/testing.tokens
 ;
 
 MAPPING_PATH = ./compRobots/robot.mappings

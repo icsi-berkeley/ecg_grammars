@@ -42,6 +42,16 @@ construction RelativizedNP
 	  constraints
 	     self.m <--> core.m
 	     np.m <--> fin.m.protagonist
+	     fin.m.ed.modifiedThing <--> core.m
 	     //self.m.discourseSegment.speechAct <-- "WH-Question" 
 	     
 
+schema Test
+	subcase of RD
+
+construction LexTest
+	subcase of Noun, Word
+	form
+	  constraints
+	    self.f.orth <-- "test"
+	meaning: Test

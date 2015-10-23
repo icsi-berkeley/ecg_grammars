@@ -71,9 +71,10 @@ construction  S-With-Copula-Inversion-PP //special case
         	fin.m.actionary <-- @be2
         	subj.m <--> self.m.profiledParticipant  // from S-With-Subj
             fin.m.protagonist <--> subj.m
-            //pp.m.trajector <--> subj.m
+            pp.m.trajector <--> subj.m
             self.m.eventProcess <--> fin.m
             self.fin.m.state <--> pp.m
+            pp.m.temporality <-- @bounded
             
 construction S-With-Copula-Inversion-Adj // tested 10/29/12
     subcase of S-With-Finite-Inversion
@@ -92,10 +93,11 @@ construction S-With-Copula-Inversion-Adj // tested 10/29/12
         constraints
     		self.fin.m.actionary <-- @be2
         	self.fin.m.protagonist <--> self.m.profiledParticipant
-        	//self.adj.m.modifiedThing <--> self.m.profiledParticipant
+        	self.adj.m.modifiedThing <--> self.m.profiledParticipant
         	self.adj.m.domain <--> self.m.profiledParticipant.ontological-category
 			self.fin.m.state <--> adj.m
 			self.m.eventProcess <--> fin.m
+			adj.m.temporality <-- @bounded
 	
 construction S-With-Copula-Inversion-Nominal // tested 10/29/12
     subcase of S-With-Finite-Inversion
