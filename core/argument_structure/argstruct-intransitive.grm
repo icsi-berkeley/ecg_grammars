@@ -22,3 +22,154 @@ construction BareIntransitive  //  e.g. He moved
 */
 //the binding "self.m <--> v.m" also serves to link self.m protagonist to the verb protagonist
 
+// Used to analyze, e.g. "the block is in the room" 
+construction CopularVPLocative
+  subcase of VP
+  constructional
+    constituents
+      	cop: Verb
+       	pred: Loc-PP
+  	constraints
+  		self.features <--> cop.features
+  		cop.argform <-- Copula_Loc 
+  form
+    constraints
+      cop.f before pred.f  
+  meaning: Stasis
+    constraints
+    	self.m <--> cop.m
+        ed.profiledParticipant <--> pred.m.trajector 
+        self.m.protagonist <--> ed.profiledParticipant
+        pred.m.temporality <-- @bounded
+        self.m.state <--> pred.m 
+        //pred.m.temporality <-- @bounded
+      
+//Used to analyze, e.g., "the block is red"
+construction CopularVPAdjective  
+  subcase of VP
+  constructional  
+    constituents
+      	cop: Verb
+      	adj: Adjective
+  	constraints
+  		self.features <--> cop.features
+  		cop.argform <-- Copula_Adj 
+	form
+    constraints
+      	cop.f meets adj.f
+  meaning: Stasis 
+    constraints
+    	//adj.m.kind <-- @unmarked  // 3/5/13
+    	self.m <--> cop.m
+        self.m.protagonist <--> ed.profiledParticipant
+        self.m.state <--> adj.m
+        adj.m.temporality <-- @bounded
+        self.adj.m.modifiedThing <--> ed.profiledParticipant  // might be enough for Adj-N agreement 10/27/12
+ 		self.adj.m.domain <--> ed.profiledParticipant.ontological-category // Adj-N agreement 10/27/12
+ 
+ 
+ 
+construction CopularVPNominal // 2/14/13
+  subcase of CopularVP
+  constructional  
+    constituents
+      	nominal: NP
+  form
+    constraints
+      	cop.f meets nominal.f
+  meaning: Stasis
+    evokes RefIdentity as ri
+   constraints
+        self.m.state <--> ri
+        ri.first <--> ed.profiledParticipant
+        ri.second <--> nominal.m     
+ 
+ construction CopularVPNominalModification // 2/14/13
+  subcase of CopularVP
+  constructional  
+    constituents
+      	nominal: UnitsNP
+  form
+    constraints
+      	cop.f meets nominal.f
+  meaning: Stasis
+   constraints
+        self.m.state <--> nominal.m
+        self.m.temporality <-- @bounded
+        //self.m.
+ /*
+Nominal copulas (e.g. "it is a box") could be analyzed using a CopuluarVPNominal cxn
+such as the one shown below, whcih is a subcase of the general CopularVP cxn above.
+Note that the current first grammar does not contain the RefIdentity schema referred to by this cxn.
+
+
+Sentences such as "he is moving" can potentially be analyzed in various ways.
+One way is through the use of a CopularVPParticiple cxn such as the one shown below.
+Note that while the current grammar has a general PresentParticiple cxn, it does not
+have any specific lexical cxns for present participles.  Also, the current first grammar
+does not contain a ParticipleModification schema.   
+   */
+
+construction CopularVPParticiple // 10/16/13
+  subcase of VP
+  constructional  
+    constituents
+      	cop: Verb
+      	pp: Verb
+      	//pp: PresentParticiple
+  	constraints
+  		self.features <--> cop.features
+  		pp.verbform <-- PresentParticiple
+  		cop.argform <-- Copula  // check this ********** 
+	form
+    constraints
+      	cop.f meets pp.f
+  meaning: Stasis
+     evokes ParticipleModification as pm 
+    constraints
+    	//adj.m.kind <-- @unmarked  // 3/5/13
+    	self.m <--> cop.m
+        self.m.protagonist <--> ed.profiledParticipant
+        self.m.state <--> pm
+        pm.modifier <--> pp.m
+        pm.modifiedThing <--> ed.profiledParticipant  // might be enough for Adj-N agreement 10/27/12
+ 		//self.adj.m.domain <--> ed.profiledParticipant.ontological-category // Adj-N agreement 10/27/12
+ 	
+ 	
+ 		
+ // Constructions for VP-change: "the box changed from red to blue"
+// "the box changed to blue"
+// "the plant grew"
+
+general construction VPChange
+   subcase of IntransitiveArgumentStructure
+   constructional
+	  constituents
+	    v: Verb
+	  constraints
+	    self.features <--> v.features
+	   // v.argform <-- StateChangeArg
+	   //v.argform <-- Change_Adj
+	meaning: Change
+	  constraints
+	    self.m <--> v.m
+	    self.m.temporality <-- @bounded
+	    self.m.protagonist <--> ed.profiledParticipant
+   
+
+construction VPChangeAdj
+	subcase of VPChange
+	constructional
+	  constituents
+	    adj: Adjective
+	 form
+	   constraints
+	     v.f before adj.f
+	meaning: Change
+	  constraints
+	    self.m.temporality <-- @bounded
+	    ed.profiledParticipant <--> adj.m.modifiedThing
+	    self.m.state <--> adj.m
+	    //self.m.temporality <--> adj.m.temporality
+	    //self.m.state <--> adj.m
+	    //self.m.state.property <--> adj.m.property

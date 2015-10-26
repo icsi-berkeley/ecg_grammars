@@ -1,5 +1,5 @@
 package location
-import starter
+import core
 
 general construction ComplexNP
 	subcase of NP
