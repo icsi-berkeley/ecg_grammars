@@ -1,4 +1,4 @@
-package starter
+package core
 import adjectives
 
 construction Not-NP  // used with Adj, Adv

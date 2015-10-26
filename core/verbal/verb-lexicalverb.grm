@@ -1,4 +1,4 @@
-package starter
+package core
 //import auxiliaries-testing
 
 
@@ -117,24 +117,6 @@ general construction PathVerbType
        self.m.spg.goal <--> bo.exterior
        
 
-import vehicles
-
-construction AgentDriveType
-	subcase of SelfMotionType
-	meaning: VehicularMotion
-	  constraints
-	     self.m.actionary <-- @drive
-	     self.m.vehicleType.ontological-category <-- @vehicle
-	     self.m.speed <-- ".5"
-	     //self.m.protagonist.ontological-category <-- @agent
-
-construction DriveVehicleType
-	subcase of LexicalVerbType, GeneralTypeCxn
-	meaning: ControlledVehicularMotion
-	  constraints
-	     self.m.actionary <-- @drive
-	     self.m.process2.vehicleType.ontological-category <-- @vehicle
-	     self.m.protagonist.ontological-category <-- @agent
 
       
          

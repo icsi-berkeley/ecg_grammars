@@ -1,4 +1,4 @@
-package starter
+package core
 
 general construction PP
 	subcase of RootType // answer to question, etc.   

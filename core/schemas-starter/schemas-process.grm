@@ -1,4 +1,4 @@
-package starter
+package core
 import universal-schemas
 
 schema ComplexED
@@ -8,35 +8,6 @@ schema ComplexED
 	  ed1: EventDescriptor
 	  ed2: EventDescriptor
  
-package vehicles 
-
-schema Vehicle
-	roles
-	  vehicle: RD
-	  rider: RD
-	  driver: RD
-	constraints
-	  vehicle.ontological-category <-- @vehicle
-	  rider.ontological-category <-- @animate
-	  driver.ontological-category <-- @agent
-
-schema VehicularMotion
-   subcase of MotionPath
-   roles
-     vehicleType: RD
-   constraints
-     vehicleType.ontological-category <-- @vehicle     
-
-schema ControlledVehicularMotion
-	subcase of CauseEffectProcess
-	evokes Vehicle as v
-	roles 
-	  driver: RD
-	  process2: VehicularMotion
-	constraints
-	  v.driver <--> driver
-	  driver <--> protagonist
-	  driver.ontological-category <-- @agent
 	
 // Should be more general type, e.g. "MeasureProcess" 
 // The ticket costs 6 bucks, the box weighs 5 pounds, etc.

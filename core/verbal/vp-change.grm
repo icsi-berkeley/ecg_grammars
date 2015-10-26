@@ -1,4 +1,4 @@
-package starter
+package core
 
 // Constructions for VP-change: "the box changed from red to blue"
 // "the box changed to blue"

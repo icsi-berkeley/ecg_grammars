@@ -1,5 +1,5 @@
-package starter
-import starter-modification
+package core
+import core-modification
 
 general construction ComplexAdjective
 	subcase of Adjective

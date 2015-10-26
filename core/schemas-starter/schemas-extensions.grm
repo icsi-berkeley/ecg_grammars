@@ -1,4 +1,4 @@
-package starter
+package core
 import universal-schemas
  
 schema Entity

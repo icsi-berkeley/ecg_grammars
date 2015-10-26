@@ -1,6 +1,6 @@
-package starter
+package core
 
-import starter-modification
+import core-modification
 
 //
 // Adjectives

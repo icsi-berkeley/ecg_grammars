@@ -1,4 +1,4 @@
-package starter
+package core
 // Constructional Agreement Features  Make separate file 1/6/13
 
 import universal-schemas
