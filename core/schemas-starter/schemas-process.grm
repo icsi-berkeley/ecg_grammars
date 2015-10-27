@@ -28,6 +28,8 @@ schema Change
 	  state: ChangedState
 	  actionary: @statechange
 	  temporality: @bounded
+	constraints
+	  actionary <-- @statechange
 // State Change processes: "the box changed from red to blue"
 schema StateChange
 	subcase of Change

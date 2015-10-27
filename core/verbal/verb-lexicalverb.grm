@@ -67,6 +67,15 @@ construction CauseEffectType
 	    //self.mp <--> self.m.affectedProcess
 	    //self.fa.actedUpon <--> self.m.affectedEntity
 	    
+construction ApplyForceType
+	subcase of CauseEffectType
+	meaning
+	evokes ForceApplication as fa
+	  constraints
+	  	 self.fa <--> self.m.causalProcess
+	    self.fa.actedUpon <--> self.m.affectedEntity
+	    
+	    
 
 construction CreationType
 	subcase of LexicalVerbType, GeneralTypeCxn
