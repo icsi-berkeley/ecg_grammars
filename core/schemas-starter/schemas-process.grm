@@ -44,3 +44,12 @@ schema ScaleChange
 	  actionary: @scalechange
 	  temporality: @bounded
 
+// Creation
+schema Creation
+	subcase of Process
+	roles
+	  creator
+	  createdThing
+	constraints
+     protagonist <--> creator
+

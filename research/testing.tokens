@@ -44,3 +44,6 @@ become :: ChangeType :: self.m.actionary <-- @become
 grow :: ScaleChangeType :: self.m.actionary <-- @grow :: self.m.state.property <-- @size :: self.m.state.direction <-- @increase
 shrink :: ScaleChangeType :: self.m.actionary <-- @shrink :: self.m.state.property <-- @size :: self.m.state.direction <-- @decrease 
 team :: SentientNoun :: self.m.ontological-category <-- @person :: self.m.number <-- @plural
+paint :: CreationType :: self.m.actionary <-- @paint
+make :: CreationType :: self.m.actionary <-- @make_create
+make :: CauseEffectType :: self.m.actionary <-- @make_cause

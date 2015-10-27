@@ -1,5 +1,4 @@
 package core
-import motion
 //package transitives
 
 // *** 5/22/13 NOTE: need to remove 'test' from names at some point ***
@@ -15,12 +14,13 @@ general construction ArgumentStructure
       v : Verb 
     constraints
       self.features <--> v.features
+      self.verbform <--> v.verbform
       self.voice <--> v.voice
    meaning
+     evokes A123 as s  
      constraints
        v.m  <--> ed.profiledProcess
-       self.m.p-features <--> v.m.p-features // 1/3/13 ????
-      // self.ed.eventProcess.p-features <--> self.ed.profiledProcess.p-features 1/15/13
+       self.m.p-features <--> v.m.p-features 
 */
 
 
@@ -79,9 +79,29 @@ construction ActiveTransitiveChangeLocation  // 10/15/13  he entered the room
 	subcase of CoreActiveTransitive
 	meaning: ChangeLocation
 	  constraints
-		//v.verbkind <-- 
 		s.a1 <--> self.m.mover	
 		s.a2 <--> self.m.landmark  //source or goal
+		
+// "he painted the house blue", "he made the house bigger"
+construction ActiveTransitiveChangeProperty
+	subcase of ActiveTransitiveCauseEffect
+	constructional
+	  constituents
+	    adj: Adjective
+	form
+	  constraints
+	    v.f before np.f
+	    np.f before adj.f
+	meaning: CauseEffect //: Creation
+	   evokes Change as change
+	   evokes Creation as creation
+	   constraints
+	     self.m.causalProcess <--> v.m
+	     v.m <--> creation
+	     self.m.affectedProcess <--> change
+	     change.state <--> adj.m
+	     self.m.affectedEntity <--> change.state.modifiedThing
+	     creation.createdThing <--> self.m.affectedEntity
 
 /*
 construction ActiveTransitiveCausedMotion  // he moved the block
@@ -141,9 +161,7 @@ construction ActiveTransitivePossession  // 10/4/13
 
 
 
-/** Added from dropbox "robots" by Sean Trott, 2/4/15. Some of these call for units like "SpatialQuantityNP
-that aren't included in "core", so I didn't want to clutter core too much. The treatment for transitives
-will need to be sorted out, of course. */
+/** Added from dropbox "robots" by Sean Trott, 2/4/15. */
 general construction ActiveTransitiveCauseEffect
   subcase of ActiveTransitive
 	meaning: CauseEffect
@@ -152,7 +170,7 @@ general construction ActiveTransitiveCauseEffect
 		s.a2 <--> self.m.affectedEntity
 
 
-construction ActiveTransitiveCauseEffect_central  // he pushed the block
+general construction ActiveTransitiveCauseEffect_central  // he pushed the block
   subcase of ActiveTransitiveCauseEffect
 	meaning
       constraints
@@ -211,23 +229,10 @@ construction ActiveTrans_CauseChangeLocation_causeMotion  // he pushed the block
 		self.m <--> v.m	
 
 
-package core
-
-schema ChangeLocation // protagonist changes location wrt a LM
-   subcase of Process  
-   evokes SPG as spg
-   roles
-      mover:RD
-      landmark: RD
-   constraints  
-      mover <--> spg.trajector 
-	  mover <--> protagonist
-      landmark <--> spg.landmark
-      mover.ontological-category <-- @physicalEntity  // hack 10/23/12
-      
 
 
 
+     
 		
 
 /*		

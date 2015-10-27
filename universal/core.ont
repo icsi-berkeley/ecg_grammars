@@ -398,6 +398,8 @@ DEFS:
 
 // (type inchoativestasis sub stasis)
 
+(type create sub process cause)
+
 (type become sub statechange) // 2/14/13
 
 (type complexxnet sub process)
@@ -412,7 +414,7 @@ DEFS:
 
 (type effectormotion sub complexxnet)
 
-(type forceapplication sub process)  
+(type forceapplication sub process)
 
 (type forcefulmotionaction sub complexxnet)
 
@@ -460,7 +462,7 @@ DEFS:
 
 (type push sub forceapplication ) // is forceapplication needed? Not used directly
 
-(type push_move sub push motion)
+(type push_move sub push motion cause)
 
 (type releasehold sub forceapplication)
 
@@ -663,5 +665,11 @@ DEFS:
 (type decrease sub comparison)
 
 (type john sub person)
+
+(type paint sub create  shared)
+
+(type make_create sub create  shared)
+
+(type make_cause sub cause  shared)
 
 INSTS:

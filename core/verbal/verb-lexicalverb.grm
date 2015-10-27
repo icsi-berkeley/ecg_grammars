@@ -30,7 +30,7 @@ construction MeasureType
 	    self.m.dimension <-- @measure
 
 
-// State Change Type
+// State Change Type: become, etc.
 construction ChangeType
 	subcase of LexicalVerbType
 	constructional 
@@ -42,7 +42,7 @@ construction ChangeType
 	    self.m.state.property <-- @object-property
 	    //self.m.state.oldValue <-- @propValue
 	    
-// State Change Type
+// Scale Change Type: grow, increase, etc.
 construction ScaleChangeType
 	subcase of LexicalVerbType
 	constructional 
@@ -58,14 +58,23 @@ construction ScaleChangeType
 construction CauseEffectType
 	subcase of LexicalVerbType, GeneralTypeCxn
 	meaning: CauseEffect
-	 evokes ForceApplication as fa
-	 evokes MotionPath as mp
+	 //evokes ForceApplication as fa
+	 //evokes MotionPath as mp
 	  constraints
-	    self.m.actionary <-- @motion
-	    self.m.protagonist.ontological-category <-- @agent
-	    self.fa <--> self.m.causalProcess
-	    self.mp <--> self.m.affectedProcess
-	    self.fa.actedUpon <--> self.m.affectedEntity
+	    self.m.actionary <-- @cause
+	    self.m.protagonist.ontological-category <-- @physicalEntity
+	    //self.fa <--> self.m.causalProcess
+	    //self.mp <--> self.m.affectedProcess
+	    //self.fa.actedUpon <--> self.m.affectedEntity
+	    
+
+construction CreationType
+	subcase of LexicalVerbType, GeneralTypeCxn
+	meaning: Creation
+	  constraints
+	     self.m.actionary <-- @create
+
+
 
 // VERB Types:
 
@@ -78,10 +87,7 @@ construction SelfMotionType
          self.m.speed <-- @scalarValue
          self.m.speed <-- ".5"
          self.argform <-- ArgForm
-         
-         
-       
-
+        
 // You could imagine adding another constraint here on the 
 // ontological category of the "Content" of the perception;
 // then the "tokens" can place different constraints on that.
@@ -94,7 +100,7 @@ construction PerceptionType
         self.verbkind <-- Perceptual
 
 
-
+// Path Verbs: "Enter", "Exit", etc.
 general construction PathVerbType
    subcase of LexicalVerbType  // 7/8/15
    meaning: ChangeLocation

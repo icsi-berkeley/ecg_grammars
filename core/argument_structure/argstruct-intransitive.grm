@@ -42,7 +42,6 @@ construction CopularVPLocative
         self.m.protagonist <--> ed.profiledParticipant
         pred.m.temporality <-- @bounded
         self.m.state <--> pred.m 
-        //pred.m.temporality <-- @bounded
       
 //Used to analyze, e.g., "the block is red"
 construction CopularVPAdjective  
@@ -59,7 +58,6 @@ construction CopularVPAdjective
       	cop.f meets adj.f
   meaning: Stasis 
     constraints
-    	//adj.m.kind <-- @unmarked  // 3/5/13
     	self.m <--> cop.m
         self.m.protagonist <--> ed.profiledParticipant
         self.m.state <--> adj.m
@@ -96,7 +94,7 @@ construction CopularVPNominal // 2/14/13
    constraints
         self.m.state <--> nominal.m
         self.m.temporality <-- @bounded
-        //self.m.
+
  /*
 Nominal copulas (e.g. "it is a box") could be analyzed using a CopuluarVPNominal cxn
 such as the one shown below, whcih is a subcase of the general CopularVP cxn above.
@@ -106,8 +104,7 @@ Note that the current first grammar does not contain the RefIdentity schema refe
 Sentences such as "he is moving" can potentially be analyzed in various ways.
 One way is through the use of a CopularVPParticiple cxn such as the one shown below.
 Note that while the current grammar has a general PresentParticiple cxn, it does not
-have any specific lexical cxns for present participles.  Also, the current first grammar
-does not contain a ParticipleModification schema.   
+have any specific lexical cxns for present participles.    
    */
 
 construction CopularVPParticiple // 10/16/13
@@ -127,20 +124,16 @@ construction CopularVPParticiple // 10/16/13
   meaning: Stasis
      evokes ParticipleModification as pm 
     constraints
-    	//adj.m.kind <-- @unmarked  // 3/5/13
     	self.m <--> cop.m
         self.m.protagonist <--> ed.profiledParticipant
         self.m.state <--> pm
         pm.modifier <--> pp.m
         pm.modifiedThing <--> ed.profiledParticipant  // might be enough for Adj-N agreement 10/27/12
- 		//self.adj.m.domain <--> ed.profiledParticipant.ontological-category // Adj-N agreement 10/27/12
- 	
- 	
+
  		
  // Constructions for VP-change: "the box changed from red to blue"
 // "the box changed to blue"
 // "the plant grew"
-
 general construction VPChange
    subcase of IntransitiveArgumentStructure
    constructional
@@ -148,8 +141,6 @@ general construction VPChange
 	    v: Verb
 	  constraints
 	    self.features <--> v.features
-	   // v.argform <-- StateChangeArg
-	   //v.argform <-- Change_Adj
 	meaning: Change
 	  constraints
 	    self.m <--> v.m
@@ -170,6 +161,42 @@ construction VPChangeAdj
 	    self.m.temporality <-- @bounded
 	    ed.profiledParticipant <--> adj.m.modifiedThing
 	    self.m.state <--> adj.m
-	    //self.m.temporality <--> adj.m.temporality
-	    //self.m.state <--> adj.m
-	    //self.m.state.property <--> adj.m.property
+
+// the box grew; the box grew to the ceiling 
+// Needs work: how to tie in QuantityNP, Path-PP into Change schema?
+construction IntransitiveChange  
+  subcase of IntransitiveArgumentStructure
+   constructional
+   constituents
+     optional np: QuantityNP
+ 	 optional pp: Path-PP
+  form
+    constraints
+      v.f before np.f
+  meaning: Change  
+    constraints
+      self.m <--> v.m
+	 // self.m.state.scale <--> np.m.
+	
+	
+//MotionPath argument structure: "he moved to the block", "he moved north"    
+ construction ActiveMotionPath   // he moved to the block
+  subcase of IntransitiveArgumentStructure 
+  constructional
+    constituents
+       optional dis: SpatialQuantityNP  // for more general version
+       optional dir: Directional 
+       optional pp: Path-PP
+  constraints
+        v.voice <-- NotPassive  
+  form 
+    constraints
+      v.f before dis.f 
+      dis.f before dir.f
+      dir.f before pp.f   
+  meaning: MotionPath
+    constraints 
+      self.m <--> v.m
+      self.m.spg.distance <--> dis.m 
+	  self.m.heading <--> dir.m.tag
+      self.m.spg <--> pp.m

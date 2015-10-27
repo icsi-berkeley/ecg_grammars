@@ -105,7 +105,8 @@ schema EmbeddedProcess
     roles
       embeddedProcess: Process 
       // actionary: @embeddedProcess	??
-      
+ 
+ /*     
 schema GeneralCausation // most general or abstract causation schema
    roles
    	cause // untyped – could be force, process, or event?
@@ -165,22 +166,23 @@ schema CauseEffectAction // prototypical/central case of causation
       complexKind <-- @causal
  	//effect – could define as EventRD and bind aff Entity and process roles
       //cause - could define as EventRD and bind causalAgent and Process roles
- 
+ */
 /* Unsure if this is final version of causation. */ 
 schema CauseEffect   // Direct Physical Causation
    subcase of ComplexProcess 
    roles
       causalAgent: RD 
       affectedEntity: RD
-      causalProcess: ForceApplication
+      causalProcess //: ForceApplication
       affectedProcess
+      actionary: @cause
    constraints
       causalAgent <--> protagonist // binding to inherited role
       affectedEntity <--> protagonist2 // binding to inherited role
       causalProcess <--> process1 // binding to inherited role
       affectedProcess <--> process2 // binding to inherited role
-      causalProcess.actedUpon <--> protagonist2
-      causalProcess.actionary <-- @forceapplication  // Why?
+      //causalProcess.actedUpon <--> protagonist2
+      //causalProcess.actionary <-- @forceapplication  // Why?
       complexKind <-- @causal
       
  schema MotorControl
@@ -230,5 +232,15 @@ schema StagedProcess
 	    stageRole: @stage
 
 
-
+schema ChangeLocation // protagonist changes location wrt a LM
+   subcase of Process  
+   evokes SPG as spg
+   roles
+      mover:RD
+      landmark: RD
+   constraints  
+      mover <--> spg.trajector 
+	  mover <--> protagonist
+      landmark <--> spg.landmark
+      mover.ontological-category <-- @physicalEntity  // hack 10/23/12
 
