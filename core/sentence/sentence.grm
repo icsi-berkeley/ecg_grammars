@@ -127,7 +127,8 @@ general construction Imperative
   subcase of S
   constructional
     constituents
-      optional end: IMark
+     // end: IMark
+
 
 construction SimpleImperative
   subcase of Imperative

@@ -496,15 +496,17 @@ DEFS:
 
 (type tell sub process)  // 8/15/13
 
-(type help sub process)
+(type forceDynamic sub process)
+
+(type help sub forceDynamic)
 
 (type want sub process)
 
-(type cause sub process)
+(type cause sub forceDynamic)
 
 (type enlarge sub process)
 
-(type prevent sub process)  // 1/22/13
+(type prevent sub forceDynamic)  // 1/22/13
 
 //(type telicity sub time)   // change to temorality 11/26/12 Probably drop
 
@@ -671,5 +673,11 @@ DEFS:
 (type make_create sub create  shared)
 
 (type make_cause sub cause  shared)
+
+(type cat sub sentient)
+
+(type storm sub eventTop naturalForce shared)
+
+(type crisis sub eventTop  shared)
 
 INSTS:

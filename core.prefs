@@ -6,7 +6,7 @@ GRAMMAR_PATHS ::==
 ;
 
 PACKAGE_NAME ::== 
-	starter
+	core
 	motion
 	universal-schemas
 	universal-constructions

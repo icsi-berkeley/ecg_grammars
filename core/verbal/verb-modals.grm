@@ -1,0 +1,19 @@
+package core
+
+general construction Modal
+   subcase of HasVerbFeatures
+   constructional //inherits VerbFeatures 
+   constraints 
+       meaning: EventFeatures
+
+construction Can-Modal 
+   subcase of Modal, Word
+   form
+      constraints
+         self.f.orth <-- "can"
+ 	meaning: EventFeatures
+     constraints
+   	 self.m.modality <-- @can 
+    self.m.tense <-- @present 
+	self.expectedVerbForm <-- Base 
+	self.verbform <-- Finite	

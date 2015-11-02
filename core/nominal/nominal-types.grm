@@ -93,18 +93,12 @@ construction SentientNoun
         self.m.referent <-- @sentient
         
         
-// "Mass" Noun type
-construction MassNoun
-	subcase of NP, GeneralTypeCxn
-	  meaning
-	    constraints
-	      self.m.bounding <-- @indeterminate
-	      self.m.number <-- @noNumber    
-	      self.m.ontological-category <-- @entity  
-	      
-// "Mass" Noun type
-construction SocialProblem
-	subcase of MassNoun
-	  meaning
-	    constraints 
-	      self.m.ontological-category <-- @socialProblem	        
+// Lexicalized events: "storm", etc.
+construction EventNoun
+	subcase of NounType
+	meaning: EventRD
+	  constraints
+	    self.m.ontological-category <-- @eventTop
+	    self.m.scale <-- @size
+	    self.m.description.eventForm <-- @lexical
+		        

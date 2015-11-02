@@ -2,6 +2,7 @@ scarlet :: ColorType :: self.m.value <-- @red
 john :: ProperNPInstance :: self.m.referent <-- @john :: self.m.ontological-category <-- @person
 red :: ColorType :: self.m.value <-- @red
 blue :: ColorType :: self.m.value <-- @blue
+cat :: SentientNoun :: self.m.ontological-category <-- @cat
 block   :: ArtifactNoun  :: self.m.ontological-category <-- @block
 move    :: SelfMotionType  :: self.m.actionary <-- @move :: self.m.speed <-- ".5"
 walk    :: SelfMotionType  :: self.m.actionary <-- @walk :: self.m.speed <-- ".3" :: self.argform <-- NotTransitive
@@ -41,9 +42,13 @@ hefty :: ScalarAdjectiveType :: self.m.value <-- ".8" :: self.m.property <-- @we
 light :: ScalarAdjectiveType :: self.m.value <-- ".3" :: self.m.property <-- @weight
 become :: ChangeType :: self.m.actionary <-- @become
 #change :: StateChangeType :: self.m.actionary <-- @change
-grow :: ScaleChangeType :: self.m.actionary <-- @grow :: self.m.state.property <-- @size :: self.m.state.direction <-- @increase
-shrink :: ScaleChangeType :: self.m.actionary <-- @shrink :: self.m.state.property <-- @size :: self.m.state.direction <-- @decrease 
+grow :: ScaleChangeType :: self.m.actionary <-- @grow :: self.m.state.property <-- @size :: self.m.state.direction <-- @increase :: self.m.state.value <-- ".7"
+shrink :: ScaleChangeType :: self.m.actionary <-- @shrink :: self.m.state.property <-- @size :: self.m.state.direction <-- @decrease :: self.m.state.value <-- ".3"
 team :: SentientNoun :: self.m.ontological-category <-- @person :: self.m.number <-- @plural
 paint :: CreationType :: self.m.actionary <-- @paint
 make :: CreationType :: self.m.actionary <-- @make_create
 make :: CauseEffectType :: self.m.actionary <-- @make_cause
+prevent :: ForceDynamicType :: self.m.fdType <-- @prevent :: self.expectedVerbForm <-- PresentParticiple :: self.m.actionary <-- @prevent
+cause :: ForceDynamicType :: self.m.fdType <-- @cause :: self.m.actionary <-- @cause :: self.expectedVerbForm <-- Infinitive
+storm :: EventNoun :: self.m.ontological-category <-- @storm
+crisis :: EventNoun :: self.m.ontological-category <-- @crisis

@@ -21,6 +21,7 @@ IMPORT_PATHS ::==
 	./compRobots
 	./universal
 	./core
+	./research
 ;
 
 

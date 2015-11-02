@@ -68,6 +68,28 @@ construction InfinitiveCxn
         self.m <--> second.m
 
 
+ // ModalVP (11/2/15)
+ construction ModalPlusVP  
+  subcase of VP
+  constructional 
+    constituents
+      modal: Modal  // EventFeatures 
+      vp: VP  // also CopularVP
+    constraints
+      self.features <--> modal.features 
+      modal.expectedVerbForm <--> vp.verbform
+      self.verbform <-- Finite
+      self.features.number <--> vp.features.number
+      self.features.person <--> vp.features.person
+    form
+    constraints
+       modal.f before vp.f 
+    meaning
+    constraints
+      self.m <--> vp.m // semantics comes from the vp
+      modal.m <--> vp.ed.e-features
+      self.m.protagonist <--> vp.m.protagonist 
+   	self.ed <--> vp.ed  //evoked schemas are available
  
  
 

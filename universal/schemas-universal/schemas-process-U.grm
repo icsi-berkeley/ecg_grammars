@@ -106,12 +106,13 @@ schema EmbeddedProcess
       embeddedProcess: Process 
       // actionary: @embeddedProcess	??
  
- /*     
+    
 schema GeneralCausation // most general or abstract causation schema
+   subcase of Process
    roles
    	cause // untyped – could be force, process, or event?
 	effect // untyped – event or state (outcome)?
-	fdTag // e.g. cause, prevent, enable. Default value could be ‘cause’ 
+	fdType // e.g. cause, prevent, enable. Default value could be ‘cause’ 
 
 
 // e.g. The explosion caused the damage; His kicking caused the damage
@@ -122,6 +123,7 @@ schema CausalEvent // ‘cause’ is protagonist
      effect: RD // or EventRD?
    constraints
      cause <--> protagonist
+     cause.ontological-category <-- @eventTop
 
 // e.g. The explosion moved the box; The explosion caused the box to move
 schema CausedProcess // elaborated effect, general cause
@@ -130,10 +132,11 @@ schema CausedProcess // elaborated effect, general cause
    	affectedEntity: RD  // physical entity
     affectedProcess: Process
     //causedProcessType:
-     cause: RD // Or EventRD? Or add tighter constraints in cxns?
+     cause: EventRD // Or EventRD? Or add tighter constraints in cxns?
 	//effect – could define as EventRD and bind aff Entity and process roles
    constraints
       affectedProcess <--> embeddedProcess
+      cause.ontological-category <-- @eventTop
       affectedEntity <--> 	affectedProcess.protagonist
       cause <--> protagonist
 
@@ -146,34 +149,18 @@ schema CausalAction // elaborated cause, general effect
      //causalActionType: 
    constraints
       causalAgent <--> protagonist
-      // causalAgent.ontologicalType <-- @physicalEntity
+     // causalAgent.ontolo
+      //causalAgent.ontological-category <-- @entity
       //cause - could define as EventRD and bind causalAgent and Process roles
 
 
-// e.g. He caused the box to move; He moved the box
-schema CauseEffectAction // prototypical/central case of causation
-   subcase of GeneralCausation, ComplexProcess 
-   roles
-      causalAgent: RD
-      affectedEntity: RD
-      causalProcess
-      affectedProcess
-   constraints
-      causalAgent <--> protagonist // binding to inherited role
-      affectedEntity <--> protagonist2 // binding to inherited role
-      causalProcess <--> process1 // binding to inherited role
-      affectedProcess <--> process2 // binding to inherited role
-      complexKind <-- @causal
- 	//effect – could define as EventRD and bind aff Entity and process roles
-      //cause - could define as EventRD and bind causalAgent and Process roles
- */
 /* Unsure if this is final version of causation. */ 
 schema CauseEffect   // Direct Physical Causation
    subcase of ComplexProcess 
    roles
       causalAgent: RD 
       affectedEntity: RD
-      causalProcess //: ForceApplication
+      causalProcess 
       affectedProcess
       actionary: @cause
    constraints
@@ -181,8 +168,7 @@ schema CauseEffect   // Direct Physical Causation
       affectedEntity <--> protagonist2 // binding to inherited role
       causalProcess <--> process1 // binding to inherited role
       affectedProcess <--> process2 // binding to inherited role
-      //causalProcess.actedUpon <--> protagonist2
-      //causalProcess.actionary <-- @forceapplication  // Why?
+      causalAgent.ontological-category <-- @entity
       complexKind <-- @causal
       
  schema MotorControl
@@ -193,7 +179,7 @@ schema CauseEffect   // Direct Physical Causation
       effort
       routine : @process
    constraints
-   	  actor.ontological-category <-- @agent //  12/21/12
+   	  //actor.ontological-category <-- @agent //  12/21/12
       actor <--> protagonist  // protagonist inherited from Process
       routine <--> actionary
 

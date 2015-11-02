@@ -53,20 +53,15 @@ construction ScaleChangeType
 	    self.m.actionary <-- @scalechange
 	    self.m.state.property <-- @object-property
 	    self.m.state.direction <-- @comparison
+	    self.m.state.value <-- @scalarValue
 	    //self.m.state.oldValue <-- @propValue
 
 construction CauseEffectType
 	subcase of LexicalVerbType, GeneralTypeCxn
 	meaning: CauseEffect
-	 //evokes ForceApplication as fa
-	 //evokes MotionPath as mp
 	  constraints
 	    self.m.actionary <-- @cause
-	    self.m.protagonist.ontological-category <-- @physicalEntity
-	    //self.fa <--> self.m.causalProcess
-	    //self.mp <--> self.m.affectedProcess
-	    //self.fa.actedUpon <--> self.m.affectedEntity
-	    
+
 construction ApplyForceType
 	subcase of CauseEffectType
 	meaning
@@ -131,7 +126,18 @@ general construction PathVerbType
        constraints
        self.m.spg.goal <--> bo.exterior
        
+// More causation (ST, 10/30/15)
 
-
+construction ForceDynamicType   // 5/20/13 test
+   	subcase of LexicalVerbType
+     constructional
+        constraints
+         self.argform <-- Transitive
+         self.verbkind <-- ForceDynamic // added for testing 5/15/14 
+         self.expectedVerbForm <-- FiniteOrNonFinite// used to constrain which catenative cxns this will occur with   
+     meaning: GeneralCausation 
+         constraints
+         	self.m.fdType <-- @forceDynamic
+         	self.m.actionary <-- @process
       
          

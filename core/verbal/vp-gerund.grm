@@ -1,0 +1,31 @@
+//package gerunds
+
+general construction Gerund
+	subcase of NP
+	constructional 
+	 constituents
+	   vp: ArgumentStructure
+	 constraints
+	   vp.verbform <-- PresentParticiple
+	   vp.features.number <-- "singular"
+	meaning: EventRD
+	  constraints
+	    self.m.description <--> vp.m.ed
+	    self.m.ontological-category <-- @eventTop
+	    self.m.number <-- @singular
+	    self.m.description.eventForm <-- @gerund
+        
+ construction BareGerund
+ 	subcase of Gerund
+ 	
+ construction PossGerund
+ 	subcase of Gerund
+ 	constructional
+ 	  constituents
+ 	    s: PossessivePronoun
+   form
+     constraints
+       s.f before vp.f
+   meaning
+     constraints
+       self.m.description.profiledParticipant <--> s.possessor

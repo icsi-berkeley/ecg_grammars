@@ -29,6 +29,9 @@ schema PropertyChanger
 schema NotTransitive   
 	subcase of ArgForm
 	
+schema AmbiTransitive
+	subcase of NotTransitive
+	
 schema Control
 	subcase of ArgForm  // NotTransitive  ??
 
