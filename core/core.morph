@@ -33,6 +33,6 @@ Comparative :: self.m.kind, @comparative :: Adjective
 Superlative :: self.m.kind, @superlative :: Adjective
 Infinitive :: , :: LexicalVerbType
 Positive :: , :: Adjective, DirectionalType, Adverb
-Participle,PresentTense :: self.pf.tense, @present :: LexicalVerbType
+Participle,PresentTense :: self.pf.tense, @tense :: LexicalVerbType
 Participle,PastTense :: , :: LexicalVerbType
 NoMorphology :: , :: Pronoun

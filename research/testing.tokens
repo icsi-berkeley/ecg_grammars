@@ -1,5 +1,4 @@
 scarlet :: ColorType :: self.m.value <-- @red
-john :: ProperNPInstance :: self.m.referent <-- @john :: self.m.ontological-category <-- @person
 red :: ColorType :: self.m.value <-- @red
 blue :: ColorType :: self.m.value <-- @blue
 cat :: SentientNoun :: self.m.ontological-category <-- @cat

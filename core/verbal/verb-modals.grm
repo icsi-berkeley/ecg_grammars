@@ -2,7 +2,7 @@ package core
 
 general construction Modal
    subcase of HasVerbFeatures
-   constructional //inherits VerbFeatures 
+   constructional 
    constraints 
        meaning: EventFeatures
 
@@ -17,3 +17,15 @@ construction Can-Modal
     self.m.tense <-- @present 
 	self.expectedVerbForm <-- Base 
 	self.verbform <-- Finite	
+
+
+construction Will-Modal
+	subcase of Modal, Word
+    form
+      constraints
+         self.f.orth <-- "will"
+ 	meaning: EventFeatures
+     constraints
+   	 self.m.tense <-- @future
+   	 self.expectedVerbForm <-- Base 
+   	 self.verbform <-- Finite	

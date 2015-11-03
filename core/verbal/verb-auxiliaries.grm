@@ -2,6 +2,7 @@ package core
 
 general construction Aux
 	subcase of HasVerbFeatures
+	meaning: ProcessFeatures
 
 general construction LexicalAux
 	subcase of Word, Aux
@@ -27,6 +28,15 @@ construction DoAuxPast
 
 general construction BeAux
 	subcase of LexicalAux, bhAux
+
+construction BePastSing	
+	subcase of BeAux, PastTense // , Singular
+	form
+	  constraints
+	    self.f.orth <-- "was"
+	meaning
+	  constraints
+	    pf <--> self.m
 /*
 construction BeAuxType
 	subcase of BeAux, VerbConjugation, GeneralTypeCxn
@@ -46,11 +56,10 @@ construction BeAuxType2
 	    self.m.voice <-- @voice
 */
 general construction AuxPlusVerb  // removed optional subj  
-   	subcase of ComplexVerb
+   	subcase of ComplexVerb 
    	constructional 
    		constituents
 			aux: Aux
-			// optional subj: NP  // why was this in ??
 			main: ComplexVerb
 	    constraints
 			self.features <--> aux.features
@@ -68,17 +77,50 @@ general construction AuxPlusVerb  // removed optional subj
 			self.m.p-features <--> main.m.p-features
 			//aux.m.voice <-- @voice // over-ridden by Passive case
 			// subj.m <--> self.m.protagonist  // bind it if it appears 
-/*		
+			
 construction ProgressiveAuxPlusVerb  // was moving, has been moving
    	subcase of AuxPlusVerb
    	constructional 
-   		constituents
-			aux: Aux  
-			main: ComplexVerb
 	    constraints
 			self.voice <--> main.voice 
 			main.verbform <-- PresentParticiple
 	meaning
 		constraints
-			aux.m.progressive <-- "yes"
-			*/
+			aux.m.progressive <-- @yes
+			
+			
+general construction S-With-Aux-Inversion  
+    subcase of YN-Question   
+	constructional
+        constituents
+        fin: Aux 
+        subj: NP 
+        vp: VP           
+       constraints
+       subj.features.person <--> fin.features.person
+        subj.features.number <--> fin.features.number
+            fin.expectedVerbForm <--> vp.verbform
+            fin.verbform <-- Finite
+    form
+        constraints
+            fin.f meets subj.f 
+            subj.f meets vp.f
+    meaning: EventDescriptor  // from S
+     constraints
+	    subj.m <--> self.m.profiledParticipant
+	    self.m <--> vp.ed // unifies event descriptors
+	    //subj.m <--> vp.m.protagonist // not true for passive
+	    vp.m.p-features <--> fin.m
+
+
+// Was the box moving / being moved?
+construction S-With-BeProgressive-Inversion
+    subcase of S-With-Aux-Inversion 
+    constructional
+        constituents
+        fin: BeAux 
+        constraints
+            vp.verbform <-- PresentParticiple
+    meaning  
+        constraints 
+fin.m.progressive <-- "yes"

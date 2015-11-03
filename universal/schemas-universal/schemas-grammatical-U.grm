@@ -65,7 +65,7 @@ schema EventFeatures  // voice: @voice   also in Process - Dropped here, maybe n
 		duration  // USED in TemporalVP  
 		tense: @tense  // USED
 		modality: @modality  // USED
-		negated  // USED
+		negated: @boolean  // USED
 
 
 // RD

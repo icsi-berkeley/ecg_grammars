@@ -79,8 +79,8 @@ construction InfinitiveCxn
       self.features <--> modal.features 
       modal.expectedVerbForm <--> vp.verbform
       self.verbform <-- Finite
-      self.features.number <--> vp.features.number
-      self.features.person <--> vp.features.person
+      //self.features.number <--> vp.features.number
+      //self.features.person <--> vp.features.person
     form
     constraints
        modal.f before vp.f 

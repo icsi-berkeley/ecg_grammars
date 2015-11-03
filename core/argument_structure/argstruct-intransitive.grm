@@ -80,7 +80,8 @@ construction CopularVPNominal // 2/14/13
    constraints
         self.m.state <--> ri
         ri.first <--> ed.profiledParticipant
-        ri.second <--> nominal.m     
+        ri.second <--> nominal.m   
+        ri.second.ontological-category <-- @entity
  
  construction CopularVPNominalModification // 2/14/13
   subcase of CopularVP
@@ -106,7 +107,7 @@ One way is through the use of a CopularVPParticiple cxn such as the one shown be
 Note that while the current grammar has a general PresentParticiple cxn, it does not
 have any specific lexical cxns for present participles.    
    */
-
+ 
 construction CopularVPParticiple // 10/16/13
   subcase of VP
   constructional  

@@ -1,4 +1,4 @@
-//package gerunds
+package gerunds
 
 general construction Gerund
 	subcase of NP
