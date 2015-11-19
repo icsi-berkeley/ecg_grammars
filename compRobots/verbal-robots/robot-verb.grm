@@ -14,11 +14,3 @@ construction ReturnType
 
 
 
-construction Move2
-	subcase of LexicalVerb, PastTense
-	form
-	   constraints
-	      self.f.orth <-- "moved"
-	meaning: Motion
-	 constraints
-	   self.m.actionary <-- @move

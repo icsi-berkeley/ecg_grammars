@@ -1,5 +1,5 @@
 package gerunds
-
+//package core
 general construction Gerund
 	subcase of NP
 	constructional 

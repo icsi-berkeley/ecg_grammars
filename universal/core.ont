@@ -556,11 +556,11 @@ DEFS:
 
 (type propValue sub sharedEnumeration )  // non-scale properties are sets
 
-(type colorValue sub propValue)
+(type colorValue sub propValue color)
 
 (type sizeValue sub propValue)
 
-(type sideValue sub propValue)
+(type sideValue sub propValue side)
 
 (type red sub colorValue)
 

@@ -29,3 +29,24 @@ construction Will-Modal
    	 self.m.tense <-- @future
    	 self.expectedVerbForm <-- Base 
    	 self.verbform <-- Finite	
+
+   	  // Modal Inversion
+construction S-With-Modal-Inversion
+    subcase of S-With-Finite-Inversion
+    constructional
+        constituents
+        fin: Modal
+        vp: VP
+        //optional end: QMark  // punctuation   ?
+        constraints
+            //modal.features.expectedVerbForm <--> vp.VerbForm  ????
+           vp.verbform <-- Base 
+    form
+        constraints
+            fin.f meets subj.f 
+            subj.f before vp.f
+            //vp.f meets end
+    meaning  // inherited meaning: EventDescriptor
+        constraints
+            vp.ed <--> self.m 
+			fin.m <--> self.m.e-features

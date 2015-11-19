@@ -67,4 +67,5 @@ construction ModifierPP
 	  constraints
 	     prep.m <--> self.m
 	     np.m <--> self.m.modifiedThing
+	     self.m.temporality <-- @atemporal
 	  			

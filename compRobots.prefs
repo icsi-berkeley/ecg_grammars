@@ -26,7 +26,7 @@ IMPORT_PATHS ::==
 
 
 MORPHOLOGY_PATH ::== 
-	./compRobots/celex.ecgmorph
+	./core/celex.ecgmorph
 	./compRobots/robot.ecgmorph
 ;
 

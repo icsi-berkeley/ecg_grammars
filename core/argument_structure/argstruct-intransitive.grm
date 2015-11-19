@@ -64,7 +64,28 @@ construction CopularVPAdjective
         adj.m.temporality <-- @bounded
         self.adj.m.modifiedThing <--> ed.profiledParticipant  // might be enough for Adj-N agreement 10/27/12
  		self.adj.m.domain <--> ed.profiledParticipant.ontological-category // Adj-N agreement 10/27/12
- 
+
+//the color is red, the color of the box is red, etc.
+construction CopularVPPropertyAdjective
+  subcase of VP
+  constructional  
+    constituents
+      	cop: Verb
+      	adj: PropertyAdjective
+  	constraints
+  		self.features <--> cop.features
+  		cop.argform <-- Copula_Adj 
+	form
+    constraints
+      	cop.f meets adj.f
+  meaning: Stasis 
+    constraints
+    	self.m <--> cop.m
+        self.m.protagonist <--> ed.profiledParticipant
+        self.m.state <--> adj.m
+        adj.m.temporality <-- @bounded
+       // self.adj.m.modifiedThing <--> ed.profiledParticipant
+        self.adj.m.property <--> ed.profiledParticipant.ontological-category
  
  
 construction CopularVPNominal // 2/14/13
@@ -82,6 +103,7 @@ construction CopularVPNominal // 2/14/13
         ri.first <--> ed.profiledParticipant
         ri.second <--> nominal.m   
         ri.second.ontological-category <-- @entity
+ 
  
  construction CopularVPNominalModification // 2/14/13
   subcase of CopularVP
@@ -203,23 +225,3 @@ construction IntransitiveChange
       self.m.spg <--> pp.m
       
       
- // Modal Inversion
- construction S-With-Modal-Inversion
-    subcase of S-With-Finite-Inversion
-    constructional
-        constituents
-        fin: Modal
-        vp: VP
-        //optional end: QMark  // punctuation   ?
-        constraints
-            //modal.features.expectedVerbForm <--> vp.VerbForm  ????
-           vp.verbform <-- Base 
-    form
-        constraints
-            fin.f meets subj.f 
-            subj.f before vp.f
-            //vp.f meets end
-    meaning  // inherited meaning: EventDescriptor
-        constraints
-            vp.ed <--> self.m 
-			fin.m <--> self.m.e-features

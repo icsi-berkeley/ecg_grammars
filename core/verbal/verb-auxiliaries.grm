@@ -1,4 +1,4 @@
-package core
+package auxiliaries
 
 general construction Aux
 	subcase of HasVerbFeatures
@@ -37,24 +37,7 @@ construction BePastSing
 	meaning
 	  constraints
 	    pf <--> self.m
-/*
-construction BeAuxType
-	subcase of BeAux, VerbConjugation, GeneralTypeCxn
-	meaning
-	  constraints
-	    pf <--> self.m
-	    self.m.voice <-- @voice
 
-construction BeAuxType2
-	subcase of BeAuxType
-	form 
-	  constraints
-	    self.f.orth <-- "is"
-	meaning
-	  constraints
-	    pf <--> self.m
-	    self.m.voice <-- @voice
-*/
 general construction AuxPlusVerb  // removed optional subj  
    	subcase of ComplexVerb 
    	constructional 

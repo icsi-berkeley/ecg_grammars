@@ -156,19 +156,21 @@ schema CausalAction // elaborated cause, general effect
 
 /* Unsure if this is final version of causation. */ 
 schema CauseEffect   // Direct Physical Causation
-   subcase of ComplexProcess 
+   subcase of ComplexProcess, GeneralCausation 
    roles
       causalAgent: RD 
       affectedEntity: RD
       causalProcess 
       affectedProcess
-      actionary: @cause
+      actionary//: @cause
    constraints
       causalAgent <--> protagonist // binding to inherited role
       affectedEntity <--> protagonist2 // binding to inherited role
       causalProcess <--> process1 // binding to inherited role
       affectedProcess <--> process2 // binding to inherited role
       causalAgent.ontological-category <-- @entity
+      cause <--> causalProcess
+      effect <--> affectedProcess
       complexKind <-- @causal
       
  schema MotorControl

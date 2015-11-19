@@ -1,4 +1,5 @@
 package utterance
+
 general construction WH-Question  
 	subcase of  Question
 	
@@ -30,25 +31,32 @@ construction SubjWH-Question
         constraints
 	       self.m <--> fin.ed 				
 
-//Testing, Hack (ST)
+/* What is the color of the box?
+construction WH-Property
+	subcase of WH-Question, S-With-Subj
+	constructional
+	  constituents
+	    wh: What-WH-NP
+		cop: BeCopula
+		//subj: PropertyModifierPP
+
+// What color is the box?
 /*
-construction Where-Question
-    subcase of WH-Question, S-With-Subj
-    constructional
-        constituents
-           subj: Where-WH-NP
-    	   fin: VP
-        constraints
-    form
-        constraints
-	       subj.f before fin.f
-    meaning
-    	evokes RefIdentity as ri
-        constraints
-	       self.m <--> fin.ed
-	       subj.m <--> ri.first
-	       ri.first <--> ri.second
-*/
+construction WH-Property2		
+	subcase of WH-Question, S-With-Subj
+	constructional 
+	 constituents
+	   spec: WH-NP
+	   pred: BeCopula
+	   subj: NP
+	meaning
+	  constraints
+	    self.m.eventProcess <--> pred.m
+	    pred.m
+	    pred.m.modifiedThing <--> subj.m
+	    pred.m.modifier <--> spec.m
+	*/   
+	   
 // Construction for "WH"-questions - testing (added from Base or written here, 7/14/14, ST)
 
 general construction WH-NP
