@@ -16,17 +16,6 @@ purple :: ColorType :: self.m.value <-- @purple
 return :: ReturnType :: self.m.actionary <-- @move
 one :: NumberType :: self.m.value <-- "1"
 two :: NumberType :: self.m.value <-- "2"
-0 :: NumberType :: self.m.value <-- "0"
-1 :: NumberType :: self.m.value <-- "1"
-2 :: NumberType :: self.m.value <-- "2"
-3 :: NumberType :: self.m.value <-- "3"
-4 :: NumberType :: self.m.value <-- "4"
-5 :: NumberType :: self.m.value <-- "5"
-6 :: NumberType :: self.m.value <-- "6"
-7 :: NumberType :: self.m.value <-- "7"
-8 :: NumberType :: self.m.value <-- "8"
-9 :: NumberType :: self.m.value <-- "9"
--1 :: NumberType :: self.m.value <-- "-1"
 orange :: ColorType :: self.m.value <-- @orange
 magenta :: ColorType :: self.m.value <-- @magenta
 dash :: SelfMotionType :: self.m.actionary <-- @dash :: self.m.speed <-- ".8"
