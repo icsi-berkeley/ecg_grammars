@@ -636,6 +636,8 @@ DEFS:
 
 (type weight sub object-property scale measure)
 
+(type name sub object-property)
+
 (type pound-weight sub shared weight)
 
 (type pound-price sub shared price)

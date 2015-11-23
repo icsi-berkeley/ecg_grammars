@@ -29,7 +29,10 @@ slowly :: ScalarAdverbType :: self.m.value <-- ".3" :: self.m.property <-- @spee
 brown :: ColorType :: self.m.value <-- @brown
 inch :: UnitType :: self.m.ontological-category <-- @inch
 weight :: PropertyNoun :: self.m.ontological-category <-- @weight
+name :: PropertyNoun :: self.m.ontological-category <-- @name
+price :: PropertyNoun :: self.m.ontological-category <-- @price
 cost :: PropertyNoun :: self.m.ontological-category <-- @price
+size :: PropertyNoun :: self.m.ontological-category <-- @size
 color :: PropertyNoun :: self.m.ontological-category <-- @color
 pound :: UnitType :: self.m.ontological-category <-- @pound-weight :: self.m.property <-- @weight
 pound :: UnitType :: self.m.ontological-category <-- @pound-price :: self.m.property <-- @price
@@ -51,4 +54,3 @@ prevent :: ForceDynamicType :: self.m.fdType <-- @prevent :: self.expectedVerbFo
 cause :: ForceDynamicType :: self.m.fdType <-- @cause :: self.m.actionary <-- @cause :: self.expectedVerbForm <-- Infinitive
 storm :: EventNoun :: self.m.ontological-category <-- @storm
 crisis :: EventNoun :: self.m.ontological-category <-- @crisis
-red :: ScalarAdjectiveType :: self.m.property <-- @weight :: self.m.value <-- ".3"

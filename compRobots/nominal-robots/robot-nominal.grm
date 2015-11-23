@@ -1,5 +1,5 @@
-package location
-import core
+package complexNP
+//import core
 
 general construction ComplexNP
 	subcase of NP
@@ -62,22 +62,7 @@ construction Part-Of-Whole
   		np.m <--> self.pw.whole
   		snp.m.extensions <--> self.pw
 
-construction NP-ModifierPP
-	subcase of NP
-	constructional
-	  constituents
-	    np: NP
-	    modpp: ModifierPP
-	  constraints
-	    self.features <--> np.features
-	form
-	  constraints
-	    np.f meets modpp.f
-	meaning
-	  constraints
-	    np.m.ontological-category <-- @physicalEntity
-	    np.m <--> modpp.m.modifiedThing
-	    self.m <--> np.m
+package location
 
 
 construction LOCATION
