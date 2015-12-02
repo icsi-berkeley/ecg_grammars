@@ -358,7 +358,7 @@ DEFS:
 
 (type discreteAble sub mass)
 
-(type beer sub discreteAble)
+(type beer sub discreteAble artifact)
 
 (type mud sub mass)
 
@@ -681,5 +681,7 @@ DEFS:
 (type storm sub eventTop naturalForce shared)
 
 (type crisis sub eventTop  shared)
+
+(type grasp sub establishhold)
 
 INSTS:

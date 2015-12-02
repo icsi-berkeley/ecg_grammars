@@ -232,3 +232,13 @@ schema ChangeLocation // protagonist changes location wrt a LM
       landmark <--> spg.landmark
       mover.ontological-category <-- @physicalEntity  // hack 10/23/12
 
+
+// Manipulation: "grasp", "pick up", "push on", etc.
+schema Manipulation
+	subcase of CauseEffect // ?
+	roles
+	  instrument
+	  bodypart_of_agent // which bodypart is used for manipulation
+	  manipulated_entity
+	constraints
+	  manipulated_entity <--> protagonist2

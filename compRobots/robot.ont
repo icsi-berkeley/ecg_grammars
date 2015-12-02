@@ -312,4 +312,8 @@ DEFS:
 
 (type indigo sub colorValue)
 
+(type darwin sub robot)
+
+
+
 INSTS:

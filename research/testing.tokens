@@ -54,3 +54,4 @@ prevent :: ForceDynamicType :: self.m.fdType <-- @prevent :: self.expectedVerbFo
 cause :: ForceDynamicType :: self.m.fdType <-- @cause :: self.m.actionary <-- @cause :: self.expectedVerbForm <-- Infinitive
 storm :: EventNoun :: self.m.ontological-category <-- @storm
 crisis :: EventNoun :: self.m.ontological-category <-- @crisis
+grasp :: ManipulationType :: self.m.actionary <-- @grasp

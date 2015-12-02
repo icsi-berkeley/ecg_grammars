@@ -62,6 +62,7 @@ construction CauseEffectType
 	  constraints
 	    self.m.actionary <-- @cause
 
+// "push the box north"
 construction ApplyForceType
 	subcase of CauseEffectType
 	meaning
@@ -69,8 +70,15 @@ construction ApplyForceType
 	  constraints
 	  	 self.fa <--> self.m.causalProcess
 	    self.fa.actedUpon <--> self.m.affectedEntity
-	    
-	    
+
+  
+construction ManipulationType
+	subcase of LexicalVerbType, GeneralTypeCxn
+	meaning: Manipulation 
+	  constraints
+	     self.m.protagonist.ontological-category <-- @agent
+	     self.m.actionary <-- @forceapplication
+
 
 construction CreationType
 	subcase of LexicalVerbType, GeneralTypeCxn
