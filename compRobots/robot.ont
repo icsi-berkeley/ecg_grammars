@@ -14,7 +14,6 @@ DEFS:
 
 (type desk sub physicalEntity artifact)
 
-
 (type desk1 sub desk)
 
 (type john-instance sub person)
@@ -33,9 +32,7 @@ DEFS:
 
 (type robot2 sub robot)
 
-
 //
-
 
 (type joint sub process-kind)
 
@@ -44,7 +41,6 @@ DEFS:
 // Regions
 
 //
-
 
 (type home sub location)
 
@@ -101,8 +97,6 @@ DEFS:
 (type stop sub stage shared)
 
 (type continue sub stage shared)
-
-
 
 // (type inchoativestasis sub stasis)
 
@@ -250,9 +244,7 @@ DEFS:
 
 (type yn-question sub mood)
 
-
 // Tokens
-
 
 (type pencil sub physicalEntity artifact moveable)
 
@@ -314,6 +306,6 @@ DEFS:
 
 (type darwin sub robot)
 
-
+(type position sub object-property  shared)
 
 INSTS:

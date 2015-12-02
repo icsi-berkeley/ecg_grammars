@@ -40,3 +40,5 @@ team :: ProperNPInstance :: self.m.ontological-category <-- @physicalEntity :: s
 jointly :: JointProcessAdverb :: self.m.value <-- @joint
 together :: JointProcessAdverb :: self.m.value <-- @joint
 beer :: ArtifactNoun :: self.m.ontological-category <-- @beer :: self.m.referent <-- @beer
+position :: PropertyNoun :: self.m.ontological-category <-- @position
+
