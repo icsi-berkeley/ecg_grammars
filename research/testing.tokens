@@ -38,7 +38,7 @@ pound :: UnitType :: self.m.ontological-category <-- @pound-weight :: self.m.pro
 pound :: UnitType :: self.m.ontological-category <-- @pound-price :: self.m.property <-- @price
 dollar :: UnitType :: self.m.ontological-category <-- @dollar
 weigh :: MeasureType :: self.m.actionary <-- @weigh_predication :: self.m.dimension <-- @weight
-cost :: MeasureType :: self.m.actionary <-- @cost :: self.m.dimension <-- @price
+cost :: MeasureType :: self.m.actionary <-- @cost_predication :: self.m.dimension <-- @price
 heavy :: ScalarAdjectiveType :: self.m.value <-- ".7" :: self.m.property <-- @weight
 hefty :: ScalarAdjectiveType :: self.m.value <-- ".8" :: self.m.property <-- @weight
 light :: ScalarAdjectiveType :: self.m.value <-- ".3" :: self.m.property <-- @weight

@@ -656,6 +656,8 @@ DEFS:
 
 (type cost sub process shared)
 
+(type cost_predication sub process shared stasis)
+
 (type price sub measure scale)
 
 (type grow sub scalechange)
