@@ -41,4 +41,4 @@ jointly :: JointProcessAdverb :: self.m.value <-- @joint
 together :: JointProcessAdverb :: self.m.value <-- @joint
 beer :: ArtifactNoun :: self.m.ontological-category <-- @beer 
 position :: PropertyNoun :: self.m.ontological-category <-- @position
-
+turn :: SelfMotionType :: self.m.speed <-- ".2" :: self.m.actionary <-- @turn

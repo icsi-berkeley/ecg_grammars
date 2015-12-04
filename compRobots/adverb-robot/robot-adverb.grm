@@ -23,5 +23,4 @@ construction JointProcessAdverb
 	subcase of ProcessAdverb
 	meaning
 	  constraints
-	    self.m.modifiedThing.protagonist.number <-- @plural	
-	
+	    self.m.modifiedThing.protagonist.number <-- @plural

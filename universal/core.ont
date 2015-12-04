@@ -644,6 +644,8 @@ DEFS:
 
 (type dollar sub shared price)
 
+(type weigh_predication sub process shared stasis)
+
 (type weigh sub process  shared measure)
 
 (type weigh_predication sub process  shared measure)
@@ -655,6 +657,8 @@ DEFS:
 (type light sub weightValue  shared)
 
 (type cost sub process shared)
+
+(type cost_predication sub process shared stasis)
 
 (type price sub measure scale)
 

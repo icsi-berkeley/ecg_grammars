@@ -300,6 +300,8 @@ DEFS:
 
 (type amble sub motion)
 
+(type turn sub motion)
+
 (type team-instance sub entity)
 
 (type indigo sub colorValue)
