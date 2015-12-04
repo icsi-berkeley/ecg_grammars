@@ -21,4 +21,6 @@
 @box3 :: $box3_instance
 @box4 :: $box4_instance
 @box4 :: $box4_instance
-@box5 :: $box5_instance@position :: $pos
+@box5 :: $box5_instance
+@position :: $pos
+@location :: $pos

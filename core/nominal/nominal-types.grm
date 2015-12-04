@@ -50,7 +50,6 @@ construction NounType
         self.m.gender <-- @genderValues
         self.m.ontological-category <-- @entity
         self.m.scale <-- @scale
-        self.m.referent <-- @item
         
 //
 construction AbstractNoun
