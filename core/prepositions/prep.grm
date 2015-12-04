@@ -53,6 +53,7 @@ construction TO-Path
    meaning: SPG  
      constraints
         self.m.landmark <--> self.m.goal
+        
 
 construction  INTO-Path // container 11/5/13
    subcase of PathPreposition

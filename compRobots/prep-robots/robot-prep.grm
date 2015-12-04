@@ -1,12 +1,78 @@
 package robots
 import core
+/*
+construction BETWEEN-Path
+	subcase of PathPreposition
+	form
+	   constraints
+	      self.f.orth <-- "between"
+	meaning
+	   evokes InteriorRelation as ir
+	   constraints
+	      self.m.goal <--> ir.profiledArea
+	      self.m.goal.ontological-category <-- @region
+	      self.m.landmark <--> ir.landmark
 
+*/
+construction FROM-Path
+	subcase of PathPreposition
+	form
+	  constraints
+	    self.f.orth <-- "from"
+	meaning: SPG
+	  constraints
+	    self.m.landmark <--> self.m.source
 
-	  	
+/*construction BETWEEN-Locative
+	subcase of LocativePreposition
+	form
+	   constraints
+	      self.f.orth <-- "between"
+	meaning
+	   evokes InteriorRelation as ir
+	   constraints
+	      //self.m.goal <--> ir.profiledArea
+	      //self.m.goal.ontological-category <-- @region
+	      self.m.landmark <--> ir.landmark
+	      self.m.profiledArea <--> ir.profiledArea
+	      self.m.trajector <--> ir.trajector
+*/
+construction TOWARD-Path
+   subcase of PathPreposition
+   form
+      constraints
+         self.f.orth <-- "toward"
+   meaning: SPG  
+     constraints
+        self.m.landmark <--> self.m.goal
+        
+general construction Compound-PrepositionPredecessor
+	subcase of Word
 
+general construction Compound-PrepositionPathPredecessor
+	subcase of Compound-PrepositionPredecessor
+	meaning: SPG
 
-	  
-	  
-	  
-	  
+construction AWAY-PathPredecessor
+	subcase of Compound-PrepositionPathPredecessor
+	form
+      constraints
+         self.f.orth <-- "away"
+
+construction Compound-PrepositionPath
+ 	subcase of PathPreposition
+ 	constructional
+ 	   constituents
+ 	     p1: Compound-PrepositionPathPredecessor
+ 	     p2: PathPreposition
+    form
+       constraints
+         p1.f before p2.f
+    meaning: SPG
+       constraints
+        p1.m.landmark <--> p2.m.landmark
+        p1.m.source <--> p2.m.source
+        p1.m.path <--> p2.m.path
+        p1.m.goal <--> p2.m.goal
+        self.m <--> p2.m  
 	  

@@ -24,3 +24,5 @@
 @box5 :: $box5_instance
 @position :: $pos
 @location :: $pos
+@weigh_predication :: $be
+@cost_predication :: $be
