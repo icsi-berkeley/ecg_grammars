@@ -644,6 +644,8 @@ DEFS:
 
 (type dollar sub shared price)
 
+(type weigh_predication sub process shared stasis)
+
 (type weigh sub process  shared measure)
 
 (type weightValue sub propValue)

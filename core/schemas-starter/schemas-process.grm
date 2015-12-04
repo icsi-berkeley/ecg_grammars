@@ -18,9 +18,24 @@ schema Measure // Interim (ST, 10/14/15)
 	  object: RD
 	  measurement: QuantifiedRD
 	  dimension
+
+schema MeasurePredication
+	subcase of Measure, Stasis
+	roles
+	  object: RD
+	  measurement: QuantifiedRD
+	  dimension
 	constraints
-	  object <--> protagonist
-	  
+	  object <--> protagonist  
+
+schema MeasureProcess
+	subcase of Measure
+	roles
+	  object: RD
+	  measurement: QuantifiedRD
+	  dimension
+	constraints
+	  protagonist.ontological-category <-- @agent // Pretty sure this is correct  
 	
 schema Change
 	subcase of Process

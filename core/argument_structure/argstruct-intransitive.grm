@@ -85,8 +85,7 @@ construction CopularVPPropertyAdjective
         self.m.state <--> adj.m
         adj.m.temporality <-- @bounded
        // self.adj.m.modifiedThing <--> ed.profiledParticipant
-        self.adj.m.property <--> ed.profiledParticipant.ontological-category
- 
+        self.adj.m.property <--> ed.profiledParticipant.ontological-category 
  
 construction CopularVPNominal // 2/14/13
   subcase of CopularVP
@@ -113,10 +112,12 @@ construction CopularVPNominal // 2/14/13
   form
     constraints
       	cop.f meets nominal.f
-  meaning: Stasis
+  meaning: MeasurePredication
    constraints
         self.m.state <--> nominal.m
+        self.m.measurement <--> nominal.m
         self.m.temporality <-- @bounded
+        self.m.dimension <--> nominal.m.property
 
  /*
 Nominal copulas (e.g. "it is a box") could be analyzed using a CopuluarVPNominal cxn
