@@ -1,0 +1,12 @@
+package purchases
+import purchases-testing
+
+
+construction ActiveTransitivePossession
+	subcase of CoreActiveTransitive
+	meaning: PossessionProcess
+	  constraints
+	    v.verbkind <-- PossessionKind
+	    s.a1 <--> self.m.protagonist
+	    s.a2 <--> self.m.possessed
+	
