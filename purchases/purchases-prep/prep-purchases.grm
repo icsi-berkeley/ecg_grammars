@@ -1,14 +1,10 @@
 package purchases
-import starter
+import core
 
 // These are just markers for now, but there might be more complex semantics
 // at play. Right now they're just being used to test semantics of other cxns.
 
-construction FROM-Marker
-	subcase of Preposition
-	form
-	  constraints
-	    self.f.orth <-- "from"
+
 	    
 
 construction FROM-pp

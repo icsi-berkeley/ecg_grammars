@@ -52,6 +52,7 @@ construction ScaleChangeType
 	  constraints
 	    self.m.actionary <-- @scalechange
 	    self.m.state.property <-- @object-property
+	    self.m.state.kind <-- @comparative
 	    self.m.state.direction <-- @comparison
 	    self.m.state.value <-- @scalarValue
 	    //self.m.state.oldValue <-- @propValue

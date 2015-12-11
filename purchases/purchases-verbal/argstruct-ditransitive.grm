@@ -36,7 +36,7 @@ general construction ActiveDitransitive // he Xed Indirect Direct  8/16/13
 
 //this cxn  binds the meaning of "give" to the meaning of the cxn
 
-general construction CentralActiveDitransitiveTransfer   // 8/24/13
+construction CentralActiveDitransitiveTransfer   // 8/24/13
   subcase of ActiveDitransitive
   meaning: ObjectTransfer  // 2/11/13
     constraints
@@ -82,7 +82,7 @@ construction GoodsTransferTO-PP
 
 
 // np1 is optional: "he bought a pizza". "he bought the man a pizza"
-construction MoneyTransferCxn 
+general construction MoneyTransferCxn 
   subcase of ActiveDitransitive
   constructional
     constituents

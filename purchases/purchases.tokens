@@ -5,5 +5,8 @@ buy :: BuyType :: self.m.actionary <-- @buy
 purchase :: BuyType :: self.m.actionary <-- @buy
 indigo :: ColorType :: self.m.value <-- @indigo
 vendor :: NounType :: self.m.ontological-category <-- @vendor
-man :: SentientNoun :: self.m.ontological-category <-- @man :: self.m.gender <-- @male
-john :: ProperNPInstance :: self.m.referent <-- @john
+bob :: ProperNPInstance :: self.m.referent <-- @bob :: self.m.ontological-category <-- @person :: self.m.gender <-- @male
+lose :: LosePossessionType :: self.m.actionary <-- @lose
+receive :: ReceivePossessionType :: self.m.actionary <-- @receive
+own :: PossessionType :: self.m.actionary <-- @own
+money :: ArtifactNoun :: self.m.ontological-category <-- @money

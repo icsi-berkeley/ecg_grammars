@@ -57,6 +57,7 @@ schema Contact // short version
 
 schema Possession  //revised 11/30/12
    roles
+       negated: @boolean
    	   kind:@possessionKind
 	   possessor:RD
 	   possessed:RD

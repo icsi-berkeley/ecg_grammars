@@ -23,9 +23,27 @@ construction BuyType
 	subcase of LexicalVerbType
 	meaning: MoneyTransfer
 	 constraints 
-	   self.m.actionary <-- @take   
+	   self.m.actionary <-- @take  
 	   
+construction PossessionType
+	subcase of LexicalVerbType
+	meaning: PossessionProcess
+	  constraints
+	    self.m.actionary <-- @possess
+	    self.verbkind <-- PossessionKind
+	   
+construction LosePossessionType
+	subcase of PossessionType
+	meaning: LosePossession
+	 constraints 
+	   self.m.actionary <-- @lose   
 
+
+construction ReceivePossessionType
+	subcase of PossessionType
+	meaning: ReceivePossession
+	 constraints 
+	   self.m.actionary <-- @receive 	   
 
 	
 	

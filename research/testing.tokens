@@ -18,7 +18,7 @@ man :: SentientNoun :: self.m.ontological-category <-- @person :: self.m.gender 
 woman :: SentientNoun :: self.m.ontological-category <-- @person :: self.m.gender <-- @female
 big :: ScalarAdjectiveType :: self.m.value <-- ".7" :: self.m.property <-- @size
 small :: ScalarAdjectiveType :: self.m.value <-- ".3" :: self.m.property <-- @size
-john :: ProperNPInstance :: self.m.ontological-category <-- @person :: self.m.referent <-- @john :: self.m.gender <-- @male :: self.m.number <-- @singular
+john :: ProperNPInstance :: self.m.referent <-- @john :: self.m.gender <-- @male :: self.m.ontological-category <-- @person
 push :: ApplyForceType :: self.m.actionary <-- @push_move
 move :: ApplyForceType :: self.m.actionary <-- @push_move
 stop :: StageVerbType :: self.m.actionary <-- @stop :: self.expectedVerbForm <-- PresentParticiple

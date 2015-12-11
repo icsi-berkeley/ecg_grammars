@@ -310,4 +310,6 @@ DEFS:
 
 (type position sub object-property  shared)
 
+(type orientation sub object-property shared)
+
 INSTS:

@@ -22,4 +22,14 @@ DEFS:
 
 (type man sub person)
 
+(type bob sub entity person shared)
+
+(type lose sub possess)
+
+(type receive sub possess)
+
+(type own sub possess  shared)
+
+(type money sub artifact  shared)
+
 INSTS:

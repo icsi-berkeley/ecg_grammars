@@ -3,29 +3,71 @@ package purchases-testing
 schema ObjectTransfer
 	subcase of ComplexProcess, A123
 	roles 
+	 initial: Possession
+	 final: Possession
 	 donor
 	 recipient
 	 theme: RD
 	 actionary: @objecttransfer
-	 process1: Process //: LosePossession
-	 process2: Process //  ReceivePossession
+	 process1: LosePossession
+	 process2: ReceivePossession
 	constraints
 	 //protagonist <--> donor
 	 protagonist.ontological-category <-- @agent
 	 protagonist2.ontological-category <-- @person
+	 process1.donor <--> donor
+	 //process1.recipient <--> recipient
+	 process1.theme <--> theme
+	 //process2.donor <--> donor
+	 process2.recipient <--> recipient
+	 process2.theme <--> theme
 	 //protagonist2 <--> recipient
+	 initial.possessor <--> donor
+	 final.possessor <--> recipient
+	 initial.possessed <--> theme
+	 final.possessed <--> theme
+	 
+
+
+
+schema PossessionProcess
+	subcase of Process
+	roles
+	  initial: Possession
+	  final: Possession
+	  possessed: RD
+	  //extra: Possession
+
 
 
 schema LosePossession
-	subcase of Process
+	subcase of PossessionProcess //, ChangeTest
 	roles 
 	  donor
 	  recipient
 	  theme
+	constraints
+	  initial.negated <-- @no
+	  initial.possessor <--> protagonist
+	  initial.possessed <--> theme
+	  final.possessor <--> protagonist // should this be the case?
+	  final.possessed <--> theme
+	  final.negated <-- @yes
+	  actionary <-- @lose
+	  theme <--> possessed
 
 schema ReceivePossession
-	subcase of Process
+	subcase of PossessionProcess
 	roles
 	  donor
 	  recipient
 	  theme
+	constraints
+	  initial.possessor <--> donor
+	  initial.possessed <--> theme
+	  final.possessor <--> recipient
+	  final.possessed <--> theme
+	  initial.negated <-- @yes
+	  final.negated <-- @no
+	  actionary <-- @receive
+	  theme <--> possessed

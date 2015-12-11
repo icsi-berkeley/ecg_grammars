@@ -78,6 +78,7 @@ construction He
       self.m.ontological-category <-- @person  
       self.m.number <-- @singular
       self.m.gender <-- @male  
+      self.m.referent <-- @antecedent
             
 construction I-Pronoun
    subcase of Pronoun, Singular, FirstPerson
@@ -106,6 +107,22 @@ construction It
       self.m.ontological-category <-- @physicalEntity  
       self.m.number <-- @singular
       self.m.gender <-- @neuter
+      self.m.referent <-- @antecedent
+
+
+construction They-Pronoun
+   subcase of Pronoun, Plural, ThirdPerson
+   constructional
+     constraints
+       self.features.case <-- "nom"
+   form
+      constraints
+         self.f.orth <-- "they"
+   meaning
+    constraints
+      self.m.ontological-category <-- @physicalEntity  
+      self.m.number <-- @plural
+      //self.m.gender <-- @neuter
       self.m.referent <-- @antecedent
  
 construction One-Anaphora
