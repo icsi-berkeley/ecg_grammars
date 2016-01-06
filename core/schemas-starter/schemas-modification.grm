@@ -10,11 +10,11 @@ schema ScalarAdverbModifier
 	 
 
 schema ComparativeAdjModifier
-	subcase of ScalarModifier
+	subcase of ScalarModifier, ChangedScale // testing ST (1/4/16)
 	roles
 	  base: RD
 	constraints
-	  base.ontological-category <--> domain	
+	  //base.ontological-category <--> domain	
 	  
 	  
 
