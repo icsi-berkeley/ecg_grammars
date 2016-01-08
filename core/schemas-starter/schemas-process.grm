@@ -16,14 +16,14 @@ schema Measure // Interim (ST, 10/14/15)
 	subcase of Process
 	roles
 	  object: RD
-	  measurement: QuantifiedRD
+	  measurement: RD //: QuantifiedRD
 	  dimension
 
 schema MeasurePredication
 	subcase of Measure, Stasis
 	roles
 	  object: RD
-	  measurement: QuantifiedRD
+	  measurement: RD //: QuantifiedRD
 	  dimension
 	constraints
 	  object <--> protagonist  
@@ -32,7 +32,7 @@ schema MeasureProcess
 	subcase of Measure
 	roles
 	  object: RD
-	  measurement: QuantifiedRD
+	  measurement: RD //: QuantifiedRD
 	  dimension
 	constraints
 	  protagonist.ontological-category <-- @agent // Pretty sure this is correct  
@@ -40,9 +40,10 @@ schema MeasureProcess
 schema Change
 	subcase of Process
 	roles
-	  state: ChangedState
+	  state: Modification //: ChangedState
 	  actionary: @statechange
 	  temporality: @bounded
+	  oldValue //: @propValue
 	constraints
 	  actionary <-- @statechange
 	  
@@ -50,7 +51,7 @@ schema Change
 schema StateChange
 	subcase of Change
 	roles
-	  state: ChangedState
+	  state //: ChangedState
 	  actionary: @statechange
 	  temporality: @bounded
 	
@@ -58,9 +59,10 @@ schema StateChange
 schema ScaleChange
 	subcase of Change
 	roles
-	  state: ChangedScale
+	  state: ScalarModifier //: ChangedScale
 	  actionary: @scalechange
 	  temporality: @bounded
+	  direction
 
 // Creation
 schema Creation

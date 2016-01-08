@@ -91,9 +91,9 @@ construction Which-Specifer
    form
       constraints
          self.f.orth <-- "which"
-   meaning: QuestionRD
+   meaning: RD
       constraints
- 		self.m.specificWh <-- @which
+ 		self.m.extras.specificWh <-- @which
  		 			
 construction What-WH-NP
    subcase of WH-NP, Word

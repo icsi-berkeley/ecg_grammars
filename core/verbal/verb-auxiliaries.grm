@@ -70,8 +70,23 @@ construction ProgressiveAuxPlusVerb  // was moving, has been moving
 	meaning
 		constraints
 			aux.m.progressive <-- @yes
-			
-			
+
+construction PassiveAuxPlusVerb
+	subcase of AuxPlusVerb
+	constructional
+	  constituents
+	    aux: BeAux
+	    main: VerbChunk
+	  constraints
+	    main.verbform <-- PastParticiple
+	    self.voice <-- Passive
+	meaning
+	  constraints
+	     aux.m.voice <-- @passive
+	     self.m.p-features.voice <-- @passive
+	    
+	    
+	    			
 general construction S-With-Aux-Inversion  
     subcase of YN-Question   
 	constructional

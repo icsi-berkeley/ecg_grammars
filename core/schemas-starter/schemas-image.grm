@@ -27,4 +27,6 @@ schema HeadingSchema
      landmark: RD
 
 
-					
+schema ByLandmark
+	roles
+	  landmark: RD				

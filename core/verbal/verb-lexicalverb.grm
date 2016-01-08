@@ -39,9 +39,11 @@ construction ChangeType
 	meaning: Change
 	  constraints
 	    self.m.actionary <-- @statechange
-	    self.m.state.property <-- @object-property
+	    //self.m.state.property <-- @object-property
 	    //self.m.state.oldValue <-- @propValue
-	    
+	
+	
+	// ST Testing (1/4/16)    
 // Scale Change Type: grow, increase, etc.
 construction ScaleChangeType
 	subcase of LexicalVerbType
@@ -53,7 +55,7 @@ construction ScaleChangeType
 	    self.m.actionary <-- @scalechange
 	    self.m.state.property <-- @object-property
 	    self.m.state.kind <-- @comparative
-	    self.m.state.direction <-- @comparison
+	    self.m.direction <-- @comparison
 	    self.m.state.value <-- @scalarValue
 	    //self.m.state.oldValue <-- @propValue
 

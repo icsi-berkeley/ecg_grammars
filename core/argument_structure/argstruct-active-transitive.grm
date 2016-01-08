@@ -1,0 +1,82 @@
+package active-transitives
+import transitives
+
+//GENERAL TRANSITIVE CONSTRUCTIONS
+general construction ActiveTransitive  // 5/14/13
+  subcase of ArgumentStructure
+  constructional
+    constituents
+      np: NP [1.0, .9]   // probabilities, check this !!
+    constraints
+      v.argform <-- Transitive
+      v.voice <-- NotPassive  // 2/1/13
+  form
+    constraints 
+      v.f before np.f
+  meaning: Process  //  5/14/13
+     evokes A123 as s //5/14/13 *****************
+    constraints
+      s.a1 <--> ed.profiledParticipant	//2/20/13 
+      s.a2 <--> np.m 
+	  v.m.p-features.voice <-- @active // 2/1/13 
+
+   
+
+general construction CoreActiveTransitive  // 8/21/13
+	subcase of ActiveTransitive
+	meaning
+		constraints
+		self.m <--> v.m
+		
+
+construction ActiveTransitivePerception  // 8/21/13 he saw the block
+	subcase of CoreActiveTransitive, TransitivePerception
+
+
+// Should be more general: "transitive measure?"
+// x costs {}, x weighs {}, etc.
+// A separate construction is necessary for: "he weighed the box"
+// No Passive version of this construction: "2 pounds was weighed by the box" doesn't make sense
+// But a passive version is necessary for agentive-measurement.
+construction ActiveTransitiveMeasure  // Interim (ST, 10/14/15)
+	subcase of CoreActiveTransitive
+	constructional 
+	  constituents
+	    np: UnitsNP [1.0, .9]
+	meaning: Measure
+	  constraints
+		//self.m <--> v.m
+		s.a1 <--> self.m.object	
+		np.m <--> self.m.measurement
+		self.m.dimension <--> self.m.measurement.extras.quantity.property
+		
+// he entered the room
+construction ActiveTransitiveChangeLocation 
+	subcase of CoreActiveTransitive, TransitiveChangeLocation
+
+
+// "he painted the box blue", "he made the box big"
+construction ActiveTransitiveChangeProperty
+	subcase of TransitiveChangeProperty, ActiveTransitive
+
+
+/** Added from dropbox "robots" by Sean Trott, 2/4/15. */
+general construction ActiveTrans_CauseChangeLocation 
+  subcase of ActiveTransitive, TransitiveCauseEffect
+
+
+// he pushed the block into the room		
+construction ActiveTrans_CauseChangeLocation_causeMotion  
+  subcase of ActiveTrans_CauseChangeLocation 
+	meaning 
+    constraints
+		self.m <--> v.m	
+
+
+// "he created the box"
+construction ActiveTransitiveCreation
+	subcase of CoreActiveTransitive, TransitiveCreation
+
+
+     
+

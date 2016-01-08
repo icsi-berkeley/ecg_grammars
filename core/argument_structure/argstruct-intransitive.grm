@@ -117,7 +117,7 @@ construction CopularVPNominal // 2/14/13
         self.m.state <--> nominal.m
         self.m.measurement <--> nominal.m
         self.m.temporality <-- @bounded
-        self.m.dimension <--> nominal.m.property
+        self.m.dimension <--> nominal.m.extras.quantity.property
 
  /*
 Nominal copulas (e.g. "it is a box") could be analyzed using a CopuluarVPNominal cxn

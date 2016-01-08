@@ -157,13 +157,13 @@ construction QuantityNP
   form
     constraints
       q.f before k.f
-  meaning: QuantifiedRD
+  meaning: RD
     constraints
       self.m <--> k.m
       //self.m.number <--> q.m.number
-      self.m.amount <--> q.m
+      self.m.extras.quantity.amount <--> q.m
       self.m.givenness <-- @uniquelyIdentifiable
-      self.m.units <--> self.m.ontological-category
+      self.m.extras.quantity.units <--> self.m.ontological-category
 
 
 

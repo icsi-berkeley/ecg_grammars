@@ -10,7 +10,7 @@ schema ScalarAdverbModifier
 	 
 
 schema ComparativeAdjModifier
-	subcase of ScalarModifier, ChangedScale // testing ST (1/4/16)
+	subcase of ScalarModifier
 	roles
 	  base: RD
 	constraints

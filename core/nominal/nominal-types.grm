@@ -95,9 +95,9 @@ construction SentientNoun
 // Lexicalized events: "storm", etc.
 construction EventNoun
 	subcase of NounType
-	meaning: EventRD
+	meaning: RD
 	  constraints
 	    self.m.ontological-category <-- @eventTop
 	    self.m.scale <-- @size
-	    self.m.description.eventForm <-- @lexical
+	    self.m.extras.event.eventForm <-- @lexical
 		        

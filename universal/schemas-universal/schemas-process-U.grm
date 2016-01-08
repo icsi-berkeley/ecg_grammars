@@ -10,13 +10,12 @@ schema TemporalStage
 	  
 	  
 schema Process 
-	subcase of TemporalStage
 	roles
     	protagonist: RD 
       	actionary: @process	
       	p-features: ProcessFeatures 
       	ed:EventDescriptor 		
-      	//temporal: TemporalStage
+
 
 schema ProcessFeatures // some values are set by Aux cxns
 	roles

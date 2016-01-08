@@ -69,3 +69,19 @@ construction ModifierPP
 	     np.m <--> self.m.modifiedThing
 	     self.m.temporality <-- @atemporal
 	  			
+
+	  			
+// ST (1/4/16, added from Base)
+construction ByAgentPhrase
+	subcase of PP
+	constructional
+	  constituents
+	    prep: BY-Agent
+	    np: NP
+	form
+	  constraints
+	    prep.f meets np.f
+	meaning: ByLandmark
+	  constraints
+	    np.m <--> self.m.landmark
+	    
