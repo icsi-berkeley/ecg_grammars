@@ -1,4 +1,4 @@
-package core
+package adjective-negation
 
 import core-modification
 
@@ -6,7 +6,7 @@ construction NegatedAdjective
    subcase of ComplexAdjective
    constructional 
     constituents
-          first: Not-NP 
+          first: Not-event
     	  second: Adjective 
    form 
      constraints

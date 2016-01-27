@@ -53,57 +53,60 @@ general construction YN-Question
 
 general construction S-With-Finite-Inversion  
 	subcase of S-With-Subj, YN-Question
-  		   
+
+
+
+general construction S-With-Copula-Inversion
+	 subcase of S-With-Finite-Inversion
+	 constructional
+       constituents
+       	 optional neg: Not-event
+	    fin: BeCopula
+	 form
+	  constraints
+	    fin.f meets subj.f
+	    subj.f before neg.f
+	meaning
+	  constraints
+	    fin.m.actionary <-- @be2
+	    fin.m.p-features <--> neg.m // Testing, 1/12/16 (ST)
+	   	subj.m <--> self.m.profiledParticipant  // from S-With-Subj
+        fin.m.protagonist <--> subj.m
+        self.m.eventProcess <--> fin.m
+	
 construction  S-With-Copula-Inversion-PP //special case
-    subcase of S-With-Finite-Inversion
+    subcase of S-With-Copula-Inversion
     constructional
-        constituents
-    	   fin: BeCopula
-    	   pp: Loc-PP 
-        constraints
-            
+       constituents
+    	  pp: Loc-PP   
     form
-        constraints
-            fin.f meets subj.f 
-            subj.f before pp.f
+      constraints
+        subj.f before pp.f
     meaning
-        constraints
-        	fin.m.actionary <-- @be2
-        	subj.m <--> self.m.profiledParticipant  // from S-With-Subj
-            fin.m.protagonist <--> subj.m
+      constraints
             pp.m.trajector <--> subj.m
-            self.m.eventProcess <--> fin.m
-            self.fin.m.state <--> pp.m
+            fin.m.state <--> pp.m
             pp.m.temporality <-- @bounded
             
 construction S-With-Copula-Inversion-Adj // tested 10/29/12
-    subcase of S-With-Finite-Inversion
+    subcase of S-With-Copula-Inversion
     constructional
         constituents
-    	   fin: BeCopula
     	   adj: Adjective 
-    	   //optional end: QMark  // punctuation   ?
-        constraints
-            //fin.features.expectedVerbForm <--> vp.features.verbform 
     form
         constraints
-            fin.f meets subj.f 
             subj.f before adj.f
     meaning
         constraints
-    		self.fin.m.actionary <-- @be2
-        	self.fin.m.protagonist <--> self.m.profiledParticipant
         	self.adj.m.modifiedThing <--> self.m.profiledParticipant
         	self.adj.m.domain <--> self.m.profiledParticipant.ontological-category
 			self.fin.m.state <--> adj.m
-			self.m.eventProcess <--> fin.m
 			adj.m.temporality <-- @bounded
 	
 construction S-With-Copula-Inversion-Nominal // tested 10/29/12
-    subcase of S-With-Finite-Inversion
+    subcase of S-With-Copula-Inversion
     constructional
         constituents
-    	   fin: BeCopula
     	   nominal: NP 
     	   //optional end: QMark  // punctuation   ?
         constraints
@@ -118,9 +121,6 @@ construction S-With-Copula-Inversion-Nominal // tested 10/29/12
             fin.m.state <--> ri
         	ri.first <--> self.m.profiledParticipant
         	ri.second <--> nominal.m   
-    		self.fin.m.actionary <-- @be2
-        	self.fin.m.protagonist <--> self.m.profiledParticipant
-			self.m.eventProcess <--> fin.m
 				
 // Simple imperative, testing
 general construction Imperative

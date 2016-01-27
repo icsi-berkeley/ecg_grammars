@@ -8,7 +8,7 @@ walk    :: SelfMotionType  :: self.m.actionary <-- @walk :: self.m.speed <-- ".3
 run     :: SelfMotionType  :: self.m.actionary <-- @run  :: self.m.speed <-- ".7" :: self.argform <-- NotTransitive
 box     :: ContainerNoun  :: self.m.ontological-category <-- @box
 room    :: ArtifactNoun  :: self.m.ontological-category <-- @room
-be      :: BeCopula  :: self.m.actionary <-- @be
+be      :: BeCopulaType  :: self.m.actionary <-- @be
 see     :: PerceptionType :: self.m.actionary <-- @see
 sprint  :: SelfMotionType  :: self.m.actionary <-- @run  :: self.m.speed <-- ".8" :: self.argform <-- NotTransitive
 jog  :: SelfMotionType  :: self.m.actionary <-- @run  :: self.m.speed <-- ".6" :: self.argform <-- NotTransitive
@@ -27,18 +27,18 @@ continue :: StageVerbType :: self.m.actionary <-- @continue
 quickly :: ScalarAdverbType :: self.m.value <-- ".7" :: self.m.property <-- @speed
 slowly :: ScalarAdverbType :: self.m.value <-- ".3" :: self.m.property <-- @speed
 brown :: ColorType :: self.m.value <-- @brown
-inch :: UnitType :: self.m.ontological-category <-- @inch
+inch :: UnitType :: self.m.ontological-category <-- @inch :: self.m.extras.quantity.property <-- @distance
 weight :: PropertyNoun :: self.m.ontological-category <-- @weight
 name :: PropertyNoun :: self.m.ontological-category <-- @name
 price :: PropertyNoun :: self.m.ontological-category <-- @price
 cost :: PropertyNoun :: self.m.ontological-category <-- @price
 size :: PropertyNoun :: self.m.ontological-category <-- @size
 color :: PropertyNoun :: self.m.ontological-category <-- @color
-pound :: UnitType :: self.m.ontological-category <-- @pound-weight :: self.m.property <-- @weight
-pound :: UnitType :: self.m.ontological-category <-- @pound-price :: self.m.property <-- @price
+pound :: UnitType :: self.m.ontological-category <-- @pound-weight :: self.m.extras.quantity.property <-- @weight
+pound :: UnitType :: self.m.ontological-category <-- @pound-price :: self.m.extras.quantity.property <-- @price
 dollar :: UnitType :: self.m.ontological-category <-- @dollar
-weigh :: MeasureType :: self.m.actionary <-- @weigh_predication :: self.m.dimension <-- @weight
-cost :: MeasureType :: self.m.actionary <-- @cost_predication :: self.m.dimension <-- @price
+weigh :: MeasurePredicationType :: self.m.actionary <-- @weigh_predication :: self.m.dimension <-- @weight
+cost :: MeasurePredicationType :: self.m.actionary <-- @cost_predication :: self.m.dimension <-- @price
 heavy :: ScalarAdjectiveType :: self.m.value <-- ".7" :: self.m.property <-- @weight
 hefty :: ScalarAdjectiveType :: self.m.value <-- ".8" :: self.m.property <-- @weight
 light :: ScalarAdjectiveType :: self.m.value <-- ".3" :: self.m.property <-- @weight

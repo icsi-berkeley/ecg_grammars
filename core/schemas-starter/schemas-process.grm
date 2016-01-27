@@ -20,14 +20,18 @@ schema Measure // Interim (ST, 10/14/15)
 	  dimension
 
 schema MeasurePredication
-	subcase of Measure, Stasis
+	subcase of Measure //, Stasis
 	roles
 	  object: RD
 	  measurement: RD //: QuantifiedRD
 	  dimension
+	  state
 	constraints
-	  object <--> protagonist  
+	  object <--> protagonist
+	  state <--> measurement 
+	  //measurement.ontological-category <-- @units 
 
+// "he weighed the box"
 schema MeasureProcess
 	subcase of Measure
 	roles

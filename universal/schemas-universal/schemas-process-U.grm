@@ -142,7 +142,7 @@ schema CausedProcess // elaborated effect, general cause
    	affectedEntity: RD  // physical entity
     affectedProcess: Process
     //causedProcessType:
-     cause: EventRD // Or EventRD? Or add tighter constraints in cxns?
+     cause: RD // Or EventRD? Or add tighter constraints in cxns?
 	//effect – could define as EventRD and bind aff Entity and process roles
    constraints
       affectedProcess <--> embeddedProcess

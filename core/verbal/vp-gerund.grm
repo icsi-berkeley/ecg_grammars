@@ -8,12 +8,12 @@ general construction Gerund
 	 constraints
 	   vp.verbform <-- PresentParticiple
 	   vp.features.number <-- "singular"
-	meaning: EventRD
+	meaning: RD
 	  constraints
-	    self.m.description <--> vp.m.ed
+	    self.m.extras.event <--> vp.m.ed
 	    self.m.ontological-category <-- @eventTop
 	    self.m.number <-- @singular
-	    self.m.description.eventForm <-- @gerund
+	    self.m.extras.event.eventForm <-- @gerund
         
  construction BareGerund
  	subcase of Gerund
@@ -28,4 +28,4 @@ general construction Gerund
        s.f before vp.f
    meaning
      constraints
-       self.m.description.profiledParticipant <--> s.possessor
+       self.m.extras.event.profiledParticipant <--> s.possessor

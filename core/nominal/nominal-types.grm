@@ -35,10 +35,10 @@ construction PropertyNoun
  // e.g. "what color is box1?"
 construction UnitType
 	subcase of NounType
-	meaning: QuantifiedRD
+	meaning: RD
 	  constraints
 	     self.m.ontological-category <-- @measure
-	     self.m.property <-- @measure
+	     self.m.extras.quantity.property <-- @measure
 	     
 	        
 // "Type" constructions

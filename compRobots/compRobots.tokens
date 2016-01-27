@@ -12,7 +12,9 @@ box2 :: ProperNPInstance :: self.m.referent <-- @box2 :: self.m.ontological-cate
 box3 :: ProperNPInstance :: self.m.referent <-- @box3 :: self.m.ontological-category <-- @box
 box4 :: ProperNPInstance :: self.m.referent <-- @box4 :: self.m.ontological-category <-- @box
 box5 :: ProperNPInstance :: self.m.referent <-- @box5 :: self.m.ontological-category <-- @box
+box6 :: ProperNPInstance :: self.m.referent <-- @box6 :: self.m.ontological-category <-- @box
 green :: ColorType :: self.m.value <-- @green
+black :: ColorType :: self.m.value <-- @black
 purple :: ColorType :: self.m.value <-- @purple
 return :: ReturnType :: self.m.actionary <-- @move
 one :: NumberType :: self.m.value <-- "1"
@@ -24,7 +26,6 @@ north :: SideAdj-Type :: self.m.value <-- @northSide
 south :: SideAdj-Type :: self.m.value <-- @southSide
 east :: SideAdj-Type :: self.m.value <-- @eastSide
 west :: SideAdj-Type :: self.m.value <-- @westSide
-inch :: NounType :: self.m.ontological-category <-- @inch
 dart :: SelfMotionType :: self.m.actionary <-- @dart :: self.m.speed <-- ".7"
 scamper :: SelfMotionType :: self.m.actionary <-- @scamper
 gallop :: SelfMotionType :: self.m.actionary <-- @gallop :: self.m.speed <-- ".7"

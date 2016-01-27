@@ -38,17 +38,5 @@ schema A123 //  evoked by ArgumentStructure cxn
 		a3		
 
 
-// CopularVP constructions
- general construction CopularVP
-  subcase of VP
-  constructional  
-    constituents
-      	cop: Verb
-    constraints
-		cop.argform <-- Copula 
-  		self.features <--> cop.features
-    meaning: Stasis
-       constraints
-    	self.m <--> cop.m
-        self.m.protagonist <--> ed.profiledParticipant
+
 

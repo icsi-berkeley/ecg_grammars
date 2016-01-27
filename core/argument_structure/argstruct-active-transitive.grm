@@ -1,6 +1,7 @@
 package active-transitives
 import transitives
 
+
 //GENERAL TRANSITIVE CONSTRUCTIONS
 general construction ActiveTransitive  // 5/14/13
   subcase of ArgumentStructure
@@ -42,13 +43,14 @@ construction ActiveTransitiveMeasure  // Interim (ST, 10/14/15)
 	subcase of CoreActiveTransitive
 	constructional 
 	  constituents
-	    np: UnitsNP [1.0, .9]
-	meaning: Measure
+	    np: UnitsNP //QuantityNP [1.0, .9]
+	meaning: MeasurePredication
 	  constraints
 		//self.m <--> v.m
 		s.a1 <--> self.m.object	
 		np.m <--> self.m.measurement
 		self.m.dimension <--> self.m.measurement.extras.quantity.property
+		//self.m.measurement.extras.quantity.units <-- @units
 		
 // he entered the room
 construction ActiveTransitiveChangeLocation 
@@ -67,10 +69,7 @@ general construction ActiveTrans_CauseChangeLocation
 
 // he pushed the block into the room		
 construction ActiveTrans_CauseChangeLocation_causeMotion  
-  subcase of ActiveTrans_CauseChangeLocation 
-	meaning 
-    constraints
-		self.m <--> v.m	
+  subcase of CoreActiveTransitive, Trans_CauseChangeLocation_causeMotion
 
 
 // "he created the box"

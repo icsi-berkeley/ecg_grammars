@@ -620,6 +620,8 @@ DEFS:
 
 (type should sub modality)
 
+(type will sub modality)
+
 ///
 
 (type wh-word)
@@ -638,11 +640,15 @@ DEFS:
 
 (type name sub object-property)
 
-(type pound-weight sub shared weight)
+(type weight-units sub units weight)//nontemporal-units weight)
 
-(type pound-price sub shared price)
+(type price-units sub units price) //nontemporal-units price)
 
-(type dollar sub shared price)
+(type pound-weight sub shared weight-units)
+
+(type pound-price sub shared price-units)
+
+(type dollar sub shared units price-units)
 
 (type weigh_predication sub process shared stasis)
 

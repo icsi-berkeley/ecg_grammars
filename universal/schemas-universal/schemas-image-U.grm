@@ -6,6 +6,7 @@ schema TrajectorLandmark
 		landmark: RD
 		profiledArea: RD //  defined with respect to Landmark  
 		temporality: @temporality // for expressing @atemporal/@bounded relations
+		negated: @boolean
 	constraints
 		trajector.ontological-category <-- @physicalEntity 
 		landmark.ontological-category <-- @region  // added for 2/22/14 m4 test  

@@ -22,9 +22,9 @@ construction StageVerbType
 
 
 // Used for measure/dimension: "the box weighs 5 pounds"
-construction MeasureType
+construction MeasurePredicationType
 	subcase of LexicalVerbType
-	meaning: Measure
+	meaning: MeasurePredication
 	  constraints
 	    self.m.actionary <-- @process
 	    self.m.dimension <-- @measure

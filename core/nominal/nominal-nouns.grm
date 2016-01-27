@@ -40,14 +40,14 @@ general construction ProperNounNP
 general construction UnitsNP // stands alone, no Specifier  11/24/12
   subcase of NP
   constructional
-    	constituents
-	  		num: Quantifier	//
-      		k: Noun 
-    	constraints
-      		self.features <--> k.features
+	constituents
+  		num: Quantifier	//
+  		k: Noun 
+	constraints
+  		self.features <--> k.features
   form
-    	constraints
-      		num.f meets k.f
+	constraints
+  		num.f meets k.f
   meaning: RD
     constraints
     	self.m <--> k.m
@@ -58,22 +58,25 @@ general construction UnitsNP // stands alone, no Specifier  11/24/12
 		
  construction SpatialQuantityNP // stands alone, no Specifier
   subcase of UnitsNP
-  meaning: QuantifiedSpatialRD
+  meaning: RD
     constraints
     	k.m.ontological-category <-- @spatial-units // only difference *** generalize 11/24/12  
 	    
 
+
  construction WeightQuantityNP // stands alone, no Specifier
   subcase of UnitsNP
-  meaning: QuantifiedRD
+  meaning: RD
     constraints
     	k.m.ontological-category <-- @weight
 
  construction PriceQuantityNP // stands alone, no Specifier
   subcase of UnitsNP
-  meaning: QuantifiedRD
+  meaning: RD
     constraints
     	k.m.ontological-category <-- @price
+
+
 
 general construction Directional
   meaning: HeadingSchema	    

@@ -1,7 +1,6 @@
 package passive-transitives
 import auxiliaries
-// package passives
-// passives
+import transitives
 
 
 general construction PassiveTransitive // 5/14/13

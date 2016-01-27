@@ -94,12 +94,18 @@ general construction Trans_CauseChangeLocation
        	self.m.affectedProcess <--> mp
        	self.m.affectedEntity <--> mp.mover 
     	self.m.affectedEntity <--> mp.spg.trajector
-    	//self.m.actionary <-- @push_move   // specific to robot world of "pushing" as cause effect "Move Box1 North"
     	mp.spg <--> pp.m 
    		mp.spg.distance <--> dis.m 
 	    mp.heading <--> dir.m.tag 
-	    //self.m.affectedEntity.ontological-category <-- @moveable	
-	    
+	    self.m.affectedEntity.ontological-category <-- @physicalEntity 
+	   // the above line was commented because it constrains @antecedent
+	   // this is solved by having pronouns have no ont-cat (see pronouns)
+
+general construction Trans_CauseChangeLocation_causeMotion
+	subcase of Trans_CauseChangeLocation
+	meaning 
+	 constraints
+	   self.m <--> v.m	    
 	    
 // "he created the box"
 // "the box was created by John"

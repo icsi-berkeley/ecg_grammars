@@ -22,69 +22,73 @@ construction BareIntransitive  //  e.g. He moved
 */
 //the binding "self.m <--> v.m" also serves to link self.m protagonist to the verb protagonist
 
+// General cxn for copulas, others (adjective, locative, etc.) inherit from this.
+general construction CopularVP
+	subcase of VP
+	constructional
+	  constituents 
+	    cop: Verb
+	  constraints
+	    self.features <--> cop.features
+	    cop.argform <-- Copula
+	meaning: Stasis
+	  constraints
+	     self.m <--> cop.m
+	     self.m.protagonist <--> ed.profiledParticipant
+	     
+
+
 // Used to analyze, e.g. "the block is in the room" 
 construction CopularVPLocative
-  subcase of VP
+  subcase of CopularVP
   constructional
     constituents
-      	cop: Verb
        	pred: Loc-PP
   	constraints
-  		self.features <--> cop.features
   		cop.argform <-- Copula_Loc 
   form
     constraints
       cop.f before pred.f  
   meaning: Stasis
     constraints
-    	self.m <--> cop.m
         ed.profiledParticipant <--> pred.m.trajector 
-        self.m.protagonist <--> ed.profiledParticipant
-        pred.m.temporality <-- @bounded
+        self.m.p-features.negated <--> pred.m.negated
         self.m.state <--> pred.m 
+        pred.m.temporality <-- @bounded
       
 //Used to analyze, e.g., "the block is red"
 construction CopularVPAdjective  
-  subcase of VP
+  subcase of CopularVP
   constructional  
     constituents
-      	cop: Verb
       	adj: Adjective
   	constraints
-  		self.features <--> cop.features
   		cop.argform <-- Copula_Adj 
-	form
+  form
     constraints
       	cop.f meets adj.f
   meaning: Stasis 
     constraints
-    	self.m <--> cop.m
-        self.m.protagonist <--> ed.profiledParticipant
         self.m.state <--> adj.m
-        adj.m.temporality <-- @bounded
+        self.m.p-features.negated <--> adj.m.negated
         self.adj.m.modifiedThing <--> ed.profiledParticipant  // might be enough for Adj-N agreement 10/27/12
  		self.adj.m.domain <--> ed.profiledParticipant.ontological-category // Adj-N agreement 10/27/12
+		adj.m.temporality <-- @bounded
 
 //the color is red, the color of the box is red, etc.
 construction CopularVPPropertyAdjective
-  subcase of VP
+  subcase of CopularVP
   constructional  
     constituents
-      	cop: Verb
       	adj: PropertyAdjective
   	constraints
-  		self.features <--> cop.features
   		cop.argform <-- Copula_Adj 
 	form
     constraints
       	cop.f meets adj.f
   meaning: Stasis 
     constraints
-    	self.m <--> cop.m
-        self.m.protagonist <--> ed.profiledParticipant
         self.m.state <--> adj.m
-        adj.m.temporality <-- @bounded
-       // self.adj.m.modifiedThing <--> ed.profiledParticipant
         self.adj.m.property <--> ed.profiledParticipant.ontological-category 
  
 construction CopularVPNominal // 2/14/13
@@ -98,12 +102,13 @@ construction CopularVPNominal // 2/14/13
   meaning: Stasis
     evokes RefIdentity as ri
    constraints
+        self.verbform <--> cop.verbform
         self.m.state <--> ri
         ri.first <--> ed.profiledParticipant
         ri.second <--> nominal.m   
         ri.second.ontological-category <-- @entity
  
- 
+ // TO DO...this was changed earlier to be measurepredication
  construction CopularVPNominalModification // 2/14/13
   subcase of CopularVP
   constructional  
@@ -112,12 +117,12 @@ construction CopularVPNominal // 2/14/13
   form
     constraints
       	cop.f meets nominal.f
-  meaning: MeasurePredication
+  meaning: Stasis   //MeasurePredication
    constraints
         self.m.state <--> nominal.m
-        self.m.measurement <--> nominal.m
+        //self.m.measurement <--> nominal.m
         self.m.temporality <-- @bounded
-        self.m.dimension <--> nominal.m.extras.quantity.property
+        //self.m.dimension <--> nominal.m.extras.quantity.property
 
  /*
 Nominal copulas (e.g. "it is a box") could be analyzed using a CopuluarVPNominal cxn

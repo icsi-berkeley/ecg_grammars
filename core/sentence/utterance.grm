@@ -81,9 +81,9 @@ construction What-Specifier
    form
       constraints
          self.f.orth <-- "what"
-   meaning: QuestionRD
+   meaning: RD
       constraints
- 		self.m.specificWh <-- @what
+ 		self.m.extras.specificWh <-- @what
 
 
 construction Which-Specifer
@@ -100,18 +100,18 @@ construction What-WH-NP
    form
       constraints
          self.f.orth <-- "what"
-   meaning: QuestionRD
+   meaning: RD
       constraints
- 		self.m.specificWh <-- @what
+ 		self.m.extras.specificWh <-- @what
  		
 construction Where-WH-NP
    subcase of WH-NP, Word
    form
       constraints
          self.f.orth <-- "where"
-   meaning: QuestionRD
+   meaning: RD
       constraints
- 		self.m.specificWh <-- @where 
+ 		self.m.extras.specificWh <-- @where 
  		
  		
  // Declarative

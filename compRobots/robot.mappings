@@ -26,3 +26,4 @@
 @location :: $pos
 @weigh_predication :: $be
 @cost_predication :: $be
+@be2 :: $be

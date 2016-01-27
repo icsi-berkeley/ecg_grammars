@@ -29,6 +29,7 @@ construction Will-Modal
    	 self.m.tense <-- @future
    	 self.expectedVerbForm <-- Base 
    	 self.verbform <-- Finite	
+   	 self.m.modality <-- @will
 
    	  // Modal Inversion
 construction S-With-Modal-Inversion
@@ -50,3 +51,41 @@ construction S-With-Modal-Inversion
         constraints
             vp.ed <--> self.m 
 			fin.m <--> self.m.e-features
+			
+ // ModalVP (11/2/15)
+ construction ModalPlusVP  
+  subcase of VP
+  constructional 
+    constituents
+      modal: Modal  // EventFeatures 
+      vp: VP  // also CopularVP
+    constraints
+      self.features <--> modal.features 
+      modal.expectedVerbForm <--> vp.verbform
+      self.verbform <-- Finite
+      //self.features.number <--> vp.features.number
+      //self.features.person <--> vp.features.person
+    form
+    constraints
+       modal.f before vp.f 
+    meaning
+    constraints
+      self.m <--> vp.m // semantics comes from the vp
+      modal.m <--> vp.ed.e-features
+      self.m.protagonist <--> vp.m.protagonist 
+   	self.ed <--> vp.ed  //evoked schemas are available
+ 
+ 
+ construction NegModalPlusVP
+ 	subcase of ModalPlusVP
+ 	constructional 
+ 	  constituents
+ 	    neg: Not-event
+ 	form
+ 	  constraints
+ 	    modal.f meets neg.f
+ 	meaning 
+ 	  constraints
+ 	    vp.ed.e-features.negated <-- @yes
+ 	    
+ 	    

@@ -22,6 +22,8 @@ DEFS:
 
 (type box2 sub box)
 
+(type box6 sub box)
+
 (type block1-instance sub block)
 
 (type block2-instance sub block)
@@ -255,6 +257,8 @@ DEFS:
 (type box5 sub box)
 
 (type green sub colorValue)
+
+(type black sub colorValue)
 
 (type purple sub colorValue)
 

@@ -93,6 +93,8 @@ construction I-Pronoun
       self.m.ontological-category <-- @person  
       self.m.number <-- @singular
       self.m.gender <-- @genderValues  
+ 
+ 
       
 construction It
    subcase of Pronoun, Singular, ThirdPerson
@@ -104,7 +106,7 @@ construction It
          self.f.orth <-- "it"
    meaning
     constraints
-      self.m.ontological-category <-- @physicalEntity  
+      self.m.ontological-category <-- @entity  
       self.m.number <-- @singular
       self.m.gender <-- @neuter
       self.m.referent <-- @antecedent
@@ -120,7 +122,7 @@ construction They-Pronoun
          self.f.orth <-- "they"
    meaning
     constraints
-      self.m.ontological-category <-- @physicalEntity  
+      self.m.ontological-category <-- @entity  
       self.m.number <-- @plural
       //self.m.gender <-- @neuter
       self.m.referent <-- @antecedent
