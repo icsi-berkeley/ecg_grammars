@@ -3,9 +3,9 @@ south :: DirectionalType :: self.m.tag <-- @south
 east :: DirectionalType :: self.m.tag <-- @east
 west :: DirectionalType :: self.m.tag <-- @west
 pencil :: ArtifactNoun :: self.m.ontological-category <-- @pencil
-robot1 :: ProperNPInstance :: self.m.ontological-category <-- @robot :: self.m.referent <-- @robot1
-robot2 :: ProperNPInstance :: self.m.ontological-category <-- @robot :: self.m.referent <-- @robot2
-darwin :: ProperNPInstance :: self.m.ontological-category <-- @robot :: self.m.referent <-- @darwin
+robot1 :: ProperNPInstance :: self.m.ontological-category <-- @robot :: self.m.referent <-- @robot1 :: self.m.gender <-- @male
+robot2 :: ProperNPInstance :: self.m.ontological-category <-- @robot :: self.m.referent <-- @robot2 :: self.m.gender <-- @male
+darwin :: ProperNPInstance :: self.m.ontological-category <-- @robot :: self.m.referent <-- @darwin :: self.m.gender <-- @male
 robot :: SentientNoun :: self.m.ontological-category <-- @robot
 box1 :: ProperNPInstance :: self.m.referent <-- @box1 :: self.m.ontological-category <-- @box
 box2 :: ProperNPInstance :: self.m.referent <-- @box2 :: self.m.ontological-category <-- @box

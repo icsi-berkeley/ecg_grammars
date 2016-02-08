@@ -8,6 +8,11 @@ schema ComplexED
 	  ed1: EventDescriptor
 	  ed2: EventDescriptor
  
+schema ConditionalED
+	subcase of ComplexED
+	roles
+	  ed3: EventDescriptor // "else push it north"
+
 	
 // Should be more general type, e.g. "MeasureProcess" 
 // The ticket costs 6 bucks, the box weighs 5 pounds, etc.
@@ -77,3 +82,9 @@ schema Creation
 	constraints
      protagonist <--> creator
 
+
+//
+schema EmbeddedEventProcessSimple
+	subcase of Process
+	roles
+	  event: Process

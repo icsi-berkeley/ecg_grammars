@@ -396,6 +396,8 @@ DEFS:
 
 (type be2 sub be)
 
+(type try sub process)
+
 // (type inchoativestasis sub stasis)
 
 (type create sub process cause)

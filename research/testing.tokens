@@ -56,3 +56,5 @@ cause :: ForceDynamicType :: self.m.fdType <-- @cause :: self.m.actionary <-- @c
 storm :: EventNoun :: self.m.ontological-category <-- @storm
 crisis :: EventNoun :: self.m.ontological-category <-- @crisis
 grasp :: ManipulationType :: self.m.actionary <-- @grasp
+try :: SimpleControlType :: self.m.actionary <-- @try :: self.m.protagonist.ontological-category <-- @sentient
+want :: SimpleControlType :: self.m.actionary <-- @want :: self.m.protagonist.ontological-category <-- @sentient

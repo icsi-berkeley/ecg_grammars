@@ -59,6 +59,7 @@ construction ScaleChangeType
 	    self.m.state.value <-- @scalarValue
 	    //self.m.state.oldValue <-- @propValue
 
+// he pushed the box north
 construction CauseEffectType
 	subcase of LexicalVerbType, GeneralTypeCxn
 	meaning: CauseEffect
@@ -74,7 +75,7 @@ construction ApplyForceType
 	  	 self.fa <--> self.m.causalProcess
 	    self.fa.actedUpon <--> self.m.affectedEntity
 
-  
+// he grasped the box  
 construction ManipulationType
 	subcase of LexicalVerbType, GeneralTypeCxn
 	meaning: Manipulation 
@@ -82,7 +83,7 @@ construction ManipulationType
 	     self.m.protagonist.ontological-category <-- @agent
 	     self.m.actionary <-- @forceapplication
 
-
+// he created the box
 construction CreationType
 	subcase of LexicalVerbType, GeneralTypeCxn
 	meaning: Creation
@@ -90,10 +91,27 @@ construction CreationType
 	     self.m.actionary <-- @create
 
 
+// Control verbs (added from base)
+general construction ControlVerbSimple
+	subcase of LexicalVerb
+	constructional
+	  constraints
+	    argform <-- Control
+	meaning: EmbeddedEventProcessSimple
+	  constraints 
+	    self.m.actionary <-- @process
+	    self.m.protagonist.ontological-category <-- @entity
+	
+// He tried to move
+// he wanted to walk
+construction SimpleControlType
+	subcase of LexicalVerbType, ControlVerbSimple
+	meaning
+	 constraints
+	   self.m.actionary <-- @process
+	   
 
-// VERB Types:
-
-
+// he ran into the room
 construction SelfMotionType
 	subcase of LexicalVerbType
 	meaning: MotionPath
@@ -103,9 +121,8 @@ construction SelfMotionType
          self.m.speed <-- ".5"
          self.argform <-- ArgForm
         
-// You could imagine adding another constraint here on the 
-// ontological category of the "Content" of the perception;
-// then the "tokens" can place different constraints on that.
+// he saw the box
+// the box was seen by him
 construction PerceptionType
    subcase of LexicalVerbType
    meaning: Perception
