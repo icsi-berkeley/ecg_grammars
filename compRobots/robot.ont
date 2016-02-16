@@ -316,4 +316,6 @@ DEFS:
 
 (type orientation sub object-property shared)
 
+(type mug sub container artifact)
+
 INSTS:

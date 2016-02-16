@@ -245,10 +245,11 @@ schema ChangeLocation // protagonist changes location wrt a LM
 
 // Manipulation: "grasp", "pick up", "push on", etc.
 schema Manipulation
-	subcase of CauseEffect // ?
+	subcase of MotorControl // ?
 	roles
-	  instrument
+	  instrument: RD
 	  bodypart_of_agent // which bodypart is used for manipulation
-	  manipulated_entity
+	  manipulated_entity: RD
 	constraints
-	  manipulated_entity <--> protagonist2
+	 // manipulated_entity <--> protagonist2
+	  actionary <-- @establishhold

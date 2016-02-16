@@ -42,7 +42,20 @@ construction Declarative
         constraints
            self.m <--> fin.ed
 		   fin.ed.profiledParticipant.ontological-category <--> subj.m.ontological-category  
-		   
+	
+// added from base 2/8/16	
+construction SubordinateDeclarative-that
+	constructional
+	 constituents
+	   optional conj: That-Subordinating // is this right? "he said (that) the box is big"
+	   core: Declarative
+	form
+	 constraints
+	   conj.f before core.f
+    meaning: EventDescriptor
+     constraints
+       self.m <--> core.m
+       core.m.e-features.subord <--> conj.m		   
 // Some Question types
 
 general construction Question  // both Aux and Finite inversions

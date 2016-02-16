@@ -8,7 +8,7 @@ construction WHQuesUtterance
     constructional 
         constituents
             core: WH-Question
-            optional end: QMark  //    ?
+            end: QMark  //    ?
     form
         constraints
             core.f meets end.f 
@@ -31,31 +31,7 @@ construction SubjWH-Question
         constraints
 	       self.m <--> fin.ed 				
 
-/* What is the color of the box?
-construction WH-Property
-	subcase of WH-Question, S-With-Subj
-	constructional
-	  constituents
-	    wh: What-WH-NP
-		cop: BeCopula
-		//subj: PropertyModifierPP
 
-// What color is the box?
-/*
-construction WH-Property2		
-	subcase of WH-Question, S-With-Subj
-	constructional 
-	 constituents
-	   spec: WH-NP
-	   pred: BeCopula
-	   subj: NP
-	meaning
-	  constraints
-	    self.m.eventProcess <--> pred.m
-	    pred.m
-	    pred.m.modifiedThing <--> subj.m
-	    pred.m.modifier <--> spec.m
-	*/   
 	   
 // Construction for "WH"-questions - testing (added from Base or written here, 7/14/14, ST)
 
@@ -86,8 +62,27 @@ construction What-Specifier
  		self.m.extras.specificWh <-- @what
 
 
+construction Who-NP
+	subcase of WH-NP, Word
+	form
+	 constraints
+	   self.f.orth <-- "who"
+    meaning: RD
+     constraints
+       self.m.extras.specificWh <-- @who
+
 construction Which-Specifer
    subcase of WH-Specifier
+   form
+      constraints
+         self.f.orth <-- "which"
+   meaning: RD
+      constraints
+ 		self.m.extras.specificWh <-- @which
+ 
+ 
+construction Which-NP
+   subcase of WH-NP, Word
    form
       constraints
          self.f.orth <-- "which"
@@ -144,7 +139,7 @@ construction AddressedSimpleImperative
 	constructional
 	   constituents
 	     core: SimpleImperative 
-	     optional addr: ProperNounNP
+	     addr: ProperNounNP // optional?
 	     optional comma: Comma
 	     end: IMark
 	form

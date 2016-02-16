@@ -73,15 +73,31 @@ construction ApplyForceType
 	evokes ForceApplication as fa
 	  constraints
 	  	 self.fa <--> self.m.causalProcess
+	  	 self.argform <-- Transitive
 	    self.fa.actedUpon <--> self.m.affectedEntity
 
 // he grasped the box  
 construction ManipulationType
-	subcase of LexicalVerbType, GeneralTypeCxn
-	meaning: Manipulation 
+	subcase of CauseEffectType
+	meaning //: Manipulation 
+	  evokes Manipulation as manipulate
 	  constraints
+	     self.m.causalProcess <--> self.manipulate
 	     self.m.protagonist.ontological-category <-- @agent
 	     self.m.actionary <-- @forceapplication
+	     self.manipulate.manipulated_entity <--> self.m.affectedEntity
+
+
+
+
+// "he carried the glass to the table"
+construction BringType
+	subcase of CauseEffectType
+	meaning
+	  constraints
+	     self.m.protagonist.ontological-category <-- @agent
+	     self.m.actionary <-- @bring
+	     //self.argform <-- transitive or ditransitive? "bring me the box"
 
 // he created the box
 construction CreationType
@@ -101,7 +117,8 @@ general construction ControlVerbSimple
 	  constraints 
 	    self.m.actionary <-- @process
 	    self.m.protagonist.ontological-category <-- @entity
-	
+
+
 // He tried to move
 // he wanted to walk
 construction SimpleControlType
@@ -110,7 +127,35 @@ construction SimpleControlType
 	 constraints
 	   self.m.actionary <-- @process
 	   
+// Mental verbs (added from base, 2/7/16)
+general construction MentalVerb
+	subcase of LexicalVerb
+	meaning
+	 constraints
+	  self.m.protagonist.ontological-category <-- @sentient
+	  self.verbkind <-- Mental
+	  self.m.actionary <-- @mentalProcess
 
+// say, said, says, etc.
+construction CommunicationType
+	subcase of MentalVerb, LexicalVerbType
+	meaning: Communication
+	 constraints
+	   self.m.actionary <-- @communication
+	   self.argform <-- ArgForm 
+	   //ignore self.verbkind <-- Mental // why?
+	   self.verbkind <-- Communicational
+
+
+// say, said, says, etc.
+construction ThoughtType
+	subcase of MentalVerb, LexicalVerbType
+	meaning: Thought
+	 constraints
+	   self.m.actionary <-- @think
+	   self.argform <-- NotTransitive
+
+	   	
 // he ran into the room
 construction SelfMotionType
 	subcase of LexicalVerbType

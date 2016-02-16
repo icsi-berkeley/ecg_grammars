@@ -57,11 +57,10 @@ general construction TransitiveChangeProperty
 	constructional
 	  constituents
 	    adj: Adjective
-	    np: NP
+	    //np: NP
 	form
 	  constraints
-	    v.f before np.f
-	    np.f before adj.f
+	  // v.f before adj.f
 	meaning: CauseEffect //: Creation
 	   evokes Change as change
 	   evokes Creation as creation

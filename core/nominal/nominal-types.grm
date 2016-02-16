@@ -16,13 +16,20 @@ construction NumberType   //rename, check digits
    	    self.m.number <-- @RDnumberValues
 
 construction ProperNPInstance
-	subcase of ProperNounNP, ThirdPerson, GeneralTypeCxn // Third person testing here ("Robot1")
+	subcase of ProperNounNP, ThirdPerson, Singular, GeneralTypeCxn // Third person testing here ("Robot1")
 	meaning
 	  constraints
 		self.m.referent <-- @entity
 		self.m.ontological-category <-- @physicalEntity
 		self.m.gender <-- @genderValues
 		self.m.number <-- @RDnumberValues
+
+// E.g., "coffee", "water"
+construction SubstanceType
+	subcase of NounType
+	meaning
+	 constraints
+	   self.m.ontological-category <-- @substance
 
 // e.g. "what color is box1?"
 construction PropertyNoun
@@ -100,4 +107,19 @@ construction EventNoun
 	    self.m.ontological-category <-- @eventTop
 	    self.m.scale <-- @size
 	    self.m.extras.event.eventForm <-- @lexical
+	    
+
+// "part type": "member of the company", etc.
+construction PartType
+	subcase of NounType
+	meaning: RD
+	  constraints
+	    self.m.ontological-category <-- @part
+
+// "group type": "the crew", "the company"
+construction GroupType
+	subcase of NounType
+	meaning: RD
+	 constraints
+	   self.m.ontological-category <-- @group	    
 		        

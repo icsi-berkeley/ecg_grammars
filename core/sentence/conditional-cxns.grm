@@ -1,45 +1,7 @@
 package conditionals
+import conjunctions
 
 
-
- // Imports a motion package declared in 
- // compRobots directory (distinguished from same-name package in first)
- // For the purposes of testing and practicality.
-//import motion
-
-
-general construction Conjunction
-   subcase of Word
-   
-general construction LogicalConjunction
-	subcase of Conjunction
-
-general construction SerialConjunction
-   subcase of Conjunction
-
-construction Then-Serial
-   subcase of SerialConjunction
-   form
-      constraints
-        self.f.orth <-- "then"
-        
-construction Than
-	subcase of SerialConjunction
-	form
-	  constraints
-	    self.f.orth <-- "than"
-	    
-construction And-Conjunction
-	subcase of LogicalConjunction
-	form
-	  constraints
-	    self.f.orth <-- "and"
-	    
-construction That-Subordinating
-	subcase of Conjunction
-	form
-	  constraints
-	     self.f.orth <-- "that"
 	    
 general construction Conditional
   subcase of Word
@@ -71,13 +33,12 @@ general construction ConditionalImperative
 	    core.vp.verbform <-- Base
 	 form
 	  constraints
+	    core.f before c2.f
 	    c2.f before else.f
 	 meaning: ConditionalED
 	  constraints
 	    self.m.profiledParticipant <--> core.m.profiledParticipant
 	    self.m.profiledParticipant <--> else.m.profiledParticipant
-	    //self.m.ed1 <--> bool.m
-	    //self.m.ed2 <--> core.m
 	    self.m.complexKind <-- @conditional
 	    
      
@@ -99,7 +60,12 @@ construction Else
 	form
 	 constraints
 	   self.f.orth <-- "else"
-	
+
+construction Otherwise
+	subcase of Else-Conjunction
+	form
+	 constraints
+	   self.f.orth <-- "otherwise"	
  
 construction StandardConditionalImperative
 	subcase of ConditionalImperative

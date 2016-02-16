@@ -181,8 +181,6 @@ construction PossessivePronounPlusKernel //
 
 
 // Modifier NP-PP
-// the weight of the box
-// the color of the building
 general construction Kernel-ModifierPP
 	subcase of Kernel
 	constructional
@@ -192,21 +190,36 @@ general construction Kernel-ModifierPP
 	form
 	  constraints
 	    k.f before mod.f
-	meaning
-	  constraints
-	    k.m <--> mod.m.modifier
+	    
 
 // genitive: dependent noun modifies head
+// the weight of the box
+// the color of the building
 construction PropertyModifierPP
 	subcase of Kernel-ModifierPP
 	meaning
-	 // evokes PartWhole as pw
 	  constraints
-	    //k.m <--> pw.part
-	    //mod.np.m <--> pw.whole
 	    k.m.ontological-category <-- @object-property
 	   self.m <--> mod.np.m
-	   //self.m <--> k.m
+	   k.m <--> mod.m.modifier
 
-	
-	
+
+construction Part-of-Whole
+	subcase of Kernel-ModifierPP
+	constructional
+	  constraints
+	    self.features <--> k.features
+	meaning
+	  evokes PartWhole as pw
+	  constraints
+	    k.m.ontological-category <-- @part
+	   //self.m <--> mod.np.m	
+	   self.m <--> k.m
+	    self.m <--> self.pw.part
+  		mod.np.m <--> self.pw.whole
+  		self.m.extensions <--> self.pw	
+
+	   
+	   
+	   
+

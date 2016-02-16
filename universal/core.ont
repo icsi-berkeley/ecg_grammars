@@ -96,6 +96,14 @@ DEFS:
 
 (type unmarked sub modifierKinds) // for adjectives, +
 
+// GROUPS (2/9/16, ST)
+
+(type socialEntity sub shaped entity)
+
+(type institution sub socialEntity)
+
+(type group sub socialEntity)
+
 //(type deictic sub enumeration)  // ??
 
 (type EventKind sub enumeration)
@@ -117,6 +125,16 @@ DEFS:
 (type purpose sub serial ) // do X to do Y
 
 (type causal sub process-kind)
+
+(type conjunction)
+
+(type then sub conjunction)
+
+(type than sub conjunction)
+
+(type after sub conjunction)
+
+(type before sub conjunction)
 
 (type interaction sub process-kind)
 
@@ -314,6 +332,8 @@ DEFS:
 
 (type john sub person)
 
+(type mary sub person)
+
 // inanimate stuff  _____________________________________
 
 (type shaped sub entity)  // contrast with mass
@@ -358,7 +378,13 @@ DEFS:
 
 (type discreteAble sub mass)
 
-(type beer sub discreteAble artifact)
+(type substance sub discreteAble)
+
+(type beer sub discreteAble artifact substance)
+
+(type water sub substance artifact)
+
+(type coffee sub substance artifact)
 
 (type mud sub mass)
 
@@ -417,6 +443,8 @@ DEFS:
 (type effectormotion sub complexxnet)
 
 (type forceapplication sub process)
+
+(type bring sub complexxnet)
 
 (type forcefulmotionaction sub complexxnet)
 
@@ -482,7 +510,11 @@ DEFS:
 
 (type mentalProcess sub process)
 
-(type say sub mentalProcess)
+(type communication sub mentalProcess)
+
+(type say sub communication)
+
+(type tell sub communication)
 
 (type think sub mentalProcess)
 
@@ -495,8 +527,6 @@ DEFS:
 (type take-light  sub process)
 
 (type possess sub process)
-
-(type tell sub process)  // 8/15/13
 
 (type forceDynamic sub process)
 
@@ -634,6 +664,8 @@ DEFS:
 
 (type what sub wh-word)
 
+(type who sub wh-word)
+
 //tokens
 
 (type brown sub colorValue  shared)
@@ -697,5 +729,13 @@ DEFS:
 (type crisis sub eventTop  shared)
 
 (type grasp sub establishhold)
+
+(type house sub container artifact shared)
+
+(type member sub part person shared)
+
+(type crew sub group  shared)
+
+(type build sub create  shared)
 
 INSTS:
