@@ -1,0 +1,26 @@
+package location
+
+
+construction LOCATION
+	subcase of Word, HasAgreementFeatures
+	form
+	  constraints
+	    self.f.orth <-- "location"
+     
+construction LocationNP
+	subcase of NP, Kernel
+	constructional
+	  constituents
+	    tag: LOCATION
+	    x: Quantifier
+	    optional comma: Comma
+	    y: Quantifier
+	form
+	  constraints
+	    tag.f meets x.f
+	    x.f meets comma.f
+	    comma.f meets y.f
+	meaning: Location2D
+	  constraints
+	    self.m.xCoord <--> x.m.value
+	    self.m.yCoord <--> y.m.value 

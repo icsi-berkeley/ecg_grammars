@@ -1,0 +1,157 @@
+package core
+import universal-schemas
+
+// Serial Process
+schema SerialProcess
+	subcase of ComplexProcess
+	roles
+	 connective
+	 process1: Process
+	 process2: Process
+	constraints
+	 complexKind <-- @serial
+	 protagonist <--> process1.protagonist
+	 protagonist2 <--> process2.protagonist
+	 protagonist <--> protagonist2
+
+	
+// Should be more general type, e.g. "MeasureProcess" 
+// The ticket costs 6 bucks, the box weighs 5 pounds, etc.
+// This is distinct from "weigh-assess" ("he weighed the evidence", "he weighed the box")	
+schema Measure // Interim (ST, 10/14/15)
+	subcase of Process
+	roles
+	  object: RD
+	  measurement: RD //: QuantifiedRD
+	  dimension
+
+schema MeasurePredication
+	subcase of Measure //, Stasis
+	roles
+	  object: RD
+	  measurement: RD //: QuantifiedRD
+	  dimension
+	  state
+	constraints
+	  object <--> protagonist
+	  state <--> measurement 
+	  //measurement.ontological-category <-- @units 
+
+// "he weighed the box"
+schema MeasureProcess
+	subcase of Measure
+	roles
+	  object: RD
+	  measurement: RD //: QuantifiedRD
+	  dimension
+	constraints
+	  protagonist.ontological-category <-- @agent // Pretty sure this is correct  
+	
+schema Change
+	subcase of Process
+	roles
+	  state: Modification //: ChangedState
+	  actionary: @statechange
+	  temporality: @bounded
+	  oldValue //: @propValue
+	constraints
+	  actionary <-- @statechange
+	  
+// State Change processes: "the box changed from red to blue"
+schema StateChange
+	subcase of Change
+	roles
+	  state //: ChangedState
+	  actionary: @statechange
+	  temporality: @bounded
+	
+// State Change processes: "the box changed from red to blue"
+schema ScaleChange
+	subcase of Change
+	roles
+	  state: ScalarModifier //: ChangedScale
+	  actionary: @scalechange
+	  temporality: @bounded
+	  direction
+
+// Creation (he created the box)
+schema Creation
+	subcase of Process
+	roles
+	  creator
+	  createdThing
+	constraints
+     protagonist <--> creator
+
+
+// he tried to push the box
+schema EmbeddedEventProcessSimple
+	subcase of Process
+	roles
+	  event: Process
+
+	  
+	  
+// Communication: he said that...
+schema Communication
+	subcase of Process
+	roles
+	 speaker: RD
+	 listener: RD
+	 content
+   constraints
+    speaker <--> protagonist
+    listener.ontological-category <-- @sentient
+    
+  // he thought that ...
+ schema Thought
+ 	subcase of Process
+ 	roles
+ 	 thinker: RD
+ 	 content
+    constraints
+     thinker <--> protagonist
+     thinker.ontological-category <-- @sentient
+     
+ // transfer: he gave John the box
+ 
+//POSSESSION
+schema PossProcess
+	subcase of Process
+	roles
+	 possessed: RD
+	 extra: Possession
+   constraints
+     extra.possessed <--> possessed
+     extra.possessor <--> protagonist
+     
+schema ObjectTransfer
+	subcase of ComplexProcess, A123
+	roles
+	 process1: ReleaseHold
+	 process2: EstablishHold
+	 giver
+	 getter
+	 theme: RD
+	 actionary: @objecttransfer
+   constraints
+     a1 <--> giver
+     a2 <--> theme
+     a3 <--> getter
+     protagonist <--> giver
+     protagonist.ontological-category <-- @agent
+     protagonist2.ontological-category <-- @person
+     protagonist2 <--> getter
+     process1.actedUpon <--> theme
+     process2.actedUpon <--> theme
+     theme.ontological-category <-- @physicalEntity
+
+schema ReleaseHold
+	subcase of ForceApplication
+	 roles
+	  routine: @releasehold
+
+schema EstablishHold
+	subcase of ForceApplication
+	 roles
+	  routine: @establishhold 

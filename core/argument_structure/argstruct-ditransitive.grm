@@ -1,0 +1,55 @@
+/*
+package ditransitive. Contains Ditransitive constructions, which can be used for Transfer
+and Communication.
+
+Examples:
+-he gave John the box
+-he told John the story
+
+*/
+
+package ditransitive
+
+general construction ActiveDitransitive
+	subcase of ArgumentStructure
+	constructional
+	 constituents
+	  np1: NP
+	  np2: NP
+	 constraints
+	  v.argform <-- Ditransitive
+	  v.voice <-- NotPassive
+	  np1.features.case <-- "dat"
+	  np2.features.case <-- "acc"
+	form
+	 constraints
+	  v.f before np1.f
+	  np1.f before np2.f
+	meaning: Process
+	  evokes A123 as s
+	  constraints
+	   s.a1 <--> ed.profiledParticipant
+	   s.a2 <--> np1.m
+	   s.a3 <--> np2.m
+
+	   
+construction CentralActiveDitransitiveTransfer
+	subcase of ActiveDitransitive
+	meaning: ObjectTransfer
+	 constraints
+	   self.m <--> v.m
+	   self.m.giver <--> ed.profiledParticipant
+	   self.m.getter <--> np1.m
+	   self.m.theme <--> np2.m
+	   
+	   
+construction DitransitiveCommunication-NP
+	subcase of ActiveTransitive
+	meaning
+	 constraints
+	  self.m <--> v.m
+	  s.a3 <--> self.m.content
+	  s.a1 <--> self.m.speaker
+	  s.a2 <--> self.m.listener
+	  //v.m.actionary <--> self.m.actionary
+  

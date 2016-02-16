@@ -1,0 +1,67 @@
+package apposition
+//package core
+
+construction Embedded-WH-Clause
+	constructional
+	  constituents
+	    optional subj: WH-NP
+	    optional be: BeCopula
+	    modifier: NP
+	
+
+construction WH-Clause
+	constructional 
+	 constituents
+	   subj: WH-NP
+	   fin: VP
+	meaning
+	  constraints
+	    subj.m <--> fin.ed.profiledParticipant
+	    subj.m <--> fin.ed.modifiedThing
+	    //subj.m.extras.event <--> fin.ed
+	    
+construction NP-EmbeddedClause
+	subcase of NP
+	constructional
+	  constituents
+	    head: NP
+	    c1: Comma
+	    embedded: WH-Clause
+	    c2: Comma
+	  constraints
+	    self.features <--> head.features
+	form
+	  constraints
+	    head.f before c1.f
+	    c1.f before embedded.f
+	    embedded.f before c2.f
+	meaning
+	  constraints
+	    self.m <--> head.m
+	    head.m <--> embedded.subj.m
+	    //ri.first <--> head.m
+	    //ri.second <--> embedded.modifier.m
+
+
+
+construction NP-Apposition
+	subcase of NP
+	constructional
+	  constituents
+	    head: NP
+	    c1: Comma
+	    embedded: NP
+	    c2: Comma 
+	  constraints 
+	   self.features <--> head.features
+	form
+	 constraints
+	  	 head.f before c1.f
+	    c1.f before embedded.f
+	    embedded.f before c2.f
+	meaning
+	 evokes RefIdentity as ri
+	 constraints
+	   self.m <--> head.m
+	   ri.first <--> head.m
+	   ri.second <--> embedded.m

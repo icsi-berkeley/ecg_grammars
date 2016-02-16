@@ -1,0 +1,54 @@
+package conjunctions
+
+schema ConjunctionValue
+	roles
+	  value: @conjunction
+
+general construction Conjunction
+   subcase of Word
+   meaning: ConjunctionValue
+   
+general construction LogicalConjunction
+	subcase of Conjunction
+
+general construction SerialConjunction
+   subcase of Conjunction
+
+construction Then-Serial
+   subcase of SerialConjunction
+   form
+      constraints
+        self.f.orth <-- "then"
+   meaning
+     constraints
+       self.m.value <-- @then
+        
+construction Than
+	subcase of SerialConjunction
+	form
+	  constraints
+	    self.f.orth <-- "than"
+	meaning
+     constraints
+       self.m.value <-- @than
+
+construction Before-Serial
+	subcase of SerialConjunction
+	form
+	  constraints
+	    self.f.orth <-- "before"
+	meaning
+     constraints
+       self.m.value <-- @before
+	    
+construction And-Conjunction
+	subcase of LogicalConjunction
+	form
+	  constraints
+	    self.f.orth <-- "and"
+	    
+construction That-Subordinating
+	subcase of Conjunction
+	form
+	  constraints
+	     self.f.orth <-- "that"
