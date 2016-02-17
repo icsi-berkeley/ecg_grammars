@@ -68,13 +68,14 @@ construction CauseEffectType
 
 // "push the box north"
 construction ApplyForceType
-	subcase of CauseEffectType
-	meaning
-	evokes ForceApplication as fa
+	subcase of LexicalVerbType
+	meaning: ForceApplication
+	//evokes ForceApplication as fa
 	  constraints
-	  	 self.fa <--> self.m.causalProcess
+	  	 //self.fa <--> self.m.causalProcess
+	  	 self.m.actionary <-- @forceapplication
 	  	 self.argform <-- Transitive
-	    self.fa.actedUpon <--> self.m.affectedEntity
+	    //self.fa.actedUpon <--> self.m.affectedEntity
 
 // he grasped the box  
 construction ManipulationType
@@ -90,7 +91,7 @@ construction ManipulationType
 
 
 
-// "he carried the glass to the table"
+/* "he carried the glass to the table"
 construction BringType
 	subcase of CauseEffectType
 	meaning
@@ -98,6 +99,15 @@ construction BringType
 	     self.m.protagonist.ontological-category <-- @agent
 	     self.m.actionary <-- @bring
 	     //self.argform <-- transitive or ditransitive? "bring me the box"
+*/
+
+// Object transfer type
+construction TransferType
+	subcase of LexicalVerbType
+	meaning: ObjectTransfer
+	 constraints
+	   self.m.protagonist.ontological-category <-- @agent
+	   self.m.actionary <-- @objecttransfer
 
 // he created the box
 construction CreationType

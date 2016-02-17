@@ -1,4 +1,4 @@
-package core
+package intransitive
 
 general construction IntransitiveArgumentStructure  
   subcase of ArgumentStructure

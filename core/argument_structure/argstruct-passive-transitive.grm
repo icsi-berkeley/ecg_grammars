@@ -51,13 +51,14 @@ construction PassiveTransitiveChangeLocation
 	subcase of CorePassiveTransitive, TransitiveChangeLocation
 
 
-// the box was pushed into the room by John
-construction PassiveTrans_CauseChangeLocation_causeMotion
-  subcase of CorePassiveTransitive, Trans_CauseChangeLocation 
-	meaning 
-    constraints
-		self.m <--> v.m		    
-	    
+// the box was moved into the room by John
+construction PassiveTrans_CauseChangeLocation_mp
+  subcase of PassiveTransitive, Trans_CauseChangeLocation_mp
+	   
+
+// the box was pushed into the room
+construction PassiveTrans_CauseChangeLoc_causalAction
+	subcase of PassiveTransitive, Trans_CauseChangeLoc_causalAction	    
 
 // "the box was created by the man"
 construction PassiveTransitiveCreation

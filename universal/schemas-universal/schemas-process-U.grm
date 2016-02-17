@@ -170,8 +170,8 @@ schema CauseEffect   // Direct Physical Causation
    roles
       causalAgent: RD 
       affectedEntity: RD
-      causalProcess 
-      affectedProcess
+      causalProcess: Process
+      affectedProcess: Process
       actionary//: @cause
    constraints
       causalAgent <--> protagonist // binding to inherited role

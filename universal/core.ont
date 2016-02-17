@@ -444,7 +444,7 @@ DEFS:
 
 (type forceapplication sub process)
 
-(type bring sub complexxnet)
+(type bring sub objecttransfer)
 
 (type forcefulmotionaction sub complexxnet)
 
@@ -737,5 +737,7 @@ DEFS:
 (type crew sub group  shared)
 
 (type build sub create  shared)
+
+(type slide sub motion  shared)
 
 INSTS:

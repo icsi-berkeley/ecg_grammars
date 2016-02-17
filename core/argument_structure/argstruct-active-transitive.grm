@@ -70,11 +70,20 @@ construction ActiveTransitiveChangeProperty
 general construction ActiveTrans_CauseChangeLocation 
   subcase of ActiveTransitive, TransitiveCauseEffect
 
+// he moved the box
+construction ActiveTrans_CauseChangeLocation_mp
+	subcase of ActiveTransitive, Trans_CauseChangeLocation_mp
 
-// he pushed the block into the room		
-construction ActiveTrans_CauseChangeLocation_causeMotion  
-  subcase of CoreActiveTransitive, Trans_CauseChangeLocation_causeMotion
 
+
+// he pushed the box into the room
+construction ActiveTrans_CauseChangeLoc_causalAction
+	subcase of ActiveTransitive, Trans_CauseChangeLoc_causalAction
+	
+/* he pushed the box
+construction ActiveTrans_CauseChangeLocation_causeMotion
+	subcase of CoreActiveTransitive, Trans_CauseChangeLocation_causeMotion
+*/
 
 // "he created the box"
 construction ActiveTransitiveCreation

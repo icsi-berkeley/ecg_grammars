@@ -17,7 +17,7 @@ general construction ActiveDitransitive
 	  np1: NP
 	  np2: NP
 	 constraints
-	  v.argform <-- Ditransitive
+	  v.argform <-- DiTransitive
 	  v.voice <-- NotPassive
 	  np1.features.case <-- "dat"
 	  np2.features.case <-- "acc"
@@ -43,13 +43,18 @@ construction CentralActiveDitransitiveTransfer
 	   self.m.theme <--> np2.m
 	   
 	   
-construction DitransitiveCommunication-NP
-	subcase of ActiveTransitive
-	meaning
+	   
+// he tossed John the ball	
+// In progress: argument structure should "construe" verbal meaning.
+/*   
+construction ActiveDitransitiveTransfer
+	subcase of ActiveDitransitive
+	meaning: ObjectTransfer
 	 constraints
-	  self.m <--> v.m
-	  s.a3 <--> self.m.content
-	  s.a1 <--> self.m.speaker
-	  s.a2 <--> self.m.listener
-	  //v.m.actionary <--> self.m.actionary
+	   //self.m <--> v.m
+	   self.m.giver <--> ed.profiledParticipant
+	   self.m.getter <--> np1.m
+	   self.m.theme <--> np2.m
+*/	   
+	   
   

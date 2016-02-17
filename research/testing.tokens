@@ -21,7 +21,6 @@ small :: ScalarAdjectiveType :: self.m.value <-- ".3" :: self.m.property <-- @si
 john :: ProperNPInstance :: self.m.referent <-- @john :: self.m.gender <-- @male :: self.m.ontological-category <-- @person :: self.m.number <-- @singular
 mary :: ProperNPInstance :: self.m.referent <-- @mary :: self.m.gender <-- @female :: self.m.ontological-category <-- @person :: self.m.number <-- @singular
 push :: ApplyForceType :: self.m.actionary <-- @push_move
-move :: ApplyForceType :: self.m.actionary <-- @push_move
 stop :: StageVerbType :: self.m.actionary <-- @stop :: self.expectedVerbForm <-- PresentParticiple
 start :: StageVerbType :: self.m.actionary <-- @start 
 continue :: StageVerbType :: self.m.actionary <-- @continue
@@ -65,3 +64,6 @@ think :: ThoughtType :: self.m.actionary <-- @think
 member :: PartType :: self.m.ontological-category <-- @member
 crew :: GroupType :: self.m.ontological-category <-- @crew
 build :: CreationType :: self.m.actionary <-- @build
+give :: TransferType :: self.m.protagonist.ontological-category <-- @agent :: self.m.actionary <-- @give
+bring :: TransferType :: self.m.actionary <-- @bring
+slide :: SelfMotionType :: self.m.actionary <-- @slide

@@ -97,15 +97,34 @@ general construction Trans_CauseChangeLocation
    		mp.spg.distance <--> dis.m 
 	    mp.heading <--> dir.m.tag 
 	    self.m.affectedEntity.ontological-category <-- @physicalEntity 
-	   // the above line was commented because it constrains @antecedent
-	   // this is solved by having pronouns have no ont-cat (see pronouns)
 
-general construction Trans_CauseChangeLocation_causeMotion
+
+general construction Trans_CauseChangeLocation_central
 	subcase of Trans_CauseChangeLocation
 	meaning 
 	 constraints
 	   self.m <--> v.m	    
-	    
+
+// he moved the box
+general construction Trans_CauseChangeLocation_mp
+	subcase of Trans_CauseChangeLocation
+	meaning 
+	 constraints
+	   mp <--> v.m  
+	   self.m.causalProcess.actionary <-- @push_move
+	 
+
+// he pushed the box into the room
+general construction Trans_CauseChangeLoc_causalAction
+	subcase of Trans_CauseChangeLocation
+	meaning
+	 evokes ForceApplication as fa
+	  constraints
+	    v.m <--> fa
+	    self.m.process1 <--> fa
+	    fa.actedUpon <--> self.m.affectedEntity
+	    self.m.actionary <-- @cause
+	    	    
 // "he created the box"
 // "the box was created by John"
 general construction TransitiveCreation
