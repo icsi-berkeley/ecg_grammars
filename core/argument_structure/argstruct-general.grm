@@ -1,6 +1,6 @@
 package core
 import active-transitives
-//import intransitive
+import intransitive
 //import passive-transitives
 //import ditransitive
 //import control
