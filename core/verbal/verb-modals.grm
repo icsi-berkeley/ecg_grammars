@@ -19,6 +19,18 @@ construction Can-Modal
 	self.verbform <-- Finite	
 
 
+construction Could-Modal 
+   subcase of Modal, Word
+   form
+      constraints
+         self.f.orth <-- "could"
+ 	meaning: EventFeatures
+     constraints
+   	 self.m.modality <-- @can 
+    self.m.tense <-- @past 
+	self.expectedVerbForm <-- Base 
+	self.verbform <-- Finite	
+
 construction Will-Modal
 	subcase of Modal, Word
     form

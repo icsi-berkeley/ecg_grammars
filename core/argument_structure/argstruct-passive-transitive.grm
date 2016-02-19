@@ -64,4 +64,13 @@ construction PassiveTrans_CauseChangeLoc_causalAction
 construction PassiveTransitiveCreation
 	subcase of CorePassiveTransitive, TransitiveCreation    
 	    
-	    
+
+
+// the box was picked up by the man
+construction PassiveTransitiveManipulation
+	subcase of CorePassiveTransitive, TransitiveManipulation	
+	
+	
+// the box was given to John by the man   
+construction PassiveTransitiveObjectTransfer
+	subcase of CorePassiveTransitive, TransitiveObjectTransfer    

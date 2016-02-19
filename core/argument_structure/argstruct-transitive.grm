@@ -124,14 +124,21 @@ general construction Trans_CauseChangeLoc_causalAction
 	    self.m.process1 <--> fa
 	    fa.actedUpon <--> self.m.affectedEntity
 	    self.m.actionary <-- @cause
+
+
+	    	    
 	    	    
 // "he created the box"
 // "the box was created by John"
 general construction TransitiveCreation
 	subcase of ArgumentStructure
+	constructional
+	 constituents
+	   optional for: For-PP
 	meaning: Creation
 	  constraints
 	    //self.m <--> v.m
+	    for.np.m <--> self.m.intended_recipient
 	    s.a1 <--> self.m.protagonist
 	    s.a2 <--> self.m.createdThing	
 	    
@@ -143,4 +150,28 @@ general construction TransitiveChangeLocation
 	  constraints
 		s.a1 <--> self.m.mover	
 		s.a2 <--> self.m.landmark
+		
+		
+// he picked up the box
+general construction TransitiveManipulation
+	subcase of ArgumentStructure
+	meaning: Manipulation
+	  constraints
+	    s.a1 <--> self.m.actor
+	    s.a2 <--> self.m.manipulated_entity
+	    
+	    
+// ObjectTransfer with DativePP
+general construction TransitiveObjectTransfer
+	subcase of ArgumentStructure
+	constructional
+	 constituents
+	   pp: Path-PP
+	meaning: ObjectTransfer
+	  constraints
+	    s.a1 <--> self.m.giver
+	    s.a2 <--> self.m.theme
+	    pp.m.landmark <--> s.a3
+	    // s.a3 <--> self.m.getter
+	    //self.m <--> pp.m
 		

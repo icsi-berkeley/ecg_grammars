@@ -7,8 +7,16 @@ general construction PP
 			prep: Preposition  
 			np: NP //[1.0, .9]
 	
-// Spatial PPs
-					 
+
+construction For-PP
+	subcase of PP
+	constructional
+	  constituents
+	    prep: For-Recipient
+
+
+    
+// Spatial PPs					 
 general construction Spatial-PP  //literal
 	subcase of PP
 	constructional

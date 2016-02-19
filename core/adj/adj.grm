@@ -21,6 +21,12 @@ general construction PropertyAdjective  // parallel to Verb, etc. \
 	meaning: PropertyModifier	
 
 
+construction PropertyAdjectiveType
+	subcase of PropertyAdjective, GeneralTypeCxn
+	meaning: PropertyModifier
+	 constraints
+	   self.m.property <-- @object-property
+	   self.m.value <-- @propValue
 
 construction ColorType  //subcase of non-scale Adj
   subcase of PropertyAdjective, GeneralTypeCxn 

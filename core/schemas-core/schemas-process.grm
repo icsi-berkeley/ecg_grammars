@@ -80,6 +80,7 @@ schema Creation
 	roles
 	  creator
 	  createdThing
+	  intended_recipient
 	constraints
      protagonist <--> creator
 

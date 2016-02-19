@@ -42,19 +42,32 @@ construction CentralActiveDitransitiveTransfer
 	   self.m.getter <--> np1.m
 	   self.m.theme <--> np2.m
 	   
+
+construction CentralActiveDitransitiveCreation
+	subcase of ActiveDitransitive
+	meaning: Creation
+	 constraints
+	   self.m <--> v.m
+	   self.m.creator <--> ed.profiledParticipant
+	   self.m.intended_recipient <--> np1.m
+	   self.m.createdThing <--> np2.m
 	   
 	   
-// he tossed John the ball	
+// he brought John the ball	
+// he tossed John the ball
 // In progress: argument structure should "construe" verbal meaning.
-/*   
-construction ActiveDitransitiveTransfer
+/*
+construction ActiveDitransitiveTransfer_CauseMotion
 	subcase of ActiveDitransitive
 	meaning: ObjectTransfer
+	 evokes MotionPath as mp
 	 constraints
 	   //self.m <--> v.m
+	   //v.m <--> self.m.process1
+	   //self.m.
+	   self.m.process2 <--> mp
 	   self.m.giver <--> ed.profiledParticipant
 	   self.m.getter <--> np1.m
 	   self.m.theme <--> np2.m
-*/	   
-	   
+*/	     
   

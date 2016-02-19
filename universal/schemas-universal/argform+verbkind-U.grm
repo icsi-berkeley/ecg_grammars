@@ -22,6 +22,9 @@ schema Transitive
 
 schema DiTransitive   
 	subcase of Transitive // 2/11/13
+	
+schema NotDiTransitive
+	subcase of Transitive
 
 schema PropertyChanger   
 	subcase of Transitive // 4/1/13

@@ -65,5 +65,8 @@ member :: PartType :: self.m.ontological-category <-- @member
 crew :: GroupType :: self.m.ontological-category <-- @crew
 build :: CreationType :: self.m.actionary <-- @build
 give :: TransferType :: self.m.protagonist.ontological-category <-- @agent :: self.m.actionary <-- @give
-bring :: TransferType :: self.m.actionary <-- @bring
 slide :: SelfMotionType :: self.m.actionary <-- @slide
+grasp :: ManipulationType :: self.m.actionary <-- @grasp
+pick :: PickType :: self.m.actionary <-- @pickup
+bring :: EstablishHoldType :: self.m.actionary <-- @bring
+carry :: EstablishHoldType :: self.m.actionary <-- @carry :: self.argform <-- NotDiTransitive

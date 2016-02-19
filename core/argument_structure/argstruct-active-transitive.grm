@@ -88,7 +88,15 @@ construction ActiveTrans_CauseChangeLocation_causeMotion
 // "he created the box"
 construction ActiveTransitiveCreation
 	subcase of CoreActiveTransitive, TransitiveCreation
+	form 
+	 constraints
+	   np.f before for.f
+
+// he picked up the box
+construction ActiveTransitiveManipulation
+	subcase of CoreActiveTransitive, TransitiveManipulation
 
 
-     
-
+// he gave the box to the man     
+construction ActiveTransitiveObjectTransfer
+	subcase of CoreActiveTransitive, TransitiveObjectTransfer

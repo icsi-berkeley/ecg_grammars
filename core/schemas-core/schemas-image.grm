@@ -29,4 +29,9 @@ schema HeadingSchema
 
 schema ByLandmark
 	roles
-	  landmark: RD				
+	  landmark: RD	
+	  
+	  
+schema DativeLandmark //
+	roles
+	  landmark: RD			

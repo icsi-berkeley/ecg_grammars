@@ -48,5 +48,3 @@ turn :: SelfMotionType :: self.m.speed <-- ".2" :: self.m.actionary <-- @turn
 water :: SubstanceType :: self.m.ontological-category <-- @water
 coffee :: SubstanceType :: self.m.ontological-category <-- @coffee
 mug :: ContainerNoun :: self.m.ontological-category <-- @mug
-
-grasp :: ManipulationType :: self.m.actionary <-- @grasp

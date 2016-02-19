@@ -79,27 +79,23 @@ construction ApplyForceType
 
 // he grasped the box  
 construction ManipulationType
-	subcase of CauseEffectType
-	meaning //: Manipulation 
-	  evokes Manipulation as manipulate
+	subcase of LexicalVerbType
+	meaning: Manipulation
 	  constraints
-	     self.m.causalProcess <--> self.manipulate
 	     self.m.protagonist.ontological-category <-- @agent
 	     self.m.actionary <-- @forceapplication
-	     self.manipulate.manipulated_entity <--> self.m.affectedEntity
 
 
-
-
-/* "he carried the glass to the table"
-construction BringType
-	subcase of CauseEffectType
-	meaning
+// "he carried the glass to the table"
+// involves causing motion
+construction EstablishHoldType
+	subcase of LexicalVerbType
+	meaning: EstablishHold // MotorControl?
 	  constraints
 	     self.m.protagonist.ontological-category <-- @agent
-	     self.m.actionary <-- @bring
-	     //self.argform <-- transitive or ditransitive? "bring me the box"
-*/
+	     self.m.actionary <-- @establishhold
+	     self.argform <-- Transitive
+
 
 // Object transfer type
 construction TransferType

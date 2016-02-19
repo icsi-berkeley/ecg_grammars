@@ -15,11 +15,7 @@ construction BETWEEN-Path
 
 */
 
-construction Up-Marker
-	subcase of Word // Preposition?
-	form
-	  constraints
-	    self.f.orth <-- "up"
+
 	    
 construction FROM-Path
 	subcase of PathPreposition

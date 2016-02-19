@@ -10,6 +10,8 @@ Example sentences (simple control):
 package mental
 //import ditransitive
 
+
+
 construction IntransitiveCommunication
 	subcase of BareIntransitive
 	constructional

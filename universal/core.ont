@@ -444,7 +444,7 @@ DEFS:
 
 (type forceapplication sub process)
 
-(type bring sub objecttransfer)
+(type bring sub objecttransfer establishhold)
 
 (type forcefulmotionaction sub complexxnet)
 
@@ -730,6 +730,8 @@ DEFS:
 
 (type grasp sub establishhold)
 
+(type pickup sub establishhold)
+
 (type house sub container artifact shared)
 
 (type member sub part person shared)
@@ -739,5 +741,7 @@ DEFS:
 (type build sub create  shared)
 
 (type slide sub motion  shared)
+
+(type carry sub establishhold  shared)
 
 INSTS:

@@ -32,4 +32,20 @@ DEFS:
 
 (type money sub artifact  shared)
 
+(type present sub objecttransfer)
+
+(type card sub artifact  shared)
+
+(type business sub shared institution)
+
+(type concessive sub conjunction)
+
+(type but sub concessive)
+
+(type verify sub process)
+
+(type confirm sub verify  shared)
+
+(type identity sub object-property  shared)
+
 INSTS:
