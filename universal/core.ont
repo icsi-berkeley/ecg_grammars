@@ -126,7 +126,9 @@ DEFS:
 
 (type causal sub process-kind)
 
-(type conjunction)
+(type connective)
+
+(type conjunction sub connective)
 
 (type then sub conjunction)
 
@@ -743,5 +745,13 @@ DEFS:
 (type slide sub motion  shared)
 
 (type carry sub establishhold  shared)
+
+(type intend sub process  shared)
+
+(type establish sub create  shared)
+
+(type store sub artifact container shared)
+
+(type ariel sub entity person shared)
 
 INSTS:

@@ -72,7 +72,9 @@ schema Perception  // "he saw the box"
 schema ComplexProcess  // later make sub of CoProcess
    subcase of Process
    roles
-   	  complexKind: @process-kind	
+   	  complexKind: @process-kind
+   	  connective: @connective
+   	  relation // causation?	
       //actionary//: @complexxnet  not used??
       process1: Process
       process2: Process

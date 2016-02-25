@@ -70,3 +70,7 @@ grasp :: ManipulationType :: self.m.actionary <-- @grasp
 pick :: PickType :: self.m.actionary <-- @pickup
 bring :: EstablishHoldType :: self.m.actionary <-- @bring
 carry :: EstablishHoldType :: self.m.actionary <-- @carry :: self.argform <-- NotDiTransitive
+intend :: SimpleControlType :: self.m.actionary <-- @intend
+establish :: CreationType :: self.m.actionary <-- @establish
+store :: ArtifactNoun :: self.m.ontological-category <-- @store
+ariel :: ProperNPInstance :: self.m.referent <-- @ariel :: self.m.ontological-category <-- @person

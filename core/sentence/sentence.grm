@@ -30,8 +30,11 @@ general construction S-With-Subj
 	       subj.m <--> self.m.profiledParticipant
  	
  	
-construction Declarative
-    subcase of S-With-Subj
+general construction Declarative
+    subcase of S
+    
+construction Declarative-S
+	subcase of S-With-Subj, Declarative
     constructional
         constituents
 	       fin: VP

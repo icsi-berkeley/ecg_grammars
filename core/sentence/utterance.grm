@@ -117,7 +117,7 @@ construction DeclarativeUtterance
 	     //optional addr: NP
 	     //optional comma: Comma
 	     core: Declarative
-	     optional end: PMark
+	     end: PMark
 	form
 	   constraints
 	      core.f meets end.f
@@ -140,7 +140,7 @@ construction AddressedSimpleImperative
 	   constituents
 	     core: SimpleImperative 
 	     addr: ProperNounNP // optional?
-	     optional comma: Comma
+	     comma: Comma
 	     end: IMark
 	form
 	   constraints
@@ -157,8 +157,8 @@ construction AddressedConditionalImperative
 	subcase of Utterance
 	constructional
 	   constituents
-	     optional addr: NP
-	     optional comma: Comma
+	     addr: NP
+	     comma: Comma
 	     core: ConditionalImperative
 	     optional end: IMark
 	form

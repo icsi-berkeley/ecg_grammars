@@ -29,6 +29,6 @@ construction SerialVP
 	   v2.m.protagonist <--> v1.m.protagonist
 	   self.m.process1 <--> v1.m
 	   self.m.process2 <--> v2.m
-	   self.m.connective <--> conj.m
+	   self.m.connective <--> conj.m.value
 	   ed.profiledParticipant <--> self.m.protagonist
 	

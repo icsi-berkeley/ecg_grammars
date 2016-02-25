@@ -16,7 +16,7 @@ construction SubjectControl  // simple 1/5/13, he wanted to move, he tried walki
    subcase of ArgumentStructure
    constructional
      constituents
-        v: ControlVerbSimple
+        v: Verb
         vp: ArgumentStructure // for testing -- will need to make more general 1/23/14
      constraints
         vp.verbform <-- PresentParticipleOrInfinitive // usually Infinitive

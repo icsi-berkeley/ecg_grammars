@@ -79,7 +79,23 @@ construction He
       self.m.number <-- @singular
       self.m.gender <-- @male  
       self.m.referent <-- @antecedent
-            
+
+construction She
+   subcase of Pronoun, Singular, ThirdPerson
+   constructional
+     constraints
+       self.features.case <-- "nom"
+   form
+      constraints
+         self.f.orth <-- "she"
+   meaning
+    constraints
+      self.m.ontological-category <-- @person  
+      self.m.number <-- @singular
+      self.m.gender <-- @female  
+      self.m.referent <-- @antecedent
+
+           
 construction I-Pronoun
    subcase of Pronoun, Singular, FirstPerson
    constructional

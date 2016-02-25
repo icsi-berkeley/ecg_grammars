@@ -10,15 +10,26 @@ Example sentences (simple control):
 package mental
 //import ditransitive
 
-
-
-construction IntransitiveCommunication
-	subcase of BareIntransitive
+construction SubordinateDeclarativeThat
 	constructional
 	 constituents
-	  v: MentalVerb
-	  optional conj: That-Subordinating
+	  conj: That-Subordinating
 	  core: Declarative
+	form
+	 constraints
+	   conj.f before core.f
+	meaning: EventDescriptor
+	 constraints
+	   self.m <--> core.m
+	   core.m.e-features.subord <--> conj.m
+
+construction IntransitiveCommunication
+	subcase of IntransitiveArgumentStructure
+	constructional
+	 constituents
+	  v: Verb
+	  //optional conj: That-Subordinating
+	  core: SubordinateDeclarativeThat
 	  // optional ToPhrase: Path-PP ("to the man")
    form
     constraints
@@ -26,9 +37,11 @@ construction IntransitiveCommunication
    meaning: Communication
     constraints
      core.m <--> self.m.content
+     self.m <--> v.m
      //self.m.listener <--> ToPhrase.m.landmark ??
 
-
+//this requires ditransitive package
+/*
 construction DitransitiveCommunication-NP
 	subcase of ActiveDitransitive
 	form 
@@ -55,5 +68,5 @@ construction IntransitiveThought
    meaning: Thought
     constraints
      core.m <--> self.m.content
-
+*/
 

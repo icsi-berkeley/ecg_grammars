@@ -6,6 +6,7 @@ schema ComplexED
 	subcase of EventDescriptor
 	roles
 	  complexKind: @event-kind
+	  connective: @connective
 	  ed1: EventDescriptor
 	  ed2: EventDescriptor
  

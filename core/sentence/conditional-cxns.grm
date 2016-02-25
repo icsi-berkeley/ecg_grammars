@@ -103,7 +103,7 @@ general construction ConditionalDeclarative
 	    optional c: Comma
 	    optional then2: Then-Conditional
 	    core: Declarative
-	 meaning: ComplexED
+	 meaning: ConditionalED
 	  constraints
 	    self.m.profiledParticipant <--> core.m.profiledParticipant
 	    //self.m.ed1 <--> bool.m

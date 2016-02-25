@@ -4,3 +4,14 @@ card :: ArtifactNoun :: self.m.ontological-category <-- @card
 business :: NounType :: self.m.ontological-category <-- @business
 confirm :: VerifyType :: self.m.actionary <-- @confirm
 identity :: PropertyNoun :: self.m.ontological-category <-- @identity
+IWM :: ProperNPInstance :: self.m.referent <-- @IWM :: self.m.ontological-category <-- @institution
+individual :: SentientNoun :: self.m.ontological-category <-- @individual
+able :: AbleAdjective :: self.m.value <-- @able
+unable :: AbleAdjective :: self.m.value <-- @unable :: ef.negated <-- @yes
+provide :: SupplyVerb :: self.m.actionary <-- @provide
+weapon :: WeaponType :: self.m.ontological-category <-- @weapon
+gun :: WeaponType :: self.m.ontological-category <-- @gun
+decline :: SimpleControlType :: self.m.actionary <-- @decline
+decline :: AgreeOrRefuseVerb :: self.m.actionary <-- @decline
+refuse :: AgreeOrRefuseVerb :: self.m.actionary <-- @refuse
+supply :: SupplyVerb :: self.m.actionary <-- @supply

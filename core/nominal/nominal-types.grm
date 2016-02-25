@@ -20,7 +20,7 @@ construction ProperNPInstance
 	meaning
 	  constraints
 		self.m.referent <-- @entity
-		self.m.ontological-category <-- @physicalEntity
+		self.m.ontological-category <-- @entity
 		self.m.gender <-- @genderValues
 		self.m.number <-- @RDnumberValues
 
