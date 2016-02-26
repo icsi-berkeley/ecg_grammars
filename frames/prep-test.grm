@@ -1,0 +1,345 @@
+general construction Area-Preposition
+	subcase of Preposition
+	
+general construction Carrier-Preposition
+	subcase of Preposition
+	
+general construction Containing_event-Preposition
+	subcase of Preposition
+	
+	
+general construction Initial_state-Preposition
+	subcase of Preposition
+		
+general construction Depictive-Preposition
+	subcase of Preposition
+
+general construction Direction-Preposition
+	subcase of Preposition
+	
+general construction Duration-Preposition
+	subcase of Preposition
+
+general construction Goal-Preposition
+	subcase of Preposition
+	
+general construction Manner-Preposition
+	subcase of Preposition
+	
+general construction Path-Preposition
+	subcase of Preposition
+	
+general construction Path_shape-Preposition
+	subcase of Preposition
+	
+general construction Place-Preposition
+	subcase of Preposition
+
+
+general construction Purpose-Preposition
+	subcase of Preposition	
+	
+general construction Result-Preposition
+	subcase of Preposition		
+	
+	
+general construction Source-Preposition
+	subcase of Preposition		
+	
+	
+general construction Speed-Preposition
+	subcase of Preposition		
+	
+general construction Time-Preposition
+	subcase of Preposition	
+	
+	
+construction while-Preposition
+    subcase of Depictive-Preposition
+    form
+      constraints
+        self.f.orth <-- "while"
+
+
+construction in-Preposition
+    subcase of Place-Preposition, Goal-Preposition, Carrier-Preposition, Depictive-Preposition, Manner-Preposition, Path_shape-Preposition, Time-Preposition, Path-Preposition, Purpose-Preposition, Containing_event-Preposition, Area-Preposition
+    form
+      constraints
+        self.f.orth <-- "in"
+
+
+construction with-Preposition
+    subcase of Depictive-Preposition
+    form
+      constraints
+        self.f.orth <-- "with"
+
+
+construction away-Preposition
+    subcase of Source-Preposition, Path-Preposition
+    form
+      constraints
+        self.f.orth <-- "away"
+
+
+construction through-Preposition
+    subcase of Path-Preposition, Area-Preposition
+    form
+      constraints
+        self.f.orth <-- "through"
+
+
+construction before-Preposition
+    subcase of Place-Preposition
+    form
+      constraints
+        self.f.orth <-- "before"
+
+
+construction over-Preposition
+    subcase of Place-Preposition, Path-Preposition, Area-Preposition
+    form
+      constraints
+        self.f.orth <-- "over"
+
+
+construction against-Preposition
+    subcase of Goal-Preposition, Path-Preposition
+    form
+      constraints
+        self.f.orth <-- "against"
+
+
+construction to-Preposition
+    subcase of Goal-Preposition, Manner-Preposition, Result-Preposition, Direction-Preposition
+    form
+      constraints
+        self.f.orth <-- "to"
+
+
+construction past-Preposition
+    subcase of Path-Preposition
+    form
+      constraints
+        self.f.orth <-- "past"
+
+
+construction across-Preposition
+    subcase of Path-Preposition
+    form
+      constraints
+        self.f.orth <-- "across"
+
+
+construction underneath-Preposition
+    subcase of Path-Preposition
+    form
+      constraints
+        self.f.orth <-- "underneath"
+
+
+construction along-Preposition
+    subcase of Path-Preposition
+    form
+      constraints
+        self.f.orth <-- "along"
+
+
+construction after-Preposition
+    subcase of Time-Preposition, Direction-Preposition
+    form
+      constraints
+        self.f.orth <-- "after"
+
+
+construction out-Preposition
+    subcase of Path-Preposition, Goal-Preposition, Source-Preposition, Result-Preposition, Direction-Preposition
+    form
+      constraints
+        self.f.orth <-- "out"
+
+
+construction amongst-Preposition
+    subcase of Place-Preposition
+    form
+      constraints
+        self.f.orth <-- "amongst"
+
+
+construction round-Preposition
+    subcase of Path-Preposition
+    form
+      constraints
+        self.f.orth <-- "round"
+
+
+construction around-Preposition
+    subcase of Path-Preposition, Area-Preposition
+    form
+      constraints
+        self.f.orth <-- "around"
+
+
+construction between-Preposition
+    subcase of Place-Preposition, Path-Preposition
+    form
+      constraints
+        self.f.orth <-- "between"
+
+
+construction into-Preposition
+    subcase of Goal-Preposition
+    form
+      constraints
+        self.f.orth <-- "into"
+
+
+construction about-Preposition
+    subcase of Path-Preposition, Area-Preposition
+    form
+      constraints
+        self.f.orth <-- "about"
+
+
+construction from-Preposition
+    subcase of Depictive-Preposition, Source-Preposition, Direction-Preposition, Path-Preposition, Initial_state-Preposition
+    form
+      constraints
+        self.f.orth <-- "from"
+
+
+construction up-Preposition
+    subcase of Direction-Preposition, Path-Preposition
+    form
+      constraints
+        self.f.orth <-- "up"
+
+
+construction inside-Preposition
+    subcase of Place-Preposition, Goal-Preposition, Area-Preposition
+    form
+      constraints
+        self.f.orth <-- "inside"
+
+
+construction until-Preposition
+    subcase of Duration-Preposition
+    form
+      constraints
+        self.f.orth <-- "until"
+
+
+construction down-Preposition
+    subcase of Path-Preposition
+    form
+      constraints
+        self.f.orth <-- "down"
+
+
+construction via-Preposition
+    subcase of Path-Preposition
+    form
+      constraints
+        self.f.orth <-- "via"
+
+
+construction as-Preposition
+    subcase of Time-Preposition
+    form
+      constraints
+        self.f.orth <-- "as"
+
+
+construction toward-Preposition
+    subcase of Goal-Preposition, Path-Preposition
+    form
+      constraints
+        self.f.orth <-- "toward"
+
+
+construction of-Preposition
+    subcase of Direction-Preposition, Path-Preposition
+    form
+      constraints
+        self.f.orth <-- "of"
+
+
+construction on-Preposition
+    subcase of Place-Preposition, Goal-Preposition, Carrier-Preposition, Time-Preposition, Direction-Preposition, Path-Preposition, Area-Preposition
+    form
+      constraints
+        self.f.orth <-- "on"
+
+
+construction at-Preposition
+    subcase of Place-Preposition, Time-Preposition, Speed-Preposition, Area-Preposition
+    form
+      constraints
+        self.f.orth <-- "at"
+
+
+construction for-Preposition
+    subcase of Duration-Preposition, Time-Preposition, Purpose-Preposition
+    form
+      constraints
+        self.f.orth <-- "for"
+
+
+construction towards-Preposition
+    subcase of Goal-Preposition, Direction-Preposition, Path-Preposition
+    form
+      constraints
+        self.f.orth <-- "towards"
+
+
+construction like-Preposition
+    subcase of Manner-Preposition
+    form
+      constraints
+        self.f.orth <-- "like"
+
+
+construction off-Preposition
+    subcase of Source-Preposition
+    form
+      constraints
+        self.f.orth <-- "off"
+
+
+construction by-Preposition
+    subcase of Carrier-Preposition, Time-Preposition, Path-Preposition
+    form
+      constraints
+        self.f.orth <-- "by"
+
+
+construction alongside-Preposition
+    subcase of Place-Preposition
+    form
+      constraints
+        self.f.orth <-- "alongside"
+
+
+construction onto-Preposition
+    subcase of Goal-Preposition
+    form
+      constraints
+        self.f.orth <-- "onto"
+
+
+construction under-Preposition
+    subcase of Path-Preposition
+    form
+      constraints
+        self.f.orth <-- "under"
+
+
+construction without-Preposition
+    subcase of Depictive-Preposition
+    form
+      constraints
+        self.f.orth <-- "without"
+
+
+
+	

@@ -1,0 +1,61 @@
+
+general construction Verb
+   subcase of HasVerbFeatures
+   meaning: Event
+	  evokes ProcessFeatures as pf
+	  constraints
+	    pf <--> self.m.Features
+
+
+general construction ComplexVerb
+	subcase of Verb
+	
+general construction VerbChunk
+	subcase of ComplexVerb // what?
+		   
+general construction LexicalVerb
+	subcase of VerbChunk, Word
+
+
+general construction VPto
+
+	
+general construction VP
+	subcase of HasVerbFeatures
+	meaning: Event
+	evokes EventDescriptor as ed
+
+
+construction TO-Infinitive-Marker
+	subcase of Word
+	form
+	 constraints
+	   self.f.orth <-- "to"
+
+construction InfinitiveCxN // check names
+	subcase of VerbChunk
+	constructional  
+    	constituents
+    		first: TO-Infinitive-Marker
+    		second: VerbChunk
+    	constraints
+    		second.verbform <-- Base
+    		self.verbform <-- Infinitive // check names
+    		self.argform <--> second.argform
+    		self.verbkind <--> second.verbkind
+    		self.voice <--> second.voice
+	form
+		constraints
+       		first.f meets second.f  //no split inf.
+	meaning
+		constraints
+			self.m <-> second.m	
+	
+// Build general patterns for event structure that will compose.
+// E.g. time, place, etc.
+		
+
+    
+	
+
+	    

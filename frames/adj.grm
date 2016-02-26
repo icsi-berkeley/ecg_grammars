@@ -1,0 +1,8 @@
+general construction Adjective
+	subcase of RootType
+
+general construction AJP
+	subcase of Adjective
+
+construction AdjectiveType
+	subcase of Adjective, GeneralTypeCxn

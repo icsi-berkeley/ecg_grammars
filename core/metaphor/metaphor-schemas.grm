@@ -1,1 +1,14 @@
+/*
+metaphor package
+
+Currently empty. We are still working on a "core" analysis. 
+Competing analyses:
+(1) "MetaphorSchema" + MetaphoricalRD
+(2) "Metahpor"
+
+(1) reconstrues NPs metaphorically, so they fit existing semantic constraints.
+(2) focuses more on role bindings, etc., and identifying the larger metaphor family.
+
+*/
+
 package metaphor

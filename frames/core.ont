@@ -1,0 +1,701 @@
+//
+
+// ont2.ont
+
+DEFS:
+
+// Top Level  *************************
+
+(type shared)  // all elements of the shared (with App) ontology
+
+(type unshared)  // internal Analyzer items, now explicit 8/28/15
+
+(type keyword sub shared)  // for use in N-tuples;
+
+(type item)  // very top of our lattice, not all shared
+
+(type enumeration sub item)  // these are not sub entity, some in gramamr not shared
+
+(type sharedEnumeration sub enumeration shared) // if needed
+
+(type entity sub item)  // possibly shared items; maybe all entities are shared ????
+
+(type physicalEntity sub entity location)  // 8/28/15: just physical in SUMO
+
+(type abstract sub entity)
+
+(type social sub entity)
+
+(type naturalForce sub entity)
+
+(type event sub entity)  // process under physical in SUMO, May be OK.  8/28/15
+
+// N-tuple Keywords - Probably done with the Template Package 8/28/15 ***************** TBD
+
+// top of internal lattice, used in Analyzer, not shared. maybe BuiltIn.ont *****************
+
+// super-type and values for role values
+
+(type grammaticalValues  sub unshared enumeration)  // not sub entity  8/28/15
+
+(type givennessValues  sub grammaticalValues)
+
+(type continuityValues  sub grammaticalValues)
+
+(type boundingValues  sub grammaticalValues)
+
+(type genderValues  sub grammaticalValues)
+
+(type male  sub genderValues)
+
+(type female  sub genderValues)
+
+(type neuter  sub genderValues)
+
+(type determinate sub boundingValues)
+
+(type indeterminate sub boundingValues)
+
+(type continuous  sub continuityValues )
+
+(type discrete  sub continuityValues )
+
+(type givennessValues  sub grammaticalValues)
+
+(type RDnumberValues  sub grammaticalValues)
+
+(type noNumber  sub RDnumberValues)  // for mass nouns
+
+(type singular  sub RDnumberValues)
+
+(type plural  sub RDnumberValues)
+
+(type dual  sub plural)
+
+(type typeIdentifiable  sub givennessValues)
+
+(type uniquelyIdentifiable  sub typeIdentifiable)
+
+(type familiar  sub uniquelyIdentifiable)
+
+(type distinct  sub typeIdentifiable)  // another box, etc. ????????????????
+
+(type activated  sub familiar)
+
+(type inFocus  sub activated)
+
+(type quantifierValues  sub grammaticalValues) // for QuantitySchema.values
+
+(type some sub quantifierValues)
+
+(type modifierKinds  sub grammaticalValues)
+
+(type comparative  sub modifierKinds )
+
+(type superlative sub modifierKinds )
+
+(type unmarked sub modifierKinds) // for adjectives, +
+
+//(type deictic sub enumeration)  // ??
+
+(type EventKind sub enumeration)
+
+(type lexicalORgerund sub EventKind)
+
+(type lexical sub lexicalORgerund)
+
+(type gerund sub lexicalORgerund)
+
+(type infinitive sub EventKind)
+
+(type process-kind sub enumeration)  //
+
+(type coprocess sub process-kind)   // 10/18/13
+
+(type serial sub process-kind)
+
+(type purpose sub serial ) // do X to do Y
+
+(type causal sub process-kind)
+
+(type interaction sub process-kind)
+
+(type event-kind sub enumeration) // conditional, serial
+
+(type conditional sub event-kind)
+
+(type conditional_imperative sub conditional)
+
+(type conditional_declarative sub conditional)
+
+(type serial sub event-kind)
+
+(type voice sub item)  // change this ~ voiceValue 7/30/15  *********************
+
+(type  notPassive sub voice)
+
+(type passive sub voice)
+
+(type active sub notPassive)
+
+(type continuousOrDiscrete sub enumeration)  //values for RD role continuity
+
+(type continuous sub continuousOrDiscrete)
+
+(type discrete sub continuousOrDiscrete)
+
+(type possessionKind sub enumeration) // 12/1/12
+
+(type physical sub possessionKind)
+
+(type  ownership sub possessionKind)
+
+(type part sub possessionKind)
+
+(type property sub possessionKind)
+
+(type modifier)  // shared ??
+
+(type quantifier sub modifier)  // cf. use in specializer
+
+(type adjective sub modifier)
+
+(type adverb sub modifier)
+
+(type scale sub object-property)  //3/2/13  ???? do these move 8/28/15 ????????????
+
+(type hedgeVal sub enumeration shared)  // 4/8/13
+
+(type fake sub hedgeVal)  //4/8/13
+
+(type none sub hedgeVal)
+
+(type tense)
+
+(type present sub tense)
+
+(type past sub tense)
+
+(type future sub tense)
+
+(type mood)  // all of these are moodValue
+
+(type declarative sub mood)
+
+(type imperative sub mood)
+
+(type wh-question sub mood)
+
+(type yn-question sub mood)
+
+// END of internal Analyzer items  ************************
+
+//(type modifier-type  sub item)  // not sub entity~temporal, needed ???_
+
+// Types for conceptual primitives used in Analyzer   ~ MetaNet Source Domains *******************************
+
+// The top level of this sub-Ontology should be consistent with App side core concept top Level
+
+// Space & Time
+
+(type measure sub enumeration)  // 8/28/15
+
+(type space sub measure)  // spatial domain
+
+(type time sub measure)  // temporal domain
+
+(type units sub entity shared)
+
+// Time
+
+(type date sub time entity)
+
+(type temporal-units sub time units)
+
+(type hour sub temporal-units)
+
+(type minutes sub temporal-units)
+
+(type seconds sub temporal-units)
+
+(type nontemporal-units sub units)
+
+(type spatial-units sub space nontemporal-units)
+
+// Space
+
+(type region sub  space entity)
+
+(type closedCurve sub region)
+
+(type location sub region) //
+
+(type heading sub enumeration space)
+
+(type towards sub heading)
+
+(type direction sub heading)
+
+(type straight sub direction)
+
+(type north sub direction)
+
+(type south sub direction)
+
+(type east sub direction)
+
+(type west sub direction)
+
+(type up sub direction)
+
+(type down sub direction)
+
+(type right sub direction)
+
+(type left sub direction)
+
+(type up sub direction)
+
+(type part sub physicalEntity)
+
+(type side sub part)
+
+(type back sub side)
+
+(type front sub side)
+
+// Distances
+
+(type distance sub space)  // relate this to scales ****
+
+(type centimeter sub distance spatial-units)
+
+(type inch sub distance spatial-units)
+
+(type square sub distance spatial-units)  // for simple robot world
+
+(type squares sub distance spatial-units)
+
+// Physical Entity
+
+// (type physicalEntity sub entity location ) defined above
+
+(type agent sub  physicalEntity ) // will include metaphorical agents? 2/5/13
+
+(type moveable sub physicalEntity)  //  used in animate
+
+(type grouper sub shaped physicalEntity ) // ~boundary,  e.g. bunch
+
+(type bunch sub  grouper)  // hack, needed for Quantity NP - fix
+
+//Top level ontology for sharing with App side (~ SUMO) built in @items not automatically shared ****************************
+
+// The Top must be the same for Internal Image schemas (Motion, etc.) since these are also potential App concepts
+
+// animate sentient  __________________________________
+
+(type animate sub shaped moveable agent physicalEntity)  // can also be numbered, etc.
+
+(type inanimate sub shaped physicalEntity)  // 10/23/12
+
+(type generic-person sub person)  // needs work - generics in general  ?? 8/28/15
+
+(type sheep sub animate)
+
+(type beast sub animate)  // for metaphor demo
+
+(type sentient sub physicalEntity agent) // intelligence scale? check against animate 2/6/13
+
+(type person sub animate sentient)
+
+(type robot sub artifact sentient)  // inanimate, might be tricky
+
+//
+
+(type john sub person)
+
+// inanimate stuff  _____________________________________
+
+(type shaped sub entity)  // contrast with mass
+
+(type artifact sub inanimate)
+
+(type block sub artifact physicalEntity )
+
+(type book sub artifact moveable)  // also sub story, which is abstract *****
+
+(type table sub artifact)
+
+(type instrument sub  physicalEntity)
+
+(type hammer sub instrument artifact moveable)
+
+(type vehicle sub instrument artifact moveable)  // 6/2/13
+
+(type car sub vehicle)
+
+(type bodyPart sub shaped physicalEntity) // 11/16/12
+
+(type hand sub bodyPart instrument moveable)
+
+(type head sub bodyPart)
+
+(type arm sub bodyPart instrument moveable)
+
+// containers
+
+(type container sub  artifact location entity)  //11/4/1/3
+
+(type box sub container moveable)
+
+(type boxes sub container)
+
+(type room sub container)
+
+// mass  ________________________________________
+
+(type mass sub physicalEntity )  // contrast with shaped, weight, volume scales
+
+(type discreteAble sub mass)
+
+(type beer sub discreteAble artifact)
+
+(type mud sub mass)
+
+(type material sub mass)
+
+(type steel sub material)
+
+// Events  (type event sub entity)  all needs work 8/28/15 ********************************
+
+(type effect sub entity)  // for EventRD, etc. 12/24/12
+
+(type eventTop sub effect)  // crisis, storm, etc. 12/28/12 reject event as agent
+
+// Abstract entities  ****************************
+
+(type idea sub abstract)  // importance, goodness scales
+
+(type story sub abstract)  // 8/18/13  ****** change
+
+(type abstractState sub abstract)
+
+// Social entities  *****************************************
+
+(type socialProblem sub abstract social) // probably not abstract 8/28/15
+
+(type problem sub socialProblem)  // difficulty scale
+
+// verbish stuff  ************************************
+
+(type process sub entity) // 8/28/15  SUMO has sub physicalEntity, issue??
+
+(type stasis sub process)
+
+(type be sub stasis)
+
+(type be2 sub be)
+
+(type try sub process)
+
+// (type inchoativestasis sub stasis)
+
+(type create sub process cause)
+
+(type become sub statechange) // 2/14/13
+
+(type complexxnet sub process)
+
+(type motion sub process)
+
+(type perception sub process)
+
+(type see sub perception)  // 2/7/13  perception
+
+(type change sub statechange) // 2/17/13 ? subtype of ?
+
+(type effectormotion sub complexxnet)
+
+(type forceapplication sub process)
+
+(type forcefulmotionaction sub complexxnet)
+
+(type agentiveimpactaction sub forcefulmotionaction)
+
+(type causeEffect sub complexxnet)
+
+//================== process stages
+
+(type stage sub process)  // rename??, also cf. schemas
+
+(type start sub stage shared)
+
+(type stop sub stage shared)
+
+(type continue sub stage shared)
+
+// Specific general actions for Core - will be shared  *******************************************
+
+// Verbs
+
+(type verb) // probably drop
+
+(type slap sub forcefulmotionaction)
+
+(type hit sub agentiveimpactaction)
+
+(type assault sub agentiveimpactaction)
+
+(type infect sub causeEffect)
+
+(type kick sub agentiveimpactaction)
+
+(type move sub motion)
+
+(type walk sub motion)
+
+(type enter sub motion)
+
+(type exit sub motion)
+
+(type run sub motion)
+
+(type drive sub motion)  // 5/28/13
+
+(type push sub forceapplication ) // is forceapplication needed? Not used directly
+
+(type push_move sub push motion cause)
+
+(type releasehold sub forceapplication)
+
+(type establishhold sub forceapplication)
+
+(type throw sub complexxnet)
+
+(type objecttransfer sub complexxnet)
+
+(type statechange sub process)  //2/28/13
+
+(type scalechange sub statechange)
+
+(type make sub statechange)
+
+(type mentalProcess sub process)
+
+(type say sub mentalProcess)
+
+(type think sub mentalProcess)
+
+(type give sub objecttransfer)
+
+(type give-light  sub process)
+
+(type take sub objecttransfer)
+
+(type take-light  sub process)
+
+(type possess sub process)
+
+(type tell sub process)  // 8/15/13
+
+(type forceDynamic sub process)
+
+(type help sub forceDynamic)
+
+(type want sub process)
+
+(type cause sub forceDynamic)
+
+(type enlarge sub process)
+
+(type prevent sub forceDynamic)  // 1/22/13
+
+//(type telicity sub time)   // change to temorality 11/26/12 Probably drop
+
+//(type ongoing sub telicity)  // ????
+
+// (type bounded sub telicity)
+
+//
+
+// Modifiers and Scales  ***********************************************************
+
+// (type noScale sub scale) //   not needed
+
+(type difficultyScale sub scale )
+
+(type intensityScale sub scale )
+
+(type size sub scale )  // revisit 11/12/12
+
+(type fear sub scale) // desperate, etc.
+
+(type verticality sub scale )  // a basic scale
+
+(type morality sub verticality )  // a basic scale
+
+(type length sub size) // another scale sub of size
+
+(type speed sub scale )  // fast, faster, etc
+
+(type hunger sub scale )
+
+(type distanceScale sub scale ) // near far ??comparatives??
+
+(type amountScale sub scale )  //12/17/12  not yet used
+
+(type few  sub amountScale )
+
+(type emotionKind sub scale)
+
+(type anger sub emotionKind)  // 3/29/13 verb
+
+// Properties
+
+(type object-property sub shared)
+
+(type color sub object-property )  // cf. size, non-scalar property
+
+(type propValue sub sharedEnumeration )  // non-scale properties are sets
+
+(type colorValue sub propValue color)
+
+(type sizeValue sub propValue)
+
+(type sideValue sub propValue side)
+
+(type red sub colorValue)
+
+(type blue sub colorValue)
+
+(type big sub sizeValue)
+
+(type small sub sizeValue)
+
+// Booleans
+
+(type boolean sub shared)
+
+(type yes sub boolean)
+
+(type no sub boolean)
+
+// numbers
+
+(type number sub quantifier)
+
+(type one sub number)
+
+(type two sub number)
+
+(type three sub number)
+
+// Temporality - probably drop
+
+(type antecedent sub entity)  // tag for Specializer to look for antecedent 8/28/15
+
+(type anaphora sub entity) // tag for Specializer to look for one-anaphora 9/12/15
+
+// (type temporality)
+
+//(type bounded sub temporality)
+
+//(type ongoing sub temporality)
+
+//(type bounded-ongoing sub temporality)
+
+(type temporality)
+
+(type bounded sub temporality)
+
+(type atemporal sub temporality)
+
+// Modality
+
+(type modality) // all of these are modalityValue  ??? stil needed ??????????????????
+
+(type can sub modality)
+
+(type cant sub modality)
+
+(type could sub modality)
+
+(type should sub modality)
+
+(type will sub modality)
+
+///
+
+(type wh-word)
+
+(type which sub wh-word)
+
+(type where sub wh-word)
+
+(type what sub wh-word)
+
+//tokens
+
+(type brown sub colorValue  shared)
+
+(type weight sub object-property scale measure)
+
+(type name sub object-property)
+
+(type weight-units sub units weight)//nontemporal-units weight)
+
+(type price-units sub units price) //nontemporal-units price)
+
+(type pound-weight sub shared weight-units)
+
+(type pound-price sub shared price-units)
+
+(type dollar sub shared units price-units)
+
+(type weigh_predication sub process shared stasis)
+
+(type weigh sub process  shared measure)
+
+(type weigh_predication sub process  shared measure)
+
+(type weightValue sub propValue)
+
+(type heavy sub weightValue  shared)
+
+(type light sub weightValue  shared)
+
+(type cost sub process shared)
+
+(type cost_predication sub process shared stasis)
+
+(type price sub measure scale)
+
+(type grow sub scalechange)
+
+(type shrink sub scalechange)
+
+(type scalarValue sub object-property)
+
+(type comparison sub measure)
+
+(type increase sub comparison)
+
+(type decrease sub comparison)
+
+(type john sub person)
+
+(type paint sub create  shared)
+
+(type make_create sub create  shared)
+
+(type make_cause sub cause  shared)
+
+(type cat sub sentient)
+
+(type storm sub eventTop naturalForce shared)
+
+(type crisis sub eventTop  shared)
+
+(type grasp sub establishhold)
+
+INSTS:
