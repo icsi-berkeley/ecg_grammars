@@ -48,3 +48,13 @@ turn :: SelfMotionType :: self.m.speed <-- ".2" :: self.m.actionary <-- @turn
 water :: SubstanceType :: self.m.ontological-category <-- @water
 coffee :: SubstanceType :: self.m.ontological-category <-- @coffee
 mug :: ContainerNoun :: self.m.ontological-category <-- @mug
+dining :: PropertyAdjectiveType :: self.m.property <-- @function :: self.m.value <-- @dining 
+pr2 :: ProperNPInstance :: self.m.referent <-- @pr2 :: self.m.ontological-category <-- @robot :: self.m.gender <-- @male
+fridge :: ArtifactNoun :: self.m.ontological-category <-- @refrigerator
+refrigerator :: ArtifactNoun :: self.m.ontological-category <-- @refrigerator
+can :: ContainerNoun :: self.m.ontological-category <-- @cancontainer
+soda :: ArtifactNoun :: self.m.ontological-category <-- @soda
+table :: ArtifactNoun :: self.m.ontological-category <-- @table
+fall :: SelfMotionType :: self.m.actionary <-- @fall
+floor :: ArtifactNoun :: self.m.ontological-category <-- @floor
+new :: PropertyAdjectiveType :: self.m.value <-- @new

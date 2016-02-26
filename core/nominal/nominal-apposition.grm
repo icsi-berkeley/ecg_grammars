@@ -1,6 +1,27 @@
-package apposition
-//package core
 
+package apposition
+
+construction RelativizedNP
+	subcase of NP
+	constructional
+	 constituents
+	  core: NP
+	  specific: That-Subordinating
+	  description: VP
+	 constraints
+	   self.features <--> core.features
+   form
+    constraints
+      core.f meets specific.f
+      core.f before description.f
+   meaning: RD//RelativizedRD 
+   	constraints
+   	  self.m <--> core.m
+   	  self.m.extras.event <--> description.m.ed
+   	  description.ed.modifiedThing <--> core.m
+   	  description.ed.profiledParticipant <--> core.m
+
+package apposition   	  
 construction Embedded-WH-Clause
 	constructional
 	  constituents

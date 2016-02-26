@@ -10,6 +10,7 @@ general construction CopularVP
 	  constraints
 	    self.features <--> cop.features
 	    cop.argform <-- Copula
+	    self.verbform <--> cop.verbform
 	meaning: Stasis
 	  constraints
 	     self.m <--> cop.m

@@ -318,4 +318,26 @@ DEFS:
 
 (type mug sub container artifact)
 
+(type function sub object-property  shared)
+
+(type functionValue sub propValue)
+
+(type dining sub functionValue function  shared)
+
+(type counter sub artifact)
+
+(type pr2 sub entity robot shared)
+
+(type refrigerator sub artifact container shared)
+
+(type cancontainer sub artifact container)
+
+(type soda sub artifact substance shared)
+
+(type fall sub motion  shared)
+
+(type floor sub artifact  shared)
+
+(type new sub propValue  shared)
+
 INSTS:

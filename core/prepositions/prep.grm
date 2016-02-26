@@ -33,7 +33,27 @@ construction IN-Locative // 11/4/13
          //self.m.landmark <--> bo.boundedObject
          self.m.landmark.extensions <--> bo // testing!
          self.m.profiledArea <--> bo.interior
-       
+
+//Testing
+schema Support 
+	subcase of TrajectorLandmark
+	roles
+	  supporter
+	  supported
+	constraints
+	  landmark <--> supporter
+	  supported <--> trajector
+ 
+ construction On-Prep	
+ 	subcase of LocativePreposition
+ 	form
+ 	 constraints
+ 	   self.f.orth <-- "on"
+    meaning: Support
+      constraints
+       self.m.landmark.ontological-category <-- @physicalEntity
+       self.m.profiledArea <--> self.m.supporter
+             
  
  construction AT-Locative
    subcase of LocativePreposition 
