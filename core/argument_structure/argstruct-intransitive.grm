@@ -44,7 +44,7 @@ construction BareIntransitive  //  e.g. He moved
     constraints 
       self.m <--> v.m
       self.m.spg.distance <--> dis.m 
-	  self.m.heading <--> dir.m.tag
+	  self.m.heading <--> dir.m
       self.m.spg <--> pp.m
       
       

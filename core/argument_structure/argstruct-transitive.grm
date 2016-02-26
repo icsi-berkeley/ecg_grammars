@@ -95,7 +95,7 @@ general construction Trans_CauseChangeLocation
     	self.m.affectedEntity <--> mp.spg.trajector
     	mp.spg <--> pp.m 
    		mp.spg.distance <--> dis.m 
-	    mp.heading <--> dir.m.tag 
+	    mp.heading <--> dir.m
 	    self.m.affectedEntity.ontological-category <-- @physicalEntity 
 
 
