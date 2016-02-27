@@ -58,3 +58,4 @@ table :: ArtifactNoun :: self.m.ontological-category <-- @table
 fall :: SelfMotionType :: self.m.actionary <-- @fall
 floor :: ArtifactNoun :: self.m.ontological-category <-- @floor
 new :: PropertyAdjectiveType :: self.m.value <-- @new
+marker :: ArtifactNoun :: self.m.ontological-category <-- @marker

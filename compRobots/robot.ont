@@ -340,4 +340,6 @@ DEFS:
 
 (type new sub propValue  shared)
 
+(type marker sub artifact  shared)
+
 INSTS:
