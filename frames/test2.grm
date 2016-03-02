@@ -3,22 +3,18 @@ general construction Cause_motion_pattern1
 	   constructional
 		constituents
 		v: Verb
-		//np: NP [0.3262935586061246, .9]
-		goal-pp: Goal-PP [0.19640971488912354, .9]
-		path-pp: Path-PP [0.10982048574445617, .9]
-		source-pp: Source-PP [0.05807814149947202, .9]
-		ajp: AJP [0.00791974656810982, .9]
-		initial_state-pp: Initial_state-PP [0.0015839493136219642, .9]
+		goal-pp: Goal-PP [0.2, .9]
+		path-pp: Path-PP [0.11, .9]
+		source-pp: Source-PP [0.05, .9]
+		ajp: AJP [0.01, .9]
 	   meaning: Cause_motion
 		constraints
 		self.m <--> v.m
-		//self.m.Theme <--> np.m
 		ed.profiledParticipant <--> self.m.Agent
 		self.m.Goal <--> goal-pp.m
 		self.m.Path <--> path-pp.m
 		self.m.Source <--> source-pp.m
 		self.m.Result <--> ajp.m
-		self.m.Initial_state <--> initial_state-pp.m
 
 construction Cause_motion_pattern1_active
 	subcase of Cause_motion_pattern1, ActiveTransitive

@@ -103,12 +103,14 @@ general construction ConditionalDeclarative
 	    optional c: Comma
 	    optional then2: Then-Conditional
 	    core: Declarative
+	    optional else: Else-Clause
 	 meaning: ConditionalED
 	  constraints
 	    self.m.profiledParticipant <--> core.m.profiledParticipant
 	    //self.m.ed1 <--> bool.m
 	    //self.m.ed2 <--> core.m
-	    self.m.complexKind <-- @conditional	    
+	    self.m.complexKind <-- @conditional	  
+	    self.m.ed3 <--> else.m  
 
 
 construction StandardConditionalDeclarative
@@ -118,8 +120,10 @@ construction StandardConditionalDeclarative
 	    cond.f meets bool.f
 	    bool.f meets then2.f
 	    bool.f before core.f
+	    core.f before else.f
 	meaning
 	  constraints
 	   	self.m.ed1 <--> bool.m
-	    self.m.ed2 <--> core.m	    
+	    self.m.ed2 <--> core.m	
+	    self.m.ed3 <--> else.m    
 	          
