@@ -22,12 +22,18 @@ schema Transitive
 
 schema DiTransitive   
 	subcase of Transitive // 2/11/13
+	
+schema NotDiTransitive
+	subcase of Transitive
 
 schema PropertyChanger   
 	subcase of Transitive // 4/1/13
 		
 schema NotTransitive   
 	subcase of ArgForm
+	
+schema AmbiTransitive
+	subcase of NotTransitive
 	
 schema Control
 	subcase of ArgForm  // NotTransitive  ??
@@ -37,6 +43,12 @@ schema Light
 
 	
 // Copulas - more than needed for First
+
+schema Change_Adj
+	subcase of NotTransitive
+
+schema Change_No_Adj
+	subcase of NotTransitive
 		
 schema Copula 
 	subcase of NotTransitive

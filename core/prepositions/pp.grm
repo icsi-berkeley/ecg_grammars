@@ -1,4 +1,4 @@
-package starter
+package core
 
 general construction PP
 	subcase of RootType // answer to question, etc.   
@@ -7,8 +7,16 @@ general construction PP
 			prep: Preposition  
 			np: NP //[1.0, .9]
 	
-// Spatial PPs
-					 
+
+construction For-PP
+	subcase of PP
+	constructional
+	  constituents
+	    prep: For-Recipient
+
+
+    
+// Spatial PPs					 
 general construction Spatial-PP  //literal
 	subcase of PP
 	constructional
@@ -52,7 +60,9 @@ construction Loc-PP  // static location
 			// self.m <--> prep.m  inherited
 			//self.m.trajector <-- @physicalEntity  inherited
 			
-			
+
+// (the color) of the box
+// (the size) of the building			
 construction ModifierPP
 	subcase of PP
 	constructional
@@ -64,5 +74,22 @@ construction ModifierPP
 	meaning: Modification
 	  constraints
 	     prep.m <--> self.m
-	     np.m <--> self.m.modifier
+	     np.m <--> self.m.modifiedThing
+	     self.m.temporality <-- @atemporal
 	  			
+
+	  			
+// ST (1/4/16, added from Base)
+construction ByAgentPhrase
+	subcase of PP
+	constructional
+	  constituents
+	    prep: BY-Agent
+	    np: NP
+	form
+	  constraints
+	    prep.f meets np.f
+	meaning: ByLandmark
+	  constraints
+	    np.m <--> self.m.landmark
+	    

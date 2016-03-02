@@ -1,0 +1,30 @@
+package universal-constructions
+import universal-schemas
+
+
+general construction Verb
+   subcase of HasVerbFeatures
+   meaning: Process
+
+general construction ComplexVerb
+   subcase of Verb
+   
+general construction VerbChunk  
+	subcase of  RootType, ComplexVerb 
+
+general construction LexicalVerb
+	subcase of VerbChunk, Word
+	meaning
+		evokes ProcessFeatures as pf
+   	constraints
+   		pf <--> self.m.p-features
+   		
+
+construction LexicalVerbType
+	subcase of VerbChunk, GeneralTypeCxn
+	meaning
+		evokes ProcessFeatures as pf
+   	constraints
+   		pf <--> self.m.p-features
+   		//self.m.actionary <-- @process
+

@@ -1,0 +1,20 @@
+include ./core.prefs
+
+
+PACKAGE_NAME ::== 
+	robots
+	location
+	motion
+;
+
+IMPORT_PATHS ::==
+	../test/test/compRobots
+;
+
+TOKEN_PATH ::== 
+	test.tokens
+;
+
+ONTOLOGY_PATHS ::==
+	../test/test/robot.ont
+;

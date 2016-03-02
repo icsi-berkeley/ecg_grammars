@@ -1,0 +1,76 @@
+scarlet :: ColorType :: self.m.value <-- @red
+red :: ColorType :: self.m.value <-- @red
+blue :: ColorType :: self.m.value <-- @blue
+cat :: SentientNoun :: self.m.ontological-category <-- @cat
+block   :: ArtifactNoun  :: self.m.ontological-category <-- @block
+move    :: SelfMotionType  :: self.m.actionary <-- @move :: self.m.speed <-- ".5"
+walk    :: SelfMotionType  :: self.m.actionary <-- @walk :: self.m.speed <-- ".3" :: self.argform <-- NotTransitive
+run     :: SelfMotionType  :: self.m.actionary <-- @run  :: self.m.speed <-- ".7" :: self.argform <-- NotTransitive
+box     :: ContainerNoun  :: self.m.ontological-category <-- @box
+room    :: ArtifactNoun  :: self.m.ontological-category <-- @room
+be      :: BeCopulaType  :: self.m.actionary <-- @be
+see     :: PerceptionType :: self.m.actionary <-- @see
+sprint  :: SelfMotionType  :: self.m.actionary <-- @run  :: self.m.speed <-- ".8" :: self.argform <-- NotTransitive
+jog  :: SelfMotionType  :: self.m.actionary <-- @run  :: self.m.speed <-- ".6" :: self.argform <-- NotTransitive
+enter :: PathVerbIn   :: self.m.actionary <-- @enter :: self.m.landmark.ontological-category <-- @container
+exit :: PathVerbOut   :: self.m.actionary <-- @exit :: self.m.landmark.ontological-category <-- @container
+man :: SentientNoun :: self.m.ontological-category <-- @person :: self.m.gender <-- @male
+woman :: SentientNoun :: self.m.ontological-category <-- @person :: self.m.gender <-- @female
+big :: ScalarAdjectiveType :: self.m.value <-- ".7" :: self.m.property <-- @size
+small :: ScalarAdjectiveType :: self.m.value <-- ".3" :: self.m.property <-- @size
+john :: ProperNPInstance :: self.m.referent <-- @john :: self.m.gender <-- @male :: self.m.ontological-category <-- @person :: self.m.number <-- @singular
+mary :: ProperNPInstance :: self.m.referent <-- @mary :: self.m.gender <-- @female :: self.m.ontological-category <-- @person :: self.m.number <-- @singular
+push :: ApplyForceType :: self.m.actionary <-- @push_move
+stop :: StageVerbType :: self.m.actionary <-- @stop :: self.expectedVerbForm <-- PresentParticiple
+start :: StageVerbType :: self.m.actionary <-- @start 
+continue :: StageVerbType :: self.m.actionary <-- @continue
+quickly :: ScalarAdverbType :: self.m.value <-- ".7" :: self.m.property <-- @speed
+slowly :: ScalarAdverbType :: self.m.value <-- ".3" :: self.m.property <-- @speed
+brown :: ColorType :: self.m.value <-- @brown
+inch :: UnitType :: self.m.ontological-category <-- @inch :: self.m.extras.quantity.property <-- @distance
+weight :: PropertyNoun :: self.m.ontological-category <-- @weight
+name :: PropertyNoun :: self.m.ontological-category <-- @name
+price :: PropertyNoun :: self.m.ontological-category <-- @price
+cost :: PropertyNoun :: self.m.ontological-category <-- @price
+size :: PropertyNoun :: self.m.ontological-category <-- @size
+color :: PropertyNoun :: self.m.ontological-category <-- @color
+pound :: UnitType :: self.m.ontological-category <-- @pound-weight :: self.m.extras.quantity.property <-- @weight
+pound :: UnitType :: self.m.ontological-category <-- @pound-price :: self.m.extras.quantity.property <-- @price
+dollar :: UnitType :: self.m.ontological-category <-- @dollar
+weigh :: MeasurePredicationType :: self.m.actionary <-- @weigh_predication :: self.m.dimension <-- @weight
+cost :: MeasurePredicationType :: self.m.actionary <-- @cost_predication :: self.m.dimension <-- @price
+heavy :: ScalarAdjectiveType :: self.m.value <-- ".7" :: self.m.property <-- @weight
+hefty :: ScalarAdjectiveType :: self.m.value <-- ".8" :: self.m.property <-- @weight
+light :: ScalarAdjectiveType :: self.m.value <-- ".3" :: self.m.property <-- @weight
+become :: ChangeType :: self.m.actionary <-- @become
+#change :: StateChangeType :: self.m.actionary <-- @change
+grow :: ScaleChangeType :: self.m.actionary <-- @grow :: self.m.state.property <-- @size :: self.m.direction <-- @increase :: self.m.state.value <-- ".7"
+shrink :: ScaleChangeType :: self.m.actionary <-- @shrink :: self.m.state.property <-- @size :: self.m.direction <-- @decrease :: self.m.state.value <-- ".3"
+team :: SentientNoun :: self.m.ontological-category <-- @person :: self.m.number <-- @plural
+paint :: CreationType :: self.m.actionary <-- @paint
+make :: CreationType :: self.m.actionary <-- @make_create
+create :: CreationType :: self.m.actionary <-- @create
+make :: CauseEffectType :: self.m.actionary <-- @make_cause
+prevent :: ForceDynamicType :: self.m.fdType <-- @prevent :: self.expectedVerbForm <-- PresentParticiple :: self.m.actionary <-- @prevent
+cause :: ForceDynamicType :: self.m.fdType <-- @cause :: self.m.actionary <-- @cause :: self.expectedVerbForm <-- Infinitive
+storm :: EventNoun :: self.m.ontological-category <-- @storm
+crisis :: EventNoun :: self.m.ontological-category <-- @crisis
+try :: SimpleControlType :: self.m.actionary <-- @try :: self.m.protagonist.ontological-category <-- @sentient
+want :: SimpleControlType :: self.m.actionary <-- @want :: self.m.protagonist.ontological-category <-- @sentient
+house :: ContainerNoun :: self.m.ontological-category <-- @house
+say :: CommunicationType :: self.m.actionary <-- @say :: self.argform <-- NotTransitive
+tell :: CommunicationType :: self.m.actionary <-- @tell :: self.argform <-- DiTransitive
+think :: ThoughtType :: self.m.actionary <-- @think
+member :: PartType :: self.m.ontological-category <-- @member
+crew :: GroupType :: self.m.ontological-category <-- @crew
+build :: CreationType :: self.m.actionary <-- @build
+give :: TransferType :: self.m.protagonist.ontological-category <-- @agent :: self.m.actionary <-- @give
+slide :: SelfMotionType :: self.m.actionary <-- @slide
+grasp :: ManipulationType :: self.m.actionary <-- @grasp
+pick :: PickType :: self.m.actionary <-- @pickup
+bring :: EstablishHoldType :: self.m.actionary <-- @bring
+carry :: EstablishHoldType :: self.m.actionary <-- @carry :: self.argform <-- NotDiTransitive
+intend :: SimpleControlType :: self.m.actionary <-- @intend
+establish :: CreationType :: self.m.actionary <-- @establish
+store :: ArtifactNoun :: self.m.ontological-category <-- @store
+ariel :: ProperNPInstance :: self.m.referent <-- @ariel :: self.m.ontological-category <-- @person

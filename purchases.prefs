@@ -4,13 +4,12 @@ GRAMMAR_EXTENSIONS = grm
 
 PACKAGE_NAME ::== 
 	purchases
-	starter
+	core
 	universal-schemas
 	universal-constructions
 ;
 
 ONTOLOGY_PATHS ::==
-	//./starter/ontology.ont
 	./universal/core.ont
 	./purchases/purchases.ont
 ;
@@ -18,25 +17,26 @@ ONTOLOGY_PATHS ::==
 IMPORT_PATHS ::==
 	./purchases
 	./universal
-	./starter
+	./core
+	./research
 ;
 
 
 MORPHOLOGY_PATH ::== 
-	./starter/celex.ecgmorph
+	./core/celex.ecgmorph
 	./purchases/purchases.ecgmorph
 ;
 
 TOKEN_PATH ::== 
 	./purchases/purchases.tokens
-	./starter/starter.tokens
+	./research/testing.tokens
 ;
 
 
 
 MAPPING_PATH = ./purchases/purchases.mappings
 
-TABLE_PATH = ./starter/starter.morph
+TABLE_PATH = ./core/core.morph
 
 ROBUST = FALSE 
 BEAM_SIZE = 20

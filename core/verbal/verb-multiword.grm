@@ -1,0 +1,48 @@
+package core
+
+
+construction PickType
+	subcase of LexicalVerbType
+	meaning: Process
+	  constraints
+	    self.m.actionary <-- @process
+	   
+construction PickUp
+	subcase of Verb
+	constructional
+	 constituents
+	   pick: PickType
+	   up: Up-Marker
+	 constraints
+	   pick.verbform <-- Finite
+	   self.features <--> pick.features
+	form
+	  constraints
+	    pick.f before up.f
+    meaning: Manipulation
+      constraints
+        self.m.actionary <-- @pickup
+        self.m <--> pick.m
+/*        
+construction PickItUp
+	subcase of ArgumentStructure
+	constructional
+	  constituents
+	    pick: PickType
+	    it: Pronoun
+	    up: Up-Marker
+	
+	 constraints
+	   pick.verbform <-- Finite
+	   self.features <--> pick.features
+	
+	form
+	  constraints
+	    pick.f before it.f
+	    it.f before up.f
+	meaning: Manipulation
+	 constraints
+	   self.m <--> pick.m
+	   s.a1 <--> self.m.actor
+	   it.m <--> s.a2
+	   it.m <--> self.m.manipulated_entity*/

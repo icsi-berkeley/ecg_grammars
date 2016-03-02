@@ -22,3 +22,10 @@
 @box4 :: $box4_instance
 @box4 :: $box4_instance
 @box5 :: $box5_instance
+@box6 :: $box6_instance
+@position :: $pos
+@location :: $pos
+@weigh_predication :: $be
+@cost_predication :: $be
+@be2 :: $be
+@cancontainer :: $can

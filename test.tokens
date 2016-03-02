@@ -1,0 +1,2 @@
+test :: NounType :: self.m.ontological-category <-- @physicalEntity 
+thing :: NounType :: self.m.ontological-category <-- @entity

@@ -598,6 +598,8 @@ actually	actually Positive
 actuarial	actuarial Positive
 actuaries	actuary Plural
 actuary	actuary Singular
+ariel		ariel Singular
+Ariel		ariel Singular
 actuate	actuate Infinitive actuate Singular/PresentTense/FirstPerson actuate Singular/PresentTense/SecondPerson actuate Plural/PresentTense
 actuated	actuate Singular/PastTense/FirstPerson actuate Singular/PastTense/SecondPerson actuate Singular/PastTense/ThirdPerson actuate Plural/PastTense actuate PastTense/Participle
 actuates	actuate Singular/PresentTense/ThirdPerson
@@ -34241,6 +34243,8 @@ joggling	joggle PresentTense/Participle
 jogs	jog Plural jog Singular/PresentTense/ThirdPerson
 john	john Singular
 John	john Singular
+Mary 	mary Singular
+mary	mary Singular
 johnnies	johnny Plural
 johnny	johnny Singular
 johns	john Plural
@@ -34679,8 +34683,8 @@ kibbutzniks	kibbutznik Plural
 kibosh	kibosh Singular
 kick	kick Singular kick Infinitive kick Singular/PresentTense/FirstPerson kick Singular/PresentTense/SecondPerson kick Plural/PresentTense
 kick-start	kick-start Singular
-kick-starter	kick-starter Singular
-kick-starters	kick-starter Plural
+kick-core	kick-core Singular
+kick-cores	kick-core Plural
 kick-starts	kick-start Plural
 kickback	kickback Singular
 kickbacks	kickback Plural
@@ -42114,8 +42118,8 @@ nonskid	nonskid Positive
 nonsmoker	nonsmoker Singular
 nonsmokers	nonsmoker Plural
 nonstandard	nonstandard Positive
-nonstarter	nonstarter Singular
-nonstarters	nonstarter Plural
+noncore	noncore Singular
+noncores	noncore Plural
 nonstick	nonstick Positive
 nonstop	nonstop Positive
 nonunion	nonunion Positive
@@ -56709,8 +56713,8 @@ self-seekers	self-seeker Plural
 self-seeking	self-seeking Singular self-seeking Positive
 self-service	self-service Singular self-service Positive
 self-sown	self-sown Positive
-self-starter	self-starter Singular
-self-starters	self-starter Plural
+self-core	self-core Singular
+self-cores	self-core Plural
 self-styled	self-styled Positive
 self-sufficiency	self-sufficiency Singular
 self-sufficient	self-sufficient Positive
@@ -61477,8 +61481,8 @@ starry-eyed	starry-eyed Positive
 stars	star Plural star Singular/PresentTense/ThirdPerson stars Singular
 start	start Singular start Infinitive start Singular/PresentTense/FirstPerson start Singular/PresentTense/SecondPerson start Plural/PresentTense
 started	start Singular/PastTense/FirstPerson start Singular/PastTense/SecondPerson start Singular/PastTense/ThirdPerson start Plural/PastTense start PastTense/Participle
-starter	starter Singular
-starters	starter Plural starters Singular
+core	core Singular
+cores	core Plural cores Singular
 starting	start PresentTense/Participle
 starting-gate	starting-gate Singular
 starting-gates	starting-gate Plural

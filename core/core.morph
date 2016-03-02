@@ -10,7 +10,7 @@ Plural,PresentTense :: self.verbform, Present, self.features.person, "3", self.f
 PastTense,Singular,ThirdPerson :: self.verbform, Past, self.features.person, "3", self.features.number, "singular", self.voice, NotPassive :: LexicalVerbType
 PastTense,SecondPerson,Singular :: self.verbform, Past, self.features.person, "2", self.features.number, "singular", self.voice, NotPassive :: LexicalVerbType
 FirstPerson,PastTense,Singular :: self.verbform, Past, self.features.person, "1", self.features.number, "singular", self.voice, NotPassive :: LexicalVerbType
-Infinitive :: self.verbform, BaseOrInfinitive :: LexicalVerbType
+Infinitive :: self.verbform, BaseOrInfinitive, self.voice, NotPassive :: LexicalVerbType
 Comparative :: , :: Adjective
 Superlative :: , :: Adjective
 Positive :: , :: Adjective, DirectionalType, Adverb
@@ -33,6 +33,6 @@ Comparative :: self.m.kind, @comparative :: Adjective
 Superlative :: self.m.kind, @superlative :: Adjective
 Infinitive :: , :: LexicalVerbType
 Positive :: , :: Adjective, DirectionalType, Adverb
-Participle,PresentTense :: self.pf.tense, @present :: LexicalVerbType
+Participle,PresentTense :: self.pf.tense, @tense :: LexicalVerbType
 Participle,PastTense :: , :: LexicalVerbType
 NoMorphology :: , :: Pronoun

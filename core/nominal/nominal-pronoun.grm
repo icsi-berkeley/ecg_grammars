@@ -1,4 +1,4 @@
-package starter
+package core
 
 /***
  ***
@@ -44,16 +44,7 @@ construction My
          possessor.ontological-category <-- @person
          //possessor.gender <-- @male
        
-construction His2
-   subcase of His
-   form
-      constraints
-         self.f.orth <-- "his"
-   meaning
-      constraints
-         //ignore possessor.ontological-category <-- @person
-         possessor.ontological-category <-- @generic-person 
-         possessor.gender <-- @male
+
  
          
 construction HerDat
@@ -87,7 +78,24 @@ construction He
       self.m.ontological-category <-- @person  
       self.m.number <-- @singular
       self.m.gender <-- @male  
-            
+      self.m.referent <-- @antecedent
+
+construction She
+   subcase of Pronoun, Singular, ThirdPerson
+   constructional
+     constraints
+       self.features.case <-- "nom"
+   form
+      constraints
+         self.f.orth <-- "she"
+   meaning
+    constraints
+      self.m.ontological-category <-- @person  
+      self.m.number <-- @singular
+      self.m.gender <-- @female  
+      self.m.referent <-- @antecedent
+
+           
 construction I-Pronoun
    subcase of Pronoun, Singular, FirstPerson
    constructional
@@ -101,6 +109,8 @@ construction I-Pronoun
       self.m.ontological-category <-- @person  
       self.m.number <-- @singular
       self.m.gender <-- @genderValues  
+ 
+ 
       
 construction It
    subcase of Pronoun, Singular, ThirdPerson
@@ -112,9 +122,25 @@ construction It
          self.f.orth <-- "it"
    meaning
     constraints
-      self.m.ontological-category <-- @physicalEntity  
+      self.m.ontological-category <-- @entity  
       self.m.number <-- @singular
       self.m.gender <-- @neuter
+      self.m.referent <-- @antecedent
+
+
+construction They-Pronoun
+   subcase of Pronoun, Plural, ThirdPerson
+   constructional
+     constraints
+       self.features.case <-- "nom"
+   form
+      constraints
+         self.f.orth <-- "they"
+   meaning
+    constraints
+      self.m.ontological-category <-- @entity  
+      self.m.number <-- @plural
+      //self.m.gender <-- @neuter
       self.m.referent <-- @antecedent
  
 construction One-Anaphora
@@ -127,5 +153,6 @@ construction One-Anaphora
          self.f.orth <-- "one"
    meaning
     constraints
-      self.m.ontological-category <-- @antecedent  
+      self.m.ontological-category <-- @entity  
+      self.m.referent <-- @anaphora
       self.m.number <-- @singular    

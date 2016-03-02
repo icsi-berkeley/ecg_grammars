@@ -9,6 +9,7 @@ PACKAGE_NAME ::==
 ;
 
 ONTOLOGY_PATHS ::==
+	./universal/core.ont
 	./primero/ontology.ont
 ;
 

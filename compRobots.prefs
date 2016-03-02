@@ -1,4 +1,6 @@
 
+
+
 GRAMMAR_EXTENSIONS = grm
 
 
@@ -12,30 +14,30 @@ PACKAGE_NAME ::==
 
 ONTOLOGY_PATHS ::==
 	./compRobots/robot.ont
-	//./starter/ontology.ont
 	./universal/core.ont
 ;
 
 IMPORT_PATHS ::==
 	./compRobots
 	./universal
-	./starter
+	./core
+	./research
 ;
 
 
 MORPHOLOGY_PATH ::== 
-	./compRobots/celex.ecgmorph
+	./core/celex.ecgmorph
 	./compRobots/robot.ecgmorph
 ;
 
 TOKEN_PATH ::== 
 	./compRobots/compRobots.tokens
-	./starter/starter.tokens
+	./research/testing.tokens
 ;
 
 MAPPING_PATH = ./compRobots/robot.mappings
 
-TABLE_PATH = ./starter/starter.morph
+TABLE_PATH = ./core/core.morph
 
 ROBUST = FALSE 
 BEAM_SIZE = 20

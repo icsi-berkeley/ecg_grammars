@@ -1,0 +1,106 @@
+package starter
+//import auxiliaries-testing
+
+
+// STAGE VERBS
+general construction StageVerb
+	subcase of LexicalVerb
+	constructional 
+	 constraints
+	   self.verbkind <-- Stage
+	   self.expectedVerbForm <-- PresentParticipleOrInfinitive 
+
+
+construction StageVerbType
+	subcase of StageVerb, LexicalVerbType
+	constructional
+	  constraints
+	    self.expectedVerbForm <-- PresentParticipleOrInfinitive
+	meaning
+	  constraints
+	    self.m.actionary <-- @stage
+
+
+
+
+construction CauseEffectType
+	subcase of LexicalVerbType, GeneralTypeCxn
+	meaning: CauseEffect
+	 evokes ForceApplication as fa
+	 evokes MotionPath as mp
+	  constraints
+	    self.m.actionary <-- @motion
+	    self.m.protagonist.ontological-category <-- @agent
+	    self.fa <--> self.m.causalProcess
+	    self.mp <--> self.m.affectedProcess
+	    self.fa.actedUpon <--> self.m.affectedEntity
+
+// VERB Types:
+
+
+construction SelfMotionType
+	subcase of LexicalVerbType
+	meaning: MotionPath
+      constraints
+         self.m.actionary <-- @motion
+         self.m.speed <-- ".5"
+         self.argform <-- ArgForm
+         
+         
+       
+
+// You could imagine adding another constraint here on the 
+// ontological category of the "Content" of the perception;
+// then the "tokens" can place different constraints on that.
+construction PerceptionType
+   subcase of LexicalVerbType
+   meaning: Perception
+     constraints
+        self.m.actionary <-- @perception
+        self.argform <-- Transitive
+        self.verbkind <-- Perceptual
+
+
+
+general construction PathVerbType
+   subcase of LexicalVerbType  // 7/8/15
+   meaning: ChangeLocation
+    evokes BoundedObject as bo
+     constraints 
+       self.m.actionary <-- @motion
+       self.m.landmark.ontological-category <-- @location
+       self.m.landmark <--> bo.boundedObject 
+       
+  construction PathVerbIn  //7/8/15
+	subcase of  PathVerbType  
+       meaning: ChangeLocation
+       constraints
+       self.m.spg.goal <--> bo.interior
+       
+ construction PathVerbOut  //7/8/15
+	subcase of  PathVerbType  
+       meaning: ChangeLocation
+       constraints
+       self.m.spg.goal <--> bo.exterior
+       
+
+import vehicles
+
+construction AgentDriveType
+	subcase of SelfMotionType
+	meaning: VehicularMotion
+	  constraints
+	     self.m.actionary <-- @drive
+	     self.m.vehicleType.ontological-category <-- @vehicle
+	     //self.m.protagonist.ontological-category <-- @agent
+
+construction DriveVehicleType
+	subcase of LexicalVerbType, GeneralTypeCxn
+	meaning: ControlledVehicularMotion
+	  constraints
+	     self.m.actionary <-- @drive
+	     self.m.process2.vehicleType.ontological-category <-- @vehicle
+	     self.m.protagonist.ontological-category <-- @agent
+
+      
+         

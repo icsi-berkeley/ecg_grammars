@@ -1,4 +1,4 @@
-package starter
+package core
 
 general construction Adverbial  // can be a phrase as well
   meaning: AdverbModification
@@ -36,4 +36,18 @@ construction ModifiedVerb  // should not be copula, ?needed  11/21/12
 		constraints
 			modifier.m.modifiedThing <--> modifiedVerb.m
 			self.m <--> modifiedVerb.m
-			  
+
+
+construction NegatedAdverb
+	subcase of Adverb
+	constructional 
+	 constituents
+	   first: Not-event
+	   second: Adverb
+	form
+	  constraints
+	    first.f meets second.f
+	meaning
+	  constraints
+	    self.m <--> second.m
+	    self.m.negated <-- @yes			  

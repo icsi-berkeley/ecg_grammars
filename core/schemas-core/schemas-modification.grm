@@ -1,0 +1,45 @@
+package core
+import universal-schemas
+
+schema ScalarAdverbModifier 
+	subcase of AdverbModification  // does not use modifier role
+   	roles
+     	property: @scale
+        value //string, number    
+	 constraints	
+	 
+
+schema ComparativeAdjModifier
+	subcase of ScalarModifier
+	roles
+	  base: RD
+	constraints
+	  //base.ontological-category <--> domain	
+	  
+	  
+
+		  
+// Interim (ST, 10/14/15)
+schema ChangedState
+	subcase of ScalarModifier // testing, instead of PropertyModifier
+	roles
+	  oldValue: @propValue
+	  temporality: @bounded
+
+
+
+schema ChangedScale
+	subcase of ChangedState
+	roles
+	  oldValue
+	  temporality
+	  direction // direction of scale-change: @increase, @decrease ? 
+	  			// E.g. "grow" suggests an increase, 
+	  			// but doesn't necessarily imply oldValue <-- @small
+	  
+// Interim (ST, 10/15/15)
+schema NounNounModifier
+	subcase of Modification
+	roles
+	  modifier: RD
+	  modifiedThing: RD	  

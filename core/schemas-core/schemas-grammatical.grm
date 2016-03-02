@@ -1,0 +1,31 @@
+package core
+//import universal-schemas
+ 
+
+schema ComplexED
+	subcase of EventDescriptor
+	roles
+	  complexKind: @event-kind
+	  connective: @connective
+	  ed1: EventDescriptor
+	  ed2: EventDescriptor
+ 
+schema ConditionalED
+	subcase of ComplexED
+	roles
+	  ed3: EventDescriptor // "else push it north"
+	  
+
+// RD
+// added 8/4/14 (ST) from base
+schema ComplexRD
+   subcase of RD 
+   roles
+   complexKind // : NPkind
+   
+schema ConjRD
+   subcase of ComplexRD
+   roles
+   		connective   // and or etc.
+      	rd1: RD
+     	rd2: RD	  

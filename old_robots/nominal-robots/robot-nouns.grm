@@ -1,0 +1,27 @@
+package robots
+import starter
+
+
+
+
+
+
+construction DirectionalType
+	subcase of Directional, GeneralTypeCxn
+	meaning: HeadingSchema
+	  constraints
+	    self.m.tag <-- @heading
+	
+construction Side
+	subcase of SingularNoun
+	form
+	  constraints
+	    self.f.orth <-- "side"
+	meaning: RD
+	  evokes PartWhole as pw
+	    constraints
+	      self.m <--> pw.part
+	      self.m.ontological-category <-- @side
+	      self.m.extensions <--> pw
+	      
+	      

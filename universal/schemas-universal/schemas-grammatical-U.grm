@@ -25,13 +25,26 @@ schema RD // meaning of NP
 	scale: @scale 
 	//hedge: @hedgeVal  // @fake, etc  
 	//continuity: @continuityValues 
-    //amount: Amount // schemas for quantifiers, etc. 
+    amount: Amount // schemas for quantifiers, etc. 
     extensions //: Extensions //  schemas for affordances, etc
+    extras: RDExtras // testing (1/6/16)
+    
+schema RDExtras
+  roles
+    event: EventDescriptor
+    specificWh: @wh-word
+    quantity: Quantity
+	  
+schema Quantity
+  roles
+  	amount: QuantitySchema //subcases include numbers, “several”, etc. ****name?**
+	units	 
+	property
 
 schema Extensions
   roles
     property: RD
-
+/*
 schema EntityRD  // 5/5/14 ; replace RD in many places
 	subcase of RD
  roles
@@ -45,7 +58,24 @@ schema EventRD  // 5/5/14  named event, e.g. crisis & more
 		// kind: @EventKind  1/19/13 move to ED.eventForm; lexical, gerund, infinitive, 
 	constraints
 		self.ontological-category <-- @eventTop //	 6/6/13
-		
+
+schema QuantifiedRD  // general case 
+	subcase of RD //, RelativizedRD  7/18/14
+	roles
+      	amount: QuantitySchema //subcases include numbers, “several”, etc. ****name?**
+ 		units	 
+ 		property
+ 		
+ schema QuantifiedSpatialRD
+	subcase of QuantifiedRD
+	roles
+      	units: @spatial-units	// check the typing wrt all kinds	 
+
+schema QuestionRD
+	subcase of RD
+	roles
+	  specificWh: @wh-word	  
+*/	
 
 // EVENT DESCRIPTOR (ED) schemas
 
@@ -55,7 +85,8 @@ schema EventDescriptor // meaning of S
 		e-features: EventFeatures
 		profiledProcess: Process	
 		profiledParticipant: RD 		
-		eventForm: @EventKind 			
+		eventForm: @EventKind 
+		modifiedThing: RD // 10/1/15, testing			
 
 schema EventFeatures  // voice: @voice   also in Process - Dropped here, maybe not used // 7/29/15
 	roles
@@ -64,31 +95,18 @@ schema EventFeatures  // voice: @voice   also in Process - Dropped here, maybe n
 		duration  // USED in TemporalVP  
 		tense: @tense  // USED
 		modality: @modality  // USED
-		negated  // USED
+		negated: @boolean  // USED
 
 
 // RD
 
-schema QuestionRD
-	subcase of RD
-	roles
-	  specificWh: @wh-word	 
+
 
 schema Amount   // general schema parent of all
 
 schema QuantitySchema  // numerical, some, "a few", etc.
   subcase of Amount
   roles
-  	value  // numbers ++
+  	value: @scalarValue  // numbers ++
   	number: @RDnumberValues
   		  
-schema QuantifiedRD  // general case 
-	subcase of RD //, RelativizedRD  7/18/14
-	roles
-      	amount: QuantitySchema //subcases include numbers, “several”, etc. ****name?**
- 		units	 
- 		
- schema QuantifiedSpatialRD
-	subcase of QuantifiedRD
-	roles
-      	units: @spatial-units	// check the typing wrt all kinds	  

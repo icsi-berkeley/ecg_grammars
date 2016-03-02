@@ -5,6 +5,8 @@ schema TrajectorLandmark
 		trajector: RD
 		landmark: RD
 		profiledArea: RD //  defined with respect to Landmark  
+		temporality: @temporality // for expressing @atemporal/@bounded relations
+		negated: @boolean
 	constraints
 		trajector.ontological-category <-- @physicalEntity 
 		landmark.ontological-category <-- @region  // added for 2/22/14 m4 test  
@@ -56,6 +58,7 @@ schema Contact // short version
 
 schema Possession  //revised 11/30/12
    roles
+       negated: @boolean
    	   kind:@possessionKind
 	   possessor:RD
 	   possessed:RD
@@ -70,6 +73,14 @@ schema RefIdentity
 	subcase of RefRelation
 	constraints
 	  //first.ontological-category <--> second.ontological-category
-	  //first.referent <--> second.referent
+	  first.referent <--> second.referent
 	  first.number <--> second.number
 	  first.gender <--> second.gender
+	  
+	  
+// Scale
+schema Scale
+   roles
+     measure // weight
+     units // pound
+     value // .7

@@ -1,0 +1,23 @@
+package starter
+
+general construction IntransitiveArgumentStructure  
+  subcase of ArgumentStructure
+   constructional
+  	constraints
+   		v.argform <-- NotTransitive  // constraint excludes Transitve verbs, e.g. see
+  meaning: Process  
+    //evokes A123 as s // inherited from ArgumentStructure
+    constraints
+      s.a1 <--> ed.profiledParticipant // 
+      s.a1 <--> self.m.protagonist // 5/8/13
+      s.a1.ontological-category <--> ed.profiledParticipant.ontological-category
+      v.m.p-features.voice <--  @notPassive 
+	  
+construction BareIntransitive  //  e.g. He moved
+  subcase of IntransitiveArgumentStructure  
+  meaning 
+    constraints
+      self.m <--> v.m
+
+//the binding "self.m <--> v.m" also serves to link self.m protagonist to the verb protagonist
+

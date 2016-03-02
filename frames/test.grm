@@ -1,0 +1,16 @@
+construction Motion_pattern1 
+     subcase of ArgumentStructure
+	   constructional
+		constituents
+		v: Verb
+		path-pp: Path-PP [0.23, .9]
+		goal-pp: Goal-PP [0.13, .9]
+		source-pp: Source-PP [0.05, .9]
+	   meaning: Motion
+		constraints
+		self.m <--> v.m
+		ed.profiledParticipant <--> self.m.Theme
+		self.m.Path <--> path-pp.m
+		self.m.Goal <--> goal-pp.m
+		self.m.Source <--> source-pp.m
+

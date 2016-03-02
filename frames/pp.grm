@@ -1,0 +1,128 @@
+general construction PP
+	subcase of RootType
+	constructional 
+	  constituents
+	     prep: Preposition
+	     np: NP
+	form
+	  constraints
+	    prep.f before np.f
+	meaning: Locative_relation // Testing, should probably be "Spatial-PP" 
+	  constraints
+	    //self.m <--> np.m // Hack, testing
+	    np.m <--> self.m.Ground
+
+/*
+construction PP-down	
+	subcase of PP
+	constructional
+	  constituents
+	    prep: Down-Preposition
+
+construction PP-off	
+	subcase of PP
+	constructional
+	  constituents
+	    prep: Off-Preposition
+	     
+construction PP-toward	
+	subcase of PP
+	constructional
+	  constituents
+	    prep: Toward-Preposition
+
+construction PP-below	
+	subcase of PP
+	constructional
+	  constituents
+	    prep: Below-Preposition
+
+construction PP-into	
+	subcase of PP
+	constructional
+	  constituents
+	    prep: Into-Preposition
+
+construction PP-out	
+	subcase of PP
+	constructional
+	  constituents
+	    prep: Out-Preposition
+
+construction PP-from	
+	subcase of PP
+	constructional
+	  constituents
+	    prep: From-Preposition
+
+construction PP-up	
+	subcase of PP
+	constructional
+	  constituents
+	    prep: Up-Preposition
+
+construction PP-against	
+	subcase of PP
+	constructional
+	  constituents
+	    prep: Against-Preposition
+
+construction PP-past	
+	subcase of PP
+	constructional
+	  constituents
+	    prep: Past-Preposition
+
+construction PP-across	
+	subcase of PP
+	constructional
+	  constituents
+	    prep: Across-Preposition
+	    optional np: NP
+
+	    
+construction PP-to	
+	subcase of PP
+	constructional
+	  constituents
+	    prep: To-Preposition
+
+construction PP-around	
+	subcase of PP
+	constructional
+	  constituents
+	    prep: Around-Preposition	
+	    optional np: NP    
+
+
+construction PP-towards	
+	subcase of PP
+	constructional
+	  constituents
+	    prep: Towards-Preposition	  
+
+construction PP-in
+	subcase of PP
+	constructional
+	  constituents
+	    prep: In-Preposition
+
+construction PP-like
+	subcase of PP
+	constructional
+	  constituents
+	    prep: Like-Preposition
+	
+construction PP-through
+	subcase of PP
+	constructional
+	  constituents
+	    prep: Through-Preposition
+
+construction PP-along
+	subcase of PP
+	constructional
+	  constituents
+	    prep: Along-Preposition
+
+*/

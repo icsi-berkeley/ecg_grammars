@@ -22,4 +22,60 @@ DEFS:
 
 (type man sub person)
 
+(type bob sub entity person shared)
+
+(type lose sub possess)
+
+(type receive sub possess)
+
+(type own sub possess  shared)
+
+(type money sub artifact  shared)
+
+(type present sub objecttransfer)
+
+(type card sub artifact  shared)
+
+(type business sub shared institution)
+
+(type concessive sub conjunction)
+
+(type but sub concessive)
+
+(type verify sub process)
+
+(type confirm sub verify  shared)
+
+(type identity sub object-property  shared)
+
+(type IWM sub business  shared agent)
+
+(type individual sub sentient  shared)
+
+(type capability sub object-property)
+
+(type able-value sub propValue capability process)
+
+(type able sub able-value)
+
+(type unable sub able-value)
+
+(type supply sub process)
+
+(type provide sub supply  shared)
+
+(type weapon sub instrument)
+
+(type automaticweapon sub weapon)
+
+(type gun sub weapon  shared)
+
+(type agreeorrefuse sub process)
+
+(type decline sub agreeorrefuse  shared)
+
+(type refuse sub agreeorrefuse  shared)
+
+(type and sub conjunction)
+
 INSTS:

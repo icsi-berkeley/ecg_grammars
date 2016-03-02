@@ -1,0 +1,103 @@
+package core
+
+general construction Modal
+   subcase of HasVerbFeatures
+   constructional 
+   constraints 
+       meaning: EventFeatures
+
+construction Can-Modal 
+   subcase of Modal, Word
+   form
+      constraints
+         self.f.orth <-- "can"
+ 	meaning: EventFeatures
+     constraints
+   	 self.m.modality <-- @can 
+    self.m.tense <-- @present 
+	self.expectedVerbForm <-- Base 
+	self.verbform <-- Finite	
+
+
+construction Could-Modal 
+   subcase of Modal, Word
+   form
+      constraints
+         self.f.orth <-- "could"
+ 	meaning: EventFeatures
+     constraints
+   	 self.m.modality <-- @can 
+    self.m.tense <-- @past 
+	self.expectedVerbForm <-- Base 
+	self.verbform <-- Finite	
+
+construction Will-Modal
+	subcase of Modal, Word
+    form
+      constraints
+         self.f.orth <-- "will"
+ 	meaning: EventFeatures
+     constraints
+   	 self.m.tense <-- @future
+   	 self.expectedVerbForm <-- Base 
+   	 self.verbform <-- Finite	
+   	 self.m.modality <-- @will
+
+   	  // Modal Inversion
+construction S-With-Modal-Inversion
+    subcase of S-With-Finite-Inversion
+    constructional
+        constituents
+        fin: Modal
+        vp: VP
+        //optional end: QMark  // punctuation   ?
+        constraints
+            //modal.features.expectedVerbForm <--> vp.VerbForm  ????
+           vp.verbform <-- Base 
+    form
+        constraints
+            fin.f meets subj.f 
+            subj.f before vp.f
+            //vp.f meets end
+    meaning  // inherited meaning: EventDescriptor
+        constraints
+            vp.ed <--> self.m 
+			fin.m <--> self.m.e-features
+			
+ // ModalVP (11/2/15)
+ construction ModalPlusVP  
+  subcase of VP
+  constructional 
+    constituents
+      modal: Modal  // EventFeatures 
+      vp: VP  // also CopularVP
+    constraints
+      self.features <--> modal.features 
+      modal.expectedVerbForm <--> vp.verbform
+      self.verbform <-- Finite
+      //self.features.number <--> vp.features.number
+      //self.features.person <--> vp.features.person
+    form
+    constraints
+       modal.f before vp.f 
+    meaning
+    constraints
+      self.m <--> vp.m // semantics comes from the vp
+      modal.m <--> vp.ed.e-features
+      self.m.protagonist <--> vp.m.protagonist 
+   	self.ed <--> vp.ed  //evoked schemas are available
+ 
+ 
+ construction NegModalPlusVP
+ 	subcase of ModalPlusVP
+ 	constructional 
+ 	  constituents
+ 	    neg: Not-event
+ 	form
+ 	  constraints
+ 	    modal.f meets neg.f
+ 	meaning 
+ 	  constraints
+ 	    vp.ed.e-features.negated <-- @yes
+ 	    
+ 	    

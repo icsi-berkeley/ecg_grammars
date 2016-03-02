@@ -1,45 +1,7 @@
 package conditionals
-import starter
+import conjunctions
 
 
- // Imports a motion package declared in 
- // compRobots directory (distinguished from same-name package in first)
- // For the purposes of testing and practicality.
-//import motion
-
-
-general construction Conjunction
-   subcase of Word
-   
-general construction LogicalConjunction
-	subcase of Conjunction
-
-general construction SerialConjunction
-   subcase of Conjunction
-
-construction Then-Serial
-   subcase of SerialConjunction
-   form
-      constraints
-        self.f.orth <-- "then"
-        
-construction Than
-	subcase of SerialConjunction
-	form
-	  constraints
-	    self.f.orth <-- "than"
-	    
-construction And-Conjunction
-	subcase of LogicalConjunction
-	form
-	  constraints
-	    self.f.orth <-- "and"
-	    
-construction That-Subordinating
-	subcase of Conjunction
-	form
-	  constraints
-	     self.f.orth <-- "that"
 	    
 general construction Conditional
   subcase of Word
@@ -65,15 +27,46 @@ general construction ConditionalImperative
 	    optional c: Comma
 	    optional then2: Then-Conditional
 	    core: SimpleImperative
+	    optional c2: Comma
+	    optional else: Else-Clause
 	  constraints
 	    core.vp.verbform <-- Base
-	 meaning: ComplexED
+	 form
+	  constraints
+	    core.f before c2.f
+	    c2.f before else.f
+	 meaning: ConditionalED
 	  constraints
 	    self.m.profiledParticipant <--> core.m.profiledParticipant
-	    //self.m.ed1 <--> bool.m
-	    //self.m.ed2 <--> core.m
+	    self.m.profiledParticipant <--> else.m.profiledParticipant
 	    self.m.complexKind <-- @conditional
-      
+	    
+     
+     
+construction Else-Clause
+	constructional
+	  constituents
+	    else: Else-Conjunction
+	    core: SimpleImperative
+	meaning: EventDescriptor
+	  constraints
+	    self.m <--> core.m
+
+general construction Else-Conjunction
+	subcase of Conjunction
+
+construction Else
+	subcase of Else-Conjunction
+	form
+	 constraints
+	   self.f.orth <-- "else"
+
+construction Otherwise
+	subcase of Else-Conjunction
+	form
+	 constraints
+	   self.f.orth <-- "otherwise"	
+ 
 construction StandardConditionalImperative
 	subcase of ConditionalImperative
 	form
@@ -81,10 +74,12 @@ construction StandardConditionalImperative
 	    cond.f meets bool.f
 	    bool.f meets then2.f
 	    bool.f before core.f
+	    core.f before else.f
 	meaning
 	  constraints
 	   	self.m.ed1 <--> bool.m
 	    self.m.ed2 <--> core.m
+	    self.m.ed3 <--> else.m
 	    
 // "Robot1, move to the blue box if it is near the green box!"	      
 construction InverseConditional	
@@ -108,12 +103,14 @@ general construction ConditionalDeclarative
 	    optional c: Comma
 	    optional then2: Then-Conditional
 	    core: Declarative
-	 meaning: ComplexED
+	    optional else: Else-Clause
+	 meaning: ConditionalED
 	  constraints
 	    self.m.profiledParticipant <--> core.m.profiledParticipant
 	    //self.m.ed1 <--> bool.m
 	    //self.m.ed2 <--> core.m
-	    self.m.complexKind <-- @conditional	    
+	    self.m.complexKind <-- @conditional	  
+	    self.m.ed3 <--> else.m  
 
 
 construction StandardConditionalDeclarative
@@ -123,8 +120,10 @@ construction StandardConditionalDeclarative
 	    cond.f meets bool.f
 	    bool.f meets then2.f
 	    bool.f before core.f
+	    core.f before else.f
 	meaning
 	  constraints
 	   	self.m.ed1 <--> bool.m
-	    self.m.ed2 <--> core.m	    
+	    self.m.ed2 <--> core.m	
+	    self.m.ed3 <--> else.m    
 	          

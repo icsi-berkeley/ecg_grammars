@@ -1,0 +1,46 @@
+general construction ArgumentStructure
+	subcase of VP
+	constructional 
+	 constituents
+	   v: Verb
+	 constraints
+	   self.features <--> v.features
+	   self.verbform <--> v.verbform
+	   self.voice <--> v.voice
+	meaning: Event
+	  constraints
+	    v.m <--> ed.profiledProcess
+
+
+general construction ActiveTransitive
+	subcase of ArgumentStructure
+	constructional 
+	 constituents
+	   np: NP
+	meaning: Transitive_action
+	  constraints
+	    ed.profiledParticipant <--> self.m.Agent
+	    np.m <--> self.m.Patient
+	    
+import auxiliaries
+
+general construction PassiveTransitive // 5/14/13
+  subcase of ArgumentStructure
+  constructional
+    constituents
+     v: Verb // inherited
+     //optional byPhrase: ByAgentPhrase
+    constraints
+      v.argform <-- Transitive
+      v.voice <-- Passive  // 2/1/13
+ form
+    constraints
+      //v.f before byPhrase.f
+  meaning: Transitive_action  
+     constraints
+	  // self.m.Agent <--> byPhrase.m.landmark 
+	   //s.a2 <--> ed.profiledParticipant
+	   self.m.Patient <--> ed.profiledParticipant
+	   v.m.Features.voice <-- @passive     
+	    
+	    

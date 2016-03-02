@@ -1,0 +1,18 @@
+//testing
+
+general construction RoleNoun
+	subcase of Noun
+	meaning: Entity
+	 evokes Transitive_action as ta
+	 constraints
+	   self.m.Entity <--> ta.Agent
+
+construction Pusher
+	subcase of RoleNoun
+	form 
+	 constraints
+	   self.f.orth <-- "pusher"
+	meaning 
+	  evokes Cause_motion as ta
+	   constraints
+	     self.rd.number <-- @singular

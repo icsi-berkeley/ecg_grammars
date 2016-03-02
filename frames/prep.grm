@@ -1,0 +1,111 @@
+general construction Preposition
+	subcase of Word
+
+construction Into-Preposition
+	subcase of Preposition
+	form
+	  constraints
+	    self.f.orth <-- "into"
+
+construction Below-Preposition
+	subcase of Preposition
+	form
+	  constraints
+	    self.f.orth <-- "below"
+
+construction Out-Preposition
+	subcase of Preposition
+	form
+	  constraints
+	    self.f.orth <-- "out"
+		  
+construction From-Preposition
+	subcase of Preposition
+	form
+	  constraints
+	    self.f.orth <-- "from"
+
+construction Off-Preposition
+	subcase of Preposition
+	form
+	  constraints
+	    self.f.orth <-- "off"
+
+construction Up-Preposition
+	subcase of Preposition
+	form
+	  constraints
+	    self.f.orth <-- "up"
+
+construction Against-Preposition
+	subcase of Preposition
+	form
+	  constraints
+	    self.f.orth <-- "against"
+
+construction Down-Preposition
+	subcase of Preposition
+	form
+	  constraints
+	    self.f.orth <-- "down"
+
+construction Toward-Preposition
+	subcase of Preposition
+	form
+	  constraints
+	    self.f.orth <-- "toward"
+
+construction Past-Preposition
+	subcase of Preposition
+	form
+	  constraints
+	    self.f.orth <-- "past"
+
+construction Like-Preposition
+	subcase of Preposition
+	form
+	  constraints
+	    self.f.orth <-- "like"
+
+construction Along-Preposition
+	subcase of Preposition
+	form
+	  constraints
+	    self.f.orth <-- "along"
+	    
+construction Towards-Preposition
+	subcase of Preposition
+	form
+	  constraints
+	    self.f.orth <-- "towards"
+
+construction Across-Preposition
+	subcase of Preposition
+	form
+	  constraints
+	    self.f.orth <-- "across"
+
+construction Through-Preposition
+	subcase of Preposition
+	form
+	  constraints
+	    self.f.orth <-- "through"
+
+
+construction Around-Preposition
+	subcase of Preposition
+	form
+	  constraints
+	    self.f.orth <-- "around"
+
+
+construction In-Preposition
+	subcase of Preposition
+	form
+	  constraints
+	    self.f.orth <-- "in"	    
+construction To-Preposition
+	subcase of Preposition
+	form
+	  constraints
+	    self.f.orth <-- "to"

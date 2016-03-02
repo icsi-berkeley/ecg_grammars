@@ -1,7 +1,25 @@
-package starter
+/* 
+ST: 1/11/16 
+
+Auxiliaries package. Heavily used in conjunction with passive-transitive package.
+
+Example sentences:
+the box was not moving
+the box was not being pushed
+the box was being pushed by the man
+was not the box moving? (odd formulation)
+the box was not pushed by the man
+did the man push the box?
+the man did (not) push the box
+
+*/
+
+package auxiliaries
+
 
 general construction Aux
 	subcase of HasVerbFeatures
+	meaning: ProcessFeatures
 
 general construction LexicalAux
 	subcase of Word, Aux
@@ -9,7 +27,8 @@ general construction LexicalAux
 	
 general construction bhAux
 	subcase of Aux
-	
+
+// DoAux	
 general construction DoAux
 	subcase of LexicalAux
 	constructional
@@ -25,42 +44,97 @@ construction DoAuxPast
       constraints
          pf <--> self.m
 
+//Have Aux: "has", "had", etc.
+general construction HaveAux
+	subcase of LexicalAux, bhAux
+	
+construction HaveAuxPast
+	subcase of HaveAux, PastTense
+	form
+	    constraints
+	      self.f.orth <-- "had"
+	meaning
+	  constraints
+	    pf <--> self.m
+
+construction HavePlusBeenActive
+	subcase of AuxPlusAux
+	constructional
+	  constituents
+	   first: HaveAux
+	   second: BeAuxPastParticiple
+	  constraints
+	    self.expectedVerbForm <-- PresentParticiple
+	meaning
+	 constraints
+	   self.m.tense <--> first.m.tense
+	   self.m.progressive <-- @yes
+
+// Be aux: "was", "is", "were"
 general construction BeAux
 	subcase of LexicalAux, bhAux
-/*
-construction BeAuxType
-	subcase of BeAux, VerbConjugation, GeneralTypeCxn
-	meaning
-	  constraints
-	    pf <--> self.m
-	    self.m.voice <-- @voice
 
-construction BeAuxType2
-	subcase of BeAuxType
-	form 
+
+construction BePastSing	
+	subcase of BeAux, PastTense // , Singular
+	form
 	  constraints
-	    self.f.orth <-- "is"
+	    self.f.orth <-- "was"
 	meaning
 	  constraints
 	    pf <--> self.m
-	    self.m.voice <-- @voice
-*/
+
+construction BePresentSing	
+	subcase of BeAux, PresentParticiple // , Singular
+	form
+	  constraints
+	    self.f.orth <-- "being"
+	meaning
+	  constraints
+	    pf <--> self.m
+
+construction BeAuxPastParticiple	
+	subcase of BeAux, PastParticiple // , Singular
+	form
+	  constraints
+	    self.f.orth <-- "been"
+	meaning
+	  constraints
+	    pf <--> self.m
+
+//Aux plus another auxiliary
+general construction AuxPlusAux
+	subcase of Aux
+	constructional
+	  constituents 
+	   first: Aux
+	   second: Aux
+	  constraints
+	   self.features <--> first.features
+	form
+	  constraints
+	    first.f meets second.f
+	meaning: ProcessFeatures
+	  constraints
+	    first.m <--> second.m
+	    self.m <--> first.m
+
+
+// Auxiliary plus a complex Verb
 general construction AuxPlusVerb  // removed optional subj  
-   	subcase of ComplexVerb
+   	subcase of ComplexVerb 
    	constructional 
    		constituents
 			aux: Aux
-			// optional subj: NP  // why was this in ??
 			main: ComplexVerb
 	    constraints
 			self.features <--> aux.features
 			self.argform <--> main.argform
 			self.verbkind <--> main.verbkind
-			//aux.expectedVerbForm <--> main.features.verbform
+			 //aux.expectedVerbForm <--> main.verbform // testing (1/14/16, ST)
    form
       constraints
        		aux.f before main.f
-       		// aux.f meets subj.f   // why was this in ??
    meaning
       constraints
 			aux.m <--> main.m.p-features
@@ -68,17 +142,126 @@ general construction AuxPlusVerb  // removed optional subj
 			self.m.p-features <--> main.m.p-features
 			//aux.m.voice <-- @voice // over-ridden by Passive case
 			// subj.m <--> self.m.protagonist  // bind it if it appears 
-/*		
-construction ProgressiveAuxPlusVerb  // was moving, has been moving
+			
+// was moving, has been moving		
+construction ProgressiveAuxPlusVerb  
    	subcase of AuxPlusVerb
    	constructional 
-   		constituents
-			aux: Aux  
-			main: ComplexVerb
 	    constraints
 			self.voice <--> main.voice 
 			main.verbform <-- PresentParticiple
 	meaning
 		constraints
-			aux.m.progressive <-- "yes"
-			*/
+			aux.m.progressive <-- @yes
+
+// "did move"
+// Testing (1/11/16, ST)	
+construction DoAuxPlusVerb  
+   	subcase of AuxPlusVerb
+   	constructional 
+   	  constituents 
+   	    aux: DoAux
+      constraints
+		self.voice <--> main.voice 
+		main.verbform <-- Base
+	meaning
+	 constraints
+		//aux.m.progressive <-- @yes
+		
+
+// was pushed, was moved, etc.
+construction PassiveAuxPlusVerb
+	subcase of AuxPlusVerb
+	constructional
+	  constituents
+	    aux: BeAux
+	    main: VerbChunk
+	  constraints
+	    main.verbform <-- PastParticiple
+	    self.verbform <--> aux.verbform
+	    self.voice <-- Passive
+	meaning
+	  constraints
+	     aux.m.voice <-- @passive
+	     self.m.p-features.voice <-- @passive	    
+	    
+// was the box pushed	    			
+general construction S-With-Aux-Inversion  
+    subcase of YN-Question   
+	constructional
+        constituents
+        fin: Aux 
+        subj: NP 
+        vp: VP           
+       constraints
+       subj.features.person <--> fin.features.person
+        subj.features.number <--> fin.features.number
+        fin.expectedVerbForm <--> vp.verbform
+        fin.verbform <-- Finite
+    form
+        constraints
+            fin.f meets subj.f 
+            subj.f meets vp.f
+    meaning: EventDescriptor  // from S
+     constraints
+	    subj.m <--> self.m.profiledParticipant
+	    self.m <--> vp.ed // unifies event descriptors
+	    //subj.m <--> vp.m.protagonist // not true for passive
+	    vp.m.p-features <--> fin.m
+
+// did the man push the box
+construction S-With-Do-Inversion
+	subcase of S-With-Aux-Inversion 
+	constructional
+	  constituents
+	    fin: DoAux
+
+// Was the box moving / being moved?
+construction S-With-BeProgressive-Inversion
+    subcase of S-With-Aux-Inversion 
+    constructional
+        constituents
+        fin: BeAux 
+        constraints
+         vp.verbform <-- PresentParticiple
+    meaning  
+        constraints 
+			fin.m.progressive <-- @yes
+
+// 1/11/16 (ST): testing from base			
+general construction AuxPlusNot
+	subcase of Aux
+	constructional
+	  constituents
+	    first: Aux
+	    second: Not-event  // originally "Not-aux", but this has same definition as Not-Event"
+	  constraints
+	    self.features <--> first.features
+	form
+	  constraints
+	    first.f meets second.f
+	meaning
+	  constraints
+	     first.m <--> second.m
+	     self.m <--> first.m
+
+// the box was not pushed by the man
+construction NegatedBeAux
+	subcase of AuxPlusNot, BeAux
+	constructional
+	  constituents
+	    first: BeAux
+	    // inherits Not-event
+
+// the man did not push the box
+construction NegatedDoAux
+	subcase of AuxPlusNot, BeAux
+	constructional
+	  constituents
+	    first: DoAux
+	    // inherits Not-event
+
+
+
+
+

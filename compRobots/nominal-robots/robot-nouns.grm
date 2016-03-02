@@ -1,16 +1,7 @@
 package robots
-import starter
+import core
+import noun-noun
 
-
-
-
-
-
-construction DirectionalType
-	subcase of Directional, GeneralTypeCxn
-	meaning: HeadingSchema
-	  constraints
-	    self.m.tag <-- @heading
 	
 construction Side
 	subcase of SingularNoun
@@ -24,4 +15,35 @@ construction Side
 	      self.m.ontological-category <-- @side
 	      self.m.extensions <--> pw
 	      
-	      
+
+construction Kitchen
+	subcase of Noun
+	form
+	 constraints
+	   self.f.orth <-- "kitchen"
+
+construction Counter
+	subcase of Noun
+	form
+	 constraints
+	   self.f.orth <-- "counter"
+	meaning
+	 constraints
+	   self.m.ontological-category <-- @counter
+	   
+construction Kitchen_Counter
+	subcase of Nominal
+	constructional
+	 constituents
+	  k: Kitchen // noun noun compound?
+	  c: Counter
+	form
+	 constraints
+	   k.f before c.f
+   meaning: RD
+     constraints
+       self.m.ontological-category <-- @counter
+
+
+    
+		      

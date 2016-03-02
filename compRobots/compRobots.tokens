@@ -3,30 +3,22 @@ south :: DirectionalType :: self.m.tag <-- @south
 east :: DirectionalType :: self.m.tag <-- @east
 west :: DirectionalType :: self.m.tag <-- @west
 pencil :: ArtifactNoun :: self.m.ontological-category <-- @pencil
-robot1 :: ProperNPInstance :: self.m.ontological-category <-- @robot :: self.m.referent <-- @robot1
-robot2 :: ProperNPInstance :: self.m.ontological-category <-- @robot :: self.m.referent <-- @robot2
+robot1 :: ProperNPInstance :: self.m.ontological-category <-- @robot :: self.m.referent <-- @robot1 :: self.m.gender <-- @male
+robot2 :: ProperNPInstance :: self.m.ontological-category <-- @robot :: self.m.referent <-- @robot2 :: self.m.gender <-- @male
+darwin :: ProperNPInstance :: self.m.ontological-category <-- @robot :: self.m.referent <-- @darwin :: self.m.gender <-- @male
 robot :: SentientNoun :: self.m.ontological-category <-- @robot
 box1 :: ProperNPInstance :: self.m.referent <-- @box1 :: self.m.ontological-category <-- @box
 box2 :: ProperNPInstance :: self.m.referent <-- @box2 :: self.m.ontological-category <-- @box
 box3 :: ProperNPInstance :: self.m.referent <-- @box3 :: self.m.ontological-category <-- @box
 box4 :: ProperNPInstance :: self.m.referent <-- @box4 :: self.m.ontological-category <-- @box
 box5 :: ProperNPInstance :: self.m.referent <-- @box5 :: self.m.ontological-category <-- @box
+box6 :: ProperNPInstance :: self.m.referent <-- @box6 :: self.m.ontological-category <-- @box
 green :: ColorType :: self.m.value <-- @green
+black :: ColorType :: self.m.value <-- @black
 purple :: ColorType :: self.m.value <-- @purple
 return :: ReturnType :: self.m.actionary <-- @move
 one :: NumberType :: self.m.value <-- "1"
 two :: NumberType :: self.m.value <-- "2"
-0 :: NumberType :: self.m.value <-- "0"
-1 :: NumberType :: self.m.value <-- "1"
-2 :: NumberType :: self.m.value <-- "2"
-3 :: NumberType :: self.m.value <-- "3"
-4 :: NumberType :: self.m.value <-- "4"
-5 :: NumberType :: self.m.value <-- "5"
-6 :: NumberType :: self.m.value <-- "6"
-7 :: NumberType :: self.m.value <-- "7"
-8 :: NumberType :: self.m.value <-- "8"
-9 :: NumberType :: self.m.value <-- "9"
--1 :: NumberType :: self.m.value <-- "-1"
 orange :: ColorType :: self.m.value <-- @orange
 magenta :: ColorType :: self.m.value <-- @magenta
 dash :: SelfMotionType :: self.m.actionary <-- @dash :: self.m.speed <-- ".8"
@@ -34,7 +26,6 @@ north :: SideAdj-Type :: self.m.value <-- @northSide
 south :: SideAdj-Type :: self.m.value <-- @southSide
 east :: SideAdj-Type :: self.m.value <-- @eastSide
 west :: SideAdj-Type :: self.m.value <-- @westSide
-inch :: NounType :: self.m.ontological-category <-- @inch
 dart :: SelfMotionType :: self.m.actionary <-- @dart :: self.m.speed <-- ".7"
 scamper :: SelfMotionType :: self.m.actionary <-- @scamper
 gallop :: SelfMotionType :: self.m.actionary <-- @gallop :: self.m.speed <-- ".7"
@@ -44,10 +35,27 @@ desk1 :: ProperNPInstance :: self.m.referent <-- @desk1 :: self.m.ontological-ca
 white :: ColorType :: self.m.value <-- @white
 shelf :: ArtifactNoun :: self.m.ontological-category <-- @shelf
 pink :: ColorType :: self.m.value <-- @pink
-large :: SizeType :: self.m.value <-- @large
+large :: ScalarAdjectiveType :: self.m.value <-- ".7"
 amble :: SelfMotionType :: self.m.speed <-- ".2" :: self.m.actionary <-- @amble
-quickly :: ScalarAdverbType :: self.m.property <-- @speed :: self.m.value <-- ".7"
-slowly :: ScalarAdverbType :: self.m.property <-- @speed :: self.m.value <-- ".3"
 team :: ProperNPInstance :: self.m.ontological-category <-- @physicalEntity :: self.m.number <-- @plural :: self.m.referent <-- @team-instance
 jointly :: JointProcessAdverb :: self.m.value <-- @joint
 together :: JointProcessAdverb :: self.m.value <-- @joint
+beer :: ArtifactNoun :: self.m.ontological-category <-- @beer 
+position :: PropertyNoun :: self.m.ontological-category <-- @position
+location :: PropertyNoun :: self.m.ontological-category <-- @position
+orientation :: PropertyNoun :: self.m.ontological-category <-- @orientation
+turn :: SelfMotionType :: self.m.speed <-- ".2" :: self.m.actionary <-- @turn
+water :: SubstanceType :: self.m.ontological-category <-- @water
+coffee :: SubstanceType :: self.m.ontological-category <-- @coffee
+mug :: ContainerNoun :: self.m.ontological-category <-- @mug
+dining :: PropertyAdjectiveType :: self.m.property <-- @function :: self.m.value <-- @dining 
+pr2 :: ProperNPInstance :: self.m.referent <-- @pr2 :: self.m.ontological-category <-- @robot :: self.m.gender <-- @male
+fridge :: ArtifactNoun :: self.m.ontological-category <-- @refrigerator
+refrigerator :: ArtifactNoun :: self.m.ontological-category <-- @refrigerator
+can :: ContainerNoun :: self.m.ontological-category <-- @cancontainer
+soda :: ArtifactNoun :: self.m.ontological-category <-- @soda
+table :: ArtifactNoun :: self.m.ontological-category <-- @table
+fall :: SelfMotionType :: self.m.actionary <-- @fall
+floor :: ArtifactNoun :: self.m.ontological-category <-- @floor
+new :: PropertyAdjectiveType :: self.m.value <-- @new
+marker :: ArtifactNoun :: self.m.ontological-category <-- @marker

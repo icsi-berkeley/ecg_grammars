@@ -1,6 +1,6 @@
-package starter
+package core
 
-import starter-modification
+import core-modification
 
 //
 // Adjectives
@@ -21,11 +21,12 @@ general construction PropertyAdjective  // parallel to Verb, etc. \
 	meaning: PropertyModifier	
 
 
-
-
-
-	   
-
+construction PropertyAdjectiveType
+	subcase of PropertyAdjective, GeneralTypeCxn
+	meaning: PropertyModifier
+	 constraints
+	   self.m.property <-- @object-property
+	   self.m.value <-- @propValue
 
 construction ColorType  //subcase of non-scale Adj
   subcase of PropertyAdjective, GeneralTypeCxn 
@@ -39,14 +40,34 @@ general construction ScalarAdjective
    subcase of PropertyAdjective
    meaning: ScalarModifier
    
+construction ScalarAdjectiveType
+   subcase of PropertyAdjective, GeneralTypeCxn
+   meaning: ScalarModifier
+     constraints
+        self.m.value <-- @scalarValue //@propValue
+        self.m.property <-- @object-property
+        self.m.scale.measure <--> self.m.property
+        self.m.scale.value <--> self.m.value
+     
+/*  
 construction SizeType
 	subcase of ScalarAdjective, GeneralTypeCxn
 	meaning
 	  constraints
 	    self.m.value <-- @sizeValue
-	    self.m.property <-- @size
-	    self.m.domain <-- @physicalEntity
+	    //self.m.property <-- @size
+	    //self
 	    //self.m.kind <-- @unmarked
+
+construction WeightType
+	subcase of ScalarAdjective, GeneralTypeCxn
+	meaning
+	  constraints
+	    self.m.value <-- @weightValue
+	    self.m.property <-- @weight
+	    //self.m.kind <-- @unmarked
+
+*/
 
 construction SideAdj-Type
 	subcase of GeneralTypeCxn, PropertyAdjective

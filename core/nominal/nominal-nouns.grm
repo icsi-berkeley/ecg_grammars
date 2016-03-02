@@ -1,4 +1,4 @@
-package starter
+package core
 
 //
 // Singular Count Nouns
@@ -34,32 +34,47 @@ general construction PluralNoun
 general construction ProperNounNP
     subcase of NP, Word
 
-       
- 
 // Stuff for argstruct-transitive       
 general construction UnitsNP // stands alone, no Specifier  11/24/12
   subcase of NP
   constructional
-    	constituents
-	  		num: Quantifier	//
-      		k: Noun 
-    	constraints
-      		self.features <--> k.features
+	constituents
+  		num: Quantifier	//
+  		k: Noun 
+	constraints
+  		self.features <--> k.features
   form
-    	constraints
-      		num.f meets k.f
-  meaning: QuantifiedRD
+	constraints
+  		num.f meets k.f
+  meaning: RD
     constraints
     	self.m <--> k.m
+    	num.m <--> self.m.extras.quantity.amount
     	//k.m.ontological-category <-- @spatial-units   generalized
-		self.m.units <-> k.m.ontological-category
-		self.m.amount.value <--> num.m.value
+		self.m.extras.quantity.units <-> k.m.ontological-category
+		//self.m.amount.value <--> num.m.value
 		
  construction SpatialQuantityNP // stands alone, no Specifier
   subcase of UnitsNP
-  meaning: QuantifiedSpatialRD
+  meaning: RD
     constraints
     	k.m.ontological-category <-- @spatial-units // only difference *** generalize 11/24/12  
 	    
 
-general construction Directional	    
+
+ construction WeightQuantityNP // stands alone, no Specifier
+  subcase of UnitsNP
+  meaning: RD
+    constraints
+    	k.m.ontological-category <-- @weight
+
+ construction PriceQuantityNP // stands alone, no Specifier
+  subcase of UnitsNP
+  meaning: RD
+    constraints
+    	k.m.ontological-category <-- @price
+
+
+
+general construction Directional
+  meaning: HeadingSchema	    

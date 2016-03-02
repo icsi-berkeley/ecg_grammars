@@ -1,0 +1,222 @@
+DEFS:
+
+(type body_of_water sub region)
+
+(type running-water sub body_of_water)
+
+(type sentient sub animate_being)
+
+(type landform sub region)
+
+(type activity sub event)
+
+(type transparent_noun sub lexical_type)
+
+(type body_part sub physical_object)
+
+(type positive_judgment sub affect_describing)
+
+(type negative_judgment sub affect_describing)
+
+(type container sub physical_object)
+
+(type non-lexical_frame sub framal_type)
+
+(type region sub location)
+
+(type achievement sub event)
+
+(type accomplishment sub event)
+
+(type non-perspectivalized_frame sub framal_type)
+
+(type location sub physical_object)
+
+(type content sub state_of_affairs)
+
+(type message sub state_of_affairs)
+
+(type social_relation sub relation)
+
+(type organization sub group)
+
+(type quantity sub attribute)
+
+(type shape sub attribute)
+
+(type artifact sub physical_object)
+
+(type structure sub artifact)
+
+(type material sub physical_entity)
+
+(type animate_being sub living_thing)
+
+(type living_thing sub physical_object)
+
+(type physical_object sub physical_entity)
+
+(type human_act sub intentional_act)
+
+(type physical_entity sub ontological_type)
+
+(type event sub state_of_affairs)
+
+(type group sub ontological_type)
+
+(type state sub state_of_affairs)
+
+(type human sub sentient)
+
+(type tendency_grading_lu sub biframal_lu)
+
+(type sensory_modality sub lu_with_fe_specified)
+
+(type auditory_modality sub sensory_modality)
+
+(type visual_modality sub sensory_modality)
+
+(type olfactory_modality sub sensory_modality)
+
+(type tactile_modality sub sensory_modality)
+
+(type gustatory_modality sub sensory_modality)
+
+(type end_of_scale sub value_for_degree)
+
+(type negative sub value_for_degree)
+
+(type agentive_noun sub biframal_lu)
+
+(type support sub bound_lu)
+
+(type front sub flexible_orientation)
+
+(type back sub flexible_orientation)
+
+(type not_front_back sub flexible_orientation)
+
+(type near_absolute_orientation sub axis_specified)
+
+(type on_top sub near_absolute_orientation)
+
+(type underneath sub near_absolute_orientation)
+
+(type landmark_based_orientation sub axis_specified)
+
+(type top sub landmark_based_orientation)
+
+(type bottom sub landmark_based_orientation)
+
+(type landmark_front sub landmark_based_orientation)
+
+(type landmark_back sub landmark_based_orientation)
+
+(type landmark_left sub landmark_based_orientation)
+
+(type landmark_right sub landmark_based_orientation)
+
+(type absolute_direction_orientation sub axis_specified)
+
+(type north sub absolute_direction_orientation)
+
+(type south sub absolute_direction_orientation)
+
+(type east sub absolute_direction_orientation)
+
+(type west sub absolute_direction_orientation)
+
+(type upward sub absolute_direction_orientation)
+
+(type downward sub absolute_direction_orientation)
+
+(type not_up_or_down sub absolute_direction_orientation)
+
+(type motion_based_orientation sub axis_specified)
+
+(type ahead sub motion_based_orientation)
+
+(type after sub motion_based_orientation)
+
+(type viewpoint_based_orientation sub axis_specified)
+
+(type viewpoint_leftward sub viewpoint_based_orientation)
+
+(type viewpoint_rightward sub viewpoint_based_orientation)
+
+(type time sub relation)
+
+(type duration sub attribute)
+
+(type source sub locative_relation)
+
+(type path sub locative_relation)
+
+(type goal sub locative_relation)
+
+(type attribute sub ontological_type)
+
+(type degree sub attribute)
+
+(type manner sub attribute)
+
+(type relation sub ontological_type)
+
+(type point sub location)
+
+(type line sub location)
+
+(type state_of_affairs sub ontological_type)
+
+(type ontological_type )
+
+(type framal_type )
+
+(type lexical_type )
+
+(type intentional_act sub event)
+
+(type locative_relation sub relation)
+
+(type affect_describing sub lexical_type)
+
+(type lu_with_fe_specified sub lexical_type)
+
+(type value_for_degree sub lu_with_fe_specified)
+
+(type biframal_lu sub lexical_type)
+
+(type bound_lu sub lexical_type)
+
+(type bound_dependent_lu sub bound_lu)
+
+(type guest_lu sub biframal_lu)
+
+(type participating_entity sub biframal_lu)
+
+(type temperature sub attribute)
+
+(type speed sub attribute)
+
+(type end_state_lu sub biframal_lu)
+
+(type axis_specified sub lu_with_fe_specified)
+
+(type flexible_orientation sub axis_specified)
+
+
+// tense
+(type tense)
+(type past sub tense)
+(type present sub tense)
+(type future sub tense)
+
+(type RDValues)
+(type number sub RDValues)
+(type plural sub number)
+(type singular sub number)
+(type bounding sub RDValues)
+(type determinate sub bounding)
+(type indeterminate sub bounding)
+
+INSTS:

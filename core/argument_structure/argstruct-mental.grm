@@ -1,0 +1,72 @@
+/*
+Mental verb package. Dependencies are either internal to package or part of "core".
+
+Example sentences (simple control):
+-he said that the box is in the room
+-he thought that the box is in the room
+
+*/
+
+package mental
+//import ditransitive
+
+construction SubordinateDeclarativeThat
+	constructional
+	 constituents
+	  conj: That-Subordinating
+	  core: Declarative
+	form
+	 constraints
+	   conj.f before core.f
+	meaning: EventDescriptor
+	 constraints
+	   self.m <--> core.m
+	   core.m.e-features.subord <--> conj.m
+
+construction IntransitiveCommunication
+	subcase of IntransitiveArgumentStructure
+	constructional
+	 constituents
+	  v: Verb
+	  //optional conj: That-Subordinating
+	  core: SubordinateDeclarativeThat
+	  // optional ToPhrase: Path-PP ("to the man")
+   form
+    constraints
+      v.f before core.f
+   meaning: Communication
+    constraints
+     core.m <--> self.m.content
+     self.m <--> v.m
+     //self.m.listener <--> ToPhrase.m.landmark ??
+
+//this requires ditransitive package
+/*
+construction DitransitiveCommunication-NP
+	subcase of ActiveDitransitive
+	form 
+	 constraints
+	   v.f before np1.f
+	meaning: Communication
+	 constraints
+	  self.m <--> v.m
+	  s.a3 <--> self.m.content
+	  s.a1 <--> self.m.speaker
+	  s.a2 <--> self.m.listener
+	  //v.m.actionary <--> self.m.actionary
+
+construction IntransitiveThought
+	subcase of BareIntransitive
+	constructional
+	 constituents
+	  v: MentalVerb
+	  optional conj: That-Subordinating
+	  core: Declarative
+   form
+    constraints
+      v.f before core.f
+   meaning: Thought
+    constraints
+     core.m <--> self.m.content
+*/
+

@@ -1,9 +1,11 @@
-package starter
+package core
 import adjectives
 
-construction Not-NP  // used with Adj, Adv
+construction Not-event  // used with Adj, Adv
 	subcase of Word
   	form
       constraints
         self.f.orth <-- "not"
-   	meaning
+   	meaning: ProcessFeatures
+   	  constraints
+   	     self.m.negated <-- @yes

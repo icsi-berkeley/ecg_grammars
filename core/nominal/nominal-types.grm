@@ -1,13 +1,35 @@
-package starter
+package core
+
+
+construction DirectionalType
+	subcase of Directional, GeneralTypeCxn
+	meaning: HeadingSchema
+	  constraints
+	    self.m.tag <-- @heading
+	    
+
+construction NumberType   //rename, check digits
+	subcase of Quantifier, GeneralTypeCxn
+   	meaning: QuantitySchema
+   	  constraints
+   	    self.m.value <-- "?"
+   	    self.m.number <-- @RDnumberValues
 
 construction ProperNPInstance
-	subcase of ProperNounNP, ThirdPerson, GeneralTypeCxn // Third person testing here ("Robot1")
+	subcase of ProperNounNP, ThirdPerson, Singular, GeneralTypeCxn // Third person testing here ("Robot1")
 	meaning
 	  constraints
 		self.m.referent <-- @entity
-		self.m.ontological-category <-- @physicalEntity
+		self.m.ontological-category <-- @entity
 		self.m.gender <-- @genderValues
 		self.m.number <-- @RDnumberValues
+
+// E.g., "coffee", "water"
+construction SubstanceType
+	subcase of NounType
+	meaning
+	 constraints
+	   self.m.ontological-category <-- @substance
 
 // e.g. "what color is box1?"
 construction PropertyNoun
@@ -15,7 +37,17 @@ construction PropertyNoun
 	meaning
 	  constraints
 	     self.m.ontological-category <-- @object-property
-    
+   
+   
+ // e.g. "what color is box1?"
+construction UnitType
+	subcase of NounType
+	meaning: RD
+	  constraints
+	     self.m.ontological-category <-- @measure
+	     self.m.extras.quantity.property <-- @measure
+	     
+	        
 // "Type" constructions
 construction NounType
    subcase of Noun, GeneralTypeCxn, ThirdPerson
@@ -25,7 +57,6 @@ construction NounType
         self.m.gender <-- @genderValues
         self.m.ontological-category <-- @entity
         self.m.scale <-- @scale
-        //self.m.referent <-- @item
         
 //
 construction AbstractNoun
@@ -52,7 +83,7 @@ construction ArtifactNoun
  
 // "Type" constructions
 construction ContainerNoun
-   subcase of ArtifactNoun
+   subcase of PhysicalEntityNoun
    meaning
       evokes BoundedObject as cont
       constraints
@@ -68,18 +99,27 @@ construction SentientNoun
         self.m.referent <-- @sentient
         
         
-// "Mass" Noun type
-construction MassNoun
-	subcase of NP, GeneralTypeCxn
-	  meaning
-	    constraints
-	      self.m.bounding <-- @indeterminate
-	      self.m.number <-- @noNumber    
-	      self.m.ontological-category <-- @entity  
-	      
-// "Mass" Noun type
-construction SocialProblem
-	subcase of MassNoun
-	  meaning
-	    constraints 
-	      self.m.ontological-category <-- @socialProblem	        
+// Lexicalized events: "storm", etc.
+construction EventNoun
+	subcase of NounType
+	meaning: RD
+	  constraints
+	    self.m.ontological-category <-- @eventTop
+	    self.m.scale <-- @size
+	    self.m.extras.event.eventForm <-- @lexical
+	    
+
+// "part type": "member of the company", etc.
+construction PartType
+	subcase of NounType
+	meaning: RD
+	  constraints
+	    self.m.ontological-category <-- @part
+
+// "group type": "the crew", "the company"
+construction GroupType
+	subcase of NounType
+	meaning: RD
+	 constraints
+	   self.m.ontological-category <-- @group	    
+		        

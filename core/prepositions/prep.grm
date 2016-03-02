@@ -1,9 +1,11 @@
-package starter
+package core
 
 general construction Preposition
    subcase of Word
 
-	
+
+   
+ 	
  
  general construction SpatialPreposition
    subcase of Preposition
@@ -27,10 +29,31 @@ construction IN-Locative // 11/4/13
    meaning: TrajectorLandmark // inherited
      evokes BoundedObject as bo
      constraints
-         //self.m.landmark.ontological-category <-- @container  // 2/22/14 commented out for m4 test
-         self.m.landmark <--> bo.boundedObject
+         self.m.landmark.ontological-category <-- @container  // 2/22/14 commented out for m4 test
+         //self.m.landmark <--> bo.boundedObject
+         self.m.landmark.extensions <--> bo // testing!
          self.m.profiledArea <--> bo.interior
-       
+
+//Testing
+schema Support 
+	subcase of TrajectorLandmark
+	roles
+	  supporter
+	  supported
+	constraints
+	  landmark <--> supporter
+	  supported <--> trajector
+ 
+ construction On-Prep	
+ 	subcase of LocativePreposition
+ 	form
+ 	 constraints
+ 	   self.f.orth <-- "on"
+    meaning: Support
+      constraints
+       self.m.landmark.ontological-category <-- @physicalEntity
+       self.m.profiledArea <--> self.m.supporter
+             
  
  construction AT-Locative
    subcase of LocativePreposition 
@@ -53,6 +76,7 @@ construction TO-Path
    meaning: SPG  
      constraints
         self.m.landmark <--> self.m.goal
+        
 
 construction  INTO-Path // container 11/5/13
    subcase of PathPreposition
@@ -63,7 +87,8 @@ construction  INTO-Path // container 11/5/13
       evokes BoundedObject as bo
       constraints 
          self.m.landmark.ontological-category <-- @container           // 2/22/14 commented out for m4 test 
-         self.m.landmark <--> bo.boundedObject
+         //self.m.landmark <--> bo.boundedObject
+         self.m.landmark.extensions <--> bo //testing!
          self.m.goal <--> bo.interior
          self.m.source <--> bo.exterior
   
@@ -104,6 +129,11 @@ construction TO-Infinitive-Marker
 	  constraints
 	    self.f.orth <-- "to"
 	    
+construction FROM-Marker  // FDArgStructFrom
+   subcase of Preposition
+   form
+      constraints
+         self.f.orth <-- "from"
 	    
 general construction ModifierPreposition
 	subcase of Preposition
@@ -114,3 +144,24 @@ construction OF-Modifier
 	form
 	  constraints
 	    self.f.orth <-- "of"
+
+
+construction Up-Marker
+	subcase of Word // Preposition?
+	form
+	  constraints
+	    self.f.orth <-- "up"
+
+// 1/5/16 (ST) added from base
+construction BY-Agent
+	subcase of Preposition
+	form
+	  constraints
+	    self.f.orth <-- "by"
+	    
+// For-preposition ("recipient"), e.g. "he built it for the man".
+construction For-Recipient
+	subcase of Preposition
+	form 
+	 constraints
+	   self.f.orth <-- "for"

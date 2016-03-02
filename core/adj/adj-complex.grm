@@ -1,5 +1,5 @@
-package starter
-import starter-modification
+package core
+import core-modification
 
 general construction ComplexAdjective
 	subcase of Adjective
@@ -16,24 +16,9 @@ construction SerialAdjective
 	meaning
 	  constraints
 	    self.m <--> first.m
+	    second.m.temporality <-- @atemporal
 	    self.m.modifiedThing <--> second.m.modifiedThing
 
-/*
-construction SerialAdjective2
-	subcase of ComplexAdjective
-	constructional
-	  constituents
-	    extraposed first: Adjective
-	    second: Adjective
-	form
-	  constraints
-	    first.f meets second.f
-	meaning
-	  constraints
-	    self.m <--> first.m
-	    self.m.modifiedThing <--> second.m.modifiedThing
-
-*/
 
 // Uses comparative modifier, which is subcase of "scalar modifier".
 construction ComparativeAdjectivePhrase
@@ -49,11 +34,10 @@ construction ComparativeAdjectivePhrase
 	    than.f meets ground.f
 	meaning: ComparativeAdjModifier
 	  constraints 
-	    //comp.m.kind <-- @comparative 
-	    //comp.m.value <-- @big  
 	    self.m.base <--> ground.m
 	    self.m <--> comp.m
 	    self.m.kind <-- @comparative
+	    //self.m.modifiedThing <-->
 
 /*
 construction NegateTest

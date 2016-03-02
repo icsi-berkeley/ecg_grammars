@@ -1,10 +1,27 @@
 package robots
-import starter
+import core
 //import transitives
 
+//general construction for "picking up"
+/*
+construction PickUp 
+	subcase of Verb
+	constructional
+	 constituents
+	  pick: Pick
+	  up: Up-Marker
+    form
+     constraints
+      pick.f before up.f
+   meaning: CauseEffect
+    evokes Manipulation as manipulate
+    constraints
+	     self.m.causalProcess <--> self.manipulate
+	     self.m.protagonist.ontological-category <-- @agent
+	     self.m.actionary <-- @forceapplication
+	     self.manipulate.manipulated_entity <--> self.m.affectedEntity
 
-
-
+*/
 construction ReturnType
 	subcase of LexicalVerbType
 	meaning: MotionPath
@@ -14,11 +31,3 @@ construction ReturnType
 
 
 
-construction Move2
-	subcase of LexicalVerb, PastTense
-	form
-	   constraints
-	      self.f.orth <-- "moved"
-	meaning: Motion
-	 constraints
-	   self.m.actionary <-- @move

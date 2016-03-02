@@ -2,6 +2,8 @@ robot1  	robot1 Singular
 robot2		robot2 Singular
 Robot1      robot1 Singular
 Robot2		robot2 Singular
+Darwin		darwin Singular
+darwin		darwin Singular
 box1		box1 Singular
 Box1		box1 Singular
 box2		box2 Singular
@@ -12,6 +14,8 @@ box4		box4 Singular
 Box4		box4 Singular
 Box5		box5 Singular
 box5 		box5 Singular
+box6 		box6 Singular
+Box6 		box6 Singular
 North		north Positive
 South		south Positive
 East		east Positive
@@ -47,4 +51,7 @@ two			two Singular
 desk1		desk1 Singular
 shelf1		shelf1 Singular
 Team		team Singular
+pr2			pr2 Singular
+PR2			pr2 Singular
+dining		dining Positive
 

@@ -1,0 +1,87 @@
+construction LexicalVerbType
+	subcase of GeneralTypeCxn, LexicalVerb
+	
+construction MotionType
+     subcase of LexicalVerbType
+     meaning: Motion
+       constraints
+         self.m.Manner <-- "*"
+
+construction Mass_motionType
+     subcase of MotionType
+     meaning: Mass_motion
+       constraints
+         self.m.Manner <-- "*"
+
+construction Motion_directionalType
+     subcase of MotionType
+     meaning: Motion_directional
+       constraints
+         self.m.Manner <-- "*"
+
+construction Self_motionType
+     subcase of MotionType
+     meaning: Self_motion
+       constraints
+         self.m.Manner <-- "*"
+
+construction Motion_noiseType
+     subcase of MotionType
+     meaning: Motion_noise
+       constraints
+         self.m.Manner <-- "*"
+
+construction Fluidic_motionType
+     subcase of MotionType
+     meaning: Fluidic_motion
+       constraints
+         self.m.Manner <-- "*"
+
+
+construction CureType
+     subcase of LexicalVerbType
+     meaning: Cure
+       constraints
+         self.m.Manner <-- "*"
+
+
+
+
+construction Cause_motionType
+	subcase of LexicalVerbType
+	meaning: Cause_motion
+	  constraints
+	    self.m.Theme <-- Entity
+	    self.m.Manner <-- "*"
+
+
+	    
+construction CommerceBuyType
+	subcase of LexicalVerbType
+	form
+	  constraints
+	    self.f.orth <-- "bought"
+	meaning: Commerce_buy
+
+
+/*
+construction IntransitiveVP
+	subcase of VP
+	constructional
+	  constituents
+	    v: Verb
+	meaning: Event
+	   constraints   
+	     self.m <--> v.m
+	     
+construction IntransitiveMotion
+	subcase of IntransitiveVP
+	constructional
+	  constituents
+	    optional pp1: PP-from
+	    optional pp2: PP-to	
+	meaning: Motion
+	   constraints   
+	     self.m.Source <--> pp1.np.m
+	     self.m.Goal <--> pp2.np.m
+*/     

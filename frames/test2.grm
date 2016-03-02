@@ -1,0 +1,25 @@
+general construction Cause_motion_pattern1 
+     subcase of ArgumentStructure
+	   constructional
+		constituents
+		v: Verb
+		goal-pp: Goal-PP [0.2, .9]
+		path-pp: Path-PP [0.11, .9]
+		source-pp: Source-PP [0.05, .9]
+		ajp: AJP [0.01, .9]
+	   meaning: Cause_motion
+		constraints
+		self.m <--> v.m
+		ed.profiledParticipant <--> self.m.Agent
+		self.m.Goal <--> goal-pp.m
+		self.m.Path <--> path-pp.m
+		self.m.Source <--> source-pp.m
+		self.m.Result <--> ajp.m
+
+construction Cause_motion_pattern1_active
+	subcase of Cause_motion_pattern1, ActiveTransitive
+
+construction Cause_motion_pattern1_passive
+	subcase of Cause_motion_pattern1, PassiveTransitive
+
+

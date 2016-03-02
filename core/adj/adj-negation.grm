@@ -1,12 +1,12 @@
-package starter
+package adjective-negation
 
-import starter-modification
+import core-modification
 
 construction NegatedAdjective
    subcase of ComplexAdjective
    constructional 
     constituents
-          first: Not-NP 
+          first: Not-event
     	  second: Adjective 
    form 
      constraints

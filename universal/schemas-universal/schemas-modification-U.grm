@@ -14,6 +14,7 @@ schema Modification
     	modifier
      	modifiedThing  // could be verb, etc.
      	negated: @boolean //@yes or blank
+     	temporality: @temporality
      	/// Gender? depends how we want to handle Spanish noun-adj agreement
      	// (Should be constructional, not semantic, but we also want it in SemSpec for ref res.)
 
@@ -49,7 +50,7 @@ schema PropertyModifier
 schema ScalarModifier 
 	subcase of PropertyModifier  // does not use modifier role
    	roles
-     	  property: @scale  
+     	  scale: Scale
 	 constraints 
 
 	
