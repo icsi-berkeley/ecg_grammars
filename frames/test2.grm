@@ -48,6 +48,6 @@ construction Killing_pattern1_passive
 	subcase of Killing_pattern1, PassiveTransitive
 	form
 	 constraints
-	   instrument-pp.f before byPhrase.f
+	   v.f before byPhrase.f
+	   //byPhrase.f before instrument-pp.f
 
-	
