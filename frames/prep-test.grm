@@ -7,6 +7,9 @@ general construction Carrier-Preposition
 general construction Containing_event-Preposition
 	subcase of Preposition
 	
+general construction Instrument-Preposition
+	subcase of Preposition
+	
 	
 general construction Initial_state-Preposition
 	subcase of Preposition
@@ -69,7 +72,7 @@ construction in-Preposition
 
 
 construction with-Preposition
-    subcase of Depictive-Preposition
+    subcase of Depictive-Preposition, Instrument-Preposition
     form
       constraints
         self.f.orth <-- "with"

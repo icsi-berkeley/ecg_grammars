@@ -7,74 +7,76 @@ general construction PP
 	form
 	  constraints
 	    prep.f before np.f
-	meaning: Locative_relation // Testing, should probably be "Spatial-PP" 
-	  constraints
-	    //self.m <--> np.m // Hack, testing
-	    np.m <--> self.m.Ground
 
+
+general construction PP-Locative
+	subcase of PP
+	meaning: Locative_relation
+	 constraints
+	  np.m <--> self.m.Ground
 /*
 construction PP-down	
-	subcase of PP
+	subcase of PP-Locative
 	constructional
 	  constituents
 	    prep: Down-Preposition
 
 construction PP-off	
-	subcase of PP
+	subcase of PP-Locative
 	constructional
 	  constituents
 	    prep: Off-Preposition
 	     
 construction PP-toward	
-	subcase of PP
+	subcase of PP-Locative
 	constructional
 	  constituents
 	    prep: Toward-Preposition
 
 construction PP-below	
-	subcase of PP
+	subcase of PP-Locative
 	constructional
 	  constituents
 	    prep: Below-Preposition
 
 construction PP-into	
-	subcase of PP
+	subcase of PP-Locative
 	constructional
 	  constituents
 	    prep: Into-Preposition
 
 construction PP-out	
-	subcase of PP
+	subcase of PP-Locative
 	constructional
 	  constituents
 	    prep: Out-Preposition
 
 construction PP-from	
-	subcase of PP
+	subcase of PP-Locative
 	constructional
 	  constituents
 	    prep: From-Preposition
 
 construction PP-up	
-	subcase of PP
+	subcase of PP-Locative
 	constructional
 	  constituents
 	    prep: Up-Preposition
 
 construction PP-against	
-	subcase of PP
+	subcase of PP-Locative
 	constructional
 	  constituents
 	    prep: Against-Preposition
 
 construction PP-past	
-	subcase of PP
+	subcase of PP-Locative
 	constructional
 	  constituents
 	    prep: Past-Preposition
 
 construction PP-across	
-	subcase of PP
+	subcase of PP-Locative
 	constructional
 	  constituents
 	    prep: Across-Preposition
@@ -82,13 +84,13 @@ construction PP-across
 
 	    
 construction PP-to	
-	subcase of PP
+	subcase of PP-Locative
 	constructional
 	  constituents
 	    prep: To-Preposition
 
 construction PP-around	
-	subcase of PP
+	subcase of PP-Locative
 	constructional
 	  constituents
 	    prep: Around-Preposition	
@@ -96,31 +98,31 @@ construction PP-around
 
 
 construction PP-towards	
-	subcase of PP
+	subcase of PP-Locative
 	constructional
 	  constituents
 	    prep: Towards-Preposition	  
 
 construction PP-in
-	subcase of PP
+	subcase of PP-Locative
 	constructional
 	  constituents
 	    prep: In-Preposition
 
 construction PP-like
-	subcase of PP
+	subcase of PP-Locative
 	constructional
 	  constituents
 	    prep: Like-Preposition
 	
 construction PP-through
-	subcase of PP
+	subcase of PP-Locative
 	constructional
 	  constituents
 	    prep: Through-Preposition
 
 construction PP-along
-	subcase of PP
+	subcase of PP-Locative
 	constructional
 	  constituents
 	    prep: Along-Preposition

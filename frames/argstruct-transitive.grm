@@ -1,3 +1,9 @@
+schema A123
+	roles
+	  a1
+	  a2
+	  a3
+
 general construction ArgumentStructure
 	subcase of VP
 	constructional 
@@ -8,6 +14,7 @@ general construction ArgumentStructure
 	   self.verbform <--> v.verbform
 	   self.voice <--> v.voice
 	meaning: Event
+	evokes A123 as s
 	  constraints
 	    v.m <--> ed.profiledProcess
 
@@ -21,15 +28,35 @@ general construction ActiveTransitive
 	  constraints
 	    ed.profiledParticipant <--> self.m.Agent
 	    np.m <--> self.m.Patient
+	    ed.profiledParticipant <--> s.a1
+	    s.a2 <--> np.m
+	    
 	    
 import auxiliaries
+
+construction ByAgentPhrase
+	subcase of PP-Locative
+	constructional
+	 constituents
+	   prep: by-Preposition
+	form
+	 constraints
+	   prep.f meets np.f
+	meaning: ByLandmark
+	 constraints
+	  np.m <--> self.m.Landmark
+
+schema ByLandmark
+    subcase of Locative_relation
+	roles
+	  Landmark
 
 general construction PassiveTransitive // 5/14/13
   subcase of ArgumentStructure
   constructional
     constituents
      v: Verb // inherited
-     //optional byPhrase: ByAgentPhrase
+     optional byPhrase: ByAgentPhrase
     constraints
       v.argform <-- Transitive
       v.voice <-- Passive  // 2/1/13
@@ -38,9 +65,10 @@ general construction PassiveTransitive // 5/14/13
       //v.f before byPhrase.f
   meaning: Transitive_action  
      constraints
-	  // self.m.Agent <--> byPhrase.m.landmark 
-	   //s.a2 <--> ed.profiledParticipant
-	   self.m.Patient <--> ed.profiledParticipant
+	   self.m.Agent <--> byPhrase.m.Landmark 
+	   s.a1 <--> byPhrase.m.Landmark
+	   s.a2 <--> ed.profiledParticipant
+	  self.m.Patient <--> ed.profiledParticipant
 	   v.m.Features.voice <-- @passive     
 	    
 	    

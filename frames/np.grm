@@ -14,6 +14,8 @@ general construction Noun
 		
 general construction Determiner
 	subcase of Word
+	meaning
+	 evokes RDFeatures as rd
 
 construction NounType
 	subcase of Noun, GeneralTypeCxn
@@ -45,6 +47,16 @@ construction THE
 	  constraints
 	    self.f.orth <-- "the"
 
+construction A-Determiner
+	subcase of Determiner
+	form
+	  constraints
+	    self.f.orth <-- "a"
+	meaning
+	 constraints
+	   self.rd.number <-- @singular
+	   self.rd.bounding <-- @determinate
+
 general construction NP
 	subcase of RootType, Nominal
 	meaning //: Entity
@@ -64,6 +76,8 @@ construction DeterminedNP
    meaning
      constraints
        self.m <--> n.m	
+       self.rd <--> n.rd
+       d.rd <--> n.rd
        //self.m <--> d.m
        
 
