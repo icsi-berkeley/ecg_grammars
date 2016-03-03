@@ -13483,7 +13483,7 @@ schema Get_a_job
 
 
 schema Getting 
-    subcase of Event 
+    subcase of Event
     roles 
        Recipient 
        Theme: Entity 
@@ -17211,7 +17211,7 @@ schema Location_on_path
 
 schema Locative_relation 
     subcase of State, Trajector-Landmark 
-    evokes Existence as existence 
+    //evokes Existence as existence  // 3/2/16 (ST)
     roles 
        Ground 
        Figure 
@@ -17233,8 +17233,8 @@ schema Locative_relation
        Entity <--> Figure 
        Trajector <--> Figure 
        Landmark <--> Ground 
-       existence.Time <--> Time 
-       existence.Entity <--> Figure 
+       //existence.Time <--> Time 
+       //existence.Entity <--> Figure 
 
 
 schema Locative_scenario 

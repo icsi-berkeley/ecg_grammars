@@ -56,12 +56,33 @@ construction Cause_motionType
 
 
 	    
-construction CommerceBuyType
-	subcase of LexicalVerbType
-	form
-	  constraints
-	    self.f.orth <-- "bought"
-	meaning: Commerce_buy
+construction Commerce_buyType
+     subcase of LexicalVerbType
+     meaning: Commerce_buy
+       constraints
+         self.m.Manner <-- "*"
+
+construction RentingType
+     subcase of Commerce_buyType
+     meaning: Renting
+       constraints
+         self.m.Manner <-- "*"
+         
+         
+construction KillingType
+     subcase of LexicalVerbType
+     meaning: Killing
+       constraints
+         self.m.Manner <-- "*"
+
+construction ExecutionType
+     subcase of KillingType
+     meaning: Execution
+       constraints
+         self.m.Manner <-- "*"
+
+
+
 
 
 /*

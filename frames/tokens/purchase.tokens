@@ -1,0 +1,6 @@
+buy :: Commerce_buyType :: self.m.Manner <-- "buy"
+purchase :: Commerce_buyType :: self.m.Manner <-- "purchase"
+lease :: RentingType :: self.m.Manner <-- "lease"
+rent :: RentingType :: self.m.Manner <-- "rent"
+charter :: RentingType :: self.m.Manner <-- "charter"
+hire :: RentingType :: self.m.Manner <-- "hire"

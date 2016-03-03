@@ -1,103 +1,117 @@
 construction Place-PP
-	 subcase of PP
+	 subcase of PP-Locative
 	 constructional
 	   constituents
       prep: Place-Preposition
 
 construction Goal-PP
-	 subcase of PP
+	 subcase of PP-Locative
 	 constructional
 	   constituents
       prep: Goal-Preposition
 
 construction Initial_state-PP
-	 subcase of PP
+	 subcase of PP-Locative
 	 constructional
 	   constituents
       prep: Initial_state-Preposition
 
 
 construction Carrier-PP
-	 subcase of PP
+	 subcase of PP-Locative
 	 constructional
 	   constituents
       prep: Carrier-Preposition
 
 construction Depictive-PP
-	 subcase of PP
+	 subcase of PP-Locative
 	 constructional
 	   constituents
       prep: Depictive-Preposition
 
 construction Manner-PP
-	 subcase of PP
+	 subcase of PP-Locative
 	 constructional
 	   constituents
       prep: Manner-Preposition
 
 construction Source-PP
-	 subcase of PP
+	 subcase of PP-Locative
 	 constructional
 	   constituents
       prep: Source-Preposition
 
 construction Duration-PP
-	 subcase of PP
+	 subcase of PP-Locative
 	 constructional
 	   constituents
       prep: Duration-Preposition
 
 construction Path_shape-PP
-	 subcase of PP
+	 subcase of PP-Locative
 	 constructional
 	   constituents
       prep: Path_shape-Preposition
 
 construction Result-PP
-	 subcase of PP
+	 subcase of PP-Locative
 	 constructional
 	   constituents
       prep: Result-Preposition
 
 construction Time-PP
-	 subcase of PP
+	 subcase of PP-Locative
 	 constructional
 	   constituents
       prep: Time-Preposition
 
 construction Direction-PP
-	 subcase of PP
+	 subcase of PP-Locative
 	 constructional
 	   constituents
       prep: Direction-Preposition
 
 construction Path-PP
-	 subcase of PP
+	 subcase of PP-Locative
 	 constructional
 	   constituents
       prep: Path-Preposition
 
 construction Purpose-PP
-	 subcase of PP
+	 subcase of PP-Locative
 	 constructional
 	   constituents
       prep: Purpose-Preposition
 
 construction Containing_event-PP
-	 subcase of PP
+	 subcase of PP-Locative
 	 constructional
 	   constituents
       prep: Containing_event-Preposition
 
 construction Speed-PP
-	 subcase of PP
+	 subcase of PP-Locative
 	 constructional
 	   constituents
       prep: Speed-Preposition
 
 construction Area-PP
-	 subcase of PP
+	 subcase of PP-Locative
 	 constructional
 	   constituents
       prep: Area-Preposition
 
+schema Instrument
+	roles 
+	  Instrument
+	  
+
+
+construction Instrument-PP
+	subcase of PP
+	constructional
+	 constituents
+	   prep: Instrument-Preposition
+	meaning: Instrument
+	 constraints 
+	   self.m.Instrument <--> np.m
