@@ -1,0 +1,8 @@
+elbonia :: ProperNPInstance :: self.m.ontological-category <-- @location
+country :: NounType :: self.m.ontological-category <-- @location
+service :: NounType :: self.m.ontological-category <-- "service"
+business :: NounType :: self.m.ontological-category <-- @business
+weapon :: ArtifactNoun :: self.m.ontological-category <-- @weapon
+facility :: ArtifactNoun :: self.m.ontological-category <-- @facility
+provide :: SupplyType :: self.m.actionary <-- @provide
+citizen :: SentientNoun :: self.m.ontological-category <-- @citizen
