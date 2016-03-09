@@ -92,18 +92,36 @@ general construction PassiveTransitive // 5/14/13
 
 */
 general construction Trans_Transitive_action //  added 3/3/16 by EKD
-  subcase of ArgumentStructure // 
-    meaning: Transitive_action //
-     //evokes A123 as s
+  subcase of ArgumentStructure  
+    meaning: Transitive_action 
      constraints
 	    s.a1 <--> self.m.Agent
         s.a2 <--> self.m.Patient
  
- construction Transitive_action_active
+general construction Transitive_action_active
 	subcase of Trans_Transitive_action, ActiveTransitive
+	meaning
+	 constraints
 
 
-
-construction Transitive_action_passive
+general construction Transitive_action_passive
 	subcase of Trans_Transitive_action, PassiveTransitive
-        	    
+	meaning
+	 constraints
+ 
+ 
+
+construction Transitive_action_active_central
+	subcase of Transitive_action_active
+	meaning 
+	constraints
+	  self.m <--> v.m 
+	
+ // binds self.m <--> v.m
+construction Transitive_action_passive_central
+	subcase of Transitive_action_passive   
+	meaning
+	 constraints
+	   self.m <--> v.m  
+	   
+

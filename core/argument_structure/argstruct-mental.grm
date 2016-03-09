@@ -1,14 +1,26 @@
 /*
 Mental verb package. Dependencies are either internal to package or part of "core".
 
-Example sentences (simple control):
+Example sentences (mental):
 -he said that the box is in the room
 -he thought that the box is in the room
 
+-he told John the story (Ditransitive-communication-NP)
 */
 
 package mental
 //import ditransitive
+import intransitive
+
+
+general construction CommunicationCxN
+	subcase of ArgumentStructure
+	meaning: Communication
+	 evokes A123 as s
+	 constraints
+	   s.a1 <--> self.m.speaker
+	   s.a3 <--> self.m.listener 
+	   v.m.actionary <--> self.m.actionary
 
 construction SubordinateDeclarativeThat
 	constructional
@@ -40,8 +52,9 @@ construction IntransitiveCommunication
      self.m <--> v.m
      //self.m.listener <--> ToPhrase.m.landmark ??
 
+import ditransitive
 //this requires ditransitive package
-/*
+
 construction DitransitiveCommunication-NP
 	subcase of ActiveDitransitive
 	form 
@@ -55,18 +68,42 @@ construction DitransitiveCommunication-NP
 	  s.a2 <--> self.m.listener
 	  //v.m.actionary <--> self.m.actionary
 
+// he told John that {EVENT}
+// note: make this passivisable?
+construction Communication-S
+	subcase of CommunicationCxN
+	constructional 
+	 constituents
+	   v: Verb
+	   np1: NP
+	   core: SubordinateDeclarativeThat
+	 constraints
+	  v.argform <-- Transitive
+	  np1.features.case <-- "dat"
+	form 
+	 constraints
+	   v.f before np1.f
+	   np1.f before core.f
+	meaning: Communication
+	 constraints
+	  self.m <--> v.m
+	  core.m <--> self.m.content
+	  ed.profiledParticipant <--> self.m.speaker
+	  np1.m <--> self.m.listener
+	  v.verbkind <-- Communicational
+	 
+
 construction IntransitiveThought
-	subcase of BareIntransitive
+	subcase of IntransitiveArgumentStructure //BareIntransitive
 	constructional
 	 constituents
 	  v: MentalVerb
-	  optional conj: That-Subordinating
-	  core: Declarative
+	  core: SubordinateDeclarativeThat
    form
     constraints
       v.f before core.f
    meaning: Thought
     constraints
      core.m <--> self.m.content
-*/
+	self.m <--> v.m
 

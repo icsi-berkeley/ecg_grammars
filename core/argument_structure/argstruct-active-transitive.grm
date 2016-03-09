@@ -1,3 +1,26 @@
+/*
+Package active-transitives
+This package imports the transitives package. The transitives package
+defines most of the semantics and bindings for transitive constructions,
+and the transitive package uses a notion of "ActiveTransitive" and more frame-specific
+transitive cxns to create cxns like "ActiveTransitivePerception".
+
+Notes:
+-It's possible that this 
+
+Example sentences (as of 3/4/16):
+-he saw the box
+-he weighed the box
+-he entered the room
+-he painted the house blue
+-he moved the box
+-he pushed the box into the room
+-he built the house
+-he picked up the box
+-he gave the box to the man
+
+*/
+
 package active-transitives
 import transitives
 

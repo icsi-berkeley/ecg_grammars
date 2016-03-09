@@ -14,6 +14,15 @@ general construction PP-Locative
 	meaning: Locative_relation
 	 constraints
 	  np.m <--> self.m.Ground
+	  
+construction PP-for
+	subcase of PP
+	constructional 
+	 constituents
+	   prep: for-Preposition
+	meaning
+	 constraints
+	   self.m <--> np.m
 /*
 construction PP-down	
 	subcase of PP-Locative

@@ -22,6 +22,10 @@ construction NounType
 	constructional
 	  constraints
 	    self.features.person <-- "3"
+	meaning
+	 constraints
+	   self.rd.ontological-category <-- "*"
+	  
 
 general construction Pronoun
 	subcase of NP, Word, Nominal
@@ -40,6 +44,7 @@ construction He
 	  constraints
 	    rd.number <-- @singular
 	    self.m.Name <-- "he"
+	    rd.gender <-- @male
 
 construction THE
 	subcase of Determiner
@@ -81,26 +86,7 @@ construction DeterminedNP
        //self.m <--> d.m
        
 
-// buyer of the company, kicker of the ball
-// for testing
-construction Agent-of-Patient
-	subcase of Nominal
-	constructional
-	constituents 
-	 np1: RoleNoun
-	 prep: of-Preposition
-	 np2: NP
-   form
-     constraints
-       np1.f before prep.f
-       prep.f before np2.f
-   meaning
-     evokes Transitive_action as ta
-     constraints
-       ta <--> np1.ta
-       ta.Agent <--> np1.m
-       ta.Patient <--> np2.m
-       self.m <--> np1.m
+
 
 
 

@@ -51,3 +51,17 @@ construction Killing_pattern1_passive
 	   v.f before byPhrase.f
 	   //byPhrase.f before instrument-pp.f
 
+
+construction Killing_pattern_2
+     subcase of ArgumentStructure
+	   constructional
+		constituents
+		 v: Verb
+         pp-for: PP-for
+         np: NP
+	   meaning: Killing
+		constraints
+		self.m <--> v.m
+           self.m.Beneficiary <--> pp-for.m
+           ed.profiledParticipant <--> self.m.Killer
+           self.m.Victim <--> np.m

@@ -26,5 +26,5 @@ construction LexicalVerbType
 		evokes ProcessFeatures as pf
    	constraints
    		pf <--> self.m.p-features
-   		//self.m.actionary <-- @process
+   		self.m.actionary <-- @process
 

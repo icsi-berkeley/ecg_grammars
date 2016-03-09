@@ -1,5 +1,5 @@
 
-package apposition
+package relative-clause
 
 construction RelativizedNP
 	subcase of NP

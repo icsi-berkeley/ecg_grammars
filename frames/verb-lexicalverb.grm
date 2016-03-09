@@ -38,15 +38,6 @@ construction Fluidic_motionType
          self.m.Manner <-- "*"
 
 
-construction CureType
-     subcase of LexicalVerbType
-     meaning: Cure
-       constraints
-         self.m.Manner <-- "*"
-
-
-
-
 construction Cause_motionType
 	subcase of LexicalVerbType
 	meaning: Cause_motion

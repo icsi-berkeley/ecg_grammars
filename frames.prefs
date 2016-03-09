@@ -26,14 +26,16 @@ MORPHOLOGY_PATH ::==
 
 TOKEN_PATH ::== 
 	./frames/tokens/entities.tokens
-	./frames/tokens/motion.tokens
 	./frames/tokens/cause_motion.tokens
-	./frames/tokens/purchase.tokens
+	./frames/tokens/motion.tokens
 	./frames/tokens/kill.tokens
+	./frames/tokens/purchase.tokens
+	./frames/tokens/transitive_action.tokens
+	./frames/tokens/celex.tokens
 ;
 
-
-
+// 
+// 
 
 TABLE_PATH = ./frames/core.morph
 
