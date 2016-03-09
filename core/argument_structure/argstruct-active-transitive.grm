@@ -100,3 +100,11 @@ construction ActiveTransitiveManipulation
 // he gave the box to the man     
 construction ActiveTransitiveObjectTransfer
 	subcase of CoreActiveTransitive, TransitiveObjectTransfer
+
+	
+// he provided the service 
+construction ActiveTransitiveSupply
+	subcase of CoreActiveTransitive, TransitiveSupply
+	form
+	 constraints
+	   np.f before to.f

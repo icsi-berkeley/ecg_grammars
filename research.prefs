@@ -29,7 +29,10 @@ MORPHOLOGY_PATH ::==
 
 TOKEN_PATH ::==
 	./research/testing.tokens
+	./research/parse_test.tokens
 ;
+
+
 
 
 

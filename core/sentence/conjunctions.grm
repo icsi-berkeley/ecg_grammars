@@ -1,4 +1,4 @@
-package conjunctions
+package core
 
 schema ConjunctionValue
 	roles

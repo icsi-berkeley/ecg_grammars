@@ -102,6 +102,8 @@ DEFS:
 
 (type institution sub socialEntity)
 
+(type business sub institution physicalEntity)
+
 (type group sub socialEntity)
 
 //(type deictic sub enumeration)  // ??
@@ -753,5 +755,15 @@ DEFS:
 (type store sub artifact container shared)
 
 (type ariel sub entity person shared)
+
+(type weapon sub artifact  shared)
+
+(type facility sub artifact business shared)
+
+(type supply sub process)
+
+(type provide sub supply  shared)
+
+(type citizen sub sentient person shared)
 
 INSTS:

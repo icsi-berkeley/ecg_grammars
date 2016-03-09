@@ -84,6 +84,15 @@ construction BePastSing
 	  constraints
 	    pf <--> self.m
 
+construction BePresentSingular
+	subcase of BeAux, PresentTense // , Singular
+	form
+	  constraints
+	    self.f.orth <-- "is"
+	meaning
+	  constraints
+	    pf <--> self.m
+
 construction BePresentSing	
 	subcase of BeAux, PresentParticiple // , Singular
 	form

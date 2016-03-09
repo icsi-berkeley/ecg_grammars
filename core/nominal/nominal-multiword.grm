@@ -1,0 +1,27 @@
+package core
+
+construction Saar
+	subcase of Word
+	form
+	 constraints
+	 self.f.orth <-- "Saar"
+	 
+construction Valley 
+	subcase of Word
+	form
+	 constraints
+	 self.f.orth <-- "Valley"
+
+construction Saar_Valley
+	subcase of Nominal
+	constructional
+	 constituents
+	   saar: Saar
+	   valley: Valley
+	form
+	 constraints
+	   saar.f meets valley.f
+	meaning: RD
+	  constraints
+	   self.m.ontological-category <-- @entity
+	

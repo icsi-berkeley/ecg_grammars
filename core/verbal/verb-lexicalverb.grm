@@ -42,6 +42,17 @@ construction ChangeType
 	    //self.m.state.property <-- @object-property
 	    //self.m.state.oldValue <-- @propValue
 	
+
+// provide, supply
+construction SupplyType
+	subcase of LexicalVerbType
+	constructional 
+	  constraints
+	    self.argform <-- Transitive
+	meaning: Supply
+	  constraints
+	    self.m.actionary <-- @supply
+
 	
 	// ST Testing (1/4/16)    
 // Scale Change Type: grow, increase, etc.

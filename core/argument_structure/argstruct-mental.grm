@@ -54,9 +54,9 @@ construction DitransitiveCommunication-NP
 	  s.a1 <--> self.m.speaker
 	  s.a2 <--> self.m.listener
 	  //v.m.actionary <--> self.m.actionary
-
+*/
 construction IntransitiveThought
-	subcase of BareIntransitive
+	subcase of IntransitiveArgumentStructure
 	constructional
 	 constituents
 	  v: MentalVerb
@@ -68,5 +68,6 @@ construction IntransitiveThought
    meaning: Thought
     constraints
      core.m <--> self.m.content
-*/
+     self.m <--> v.m
+
 

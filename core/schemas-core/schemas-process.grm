@@ -158,4 +158,13 @@ schema EstablishHold
 	  routine: @establishhold 
 	  
 
+schema Supply
+	subcase of Process
+	roles
+	  supplier: RD
+	  imposed_purpose
+	  theme: RD
+	  recipient: RD
+	constraints
+	  supplier <--> protagonist
 	
