@@ -3,9 +3,11 @@ package core
 general construction Preposition
    subcase of Word
 
-
+general construction AssociationPreposition // the man with the guitar
+	subcase of Preposition
    
- 	
+ general construction InstrumentPreposition
+ 	subcase of Preposition
  
  general construction SpatialPreposition
    subcase of Preposition
@@ -76,7 +78,38 @@ construction TO-Path
    meaning: SPG  
      constraints
         self.m.landmark <--> self.m.goal
-        
+ 
+ 
+construction FROM-Path
+   subcase of PathPreposition
+   form
+      constraints
+         self.f.orth <-- "from"
+   meaning: SPG  
+     constraints
+        self.m.landmark <--> self.m.source        
+
+construction AGAINST-Path
+   subcase of PathPreposition
+   form
+      constraints
+         self.f.orth <-- "against"
+   meaning: SPG  
+     evokes Contact as c
+     constraints
+        self.m.landmark <--> self.m.goal   
+        self.c.entity1 <--> self.m.trajector
+        self.c.entity2 <--> self.m.landmark     
+
+
+construction OFF-Path
+   subcase of PathPreposition
+   form
+      constraints
+         self.f.orth <-- "off"
+   meaning: SPG  
+     constraints
+        self.m.landmark <--> self.m.source 
 
 construction  INTO-Path // container 11/5/13
    subcase of PathPreposition
@@ -92,7 +125,19 @@ construction  INTO-Path // container 11/5/13
          self.m.goal <--> bo.interior
          self.m.source <--> bo.exterior
   
-
+construction  IN-Path // container 11/5/13
+   subcase of PathPreposition
+   form
+      constraints
+         self.f.orth <-- "in"
+   meaning: SPG  
+      evokes BoundedObject as bo
+      constraints 
+         self.m.landmark.ontological-category <-- @container           // 2/22/14 commented out for m4 test 
+         //self.m.landmark <--> bo.boundedObject
+         self.m.landmark.extensions <--> bo //testing!
+         self.m.goal <--> bo.interior
+         self.m.source <--> bo.exterior
 
 construction NEAR-Locative
    subcase of LocativePreposition 
@@ -134,6 +179,18 @@ construction FROM-Marker  // FDArgStructFrom
    form
       constraints
          self.f.orth <-- "from"
+
+construction With-Instrument  // FDArgStructFrom
+   subcase of InstrumentPreposition
+   form
+      constraints
+         self.f.orth <-- "with"
+
+construction With-Accompaniment  // FDArgStructFrom
+   subcase of AssociationPreposition
+   form
+      constraints
+         self.f.orth <-- "with"
 	    
 general construction ModifierPreposition
 	subcase of Preposition
@@ -165,3 +222,26 @@ construction For-Recipient
 	form 
 	 constraints
 	   self.f.orth <-- "for"
+	   
+// TEmporal Phrases
+general construction TemporalPreposition
+	subcase of Preposition
+	meaning: TemporalModifier
+	
+construction FOR-Temporal
+	subcase of TemporalPreposition
+	form
+	 constraints
+	   self.f.orth <-- "for"
+    meaning
+     constraints
+       self.m.telicity <-- @ongoing
+
+construction IN-Temporal
+	subcase of TemporalPreposition
+	form
+	 constraints
+	   self.f.orth <-- "in"
+    meaning
+     constraints
+       self.m.telicity <-- @bounded       

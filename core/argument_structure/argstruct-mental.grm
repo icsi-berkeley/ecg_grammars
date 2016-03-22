@@ -63,7 +63,7 @@ construction DitransitiveCommunication-NP
 	meaning: Communication
 	 constraints
 	  self.m <--> v.m
-	  s.a3 <--> self.m.content
+	  s.a3 <--> self.m.media
 	  s.a1 <--> self.m.speaker
 	  s.a2 <--> self.m.listener
 	  //v.m.actionary <--> self.m.actionary
@@ -106,4 +106,5 @@ construction IntransitiveThought
     constraints
      core.m <--> self.m.content
 	self.m <--> v.m
+
 

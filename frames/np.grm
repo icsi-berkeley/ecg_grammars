@@ -46,6 +46,22 @@ construction He
 	    self.m.Name <-- "he"
 	    rd.gender <-- @male
 
+construction They
+	subcase of Pronoun
+	constructional 
+	 constraints
+	   self.features.number <-- "plural"
+	   self.features.case <-- "nom"
+	   self.features.person <-- "3"
+	form
+	  constraints
+	    self.f.orth <-- "they"
+	meaning: People
+	  constraints
+	    rd.number <-- @plural
+	    self.m.Name <-- "they"
+	    rd.gender <-- @male
+
 construction THE
 	subcase of Determiner
 	form
@@ -87,7 +103,29 @@ construction DeterminedNP
        
 
 
-
+// Proper Nouns
+general construction ProperNounNP
+    subcase of NP, Word
+    
+ 
+ 
+construction Elbonia
+	subcase of ProperNounNP
+	form
+	 constraints
+	   self.f.orth <-- "Elbonia"
+	meaning: Locale
+	 constraints
+	   self.rd.ontological-category <-- @location
+	       
+construction ProperNPInstance
+	subcase of ProperNounNP, ThirdPerson, Singular, GeneralTypeCxn // Third person testing here ("Robot1")
+	meaning: Entity
+	  constraints
+		self.rd.ontological-category <-- @entity
+		self.rd.gender <-- @genderValues
+		self.rd.number <-- @RDnumberValues
+		self.m.Name <-- "*"
 
 
 

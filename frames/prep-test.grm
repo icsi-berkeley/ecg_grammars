@@ -253,6 +253,13 @@ construction as-Preposition
         self.f.orth <-- "as"
 
 
+
+construction below-Preposition
+    subcase of Place-Preposition
+    form
+      constraints
+        self.f.orth <-- "below"
+        
 construction toward-Preposition
     subcase of Goal-Preposition, Path-Preposition
     form

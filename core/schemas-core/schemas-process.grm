@@ -1,6 +1,17 @@
 package core
 import universal-schemas
 
+/// Testing (3/16/16, ST)
+schema TransitiveAction
+	subcase of Process
+	roles
+	 agent: RD
+	 patient: RD
+	constraints
+	 agent <--> protagonist
+	 
+	
+
 // Serial Process
 schema SerialProcess
 	subcase of ComplexProcess
@@ -39,18 +50,19 @@ schema MeasurePredication
 
 // "he weighed the box"
 schema MeasureProcess
-	subcase of Measure
+	subcase of Measure, TransitiveAction
 	roles
 	  object: RD
 	  measurement: RD //: QuantifiedRD
 	  dimension
 	constraints
 	  protagonist.ontological-category <-- @agent // Pretty sure this is correct  
+	  object <--> patient
 	
 schema Change
 	subcase of Process
 	roles
-	  state: Modification //: ChangedState
+	  state //: Modification //: ChangedState
 	  actionary: @statechange
 	  temporality: @bounded
 	  oldValue //: @propValue
@@ -69,20 +81,21 @@ schema StateChange
 schema ScaleChange
 	subcase of Change
 	roles
-	  state: ScalarModifier //: ChangedScale
+	  state // ScalarModifier //: ChangedScale
 	  actionary: @scalechange
 	  temporality: @bounded
 	  direction
 
 // Creation (he created the box)
 schema Creation
-	subcase of Process
+	subcase of TransitiveAction
 	roles
 	  creator
 	  createdThing
-	  intended_recipient
+	  intended_recipient // "he built the house FOR John"
 	constraints
      protagonist <--> creator
+     createdThing <--> patient
 
 
 // he tried to push the box
@@ -100,6 +113,7 @@ schema Communication
 	 speaker: RD
 	 listener: RD
 	 content
+	 media
    constraints
     speaker <--> protagonist
     listener.ontological-category <-- @sentient
@@ -158,4 +172,16 @@ schema EstablishHold
 	  routine: @establishhold 
 	  
 
-	
+schema Supply
+	subcase of Process, TransitiveAction
+	roles
+	  supplier: RD
+	  imposed_purpose
+	  theme: RD
+	  recipient: RD
+	constraints
+	  supplier <--> protagonist
+	  //patient <--> 
+	  // is the patient the theme or the recipient? 
+	  // "he was provided with weapons", "he provided the weapons TO him", "the weapons were provided to him"
+	  // 

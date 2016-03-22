@@ -1,3 +1,28 @@
+/*
+Package for copulas and "change" cxns. Requires the intransitive package.
+
+This should allow a grammar to deal with basic copulas and notions of change (provided 
+the correct types/tokens are in the grammar):
+
+Copulas (all mean "Stasis"):
+* the box is in the room (locative)
+* the box is red (adjective/property-modification)
+* the color of the box is red (property adjectives)
+* he is a doctor (nominal, "RefIdentity")
+* {X} is NOT {Y} (general notion of negated-BeCopula)
+
+Change (subcase of Stasis):
+* the box became red (Property-Change)
+* the box became bigger (Scalar-Change)
+* the box grew (BareIntransitive, ScaleChange)
+
+TO DO:
+-Path-PP Change (e.g., "the plant grew to the ceiling)
+
+[This description was written 3/21/16, ST]
+
+*/
+
 package copula
 import intransitive
 
@@ -142,7 +167,7 @@ construction CopularVPParticiple // 10/16/13
  		
  // Constructions for VP-change: "the box changed from red to blue"
 // "the box changed to blue"
-// "the plant grew"
+// "the plant grew" (BareIntransitive)
 general construction VPChange
    subcase of IntransitiveArgumentStructure
    constructional
@@ -171,18 +196,22 @@ construction VPChangeAdj
 	    ed.profiledParticipant <--> adj.m.modifiedThing
 	    self.m.state <--> adj.m
 
-// the box grew; the box grew to the ceiling 
-// Needs work: how to tie in QuantityNP, Path-PP into Change schema?
-construction IntransitiveChange  
-  subcase of IntransitiveArgumentStructure
-   constructional
-   constituents
-     optional np: QuantityNP
- 	 optional pp: Path-PP
-  form
-    constraints
-      v.f before np.f
-  meaning: Change  
-    constraints
-      self.m <--> v.m
-	 // self.m.state.scale <--> np.m.
+/*
+// the plant grew to the ceiling
+// ** Currently not working, since "Modification" as state is incompatible with TrajectorLandmark
+construction VPScaleChange
+	subcase of VPChange
+	constructional
+	  constituents
+	    v: Verb // inherited, should be tighter for ScaleChange
+	    pp: Path-PP
+	 form
+	   constraints
+	     v.f before pp.f
+	meaning: ScaleChange
+	  constraints
+	    //self.m.temporality <-- @bounded
+	    //self.m.state <--> pp.m
+	    ed.profiledParticipant <--> pp.m.trajector
+	    
+*/

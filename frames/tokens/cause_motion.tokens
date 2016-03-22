@@ -1,4 +1,7 @@
 cast :: Cause_motionType :: self.m.Manner <-- "cast"
+export :: SendType :: self.m.Manner <-- "send"
+ship :: SendType :: self.m.Manner <-- "ship"
+export :: SendType :: self.m.Manner <-- "export"
 catapult :: Cause_motionType :: self.m.Manner <-- "catapult"
 chuck :: Cause_motionType :: self.m.Manner <-- "chuck"
 drag :: Cause_motionType :: self.m.Manner <-- "drag"

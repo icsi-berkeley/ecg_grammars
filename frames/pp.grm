@@ -23,117 +23,134 @@ construction PP-for
 	meaning
 	 constraints
 	   self.m <--> np.m
-/*
+
 construction PP-down	
 	subcase of PP-Locative
 	constructional
 	  constituents
-	    prep: Down-Preposition
+	    prep: down-Preposition
 
 construction PP-off	
 	subcase of PP-Locative
 	constructional
 	  constituents
-	    prep: Off-Preposition
+	    prep: off-Preposition
 	     
 construction PP-toward	
 	subcase of PP-Locative
 	constructional
 	  constituents
-	    prep: Toward-Preposition
+	    prep: toward-Preposition
 
 construction PP-below	
 	subcase of PP-Locative
 	constructional
 	  constituents
-	    prep: Below-Preposition
+	    prep: below-Preposition
 
 construction PP-into	
 	subcase of PP-Locative
 	constructional
 	  constituents
-	    prep: Into-Preposition
+	    prep: into-Preposition
 
 construction PP-out	
 	subcase of PP-Locative
 	constructional
 	  constituents
-	    prep: Out-Preposition
+	    prep: out-Preposition
 
 construction PP-from	
 	subcase of PP-Locative
 	constructional
 	  constituents
-	    prep: From-Preposition
+	    prep: from-Preposition
 
 construction PP-up	
 	subcase of PP-Locative
 	constructional
 	  constituents
-	    prep: Up-Preposition
+	    prep: up-Preposition
 
 construction PP-against	
 	subcase of PP-Locative
 	constructional
 	  constituents
-	    prep: Against-Preposition
+	    prep: against-Preposition
 
 construction PP-past	
 	subcase of PP-Locative
 	constructional
 	  constituents
-	    prep: Past-Preposition
+	    prep: past-Preposition
 
 construction PP-across	
 	subcase of PP-Locative
 	constructional
 	  constituents
-	    prep: Across-Preposition
-	    optional np: NP
+	    prep: across-Preposition
 
 	    
 construction PP-to	
 	subcase of PP-Locative
 	constructional
 	  constituents
-	    prep: To-Preposition
+	    prep: to-Preposition
 
 construction PP-around	
 	subcase of PP-Locative
 	constructional
 	  constituents
-	    prep: Around-Preposition	
-	    optional np: NP    
+	    prep: around-Preposition	
+   
 
 
 construction PP-towards	
 	subcase of PP-Locative
 	constructional
 	  constituents
-	    prep: Towards-Preposition	  
+	    prep: towards-Preposition	  
 
 construction PP-in
 	subcase of PP-Locative
 	constructional
 	  constituents
-	    prep: In-Preposition
+	    prep: in-Preposition
 
 construction PP-like
 	subcase of PP-Locative
 	constructional
 	  constituents
-	    prep: Like-Preposition
+	    prep: like-Preposition
 	
 construction PP-through
 	subcase of PP-Locative
 	constructional
 	  constituents
-	    prep: Through-Preposition
+	    prep: through-Preposition
 
 construction PP-along
 	subcase of PP-Locative
 	constructional
 	  constituents
-	    prep: Along-Preposition
+	    prep: along-Preposition
 
-*/
+
+construction PP-on
+	subcase of PP-Locative
+	constructional
+	  constituents
+	    prep: on-Preposition
+	    
+construction PP-after
+	subcase of PP-Locative
+	constructional
+	  constituents
+	    prep: after-Preposition
+	    
+	    
+construction PP-at
+	subcase of PP-Locative
+	constructional
+	  constituents
+	    prep: at-Preposition

@@ -27,11 +27,16 @@ MORPHOLOGY_PATH ::==
 	./core/celex.ecgmorph
 ;
 
-TOKEN_PATH ::==
-	./research/testing.tokens
-	./research/celex.tokens
+IMPORT_PATHS ::==
+	./research
+	./universal
+	./core
 ;
 
+
+TOKEN_PATH ::==
+	./research/testing.tokens
+;
 
 
 TABLE_PATH = ./core/core.morph
@@ -40,7 +45,7 @@ TABLE_PATH = ./core/core.morph
 //	./core/test.sem
 //;
 
-ROBUST = TRUE 
+ROBUST = FALSE 
 BEAM_SIZE = 30
 DEFAULT_OMISSION_PROB = .1
 DEBUG = FALSE

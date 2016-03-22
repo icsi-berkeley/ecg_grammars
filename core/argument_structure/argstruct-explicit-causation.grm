@@ -55,7 +55,7 @@ general construction ObjectControl_AgentEffectCausation // he caused John to mov
 	    v.f before vp.f	
   meaning
      constraints
-       	self.m.protagonist.ontological-category <-- @sentient // maybe from verb
+       	//self.m.protagonist.ontological-category <-- @sentient // maybe from verb
 		s.a2 <--> vp.ed.profiledParticipant
 		vp.m  <--> self.m.affectedProcess
 		self.m <--> v.m

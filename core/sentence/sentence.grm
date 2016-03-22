@@ -3,6 +3,16 @@ import utterance
 import conditionals
 
 
+
+construction Not-event  // used with Adj, Adv
+	subcase of Word
+  	form
+      constraints
+        self.f.orth <-- "not"
+   	meaning: ProcessFeatures
+   	  constraints
+   	     self.m.negated <-- @yes
+
 //
 // sentence.grm
 //

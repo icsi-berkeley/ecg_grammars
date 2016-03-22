@@ -27,6 +27,23 @@ construction UndeterminedNP_Kernel  // various uses including:  white as snow
 	  self.m.bounding <-- @indeterminate   
 	  self.m <--> k.m
 	  
+	  
+construction ModifiedProperNoun
+	subcase of NP
+	constructional
+	 constituents
+	   adj: Adjective
+	   np: ProperNounNP
+	 constraints
+	  self.features <--> np.features
+   form
+    constraints
+      adj.f meets np.f
+   meaning: RD
+     constraints
+       adj.m.modifiedThing <--> np.m
+       self.m <--> np.m
+	  
 construction  KernelAdj // literal case
   subcase of Kernel 
   constructional
@@ -85,6 +102,22 @@ construction Kernel-LocPP
        pp.m.temporality <-- @atemporal
 
 
+construction Kernel-AccompanimentPP
+   subcase of Kernel
+   constructional
+     constituents
+       n: Kernel
+       pp: AccompanimentPP
+   form
+     constraints
+       n.f meets pp.f
+   meaning
+     constraints 
+       self.m <--> n.m
+       n.m <--> pp.m.participant
+       
+
+/*
 construction KernelAdj-LocPP
 	subcase of Kernel
     constructional
@@ -99,6 +132,7 @@ construction KernelAdj-LocPP
        self.m <--> ka.m
        ka.n.m <--> pp.m.trajector
        pp.m.temporality <-- @atemporal
+*/
        
 construction  KernelNoAdj // no adjective
   subcase of Kernel

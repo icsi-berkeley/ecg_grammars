@@ -1,0 +1,80 @@
+package adjunct
+
+
+// Various adjunct-vps...could probably be a separate package?
+general construction AdjunctVP   // general for other coda, purpose, etc.
+ subcase of VP
+  constructional
+    constituents
+      vp: VP
+      pp: PP // changed from AdjunctPP
+   constraints        
+  	  self.features <--> vp.features
+ 	meaning      
+      evokes AdjunctModification as adjunct     
+  	constraints
+		self.m <--> vp.m   
+      	ed <--> vp.ed
+		adjunct.modifiedThing <--> self.m
+    	adjunct.modifier <--> pp.m
+      
+
+construction InstrumentVP  
+  subcase of AdjunctVP   
+  constructional
+    constituents
+    	pp: InstrumentPP  //sub AdjunctPP
+    constraints
+      //vp.v.argform <-- Transitive // is this right? (testing)
+      // we want to avoid using this with copulas, e.g. "the box is red with the hammer"...
+   meaning
+	constraints
+		adjunct.kind <-- @instrument  // Modification schema
+
+// he did X with Y
+// should this have more complex semantics, e.g. to suggest that Y is a co-participant?
+construction AccompanimentVP  
+  subcase of AdjunctVP   
+  constructional
+    constituents
+    	pp: AccompanimentPP  //sub AdjunctPP
+   meaning
+	constraints
+		adjunct.kind <-- @animate  // Modification schema	
+		pp.m.participant <--> ed.profiledParticipant
+	
+
+construction TemporalVP   // walked for/in 2 minutes, needs work
+  subcase of AdjunctVP
+  constructional
+    constituents
+      pp: TemporalPhrase
+  form
+    constraints
+      vp.f meets pp.f  // could eliminate order
+  meaning  
+    constraints
+      self.m <--> vp.m
+      ed <--> vp.ed
+      ed.e-features.duration <--> pp.m.ti // TemporalInterval
+      ed.e-features.telicity <--> pp.m.telicity // @bounded,
+      //adj.kind <-- @temporal gone
+
+construction LocativeVP   // walked 
+  subcase of AdjunctVP
+  constructional
+    constituents
+      pp: Loc-PP
+  form
+    constraints
+      vp.f meets pp.f  // could eliminate order
+  meaning  
+    constraints
+      self.m <--> vp.m
+      ed <--> vp.ed
+      ed.e-features.place <--> pp.m
+      ed.profiledParticipant <--> pp.m.trajector
+      
+      
+      
+      

@@ -102,6 +102,8 @@ DEFS:
 
 (type institution sub socialEntity)
 
+(type business sub institution physicalEntity)
+
 (type group sub socialEntity)
 
 //(type deictic sub enumeration)  // ??
@@ -324,7 +326,7 @@ DEFS:
 
 (type beast sub animate)  // for metaphor demo
 
-(type sentient sub physicalEntity agent) // intelligence scale? check against animate 2/6/13
+(type sentient sub agent) // intelligence scale? check against animate 2/6/13
 
 (type person sub animate sentient)
 
@@ -448,7 +450,7 @@ DEFS:
 
 (type bring sub objecttransfer establishhold)
 
-(type forcefulmotionaction sub complexxnet)
+(type forcefulmotionaction sub complexxnet forceapplication)
 
 (type agentiveimpactaction sub forcefulmotionaction)
 
@@ -521,6 +523,8 @@ DEFS:
 (type think sub mentalProcess)
 
 (type give sub objecttransfer)
+
+(type receive sub objecttransfer)
 
 (type give-light  sub process)
 
@@ -638,6 +642,8 @@ DEFS:
 
 (type temporality)
 
+(type ongoing sub temporality)
+
 (type bounded sub temporality)
 
 (type atemporal sub temporality)
@@ -753,5 +759,25 @@ DEFS:
 (type store sub artifact container shared)
 
 (type ariel sub entity person shared)
+
+(type weapon sub artifact  shared)
+
+(type facility sub artifact business shared)
+
+(type supply sub process)
+
+(type provide sub supply  shared)
+
+(type citizen sub sentient person shared)
+
+(type wall sub artifact  shared)
+
+(type minute sub measure temporal-units shared)
+
+(type second sub measure temporal-units shared)
+
+(type foot sub measure spatial-units shared)
+
+(type ceiling sub artifact  shared)
 
 INSTS:

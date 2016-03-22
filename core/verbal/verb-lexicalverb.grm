@@ -30,6 +30,14 @@ construction MeasurePredicationType
 	    self.m.dimension <-- @measure
 
 
+// Used for measure/dimension: "the box weighs 5 pounds"
+construction MeasureProcessType
+	subcase of LexicalVerbType
+	meaning: MeasureProcess
+	  constraints
+	    self.m.actionary <-- @process
+	    self.m.dimension <-- @measure
+
 // State Change Type: become, etc.
 construction ChangeType
 	subcase of LexicalVerbType
@@ -42,6 +50,17 @@ construction ChangeType
 	    //self.m.state.property <-- @object-property
 	    //self.m.state.oldValue <-- @propValue
 	
+
+// provide, supply
+construction SupplyType
+	subcase of LexicalVerbType
+	constructional 
+	  constraints
+	    self.argform <-- Transitive
+	meaning: Supply
+	  constraints
+	    self.m.actionary <-- @supply
+
 	
 	// ST Testing (1/4/16)    
 // Scale Change Type: grow, increase, etc.
@@ -51,12 +70,14 @@ construction ScaleChangeType
 	  constraints
 	    self.argform <-- ArgForm
 	meaning: ScaleChange
+	  evokes ScalarModifier as mod
 	  constraints
 	    self.m.actionary <-- @scalechange
-	    self.m.state.property <-- @object-property
-	    self.m.state.kind <-- @comparative
+	    self.mod.property <-- @object-property
+	    self.mod.kind <-- @comparative
 	    self.m.direction <-- @comparison
-	    self.m.state.value <-- @scalarValue
+	    self.mod.value <-- @scalarValue
+	    self.m.state <--> mod
 	    //self.m.state.oldValue <-- @propValue
 
 // he pushed the box north

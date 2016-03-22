@@ -92,4 +92,56 @@ construction ByAgentPhrase
 	meaning: ByLandmark
 	  constraints
 	    np.m <--> self.m.landmark
-	    
+
+
+// ST (3/16/16, added from base)
+general construction AdjunctPP
+	subcase of PP
+	form
+	 constraints
+	   prep.f before np.f
+
+// ST (3/16/16, added from base)
+construction InstrumentPP
+	subcase of AdjunctPP
+	constructional
+	 constituents
+	   prep: InstrumentPreposition
+	meaning
+	 constraints
+	  np.m.ontological-category <-- @instrument // is this right?
+	  // this might over-constraint...
+
+
+
+	  
+// ST (3/16/16)
+construction AccompanimentPP
+	subcase of AdjunctPP
+	constructional
+	 constituents
+	   prep: AssociationPreposition
+	meaning: Accompaniment
+	  constraints
+	    np.m <--> self.m.co-participant
+
+
+// ST (3/16/16, added from base)
+construction TemporalPhrase	
+	subcase of AdjunctPP
+	constructional
+	 constituents
+	  prep: TemporalPreposition
+	  np: TemporalQuantityNP // restrain to unitsNP?
+   form
+    constraints
+      prep.f before np.f
+   meaning: TemporalModifier
+   	constraints
+   	 np.m.ontological-category <-- @temporal-units
+   	 self.m <--> prep.m
+   	 self.m.ti.timeUnits <--> np.m.extras.quantity.units
+   	 self.m.ti.length <--> np.m.extras.quantity.amount
+	  
+	  
+	  	    

@@ -43,3 +43,10 @@ schema NounNounModifier
 	roles
 	  modifier: RD
 	  modifiedThing: RD	  
+	  
+	  
+schema AdjunctModification
+	subcase of Modification
+	roles
+	 kind
+	 adjunct

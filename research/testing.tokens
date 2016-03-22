@@ -39,13 +39,15 @@ pound :: UnitType :: self.m.ontological-category <-- @pound-price :: self.m.extr
 dollar :: UnitType :: self.m.ontological-category <-- @dollar
 weigh :: MeasurePredicationType :: self.m.actionary <-- @weigh_predication :: self.m.dimension <-- @weight
 cost :: MeasurePredicationType :: self.m.actionary <-- @cost_predication :: self.m.dimension <-- @price
+weigh :: MeasureProcessType :: self.m.actionary <-- @weigh :: self.m.dimension <-- @weight
+cost :: MeasureProcessType :: self.m.actionary <-- @cost :: self.m.dimension <-- @price
 heavy :: ScalarAdjectiveType :: self.m.value <-- ".7" :: self.m.property <-- @weight
 hefty :: ScalarAdjectiveType :: self.m.value <-- ".8" :: self.m.property <-- @weight
 light :: ScalarAdjectiveType :: self.m.value <-- ".3" :: self.m.property <-- @weight
 become :: ChangeType :: self.m.actionary <-- @become
 #change :: StateChangeType :: self.m.actionary <-- @change
-grow :: ScaleChangeType :: self.m.actionary <-- @grow :: self.m.state.property <-- @size :: self.m.direction <-- @increase :: self.m.state.value <-- ".7"
-shrink :: ScaleChangeType :: self.m.actionary <-- @shrink :: self.m.state.property <-- @size :: self.m.direction <-- @decrease :: self.m.state.value <-- ".3"
+grow :: ScaleChangeType :: self.m.actionary <-- @grow :: self.mod.property <-- @size :: self.m.direction <-- @increase :: self.mod.value <-- ".7"
+shrink :: ScaleChangeType :: self.m.actionary <-- @shrink :: self.mod.property <-- @size :: self.m.direction <-- @decrease :: self.mod.value <-- ".3"
 team :: SentientNoun :: self.m.ontological-category <-- @person :: self.m.number <-- @plural
 paint :: CreationType :: self.m.actionary <-- @paint
 make :: CreationType :: self.m.actionary <-- @make_create
@@ -74,3 +76,14 @@ intend :: SimpleControlType :: self.m.actionary <-- @intend
 establish :: CreationType :: self.m.actionary <-- @establish
 store :: ArtifactNoun :: self.m.ontological-category <-- @store
 ariel :: ProperNPInstance :: self.m.referent <-- @ariel :: self.m.ontological-category <-- @person
+provide :: SupplyType :: self.m.actionary <-- @provide
+slap :: ApplyForceType :: self.m.actionary <-- @forceapplication
+kick :: ApplyForceType :: self.m.actionary <-- @kick
+table :: ArtifactNoun :: self.m.ontological-category <-- @table
+wall :: ArtifactNoun :: self.m.ontological-category <-- @wall
+hour :: UnitType :: self.m.ontological-category <-- @hour :: self.m.extras.quantity.property <-- @time
+hammer :: InstrumentNoun :: self.m.ontological-category <-- @hammer
+minute :: UnitType :: self.m.ontological-category <-- @minute :: self.m.extras.quantity.property <-- @time
+second :: UnitType :: self.m.ontological-category <-- @second :: self.m.extras.quantity.property <-- @time
+foot :: UnitType :: self.m.ontological-category <-- @foot :: self.m.extras.quantity.property <-- @distance
+ceiling :: ArtifactNoun :: self.m.ontological-category <-- @ceiling

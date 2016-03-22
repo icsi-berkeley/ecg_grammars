@@ -31,7 +31,6 @@ TOKEN_PATH ::==
 	./frames/tokens/kill.tokens
 	./frames/tokens/purchase.tokens
 	./frames/tokens/transitive_action.tokens
-	./frames/tokens/celex.tokens
 ;
 
 // 
@@ -52,6 +51,5 @@ NUM_ANALYSES_RETURNED = 3
 MULTI_ROOT_PENALTY = -3
 
 EXAMPLE_SENTENCES ::==
-he hurt the person
-he broke the machine
+
 ;

@@ -44,38 +44,7 @@ schema Quantity
 schema Extensions
   roles
     property: RD
-/*
-schema EntityRD  // 5/5/14 ; replace RD in many places
-	subcase of RD
- roles
-    ontological-category: @entity
-    
-    
-schema EventRD  // 5/5/14  named event, e.g. crisis & more
-	subcase of RD 
-	roles 
-		description: EventDescriptor
-		// kind: @EventKind  1/19/13 move to ED.eventForm; lexical, gerund, infinitive, 
-	constraints
-		self.ontological-category <-- @eventTop //	 6/6/13
 
-schema QuantifiedRD  // general case 
-	subcase of RD //, RelativizedRD  7/18/14
-	roles
-      	amount: QuantitySchema //subcases include numbers, “several”, etc. ****name?**
- 		units	 
- 		property
- 		
- schema QuantifiedSpatialRD
-	subcase of QuantifiedRD
-	roles
-      	units: @spatial-units	// check the typing wrt all kinds	 
-
-schema QuestionRD
-	subcase of RD
-	roles
-	  specificWh: @wh-word	  
-*/	
 
 // EVENT DESCRIPTOR (ED) schemas
 
@@ -96,6 +65,7 @@ schema EventFeatures  // voice: @voice   also in Process - Dropped here, maybe n
 		tense: @tense  // USED
 		modality: @modality  // USED
 		negated: @boolean  // USED
+		place
 
 
 // RD

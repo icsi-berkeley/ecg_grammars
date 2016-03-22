@@ -34,4 +34,16 @@ schema ByLandmark
 	  
 schema DativeLandmark //
 	roles
-	  landmark: RD			
+	  landmark: RD		
+	  
+schema TemporalModifier
+	roles
+	 telicity
+	 ti: TemporalInterval
+	 
+schema TemporalInterval
+	roles
+	 start
+	 end
+	 length
+	 timeUnits: @temporal-units	

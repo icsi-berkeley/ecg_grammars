@@ -25,7 +25,7 @@ construction Cause_motion_pattern1_passive
 
 
 
-general construction Killing_pattern1 
+general construction Killing_pattern0
      subcase of ArgumentStructure
 	   constructional
 		constituents
@@ -39,29 +39,16 @@ general construction Killing_pattern1
 		self.m.Instrument <--> instrument-pp.m
 		
 		
-construction Killing_pattern1_active
-	subcase of Killing_pattern1, ActiveTransitive
+construction Killing_pattern0_active
+	subcase of Killing_pattern0, ActiveTransitive
 
 
 // why isn't this working?
-construction Killing_pattern1_passive
-	subcase of Killing_pattern1, PassiveTransitive
+construction Killing_pattern0_passive
+	subcase of Killing_pattern0, PassiveTransitive
 	form
 	 constraints
 	   v.f before byPhrase.f
 	   //byPhrase.f before instrument-pp.f
 
 
-construction Killing_pattern_2
-     subcase of ArgumentStructure
-	   constructional
-		constituents
-		 v: Verb
-         pp-for: PP-for
-         np: NP
-	   meaning: Killing
-		constraints
-		self.m <--> v.m
-           self.m.Beneficiary <--> pp-for.m
-           ed.profiledParticipant <--> self.m.Killer
-           self.m.Victim <--> np.m

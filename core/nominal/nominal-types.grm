@@ -79,6 +79,13 @@ construction ArtifactNoun
    meaning
       constraints
         self.m.ontological-category <-- @artifact 
+
+// "Type" constructions
+construction InstrumentNoun
+   subcase of PhysicalEntityNoun
+   meaning
+      constraints
+        self.m.ontological-category <-- @instrument 
  
  
 // "Type" constructions

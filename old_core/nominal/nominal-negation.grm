@@ -1,9 +1,0 @@
-package starter
-import adjectives
-
-construction Not-NP  // used with Adj, Adv
-	subcase of Word
-  	form
-      constraints
-        self.f.orth <-- "not"
-   	meaning

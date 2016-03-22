@@ -26,6 +26,27 @@ construction The
       constraints
          self.m.givenness <-- @uniquelyIdentifiable
 
+
+construction This
+   subcase of Determiner, Singular
+   form
+      constraints
+         self.f.orth <-- "this"
+   meaning
+      constraints
+         self.m.givenness <-- @inFocus
+
+
+construction These
+   subcase of Determiner, Plural
+   form
+      constraints
+         self.f.orth <-- "these"
+   meaning
+      constraints
+         self.m.givenness <-- @inFocus
+
+
 construction A
    subcase of Determiner, Singular
       form

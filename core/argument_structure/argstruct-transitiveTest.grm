@@ -1,0 +1,79 @@
+package transitive-test
+
+
+
+// high-level "Transitive-action cxn"
+general construction Trans_TransitiveAction
+	subcase of ArgumentStructure
+    constructional
+      constraints
+       v.argform <-- Transitive
+	meaning: TransitiveAction
+
+
+	   
+//GENERAL TRANSITIVE CONSTRUCTIONS
+general construction ActiveTrans_TransitiveAction  // 5/14/13
+  subcase of Trans_TransitiveAction
+  constructional
+    constituents
+      np: NP [1.0, .9]   // probabilities, check this !!
+    constraints
+      v.voice <-- NotPassive  // 2/1/13
+  form
+    constraints 
+      v.f before np.f
+  meaning: TransitiveAction  //  5/14/13
+    evokes A123 as s //5/14/13 *****************
+    constraints
+      self.m.agent <--> ed.profiledParticipant
+      self.m.patient <--> np.m
+      s.a1 <--> ed.profiledParticipant	//2/20/13 
+      s.a2 <--> np.m 
+	  v.m.p-features.voice <-- @active // 2/1/13 
+
+ 
+general construction CoreActiveTrans_TransitiveAction  // 8/21/13
+	subcase of ActiveTrans_TransitiveAction
+	meaning
+		constraints
+		self.m <--> v.m
+		
+		
+general construction PassiveTrans_TransitiveAction // 5/14/13
+  subcase of Trans_TransitiveAction
+  constructional
+    constituents
+     optional byPhrase: ByAgentPhrase
+    constraints
+      v.voice <-- Passive  // 2/1/13
+ form
+    constraints
+      v.f before byPhrase.f
+  meaning 
+     evokes A123 as s
+     constraints
+      self.m.agent <--> byPhrase.m.landmark
+      self.m.patient <--> ed.profiledParticipant
+	  // s.a1 <--> byPhrase.m.landmark 
+	   //s.a2 <--> ed.profiledParticipant
+	   v.m.p-features.voice <-- @passive 
+
+// This binds the self.m with the verb's meaning.
+general construction CorePassiveTrans_TransitiveAction
+	subcase of PassiveTrans_TransitiveAction
+	meaning
+	  constraints
+	    self.m <--> v.m
+	    //self.m.protagonist <--> s.a1
+	    
+	    
+construction ActiveTrans_Central
+	subcase of CoreActiveTrans_TransitiveAction
+
+construction PassiveTrans_Central
+	subcase of CorePassiveTrans_TransitiveAction
+	
+	
+
+	

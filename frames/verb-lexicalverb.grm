@@ -46,6 +46,11 @@ construction Cause_motionType
 	    self.m.Manner <-- "*"
 
 
+construction SendType
+	subcase of LexicalVerbType
+	meaning: Sending
+	  constraints
+	    self.m.Manner <-- "*"
 	    
 construction Commerce_buyType
      subcase of LexicalVerbType

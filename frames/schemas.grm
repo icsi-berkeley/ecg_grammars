@@ -25378,7 +25378,8 @@ schema Self_motion
 
 
 schema Sending 
-    evokes Bringing as bringing 
+	subcase of Cause_motion
+    //evokes Bringing as bringing 
     roles 
        Sender 
        Path 
@@ -25398,17 +25399,17 @@ schema Sending
        Container 
        Place 
      constraints 
-       bringing.Distance <--> Distance 
-       bringing.Depictive <--> Depictive 
-       bringing.Theme <--> Theme 
-       bringing.Path <--> Path 
-       bringing.Purpose <--> Purpose 
-       bringing.Manner <--> Manner 
-       bringing.Time <--> Time 
-       bringing.Place <--> Place 
-       bringing.Means <--> Transport_means 
-       bringing.Goal <--> Goal 
-       bringing.Source <--> Source 
+       //bringing.Distance <--> Distance 
+       //bringing.Depictive <--> Depictive 
+       //bringing.Theme <--> Theme 
+       //bringing.Path <--> Path 
+       //bringing.Purpose <--> Purpose 
+       //bringing.Manner <--> Manner 
+       //bringing.Time <--> Time 
+       //bringing.Place <--> Place 
+       //bringing.Means <--> Transport_means 
+       //bringing.Goal <--> Goal 
+       //bringing.Source <--> Source 
 
 
 schema Sensation 

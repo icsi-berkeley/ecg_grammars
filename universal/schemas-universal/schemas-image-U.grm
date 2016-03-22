@@ -38,7 +38,13 @@ schema BoundedObject
 	constraints
 		boundedObject.ontological-category <-- @container
 
+schema Relation
+	roles
+	  entity1
+	  entity2
+
 schema SpatialRelation  //???????
+	subcase of Relation
 
 schema Proximity	
 	subcase of SpatialRelation
@@ -54,7 +60,16 @@ schema Contact // short version
 	constraints
 		entity1.ontological-category <-- @entity
 		entity2.ontological-category <-- @entity
-		
+
+
+schema Accompaniment
+	subcase of Relation
+	roles
+	  participant
+	  co-participant
+	constraints
+	  participant <--> entity1
+	  co-participant <--> entity2		
 
 schema Possession  //revised 11/30/12
    roles

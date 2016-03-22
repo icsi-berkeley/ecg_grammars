@@ -1,4 +1,6 @@
 item :: EntityType :: self.m.Name <-- "item"
+elbonia :: ProperNPInstance :: self.m.Name <-- "Elbonia"
+tubing :: EntityType :: self.m.Name <-- "tubing"
 entity :: EntityType :: self.m.Name <-- "entity"
 object :: EntityType :: self.m.Name <-- "object"
 thing :: EntityType :: self.m.Name <-- "thing"

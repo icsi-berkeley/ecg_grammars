@@ -12,17 +12,18 @@ general construction ComplexVP
 	   v1.features <--> self.features
    meaning: ComplexProcess
 
+
 construction SerialVP
 	subcase of ComplexVP
 	constructional
 	 constituents
 	   v1: VP
-	   conj: SerialConjunction
+	   conj: Then-Serial
 	   v2: VP
 	form 
 	 constraints
-	   v1.f before conj.f
-	   conj.f before v2.f
+	   v1.f meets conj.f
+	   conj.f meets v2.f
 	meaning: SerialProcess
 	 constraints
 	   self.m.protagonist <--> v1.m.protagonist
@@ -31,4 +32,4 @@ construction SerialVP
 	   self.m.process2 <--> v2.m
 	   self.m.connective <--> conj.m.value
 	   ed.profiledParticipant <--> self.m.protagonist
-	
+
