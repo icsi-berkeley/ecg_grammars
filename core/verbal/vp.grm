@@ -1,6 +1,6 @@
 package core
 import adverbs
-import adjunct
+//import adjunct
 //import serial
 //
 // vp.grm
