@@ -1,0 +1,115 @@
+//
+
+// ont2.ont
+
+DEFS:
+
+// tokens
+
+(type brown sub colorValue  shared)
+
+(type weight sub object-property scale measure)
+
+(type name sub object-property)
+
+(type weight-units sub units weight)//nontemporal-units weight)
+
+(type price-units sub units price) //nontemporal-units price)
+
+(type pound-weight sub shared weight-units)
+
+(type pound-price sub shared price-units)
+
+(type dollar sub shared units price-units)
+
+(type weigh_predication sub process shared stasis)
+
+(type weigh sub process  shared measure)
+
+(type weigh_predication sub process  shared measure)
+
+(type weightValue sub propValue)
+
+(type heavy sub weightValue  shared)
+
+(type light sub weightValue  shared)
+
+(type cost sub process shared)
+
+(type cost_predication sub process shared stasis)
+
+(type price sub measure scale)
+
+(type grow sub scalechange)
+
+(type shrink sub scalechange)
+
+(type scalarValue sub object-property)
+
+(type comparison sub measure)
+
+(type increase sub comparison)
+
+(type decrease sub comparison)
+
+(type john sub person)
+
+(type paint sub create  shared)
+
+(type make_create sub create  shared)
+
+(type make_cause sub cause  shared)
+
+(type cat sub sentient)
+
+(type storm sub eventTop naturalForce shared)
+
+(type crisis sub eventTop  shared)
+
+(type grasp sub establishhold)
+
+(type pickup sub establishhold)
+
+(type house sub container artifact shared)
+
+(type member sub part person shared)
+
+(type crew sub group  shared)
+
+(type build sub create  shared)
+
+(type slide sub motion  shared)
+
+(type carry sub establishhold  shared)
+
+(type intend sub process  shared)
+
+(type establish sub create  shared)
+
+(type store sub artifact container shared)
+
+(type ariel sub entity person shared)
+
+(type weapon sub artifact  shared)
+
+(type facility sub artifact business shared)
+
+(type supply sub process)
+
+(type provide sub supply  shared)
+
+(type citizen sub sentient person shared)
+
+(type wall sub artifact  shared)
+
+(type minute sub measure temporal-units shared)
+
+(type second sub measure temporal-units shared)
+
+(type foot sub measure spatial-units shared)
+
+(type ceiling sub artifact  shared)
+
+(type day sub measure temporal-units shared)
+
+INSTS:
