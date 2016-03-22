@@ -1,0 +1,887 @@
+construction Transitive_actionType
+     subcase of LexicalVerbType
+     meaning: Transitive_action
+       constraints
+         self.m.Manner <-- "*"
+
+construction Intentionally_affectType
+     subcase of Transitive_actionType
+     meaning: Intentionally_affect
+       constraints
+         self.m.Manner <-- "*"
+
+construction SilencingType
+     subcase of Intentionally_affectType
+     meaning: Silencing
+       constraints
+         self.m.Manner <-- "*"
+
+construction Rewards_and_punishmentsType
+     subcase of Intentionally_affectType
+     meaning: Rewards_and_punishments
+       constraints
+         self.m.Manner <-- "*"
+
+construction FiningType
+     subcase of Rewards_and_punishmentsType
+     meaning: Fining
+       constraints
+         self.m.Manner <-- "*"
+
+construction Corporal_punishmentType
+     subcase of Rewards_and_punishmentsType
+     meaning: Corporal_punishment
+       constraints
+         self.m.Manner <-- "*"
+
+/*
+construction ExecutionType
+     subcase of Rewards_and_punishmentsType
+     meaning: Execution
+       constraints
+         self.m.Manner <-- "*"
+*/
+construction RevengeType
+     subcase of Rewards_and_punishmentsType
+     meaning: Revenge
+       constraints
+         self.m.Manner <-- "*"
+
+construction CuttingType
+     subcase of Intentionally_affectType
+     meaning: Cutting
+       constraints
+         self.m.Manner <-- "*"
+
+construction Apply_heatType
+     subcase of Intentionally_affectType
+     meaning: Apply_heat
+       constraints
+         self.m.Manner <-- "*"
+
+construction AttackType
+     subcase of Intentionally_affectType
+     meaning: Attack
+       constraints
+         self.m.Manner <-- "*"
+
+construction BesiegingType
+     subcase of AttackType
+     meaning: Besieging
+       constraints
+         self.m.Manner <-- "*"
+
+construction InvadingType
+     subcase of AttackType
+     meaning: Invading
+       constraints
+         self.m.Manner <-- "*"
+
+construction Suicide_attackType
+     subcase of AttackType
+     meaning: Suicide_attack
+       constraints
+         self.m.Manner <-- "*"
+
+construction CounterattackType
+     subcase of AttackType
+     meaning: Counterattack
+       constraints
+         self.m.Manner <-- "*"
+
+construction AttachingType
+     subcase of Intentionally_affectType
+     meaning: Attaching
+       constraints
+         self.m.Manner <-- "*"
+
+construction Inhibit_movementType
+     subcase of Intentionally_affectType
+     meaning: Inhibit_movement
+       constraints
+         self.m.Manner <-- "*"
+
+construction ImprisonmentType
+     subcase of Inhibit_movementType
+     meaning: Imprisonment
+       constraints
+         self.m.Manner <-- "*"
+
+construction ImmobilizationType
+     subcase of Intentionally_affectType
+     meaning: Immobilization
+       constraints
+         self.m.Manner <-- "*"
+
+construction HiringType
+     subcase of Intentionally_affectType
+     meaning: Hiring
+       constraints
+         self.m.Manner <-- "*"
+
+construction Cause_to_experienceType
+     subcase of Intentionally_affectType
+     meaning: Cause_to_experience
+       constraints
+         self.m.Manner <-- "*"
+
+construction ReparationType
+     subcase of Intentionally_affectType
+     meaning: Reparation
+       constraints
+         self.m.Manner <-- "*"
+
+construction RapeType
+     subcase of Transitive_actionType
+     meaning: Rape
+       constraints
+         self.m.Manner <-- "*"
+
+construction FiringType
+     subcase of Intentionally_affectType
+     meaning: Firing
+       constraints
+         self.m.Manner <-- "*"
+
+construction ReplacingType
+     subcase of Intentionally_affectType
+     meaning: Replacing
+       constraints
+         self.m.Manner <-- "*"
+
+construction ArrangingType
+     subcase of Intentionally_affectType
+     meaning: Arranging
+       constraints
+         self.m.Manner <-- "*"
+
+construction AdjustingType
+     subcase of Intentionally_affectType
+     meaning: Adjusting
+       constraints
+         self.m.Manner <-- "*"
+
+construction ExtraditionType
+     subcase of Intentionally_affectType
+     meaning: Extradition
+       constraints
+         self.m.Manner <-- "*"
+
+construction Hiding_objectsType
+     subcase of Intentionally_affectType
+     meaning: Hiding_objects
+       constraints
+         self.m.Manner <-- "*"
+
+construction Hit_targetType
+     subcase of Intentionally_affectType
+     meaning: Hit_target
+       constraints
+         self.m.Manner <-- "*"
+
+construction GroomingType
+     subcase of Intentionally_affectType
+     meaning: Grooming
+       constraints
+         self.m.Manner <-- "*"
+
+construction Cause_to_amalgamateType
+     subcase of Intentionally_affectType
+     meaning: Cause_to_amalgamate
+       constraints
+         self.m.Manner <-- "*"
+
+construction ClosureType
+     subcase of Intentionally_affectType
+     meaning: Closure
+       constraints
+         self.m.Manner <-- "*"
+
+construction Gathering_upType
+     subcase of Intentionally_affectType
+     meaning: Gathering_up
+       constraints
+         self.m.Manner <-- "*"
+
+construction ManipulationType
+     subcase of Intentionally_affectType
+     meaning: Manipulation
+       constraints
+         self.m.Manner <-- "*"
+
+construction IngestionType
+     subcase of ManipulationType
+     meaning: Ingestion
+       constraints
+         self.m.Manner <-- "*"
+
+construction AimingType
+     subcase of ManipulationType
+     meaning: Aiming
+       constraints
+         self.m.Manner <-- "*"
+
+construction ReleasingType
+     subcase of Intentionally_affectType
+     meaning: Releasing
+       constraints
+         self.m.Manner <-- "*"
+
+construction Releasing_from_custodyType
+     subcase of ReleasingType
+     meaning: Releasing_from_custody
+       constraints
+         self.m.Manner <-- "*"
+
+construction SoakingType
+     subcase of Intentionally_affectType
+     meaning: Soaking
+       constraints
+         self.m.Manner <-- "*"
+
+construction Manipulate_into_doingType
+     subcase of Intentionally_affectType
+     meaning: Manipulate_into_doing
+       constraints
+         self.m.Manner <-- "*"
+
+construction Talking_intoType
+     subcase of Manipulate_into_doingType
+     meaning: Talking_into
+       constraints
+         self.m.Manner <-- "*"
+
+construction TakingType
+     subcase of Transitive_actionType
+     meaning: Taking
+       constraints
+         self.m.Manner <-- "*"
+
+construction TheftType
+     subcase of Transitive_actionType
+     meaning: Theft
+       constraints
+         self.m.Manner <-- "*"
+
+construction Processing_materialsType
+     subcase of Intentionally_affectType
+     meaning: Processing_materials
+       constraints
+         self.m.Manner <-- "*"
+
+construction PreservingType
+     subcase of Processing_materialsType
+     meaning: Preserving
+       constraints
+         self.m.Manner <-- "*"
+
+construction Education_teachingType
+     subcase of Intentionally_affectType
+     meaning: Education_teaching
+       constraints
+         self.m.Manner <-- "*"
+
+construction UsingType
+     subcase of Intentionally_affectType
+     meaning: Using
+       constraints
+         self.m.Manner <-- "*"
+
+construction Operating_a_systemType
+     subcase of UsingType
+     meaning: Operating_a_system
+       constraints
+         self.m.Manner <-- "*"
+
+construction Operate_vehicleType
+     subcase of Operating_a_systemType
+     meaning: Operate_vehicle
+       constraints
+         self.m.Manner <-- "*"
+
+construction Use_firearmType
+     subcase of UsingType
+     meaning: Use_firearm
+       constraints
+         self.m.Manner <-- "*"
+
+construction Expend_resourceType
+     subcase of UsingType
+     meaning: Expend_resource
+       constraints
+         self.m.Manner <-- "*"
+
+construction Detonate_explosiveType
+     subcase of UsingType
+     meaning: Detonate_explosive
+       constraints
+         self.m.Manner <-- "*"
+
+construction Manipulate_into_shapeType
+     subcase of Intentionally_affectType
+     meaning: Manipulate_into_shape
+       constraints
+         self.m.Manner <-- "*"
+
+construction Rope_manipulationType
+     subcase of Manipulate_into_shapeType
+     meaning: Rope_manipulation
+       constraints
+         self.m.Manner <-- "*"
+
+construction ArrestType
+     subcase of Intentionally_affectType
+     meaning: Arrest
+       constraints
+         self.m.Manner <-- "*"
+
+construction Cause_to_perceiveType
+     subcase of Intentionally_affectType
+     meaning: Cause_to_perceive
+       constraints
+         self.m.Manner <-- "*"
+
+construction CommunicationType
+     subcase of Cause_to_perceiveType
+     meaning: Communication
+       constraints
+         self.m.Manner <-- "*"
+
+construction Communication_noiseType
+     subcase of CommunicationType
+     meaning: Communication_noise
+       constraints
+         self.m.Manner <-- "*"
+
+construction ReassuringType
+     subcase of CommunicationType
+     meaning: Reassuring
+       constraints
+         self.m.Manner <-- "*"
+
+construction GestureType
+     subcase of CommunicationType
+     meaning: Gesture
+       constraints
+         self.m.Manner <-- "*"
+
+construction Communication_mannerType
+     subcase of CommunicationType
+     meaning: Communication_manner
+       constraints
+         self.m.Manner <-- "*"
+
+construction Communication_responseType
+     subcase of Transitive_actionType
+     meaning: Communication_response
+       constraints
+         self.m.Manner <-- "*"
+
+construction SummarizingType
+     subcase of CommunicationType
+     meaning: Summarizing
+       constraints
+         self.m.Manner <-- "*"
+
+construction Change_accessibilityType
+     subcase of Intentionally_affectType
+     meaning: Change_accessibility
+       constraints
+         self.m.Manner <-- "*"
+
+construction DetachingType
+     subcase of Intentionally_affectType
+     meaning: Detaching
+       constraints
+         self.m.Manner <-- "*"
+
+construction Cause_emotionType
+     subcase of Intentionally_affectType
+     meaning: Cause_emotion
+       constraints
+         self.m.Manner <-- "*"
+
+construction Cause_to_make_progressType
+     subcase of Intentionally_affectType
+     meaning: Cause_to_make_progress
+       constraints
+         self.m.Manner <-- "*"
+
+construction AppointingType
+     subcase of Intentionally_affectType
+     meaning: Appointing
+       constraints
+         self.m.Manner <-- "*"
+
+construction Change_of_leadershipType
+     subcase of AppointingType
+     meaning: Change_of_leadership
+       constraints
+         self.m.Manner <-- "*"
+
+construction Change_operational_stateType
+     subcase of Intentionally_affectType
+     meaning: Change_operational_state
+       constraints
+         self.m.Manner <-- "*"
+
+construction LimitingType
+     subcase of Intentionally_affectType
+     meaning: Limiting
+       constraints
+         self.m.Manner <-- "*"
+
+construction AbandonmentType
+     subcase of Intentionally_affectType
+     meaning: Abandonment
+       constraints
+         self.m.Manner <-- "*"
+
+construction Breaking_out_captiveType
+     subcase of Intentionally_affectType
+     meaning: Breaking_out_captive
+       constraints
+         self.m.Manner <-- "*"
+
+construction SeparatingType
+     subcase of Intentionally_affectType
+     meaning: Separating
+       constraints
+         self.m.Manner <-- "*"
+
+construction Making_arrangementsType
+     subcase of Intentionally_affectType
+     meaning: Making_arrangements
+       constraints
+         self.m.Manner <-- "*"
+
+construction RescuingType
+     subcase of Intentionally_affectType
+     meaning: Rescuing
+       constraints
+         self.m.Manner <-- "*"
+
+construction PublishingType
+     subcase of Intentionally_affectType
+     meaning: Publishing
+       constraints
+         self.m.Manner <-- "*"
+
+construction Short_sellingType
+     subcase of Intentionally_affectType
+     meaning: Short_selling
+       constraints
+         self.m.Manner <-- "*"
+
+construction Cause_change_of_phaseType
+     subcase of Transitive_actionType
+     meaning: Cause_change_of_phase
+       constraints
+         self.m.Manner <-- "*"
+
+construction Cause_change_of_position_on_a_scaleType
+     subcase of Transitive_actionType
+     meaning: Cause_change_of_position_on_a_scale
+       constraints
+         self.m.Manner <-- "*"
+
+construction Cause_proliferation_in_numberType
+     subcase of Cause_change_of_position_on_a_scaleType
+     meaning: Cause_proliferation_in_number
+       constraints
+         self.m.Manner <-- "*"
+
+construction Cause_impactType
+     subcase of Transitive_actionType
+     meaning: Cause_impact
+       constraints
+         self.m.Manner <-- "*"
+
+/*
+construction Cause_motionType
+     subcase of Transitive_actionType
+     meaning: Cause_motion
+       constraints
+         self.m.Manner <-- "*"
+*/
+construction Cause_fluidic_motionType
+     subcase of Cause_motionType
+     meaning: Cause_fluidic_motion
+       constraints
+         self.m.Manner <-- "*"
+
+construction Shoot_projectilesType
+     subcase of Cause_motionType
+     meaning: Shoot_projectiles
+       constraints
+         self.m.Manner <-- "*"
+
+construction PassingType
+     subcase of Cause_motionType
+     meaning: Passing
+       constraints
+         self.m.Manner <-- "*"
+
+construction Cause_temperature_changeType
+     subcase of Transitive_actionType
+     meaning: Cause_temperature_change
+       constraints
+         self.m.Manner <-- "*"
+
+construction Cause_to_be_dryType
+     subcase of Transitive_actionType
+     meaning: Cause_to_be_dry
+       constraints
+         self.m.Manner <-- "*"
+
+construction Cause_to_be_sharpType
+     subcase of Transitive_actionType
+     meaning: Cause_to_be_sharp
+       constraints
+         self.m.Manner <-- "*"
+
+construction Cause_to_be_wetType
+     subcase of Transitive_actionType
+     meaning: Cause_to_be_wet
+       constraints
+         self.m.Manner <-- "*"
+
+construction Cause_to_continueType
+     subcase of Transitive_actionType
+     meaning: Cause_to_continue
+       constraints
+         self.m.Manner <-- "*"
+
+construction Cause_to_endType
+     subcase of Transitive_actionType
+     meaning: Cause_to_end
+       constraints
+         self.m.Manner <-- "*"
+
+construction Cause_to_fragmentType
+     subcase of Transitive_actionType
+     meaning: Cause_to_fragment
+       constraints
+         self.m.Manner <-- "*"
+
+construction Cause_to_make_noiseType
+     subcase of Transitive_actionType
+     meaning: Cause_to_make_noise
+       constraints
+         self.m.Manner <-- "*"
+
+construction Cause_to_move_in_placeType
+     subcase of Transitive_actionType
+     meaning: Cause_to_move_in_place
+       constraints
+         self.m.Manner <-- "*"
+
+construction Cause_to_resumeType
+     subcase of Transitive_actionType
+     meaning: Cause_to_resume
+       constraints
+         self.m.Manner <-- "*"
+
+construction Cause_to_wakeType
+     subcase of Transitive_actionType
+     meaning: Cause_to_wake
+       constraints
+         self.m.Manner <-- "*"
+
+construction CureType
+     subcase of Transitive_actionType
+     meaning: Cure
+       constraints
+         self.m.Manner <-- "*"
+
+construction DestroyingType
+     subcase of Transitive_actionType
+     meaning: Destroying
+       constraints
+         self.m.Manner <-- "*"
+
+construction DamagingType
+     subcase of Transitive_actionType
+     meaning: Damaging
+       constraints
+         self.m.Manner <-- "*"
+
+construction ReshapingType
+     subcase of DamagingType
+     meaning: Reshaping
+       constraints
+         self.m.Manner <-- "*"
+
+construction RejuvenationType
+     subcase of Transitive_actionType
+     meaning: Rejuvenation
+       constraints
+         self.m.Manner <-- "*"
+
+construction Cause_change_of_consistencyType
+     subcase of Transitive_actionType
+     meaning: Cause_change_of_consistency
+       constraints
+         self.m.Manner <-- "*"
+
+construction Corroding_causedType
+     subcase of Transitive_actionType
+     meaning: Corroding_caused
+       constraints
+         self.m.Manner <-- "*"
+
+construction Setting_fireType
+     subcase of Transitive_actionType
+     meaning: Setting_fire
+       constraints
+         self.m.Manner <-- "*"
+
+construction Setting_back_burnType
+     subcase of Setting_fireType
+     meaning: Setting_back_burn
+       constraints
+         self.m.Manner <-- "*"
+
+
+
+construction EndangeringType
+     subcase of Transitive_actionType
+     meaning: Endangering
+       constraints
+         self.m.Manner <-- "*"
+
+construction Cause_expansionType
+     subcase of Transitive_actionType
+     meaning: Cause_expansion
+       constraints
+         self.m.Manner <-- "*"
+
+construction Imposing_obligationType
+     subcase of Transitive_actionType
+     meaning: Imposing_obligation
+       constraints
+         self.m.Manner <-- "*"
+
+construction Render_nonfunctionalType
+     subcase of Transitive_actionType
+     meaning: Render_nonfunctional
+       constraints
+         self.m.Manner <-- "*"
+
+construction Cause_change_of_strengthType
+     subcase of Transitive_actionType
+     meaning: Cause_change_of_strength
+       constraints
+         self.m.Manner <-- "*"
+
+construction Change_resistanceType
+     subcase of Cause_change_of_strengthType
+     meaning: Change_resistance
+       constraints
+         self.m.Manner <-- "*"
+
+construction Cause_changeType
+     subcase of Transitive_actionType
+     meaning: Cause_change
+       constraints
+         self.m.Manner <-- "*"
+
+construction Change_event_timeType
+     subcase of Cause_changeType
+     meaning: Change_event_time
+       constraints
+         self.m.Manner <-- "*"
+
+construction Change_event_durationType
+     subcase of Cause_changeType
+     meaning: Change_event_duration
+       constraints
+         self.m.Manner <-- "*"
+
+construction Exchange_currencyType
+     subcase of Cause_changeType
+     meaning: Exchange_currency
+       constraints
+         self.m.Manner <-- "*"
+
+construction Interrupt_processType
+     subcase of Transitive_actionType
+     meaning: Interrupt_process
+       constraints
+         self.m.Manner <-- "*"
+
+construction GrindingType
+     subcase of Transitive_actionType
+     meaning: Grinding
+       constraints
+         self.m.Manner <-- "*"
+
+construction Cause_to_rotType
+     subcase of Transitive_actionType
+     meaning: Cause_to_rot
+       constraints
+         self.m.Manner <-- "*"
+
+construction Cause_to_be_includedType
+     subcase of Transitive_actionType
+     meaning: Cause_to_be_included
+       constraints
+         self.m.Manner <-- "*"
+
+construction Container_focused_removingType
+     subcase of Transitive_actionType
+     meaning: Container_focused_removing
+       constraints
+         self.m.Manner <-- "*"
+
+construction EmptyingType
+     subcase of Container_focused_removingType
+     meaning: Emptying
+       constraints
+         self.m.Manner <-- "*"
+
+construction RemovingType
+     subcase of Transitive_actionType
+     meaning: Removing
+       constraints
+         self.m.Manner <-- "*"
+
+construction PlacingType
+     subcase of Transitive_actionType
+     meaning: Placing
+       constraints
+         self.m.Manner <-- "*"
+
+construction DispersalType
+     subcase of PlacingType
+     meaning: Dispersal
+       constraints
+         self.m.Manner <-- "*"
+
+construction BuryingType
+     subcase of PlacingType
+     meaning: Burying
+       constraints
+         self.m.Manner <-- "*"
+
+construction Container_focused_placingType
+     subcase of Transitive_actionType
+     meaning: Container_focused_placing
+       constraints
+         self.m.Manner <-- "*"
+
+construction FillingType
+     subcase of Container_focused_placingType
+     meaning: Filling
+       constraints
+         self.m.Manner <-- "*"
+
+construction CreatingType
+     subcase of Transitive_actionType
+     meaning: Creating
+       constraints
+         self.m.Manner <-- "*"
+
+construction Intentionally_createType
+     subcase of Transitive_actionType
+     meaning: Intentionally_create
+       constraints
+         self.m.Manner <-- "*"
+
+construction ManufacturingType
+     subcase of Intentionally_createType
+     meaning: Manufacturing
+       constraints
+         self.m.Manner <-- "*"
+
+construction Text_creationType
+     subcase of Intentionally_createType
+     meaning: Text_creation
+       constraints
+         self.m.Manner <-- "*"
+
+construction Sign_agreementType
+     subcase of Text_creationType
+     meaning: Sign_agreement
+       constraints
+         self.m.Manner <-- "*"
+
+construction Achieving_firstType
+     subcase of Intentionally_createType
+     meaning: Achieving_first
+       constraints
+         self.m.Manner <-- "*"
+
+construction BuildingType
+     subcase of Intentionally_createType
+     meaning: Building
+       constraints
+         self.m.Manner <-- "*"
+
+construction Create_physical_artworkType
+     subcase of Intentionally_createType
+     meaning: Create_physical_artwork
+       constraints
+         self.m.Manner <-- "*"
+
+construction Knot_creationType
+     subcase of Intentionally_createType
+     meaning: Knot_creation
+       constraints
+         self.m.Manner <-- "*"
+
+construction DuplicationType
+     subcase of Intentionally_createType
+     meaning: Duplication
+       constraints
+         self.m.Manner <-- "*"
+
+construction ForgingType
+     subcase of DuplicationType
+     meaning: Forging
+       constraints
+         self.m.Manner <-- "*"
+
+construction TranslatingType
+     subcase of Intentionally_createType
+     meaning: Translating
+       constraints
+         self.m.Manner <-- "*"
+
+construction Cooking_creationType
+     subcase of Intentionally_createType
+     meaning: Cooking_creation
+       constraints
+         self.m.Manner <-- "*"
+
+construction Cause_bodily_experienceType
+     subcase of Transitive_actionType
+     meaning: Cause_bodily_experience
+       constraints
+         self.m.Manner <-- "*"
+
+construction Cause_harmType
+     subcase of Cause_bodily_experienceType
+     meaning: Cause_harm
+       constraints
+         self.m.Manner <-- "*"
+
+
+construction DowningType
+     subcase of Transitive_actionType
+     meaning: Downing
+       constraints
+         self.m.Manner <-- "*"
+
+construction ErasingType
+     subcase of Transitive_actionType
+     meaning: Erasing
+       constraints
+         self.m.Manner <-- "*"
+
+construction InfectingType
+     subcase of Transitive_actionType
+     meaning: Infecting
+       constraints
+         self.m.Manner <-- "*"
+
