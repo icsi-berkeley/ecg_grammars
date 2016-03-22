@@ -1,9 +1,0 @@
-//
-
-// ontology.ont
-
-//
-
-(type dive sub motion)
-
-INSTS:
