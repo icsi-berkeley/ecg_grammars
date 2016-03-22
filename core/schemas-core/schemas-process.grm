@@ -77,7 +77,7 @@ schema StateChange
 	  actionary: @statechange
 	  temporality: @bounded
 	
-// State Change processes: "the box changed from red to blue"
+// Scale Change processes: "the box grew"
 schema ScaleChange
 	subcase of Change
 	roles

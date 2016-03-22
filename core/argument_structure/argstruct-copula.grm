@@ -95,7 +95,12 @@ construction CopularVPPropertyAdjective
     constraints
         self.m.state <--> adj.m
         self.adj.m.property <--> ed.profiledParticipant.ontological-category 
- 
+        
+ /*
+Nominal copulas (e.g. "it is a box") could be analyzed using a CopuluarVPNominal cxn
+such as the one shown below, whcih is a subcase of the general CopularVP cxn above.
+Note that the current first grammar does not contain the RefIdentity schema referred to by this cxn.
+*/
 construction CopularVPNominal // 2/14/13
   subcase of CopularVP
   constructional  
@@ -113,7 +118,7 @@ construction CopularVPNominal // 2/14/13
         ri.second <--> nominal.m   
         ri.second.ontological-category <-- @entity
  
- // TO DO...this was changed earlier to be measurepredication
+
  construction CopularVPNominalModification // 2/14/13
   subcase of CopularVP
   constructional  
@@ -129,16 +134,10 @@ construction CopularVPNominal // 2/14/13
         self.m.temporality <-- @bounded
         //self.m.dimension <--> nominal.m.extras.quantity.property
 
- /*
-Nominal copulas (e.g. "it is a box") could be analyzed using a CopuluarVPNominal cxn
-such as the one shown below, whcih is a subcase of the general CopularVP cxn above.
-Note that the current first grammar does not contain the RefIdentity schema referred to by this cxn.
-
-
+ 
+/*
 Sentences such as "he is moving" can potentially be analyzed in various ways.
 One way is through the use of a CopularVPParticiple cxn such as the one shown below.
-Note that while the current grammar has a general PresentParticiple cxn, it does not
-have any specific lexical cxns for present participles.    
    */
  
 construction CopularVPParticiple // 10/16/13
@@ -195,6 +194,9 @@ construction VPChangeAdj
 	    self.m.temporality <-- @bounded
 	    ed.profiledParticipant <--> adj.m.modifiedThing
 	    self.m.state <--> adj.m
+
+
+
 
 /*
 // the plant grew to the ceiling

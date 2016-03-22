@@ -87,3 +87,4 @@ minute :: UnitType :: self.m.ontological-category <-- @minute :: self.m.extras.q
 second :: UnitType :: self.m.ontological-category <-- @second :: self.m.extras.quantity.property <-- @time
 foot :: UnitType :: self.m.ontological-category <-- @foot :: self.m.extras.quantity.property <-- @distance
 ceiling :: ArtifactNoun :: self.m.ontological-category <-- @ceiling
+day :: UnitType :: self.m.ontological-category <-- @day :: self.m.extras.quantity.property <-- @time

@@ -14,6 +14,7 @@ PACKAGE_NAME ::==
 
 ONTOLOGY_PATHS ::==
 	./universal/core.ont 
+	./research/research.ont
 ;
 
 IMPORT_PATHS ::==
@@ -46,7 +47,7 @@ TABLE_PATH = ./core/core.morph
 //;
 
 ROBUST = FALSE 
-BEAM_SIZE = 30
+BEAM_SIZE = 40
 DEFAULT_OMISSION_PROB = .1
 DEBUG = FALSE
 //DEBUG = TRUE

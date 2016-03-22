@@ -124,7 +124,8 @@ construction  INTO-Path // container 11/5/13
          self.m.landmark.extensions <--> bo //testing!
          self.m.goal <--> bo.interior
          self.m.source <--> bo.exterior
-  
+ 
+ /* 
 construction  IN-Path // container 11/5/13
    subcase of PathPreposition
    form
@@ -138,6 +139,7 @@ construction  IN-Path // container 11/5/13
          self.m.landmark.extensions <--> bo //testing!
          self.m.goal <--> bo.interior
          self.m.source <--> bo.exterior
+*/
 
 construction NEAR-Locative
    subcase of LocativePreposition 
