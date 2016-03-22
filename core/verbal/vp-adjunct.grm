@@ -17,7 +17,24 @@ general construction AdjunctVP   // general for other coda, purpose, etc.
       	ed <--> vp.ed
 		adjunct.modifiedThing <--> self.m
     	adjunct.modifier <--> pp.m
-      
+    	
+// he walked/ran for 2 hours
+construction TemporalVP   // walked for/in 2 minutes, needs work
+  subcase of AdjunctVP
+  constructional
+    constituents
+      pp: TemporalPhrase
+  form
+    constraints
+      vp.f meets pp.f  // could eliminate order
+  meaning  
+    constraints
+      self.m <--> vp.m
+      //ed <--> vp.ed
+      //ed.e-features.duration <--> pp.m.ti // TemporalInterval
+      //ed.e-features.telicity <--> pp.m.telicity // @bounded,
+      //adj.kind <-- @temporal gone
+
 
 construction InstrumentVP  
   subcase of AdjunctVP   
@@ -44,21 +61,6 @@ construction AccompanimentVP
 		pp.m.participant <--> ed.profiledParticipant
 	
 
-construction TemporalVP   // walked for/in 2 minutes, needs work
-  subcase of AdjunctVP
-  constructional
-    constituents
-      pp: TemporalPhrase
-  form
-    constraints
-      vp.f meets pp.f  // could eliminate order
-  meaning  
-    constraints
-      self.m <--> vp.m
-      ed <--> vp.ed
-      ed.e-features.duration <--> pp.m.ti // TemporalInterval
-      ed.e-features.telicity <--> pp.m.telicity // @bounded,
-      //adj.kind <-- @temporal gone
 
 construction LocativeVP   // walked 
   subcase of AdjunctVP

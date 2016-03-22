@@ -1,6 +1,6 @@
 package core
 import adverbs
-//import adjunct
+import adjunct
 //import serial
 //
 // vp.grm
@@ -10,6 +10,7 @@ import adverbs
 //To add: VP-participle-VP: "he walked into the room pushing a box".
 
 // Added from base 6/10/15 (ST)
+// Generates multiple identical parses?
 construction AdverbialVP
 	subcase of VP
 	constructional
