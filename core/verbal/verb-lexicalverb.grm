@@ -87,6 +87,15 @@ construction CauseEffectType
 	  constraints
 	    self.m.actionary <-- @cause
 
+
+// he pushed the box north
+construction CauseMotionType
+	subcase of LexicalVerbType, GeneralTypeCxn
+	meaning: CauseMotion
+	  constraints
+	    self.m.actionary <-- @complexxnet
+	    
+	    
 // "push the box north"
 construction ApplyForceType
 	subcase of LexicalVerbType

@@ -112,4 +112,6 @@ DEFS:
 
 (type day sub measure temporal-units shared)
 
+(type toss sub complexxnet  shared)
+
 INSTS:

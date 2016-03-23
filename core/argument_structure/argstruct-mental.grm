@@ -29,7 +29,7 @@ construction SubordinateDeclarativeThat
 	  core: Declarative
 	form
 	 constraints
-	   conj.f before core.f
+	   conj.f meets core.f
 	meaning: EventDescriptor
 	 constraints
 	   self.m <--> core.m

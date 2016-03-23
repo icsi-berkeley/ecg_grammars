@@ -88,3 +88,7 @@ second :: UnitType :: self.m.ontological-category <-- @second :: self.m.extras.q
 foot :: UnitType :: self.m.ontological-category <-- @foot :: self.m.extras.quantity.property <-- @distance
 ceiling :: ArtifactNoun :: self.m.ontological-category <-- @ceiling
 day :: UnitType :: self.m.ontological-category <-- @day :: self.m.extras.quantity.property <-- @time
+story :: AbstractNoun :: self.m.ontological-category <-- @story
+throw :: CauseMotionType :: self.m.actionary <-- @throw
+toss :: CauseMotionType :: self.m.actionary <-- @toss
+slide :: CauseMotionType :: self.m.actionary <-- @complexxnet

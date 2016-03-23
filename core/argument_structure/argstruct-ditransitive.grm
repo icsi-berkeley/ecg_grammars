@@ -32,17 +32,26 @@ general construction ActiveDitransitive
 	   s.a2 <--> np1.m
 	   s.a3 <--> np2.m
 
-	   
-construction CentralActiveDitransitiveTransfer
+// (ST, 3/23/16). General notion of object transfer for ditransitive
+// crucially, does not bind self.v <--> v.m, so this structure can be repurposed elsewhere
+general construction ActiveDitransitiveTransfer
 	subcase of ActiveDitransitive
 	meaning: ObjectTransfer
 	 constraints
-	   self.m <--> v.m
 	   self.m.giver <--> ed.profiledParticipant
 	   self.m.getter <--> np1.m
 	   self.m.theme <--> np2.m
-	   
 
+// Binds self.m <--> v.m, so verb must be of type ObjectTransfer	   
+construction CentralActiveDitransitiveTransfer
+	subcase of ActiveDitransitiveTransfer
+	meaning: ObjectTransfer
+	 constraints
+	   self.m <--> v.m
+
+	   
+// 2/15/16 (ST), binds NP1 to intended_recipient
+// maybe it should actually inherit from DitransitiveTransfer, and then bind the v.m differently?
 construction CentralActiveDitransitiveCreation
 	subcase of ActiveDitransitive
 	meaning: Creation
@@ -53,21 +62,13 @@ construction CentralActiveDitransitiveCreation
 	   self.m.createdThing <--> np2.m
 	   
 	   
-// he brought John the ball	
-// he tossed John the ball
-// In progress: argument structure should "construe" verbal meaning.
-/*
-construction ActiveDitransitiveTransfer_CauseMotion
-	subcase of ActiveDitransitive
-	meaning: ObjectTransfer
-	 evokes MotionPath as mp
-	 constraints
-	   //self.m <--> v.m
-	   //v.m <--> self.m.process1
-	   //self.m.
-	   self.m.process2 <--> mp
-	   self.m.giver <--> ed.profiledParticipant
-	   self.m.getter <--> np1.m
-	   self.m.theme <--> np2.m
-*/	     
-  
+// taken from base, 3/23/16, testing
+construction ActiveDitransitiveCauseMotion
+  subcase of ActiveDitransitiveTransfer  //2/11/13 Not tested
+  meaning
+    evokes CauseMotion as cm //formerly CauseMotionPathAction 
+    constraints
+      cm <--> v.m
+      cm.process1 <--> self.m.process1
+	  self.m.getter <--> cm.process2.spg.goal  
+	  self.m.theme <--> cm.affectedEntity // added (ST, 3/23/16)

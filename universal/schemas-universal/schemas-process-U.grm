@@ -184,6 +184,11 @@ schema CauseEffect   // Direct Physical Causation
       cause <--> causalProcess
       effect <--> affectedProcess
       complexKind <-- @causal
+ 
+ schema CauseMotion
+  subcase of CauseEffect
+  roles
+    process2: MotionPath 
       
  schema MotorControl
    subcase of Process
