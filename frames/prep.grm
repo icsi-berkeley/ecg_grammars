@@ -6,6 +6,8 @@ construction Into-Preposition
 	form
 	  constraints
 	    self.f.orth <-- "into"
+	meaning: Goal
+	
 
 construction Below-Preposition
 	subcase of Preposition
@@ -103,7 +105,17 @@ construction In-Preposition
 	subcase of Preposition
 	form
 	  constraints
-	    self.f.orth <-- "in"	    
+	    self.f.orth <-- "in"	
+	meaning: Interior_profile_relation
+
+
+construction At-Preposition
+	subcase of Preposition
+	form
+	  constraints
+	    self.f.orth <-- "at"	
+	meaning: Spatial_co-location
+	    
 construction To-Preposition
 	subcase of Preposition
 	form

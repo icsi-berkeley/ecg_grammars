@@ -15,4 +15,5 @@ construction Motion_pattern1
 		self.m.Path <--> path-pp.m
 		self.m.Goal <--> goal-pp.m
 		self.m.Source <--> source-pp.m
+		self.m.Theme <--> goal-pp.m.Trajector // testing, manually did this
 

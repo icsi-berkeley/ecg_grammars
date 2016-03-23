@@ -1,3 +1,11 @@
+/*
+These are tests for transitive action, using high-level cxns to do the bindings,
+and having the verb flesh out the more specific schemas.
+
+These are in development, but the hope is that they'll reduce the number of argument structure
+cxns necessary for core (ST, 3/23/16).
+*/
+
 package transitive-test
 
 
@@ -12,7 +20,7 @@ general construction Trans_TransitiveAction
 
 
 	   
-//GENERAL TRANSITIVE CONSTRUCTIONS
+//Binds agent/patient to profiled-participant and NP, respectively.
 general construction ActiveTrans_TransitiveAction  // 5/14/13
   subcase of Trans_TransitiveAction
   constructional
@@ -33,13 +41,16 @@ general construction ActiveTrans_TransitiveAction  // 5/14/13
 	  v.m.p-features.voice <-- @active // 2/1/13 
 
  
+// "Core" Active Transitive, binds self.m to verb meaning
 general construction CoreActiveTrans_TransitiveAction  // 8/21/13
 	subcase of ActiveTrans_TransitiveAction
 	meaning
 		constraints
 		self.m <--> v.m
 		
-		
+
+
+// Passive Transitive, binds agent to byPhrase, and patient to profiled participant				
 general construction PassiveTrans_TransitiveAction // 5/14/13
   subcase of Trans_TransitiveAction
   constructional
@@ -67,10 +78,12 @@ general construction CorePassiveTrans_TransitiveAction
 	    self.m <--> v.m
 	    //self.m.protagonist <--> s.a1
 	    
-	    
+
+// "Central" Active Transitive, inherits self.m <--> v.m	    
 construction ActiveTrans_Central
 	subcase of CoreActiveTrans_TransitiveAction
 
+// "Central" Active Transitive, inherits self.m <--> v.m	
 construction PassiveTrans_Central
 	subcase of CorePassiveTrans_TransitiveAction
 	

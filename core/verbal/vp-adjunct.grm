@@ -50,6 +50,7 @@ construction InstrumentVP
 
 // he did X with Y
 // should this have more complex semantics, e.g. to suggest that Y is a co-participant?
+// currently constraints Y to be an "agent"
 construction AccompanimentVP  
   subcase of AdjunctVP   
   constructional
@@ -59,6 +60,7 @@ construction AccompanimentVP
 	constraints
 		adjunct.kind <-- @animate  // Modification schema	
 		pp.m.participant <--> ed.profiledParticipant
+		pp.m.co-participant.ontological-category <-- @agent
 	
 
 

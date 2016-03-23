@@ -63,8 +63,9 @@ construction CentralActiveDitransitiveCreation
 	   
 	   
 // taken from base, 3/23/16, testing
+// "he tossed John the ball"
 construction ActiveDitransitiveCauseMotion
-  subcase of ActiveDitransitiveTransfer  //2/11/13 Not tested
+  subcase of ActiveDitransitiveTransfer
   meaning
     evokes CauseMotion as cm //formerly CauseMotionPathAction 
     constraints

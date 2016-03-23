@@ -14,6 +14,7 @@ general construction PP-Locative
 	meaning: Locative_relation
 	 constraints
 	  np.m <--> self.m.Ground
+	  self.m <--> prep.m
 	  
 construction PP-for
 	subcase of PP
@@ -153,4 +154,4 @@ construction PP-at
 	subcase of PP-Locative
 	constructional
 	  constituents
-	    prep: at-Preposition
+	    prep: At-Preposition

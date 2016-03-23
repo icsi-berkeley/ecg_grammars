@@ -92,3 +92,4 @@ story :: AbstractNoun :: self.m.ontological-category <-- @story
 throw :: CauseMotionType :: self.m.actionary <-- @throw
 toss :: CauseMotionType :: self.m.actionary <-- @toss
 slide :: CauseMotionType :: self.m.actionary <-- @complexxnet
+ball :: ArtifactNoun :: self.m.ontological-category <-- @ball

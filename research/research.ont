@@ -114,4 +114,6 @@ DEFS:
 
 (type toss sub complexxnet  shared)
 
+(type ball sub artifact moveable shared)
+
 INSTS:
