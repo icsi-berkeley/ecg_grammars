@@ -65,8 +65,8 @@ schema Contact // short version
 schema Accompaniment
 	subcase of Relation
 	roles
-	  participant
-	  co-participant
+	  participant: RD
+	  co-participant: RD
 	constraints
 	  participant <--> entity1
 	  co-participant <--> entity2		
@@ -99,3 +99,10 @@ schema Scale
      measure // weight
      units // pound
      value // .7
+     
+// Instrument schema, testing (ST, 3/24/16)
+// This is useful for the Specializer: used for "Instrument-PP"
+schema Instrument
+	roles
+	  instrument: RD
+	  user: RD

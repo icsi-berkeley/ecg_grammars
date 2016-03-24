@@ -107,10 +107,12 @@ construction InstrumentPP
 	constructional
 	 constituents
 	   prep: InstrumentPreposition
-	meaning
+	meaning: Instrument
 	 constraints
 	  np.m.ontological-category <-- @instrument // is this right?
 	  // this might over-constraint...
+	  self.m <--> prep.m
+	  np.m <--> self.m.instrument
 
 
 
@@ -120,10 +122,11 @@ construction AccompanimentPP
 	subcase of AdjunctPP
 	constructional
 	 constituents
-	   prep: AssociationPreposition
+	   prep: AccompanimentPreposition
 	meaning: Accompaniment
 	  constraints
 	    np.m <--> self.m.co-participant
+	    self.m <--> prep.m
 
 
 // ST (3/16/16, added from base)

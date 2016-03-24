@@ -3,11 +3,13 @@ package core
 general construction Preposition
    subcase of Word
 
-general construction AssociationPreposition // the man with the guitar
+general construction AccompanimentPreposition // the man with the guitar
 	subcase of Preposition
+	meaning: Accompaniment
    
  general construction InstrumentPreposition
  	subcase of Preposition
+ 	meaning: Instrument
  
  general construction SpatialPreposition
    subcase of Preposition
@@ -189,7 +191,7 @@ construction With-Instrument  // FDArgStructFrom
          self.f.orth <-- "with"
 
 construction With-Accompaniment  // FDArgStructFrom
-   subcase of AssociationPreposition
+   subcase of AccompanimentPreposition
    form
       constraints
          self.f.orth <-- "with"

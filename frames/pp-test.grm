@@ -103,7 +103,7 @@ construction Area-PP
 
 schema Instrument
 	roles 
-	  Instrument
+	  Instrument: Artifact
 	  
 
 

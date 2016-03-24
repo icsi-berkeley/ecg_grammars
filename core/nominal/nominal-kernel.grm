@@ -1,0 +1,150 @@
+package core
+import adjectives
+
+/******************************************************************************
+This file contains  constructions for kernel noun phrases.
+
+The assumption is that each NP has an RD structure as its meaning.
+This implies that proper nouns, pronouns, and mass/plural nouns make
+RD their meaning. For sake of uniformity, we also assume that common
+count nouns (which are not NPs) also denote an RD.
+
+
+******************************************************************************/
+
+ 
+construction  KernelAdj // literal case
+  subcase of Kernel 
+  constructional
+    constituents
+     // Why was Adjective "property adjective"?
+      ap: Adjective //PropertyAdjective // not optional PropertyAdj 4/26/13
+      n: Nominal
+    constraints
+      self.features <--> n.features
+  form
+    constraints
+      ap.f meets n.f
+  meaning: RD
+    constraints
+      self.m <--> n.m
+      self.m <--> ap.m.modifiedThing
+      ap.m.temporality <-- @atemporal
+      //ap.m.property <--> n.m.scale  //4/26/13  ***** n.m.scale is implicit, e.g inch
+      //ap.m.domain <--> n.m.ontological-category //constraint
+ 
+ // the running man
+ construction  KernelParticiple //   10/16/13
+  subcase of Kernel 
+  constructional
+    constituents
+      ap: Verb // is this right?
+      n: Nominal
+    constraints
+      self.features <--> n.features
+      ap.verbform <-- PresentParticiple
+  form
+    constraints
+      ap.f meets n.f
+  meaning: RD
+    evokes ParticipleModification as pm
+    constraints
+      self.m <--> n.m
+      self.m <--> pm.modifiedThing
+      ap.m <--> pm.modifier 
+      //ap.m.property <--> n.m.scale  //4/26/13  ***** n.m.scale is implicit, e.g inch
+      //ap.m.domain <--> n.m.ontological-category //constraint NOT here    
+
+
+ // the man near the box
+construction Kernel-LocPP
+   subcase of Kernel
+   constructional
+     constituents
+       n: Kernel
+       pp: Loc-PP
+   form
+     constraints
+       n.f meets pp.f
+   meaning
+     constraints 
+       self.m <--> n.m
+       n.m <--> pp.m.trajector
+       pp.m.temporality <-- @atemporal
+
+// the man with the coat
+construction Kernel-AccompanimentPP
+   subcase of Kernel
+   constructional
+     constituents
+       n: Kernel
+       pp: AccompanimentPP
+   form
+     constraints
+       n.f meets pp.f
+   meaning
+     constraints 
+       self.m <--> n.m
+       n.m <--> pp.m.participant
+
+// bare kernel, e.g. "man"       
+construction  KernelNoAdj // no adjective
+  subcase of Kernel
+  constructional
+    constituents
+      n: Nominal
+    constraints
+      self.features <--> n.features
+  form
+  meaning: RD
+    constraints
+      self.m <--> n.m
+
+
+
+// Modifier NP-PP
+// general form: "the {X} of the {Y}
+general construction Kernel-ModifierPP
+	subcase of Kernel
+	constructional
+	  constituents
+	    k: Kernel
+	    mod: ModifierPP
+	form
+	  constraints
+	    k.f before mod.f
+	    
+
+// genitive: dependent noun modifies head
+// the weight of the box
+// the color of the building
+construction PropertyModifierPP
+	subcase of Kernel-ModifierPP
+	meaning
+	  constraints
+	    k.m.ontological-category <-- @object-property
+	   self.m <--> mod.np.m
+	   k.m <--> mod.m.modifier
+
+
+// generic part of whole cxn: "the {PART} of {WHOLE}"
+// "a member of the crew"
+construction Part-of-Whole
+	subcase of Kernel-ModifierPP
+	constructional
+	  constraints
+	    self.features <--> k.features
+	meaning
+	  evokes PartWhole as pw
+	  constraints
+	    k.m.ontological-category <-- @part
+	   //self.m <--> mod.np.m	
+	   self.m <--> k.m
+	    self.m <--> self.pw.part
+  		mod.np.m <--> self.pw.whole
+  		self.m.extensions <--> self.pw	
+
+	   
+	   
+	   
+
