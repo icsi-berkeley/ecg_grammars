@@ -116,4 +116,6 @@ DEFS:
 
 (type ball sub artifact moveable shared)
 
+(type go sub motion  shared)
+
 INSTS:

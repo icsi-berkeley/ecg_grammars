@@ -93,3 +93,4 @@ throw :: CauseMotionType :: self.m.actionary <-- @throw
 toss :: CauseMotionType :: self.m.actionary <-- @toss
 slide :: CauseMotionType :: self.m.actionary <-- @complexxnet
 ball :: ArtifactNoun :: self.m.ontological-category <-- @ball
+go :: SelfMotionType :: self.m.actionary <-- @go
