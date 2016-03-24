@@ -9,7 +9,7 @@ Example sentences (mental):
 */
 
 package mental
-//import ditransitive
+import ditransitive
 import intransitive
 
 
