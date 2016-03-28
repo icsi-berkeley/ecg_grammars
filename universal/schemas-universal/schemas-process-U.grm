@@ -186,9 +186,14 @@ schema CauseEffect   // Direct Physical Causation
       complexKind <-- @causal
  
  schema CauseMotion
-  subcase of CauseEffect
+  subcase of CauseEffect //, TransitiveAction
   roles
     process2: MotionPath 
+    /*
+  constraints
+    causalAgent <--> agent
+    affectedEntity <--> patient
+*/
       
  schema MotorControl
    subcase of Process

@@ -1,3 +1,5 @@
+package motion_test
+
 construction Motion_pattern1 
      subcase of ArgumentStructure
 	   constructional

@@ -82,7 +82,7 @@ kick :: ApplyForceType :: self.m.actionary <-- @kick
 table :: ArtifactNoun :: self.m.ontological-category <-- @table
 wall :: ArtifactNoun :: self.m.ontological-category <-- @wall
 hour :: UnitType :: self.m.ontological-category <-- @hour :: self.m.extras.quantity.property <-- @time
-hammer :: InstrumentNoun :: self.m.ontological-category <-- @hammer
+hammer :: InstrumentNoun :: self.m.ontological-category <-- @hammer :: instrument.actionary <-- @create
 minute :: UnitType :: self.m.ontological-category <-- @minute :: self.m.extras.quantity.property <-- @time
 second :: UnitType :: self.m.ontological-category <-- @second :: self.m.extras.quantity.property <-- @time
 foot :: UnitType :: self.m.ontological-category <-- @foot :: self.m.extras.quantity.property <-- @distance
@@ -94,3 +94,5 @@ toss :: CauseMotionType :: self.m.actionary <-- @toss
 slide :: CauseMotionType :: self.m.actionary <-- @complexxnet
 ball :: ArtifactNoun :: self.m.ontological-category <-- @ball
 go :: SelfMotionType :: self.m.actionary <-- @go
+#scale :: InstrumentNoun :: instrument.actionary <-- @weigh :: self.m.ontological-category <-- @scale_noun
+shoe :: InstrumentNoun :: self.m.ontological-category <-- @shoe :: instrument.actionary <-- @move

@@ -10,6 +10,7 @@ package transitive-test
 
 
 
+
 // high-level "Transitive-action cxn"
 general construction Trans_TransitiveAction
 	subcase of ArgumentStructure

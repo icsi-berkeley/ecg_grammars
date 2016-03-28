@@ -41,21 +41,23 @@ general construction ActiveTransitive
 import auxiliaries
 
 construction ByAgentPhrase
-	subcase of PP-Locative
+	subcase of PP
 	constructional
 	 constituents
-	   prep: by-Preposition
+	   prep: by-Means
 	form
 	 constraints
 	   prep.f meets np.f
 	meaning: ByLandmark
 	 constraints
-	  np.m <--> self.m.Landmark
+	  np.m <--> self.m.Agent
 
 schema ByLandmark
-    subcase of Locative_relation
+    subcase of Means
 	roles
 	  Landmark
+	constraints
+	  Landmark <--> Agent
 
 /*
 Changes to PassiveTransitive to make it more general [EKD, 3/3/16]:

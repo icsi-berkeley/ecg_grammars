@@ -1,3 +1,5 @@
+package role_prepositions
+
 general construction Area-Preposition
 	subcase of Preposition
 	
@@ -25,7 +27,7 @@ general construction Duration-Preposition
 
 general construction Goal-Preposition
 	subcase of Preposition
-	meaning: Goal
+
 	
 general construction Manner-Preposition
 	subcase of Preposition

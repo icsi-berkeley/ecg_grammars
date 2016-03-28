@@ -1,3 +1,6 @@
+package framenet
+
+
 schema Abandonment 
     subcase of Intentionally_affect 
     roles 

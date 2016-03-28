@@ -103,6 +103,13 @@ schema Scale
 // Instrument schema, testing (ST, 3/24/16)
 // This is useful for the Specializer: used for "Instrument-PP"
 schema Instrument
+    subcase of Artifact // is this right?
 	roles
 	  instrument: RD
 	  user: RD
+	  // add actionary: @move
+	   actionary: @process // could either be actionary (@move) or schema (Motion)
+	constraints
+	  entityType <-- @instrument
+	  entity <--> instrument
+	 

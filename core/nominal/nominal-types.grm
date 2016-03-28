@@ -31,6 +31,19 @@ construction SubstanceType
 	 constraints
 	   self.m.ontological-category <-- @substance
 
+// E.g., "hammer", etc.
+// evokes Instrument schema, and can put tighter constraints on actionary
+construction InstrumentNoun
+	subcase of NounType
+	meaning
+	 evokes Instrument as instrument
+	 constraints
+	   instrument.actionary <-- @process
+	   self.m.extensions <--> instrument
+	   self.m.ontological-category <-- @instrument  
+
+
+
 // e.g. "what color is box1?"
 construction PropertyNoun
 	subcase of NounType
@@ -79,13 +92,6 @@ construction ArtifactNoun
    meaning
       constraints
         self.m.ontological-category <-- @artifact 
-
-// "Type" constructions
-construction InstrumentNoun
-   subcase of PhysicalEntityNoun
-   meaning
-      constraints
-        self.m.ontological-category <-- @instrument 
  
  
 // "Type" constructions

@@ -118,4 +118,8 @@ DEFS:
 
 (type go sub motion  shared)
 
+(type scale_noun sub instrument  shared)
+
+(type shoe sub instrument moveable artifact shared)
+
 INSTS:

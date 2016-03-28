@@ -113,6 +113,7 @@ construction InstrumentPP
 	  // this might over-constraint...
 	  self.m <--> prep.m
 	  np.m <--> self.m.instrument
+	  self.m <--> np.m.extensions
 
 
 

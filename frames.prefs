@@ -8,6 +8,8 @@ GRAMMAR_PATHS ::==
 PACKAGE_NAME ::== 
 	universal-schemas
 	universal-constructions
+	frames
+	framenet
 ;
 
 ONTOLOGY_PATHS ::==

@@ -73,6 +73,7 @@ construction Kernel-LocPP
        pp.m.temporality <-- @atemporal
 
 // the man with the coat
+/*
 construction Kernel-AccompanimentPP
    subcase of Kernel
    constructional
@@ -86,6 +87,7 @@ construction Kernel-AccompanimentPP
      constraints 
        self.m <--> n.m
        n.m <--> pp.m.participant
+*/
 
 // bare kernel, e.g. "man"       
 construction  KernelNoAdj // no adjective
