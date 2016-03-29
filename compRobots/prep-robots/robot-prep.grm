@@ -16,15 +16,6 @@ construction BETWEEN-Path
 */
 
 
-	    
-construction FROM-Path
-	subcase of PathPreposition
-	form
-	  constraints
-	    self.f.orth <-- "from"
-	meaning: SPG
-	  constraints
-	    self.m.landmark <--> self.m.source
 
 /*construction BETWEEN-Locative
 	subcase of LocativePreposition

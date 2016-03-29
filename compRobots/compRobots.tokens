@@ -54,7 +54,6 @@ fridge :: ArtifactNoun :: self.m.ontological-category <-- @refrigerator
 refrigerator :: ArtifactNoun :: self.m.ontological-category <-- @refrigerator
 can :: ContainerNoun :: self.m.ontological-category <-- @cancontainer
 soda :: ArtifactNoun :: self.m.ontological-category <-- @soda
-table :: ArtifactNoun :: self.m.ontological-category <-- @table
 fall :: SelfMotionType :: self.m.actionary <-- @fall
 floor :: ArtifactNoun :: self.m.ontological-category <-- @floor
 new :: PropertyAdjectiveType :: self.m.value <-- @new

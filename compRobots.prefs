@@ -15,6 +15,7 @@ PACKAGE_NAME ::==
 ONTOLOGY_PATHS ::==
 	./compRobots/robot.ont
 	./universal/core.ont
+	./research/research.ont
 ;
 
 IMPORT_PATHS ::==

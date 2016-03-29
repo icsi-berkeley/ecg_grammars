@@ -6,6 +6,7 @@ Example sentences (mental):
 -he thought that the box is in the room
 
 -he told John the story (Ditransitive-communication-NP)
+-he told a story to John (CommunicationNP-Alternation)
 */
 
 package mental
@@ -55,6 +56,7 @@ construction IntransitiveCommunication
 import ditransitive
 //this requires ditransitive package
 
+// he 
 construction DitransitiveCommunication-NP
 	subcase of ActiveDitransitive
 	form 
@@ -66,6 +68,24 @@ construction DitransitiveCommunication-NP
 	  s.a3 <--> self.m.media
 	  s.a1 <--> self.m.speaker
 	  s.a2 <--> self.m.listener
+	  //v.m.actionary <--> self.m.actionary
+
+// Alternation
+construction DativeCommunicationNP-Alternation
+	subcase of ActiveTransitive
+	constructional
+	 constituents 
+	  optional pp: Path-PP
+	form 
+	 constraints
+	   v.f before np.f
+	meaning: Communication
+	 constraints
+	  self.m <--> v.m
+	  s.a2 <--> self.m.media
+	  s.a1 <--> self.m.speaker
+	  s.a3 <--> self.m.listener
+	  s.a3 <--> pp.np.m
 	  //v.m.actionary <--> self.m.actionary
 
 // he told John that {EVENT}
