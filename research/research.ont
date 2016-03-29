@@ -12,6 +12,13 @@ DEFS:
 
 (type name sub object-property)
 
+(type price-units sub measure price)
+
+(type pound-weight sub weightValue measure)
+
+(type pound-price sub price-units)
+
+(type grasp sub establishhold)
 
 (type dollar sub shared units price-units)
 
