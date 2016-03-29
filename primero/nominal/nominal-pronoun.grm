@@ -93,7 +93,7 @@ general construction IOPronoun
 	   constraints
 	      self.m.ontological-category <-- @person
 	      	                 
-construction HerDat
+construction DativePronoun
    subcase of IOPronoun, Singular, ThirdPerson
    form
       constraints

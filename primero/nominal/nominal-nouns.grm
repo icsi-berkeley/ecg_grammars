@@ -26,9 +26,15 @@ construction NounType
         self.m.gender <-- @genderValues
         self.m.ontological-category <-- @entity
         self.m.scale <-- @scale
-        
 
 
+construction NumberType   //rename, check digits
+	subcase of Quantifier, GeneralTypeCxn
+   	meaning: QuantitySchema
+   	  constraints
+   	    self.m.value <-- "?"
+   	    self.m.number <-- @RDnumberValues
+   	    
 construction RelationType
 	subcase of NounType
 	constructional

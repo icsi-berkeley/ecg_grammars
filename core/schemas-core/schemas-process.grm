@@ -1,14 +1,7 @@
 package core
 import universal-schemas
 
-/// Testing (3/16/16, ST)
-schema TransitiveAction
-	subcase of Process
-	roles
-	 agent: RD
-	 patient: RD
-	constraints
-	 agent <--> protagonist
+
 	 
 	
 

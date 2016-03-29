@@ -676,6 +676,26 @@ DEFS:
 
 //tokens
 
+(type price sub measure scale)
+
+(type pickup sub establishhold)
+
+(type scalarValue sub object-property)
+
+(type comparison sub measure)
+
+(type increase sub comparison)
+
+(type decrease sub comparison)
+
+(type weight sub object-property scale measure)
+
+(type cost sub process shared)
+
+
+(type supply sub process)
+
+
 
 
 INSTS:

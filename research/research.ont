@@ -12,13 +12,6 @@ DEFS:
 
 (type name sub object-property)
 
-(type weight-units sub units weight)//nontemporal-units weight)
-
-(type price-units sub units price) //nontemporal-units price)
-
-(type pound-weight sub shared weight-units)
-
-(type pound-price sub shared price-units)
 
 (type dollar sub shared units price-units)
 
@@ -38,19 +31,13 @@ DEFS:
 
 (type cost_predication sub process shared stasis)
 
-(type price sub measure scale)
+
 
 (type grow sub scalechange)
 
 (type shrink sub scalechange)
 
-(type scalarValue sub object-property)
 
-(type comparison sub measure)
-
-(type increase sub comparison)
-
-(type decrease sub comparison)
 
 (type john sub person)
 
@@ -66,9 +53,7 @@ DEFS:
 
 (type crisis sub eventTop  shared)
 
-(type grasp sub establishhold)
 
-(type pickup sub establishhold)
 
 (type house sub container artifact shared)
 

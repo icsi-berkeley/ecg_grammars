@@ -159,3 +159,50 @@ construction PossessivePronounPlusKernel
 	meaning 
 	  constraints
 	    s.m <--> k.m
+	    
+ construction QuantityNP
+  subcase of SpecifierPlusKernel
+  constructional
+    constituents
+      q: Quantifier
+      k: Kernel
+    constraints
+      self.features <--> k.features
+      //q.features.number <--> k.features.number
+  form
+    constraints
+      q.f before k.f
+  meaning: RD
+    constraints
+      self.m <--> k.m
+      //self.m.number <--> q.m.number
+      self.m.extras.quantity.amount <--> q.m
+      self.m.givenness <-- @uniquelyIdentifiable
+      self.m.extras.quantity.units <--> self.m.ontological-category
+      
+      
+  // Stuff for argstruct-transitive       
+general construction UnitsNP // stands alone, no Specifier  11/24/12
+  subcase of NP
+  constructional
+	constituents
+  		num: Quantifier	//
+  		k: Noun 
+	constraints
+  		self.features <--> k.features
+  form
+	constraints
+  		num.f meets k.f
+  meaning: RD
+    constraints
+    	self.m <--> k.m
+    	num.m <--> self.m.extras.quantity.amount
+    	//k.m.ontological-category <-- @spatial-units   generalized
+		self.m.extras.quantity.units <-> k.m.ontological-category
+		//self.m.amount.value <--> num.m.value
+		
+ construction SpatialQuantityNP // stands alone, no Specifier
+  subcase of UnitsNP
+  meaning: RD
+    constraints
+    	k.m.ontological-category <-- @spatial-units // only difference *** generalize 11/24/12  

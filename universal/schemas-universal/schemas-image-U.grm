@@ -100,6 +100,22 @@ schema Scale
      units // pound
      value // .7
      
+ // entity
+ schema Entity
+	roles
+	  name
+	  entityType: @entity
+	  entity
+
+//artifact
+schema Artifact
+	subcase of Entity
+	roles
+	  creator
+	  material
+	constraints
+	  entityType <-- @artifact 
+     
 // Instrument schema, testing (ST, 3/24/16)
 // This is useful for the Specializer: used for "Instrument-PP"
 schema Instrument

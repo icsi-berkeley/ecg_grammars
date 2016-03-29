@@ -1,19 +1,7 @@
 package core
 import universal-schemas
  
-schema Entity
-	roles
-	  name
-	  entityType: @entity
-	  entity
 
-schema Artifact
-	subcase of Entity
-	roles
-	  creator
-	  material
-	constraints
-	  entityType <-- @artifact 
 	  
 					
 					
