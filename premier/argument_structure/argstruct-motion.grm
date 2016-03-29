@@ -31,7 +31,7 @@ Should be Intransitive b/c there is prepositional phrase, but more meaning shoul
     constituents
       //optional dis: SpatialQuantityNP  // for more general version
       optional dir: Directional 
-       pp: PathPP
+       optional pp: PathPP
   constraints
        v.voice <-- NotPassive   
   form 
@@ -49,6 +49,31 @@ Should be Intransitive b/c there is prepositional phrase, but more meaning shoul
 	  //self.m.heading <--> dir.m 
       //self.m.spg <--> pp.m 
  
+
+ construction ActiveMotionPath   // he moved to the block
+  subcase of IntransitiveArgumentStructure 
+  constructional
+    constituents
+      //optional dis: SpatialQuantityNP  // for more general version
+      optional dir: Directional 
+       optional pp: PathPP
+  constraints
+       v.voice <-- NotPassive   
+  form 
+    constraints
+     // v.f before dis.f 
+      v.f before pp.f
+     // dir.f before pp.f   
+  meaning: MotionPath
+    constraints 
+      self.m <--> v.m
+      //self.m.ed.profiledParticipant <--> pp.m.trajector
+      //self.m.landmark <--> pp.m.landmark
+      self.m.spg <--> pp.m
+      //self.m.spg.distance <--> dis.m 
+	  //self.m.heading <--> dir.m 
+      //self.m.spg <--> pp.m
+
 
 /** This is a general construction for co-process, in which the protagonist is performing two related processes.
 It was originally made to be inherited by "motion co-process", in which the protagonist is engaged in both motion

@@ -13,15 +13,15 @@ general construction UnitsNP // stands alone, no Specifier  11/24/12
   form
     	constraints
       		num.f meets k.f
-  meaning: QuantifiedRD
+  meaning: RD
     constraints
     	self.m <--> k.m
     	//k.m.ontological-category <-- @spatial-units   generalized
-		self.m.units <-> k.m.ontological-category
-		self.m.amount.value <--> num.m
+		self.m.extras.quantity.units <-> k.m.ontological-category
+		self.m.extras.quantity.amount <--> num.m
 		
  construction SpatialQuantityNP // stands alone, no Specifier
   subcase of UnitsNP
-  meaning: QuantifiedSpatialRD
+  meaning: RD
     constraints
     	k.m.ontological-category <-- @spatial-units // only difference *** generalize 11/24/12   	

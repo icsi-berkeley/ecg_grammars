@@ -156,3 +156,18 @@ construction One-Anaphora
       self.m.ontological-category <-- @entity  
       self.m.referent <-- @anaphora
       self.m.number <-- @singular    
+      
+      
+ construction Ones-Anaphora
+   subcase of PluralNoun
+   constructional
+     constraints
+       self.features.case <-- "nom"
+   form
+      constraints
+         self.f.orth <-- "ones"
+   meaning
+    constraints
+      self.m.ontological-category <-- @entity  
+      self.m.referent <-- @anaphora
+      self.m.number <-- @plural    

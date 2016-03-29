@@ -10,9 +10,7 @@ box2 :: ProperNPInstance :: self.m.referent <-- @box2-instance :: self.m.ontolog
 box3 :: ProperNPInstance :: self.m.referent <-- @box3-instance :: self.m.ontological-category <-- @box
 box4 :: ProperNPInstance :: self.m.referent <-- @box4-instance :: self.m.ontological-category <-- @box
 box5 :: ProperNPInstance :: self.m.referent <-- @box5-instance :: self.m.ontological-category <-- @box
-vert :: ColorType :: self.m.value <-- @green
 mauve :: ColorType :: self.m.value <-- @purple
-grand :: SizeType :: self.m.value <-- @big
 petit :: SizeType :: self.m.value <-- @small
 pousser :: CauseEffectType :: self.m.actionary <-- @push_move
 retourner :: ReturnType :: self.m.actionary <-- @move

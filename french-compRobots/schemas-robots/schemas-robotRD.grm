@@ -6,11 +6,11 @@ import premier
 schema Location2D
 	subcase of RD
 	roles
-	  xCoord: @number
-	  yCoord: @number
+	  xCoord: @scalarValue //@number
+	  yCoord: @scalarValue //@number
    constraints
      ontological-category <-- @location
-     number <-- @singular
+     //number <-- @singular
       	
       	
 // added 8/4/14 (ST) from base
