@@ -70,6 +70,9 @@ schema Accompaniment
 	constraints
 	  participant <--> entity1
 	  co-participant <--> entity2		
+	  
+	  
+
 
 schema Possession  //revised 11/30/12
    roles
@@ -80,9 +83,13 @@ schema Possession  //revised 11/30/12
 		
 
 schema RefRelation
+	subcase of Relation
    roles
      first: RD
      second: RD
+    constraints
+      first <--> entity1
+      second <--> entity2
      
 schema RefIdentity
 	subcase of RefRelation
