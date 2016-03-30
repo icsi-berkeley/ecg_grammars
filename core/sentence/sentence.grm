@@ -135,6 +135,7 @@ construction S-With-Copula-Inversion-Nominal // tested 10/29/12
             fin.m.state <--> ri
         	ri.first <--> self.m.profiledParticipant
         	ri.second <--> nominal.m   
+        	ri.temporality <-- @bounded
 				
 // Simple imperative, testing
 general construction Imperative

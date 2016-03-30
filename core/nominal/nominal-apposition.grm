@@ -86,3 +86,4 @@ construction NP-Apposition
 	   self.m <--> head.m
 	   ri.first <--> head.m
 	   ri.second <--> embedded.m
+	   ri.temporality <-- @atemporal

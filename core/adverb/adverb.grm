@@ -19,8 +19,7 @@ construction ScalarAdverbType
 	     self.m.kind <-- @unmarked
 
 
-	  
-
+// We already have modifiedVP?	  
 construction ModifiedVerb  // should not be copula, ?needed  11/21/12
   	subcase of Verb
    	constructional 
@@ -36,7 +35,6 @@ construction ModifiedVerb  // should not be copula, ?needed  11/21/12
 		constraints
 			modifier.m.modifiedThing <--> modifiedVerb.m
 			self.m <--> modifiedVerb.m
-
 
 construction NegatedAdverb
 	subcase of Adverb
