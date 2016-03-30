@@ -86,6 +86,8 @@ schema RefRelation
      
 schema RefIdentity
 	subcase of RefRelation
+	roles
+	 temporality: @temporality
 	constraints
 	  //first.ontological-category <--> second.ontological-category
 	  first.referent <--> second.referent

@@ -34,6 +34,17 @@ construction His
          possessor.gender <-- @male
          possessor.referent <-- @antecedent
 
+construction Her
+   subcase of PossessivePronoun
+   form
+      constraints
+         self.f.orth <-- "her"
+   meaning
+      constraints
+         possessor.ontological-category <-- @person
+         possessor.gender <-- @female
+         possessor.referent <-- @antecedent
+
 
 construction My
    subcase of PossessivePronoun

@@ -116,6 +116,7 @@ construction CopularVPNominal // 2/14/13
         self.m.state <--> ri
         ri.first <--> ed.profiledParticipant
         ri.second <--> nominal.m   
+        ri.temporality <-- @bounded
         ri.second.ontological-category <-- @entity
  
 
