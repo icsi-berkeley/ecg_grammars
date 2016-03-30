@@ -33,7 +33,7 @@ construction AccompanimentVP
 		adjunct.kind <-- @animate  // Modification schema	
 		pp.m.participant <--> vp.m.protagonist //ed.profiledParticipant
 		//pp.m.participant <--> ed.profiledParticipant
-		//pp.m.co-participant.ontological-category <-- @agent
+		pp.m.co-participant.ontological-category <-- @agent
 	
 
 
