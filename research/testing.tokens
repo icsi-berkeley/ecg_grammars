@@ -60,7 +60,7 @@ crisis :: EventNoun :: self.m.ontological-category <-- @crisis
 try :: SimpleControlType :: self.m.actionary <-- @try :: self.m.protagonist.ontological-category <-- @sentient
 want :: SimpleControlType :: self.m.actionary <-- @want :: self.m.protagonist.ontological-category <-- @sentient
 house :: ContainerNoun :: self.m.ontological-category <-- @house
-say :: CommunicationType :: self.m.actionary <-- @say :: self.argform <-- NotDiTransitive
+say :: CommunicationType :: self.m.actionary <-- @say :: self.argform <-- NotTransitive
 tell :: CommunicationType :: self.m.actionary <-- @tell :: self.argform <-- DiTransitive
 think :: ThoughtType :: self.m.actionary <-- @think
 member :: PartType :: self.m.ontological-category <-- @member

@@ -32,6 +32,7 @@ construction His
       constraints
          possessor.ontological-category <-- @person
          possessor.gender <-- @male
+         possessor.referent <-- @antecedent
 
 
 construction My
