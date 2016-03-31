@@ -4,10 +4,10 @@ import intransitive
 //import auxiliaries
 //import explicit-causation
 //import passive-transitives
-//import ditransitive 
+import ditransitive 
 //import control
 import copula
-//import mental
+import mental
 //import transitive-test
 
 //import auxiliaries

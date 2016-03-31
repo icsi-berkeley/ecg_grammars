@@ -27,6 +27,18 @@ construction The
          self.m.givenness <-- @uniquelyIdentifiable
 
 
+  construction Another //  another big block, cf. another 2 blocks ~ 2 more blocks
+   subcase of Determiner, Singular
+      form
+      constraints
+         self.f.orth <-- "another"
+   meaning
+      constraints
+         self.m.givenness <-- @distinct 
+         self.m.number <-- @singular
+   		 self.m.bounding <-- @determinate 
+
+// should actually be a Demonstrative?
 construction This
    subcase of Determiner, Singular
    form
@@ -36,7 +48,7 @@ construction This
       constraints
          self.m.givenness <-- @inFocus
 
-
+// should actually be a demonstrative?
 construction These
    subcase of Determiner, Plural
    form
@@ -64,3 +76,12 @@ construction A
 general construction Quantifier // different meaning than Specifier  
 	subcase of Word, HasNominalFeatures
 	meaning: QuantitySchema
+	
+construction Some 
+   subcase of Quantifier 
+     form
+      constraints
+         self.f.orth <-- "some"
+   meaning: QuantitySchema
+      constraints
+         self.m.value <-- @some  // new 8/23/12
