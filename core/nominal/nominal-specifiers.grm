@@ -70,6 +70,34 @@ construction A
          self.m.number <-- @singular
          self.m.bounding <-- @determinate
 
+ 
+ // possession
+ // requires 's tag to have space between it and np, e.g. "the man 's box"
+ /*
+ construction SpecifierPhrasePossessive
+  subcase of NP
+  constructional 
+    	constituents
+	  		np: NP
+      		poss: PossTag		
+      		k: Kernel
+	form
+    	constraints
+			np.f meets poss.f
+	meaning: RD 
+	 evokes Possession as possession
+	 constraints
+	   self.m <--> k.m
+	   self.m <--> possession.possessed
+	   np.m <--> possession.possessor
+	   
+
+construction PossTag
+	subcase of Word
+	form
+      constraints
+         self.f.orth <-- "'s"
+ */
          
 // for unitsNP
 // Numbers added 3/28/14
