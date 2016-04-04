@@ -113,3 +113,13 @@ construction Some
    meaning: QuantitySchema
       constraints
          self.m.value <-- @some  // new 8/23/12
+         
+         
+construction No
+   subcase of Quantifier 
+     form
+      constraints
+         self.f.orth <-- "no"
+   meaning: QuantitySchema
+      constraints
+         self.m.value <-- @no  // new 8/23/12

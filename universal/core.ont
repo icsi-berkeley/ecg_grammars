@@ -88,6 +88,8 @@ DEFS:
 
 (type some sub quantifierValues)
 
+(type no sub quantifierValues)
+
 (type modifierKinds  sub grammaticalValues)
 
 (type comparative  sub modifierKinds )
@@ -572,9 +574,9 @@ DEFS:
 
 (type length sub size) // another scale sub of size
 
-(type speed sub scale )  // fast, faster, etc
+(type speed sub scale scalarValue)  // fast, faster, etc
 
-(type hunger sub scale )
+(type hunger sub scale scalarValue)
 
 (type distanceScale sub scale ) // near far ??comparatives??
 

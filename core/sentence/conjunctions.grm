@@ -11,6 +11,9 @@ general construction Conjunction
 general construction LogicalConjunction
 	subcase of Conjunction
 
+general construction CoordinatingConjunction
+	subcase of Conjunction
+	
 general construction SerialConjunction
    subcase of Conjunction
 
@@ -46,6 +49,12 @@ construction And-Conjunction
 	form
 	  constraints
 	    self.f.orth <-- "and"
+
+construction Or-Conjunction
+	subcase of LogicalConjunction
+	form
+	  constraints
+	    self.f.orth <-- "or"
 	    
 construction That-Subordinating
 	subcase of Conjunction

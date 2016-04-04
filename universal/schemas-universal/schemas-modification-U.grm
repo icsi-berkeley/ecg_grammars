@@ -21,7 +21,7 @@ schema Modification
 schema AdverbModification  // 3/3/13
 	subcase of Modification 
 	roles
-	  modifiedThing: Process
+	  modifiedThing//: Process
 
 schema AdjectiveModification  // modified thing is an RD  
 	subcase of Modification 

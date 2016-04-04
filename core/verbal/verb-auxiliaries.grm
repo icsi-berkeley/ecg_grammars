@@ -57,6 +57,15 @@ construction HaveAuxPast
 	  constraints
 	    pf <--> self.m
 
+construction HaveAuxPresent
+	subcase of HaveAux, PresentTense
+	form
+	    constraints
+	      self.f.orth <-- "has"
+	meaning
+	  constraints
+	    pf <--> self.m
+
 construction HavePlusBeenActive
 	subcase of AuxPlusAux
 	constructional
@@ -70,6 +79,20 @@ construction HavePlusBeenActive
 	   self.m.tense <--> first.m.tense
 	   self.m.progressive <-- @yes
 
+
+construction HavePlusBeenPassive 
+   	subcase of AuxPlusAux, BeAux
+  	constructional
+    	constituents
+     		first: HaveAux 
+     		second: BeAuxPastParticiple // been --> 
+     		// but if we constrain it to just be BeAux, maybe it'll also work with Negation?
+     	constraints
+        	self.expectedVerbForm <-- PastParticiple
+	meaning
+     	constraints	
+			self.m.voice <-- @passive  
+			
 // Be aux: "was", "is", "were"
 general construction BeAux
 	subcase of LexicalAux, bhAux
@@ -264,7 +287,7 @@ construction NegatedBeAux
 
 // the man did not push the box
 construction NegatedDoAux
-	subcase of AuxPlusNot, BeAux
+	subcase of AuxPlusNot, DoAux
 	constructional
 	  constituents
 	    first: DoAux
@@ -272,5 +295,5 @@ construction NegatedDoAux
 
 
 
-
+   
 

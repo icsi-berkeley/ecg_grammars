@@ -72,6 +72,23 @@ construction Kernel-LocPP
        n.m <--> pp.m.trajector
        pp.m.temporality <-- @atemporal
 
+
+ // for general relations
+construction Kernel-RelationPP
+   subcase of Kernel
+   constructional
+     constituents
+       n: Kernel
+       pp: PP-Relation
+   form
+     constraints
+       n.f meets pp.f
+   meaning
+     constraints 
+       self.m <--> n.m
+       n.m <--> pp.m.entity1
+       pp.m.temporality <-- @atemporal
+
 // the man with the coat
 /*
 construction Kernel-AccompanimentPP
