@@ -42,13 +42,14 @@ schema Relation
 	roles
 	  entity1
 	  entity2
-	  entities: RD // if it's among plural entities ? is this necessary?
-	  // this mirrors FrameNet definition
-	  relation
+	  relation: @relation
 	  temporality: @temporality
-   constraints
-     entities.number <-- @plural
-	 
+
+
+schema TernaryRelation
+	subcase of Relation
+	roles
+	  entity3	 
 
 schema SpatialRelation  //???????
 	subcase of Relation

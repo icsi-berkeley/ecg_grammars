@@ -2,22 +2,25 @@
 The idea is that some Problem Solver will receive a "Relation" n-tuple, e.g.:
 {relation: 'between', landmark: {entity1: box1, entity2: box2}}
 And then determine what "between" means in that application domain. */
-
 package core
+import prep-relations
+
+package prep-relations
 import complexNP
 
 general construction RelationPreposition
 	subcase of Preposition
 	meaning: Relation
 
+
 construction Between-Relation
 	subcase of RelationPreposition
 	form
 	 constraints
 	  self.f.orth <-- "between"
-	meaning
+	meaning: TernaryRelation
 	 constraints
-	   self.m.relation <-- "between"
+	   self.m.relation <-- @between
 	   
 
 general construction PP-Relation
@@ -31,9 +34,8 @@ construction PP-RelationComplexNP
 	constructional
 	 constituents
 	  np: ConjNP
-	meaning
+	meaning: TernaryRelation
 	 constraints
-	   self.m.entities <--> np.m
-	   //self.m.entity1 <--> np.first.m
-	   //self.m.entity2 <--> np.second.m
+	   self.m.entity2 <--> np.first.m
+	   self.m.entity3 <--> np.second.m
 	   

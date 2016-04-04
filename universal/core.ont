@@ -288,6 +288,12 @@ DEFS:
 
 (type front sub side)
 
+//Relations (general)
+
+(type relation sub item)
+
+(type between sub relation)
+
 // Distances
 
 (type distance sub space)  // relate this to scales ****
@@ -696,6 +702,8 @@ DEFS:
 
 
 (type supply sub process)
+
+
 
 
 
