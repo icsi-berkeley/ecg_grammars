@@ -1,7 +1,19 @@
 /* Testing package, for prepositions without a clearly defined meaning, e.g. "between".
 The idea is that some Problem Solver will receive a "Relation" n-tuple, e.g.:
 {relation: 'between', landmark: {entity1: box1, entity2: box2}}
-And then determine what "between" means in that application domain. */
+And then determine what "between" means in that application domain. 
+
+The main issue with defining these this way is that they won't unify with the existin locative-PP
+cxns, like CopularVPLocative or S-with-copula-inversion-locPP, e.g.:
+-the box is between box1 and box2
+-is box1 between box2 and box3?
+
+I had to create a special Kernel-RelationPP cxn for things like:
+-the box between box1 and box2
+
+This is really useful only as a test of the notion of an application figuring out the meaning of a relation.
+
+*/
 package core
 import prep-relations
 
