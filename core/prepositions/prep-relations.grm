@@ -14,8 +14,8 @@ I had to create a special Kernel-RelationPP cxn for things like:
 This is really useful only as a test of the notion of an application figuring out the meaning of a relation.
 
 */
-package core
-import prep-relations
+//package core
+//import prep-relations
 
 package prep-relations
 import complexNP
@@ -50,4 +50,20 @@ construction PP-RelationComplexNP
 	 constraints
 	   self.m.entity2 <--> np.first.m
 	   self.m.entity3 <--> np.second.m
-	   
+
+
+ // for general relations
+construction Kernel-RelationPP
+   subcase of Kernel
+   constructional
+     constituents
+       n: Kernel
+       pp: PP-Relation
+   form
+     constraints
+       n.f meets pp.f
+   meaning
+     constraints 
+       self.m <--> n.m
+       n.m <--> pp.m.entity1
+       pp.m.temporality <-- @atemporal	   
