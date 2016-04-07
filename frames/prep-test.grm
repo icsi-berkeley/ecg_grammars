@@ -1,4 +1,6 @@
-package role_prepositions
+//package role_prepositions
+
+package framenet
 
 general construction Area-Preposition
 	subcase of Preposition
@@ -60,298 +62,576 @@ general construction Time-Preposition
 	subcase of Preposition	
 	
 	
-construction while-Preposition
-    subcase of Depictive-Preposition
-    form
-      constraints
-        self.f.orth <-- "while"
-
-
-construction in-Preposition
-    subcase of Place-Preposition, Goal-Preposition, Carrier-Preposition, Depictive-Preposition, Manner-Preposition, Path_shape-Preposition, Time-Preposition, Path-Preposition, Purpose-Preposition, Containing_event-Preposition, Area-Preposition
-    form
-      constraints
-        self.f.orth <-- "in"
-
-
-construction with-Preposition
-    subcase of Depictive-Preposition, Instrument-Preposition
-    form
-      constraints
-        self.f.orth <-- "with"
-
-
-construction away-Preposition
-    subcase of Source-Preposition, Path-Preposition
-    form
-      constraints
-        self.f.orth <-- "away"
-
-
-construction through-Preposition
-    subcase of Path-Preposition, Area-Preposition
-    form
-      constraints
-        self.f.orth <-- "through"
-
-
-construction before-Preposition
+construction before-Preposition-Time_vector
     subcase of Place-Preposition
     form
       constraints
         self.f.orth <-- "before"
+     meaning: Time_vector
 
-
-construction over-Preposition
-    subcase of Place-Preposition, Path-Preposition, Area-Preposition
+construction on-Preposition-Accuracy
+    subcase of Place-Preposition, Direction-Preposition, Goal-Preposition, Path-Preposition, Time-Preposition, Carrier-Preposition, Area-Preposition
     form
       constraints
-        self.f.orth <-- "over"
+        self.f.orth <-- "on"
+     meaning: Accuracy
 
+construction on-Preposition-Being_in_operation
+    subcase of Place-Preposition, Direction-Preposition, Goal-Preposition, Path-Preposition, Time-Preposition, Carrier-Preposition, Area-Preposition
+    form
+      constraints
+        self.f.orth <-- "on"
+     meaning: Being_in_operation
 
-construction against-Preposition
-    subcase of Goal-Preposition, Path-Preposition
+construction on-Preposition-Means
+    subcase of Place-Preposition, Direction-Preposition, Goal-Preposition, Path-Preposition, Time-Preposition, Carrier-Preposition, Area-Preposition
+    form
+      constraints
+        self.f.orth <-- "on"
+     meaning: Means
+
+construction on-Preposition-Non-gradable_proximity
+    subcase of Place-Preposition, Direction-Preposition, Goal-Preposition, Path-Preposition, Time-Preposition, Carrier-Preposition, Area-Preposition
+    form
+      constraints
+        self.f.orth <-- "on"
+     meaning: Non-gradable_proximity
+
+construction on-Preposition-Spatial_contact
+    subcase of Place-Preposition, Direction-Preposition, Goal-Preposition, Path-Preposition, Time-Preposition, Carrier-Preposition, Area-Preposition
+    form
+      constraints
+        self.f.orth <-- "on"
+     meaning: Spatial_contact
+
+construction on-Preposition-Temporal_collocation
+    subcase of Place-Preposition, Direction-Preposition, Goal-Preposition, Path-Preposition, Time-Preposition, Carrier-Preposition, Area-Preposition
+    form
+      constraints
+        self.f.orth <-- "on"
+     meaning: Temporal_collocation
+
+construction on-Preposition-Topic
+    subcase of Place-Preposition, Direction-Preposition, Goal-Preposition, Path-Preposition, Time-Preposition, Carrier-Preposition, Area-Preposition
+    form
+      constraints
+        self.f.orth <-- "on"
+     meaning: Topic
+
+construction at-Preposition-Being_employed
+    subcase of Speed-Preposition, Place-Preposition, Time-Preposition, Area-Preposition
+    form
+      constraints
+        self.f.orth <-- "at"
+     meaning: Being_employed
+
+construction at-Preposition-Locative_relation
+    subcase of Speed-Preposition, Place-Preposition, Time-Preposition, Area-Preposition
+    form
+      constraints
+        self.f.orth <-- "at"
+     meaning: Locative_relation
+
+construction at-Preposition-Spatial_co-location
+    subcase of Speed-Preposition, Place-Preposition, Time-Preposition, Area-Preposition
+    form
+      constraints
+        self.f.orth <-- "at"
+     meaning: Spatial_co-location
+
+construction at-Preposition-Temporal_collocation
+    subcase of Speed-Preposition, Place-Preposition, Time-Preposition, Area-Preposition
+    form
+      constraints
+        self.f.orth <-- "at"
+     meaning: Temporal_collocation
+
+construction with-Preposition-Accompaniment
+    subcase of Depictive-Preposition
+    form
+      constraints
+        self.f.orth <-- "with"
+     meaning: Accompaniment
+
+construction with-Preposition-Have_associated
+    subcase of Depictive-Preposition
+    form
+      constraints
+        self.f.orth <-- "with"
+     meaning: Have_associated
+
+construction against-Preposition-Spatial_contact
+    subcase of Path-Preposition, Goal-Preposition
     form
       constraints
         self.f.orth <-- "against"
+     meaning: Spatial_contact
 
-
-construction to-Preposition
-    subcase of Goal-Preposition, Manner-Preposition, Result-Preposition, Direction-Preposition
+construction against-Preposition-Taking_sides
+    subcase of Path-Preposition, Goal-Preposition
     form
       constraints
-        self.f.orth <-- "to"
+        self.f.orth <-- "against"
+     meaning: Taking_sides
 
-
-construction past-Preposition
-    subcase of Path-Preposition
-    form
-      constraints
-        self.f.orth <-- "past"
-
-
-construction across-Preposition
-    subcase of Path-Preposition
-    form
-      constraints
-        self.f.orth <-- "across"
-
-
-construction underneath-Preposition
-    subcase of Path-Preposition
-    form
-      constraints
-        self.f.orth <-- "underneath"
-
-
-construction along-Preposition
-    subcase of Path-Preposition
-    form
-      constraints
-        self.f.orth <-- "along"
-
-
-construction after-Preposition
-    subcase of Time-Preposition, Direction-Preposition
-    form
-      constraints
-        self.f.orth <-- "after"
-
-
-construction out-Preposition
-    subcase of Path-Preposition, Goal-Preposition, Source-Preposition, Result-Preposition, Direction-Preposition
-    form
-      constraints
-        self.f.orth <-- "out"
-
-
-construction amongst-Preposition
+construction amongst-Preposition-None
     subcase of Place-Preposition
     form
       constraints
         self.f.orth <-- "amongst"
 
 
-construction round-Preposition
-    subcase of Path-Preposition
-    form
-      constraints
-        self.f.orth <-- "round"
-
-
-construction around-Preposition
-    subcase of Path-Preposition, Area-Preposition
-    form
-      constraints
-        self.f.orth <-- "around"
-
-
-construction between-Preposition
-    subcase of Place-Preposition, Path-Preposition
-    form
-      constraints
-        self.f.orth <-- "between"
-
-
-construction into-Preposition
+construction into-Preposition-Goal
     subcase of Goal-Preposition
     form
       constraints
         self.f.orth <-- "into"
+     meaning: Goal
 
-
-construction about-Preposition
-    subcase of Path-Preposition, Area-Preposition
+construction away-Preposition-None
+    subcase of Source-Preposition, Path-Preposition
     form
       constraints
-        self.f.orth <-- "about"
+        self.f.orth <-- "away"
 
 
-construction from-Preposition
-    subcase of Depictive-Preposition, Source-Preposition, Direction-Preposition, Path-Preposition, Initial_state-Preposition
-    form
-      constraints
-        self.f.orth <-- "from"
-
-
-construction up-Preposition
-    subcase of Direction-Preposition, Path-Preposition
-    form
-      constraints
-        self.f.orth <-- "up"
-
-
-construction inside-Preposition
-    subcase of Place-Preposition, Goal-Preposition, Area-Preposition
+construction inside-Preposition-Interior_profile_relation
+    subcase of Area-Preposition, Place-Preposition, Goal-Preposition
     form
       constraints
         self.f.orth <-- "inside"
+     meaning: Interior_profile_relation
+
+construction around-Preposition-Distributed_position
+    subcase of Area-Preposition, Path-Preposition
+    form
+      constraints
+        self.f.orth <-- "around"
+     meaning: Distributed_position
+
+construction around-Preposition-Locative_relation
+    subcase of Area-Preposition, Path-Preposition
+    form
+      constraints
+        self.f.orth <-- "around"
+     meaning: Locative_relation
+
+construction around-Preposition-Proportional_quantity
+    subcase of Area-Preposition, Path-Preposition
+    form
+      constraints
+        self.f.orth <-- "around"
+     meaning: Proportional_quantity
+
+construction around-Preposition-Surrounding
+    subcase of Area-Preposition, Path-Preposition
+    form
+      constraints
+        self.f.orth <-- "around"
+     meaning: Surrounding
+
+construction around-Preposition-Temporal_collocation
+    subcase of Area-Preposition, Path-Preposition
+    form
+      constraints
+        self.f.orth <-- "around"
+     meaning: Temporal_collocation
+
+construction under-Preposition-Non-gradable_proximity
+    subcase of Path-Preposition
+    form
+      constraints
+        self.f.orth <-- "under"
+     meaning: Non-gradable_proximity
+
+construction under-Preposition-Proportional_quantity
+    subcase of Path-Preposition
+    form
+      constraints
+        self.f.orth <-- "under"
+     meaning: Proportional_quantity
+
+construction over-Preposition-Distributed_position
+    subcase of Path-Preposition, Area-Preposition, Place-Preposition
+    form
+      constraints
+        self.f.orth <-- "over"
+     meaning: Distributed_position
+
+construction over-Preposition-Locative_relation
+    subcase of Path-Preposition, Area-Preposition, Place-Preposition
+    form
+      constraints
+        self.f.orth <-- "over"
+     meaning: Locative_relation
+
+construction over-Preposition-Non-gradable_proximity
+    subcase of Path-Preposition, Area-Preposition, Place-Preposition
+    form
+      constraints
+        self.f.orth <-- "over"
+     meaning: Non-gradable_proximity
+
+construction over-Preposition-Proportional_quantity
+    subcase of Path-Preposition, Area-Preposition, Place-Preposition
+    form
+      constraints
+        self.f.orth <-- "over"
+     meaning: Proportional_quantity
+
+construction towards-Preposition-None
+    subcase of Path-Preposition, Goal-Preposition, Direction-Preposition
+    form
+      constraints
+        self.f.orth <-- "towards"
 
 
-construction until-Preposition
+construction until-Preposition-Time_vector
     subcase of Duration-Preposition
     form
       constraints
         self.f.orth <-- "until"
+     meaning: Time_vector
 
-
-construction down-Preposition
-    subcase of Path-Preposition
+construction after-Preposition-Relative_time
+    subcase of Time-Preposition, Direction-Preposition
     form
       constraints
-        self.f.orth <-- "down"
+        self.f.orth <-- "after"
+     meaning: Relative_time
 
+construction after-Preposition-Time_vector
+    subcase of Time-Preposition, Direction-Preposition
+    form
+      constraints
+        self.f.orth <-- "after"
+     meaning: Time_vector
 
-construction via-Preposition
+construction up-Preposition-Locative_relation
+    subcase of Path-Preposition, Direction-Preposition
+    form
+      constraints
+        self.f.orth <-- "up"
+     meaning: Locative_relation
+
+construction via-Preposition-None
     subcase of Path-Preposition
     form
       constraints
         self.f.orth <-- "via"
 
 
-construction as-Preposition
-    subcase of Time-Preposition
+construction past-Preposition-Locative_relation
+    subcase of Path-Preposition
     form
       constraints
-        self.f.orth <-- "as"
+        self.f.orth <-- "past"
+     meaning: Locative_relation
 
-
-
-construction below-Preposition
-    subcase of Place-Preposition
+construction through-Preposition-Time_vector
+    subcase of Path-Preposition, Area-Preposition
     form
       constraints
-        self.f.orth <-- "below"
-        
-construction toward-Preposition
-    subcase of Goal-Preposition, Path-Preposition
+        self.f.orth <-- "through"
+     meaning: Time_vector
+
+construction along-Preposition-Locative_relation
+    subcase of Path-Preposition
+    form
+      constraints
+        self.f.orth <-- "along"
+     meaning: Locative_relation
+
+construction along-Preposition-Non-gradable_proximity
+    subcase of Path-Preposition
+    form
+      constraints
+        self.f.orth <-- "along"
+     meaning: Non-gradable_proximity
+
+construction across-Preposition-Distributed_position
+    subcase of Path-Preposition
+    form
+      constraints
+        self.f.orth <-- "across"
+     meaning: Distributed_position
+
+construction to-Preposition-Goal
+    subcase of Goal-Preposition, Manner-Preposition, Result-Preposition, Direction-Preposition
+    form
+      constraints
+        self.f.orth <-- "to"
+     meaning: Goal
+
+construction to-Preposition-Locative_relation
+    subcase of Goal-Preposition, Manner-Preposition, Result-Preposition, Direction-Preposition
+    form
+      constraints
+        self.f.orth <-- "to"
+     meaning: Locative_relation
+
+construction without-Preposition-Negation
+    subcase of Depictive-Preposition
+    form
+      constraints
+        self.f.orth <-- "without"
+     meaning: Negation
+
+construction like-Preposition-Similarity
+    subcase of Manner-Preposition
+    form
+      constraints
+        self.f.orth <-- "like"
+     meaning: Similarity
+
+construction from-Preposition-Evidence
+    subcase of Source-Preposition, Depictive-Preposition, Direction-Preposition, Path-Preposition
+    form
+      constraints
+        self.f.orth <-- "from"
+     meaning: Evidence
+
+construction from-Preposition-Origin
+    subcase of Source-Preposition, Depictive-Preposition, Direction-Preposition, Path-Preposition
+    form
+      constraints
+        self.f.orth <-- "from"
+     meaning: Origin
+
+construction from-Preposition-Time_vector
+    subcase of Source-Preposition, Depictive-Preposition, Direction-Preposition, Path-Preposition
+    form
+      constraints
+        self.f.orth <-- "from"
+     meaning: Time_vector
+
+construction off-Preposition-Accuracy
+    subcase of Source-Preposition
+    form
+      constraints
+        self.f.orth <-- "off"
+     meaning: Accuracy
+
+construction off-Preposition-Being_in_operation
+    subcase of Source-Preposition
+    form
+      constraints
+        self.f.orth <-- "off"
+     meaning: Being_in_operation
+
+construction off-Preposition-Locative_relation
+    subcase of Source-Preposition
+    form
+      constraints
+        self.f.orth <-- "off"
+     meaning: Locative_relation
+
+construction off-Preposition-Spatial_contact
+    subcase of Source-Preposition
+    form
+      constraints
+        self.f.orth <-- "off"
+     meaning: Spatial_contact
+
+construction in-Preposition-Expected_location_of_person
+    subcase of Carrier-Preposition, Goal-Preposition, Manner-Preposition, Path-Preposition, Time-Preposition, Place-Preposition, Purpose-Preposition, Area-Preposition, Depictive-Preposition, Containing_event-Preposition, Path_shape-Preposition
+    form
+      constraints
+        self.f.orth <-- "in"
+     meaning: Expected_location_of_person
+
+construction in-Preposition-Fields
+    subcase of Carrier-Preposition, Goal-Preposition, Manner-Preposition, Path-Preposition, Time-Preposition, Place-Preposition, Purpose-Preposition, Area-Preposition, Depictive-Preposition, Containing_event-Preposition, Path_shape-Preposition
+    form
+      constraints
+        self.f.orth <-- "in"
+     meaning: Fields
+
+construction in-Preposition-Interior_profile_relation
+    subcase of Carrier-Preposition, Goal-Preposition, Manner-Preposition, Path-Preposition, Time-Preposition, Place-Preposition, Purpose-Preposition, Area-Preposition, Depictive-Preposition, Containing_event-Preposition, Path_shape-Preposition
+    form
+      constraints
+        self.f.orth <-- "in"
+     meaning: Interior_profile_relation
+
+construction in-Preposition-Medium
+    subcase of Carrier-Preposition, Goal-Preposition, Manner-Preposition, Path-Preposition, Time-Preposition, Place-Preposition, Purpose-Preposition, Area-Preposition, Depictive-Preposition, Containing_event-Preposition, Path_shape-Preposition
+    form
+      constraints
+        self.f.orth <-- "in"
+     meaning: Medium
+
+construction in-Preposition-Taking_time
+    subcase of Carrier-Preposition, Goal-Preposition, Manner-Preposition, Path-Preposition, Time-Preposition, Place-Preposition, Purpose-Preposition, Area-Preposition, Depictive-Preposition, Containing_event-Preposition, Path_shape-Preposition
+    form
+      constraints
+        self.f.orth <-- "in"
+     meaning: Taking_time
+
+construction in-Preposition-Temporal_collocation
+    subcase of Carrier-Preposition, Goal-Preposition, Manner-Preposition, Path-Preposition, Time-Preposition, Place-Preposition, Purpose-Preposition, Area-Preposition, Depictive-Preposition, Containing_event-Preposition, Path_shape-Preposition
+    form
+      constraints
+        self.f.orth <-- "in"
+     meaning: Temporal_collocation
+
+construction in-Preposition-Wearing
+    subcase of Carrier-Preposition, Goal-Preposition, Manner-Preposition, Path-Preposition, Time-Preposition, Place-Preposition, Purpose-Preposition, Area-Preposition, Depictive-Preposition, Containing_event-Preposition, Path_shape-Preposition
+    form
+      constraints
+        self.f.orth <-- "in"
+     meaning: Wearing
+
+construction toward-Preposition-None
+    subcase of Path-Preposition, Goal-Preposition
     form
       constraints
         self.f.orth <-- "toward"
 
 
-construction of-Preposition
-    subcase of Direction-Preposition, Path-Preposition
+construction out-Preposition-Expected_location_of_person
+    subcase of Direction-Preposition, Source-Preposition, Result-Preposition, Path-Preposition, Goal-Preposition
     form
       constraints
-        self.f.orth <-- "of"
+        self.f.orth <-- "out"
+     meaning: Expected_location_of_person
 
-
-construction on-Preposition
-    subcase of Place-Preposition, Goal-Preposition, Carrier-Preposition, Time-Preposition, Direction-Preposition, Path-Preposition, Area-Preposition
+construction out-Preposition-Locative_relation
+    subcase of Direction-Preposition, Source-Preposition, Result-Preposition, Path-Preposition, Goal-Preposition
     form
       constraints
-        self.f.orth <-- "on"
+        self.f.orth <-- "out"
+     meaning: Locative_relation
 
-
-construction at-Preposition
-    subcase of Place-Preposition, Time-Preposition, Speed-Preposition, Area-Preposition
+construction round-Preposition-None
+    subcase of Path-Preposition
     form
       constraints
-        self.f.orth <-- "at"
+        self.f.orth <-- "round"
 
 
-construction for-Preposition
-    subcase of Duration-Preposition, Time-Preposition, Purpose-Preposition
+construction between-Preposition-Interior_profile_relation
+    subcase of Path-Preposition, Place-Preposition
     form
       constraints
-        self.f.orth <-- "for"
+        self.f.orth <-- "between"
+     meaning: Interior_profile_relation
 
-
-construction towards-Preposition
-    subcase of Goal-Preposition, Direction-Preposition, Path-Preposition
-    form
-      constraints
-        self.f.orth <-- "towards"
-
-
-construction like-Preposition
-    subcase of Manner-Preposition
-    form
-      constraints
-        self.f.orth <-- "like"
-
-
-construction off-Preposition
-    subcase of Source-Preposition
-    form
-      constraints
-        self.f.orth <-- "off"
-
-
-construction by-Preposition
-    subcase of Carrier-Preposition, Time-Preposition, Path-Preposition
-    form
-      constraints
-        self.f.orth <-- "by"
-
-
-construction alongside-Preposition
-    subcase of Place-Preposition
-    form
-      constraints
-        self.f.orth <-- "alongside"
-
-
-construction onto-Preposition
+construction onto-Preposition-None
     subcase of Goal-Preposition
     form
       constraints
         self.f.orth <-- "onto"
 
 
-construction under-Preposition
+construction for-Preposition-Duration_relation
+    subcase of Purpose-Preposition, Duration-Preposition, Time-Preposition
+    form
+      constraints
+        self.f.orth <-- "for"
+     meaning: Duration_relation
+
+construction for-Preposition-Taking_sides
+    subcase of Purpose-Preposition, Duration-Preposition, Time-Preposition
+    form
+      constraints
+        self.f.orth <-- "for"
+     meaning: Taking_sides
+
+construction down-Preposition-Change_position_on_a_scale
     subcase of Path-Preposition
     form
       constraints
-        self.f.orth <-- "under"
+        self.f.orth <-- "down"
+     meaning: Change_position_on_a_scale
+
+construction down-Preposition-Locative_relation
+    subcase of Path-Preposition
+    form
+      constraints
+        self.f.orth <-- "down"
+     meaning: Locative_relation
+
+construction of-Preposition-Age
+    subcase of Direction-Preposition, Path-Preposition
+    form
+      constraints
+        self.f.orth <-- "of"
+     meaning: Age
+
+construction of-Preposition-Origin
+    subcase of Direction-Preposition, Path-Preposition
+    form
+      constraints
+        self.f.orth <-- "of"
+     meaning: Origin
+
+construction of-Preposition-Partitive
+    subcase of Direction-Preposition, Path-Preposition
+    form
+      constraints
+        self.f.orth <-- "of"
+     meaning: Partitive
+
+construction by-Preposition-Means
+    subcase of Carrier-Preposition, Path-Preposition, Time-Preposition
+    form
+      constraints
+        self.f.orth <-- "by"
+     meaning: Means
+
+construction by-Preposition-Non-gradable_proximity
+    subcase of Carrier-Preposition, Path-Preposition, Time-Preposition
+    form
+      constraints
+        self.f.orth <-- "by"
+     meaning: Non-gradable_proximity
+
+construction alongside-Preposition-None
+    subcase of Place-Preposition
+    form
+      constraints
+        self.f.orth <-- "alongside"
 
 
-construction without-Preposition
+construction underneath-Preposition-Non-gradable_proximity
+    subcase of Path-Preposition
+    form
+      constraints
+        self.f.orth <-- "underneath"
+     meaning: Non-gradable_proximity
+
+construction about-Preposition-Proportional_quantity
+    subcase of Path-Preposition, Area-Preposition
+    form
+      constraints
+        self.f.orth <-- "about"
+     meaning: Proportional_quantity
+
+construction about-Preposition-Topic
+    subcase of Path-Preposition, Area-Preposition
+    form
+      constraints
+        self.f.orth <-- "about"
+     meaning: Topic
+
+construction as-Preposition-Performers_and_roles
+    subcase of Time-Preposition
+    form
+      constraints
+        self.f.orth <-- "as"
+     meaning: Performers_and_roles
+
+construction while-Preposition-None
     subcase of Depictive-Preposition
     form
       constraints
-        self.f.orth <-- "without"
+        self.f.orth <-- "while"
+
+
+
+
+
 
 
 

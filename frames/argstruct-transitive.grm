@@ -1,3 +1,5 @@
+package frames
+
 schema A123
 	roles
 	  a1
