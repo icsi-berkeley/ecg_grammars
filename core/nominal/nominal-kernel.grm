@@ -113,7 +113,7 @@ general construction Kernel-ModifierPP
 	subcase of Kernel
 	constructional
 	  constituents
-	    k: Kernel
+	    k: Nominal
 	    mod: ModifierPP
 	form
 	  constraints

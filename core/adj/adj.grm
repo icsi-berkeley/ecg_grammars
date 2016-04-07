@@ -41,7 +41,7 @@ general construction ScalarAdjective
    meaning: ScalarModifier
    
 construction ScalarAdjectiveType
-   subcase of PropertyAdjective, GeneralTypeCxn
+   subcase of GeneralTypeCxn, ScalarAdjective
    meaning: ScalarModifier
      constraints
         self.m.value <-- @scalarValue //@propValue

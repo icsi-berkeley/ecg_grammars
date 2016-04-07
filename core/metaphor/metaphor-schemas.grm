@@ -1,14 +1,100 @@
 /*
 metaphor package
 
-Currently empty. We are still working on a "core" analysis. 
+NOTES: 4/7/16 (ST) 
+We are still working on a "core" analysis. 
 Competing analyses:
 (1) "MetaphorSchema" + MetaphoricalRD
-(2) "Metahpor"
+(2) "Metaphor"
 
 (1) reconstrues NPs metaphorically, so they fit existing semantic constraints.
 (2) focuses more on role bindings, etc., and identifying the larger metaphor family.
 
-*/
+(1) works quite nicely for entity-based metaphors. The disadvantage is that it might miss the overall
+metaphor being evoked in a phrase by conforming the RD's ontological-category to fit the existing grammar. 
+E.g., "crime infected the city": (1) would reconstrue "social problems" as "disease", and the overall meaning
+would be one of Infecting (e.g., the source domain). (2) would have the overall meaning be "Social Harm", but show
+that this is being profiled as "Infecting". 
 
-package metaphor
+In terms of the actual "meaning", I think arguments can be made for both sides. Certainly, simulation semantics
+suggests that we simulate the target in terms of the source. However, this doesn't necessarily suggest (to me, at least) that
+the event-process should be the source (Infecting). The viewpoint of (1) is essentially to show the SemSpec in terms of the source
+domain, with RDs reconstrued to fit source domain constraints; the viewpoint of (2) is to show the SemSpec in terms of the target
+domain, with the source domain profiled and with metaphorical mappings laid out between these domains.
+
+*/
+package core
+//package metaphor
+
+// reconstrues an RD's ontological-category to the source domain
+schema MetaphoricalRD  
+	subcase of RD  // maybe others as well
+	roles
+		met: MetaphorSchema  //name, source, target  
+		
+		
+schema MetaphorSchema // in progress  
+	roles
+	  name: @metaphors 
+	  source: @entity
+	  target: @entity 
+	  
+schema IdeasAsPhysicalEntities
+	subcase of MetaphorSchema
+	roles
+	  source: @idea
+	  target: @physicalEntity
+
+	  
+general construction MetaphoricalNominal  // 10/26/12
+	subcase of Nominal
+    constructional
+        constituents
+	       core: Nominal
+    meaning:  MetaphoricalRD // met: MetaphorSchema
+        evokes MetaphorSchema as met
+        constraints   
+		  self.m.number <--> core.m.number
+    	  self.m.bounding <--> core.m.bounding  // maybe more roles
+ 		  self.m.scale <--> core.m.scale
+ 		  self.m.amount <--> core.m.amount
+ 		  self.m.givenness <--> core.m.givenness
+ 		  self.m.met <--> met
+ 		  
+ construction NominalTimeAsLocation
+ 	subcase of MetaphoricalNominal
+ 	meaning
+ 	 constraints
+ 	   self.m.ontological-category <-- @location
+ 	   core.m.ontological-category <-- @time
+ 	   
+ 	   
+ construction NominalIdeaAsObject
+ 	subcase of MetaphoricalNominal
+ 	meaning
+ 	 evokes IdeasAsPhysicalEntities as met
+ 	 constraints
+ 	   self.m.ontological-category <-- @physicalEntity
+ 	   core.m.ontological-category <-- @idea 	   
+ 	   
+ 
+ 	   
+ general construction MetaphoricalScaleModification
+ 	subcase of ScalarAdjective
+ 	constructional
+ 	 constituents
+ 	  ap: ScalarAdjective
+    meaning
+     constraints
+       self.m.domain <-- @abstract
+       ap.m.domain <-- @physicalEntity
+       self.m.value <--> ap.m.value
+       self.m.scale <--> ap.m.scale
+       // self.m.property ???
+
+construction MetaphorImportanceIsSize
+	subcase of MetaphoricalScaleModification
+	meaning
+	 constraints
+	   ap.m.property <-- @size
+	   //self.m.property <-- @

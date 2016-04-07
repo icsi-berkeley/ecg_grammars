@@ -82,6 +82,21 @@ construction SerialAdverb
    	constraints
 		self.m <--> second.m
 		first.m.modifiedThing <--> second.m  
+
+// Intensified adjective
+construction IntensifiedAjective
+   subcase of Adjective 
+   	constructional 
+   		constituents
+          	first: Intensifier
+	    	second: Adjective
+	form
+      constraints
+       	first.f meets second.f
+   meaning
+   	constraints
+		self.m <--> second.m
+		first.m.modifiedThing <--> second.m  
 		
 construction CoordinatedAdverb
    subcase of ComplexAdverbial 

@@ -96,3 +96,5 @@ ball :: ArtifactNoun :: self.m.ontological-category <-- @ball
 go :: SelfMotionType :: self.m.actionary <-- @go
 #scale :: InstrumentNoun :: instrument.actionary <-- @weigh :: self.m.ontological-category <-- @scale_noun
 shoe :: InstrumentNoun :: self.m.ontological-category <-- @shoe :: instrument.actionary <-- @move
+idea :: AbstractNoun :: self.m.ontological-category <-- @idea
+problem :: AbstractNoun :: self.m.ontological-category <-- @problem

@@ -18,6 +18,8 @@ DEFS:
 
 (type sharedEnumeration sub enumeration shared) // if needed
 
+
+
 (type entity sub item)  // possibly shared items; maybe all entities are shared ????
 
 (type physicalEntity sub entity location)  // 8/28/15: just physical in SUMO
@@ -211,6 +213,11 @@ DEFS:
 (type wh-question sub mood)
 
 (type yn-question sub mood)
+
+
+// metaphors
+
+(type metaphors sub sharedEnumeration)
 
 // END of internal Analyzer items  ************************
 
