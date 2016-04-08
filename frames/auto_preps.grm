@@ -1,3 +1,5 @@
+package frame-lu
+
 construction about-Proportional_quantity
     subcase of Preposition
     form
@@ -271,12 +273,7 @@ construction beyond-Locative_relation
       self.f.orth <-- "beyond"
     meaning: Locative_relation
 
-construction by-Means
-    subcase of Preposition
-    form
-    constraints
-      self.f.orth <-- "by"
-    meaning: Means
+
 
 construction by-Non-gradable_proximity
     subcase of Preposition

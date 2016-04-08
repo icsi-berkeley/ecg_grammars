@@ -2,6 +2,8 @@ package robots
 import active-transitives
 import copula
 import intransitive
+import ditransitive
+import mental
 
 
 

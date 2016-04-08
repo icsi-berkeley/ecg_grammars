@@ -18605,9 +18605,9 @@ schema Motion
     subcase of Event 
     roles 
        Theme: Entity 
-       Source 
-       Path 
-       Goal 
+       Source: Trajector-Landmark
+       Path: Trajector-Landmark
+       Goal: Trajector-Landmark
        Area 
        Distance 
        Speed 

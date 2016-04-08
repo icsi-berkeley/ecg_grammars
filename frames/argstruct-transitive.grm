@@ -42,6 +42,13 @@ general construction ActiveTransitive
 	    
 import auxiliaries
 
+construction by-Means
+    subcase of Preposition
+    form
+    constraints
+      self.f.orth <-- "by"
+    meaning: Means
+
 construction ByAgentPhrase
 	subcase of PP
 	constructional

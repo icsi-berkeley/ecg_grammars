@@ -88,6 +88,7 @@ construction InverseConditional
 	  constraints
 	  	core.f meets cond.f
 	    cond.f meets bool.f
+	    bool.f before else.f
 	meaning
 	  constraints
 	   	self.m.ed1 <--> bool.m

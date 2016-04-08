@@ -23,14 +23,15 @@ domain, with RDs reconstrued to fit source domain constraints; the viewpoint of 
 domain, with the source domain profiled and with metaphorical mappings laid out between these domains.
 
 */
-package core
-//package metaphor
+//package core
+package metaphor
 
 // reconstrues an RD's ontological-category to the source domain
 schema MetaphoricalRD  
 	subcase of RD  // maybe others as well
 	roles
 		met: MetaphorSchema  //name, source, target  
+		target: RD // target RD 
 		
 		
 schema MetaphorSchema // in progress  
@@ -60,6 +61,7 @@ general construction MetaphoricalNominal  // 10/26/12
  		  self.m.amount <--> core.m.amount
  		  self.m.givenness <--> core.m.givenness
  		  self.m.met <--> met
+ 		  self.m.target <--> core.m // testing, this will help specializer
  		  
  construction NominalTimeAsLocation
  	subcase of MetaphoricalNominal
@@ -75,7 +77,7 @@ general construction MetaphoricalNominal  // 10/26/12
  	 evokes IdeasAsPhysicalEntities as met
  	 constraints
  	   self.m.ontological-category <-- @physicalEntity
- 	   core.m.ontological-category <-- @idea 	   
+ 	   core.m.ontological-category <-- @idea   	   
  	   
  
  	   

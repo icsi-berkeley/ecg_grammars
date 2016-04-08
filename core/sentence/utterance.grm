@@ -180,7 +180,7 @@ construction ConditionalDeclarativeUtterance
 	constructional
 	   constituents
 	     core: ConditionalDeclarative
-	     optional end: EMark
+	     end: EMark
 	form
 	   constraints
 	      core.f meets end.f

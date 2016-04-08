@@ -1,6 +1,6 @@
 //package role_prepositions
 
-package framenet
+package frames
 
 general construction Area-Preposition
 	subcase of Preposition
