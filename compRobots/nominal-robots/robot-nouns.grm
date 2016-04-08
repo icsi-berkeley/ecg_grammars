@@ -1,6 +1,6 @@
 package robots
 import core
-import noun-noun
+//import noun-noun
 
 	
 construction Side
@@ -15,7 +15,7 @@ construction Side
 	      self.m.ontological-category <-- @side
 	      self.m.extensions <--> pw
 	      
-
+/*
 construction Kitchen
 	subcase of Noun
 	form
@@ -43,7 +43,7 @@ construction Kitchen_Counter
    meaning: RD
      constraints
        self.m.ontological-category <-- @counter
-
+*/
 
     
 		      

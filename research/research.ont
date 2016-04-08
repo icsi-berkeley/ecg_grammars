@@ -14,9 +14,9 @@ DEFS:
 
 (type price-units sub measure price)
 
-(type pound-weight sub weightValue measure)
+(type pound-weight sub weightValue weight measure)
 
-(type pound-price sub price-units)
+(type pound-price sub price-units price)
 
 (type grasp sub establishhold)
 
