@@ -135,4 +135,11 @@ construction GroupType
 	meaning: RD
 	 constraints
 	   self.m.ontological-category <-- @group	    
-		        
+
+
+// "the economy", "the government", "the business"
+construction InstitutionType
+	subcase of NounType
+	meaning: RD
+	 constraints
+	   self.m.ontological-category <-- @institution	 		        

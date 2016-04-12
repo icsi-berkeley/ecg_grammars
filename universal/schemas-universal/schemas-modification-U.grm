@@ -52,5 +52,7 @@ schema ScalarModifier
    	roles
      	  scale: Scale
 	 constraints 
+	   scale.value <--> value
+	   scale.measure <--> property
 
 	

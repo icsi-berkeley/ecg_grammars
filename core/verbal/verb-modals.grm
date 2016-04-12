@@ -1,4 +1,4 @@
-package core
+package modals
 
 general construction Modal
    subcase of HasVerbFeatures

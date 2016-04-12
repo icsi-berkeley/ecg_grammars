@@ -98,3 +98,5 @@ go :: SelfMotionType :: self.m.actionary <-- @go
 shoe :: InstrumentNoun :: self.m.ontological-category <-- @shoe :: instrument.actionary <-- @move
 idea :: AbstractNoun :: self.m.ontological-category <-- @idea
 problem :: AbstractNoun :: self.m.ontological-category <-- @problem
+stumble :: SelfMotionType :: self.m.actionary <-- @stumble
+economy :: InstitutionType :: self.m.ontological-category <-- @economy

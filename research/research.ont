@@ -4,6 +4,19 @@
 
 DEFS:
 
+// metaphor? 
+
+(type economy sub institution)
+
+(type InstitutionAsPerson sub metaphors)
+
+(type IdeaAsPhysicalEntity sub metaphors)
+
+(type ImportanceIsSize sub metaphors)
+
+(type importance sub scale)
+
+
 // tokens
 
 (type brown sub colorValue  shared)
@@ -38,13 +51,9 @@ DEFS:
 
 (type cost_predication sub process shared stasis)
 
-
-
 (type grow sub scalechange)
 
 (type shrink sub scalechange)
-
-
 
 (type john sub person)
 
@@ -59,8 +68,6 @@ DEFS:
 (type storm sub eventTop naturalForce shared)
 
 (type crisis sub eventTop  shared)
-
-
 
 (type house sub container artifact shared)
 
@@ -113,5 +120,10 @@ DEFS:
 (type scale_noun sub instrument  shared)
 
 (type shoe sub instrument moveable artifact shared)
+
+(type stumble sub motion  shared)
+
+
+
 
 INSTS:

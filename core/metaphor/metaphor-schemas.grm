@@ -22,9 +22,31 @@ the event-process should be the source (Infecting). The viewpoint of (1) is esse
 domain, with RDs reconstrued to fit source domain constraints; the viewpoint of (2) is to show the SemSpec in terms of the target
 domain, with the source domain profiled and with metaphorical mappings laid out between these domains.
 
+
+MODIFICATION:
+-I am also testing metaphorical modification. This could potentially be done in a similar way as the MetaphoricalRD, though it will
+require more schemas, for each "level" of modifiation - though potentially just ScalarModifier.
+-Like MetaphoricalRD, it evokes a MetaphorSchema. What's neat, however, is that you can bind the source to one property,
+and the target to another.
+-The drawback is in the "domain" constraints; since the metaphor just contains ont-values, you can't really restrict the domain
+that @importance modifies. (Though maybe you don't want to: ideas and entities can both be important. It is in the metaphor cxn
+that we want to restrict the modifiedThing to be @abstract, and thus being construed with something that's usually modifying
+a @physicalEntity causes it to use the metaphorical-modification...)
+-Clearly, it's not yet clear the best way forward.
+
+
+
+Consider the sentence: "he stumbled on the idea". The MetaphoricalRD approach would pick up that "ideas are physicalEntities",
+but not that "being confused/uncertain about an idea is stumbling on an object."
+
+Or: "the idea ran through his mind". Here, there are three potential metaphors:
+-idea as entity
+-idea surfacing in mind as running through container
+-mind as container
+
 */
-//package core
-package metaphor
+package core
+//package metaphor
 
 // reconstrues an RD's ontological-category to the source domain
 schema MetaphoricalRD  
@@ -32,19 +54,40 @@ schema MetaphoricalRD
 	roles
 		met: MetaphorSchema  //name, source, target  
 		target: RD // target RD 
+	constraints
+	   met.source <--> ontological-category
+	   met.target <--> target.ontological-category  // why does this cause an error??
 		
 		
 schema MetaphorSchema // in progress  
 	roles
 	  name: @metaphors 
-	  source: @entity
-	  target: @entity 
+	  source //: @entity
+	  target //: @entity 
+ 
+schema ImportanceIsSize_Metaphor // in progress  
+	subcase of MetaphorSchema
+	roles
+	  source: @size
+	  target: @importance
+   constraints
+      name <-- @ImportanceIsSize 
 	  
 schema IdeasAsPhysicalEntities
 	subcase of MetaphorSchema
 	roles
 	  source: @idea
 	  target: @physicalEntity
+	constraints
+	  name <-- @IdeaAsPhysicalEntity
+
+schema InstitutionAsPerson
+	subcase of MetaphorSchema
+	constraints
+	  name <-- @InstitutionAsPerson
+	  target <-- @institution
+	  source <-- @person
+
 
 	  
 general construction MetaphoricalNominal  // 10/26/12
@@ -63,12 +106,15 @@ general construction MetaphoricalNominal  // 10/26/12
  		  self.m.met <--> met
  		  self.m.target <--> core.m // testing, this will help specializer
  		  
- construction NominalTimeAsLocation
+
+ 
+  construction InstitutionAsPerson
  	subcase of MetaphoricalNominal
  	meaning
+ 	 evokes InstitutionAsPerson as met
  	 constraints
- 	   self.m.ontological-category <-- @location
- 	   core.m.ontological-category <-- @time
+ 	   self.m.ontological-category <-- @person
+ 	   core.m.ontological-category <-- @institution
  	   
  	   
  construction NominalIdeaAsObject
@@ -79,24 +125,52 @@ general construction MetaphoricalNominal  // 10/26/12
  	   self.m.ontological-category <-- @physicalEntity
  	   core.m.ontological-category <-- @idea   	   
  	   
+
  
+schema MetaphoricalModification
+ 	subcase of Modification 
+ 	roles
+ 	  met: MetaphorSchema
+ 
+ schema MetaphoricalPropertyModification
+ 	subcase of MetaphoricalModification, PropertyModifier 
+
+ 
+ schema MetaphoricalScalarModification
+ 	subcase of MetaphoricalPropertyModification, ScalarModifier
+
  	   
- general construction MetaphoricalScaleModification
- 	subcase of ScalarAdjective
+ general construction MetaphoricalPropertyModification_Cxn
+ 	subcase of Adjective
  	constructional
  	 constituents
- 	  ap: ScalarAdjective
-    meaning
+ 	  ap: PropertyAdjective
+    meaning: MetaphoricalPropertyModification
+     evokes MetaphorSchema as met
      constraints
+       self.m.met <--> met
        self.m.domain <-- @abstract
        ap.m.domain <-- @physicalEntity
-       self.m.value <--> ap.m.value
-       self.m.scale <--> ap.m.scale
+       self.m.domain <--> self.m.modifiedThing.ontological-category
+       //self.m.value <--> ap.m.value
+       //self.m.scale <--> ap.m.scale
        // self.m.property ???
 
-construction MetaphorImportanceIsSize
-	subcase of MetaphoricalScaleModification
-	meaning
+construction MetaphoricalScalarModification_Cxn
+	subcase of MetaphoricalPropertyModification_Cxn //, ScalarAdjective
+	constructional
+	 constituents
+	   ap: ScalarAdjective
+	meaning: MetaphoricalScalarModification
+	 evokes ImportanceIsSize_Metaphor as met
 	 constraints
-	   ap.m.property <-- @size
-	   //self.m.property <-- @
+	   //ap.m.property <-- @size
+	   self.m.value <--> ap.m.value
+	   //self.m.scale <--> ap.m.scale
+	   self.m.property <--> met.target
+	   ap.m.property <--> met.source
+	   
+	   
+	   
+	   
+
