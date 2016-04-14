@@ -4,7 +4,7 @@
 
 DEFS:
 
-// metaphor? 
+// metaphor?
 
 (type economy sub institution)
 
@@ -12,10 +12,21 @@ DEFS:
 
 (type IdeaAsPhysicalEntity sub metaphors)
 
-(type ImportanceIsSize sub metaphors)
+(type ScaleMetaphor sub metaphors)
+
+(type ImportanceIsSize sub ScaleMetaphor)
+
+(type ImportanceIsWeight sub ScaleMetaphor)
 
 (type importance sub scale)
 
+(type StatesAreLocations sub metaphors)
+
+(type temperature sub scale)
+
+(type affection sub scale)
+
+(type AffectionIsWarmth sub metaphors)
 
 // tokens
 
@@ -123,7 +134,8 @@ DEFS:
 
 (type stumble sub motion  shared)
 
+(type depression sub abstractState  shared)
 
-
+(type poverty sub abstractState  shared)
 
 INSTS:

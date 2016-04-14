@@ -47,31 +47,45 @@ Or: "the idea ran through his mind". Here, there are three potential metaphors:
 */
 package core
 //package metaphor
-
-// reconstrues an RD's ontological-category to the source domain
-schema MetaphoricalRD  
-	subcase of RD  // maybe others as well
-	roles
-		met: MetaphorSchema  //name, source, target  
-		target: RD // target RD 
-	constraints
-	   met.source <--> ontological-category
-	   met.target <--> target.ontological-category  // why does this cause an error??
-		
 		
 schema MetaphorSchema // in progress  
 	roles
 	  name: @metaphors 
 	  source //: @entity
 	  target //: @entity 
+
+
+schema Scale_Metaphor // in progress  
+	subcase of MetaphorSchema
+	roles
+	  source: @scale
+	  target: @scale
+   constraints
+      name <-- @ScaleMetaphor 
  
 schema ImportanceIsSize_Metaphor // in progress  
-	subcase of MetaphorSchema
+	subcase of Scale_Metaphor
 	roles
 	  source: @size
 	  target: @importance
    constraints
       name <-- @ImportanceIsSize 
+
+schema ImportanceIsWeight_Metaphor // in progress  
+	subcase of Scale_Metaphor
+	roles
+	  source: @weight
+	  target: @importance
+   constraints
+      name <-- @ImportanceIsSize 
+
+schema AffectionIsWarmth_Metaphor // in progress  
+	subcase of Scale_Metaphor
+	roles
+	  source: @temperature
+	  target: @affection
+   constraints
+      name <-- @AffectionIsWarmth 
 	  
 schema IdeasAsPhysicalEntities
 	subcase of MetaphorSchema
@@ -88,88 +102,18 @@ schema InstitutionAsPerson
 	  target <-- @institution
 	  source <-- @person
 
-
+schema StatesAreLocations_Metaphor
+	subcase of MetaphorSchema
+	constraints
+	  name <-- @StatesAreLocations
+	  target <-- @abstractState
+	  source <-- @location
 	  
-general construction MetaphoricalNominal  // 10/26/12
-	subcase of Nominal
-    constructional
-        constituents
-	       core: Nominal
-    meaning:  MetaphoricalRD // met: MetaphorSchema
-        evokes MetaphorSchema as met
-        constraints   
-		  self.m.number <--> core.m.number
-    	  self.m.bounding <--> core.m.bounding  // maybe more roles
- 		  self.m.scale <--> core.m.scale
- 		  self.m.amount <--> core.m.amount
- 		  self.m.givenness <--> core.m.givenness
- 		  self.m.met <--> met
- 		  self.m.target <--> core.m // testing, this will help specializer
- 		  
-
- 
-  construction InstitutionAsPerson
- 	subcase of MetaphoricalNominal
- 	meaning
- 	 evokes InstitutionAsPerson as met
- 	 constraints
- 	   self.m.ontological-category <-- @person
- 	   core.m.ontological-category <-- @institution
  	   
- 	   
- construction NominalIdeaAsObject
- 	subcase of MetaphoricalNominal
- 	meaning
- 	 evokes IdeasAsPhysicalEntities as met
- 	 constraints
- 	   self.m.ontological-category <-- @physicalEntity
- 	   core.m.ontological-category <-- @idea   	   
  	   
 
  
-schema MetaphoricalModification
- 	subcase of Modification 
- 	roles
- 	  met: MetaphorSchema
- 
- schema MetaphoricalPropertyModification
- 	subcase of MetaphoricalModification, PropertyModifier 
 
- 
- schema MetaphoricalScalarModification
- 	subcase of MetaphoricalPropertyModification, ScalarModifier
-
- 	   
- general construction MetaphoricalPropertyModification_Cxn
- 	subcase of Adjective
- 	constructional
- 	 constituents
- 	  ap: PropertyAdjective
-    meaning: MetaphoricalPropertyModification
-     evokes MetaphorSchema as met
-     constraints
-       self.m.met <--> met
-       self.m.domain <-- @abstract
-       ap.m.domain <-- @physicalEntity
-       self.m.domain <--> self.m.modifiedThing.ontological-category
-       //self.m.value <--> ap.m.value
-       //self.m.scale <--> ap.m.scale
-       // self.m.property ???
-
-construction MetaphoricalScalarModification_Cxn
-	subcase of MetaphoricalPropertyModification_Cxn //, ScalarAdjective
-	constructional
-	 constituents
-	   ap: ScalarAdjective
-	meaning: MetaphoricalScalarModification
-	 evokes ImportanceIsSize_Metaphor as met
-	 constraints
-	   //ap.m.property <-- @size
-	   self.m.value <--> ap.m.value
-	   //self.m.scale <--> ap.m.scale
-	   self.m.property <--> met.target
-	   ap.m.property <--> met.source
-	   
 	   
 	   
 	   

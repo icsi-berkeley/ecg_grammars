@@ -181,6 +181,7 @@ construction ProgressiveAuxPlusVerb
    	constructional 
 	    constraints
 			self.voice <--> main.voice 
+			//self.voice <-- NotPassive
 			main.verbform <-- PresentParticiple
 	meaning
 		constraints

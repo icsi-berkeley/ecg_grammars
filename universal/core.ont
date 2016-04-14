@@ -421,7 +421,7 @@ DEFS:
 
 (type idea sub abstract)  // importance, goodness scales
 
-(type story sub abstract)  // 8/18/13  ****** change
+(type story sub abstract idea)  // 8/18/13  ****** change
 
 (type abstractState sub abstract)
 

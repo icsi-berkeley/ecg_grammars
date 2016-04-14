@@ -1,0 +1,76 @@
+/*
+This file defines schemas for the area of "Modification",
+as well as constructions. The basic idea is that the meaning of Adjectives/Modifiers
+are reconstrued to match some target domain.
+
+In some ways, this works as the inverse of the metaphoricalRD. We start with a source,
+and guess the target domain.
+
+*/
+
+schema MetaphoricalModification
+ 	subcase of Modification 
+ 	roles
+ 	  met: MetaphorSchema
+ 
+ schema MetaphoricalPropertyModification
+ 	subcase of MetaphoricalModification, PropertyModifier 
+
+ 
+ schema MetaphoricalScalarModification
+ 	subcase of MetaphoricalPropertyModification, ScalarModifier
+ 	constraints
+ 	 ignore domain <-- @physicalEntity
+
+ /** this construction refers to metaphorical modification,
+e.g. "the big idea" (importance is size). Instead of reconstruing the 
+ont-cat of the modifiedThing, it reconstrues the "domain". 
+A more specific cxn would also reconstrue the properties (@size, @importance).
+**/   
+ general construction MetaphoricalPropertyModification_Cxn
+ 	subcase of Adjective
+ 	constructional
+ 	 constituents
+ 	  ap: PropertyAdjective
+    meaning: MetaphoricalPropertyModification
+     evokes MetaphorSchema as met
+     constraints
+       self.m.met <--> met
+       ap.m.domain <-- @physicalEntity
+       self.m.domain <--> self.m.modifiedThing.ontological-category
+       //self.m.value <--> ap.m.value
+       //self.m.scale <--> ap.m.scale
+       // self.m.property ???
+
+general construction MetaphoricalScalarModification_Cxn
+	subcase of MetaphoricalPropertyModification_Cxn //, ScalarAdjective
+	constructional
+	 constituents
+	   ap: ScalarAdjective
+	meaning: MetaphoricalScalarModification
+	 evokes Scale_Metaphor as met
+	 constraints
+	   //ap.m.property <-- @size
+	   self.m.value <--> ap.m.value
+	   //self.m.scale <--> ap.m.scale
+	   self.m.property <--> met.target
+	   ap.m.property <--> met.source
+	   
+construction ImportanceIsSize_MetaphorCxn
+	subcase of MetaphoricalScalarModification_Cxn
+	meaning 
+	 evokes ImportanceIsSize_Metaphor as met
+	 constraints
+	   self.m.domain <-- @abstract
+
+construction ImportanceIsWeight_MetaphorCxn
+	subcase of MetaphoricalScalarModification_Cxn
+	meaning 
+	 evokes ImportanceIsWeight_Metaphor as met	 
+	 constraints
+	  self.m.domain <-- @abstract
+
+construction AffectionIsWarmth_MetaphorCxn
+	subcase of MetaphoricalScalarModification_Cxn
+	meaning 
+	 evokes AffectionIsWarmth_Metaphor as met	 

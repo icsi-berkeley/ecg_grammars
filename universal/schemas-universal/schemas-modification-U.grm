@@ -42,10 +42,11 @@ schema ParticipleModification  // 10/16/13
 schema PropertyModifier  
 	subcase of AdjectiveModification // does not use modifier role
    	roles
-     	  domain: @physicalEntity //or below
+     	  domain//: @physicalEntity //or below
      	  property // becomes scale ?? object-property, other uses ??
      	  value //string, number - profiled value 
 	 constraints
+	   domain <-- @physicalEntity
 		
 schema ScalarModifier 
 	subcase of PropertyModifier  // does not use modifier role

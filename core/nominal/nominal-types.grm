@@ -142,4 +142,11 @@ construction InstitutionType
 	subcase of NounType
 	meaning: RD
 	 constraints
-	   self.m.ontological-category <-- @institution	 		        
+	   self.m.ontological-category <-- @institution	 		 
+	   
+// "depression", "recession"
+construction AbstractStateType
+	subcase of NounType
+	meaning: RD
+	 constraints
+	   self.m.ontological-category <-- @abstractState	 	       

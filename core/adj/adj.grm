@@ -27,6 +27,7 @@ construction PropertyAdjectiveType
 	 constraints
 	   self.m.property <-- @object-property
 	   self.m.value <-- @propValue
+	   
 
 construction ColorType  //subcase of non-scale Adj
   subcase of PropertyAdjective, GeneralTypeCxn 
@@ -48,6 +49,7 @@ construction ScalarAdjectiveType
         self.m.property <-- @object-property
         self.m.scale.measure <--> self.m.property
         self.m.scale.value <--> self.m.value
+        self.m.domain <-- @item
      
 /*  
 construction SizeType

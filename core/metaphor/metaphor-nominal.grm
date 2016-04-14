@@ -1,0 +1,74 @@
+/*
+This package defines MetaphoricalRDs and some nominal cxns for them. They use metaphor schemas from the 
+"metaphor-schemas" file. 
+
+The basic idea is that the MetaphoricalRD reconstrues the ontological-category of a target RD
+to some source domain, e.g. "institutions are people" or "ideas are physical entities". The RD
+will then unify with the type constraints elsewhere in the grammar, allowing (usually abstract)
+domains to compose with the rest of the grammar metaphorically.
+
+These really give us a lot of mileage:
+-"the economy stumbled into a depression"
+-"he is in a depression"
+-"the economy was pushed into a depression"
+-"the economy had been stumbling into a depression"
+
+*/
+
+package core
+
+// reconstrues an RD's ontological-category to the source domain
+schema MetaphoricalRD  
+	subcase of RD  // maybe others as well
+	roles
+		met: MetaphorSchema  //name, source, target  
+		target: RD // target RD 
+	constraints
+	   met.source <--> ontological-category
+	   met.target <--> target.ontological-category 
+	   
+// binds all of the values from the RD 	   
+general construction MetaphoricalNominal  // 10/26/12
+	subcase of Nominal
+    constructional
+        constituents
+	       core: Nominal
+    meaning:  MetaphoricalRD // met: MetaphorSchema
+        evokes MetaphorSchema as met
+        constraints   
+		  self.m.number <--> core.m.number
+    	  self.m.bounding <--> core.m.bounding  // maybe more roles
+ 		  self.m.scale <--> core.m.scale
+ 		  self.m.amount <--> core.m.amount
+ 		  self.m.givenness <--> core.m.givenness
+ 		  self.m.met <--> met
+ 		  self.m.target <--> core.m // testing, this will help specializer
+ 		  //self.m.extras <--> core.m.extras // do we want this?
+ 		  
+// reconstrues institution as a person
+construction InstitutionAsPerson
+ 	subcase of MetaphoricalNominal
+ 	meaning
+ 	 evokes InstitutionAsPerson as met
+ 	 constraints
+ 	   self.m.ontological-category <-- @person
+ 	   core.m.ontological-category <-- @institution
+ 	   
+// reconstrues ideas as physical objects 	   
+construction NominalIdeaAsObject
+ 	subcase of MetaphoricalNominal
+ 	meaning
+ 	 evokes IdeasAsPhysicalEntities as met
+ 	 constraints
+ 	   self.m.ontological-category <-- @physicalEntity
+ 	   core.m.ontological-category <-- @idea  
+ 	   
+ 	   
+// reconstrues ideas as physical objects 	   
+construction StatesAreLocations_Cxn
+ 	subcase of MetaphoricalNominal
+ 	meaning
+ 	 evokes StatesAreLocations_Metaphor as met
+ 	 constraints
+ 	   //self.m.ontological-category <-- @location
+ 	   //core.m.ontological-category <-- @abstractState

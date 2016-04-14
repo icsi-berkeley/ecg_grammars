@@ -14,7 +14,7 @@ Infinitive :: self.verbform, BaseOrInfinitive, self.voice, NotPassive :: Lexical
 Comparative :: , :: Adjective
 Superlative :: , :: Adjective
 Positive :: , :: Adjective, DirectionalType, Adverb
-Participle,PresentTense :: self.verbform, PresentParticiple :: LexicalVerbType
+Participle,PresentTense :: self.verbform, PresentParticiple, self.voice, NotPassive :: LexicalVerbType
 Participle,PastTense :: self.verbform, PastParticiple :: LexicalVerbType
 NoMorphology :: , :: Pronoun
 Meaning

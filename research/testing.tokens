@@ -100,3 +100,7 @@ idea :: AbstractNoun :: self.m.ontological-category <-- @idea
 problem :: AbstractNoun :: self.m.ontological-category <-- @problem
 stumble :: SelfMotionType :: self.m.actionary <-- @stumble
 economy :: InstitutionType :: self.m.ontological-category <-- @economy
+depression :: AbstractStateType :: self.m.ontological-category <-- @depression
+poverty :: AbstractStateType :: self.m.ontological-category <-- @poverty
+cold :: ScalarAdjectiveType :: self.m.value <-- ".3" :: self.m.property <-- @temperature :: self.m.domain <-- @physicalEntity
+warm :: ScalarAdjectiveType :: self.m.value <-- ".7" :: self.m.property <-- @temperature :: self.m.domain <-- @physicalEntity

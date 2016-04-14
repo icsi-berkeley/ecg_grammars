@@ -4,12 +4,12 @@ import intransitive
 //import auxiliaries
 //import explicit-causation
 import passive-transitives
-//import ditransitive 
+import ditransitive 
 //import control
-//import copula
-//import mental
+import copula
+import mental
 //import transitive-test
-import modals
+//import modals
 import auxiliaries
 	
 
