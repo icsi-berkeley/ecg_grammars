@@ -104,3 +104,6 @@ depression :: AbstractStateType :: self.m.ontological-category <-- @depression
 poverty :: AbstractStateType :: self.m.ontological-category <-- @poverty
 cold :: ScalarAdjectiveType :: self.m.value <-- ".3" :: self.m.property <-- @temperature :: self.m.domain <-- @physicalEntity
 warm :: ScalarAdjectiveType :: self.m.value <-- ".7" :: self.m.property <-- @temperature :: self.m.domain <-- @physicalEntity
+hurt :: CauseHarmType :: self.m.actionary <-- @hurt
+arm :: PartType :: self.m.ontological-category <-- @arm
+break :: ExperienceHarmType :: self.m.actionary <-- @break

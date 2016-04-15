@@ -191,4 +191,5 @@ general construction TransitiveSupply
 	    s.a1 <--> self.m.supplier
 	    s.a2 <--> self.m.theme
 	    self.m.recipient <--> to.m.landmark
-		
+
+

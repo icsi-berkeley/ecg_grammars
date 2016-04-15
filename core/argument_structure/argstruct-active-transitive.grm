@@ -74,6 +74,16 @@ construction ActiveTransitiveMeasure  // Interim (ST, 10/14/15)
 		np.m <--> self.m.measurement
 		self.m.dimension <--> self.m.measurement.extras.quantity.property
 		//self.m.measurement.extras.quantity.units <-- @units
+
+// he broke his arm (reflexive case)
+// these can't really be passivized
+construction ActiveTransitiveExperienceHarm
+	subcase of CoreActiveTransitive
+	meaning: ExperienceHarm
+	  constraints
+	    np.m <--> self.m.bodypart
+	    s.a1 <--> self.m.experiencer
+	
 		
 // he entered the room
 construction ActiveTransitiveChangeLocation 
@@ -97,6 +107,12 @@ general construction ActiveTrans_CauseChangeLocation
 construction ActiveTrans_CauseChangeLocation_mp
 	subcase of ActiveTransitive, Trans_CauseChangeLocation_mp
 
+
+
+/*
+construction ActiveTrans_CauseEffect
+	subcase of CoreActiveTransitive, TransitiveCauseEffect
+*/
 
 
 // he pushed the box into the room

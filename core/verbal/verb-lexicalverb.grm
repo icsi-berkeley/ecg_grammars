@@ -249,4 +249,22 @@ construction ForceDynamicType   // 5/20/13 test
          	self.m.fdType <-- @forceDynamic
          	self.m.actionary <-- @process
       
-         
+
+// Testing, "he hurt the man"
+// "she broke his arm" (transitive)
+construction CauseHarmType
+	subcase of LexicalVerbType
+	constructional
+	 constraints
+	   self.argform <-- Transitive
+	meaning: CauseHarm
+	  constraints
+	    self.m.actionary <-- @process       
+
+// Testing, "he broke his arm"	(reflexive)    
+construction ExperienceHarmType
+	subcase of LexicalVerbType
+	meaning: ExperienceHarm
+	 constraints
+	   self.m.actionary <-- @process
+

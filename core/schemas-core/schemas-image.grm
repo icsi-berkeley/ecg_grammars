@@ -31,10 +31,7 @@ schema ByLandmark
 	roles
 	  landmark: RD	
 	  
-	  
-schema DativeLandmark //
-	roles
-	  landmark: RD		
+	
 	  
 schema TemporalModifier
 	roles

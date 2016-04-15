@@ -178,3 +178,44 @@ schema Supply
 	  // is the patient the theme or the recipient? 
 	  // "he was provided with weapons", "he provided the weapons TO him", "the weapons were provided to him"
 	  // 
+	  
+	  
+	  
+// In general, I think it makes sense to create a class of "Causal Transitive Action" schemas
+schema CausalTransitiveAction
+	subcase of TransitiveAction, CauseEffect
+	constraints
+	  affectedProcess.protagonist <--> patient
+	  causalAgent <--> protagonist	  
+	  
+// cause harm, testing relation between transitive action and causation
+schema CauseHarm
+	subcase of CausalTransitiveAction
+	roles
+	  affectedProcess: ExperienceHarm
+	  victim: RD
+	constraints
+	  victim <--> patient
+	  protagonist.ontological-category <-- @animate
+	  victim.ontological-category <-- @animate
+
+
+// cause harm, testing relation between transitive action and causation
+schema Infect
+	subcase of CausalTransitiveAction
+	roles
+	  affectedProcess: ExperienceHarm
+	  victim: RD
+	constraints
+	  victim <--> patient
+	  protagonist.ontological-category <-- @disease
+	  victim.ontological-category <-- @animate	  
+	
+// some Protagonist experiences harm, e.g. "the man broke his arm"
+schema ExperienceHarm
+	subcase of Process
+	roles 
+	  bodypart
+	  experiencer: RD
+	constraints
+	  experiencer <--> protagonist

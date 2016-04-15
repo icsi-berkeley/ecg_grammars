@@ -8,7 +8,7 @@ import passive-transitives
 //import control
 import copula
 //import mental
-//import transitive-test
+import transitive-test
 //import modals
 import auxiliaries
 	

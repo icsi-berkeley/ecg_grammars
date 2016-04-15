@@ -138,4 +138,8 @@ DEFS:
 
 (type poverty sub abstractState  shared)
 
+(type hurt sub process  shared)
+
+(type break sub process  shared)
+
 INSTS:
