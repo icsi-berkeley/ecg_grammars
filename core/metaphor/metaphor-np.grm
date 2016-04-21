@@ -1,0 +1,63 @@
+/*
+Redefines the metaphoricalNominal cxns to work also with NPs, e.g. "Crime", "Poverty", "North America". 
+
+Many of these target-domain words are single-word NPs, like "happiness", "poverty", etc.,
+so this reestablishes many of the necessary cxns to make that work.
+*/
+
+   
+//package metaphor
+package core
+
+
+general construction MetaphoricalNP // 10/26/12
+	subcase of NP
+    constructional
+        constituents
+	       core: MassNoun // NP
+	    constraints
+	      self.features <--> core.features
+    meaning:  MetaphoricalRD // met: MetaphorSchema
+        evokes MetaphorSchema as met
+        constraints   
+		  self.m.number <--> core.m.number
+    	  self.m.bounding <--> core.m.bounding  // maybe more roles
+ 		  self.m.scale <--> core.m.scale
+ 		  self.m.amount <--> core.m.amount
+ 		  self.m.givenness <--> core.m.givenness
+ 		  self.m.met <--> met
+ 		  self.m.target <--> core.m // testing, this will help specializer
+ 		  //self.m.extras <--> core.m.extras // do we want this?
+ 		  
+// reconstrues institution as a person
+construction InstitutionAsPerson_NP
+ 	subcase of MetaphoricalNP
+ 	meaning
+ 	 evokes InstitutionAsPerson as met
+
+ 	   
+// reconstrues ideas as physical objects 	   
+construction IdeaAsObject_NP
+ 	subcase of MetaphoricalNP
+ 	meaning
+ 	 evokes IdeasAsPhysicalEntities as met
+
+ 	   
+ 	   
+// reconstrues ideas as physical objects 	   
+construction StatesAreLocations_Cxn_NP
+ 	subcase of MetaphoricalNP
+ 	meaning
+ 	 evokes StatesAreLocations_Metaphor as met
+
+ 	 
+// reconstrues ideas as physical objects 	   
+construction SocialProblemsAreDiseases_Cxn_NP
+ 	subcase of MetaphoricalNP
+ 	meaning
+ 	 evokes SocialProblemsAreDiseases_Metaphor as met
+ 	 
+ 	 
+ 	 
+ 	 
+ 	 
