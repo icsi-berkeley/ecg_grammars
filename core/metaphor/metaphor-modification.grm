@@ -7,6 +7,7 @@ In some ways, this works as the inverse of the metaphoricalRD. We start with a s
 and guess the target domain.
 
 */
+package core
 
 schema MetaphoricalModification
  	subcase of Modification 

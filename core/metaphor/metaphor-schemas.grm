@@ -89,11 +89,10 @@ schema AffectionIsWarmth_Metaphor // in progress
 	  
 schema IdeasAsPhysicalEntities
 	subcase of MetaphorSchema
-	roles
-	  source: @idea
-	  target: @physicalEntity
 	constraints
 	  name <-- @IdeaAsPhysicalEntity
+	  target <-- @idea
+	  source <-- @physicalEntity
 
 schema InstitutionAsPerson
 	subcase of MetaphorSchema
@@ -110,7 +109,13 @@ schema StatesAreLocations_Metaphor
 	  source <-- @location
 	  
  	   
- 	   
+ schema SocialProblemsAreDiseases_Metaphor
+	subcase of MetaphorSchema
+	constraints
+	  name <-- @SocialProblemsAreDiseases
+	  target <-- @socialProblem
+	  source <-- @disease
+	  	   
 
  
 

@@ -1,3 +1,10 @@
+/**
+This package defines a series of nominal types. We will need to partition these more later, but they don't
+cause too much strain to the Analyzer, so it shouldn't matter too much yet. The final "core" will have these better packaged.
+
+*/
+
+
 package core
 
 
@@ -149,4 +156,19 @@ construction AbstractStateType
 	subcase of NounType
 	meaning: RD
 	 constraints
-	   self.m.ontological-category <-- @abstractState	 	       
+	   self.m.ontological-category <-- @abstractState	
+	   
+	   
+// "depression", "recession"
+construction DiseaseType
+	subcase of NounType
+	meaning: RD
+	 constraints
+	   self.m.ontological-category <-- @disease 	
+	   
+// "depression", "recession"
+construction SocialProblemType
+	subcase of NounType, MassNoun
+	meaning: RD
+	 constraints
+	   self.m.ontological-category <-- @socialProblem 	       

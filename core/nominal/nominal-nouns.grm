@@ -29,6 +29,13 @@ general construction PluralNoun
       self.m.bounding <-- @indeterminate
 
 
+// MassNouns (water, poverty)
+general construction MassNoun  // can be undetermined NP 11/15/12
+  subcase of NP, Noun, Singular //NP, Noun, Singular
+   meaning
+    constraints
+      self.m.bounding <-- @indeterminate  // may want to change this 11/17/12
+      self.m.number <-- @noNumber
 	  
 // Proper Nouns
 general construction ProperNounNP

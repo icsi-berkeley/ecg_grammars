@@ -208,7 +208,7 @@ schema Infect
 	  victim: RD
 	constraints
 	  victim <--> patient
-	  protagonist.ontological-category <-- @disease
+	  causalAgent.ontological-category <-- @disease
 	  victim.ontological-category <-- @animate	  
 	
 // some Protagonist experiences harm, e.g. "the man broke his arm"

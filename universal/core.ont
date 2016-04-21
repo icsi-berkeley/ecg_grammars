@@ -24,7 +24,7 @@ DEFS:
 
 (type physicalEntity sub entity location)  // 8/28/15: just physical in SUMO
 
-(type disease sub physicalEntity animate) // animate?
+(type disease sub entity) //physicalEntity) // animate?
 
 (type abstract sub entity)
 
@@ -429,7 +429,7 @@ DEFS:
 
 // Social entities  *****************************************
 
-(type socialProblem sub abstract social) // probably not abstract 8/28/15
+(type socialProblem sub abstract social abstractState) // probably not abstract 8/28/15
 
 (type problem sub socialProblem)  // difficulty scale
 

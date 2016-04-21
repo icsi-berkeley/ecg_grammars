@@ -33,6 +33,8 @@ general construction MetaphoricalNominal  // 10/26/12
     constructional
         constituents
 	       core: Nominal
+	    constraints
+	      self.features <--> core.features
     meaning:  MetaphoricalRD // met: MetaphorSchema
         evokes MetaphorSchema as met
         constraints   
@@ -59,9 +61,7 @@ construction NominalIdeaAsObject
  	subcase of MetaphoricalNominal
  	meaning
  	 evokes IdeasAsPhysicalEntities as met
- 	 constraints
- 	   self.m.ontological-category <-- @physicalEntity
- 	   core.m.ontological-category <-- @idea  
+
  	   
  	   
 // reconstrues ideas as physical objects 	   
@@ -69,6 +69,12 @@ construction StatesAreLocations_Cxn
  	subcase of MetaphoricalNominal
  	meaning
  	 evokes StatesAreLocations_Metaphor as met
- 	 constraints
- 	   //self.m.ontological-category <-- @location
- 	   //core.m.ontological-category <-- @abstractState
+
+ 	 
+// reconstrues ideas as physical objects 	   
+construction SocialProblemsAreDiseases_Cxn
+ 	subcase of MetaphoricalNominal
+ 	meaning
+ 	 evokes SocialProblemsAreDiseases_Metaphor as met
+ 	 
+ 	 

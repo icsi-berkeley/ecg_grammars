@@ -22,3 +22,13 @@ general construction PP-Locative
 construction PP-Locative_central
 	subcase of PP-Locative
 
+
+
+construction PP-Relation
+	subcase of PP
+	meaning: Relation
+	 constraints
+	  np.m <--> self.m.Entity_2
+	  self.m <--> prep.m
+	  
+	  
