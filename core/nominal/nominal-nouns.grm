@@ -87,5 +87,9 @@ general construction UnitsNP // stands alone, no Specifier  11/24/12
     constraints
     	k.m.ontological-category <-- @temporal-units
 
+
+
+
+
 general construction Directional
   meaning: HeadingSchema	    
