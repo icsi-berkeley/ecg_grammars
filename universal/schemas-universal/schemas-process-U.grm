@@ -34,6 +34,7 @@ schema ProcessFeatures // some values are set by Aux cxns
 		//lexicalAspect 	// state, punctual, activity, achievement, accomplishment
 		//particle  // for particle before or after
 		//timeUnits: @temporal-units  //@minutes, @seconds 3/22/13
+		temporality
 		voice: @voice	
 		negated  		// yes or blank	
 

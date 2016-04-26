@@ -60,8 +60,9 @@ schema EventDescriptor // meaning of S
 schema EventFeatures  // voice: @voice   also in Process - Dropped here, maybe not used // 7/29/15
 	roles
 		subord  // subordinating conjunction, 
-		telicity	// USED in temporal in/for
+		telicity	// USED in temporal in/for  (bounded, ongoing)
 		duration  // USED in TemporalVP  
+		time // "he built the house in 1976"
 		tense: @tense  // USED
 		modality: @modality  // USED
 		negated: @boolean  // USED

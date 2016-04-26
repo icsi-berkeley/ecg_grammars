@@ -20,12 +20,16 @@ construction SerialVP
 	   v1: VP
 	   conj: Then-Serial
 	   v2: VP
+	  constraints
+	   self.features <--> v1.features
+	   self.voice <--> v1.voice
 	form 
 	 constraints
 	   v1.f meets conj.f
 	   conj.f meets v2.f
 	meaning: SerialProcess
 	 constraints
+	   self.m <--> conj.sp
 	   self.m.protagonist <--> v1.m.protagonist
 	   v2.m.protagonist <--> v1.m.protagonist
 	   self.m.process1 <--> v1.m
@@ -33,3 +37,28 @@ construction SerialVP
 	   self.m.connective <--> conj.m.value
 	   ed.profiledParticipant <--> self.m.protagonist
 
+
+construction SerialVP2
+	subcase of ComplexVP
+	constructional
+	 constituents
+	   v1: VP
+	   conj: After-Serial
+	   v2: VP
+	 constraints
+	   self.features <--> v1.features
+	   v2.verbform <-- PresentParticiple
+	   v1.features <--> v2.features
+	form 
+	 constraints
+	   v1.f meets conj.f
+	   conj.f meets v2.f
+	meaning: SerialProcess
+	 constraints
+	   self.m <--> conj.sp
+	   self.m.protagonist <--> v1.m.protagonist
+	   v2.m.protagonist <--> v1.m.protagonist
+	   self.m.process2 <--> v1.m
+	   self.m.process1 <--> v2.m
+	   self.m.connective <--> conj.m.value
+	   ed.profiledParticipant <--> self.m.protagonist

@@ -16,6 +16,10 @@ general construction CoordinatingConjunction
 	
 general construction SerialConjunction
    subcase of Conjunction
+   meaning
+    evokes SerialProcess as sp
+    
+ 
 
 construction Then-Serial
    subcase of SerialConjunction
@@ -43,7 +47,16 @@ construction Before-Serial
 	meaning
      constraints
        self.m.value <-- @before
-	    
+
+construction After-Serial
+	subcase of SerialConjunction
+	form
+	  constraints
+	    self.f.orth <-- "after"
+	meaning
+     constraints
+       self.m.value <-- @after
+	    	    
 construction And-Conjunction
 	subcase of LogicalConjunction
 	form

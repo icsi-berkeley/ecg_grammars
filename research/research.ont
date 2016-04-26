@@ -150,4 +150,12 @@ DEFS:
 
 (type crime sub socialProblem  shared)
 
+(type bill sub abstract idea shared)
+
+(type politician sub sentient person shared)
+
+(type law sub abstract  shared)
+
+(type legislation sub abstract law shared)
+
 INSTS:
