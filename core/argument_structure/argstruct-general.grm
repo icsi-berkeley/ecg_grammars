@@ -1,6 +1,6 @@
 package core
 //import active-transitives
-//import intransitive
+import intransitive
 //import auxiliaries
 //import explicit-causation
 //import passive-transitives
