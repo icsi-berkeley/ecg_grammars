@@ -29,3 +29,5 @@
 @cost_predication :: $be
 @be2 :: $be
 @cancontainer :: $can
+@have :: $possess
+@own :: $possess

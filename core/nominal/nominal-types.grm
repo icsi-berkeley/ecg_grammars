@@ -33,7 +33,7 @@ construction ProperNPInstance
 
 // E.g., "coffee", "water"
 construction SubstanceType
-	subcase of NounType
+	subcase of NounType, MassNoun
 	meaning
 	 constraints
 	   self.m.ontological-category <-- @substance
