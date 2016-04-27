@@ -15,6 +15,7 @@ construction For-PP
 	    prep: For-Recipient
 
 
+
     
 // Spatial PPs					 
 general construction Spatial-PP  //literal
@@ -147,5 +148,28 @@ construction TemporalPhrase
    	 self.m.ti.timeUnits <--> np.m.extras.quantity.units
    	 self.m.ti.length <--> np.m.extras.quantity.amount
 	  
-	  
-	  	    
+
+// ST, 4/26/16, testing: "he built the house in 1976", "he built the house last year", etc.
+/*
+construction TimePP
+	subcase of PP
+	constructional
+	  constituents
+	   prep: IN-Temporal
+	   np: YearType
+	meaning: EventFeatures
+	 constraints
+	   self.m.time <--> np.m.extras.quantity.amount
+	   
+
+
+construction YearType
+	subcase of NP
+	constructional
+	 constituents
+	  k: NumberType
+	meaning
+	 constraints
+	   self.m.ontological-category <-- @time
+	   self.m.extras.quantity.amount <--> k.m	  	
+*/    
