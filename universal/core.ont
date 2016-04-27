@@ -649,6 +649,8 @@ DEFS:
 
 (type anaphora sub entity) // tag for Specializer to look for one-anaphora 9/12/15
 
+(type addressee sub antecedent) // tag for Specializer to look for Addressees 4/27/16 ("you")
+
 // (type temporality)
 
 //(type bounded sub temporality)

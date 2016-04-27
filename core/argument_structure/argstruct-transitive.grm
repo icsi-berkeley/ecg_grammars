@@ -1,3 +1,26 @@
+/*
+// Neutral transitive package
+// Defines general semantics for different transitive constructions
+// Then, CoreActiveTransitive and CorePassiveTransitive can extend these.
+
+Currently orthogonal to the transitive-testing package, which uses TransitiveAction schema.
+
+Includes argument-structure for:
+-Perception
+-"Cause Effect"
+	-Change property ("paint the house blue")
+	-Caused change location ("move the box into the room")
+	-Cause Change location with causal action ("push the box into the room")
+-Creation ("built the box")
+-Change location ("enter the room")
+-Manipulation ("picked up the box") (still in testing...)
+-Object Transfer ("give THEME to RECIPIENT")
+-Supply ("provided the bread")
+
+
+*/
+
+
 package core
 
 
@@ -20,10 +43,7 @@ general construction ArgumentStructure
        self.m.p-features <--> v.m.p-features 
 */
 
-// Neutral transitive package
-// Defines general semantics for different transitive constructions
-// Then, CoreActiveTransitive and CorePassiveTransitive can extend these.
-// Still in testing stage (1/8/16, ST).
+
 
 general construction TransitivePerception  // 8/21/13 he saw the block, the block was seen by him
 	subcase of ArgumentStructure
@@ -95,7 +115,7 @@ general construction Trans_CauseChangeLocation
        	self.m.affectedProcess <--> mp
        	self.m.affectedEntity <--> mp.mover 
     	self.m.affectedEntity <--> mp.spg.trajector
-    	self.m.protagonist.ontological-category <-- @animate
+    	// self.m.protagonist.ontological-category <-- @animate  // this isn't right, it excludes robots
     	mp.spg <--> pp.m 
    		mp.spg.distance <--> dis.m 
 	    mp.heading <--> dir.m
@@ -193,3 +213,12 @@ general construction TransitiveSupply
 	    self.m.recipient <--> to.m.landmark
 
 
+// Possession: he owns the box, the box is owned by him
+// e.g. he had/owned the box
+general construction TransitivePossession  // 10/4/13
+	subcase of ArgumentStructure
+	meaning: PossProcess
+      constraints
+		v.verbkind <-- PossessionKind
+		s.a1 <--> self.m.protagonist	
+		s.a2 <--> self.m.possessed

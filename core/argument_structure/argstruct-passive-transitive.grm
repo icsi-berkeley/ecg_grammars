@@ -64,6 +64,10 @@ construction PassiveTrans_CauseChangeLoc_causalAction
 construction PassiveTransitiveCreation
 	subcase of CorePassiveTransitive, TransitiveCreation    
 	    
+// "the box is owned by the man"
+construction PassiveTransitivePossession
+	subcase of CorePassiveTransitive, TransitivePossession    
+
 
 
 // the box was picked up by the man

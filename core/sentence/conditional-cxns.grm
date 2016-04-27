@@ -2,27 +2,47 @@ package conditionals
 import conjunctions
 
 
+schema Conditional
+	roles
+	  condition: EventDescriptor // maps onto condition
+	  value: @temporality // needs work, but this should differentiate between "if" and "while"
 	    
 general construction Conditional
   subcase of Word
+  meaning: Conditional
+  
+
+
 
 construction Then-Conditional
-  subcase of Conditional
+  subcase of Word
   form
     constraints
       self.f.orth <-- "then"
 
 construction If
-  subcase of Conjunction
+  subcase of Conditional
   form
     constraints
       self.f.orth <-- "if"
+  meaning
+   constraints
+     self.m.value <-- @bounded
+
+construction While
+  subcase of Conditional
+  form
+    constraints
+      self.f.orth <-- "while"
+  meaning
+   constraints
+     self.m.value <-- @ongoing
 
 general construction ConditionalImperative
 	subcase of Imperative
 	constructional
 	  constituents
-	    cond: If
+	    cond: Conditional
 	    bool: Declarative
 	    optional c: Comma
 	    optional then2: Then-Conditional
@@ -37,6 +57,8 @@ general construction ConditionalImperative
 	    c2.f before else.f
 	 meaning: ConditionalED
 	  constraints
+	    cond.m.condition <--> bool.m
+	    cond.m.value <--> self.m.conditionalValue
 	    self.m.profiledParticipant <--> core.m.profiledParticipant
 	    self.m.profiledParticipant <--> else.m.profiledParticipant
 	    self.m.complexKind <-- @conditional

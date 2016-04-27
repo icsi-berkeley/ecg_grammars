@@ -14,6 +14,7 @@ schema ConditionalED
 	subcase of ComplexED
 	roles
 	  ed3: EventDescriptor // "else push it north"
+	  conditionalValue // bounded, ongoing, etc.
 	  
 
 // RD

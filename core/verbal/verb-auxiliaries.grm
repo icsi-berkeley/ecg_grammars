@@ -237,6 +237,7 @@ construction PassiveAuxPlusVerb
 	    main.verbform <-- PastParticiple
 	    self.verbform <--> aux.verbform
 	    self.voice <-- Passive
+	    self.voice <--> main.voice // is this right? ST, 4/27/16 (to prevent "the box was had by John")
 	meaning
 	  constraints
 	     aux.m.voice <-- @passive

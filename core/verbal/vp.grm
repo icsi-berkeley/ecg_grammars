@@ -1,7 +1,7 @@
 package core
 import adverbs
 //import adjunct
-import serial
+//import serial
 //
 // vp.grm
 
@@ -88,7 +88,8 @@ general construction AdjunctVP   // general for other coda, purpose, etc.
 		adjunct.modifiedThing <--> self.m
     	adjunct.modifier <--> pp.m
 
-    	// he walked/ran for 2 hours
+/*
+// he walked/ran for 2 hours
 construction TemporalVP   // walked for/in 2 minutes, needs work
   subcase of AdjunctVP
   constructional
@@ -104,3 +105,4 @@ construction TemporalVP   // walked for/in 2 minutes, needs work
       ed.e-features.duration <--> pp.m.ti // TemporalInterval
       ed.e-features.telicity <--> pp.m.telicity // @bounded,
       //adj.kind <-- @temporal gone
+      */

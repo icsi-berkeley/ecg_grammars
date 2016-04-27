@@ -111,3 +111,6 @@ disease :: DiseaseType :: self.m.ontological-category <-- @disease
 poverty :: SocialProblemType :: self.m.ontological-category <-- @poverty
 nation :: InstitutionType :: self.m.ontological-category <-- @nation
 crime :: SocialProblemType :: self.m.ontological-category <-- @crime
+have :: PossessionType :: self.m.actionary <-- @have :: self.voice <-- NotPassive
+own :: PossessionType :: self.m.actionary <-- @own
+fuel :: ArtifactNoun :: self.m.ontological-category <-- @fuel

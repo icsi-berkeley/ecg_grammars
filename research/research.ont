@@ -156,4 +156,10 @@ DEFS:
 
 (type legislation sub abstract law shared)
 
+(type have sub possess  shared)
+
+(type own sub possess  shared)
+
+(type fuel sub artifact  shared)
+
 INSTS:

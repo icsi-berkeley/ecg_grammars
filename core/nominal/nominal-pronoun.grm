@@ -123,6 +123,21 @@ construction I-Pronoun
       self.m.gender <-- @genderValues  
  
  
+ construction You-Pronoun
+   subcase of Pronoun, Singular, SecondPerson
+   constructional
+     constraints
+       self.features.case <-- "nom"
+   form
+      constraints
+         self.f.orth <-- "you"
+   meaning
+    constraints
+      self.m.ontological-category <-- @person  
+      self.m.number <-- @singular
+      self.m.gender <-- @genderValues  
+      self.m.referent <-- @antecedent
+ 
       
 construction It
    subcase of Pronoun, Singular, ThirdPerson

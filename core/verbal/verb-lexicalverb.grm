@@ -135,6 +135,18 @@ construction TransferType
 	   self.m.protagonist.ontological-category <-- @agent
 	   self.m.actionary <-- @objecttransfer
 
+
+// Possession Process
+construction PossessionType
+	subcase of LexicalVerbType
+	meaning: PossProcess
+	 constraints
+	   self.m.protagonist.ontological-category <-- @agent
+	   self.m.actionary <-- @possess
+	   self.verbkind <-- PossessionKind  // 10/3/13
+       self.argform <-- Transitive
+       self.voice <-- PassiveOrNotPassive
+
 // he created the box
 construction CreationType
 	subcase of LexicalVerbType, GeneralTypeCxn

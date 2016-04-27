@@ -13,6 +13,9 @@ construction For-PP
 	constructional
 	  constituents
 	    prep: For-Recipient
+	form
+	 constraints
+	   prep.f before np.f
 
 
 
