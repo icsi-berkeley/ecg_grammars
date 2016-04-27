@@ -133,10 +133,10 @@ construction I-Pronoun
          self.f.orth <-- "you"
    meaning
     constraints
-      self.m.ontological-category <-- @person  
+      self.m.ontological-category <-- @sentient  
       self.m.number <-- @singular
       self.m.gender <-- @genderValues  
-      self.m.referent <-- @antecedent
+      self.m.referent <-- @addressee
  
       
 construction It
