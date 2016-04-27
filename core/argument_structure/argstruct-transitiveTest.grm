@@ -7,6 +7,7 @@ cxns necessary for core (ST, 3/23/16).
 */
 
 package transitive-test
+import auxiliaries
 
 
 

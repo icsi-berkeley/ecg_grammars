@@ -4,8 +4,30 @@ Still very much in development/testing.
 
 (ST, 4/12/2016)
 
+One idea would be to define metaphorical Processes, like MetaphoricalTransitiveAction.
+The TransitiveCxn could then use this as the meaning, and bind the verb's meaning
+to the profiledProcess. More specific cxns could then evoke more specific schemas...?
+
+It's not clear how this composes with the nominal metaphors... since both rely on reconstruing
+type constraints/fillers, this likely wouldn't work in the same analysis.
+
 */
 
+package core
 package metaphor
 
 
+schema MetaphoricalTransitiveAction
+	subcase of TransitiveAction
+	constraints
+	  agent.ontological-category <-- @abstract
+
+
+// "Core" Active Transitive, binds self.m to verb meaning
+general construction CoreActiveTrans_TransitiveAction_Metaphor  // 8/21/13
+	subcase of ActiveTrans_TransitiveAction
+	meaning: MetaphoricalTransitiveAction
+
+	// "Central" Active Transitive, inherits self.m <--> v.m	    
+construction ActiveTrans_Central_Metaphor
+	subcase of CoreActiveTrans_TransitiveAction_Metaphor

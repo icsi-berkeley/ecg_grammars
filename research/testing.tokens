@@ -16,7 +16,7 @@ enter :: PathVerbIn   :: self.m.actionary <-- @enter :: self.m.landmark.ontologi
 exit :: PathVerbOut   :: self.m.actionary <-- @exit :: self.m.landmark.ontological-category <-- @container
 man :: SentientNoun :: self.m.ontological-category <-- @person :: self.m.gender <-- @male
 woman :: SentientNoun :: self.m.ontological-category <-- @person :: self.m.gender <-- @female
-big :: ScalarAdjectiveType :: self.m.value <-- ".7" :: self.m.property <-- @size
+big :: ScalarAdjectiveType :: self.m.value <-- ".7" :: self.m.property <-- @size :: self.m.domain <-- @physicalEntity
 small :: ScalarAdjectiveType :: self.m.value <-- ".3" :: self.m.property <-- @size
 john :: ProperNPInstance :: self.m.referent <-- @john :: self.m.gender <-- @male :: self.m.ontological-category <-- @person :: self.m.number <-- @singular
 mary :: ProperNPInstance :: self.m.referent <-- @mary :: self.m.gender <-- @female :: self.m.ontological-category <-- @person :: self.m.number <-- @singular
@@ -101,9 +101,13 @@ problem :: AbstractNoun :: self.m.ontological-category <-- @problem
 stumble :: SelfMotionType :: self.m.actionary <-- @stumble
 economy :: InstitutionType :: self.m.ontological-category <-- @economy
 depression :: AbstractStateType :: self.m.ontological-category <-- @depression
-poverty :: AbstractStateType :: self.m.ontological-category <-- @poverty
 cold :: ScalarAdjectiveType :: self.m.value <-- ".3" :: self.m.property <-- @temperature :: self.m.domain <-- @physicalEntity
 warm :: ScalarAdjectiveType :: self.m.value <-- ".7" :: self.m.property <-- @temperature :: self.m.domain <-- @physicalEntity
 hurt :: CauseHarmType :: self.m.actionary <-- @hurt
 arm :: PartType :: self.m.ontological-category <-- @arm
 break :: ExperienceHarmType :: self.m.actionary <-- @break
+infect :: InfectType :: self.m.actionary <-- @infect
+disease :: DiseaseType :: self.m.ontological-category <-- @disease
+poverty :: SocialProblemType :: self.m.ontological-category <-- @poverty
+nation :: InstitutionType :: self.m.ontological-category <-- @nation
+crime :: SocialProblemType :: self.m.ontological-category <-- @crime

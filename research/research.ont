@@ -16,6 +16,8 @@ DEFS:
 
 (type ImportanceIsSize sub ScaleMetaphor)
 
+(type SocialProblemsAreDiseases sub metaphors)
+
 (type ImportanceIsWeight sub ScaleMetaphor)
 
 (type importance sub scale)
@@ -136,10 +138,14 @@ DEFS:
 
 (type depression sub abstractState  shared)
 
-(type poverty sub abstractState  shared)
-
 (type hurt sub process  shared)
 
 (type break sub process  shared)
+
+(type poverty sub socialProblem  shared)
+
+(type nation sub institution  shared)
+
+(type crime sub socialProblem  shared)
 
 INSTS:

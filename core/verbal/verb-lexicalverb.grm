@@ -261,6 +261,17 @@ construction CauseHarmType
 	  constraints
 	    self.m.actionary <-- @process       
 
+// Testing, "he hurt the man"
+// "she broke his arm" (transitive)
+construction InfectType
+	subcase of LexicalVerbType
+	constructional
+	 constraints
+	   self.argform <-- Transitive
+	meaning: Infect
+	  constraints
+	    self.m.actionary <-- @process   
+
 // Testing, "he broke his arm"	(reflexive)    
 construction ExperienceHarmType
 	subcase of LexicalVerbType

@@ -47,6 +47,9 @@ construction DoAuxPast
 //Have Aux: "has", "had", etc.
 general construction HaveAux
 	subcase of LexicalAux, bhAux
+	meaning
+	 constraints
+	   self.m.perfect <-- @yes
 	
 construction HaveAuxPast
 	subcase of HaveAux, PastTense
@@ -65,6 +68,15 @@ construction HaveAuxPresent
 	meaning
 	  constraints
 	    pf <--> self.m
+
+construction HaveAuxBase
+   	subcase of HaveAux, BaseForm
+   	form
+      	constraints
+         	self.f.orth <-- "have"
+     meaning
+   	  	constraints     
+   			pf <--> self.m      
 
 construction HavePlusBeenActive
 	subcase of AuxPlusAux
@@ -201,6 +213,18 @@ construction DoAuxPlusVerb
 	 constraints
 		//aux.m.progressive <-- @yes
 		
+
+// had moved
+// Testing (4/20/16, ST)
+construction PerfectAuxPlusVerb  // has moved
+   	subcase of AuxPlusVerb
+   	constructional 
+   		constituents
+			aux: HaveAux   
+	    constraints
+			 self.voice <--> main.voice 
+			 main.verbform <-- PastParticiple
+
 
 // was pushed, was moved, etc.
 construction PassiveAuxPlusVerb
