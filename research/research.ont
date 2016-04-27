@@ -150,6 +150,8 @@ DEFS:
 
 (type crime sub socialProblem  shared)
 
+<<<<<<< HEAD
+=======
 (type bill sub abstract idea shared)
 
 (type politician sub sentient person shared)
@@ -158,4 +160,5 @@ DEFS:
 
 (type legislation sub abstract law shared)
 
+>>>>>>> b043b7cc9d528cc68f6c643295c55e46057485f7
 INSTS:

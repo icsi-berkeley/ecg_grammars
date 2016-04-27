@@ -24,7 +24,11 @@ DEFS:
 
 (type physicalEntity sub entity location)  // 8/28/15: just physical in SUMO
 
+<<<<<<< HEAD
+(type disease sub entity) //physicalEntity) // animate?
+=======
 (type disease sub physicalEntity) //physicalEntity) // animate?
+>>>>>>> b043b7cc9d528cc68f6c643295c55e46057485f7
 
 (type abstract sub entity)
 
