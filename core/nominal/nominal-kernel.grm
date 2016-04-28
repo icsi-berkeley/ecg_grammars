@@ -150,6 +150,15 @@ construction Part-of-Whole
   		self.m.extensions <--> self.pw	
 
 	   
-	   
-   
+// 10 gallons of fuel
+construction QuantityOfUnitType
+	subcase of Kernel-ModifierPP
+	constructional
+	 constituents
+	  k: UnitType
+	  mod: ModifierPP
+    meaning
+     constraints
+       self.m <--> k.m
+	  
 

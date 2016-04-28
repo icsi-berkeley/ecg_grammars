@@ -160,6 +160,6 @@ DEFS:
 
 (type own sub possess  shared)
 
-(type fuel sub artifact substance object-property  shared)
+(type fuel sub object-property substance measure shared)
 
 INSTS:
