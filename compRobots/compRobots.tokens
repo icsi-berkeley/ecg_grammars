@@ -58,3 +58,4 @@ fall :: SelfMotionType :: self.m.actionary <-- @fall
 floor :: ArtifactNoun :: self.m.ontological-category <-- @floor
 new :: PropertyAdjectiveType :: self.m.value <-- @new
 marker :: ArtifactNoun :: self.m.ontological-category <-- @marker
+gallon :: UnitType :: self.m.ontological-category <-- @gallon :: self.m.extras.quantity.property <-- @fuel

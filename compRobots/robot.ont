@@ -342,4 +342,6 @@ DEFS:
 
 (type marker sub artifact  shared)
 
+(type gallon sub measure fuel shared)
+
 INSTS:

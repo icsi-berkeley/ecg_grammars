@@ -47,6 +47,7 @@ construction StagedVP
 	    self.m.stageRole <--> v.m.actionary
 	    ed.profiledProcess <--> vp.m
 	    ed.profiledParticipant <--> vp.ed.profiledParticipant
+	    self.m.process <--> vp.m
 
 
 // Infinitives

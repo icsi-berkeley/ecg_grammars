@@ -250,6 +250,7 @@ schema StagedProcess
 	subcase of Process
 	  roles
 	    stageRole: @stage
+	    process: Process
 
 
 schema ChangeLocation // protagonist changes location wrt a LM
