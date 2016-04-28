@@ -89,7 +89,7 @@ construction S-With-Modal-Inversion
     constraints
       self.features <--> modal.features 
       //modal.expectedVerbForm <--> vp.verbform
-      //self.verbform <-- Finite
+      self.verbform <-- Finite
     form
     constraints
        modal.f before vp.f 

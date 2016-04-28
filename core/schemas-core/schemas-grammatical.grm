@@ -11,10 +11,15 @@ schema ComplexED
 	  ed2: EventDescriptor
  
 schema ConditionalED
-	subcase of ComplexED
+	subcase of ComplexED, ConditionalSchema
 	roles
 	  ed3: EventDescriptor // "else push it north"
 	  conditionalValue // bounded, ongoing, etc.
+	constraints
+	  ed1 <--> condition
+	  ed2 <--> conclusion
+	  ed3 <--> alternative
+	  complexKind <-- @conditional
 	  
 
 // RD

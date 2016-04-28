@@ -2,17 +2,20 @@ package conditionals
 import conjunctions
 
 
-schema Conditional
+schema ConditionalSchema
 	roles
 	  condition: EventDescriptor // maps onto condition
-	  value: @temporality // needs work, but this should differentiate between "if" and "while"
+	  conditionalValue: @temporality // needs work, but this should differentiate between "if" and "while"
+	  premise: EventDescriptor
+	  conclusion: EventDescriptor
+	  alternative: EventDescriptor
+	  
 	    
-general construction Conditional
+general construction ConditionalConjunction
   subcase of Word
-  meaning: Conditional
-  
-
-
+  meaning: ConditionalSchema
+   constraints 
+     self.m.condition <--> self.m.premise
 
 construction Then-Conditional
   subcase of Word
@@ -21,34 +24,63 @@ construction Then-Conditional
       self.f.orth <-- "then"
 
 construction If
-  subcase of Conditional
+  subcase of ConditionalConjunction
   form
     constraints
       self.f.orth <-- "if"
   meaning
    constraints
-     self.m.value <-- @bounded
+     self.m.conditionalValue <-- @bounded
 
 construction While
-  subcase of Conditional
+  subcase of ConditionalConjunction
   form
     constraints
       self.f.orth <-- "while"
   meaning
    constraints
-     self.m.value <-- @ongoing
+     self.m.conditionalValue <-- @ongoing
+
+
+// contains a conjunction ("if", "while") and a general declarative
+// "if it rains", "while it is raining", "if he pushes the box"
+construction ConditionalClause
+	subcase of RootType
+	constructional
+	 constituents
+	  cond: ConditionalConjunction
+	  bool: Declarative
+    form
+     constraints
+      cond.f meets bool.f
+    meaning: ConditionalSchema
+     constraints
+       self.m <--> cond.m
+       self.m.condition <--> bool.m
+       
+
+general construction ConditionalStatement
+	subcase of S
+	constructional
+	 constituents
+	   condition: ConditionalClause
+	   core: S 
+	   optional else: AlternativeClause
+    meaning: ConditionalED
+     constraints
+       self.m <--> condition.m
+       self.m.conclusion <--> core.m
+       self.m.alternative <--> else.m.alternative
 
 general construction ConditionalImperative
-	subcase of Imperative
+	subcase of ConditionalStatement, Imperative
 	constructional
 	  constituents
-	    cond: Conditional
-	    bool: Declarative
 	    optional c: Comma
-	    optional then2: Then-Conditional
+	    optional then: Then-Conditional
 	    core: SimpleImperative
 	    optional c2: Comma
-	    optional else: Else-Clause
+	    optional else: AlternativeClause
 	  constraints
 	    core.vp.verbform <-- Base
 	 form
@@ -57,85 +89,80 @@ general construction ConditionalImperative
 	    c2.f before else.f
 	 meaning: ConditionalED
 	  constraints
-	    cond.m.condition <--> bool.m
-	    cond.m.value <--> self.m.conditionalValue
 	    self.m.profiledParticipant <--> core.m.profiledParticipant
-	    self.m.profiledParticipant <--> else.m.profiledParticipant
-	    self.m.complexKind <-- @conditional
-	    
-     
-     
-construction Else-Clause
+	    self.m.profiledParticipant <--> else.m.alternative.profiledParticipant
+	    self.m.alternative <--> else.m.alternative
+
+construction StandardConditionalImperative
+	subcase of ConditionalImperative
+	form
+	  constraints
+	    condition.f meets c.f
+		c.f meets then.f
+	    condition.f before core.f
+	    core.f before else.f
+
+
+construction InverseConditional	
+	subcase of ConditionalImperative 
+	form
+	  constraints
+	  	core.f meets condition.f
+
+   
+// Constructions for the "else-clause", e.g. "otherwise do X", or "otherwise X will happen" 
+construction AlternativeClause
+	subcase of RootType
 	constructional
 	  constituents
-	    else: Else-Conjunction
-	    core: SimpleImperative
-	meaning: EventDescriptor
+	    else: AlternativeConjunction
+	    core: S
+	meaning: ConditionalSchema
 	  constraints
-	    self.m <--> core.m
+	    self.m.alternative <--> core.m
 
-general construction Else-Conjunction
+general construction AlternativeConjunction
 	subcase of Conjunction
 
 construction Else
-	subcase of Else-Conjunction
+	subcase of AlternativeConjunction
 	form
 	 constraints
 	   self.f.orth <-- "else"
 
 construction Otherwise
-	subcase of Else-Conjunction
+	subcase of AlternativeConjunction
 	form
 	 constraints
 	   self.f.orth <-- "otherwise"	
- 
-construction StandardConditionalImperative
-	subcase of ConditionalImperative
-	form
-	  constraints
-	    cond.f meets bool.f
-	    bool.f meets then2.f
-	    bool.f before core.f
-	    core.f before else.f
-	meaning
-	  constraints
-	   	self.m.ed1 <--> bool.m
-	    self.m.ed2 <--> core.m
-	    self.m.ed3 <--> else.m
-	    
-// "Robot1, move to the blue box if it is near the green box!"	      
-construction InverseConditional	
-	subcase of ConditionalImperative 
-	form
-	  constraints
-	  	core.f meets cond.f
-	    cond.f meets bool.f
-	    bool.f before else.f
-	meaning
-	  constraints
-	   	self.m.ed1 <--> bool.m
-	    self.m.ed2 <--> core.m
+
 
 // ConditionalDeclarative
+// if he builds a house, it will be red
 general construction ConditionalDeclarative
-	subcase of S
+	subcase of ConditionalStatement, Declarative
 	constructional
 	  constituents
-	    cond: If
-	    bool: Declarative
 	    optional c: Comma
-	    optional then2: Then-Conditional
+	    optional then: Then-Conditional
 	    core: Declarative
-	    optional else: Else-Clause
 	 meaning: ConditionalED
 	  constraints
 	    self.m.profiledParticipant <--> core.m.profiledParticipant
-	    //self.m.ed1 <--> bool.m
-	    //self.m.ed2 <--> core.m
-	    self.m.complexKind <-- @conditional	  
-	    self.m.ed3 <--> else.m  
 
 
+construction StandardConditionalDeclarative
+	subcase of ConditionalDeclarative
+	form
+	  constraints
+	    condition.f meets c.f
+	    c.f meets then.f
+	    then.f meets core.f
+	    core.f meets else.f
+
+
+
+/*
 construction StandardConditionalDeclarative
 	subcase of ConditionalDeclarative
 	form
@@ -148,5 +175,5 @@ construction StandardConditionalDeclarative
 	  constraints
 	   	self.m.ed1 <--> bool.m
 	    self.m.ed2 <--> core.m	
-	    self.m.ed3 <--> else.m    
-	          
+	    //self.m.ed3 <--> else.m    
+*/	          
