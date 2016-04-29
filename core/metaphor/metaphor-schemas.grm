@@ -87,11 +87,11 @@ schema AffectionIsWarmth_Metaphor // in progress
    constraints
       name <-- @AffectionIsWarmth 
 	  
-schema IdeasAsPhysicalEntities
+schema AbstractEntitesAsPhysicalEntities
 	subcase of MetaphorSchema
 	constraints
-	  name <-- @IdeaAsPhysicalEntity
-	  target <-- @idea
+	  name <-- @AbstractEntityAsPhysicalEntity
+	  target <-- @abstractEntity
 	  source <-- @physicalEntity
 
 schema InstitutionAsPerson

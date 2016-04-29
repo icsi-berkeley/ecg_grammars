@@ -2,17 +2,36 @@ package core
 import universal-schemas
 
 
-	 
-	
+// These are used for bindings in the conjunctions
+// Initially used "TemporalOrder", but this got confusing
+// because "first" and "second" placeholders weren't chronologically first and second, always.
+schema SerialProcessArgs
+	roles
+	  p1
+	  p2	 
+
+
+// from first-testing; currently not used downstream, but it's used in SerialProcess
+// to enrich / clarify the SemSpec
+schema TemporalSequence
+//subcase of ???  should this be subcase of Process? X-net?? some other Time-related schema?
+  roles  
+   time1
+   time2
+
 
 // Serial Process
 schema SerialProcess
 	subcase of ComplexProcess
+	evokes SerialProcessArgs as pa
+	evokes TemporalSequence as ts
 	roles
 	 connective
 	 process1: Process
 	 process2: Process
 	constraints
+	  ts.time1 <--> process1
+	  ts.time2 <--> process2
 	 complexKind <-- @serial
 	 protagonist <--> process1.protagonist
 	 protagonist2 <--> process2.protagonist
@@ -132,6 +151,7 @@ schema PossProcess
    constraints
      extra.possessed <--> possessed
      extra.possessor <--> protagonist
+     possessed.ontological-category <-- @physicalEntity
      
 schema ObjectTransfer
 	subcase of ComplexProcess, A123

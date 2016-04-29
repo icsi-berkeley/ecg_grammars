@@ -40,7 +40,7 @@ construction InstitutionAsPerson_NP
 construction IdeaAsObject_NP
  	subcase of MetaphoricalNP
  	meaning
- 	 evokes IdeasAsPhysicalEntities as met
+ 	 evokes AbstractEntitesAsPhysicalEntities as met
 
  	   
  	   

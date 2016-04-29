@@ -114,3 +114,4 @@ crime :: SocialProblemType :: self.m.ontological-category <-- @crime
 have :: PossessionType :: self.m.actionary <-- @have :: self.voice <-- NotPassive
 own :: PossessionType :: self.m.actionary <-- @own
 fuel :: SubstanceType :: self.m.ontological-category <-- @fuel
+time :: AbstractNoun :: self.m.ontological-category <-- @time

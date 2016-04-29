@@ -2,6 +2,9 @@ package conditionals
 import conjunctions
 
 
+
+
+// depending on the conjunction, the premise could be P or ~P (see Feldman/Mok/Bryant, 2004)
 schema ConditionalSchema
 	roles
 	  condition: EventDescriptor // maps onto condition
@@ -9,13 +12,17 @@ schema ConditionalSchema
 	  premise: EventDescriptor
 	  conclusion: EventDescriptor
 	  alternative: EventDescriptor
+	  epistemicStance: @epistemicStance // degree of commitment to condition happening
 	  
-	    
+// Alternatively, this could evoke two ConditionalSchemas
+// the first would be for the "main" condition
+// the second would be for the alternative, in which the condition is negated, and some inference is drawn about the conclusion 	    
 general construction ConditionalConjunction
   subcase of Word
   meaning: ConditionalSchema
    constraints 
      self.m.condition <--> self.m.premise
+  
 
 construction Then-Conditional
   subcase of Word
@@ -31,6 +38,7 @@ construction If
   meaning
    constraints
      self.m.conditionalValue <-- @bounded
+     self.m.epistemicStance <-- @neutral
 
 construction While
   subcase of ConditionalConjunction

@@ -18,6 +18,7 @@ general construction SerialConjunction
    subcase of Conjunction
    meaning
     evokes SerialProcess as sp
+
     
  
 
@@ -38,6 +39,7 @@ construction Than
 	meaning
      constraints
        self.m.value <-- @than
+       
 
 construction Before-Serial
 	subcase of SerialConjunction
@@ -47,6 +49,8 @@ construction Before-Serial
 	meaning
      constraints
        self.m.value <-- @before
+       sp.pa.p1 <--> sp.process1
+       sp.pa.p2 <--> sp.process2
 
 construction After-Serial
 	subcase of SerialConjunction
@@ -56,6 +60,8 @@ construction After-Serial
 	meaning
      constraints
        self.m.value <-- @after
+       sp.pa.p1 <--> sp.process2
+       sp.pa.p2 <--> sp.process1
 	    	    
 construction And-Conjunction
 	subcase of LogicalConjunction

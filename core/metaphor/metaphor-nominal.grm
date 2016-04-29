@@ -60,7 +60,9 @@ construction InstitutionAsPerson
 construction NominalIdeaAsObject
  	subcase of MetaphoricalNominal
  	meaning
- 	 evokes IdeasAsPhysicalEntities as met
+ 	 evokes AbstractEntitesAsPhysicalEntities as met
+
+
 
  	   
  	   

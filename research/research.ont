@@ -10,7 +10,7 @@ DEFS:
 
 (type InstitutionAsPerson sub metaphors)
 
-(type IdeaAsPhysicalEntity sub metaphors)
+(type AbstractEntityAsPhysicalEntity sub metaphors)
 
 (type ScaleMetaphor sub metaphors)
 
@@ -148,13 +148,13 @@ DEFS:
 
 (type crime sub socialProblem  shared)
 
-(type bill sub abstract idea shared)
+(type bill sub abstractEntity idea shared)
 
 (type politician sub sentient person shared)
 
-(type law sub abstract  shared)
+(type law sub abstractEntity  shared)
 
-(type legislation sub abstract law shared)
+(type legislation sub abstractEntity law shared)
 
 (type have sub possess  shared)
 

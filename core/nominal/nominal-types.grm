@@ -83,7 +83,7 @@ construction AbstractNoun
 	subcase of NounType
 	meaning
 	  constraints 
-	    self.m.ontological-category <-- @abstract        
+	    self.m.ontological-category <-- @abstract     
 
 // "Type" constructions
 construction PhysicalEntityNoun

@@ -218,6 +218,12 @@ DEFS:
 
 (type yn-question sub mood)
 
+// epistemic stances
+
+(type epistemicStance)
+
+(type neutral sub epistemicStance)
+
 
 // metaphors
 
@@ -237,7 +243,7 @@ DEFS:
 
 (type space sub measure)  // spatial domain
 
-(type time sub measure)  // temporal domain
+(type time sub measure abstractEntity)  // temporal domain
 
 (type units sub entity shared)
 
@@ -423,11 +429,13 @@ DEFS:
 
 // Abstract entities  ****************************
 
-(type idea sub abstract)  // importance, goodness scales
+(type idea sub abstractEntity)  // importance, goodness scales
 
-(type story sub abstract idea)  // 8/18/13  ****** change
+(type story sub idea)  // 8/18/13  ****** change
 
 (type abstractState sub abstract)
+
+(type abstractEntity sub abstract)
 
 // Social entities  *****************************************
 
