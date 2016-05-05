@@ -1,6 +1,6 @@
 package core
 //import universal-schemas
- 
+
 
 schema ComplexED
 	subcase of EventDescriptor

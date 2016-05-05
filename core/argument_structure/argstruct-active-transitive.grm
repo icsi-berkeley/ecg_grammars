@@ -57,6 +57,7 @@ construction ActiveTransitivePerception  // 8/21/13 he saw the block
 	subcase of CoreActiveTransitive, TransitivePerception
 
 
+
 // Should be more general: "transitive measure?"
 // x costs {}, x weighs {}, etc.
 // A separate construction is necessary for: "he weighed the box"

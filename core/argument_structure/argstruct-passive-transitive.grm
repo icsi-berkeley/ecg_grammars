@@ -1,3 +1,19 @@
+/*
+Package for defining passive variants of Transitive cxns.
+
+(5/5/16, ST)
+
+Includes:
+-the box was seen by the man
+-the box was painted (by the man)
+-the box was moved (by the man)
+-the box was pushed into the room (by the man)
+-the house was built (by the man)
+-the box was picked up (by the man)
+-the box was given to him (by the man)
+
+*/
+
 package passive-transitives
 import auxiliaries
 import transitives

@@ -4,15 +4,7 @@ import conjunctions
 
 
 
-// depending on the conjunction, the premise could be P or ~P (see Feldman/Mok/Bryant, 2004)
-schema ConditionalSchema
-	roles
-	  condition: EventDescriptor // maps onto condition
-	  conditionalValue: @temporality // needs work, but this should differentiate between "if" and "while"
-	  premise: EventDescriptor
-	  conclusion: EventDescriptor
-	  alternative: EventDescriptor
-	  epistemicStance: @epistemicStance // degree of commitment to condition happening
+
 	  
 // Alternatively, this could evoke two ConditionalSchemas
 // the first would be for the "main" condition
@@ -35,6 +27,16 @@ construction If
   form
     constraints
       self.f.orth <-- "if"
+  meaning
+   constraints
+     self.m.conditionalValue <-- @bounded
+     self.m.epistemicStance <-- @neutral
+
+construction Unless
+  subcase of ConditionalConjunction
+  form
+    constraints
+      self.f.orth <-- "unless"
   meaning
    constraints
      self.m.conditionalValue <-- @bounded

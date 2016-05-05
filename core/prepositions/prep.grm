@@ -82,6 +82,14 @@ construction TO-Path
         self.m.landmark <--> self.m.goal
  
  
+// did x to do y
+// add more semantics here?
+construction TO-Purpose
+   subcase of Preposition
+   form
+      constraints
+         self.f.orth <-- "to" 
+ 
 construction FROM-Path
    subcase of PathPreposition
    form

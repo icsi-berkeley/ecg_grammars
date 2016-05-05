@@ -1,6 +1,11 @@
 package core
 import universal-schemas
 
+
+
+
+// metonymy	 
+
 schema Metonymy 
 
 schema PartWhole

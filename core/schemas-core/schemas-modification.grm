@@ -1,20 +1,7 @@
 package core
 import universal-schemas
 
-schema ScalarAdverbModifier 
-	subcase of AdverbModification  // does not use modifier role
-   	roles
-     	property: @scale
-        value //string, number    
-	 constraints	
-	 
 
-schema ComparativeAdjModifier
-	subcase of ScalarModifier
-	roles
-	  base: RD
-	constraints
-	  //base.ontological-category <--> domain	
 	  
 	  
 

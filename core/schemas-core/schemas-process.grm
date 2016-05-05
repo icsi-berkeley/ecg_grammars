@@ -37,6 +37,19 @@ schema SerialProcess
 	 protagonist2 <--> process2.protagonist
 	 protagonist <--> protagonist2
 
+
+// purposive process
+schema PurposeProcess   
+   subcase of SerialProcess
+   roles
+      purpose: Process
+      means: Process
+   constraints
+      protagonist <--> process1.protagonist
+	  protagonist <--> protagonist2
+	  purpose <--> process2
+	  means <--> process1
+	  complexKind <-- @purpose
 	
 // Should be more general type, e.g. "MeasureProcess" 
 // The ticket costs 6 bucks, the box weighs 5 pounds, etc.
