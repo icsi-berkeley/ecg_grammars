@@ -1,3 +1,10 @@
+/*
+Defines general intransitive structure, including BareIntransitive and ActiveMotionPath.
+
+(5/5/16, ST)
+
+*/
+
 package intransitive
 
 general construction IntransitiveArgumentStructure  
