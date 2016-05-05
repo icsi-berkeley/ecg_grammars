@@ -1,3 +1,12 @@
+/*
+Gerunds package. Allows VPs with a PresentParticiple verbform to be used as NPs, e.g.:
+
+"his pushing the box"
+
+5/5/16, ST
+*/
+
+
 package gerunds
 
 general construction Gerund
