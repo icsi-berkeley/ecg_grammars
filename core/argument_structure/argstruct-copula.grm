@@ -199,8 +199,9 @@ construction VPChangeAdj
 
 
 
-/*
+
 // the plant grew to the ceiling
+/*
 // ** Currently not working, since "Modification" as state is incompatible with TrajectorLandmark
 construction VPScaleChange
 	subcase of VPChange
@@ -214,7 +215,6 @@ construction VPScaleChange
 	meaning: ScaleChange
 	  constraints
 	    //self.m.temporality <-- @bounded
-	    //self.m.state <--> pp.m
+	    self.m.state <--> pp.m
 	    ed.profiledParticipant <--> pp.m.trajector
-	    
-*/
+*/	    

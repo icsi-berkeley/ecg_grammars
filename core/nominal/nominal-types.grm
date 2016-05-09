@@ -41,13 +41,13 @@ construction SubstanceType
 // E.g., "hammer", etc.
 // evokes Instrument schema, and can put tighter constraints on actionary
 construction InstrumentNoun
-	subcase of NounType
+	subcase of PhysicalEntityNoun
 	meaning
-	 evokes Instrument as instrument
+	 evokes Instrument as extensions
 	 constraints
-	   instrument.actionary <-- @process
-	   self.m.extensions <--> instrument
-	   self.m.ontological-category <-- @instrument  
+	   extensions.actionary <-- @process
+	   self.m.ontological-category <-- @instrument
+
 
 
 
@@ -89,7 +89,10 @@ construction AbstractNoun
 construction PhysicalEntityNoun
    subcase of NounType
    meaning
+      evokes PhysicalEntity as extensions
       constraints
+         self.m.extensions <--> extensions
+         //self.m <--> extensions.entity  // this recursion seems to cause some issues
         self.m.ontological-category <-- @physicalEntity
 
  
@@ -97,6 +100,7 @@ construction PhysicalEntityNoun
 construction ArtifactNoun
    subcase of PhysicalEntityNoun
    meaning
+      evokes Artifact as extensions
       constraints
         self.m.ontological-category <-- @artifact 
  
@@ -105,10 +109,10 @@ construction ArtifactNoun
 construction ContainerNoun
    subcase of PhysicalEntityNoun
    meaning
-      evokes BoundedObject as cont
+      evokes BoundedObject as extensions
       constraints
         self.m.ontological-category <-- @container 
-        self.m.extensions <--> cont
+        self.m.extensions <--> extensions
                 
 // "Type" constructions
 construction SentientNoun

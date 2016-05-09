@@ -11,15 +11,27 @@ general construction Adverb
 // maybe a scale or multiplier?
 general construction Intensifier
 	subcase of Adverb
+	meaning: IntensifierModification
+	
 	
 construction Very // 
   subcase of Intensifier
   form
     constraints
        self.f.orth <-- "very"
-  meaning: AdverbModification
+  meaning
 	constraints
 		self.m.modifier <-- "very"
+		self.m.kind <-- @unmarked
+
+construction Too // 
+  subcase of Intensifier
+  form
+    constraints
+       self.f.orth <-- "too"
+  meaning: AdverbModification
+	constraints
+		self.m.modifier <-- "too"
 		self.m.kind <-- @unmarked
 
 

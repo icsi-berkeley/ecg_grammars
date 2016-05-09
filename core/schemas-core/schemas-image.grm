@@ -1,7 +1,164 @@
 package core
 import universal-schemas
 
+schema TrajectorLandmark  
+	roles
+		trajector: RD
+		landmark: RD
+		profiledArea: RD //  defined with respect to Landmark  
+		temporality: @temporality // for expressing @atemporal/@bounded relations
+		negated: @boolean
+	constraints
+		trajector.ontological-category <-- @physicalEntity 
+		landmark.ontological-category <-- @region  // added for 2/22/14 m4 test  
+		profiledArea.ontological-category <-- @location 
 
+schema SPG   
+	subcase of TrajectorLandmark
+	roles
+		source: RD
+		path: RD
+		goal: RD
+		distance  // ???*********7/17/13
+
+
+schema BoundedRegion
+	roles
+		boundary: RD 
+		interior: RD 
+		exterior: RD 
+	constraints
+		boundary.ontological-category <-- @closedCurve
+		interior.ontological-category <-- @region
+		exterior.ontological-category <-- @region
+		
+schema BoundedObject
+	subcase of BoundedRegion, PhysicalEntity
+	roles
+		boundedObject: RD
+	constraints
+		boundedObject.ontological-category <-- @container
+		entity <--> boundedObject
+
+schema Relation
+	roles
+	  entity1
+	  entity2
+	  relation: @relation
+	  temporality: @temporality
+
+
+schema TernaryRelation
+	subcase of Relation
+	roles
+	  entity3	 
+
+schema SpatialRelation  //???????
+	subcase of Relation
+
+schema Proximity	
+	subcase of SpatialRelation
+	roles
+		center
+		proximalArea
+
+schema Contact // short version
+	subcase of SpatialRelation 
+	roles
+		entity1: RD // @entity 
+		entity2: RD // @entity
+	constraints
+		entity1.ontological-category <-- @entity
+		entity2.ontological-category <-- @entity
+
+
+schema Accompaniment
+	subcase of Relation
+	roles
+	  participant: RD
+	  co-participant: RD
+	constraints
+	  participant <--> entity1
+	  co-participant <--> entity2		
+	  
+	  
+
+
+schema Possession  //revised 11/30/12
+   roles
+       negated: @boolean
+   	   kind:@possessionKind
+	   possessor:RD
+	   possessed:RD
+		
+
+schema RefRelation
+	subcase of Relation
+   roles
+     first: RD
+     second: RD
+    constraints
+      first <--> entity1
+      second <--> entity2
+     
+schema RefIdentity
+	subcase of RefRelation
+	roles
+	 temporality: @temporality
+	constraints
+	  //first.ontological-category <--> second.ontological-category
+	  first.referent <--> second.referent
+	  first.number <--> second.number
+	  first.gender <--> second.gender
+	  
+	  
+// Scale
+schema Scale
+   roles
+     measure // weight
+     units // pound
+     value // .7
+     
+ // entity
+ schema Entity
+	roles
+	  name
+	  entityType: @entity
+	  entity
+	  
+	  
+schema PhysicalEntity
+	subcase of Entity
+	
+schema AnimateEntity
+	subcase of PhysicalEntity
+	roles
+	   entity: RD
+	constraints
+	  entity.ontological-category <-- @animate
+
+
+//artifact
+schema Artifact
+	subcase of PhysicalEntity
+	roles
+	  creator
+	  material
+	constraints
+	  entityType <-- @artifact 
+     
+// Instrument schema, testing (ST, 3/24/16)
+// This is useful for the Specializer: used for "Instrument-PP"
+schema Instrument
+    subcase of Artifact // is this right?
+	roles
+	  instrument: RD
+	  user: RD
+	  // add actionary: @move
+	   actionary: @process // could either be actionary (@move) or schema (Motion)
+	constraints
+	  entityType <-- @instrument
+	  entity <--> instrument
 
 
 // metonymy	 

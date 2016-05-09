@@ -11,8 +11,11 @@ general construction Conjunction
 general construction LogicalConjunction
 	subcase of Conjunction
 
+
 general construction CoordinatingConjunction
-	subcase of Conjunction
+	subcase of LogicalConjunction
+	meaning
+	  evokes ComplexED as coordinated_event
 	
 general construction SerialConjunction
    subcase of Conjunction
@@ -61,20 +64,45 @@ construction After-Serial
      constraints
        self.m.value <-- @after
        sp.pa.p1 <--> sp.process2
-       sp.pa.p2 <--> sp.process1
+       sp.pa.p2 <--> sp.process1 
 	    	    
 construction And-Conjunction
-	subcase of LogicalConjunction
+	subcase of CoordinatingConjunction
 	form
 	  constraints
 	    self.f.orth <-- "and"
+	meaning
+	  constraints
+	    self.m.value <-- @and
 
 construction Or-Conjunction
-	subcase of LogicalConjunction
+	subcase of CoordinatingConjunction
 	form
 	  constraints
 	    self.f.orth <-- "or"
-	    
+	meaning
+	  constraints
+	    self.m.value <-- @or
+
+/*
+*** ST, Concessives, 5/6/16
+*** Is the mapping between events correct? 
+*** [the man tried to push the box]<conceded> but [it was too heavy]<main assertion>
+*** Compare with: [despite wanting to push the box]<conceded>, [it was too heavy]<main assertion>
+*** Compare with: [although he wanted to push the box]<conceded>, [it was too heavy]<main assertion>. 
+*/
+construction But-Conjunction
+	subcase of CoordinatingConjunction
+	form
+	  constraints
+	    self.f.orth <-- "but"
+	meaning
+	  evokes Concessive as concessive
+	  constraints
+	    coordinated_event.ed1 <--> concessive.conceded_state_of_affairs
+	    coordinated_event.ed2 <--> concessive.main_assertion
+	    self.m.value <-- @but
+	    	    
 construction That-Subordinating
 	subcase of Conjunction
 	form

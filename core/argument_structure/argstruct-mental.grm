@@ -24,6 +24,7 @@ general construction CommunicationCxN
 	   v.m.actionary <--> self.m.actionary
 
 construction SubordinateDeclarativeThat
+	subcase of RootType
 	constructional
 	 constituents
 	  conj: That-Subordinating

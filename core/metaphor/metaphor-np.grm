@@ -7,7 +7,7 @@ so this reestablishes many of the necessary cxns to make that work.
 
    
 //package metaphor
-package core
+package metaphor
 
 
 general construction MetaphoricalNP // 10/26/12

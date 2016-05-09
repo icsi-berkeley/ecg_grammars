@@ -118,9 +118,19 @@ construction PurposeVP
        		ed.profiledParticipant <--> self.m.protagonist  // move to VP?
   			self.m.protagonist <--> v2.m.protagonist
   			self.m.protagonist <--> v1.m.protagonist
-  			
+
+// changed this to a multi-word cxn 			
 construction  InOrder // used only above
-     subcase of Word
+     constructional
+      constituents
+        in: IN-Locative
+        order: OrderWord
      form
-      	constraints
-         	self.f.orth <-- "inorder"	   
+      constraints
+        in.f meets order.f
+        
+construction OrderWord
+	subcase of Word
+    form
+      constraints
+        self.f.orth <-- "order"	   

@@ -51,25 +51,7 @@ construction ScalarAdjectiveType
         self.m.scale.value <--> self.m.value
         self.m.domain <-- @item
      
-/*  
-construction SizeType
-	subcase of ScalarAdjective, GeneralTypeCxn
-	meaning
-	  constraints
-	    self.m.value <-- @sizeValue
-	    //self.m.property <-- @size
-	    //self
-	    //self.m.kind <-- @unmarked
 
-construction WeightType
-	subcase of ScalarAdjective, GeneralTypeCxn
-	meaning
-	  constraints
-	    self.m.value <-- @weightValue
-	    self.m.property <-- @weight
-	    //self.m.kind <-- @unmarked
-
-*/
 
 construction SideAdj-Type
 	subcase of GeneralTypeCxn, PropertyAdjective

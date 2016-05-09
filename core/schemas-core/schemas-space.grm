@@ -11,6 +11,15 @@ Currently testing, in development. (4/29/216, ST)
 package core
 
 
+schema Concessive 
+    // nevokes Communication as communication 
+    roles 
+       conceded_state_of_affairs
+       topic
+       main_assertion 
+
+	 
+
 
 schema MentalSpace
 	roles

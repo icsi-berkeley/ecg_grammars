@@ -13,11 +13,10 @@ PACKAGE_NAME ::==
 ;
 
 ONTOLOGY_PATHS ::==
-	./universal/core.ont 
+	./core/core.ont 
 ;
 
 IMPORT_PATHS ::==
-	./universal
 	./core
 ;
 
