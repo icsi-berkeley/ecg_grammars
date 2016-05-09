@@ -82,6 +82,16 @@ construction TO-Path
         self.m.landmark <--> self.m.goal
  
  
+ // through the room
+construction THROUGH-Path
+   subcase of PathPreposition
+   form
+      constraints
+         self.f.orth <-- "through"
+   meaning: SPG  
+     constraints
+        self.m.landmark <--> self.m.path  
+        
 // did x to do y
 // add more semantics here?
 construction TO-Purpose

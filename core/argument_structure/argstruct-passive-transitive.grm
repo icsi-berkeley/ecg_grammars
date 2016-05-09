@@ -50,18 +50,8 @@ general construction CorePassiveTransitive
 // the block was seen by him
 construction PassiveTransitivePerception  
 	subcase of CorePassiveTransitive, TransitivePerception
-		
 
-// "the box was painted blue by John", "the box was made big by John"
-// TODO: Not working?
-construction PassiveTransitiveChangeProperty
-	subcase of TransitiveChangeProperty, PassiveTransitive
-	form 
-	constraints
-	  adj.f before byPhrase.f
    
-	    
-
 // "the room was entered by him"
 construction PassiveTransitiveChangeLocation
 	subcase of CorePassiveTransitive, TransitiveChangeLocation

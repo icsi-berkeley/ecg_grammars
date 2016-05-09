@@ -1,5 +1,14 @@
 package core
 
+
+// no np, could be subclassed with adjectives, etc.
+general construction PP_all
+	subcase of RootType // answer to question, etc.   
+	constructional
+		constituents
+			prep: Preposition  
+
+// standard PP-cxn
 general construction PP
 	subcase of RootType // answer to question, etc.   
 	constructional
@@ -51,6 +60,48 @@ construction Path-PP  // central case
 			self.m <--> prep.m	
 		    self.m.landmark  <--> np.m
 		    // self.m.landmark.ontological-category <--> np.m.ontological-category 
+ 
+ 
+ 
+ // testing, 5/9/16 (ST)
+ // this binds the two path-pps together
+ // it allows a full expression of source, path, and goal (though only one of each)
+ // e.g. "from the house through the field to the store"
+ // the nice thing about this analysis is that it combines the SPG schemas together into one "Gestalt", as opposed to embedding them with the "SPG2" schema
+ construction Path-PP-SPG // 12/13/12 
+	subcase of Path-PP
+	constructional
+		constituents // inherits np, prep			
+			pp2: Path-PP
+		 	optional conj:Comma  // also and, then, etc.
+	form
+		constraints		
+	      		np.f meets conj.f  // np from first PP
+	      		conj.f  meets pp2.f
+	meaning //: SPG2  // serial path plus
+		constraints
+			//self.m <--> prep.m inherited
+			//self.m.spg2 <--> pp2.m 
+			self.m <--> pp2.m
+
+
+// This cxn would be better for serial PPs involving multiple goals
+/*
+ construction Path-PP-Serial // 12/13/12 
+	subcase of Path-PP
+	constructional
+		constituents // inherits np, prep			
+			pp2: Path-PP
+		 	optional conj:Comma  // also and, then, etc.
+	form
+		constraints		
+	      		np.f meets conj.f  // np from first PP
+	      		conj.f  meets pp2.f
+	meaning: SPG2  // serial path plus
+		constraints
+			self.m.spg2 <--> pp2.m 
+			//self.m <--> pp2.m
+ */
  
  
 construction Loc-PP  // static location 

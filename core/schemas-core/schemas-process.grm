@@ -197,6 +197,12 @@ schema CauseEffect   // Direct Physical Causation
       effect <--> affectedProcess
       complexKind <-- @causal
  
+ 
+ schema CauseChange
+ 	subcase of CausalTransitiveAction
+ 	roles
+ 	 process2: Change
+ 
  schema CauseMotion
   subcase of CauseEffect //, TransitiveAction
   roles
@@ -369,20 +375,25 @@ schema Change
 	subcase of Process
 	roles
 	  state //: Modification //: ChangedState
-	  actionary: @statechange
+	  initialState // testing
+	  actionary: @change
 	  temporality: @bounded
 	  oldValue //: @propValue
+	  finalValue
 	  property
-	constraints
-	  actionary <-- @statechange
+
 	  
 // State Change processes: "the box changed from red to blue"
 schema StateChange
 	subcase of Change
 	roles
-	  state //: ChangedState
+	  state: PropertyModifier
 	  actionary: @statechange
 	  temporality: @bounded
+	constraints
+	  finalValue <--> state.value
+	  property <--> state.property
+	  protagonist <--> state.modifiedThing
 	
 // Scale Change processes: "the box grew"
 schema ScaleChange

@@ -70,11 +70,11 @@ DEFS:
 
 (type john sub person)
 
-(type paint sub create  shared)
+(type paint sub change  shared)
 
 (type make_create sub create  shared)
 
-(type make_cause sub cause  shared)
+(type make_change sub change  shared)
 
 (type cat sub sentient)
 
@@ -161,5 +161,7 @@ DEFS:
 (type own sub possess  shared)
 
 (type fuel sub object-property substance measure shared)
+
+(type field sub region physicalEntity shared)
 
 INSTS:

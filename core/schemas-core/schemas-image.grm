@@ -22,7 +22,17 @@ schema SPG
 		distance  // ???*********7/17/13
 
 
+schema SPG2
+	subcase of SPG
+	roles
+	  spg2: SPG
+    constraints
+      //source <--> spg2.source
+      //path <--> spg2.path
+      //goal <--> spg2.goal
+
 schema BoundedRegion
+	subcase of PhysicalEntity
 	roles
 		boundary: RD 
 		interior: RD 
@@ -33,7 +43,7 @@ schema BoundedRegion
 		exterior.ontological-category <-- @region
 		
 schema BoundedObject
-	subcase of BoundedRegion, PhysicalEntity
+	subcase of BoundedRegion
 	roles
 		boundedObject: RD
 	constraints
@@ -124,7 +134,7 @@ schema Scale
 	roles
 	  name
 	  entityType: @entity
-	  entity
+	  entity: RD
 	  
 	  
 schema PhysicalEntity
@@ -160,6 +170,14 @@ schema Instrument
 	  entityType <-- @instrument
 	  entity <--> instrument
 
+
+schema Container // short version
+	subcase of Artifact, BoundedObject  //  6/24/13
+	roles
+		contents: RD // @entity
+	constraints
+		//contents.bounding <-- @indeterminate  // not for plurals
+		entityType <-- @container
 
 // metonymy	 
 

@@ -100,7 +100,6 @@ construction  KernelNoAdj // no adjective
       n: Nominal
     constraints
       self.features <--> n.features
-  form
   meaning: RD
     constraints
       self.m <--> n.m
@@ -115,6 +114,8 @@ general construction Kernel-ModifierPP
 	  constituents
 	    k: Nominal
 	    mod: ModifierPP
+	  constraints
+       self.features <--> k.features
 	form
 	  constraints
 	    k.f before mod.f
@@ -160,5 +161,27 @@ construction QuantityOfUnitType
     meaning
      constraints
        self.m <--> k.m
+	
 	  
+// box of steel 
+construction NP-ModifierPP-Material 
+  subcase of Kernel-ModifierPP  
+  meaning
+  	evokes Artifact as art  // hack, seems to be needed
+  	constraints
+  	  self.m <--> k.m  // percolate 
+  	  k.m.ontological-category <-- @artifact // applies only to artifacts
+      mod.np.m.ontological-category <-- @material
+      art.material <--> mod.np.m
+      self.m.extensions <--> art
 
+ // box of beer, box of blocks, etc.     
+construction NP-ModifierPP-Container
+  subcase of Kernel-ModifierPP  
+  meaning
+  	evokes Container as cont  // hack, seems to be needed
+  	constraints
+  	  self.m <--> k.m  // percolate 
+  	  k.m.ontological-category <-- @container // applies only to artifacts
+      cont.contents <--> mod.np.m
+      self.m.extensions <--> cont    

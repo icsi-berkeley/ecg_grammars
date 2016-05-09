@@ -90,16 +90,6 @@ construction ActiveTransitiveExperienceHarm
 construction ActiveTransitiveChangeLocation 
 	subcase of CoreActiveTransitive, TransitiveChangeLocation
 
-
-// "he painted the box blue", "he made the box big"
-construction ActiveTransitiveChangeProperty
-	subcase of TransitiveChangeProperty, ActiveTransitive
-	form 
-	 constraints
-	    v.f before np.f
-	    np.f before adj.f
-
-
 /** Added from dropbox "robots" by Sean Trott, 2/4/15. */
 general construction ActiveTrans_CauseChangeLocation 
   subcase of ActiveTransitive, TransitiveCauseEffect

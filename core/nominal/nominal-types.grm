@@ -105,14 +105,32 @@ construction ArtifactNoun
         self.m.ontological-category <-- @artifact 
  
  
+ // "Type" constructions
+construction MaterialNoun
+   subcase of PhysicalEntityNoun, MassNoun
+   meaning
+      //evokes Artifact as extensions
+      constraints
+        self.m.ontological-category <-- @material 
+ 
 // "Type" constructions
 construction ContainerNoun
    subcase of PhysicalEntityNoun
    meaning
-      evokes BoundedObject as extensions
+      evokes Container as extensions
       constraints
         self.m.ontological-category <-- @container 
         self.m.extensions <--> extensions
+ 
+ 
+// "Type" constructions: "field", etc.
+construction BoundedRegionNoun
+   subcase of PhysicalEntityNoun 
+   meaning
+      evokes BoundedRegion as extensions
+      constraints
+        self.m.ontological-category <-- @region 
+        self.m.extensions <--> extensions 
                 
 // "Type" constructions
 construction SentientNoun

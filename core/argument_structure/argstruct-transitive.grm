@@ -68,34 +68,9 @@ general construction TransitiveCauseEffect_central  // he pushed the block
 	meaning
       constraints
 		v.m <--> self.m 
-  		
-// "he painted the house blue", "he made the house bigger" (actives)
-// "the house was painted blue by him" (passive)
-// This is somewhat too specific? (1/6/16, ST)
-general construction TransitiveChangeProperty
-	subcase of TransitiveCauseEffect
-	constructional
-	  constituents
-	    adj: Adjective
-	    //np: NP
-	form
-	  constraints
-	  // v.f before adj.f
-	meaning: CauseEffect //: Creation
-	   evokes Change as change
-	   evokes Creation as creation
-	   evokes Modification as mod
-	   constraints
-	     self.m.causalProcess <--> v.m
-	     v.m <--> creation
-	     self.m.affectedProcess <--> change
-	     change.state <--> adj.m
-	     change.state <--> mod
-	     self.m.affectedEntity <--> mod.modifiedThing
-	     creation.createdThing <--> self.m.affectedEntity
 
 
-
+// move the box into the room
 general construction Trans_CauseChangeLocation 
   subcase of TransitiveCauseEffect
   constructional

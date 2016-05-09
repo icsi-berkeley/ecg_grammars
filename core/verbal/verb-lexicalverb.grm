@@ -46,7 +46,7 @@ construction ChangeType
 	    self.argform <-- ArgForm
 	meaning: Change
 	  constraints
-	    self.m.actionary <-- @statechange
+	    self.m.actionary <-- @change
 	    //self.m.state.property <-- @object-property
 	    //self.m.state.oldValue <-- @propValue
 	
@@ -94,7 +94,14 @@ construction CauseMotionType
 	meaning: CauseMotion
 	  constraints
 	    self.m.actionary <-- @complexxnet
-	    
+
+
+// he painted the house blue
+construction CauseChangeType
+	subcase of LexicalVerbType, GeneralTypeCxn
+	meaning: CauseChange
+	  constraints
+	    self.m.actionary <-- @change	    
 	    
 // "push the box north"
 construction ApplyForceType
