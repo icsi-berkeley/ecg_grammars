@@ -399,10 +399,14 @@ schema StateChange
 schema ScaleChange
 	subcase of Change
 	roles
-	  state // ScalarModifier //: ChangedScale
+	  state: ScalarModifier // ScalarModifier //: ChangedScale
 	  actionary: @scalechange
 	  temporality: @bounded
 	  direction
+	constraints
+	  finalValue <--> state.value
+	  property <--> state.property
+	  protagonist <--> state.modifiedThing
 
 // Creation (he created the box)
 schema Creation
@@ -523,6 +527,7 @@ schema CausalTransitiveAction
 	constraints
 	  affectedProcess.protagonist <--> patient
 	  causalAgent <--> protagonist	  
+	  causalProcess.protagonist <--> causalAgent
 	  
 // cause harm, testing relation between transitive action and causation
 schema CauseHarm

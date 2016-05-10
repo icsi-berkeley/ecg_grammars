@@ -139,7 +139,7 @@ construction  INTO-Path // container 11/5/13
    meaning: SPG  
       evokes BoundedObject as bo
       constraints 
-         self.m.landmark.ontological-category <-- @container           // 2/22/14 commented out for m4 test 
+         //self.m.landmark.ontological-category <-- @container           // 2/22/14 commented out for m4 test 
          //self.m.landmark <--> bo.boundedObject
          self.m.landmark.extensions <--> bo //testing!
          self.m.goal <--> bo.interior

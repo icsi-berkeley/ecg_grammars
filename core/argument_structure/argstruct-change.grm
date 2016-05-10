@@ -9,7 +9,9 @@ Sentences:
 
 */
 
-package core
+package change
+
+//package core
 
 // Constructions for VP-change: "the box changed from red to blue"
 // "the box changed to blue"
@@ -46,7 +48,20 @@ construction VPChangeAdj
 	    ed.profiledParticipant <--> adj.m.modifiedThing
 	    self.m.state <--> adj.m
 
-
+// he changed into a man
+construction VPChangeGoal
+	subcase of VPChange
+	constructional
+	  constituents
+	    pp: Path-PP
+	 form
+	   constraints
+	     v.f before pp.f
+	meaning: Change
+	  constraints
+	    self.m.temporality <-- @bounded
+	    self.m.finalValue <--> pp.m.goal
+	    self.m.initialState <--> pp.m.source
 
 // general construction to define change, should include:
 // "changed X (from P1) to P2", "made X P1", "painted X P1", etc.
@@ -64,7 +79,7 @@ general construction TransitivePropertyChange
 	subcase of TransitiveChange
 	constructional
 	 constituents
-	  prep: TO-Infinitive-Marker
+	  prep: TO-Path
 	  adj: PropertyAdjective
 	form
 	 constraints
@@ -76,10 +91,53 @@ general construction TransitivePropertyChange
       change.protagonist <--> adj.m.modifiedThing
       change <--> v.m
     
-	
+
+// change X into S1
+// still testing, but the idea is that the "goal" of the path-pp is the goal of the state change
+general construction TransitiveStateChange 
+	subcase of TransitiveChange
+	constructional
+	 constituents
+	  pp: Path-PP
+    meaning
+     evokes StateChange as change
+     constraints
+      //change.state <--> adj.m
+      //change.protagonist <--> adj.m.modifiedThing
+      change.finalValue <--> pp.m.goal
+      change <--> v.m
+      change.initialState <--> pp.m.source
+
+// Verb is explicitly about causing change ("paint", "make", etc.)
+// change X TO P1
+general construction TransitiveCauseChange 
+	subcase of TransitiveChange
+	constructional
+	 constituents
+	  adj: PropertyAdjective
+    meaning: CauseChange
+     evokes StateChange as change
+     constraints
+      change.state <--> adj.m
+      change.protagonist <--> adj.m.modifiedThing
+      self.m <--> v.m	
 
 
-construction ActiveTransitiveStateChange // he changed it (from red) to blue 2/20/13
+construction ActiveTransitiveStateChange // he painted it red
+   subcase of ActiveTransitive, TransitiveStateChange
+	form
+     constraints
+	  	np.f before pp.f
+
+// he painted it red
+construction ActiveTransitiveCauseChange // he painted it red
+   subcase of ActiveTransitive, TransitiveCauseChange
+	form
+     constraints
+	  	np.f before adj.f
+
+// he changed it (from red) to blue
+construction ActiveTransitivePropertyChange // he changed it (from red) to blue 2/20/13
    subcase of ActiveTransitive, TransitivePropertyChange
 	form
      constraints
@@ -88,7 +146,8 @@ construction ActiveTransitiveStateChange // he changed it (from red) to blue 2/2
 import passive-transitives
 import auxiliaries
 
-construction PassiveTransitiveStateChange // he changed it (from red) to blue 2/20/13
+// it was changed to blue (by the man)
+construction PassiveTransitivePropertyChange // he changed it (from red) to blue 2/20/13
    subcase of PassiveTransitive, TransitivePropertyChange
 
 		

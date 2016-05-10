@@ -47,6 +47,7 @@ light :: ScalarAdjectiveType :: self.m.value <-- ".3" :: self.m.property <-- @we
 become :: ChangeType :: self.m.actionary <-- @become
 change :: ChangeType :: self.m.actionary <-- @change
 grow :: ScaleChangeType :: self.m.actionary <-- @grow :: self.mod.property <-- @size :: self.m.direction <-- @increase :: self.mod.value <-- ".7"
+grow :: ScaleChangeType :: self.m.actionary <-- @grow :: self.m.direction <-- @increase :: self.mod.value <-- ".7"
 shrink :: ScaleChangeType :: self.m.actionary <-- @shrink :: self.mod.property <-- @size :: self.m.direction <-- @decrease :: self.mod.value <-- ".3"
 team :: SentientNoun :: self.m.ontological-category <-- @person :: self.m.number <-- @plural
 paint :: CauseChangeType :: self.m.actionary <-- @paint
@@ -119,3 +120,4 @@ water :: SubstanceType :: self.m.ontological-category <-- @water
 mud :: SubstanceType :: self.m.ontological-category <-- @mud
 steel :: MaterialNoun :: self.m.ontological-category <-- @steel
 field :: BoundedRegionNoun :: self.m.ontological-category <-- @field
+convert :: ChangeType :: self.m.actionary <-- @convert
