@@ -30,7 +30,7 @@ construction MeasurePredicationType
 	    self.m.dimension <-- @measure
 
 
-// Used for measure/dimension: "the box weighs 5 pounds"
+// Used for transitive measuring: "he weighed the box"
 construction MeasureProcessType
 	subcase of LexicalVerbType
 	meaning: MeasureProcess
