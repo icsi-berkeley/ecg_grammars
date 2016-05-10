@@ -1,0 +1,38 @@
+/*
+Package for complex sentences. Currently just contains "Serial S", e.g.:
+-the man pushed the box and it slid into the room
+-the man wanted to push the box but it was too heavy
+-the box is big and the man is small
+
+(5/6/16, ST)
+
+*/
+
+package sentence-complex
+
+//package core
+
+general construction ComplexS // several kinds
+    subcase of S 
+	meaning: ComplexED
+
+ 
+construction SerialS // several kinds
+    subcase of ComplexS 
+	constructional 
+        constituents
+         s1:S
+         conj: CoordinatingConjunction
+         s2:S
+      form
+        constraints
+	       s1.f before conj.f
+	       conj.f before s2.f
+        meaning: SerialED
+        constraints
+            self.m <--> conj.coordinated_event
+        	self.m.ed1 <--> s1.m 
+        	self.m.ed2 <--> s2.m
+			self.m.connective <--> conj.m.value
+			self.m.complexKind <-- @serial
+
