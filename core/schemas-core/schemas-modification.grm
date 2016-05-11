@@ -76,7 +76,7 @@ schema ComparativeAdjModifier
 	subcase of ScalarModifier
 	roles
 	  base: RD
-	  direction: @comparison // more, less, the same?
+	  direction //: @comparison // more, less, the same?
 	constraints
 	  //base.ontological-category <--> domain		  
 
