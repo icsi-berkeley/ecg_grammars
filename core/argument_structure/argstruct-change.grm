@@ -1,6 +1,5 @@
 /*
 Package for "change" argument structure. Still in development, attempting to reconcile with "base" analyses. 
-The "caused change" cxns are also connected to the transitive-change-property cxn in the transitives package.
 
 Sentences: 
 -the box became red

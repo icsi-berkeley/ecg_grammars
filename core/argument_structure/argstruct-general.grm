@@ -1,5 +1,5 @@
 package core
-import active-transitives
+//import active-transitives
 import intransitive
 //import auxiliaries
 //import active-transitives
@@ -9,7 +9,7 @@ import intransitive
 //import passive-transitives
 //import ditransitive 
 //import control
-//import copula
+import copula
 //import mental
 //import transitive-test
 //import modals

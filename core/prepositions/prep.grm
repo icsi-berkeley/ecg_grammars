@@ -195,6 +195,13 @@ construction TO-Infinitive-Marker
 	form
 	  constraints
 	    self.f.orth <-- "to"
+
+
+construction AS-Marker
+   subcase of Preposition
+   form
+      constraints
+         self.f.orth <-- "as"
 	    
 construction FROM-Marker  // FDArgStructFrom
    subcase of Preposition

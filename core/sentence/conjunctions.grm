@@ -1,8 +1,13 @@
 package core
 
+schema Value
+   roles
+     value
+
 schema ConjunctionValue
+	subcase of Value
 	roles
-	  value: @conjunction
+	  value: @conjunction 
 
 general construction Conjunction
    subcase of Word

@@ -15,7 +15,7 @@ schema ProcessFeatures // some values are set by Aux cxns
 		perfect 		// yes or blank
 		progressive 	// yes or blank
 		//lexicalAspect 	// state, punctual, activity, achievement, accomplishment
-		//particle  // for particle before or after
+		particle  // for particle before or after
 		//timeUnits: @temporal-units  //@minutes, @seconds 3/22/13
 		temporality
 		voice: @voice	
@@ -43,7 +43,7 @@ schema Motion
    roles
       mover: RD  
       speed          // scale
-      heading		// untyped, North, towards Box2 
+      heading: HeadingSchema		// untyped, North, towards Box2 
       actionary: @motion
    constraints
      mover <--> protagonist 

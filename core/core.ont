@@ -737,6 +737,8 @@ DEFS:
 
 (type decrease sub comparison)
 
+(type equal sub comparison)
+
 (type weight sub object-property scale measure)
 
 (type cost sub process shared)

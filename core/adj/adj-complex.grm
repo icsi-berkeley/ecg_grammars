@@ -39,14 +39,31 @@ construction ComparativeAdjectivePhrase
 	    self.m.kind <-- @comparative
 	    //self.m.modifiedThing <-->
 
-/*
-construction NegateTest
-	subcase of RootType
-	constructional
-	  constituents
-	     v: Verb
-	meaning
-	  constraints
-	     v.m.actionary # @stasis
-*/
+
+// red as a block
+// Taken from base, maybe should have more detailed semantics?
+// could use ComparativeAdjModifier instead: but there needs to be a way to assert "equality" in the property value
+// vs. ("bigger than")
+construction PostModifiedAdjective  // red as a block ; only predicatively
+   subcase of ComplexAdjective
+   	constructional 
+   	 constituents
+ 		optional opt: AS-Marker
+      	first: Adjective
+    	link: AS-Marker
+    	second: NP
+	form
+      constraints
+   		first.f meets link.f
+   		link.f meets second.f
+   meaning: ComparativeAdjModifier
+   	  //evokes Modification as mm
+   	  constraints
+		self.m <--> first.m
+		//mm.modifiedThing <-> first.m
+		//mm.modifier <-> second.m
+		self.m.base <--> second.m
+		self.m <--> first.m
+		self.m.direction <-- @equal
+		//self.m.modifiedThing <--> 
  
