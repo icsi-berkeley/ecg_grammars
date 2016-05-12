@@ -1,0 +1,67 @@
+/*
+Package for particles, e.g. "up". Taken from base, not really used downstream at all yet.
+
+See notes from Pullum chapter 4, section 6.2: pg. 280
+Particle + NP vs. Prep + NP:
+"she took off the label" vs. "she jumped off the wall"
+(Particle / "intransitive prep") functions as complement of the verb.
+(ST, 5/11/16)
+
+*/
+
+package particles
+
+general construction Particle // Value is a string
+   	subcase of Preposition			
+	meaning: Value 
+     	//constraints
+      
+construction UP-Particle
+   subcase of Particle
+   form
+      constraints
+         self.f.orth <-- "up"
+   meaning: Value 
+     constraints
+      self.m.value <-- "up"  
+ 
+ 
+ /*
+This cxn restricts it to be "Motion", as it does in base.
+Not sure if this is correct.
+*/     
+construction VplusParticle  //moved up X
+  subcase of Verb
+  	constructional
+    	constituents
+      		prep: Particle
+      		v: Verb
+      	constraints
+  			self.features <--> v.features
+  			self.verbform <--> v.verbform
+   form
+    	constraints
+       		v.f before prep.f 
+    meaning: Motion
+    	constraints
+    		self.m <--> v.m
+    		self.m.p-features.particle <--> prep.m.value
+    		self.m.heading.tag <--> prep.m.value
+
+// also restricts MEANING to motion    		
+construction VPplusParticle  // moved X up TODO  maybe not needed now
+  subcase of VP
+  	constructional 
+    	constituents
+      		prep: Particle
+      		vp: ArgumentStructure
+      	constraints
+  			self.features <--> vp.features
+  			self.verbform <--> vp.verbform
+   	form
+    	constraints
+       		vp.f meets prep.f  
+    meaning
+    	constraints
+    		self.m <--> vp.m
+      		self.m.p-features.particle <--> prep.m
