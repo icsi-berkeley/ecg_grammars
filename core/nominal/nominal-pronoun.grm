@@ -198,3 +198,26 @@ construction One-Anaphora
       self.m.ontological-category <-- @entity  
       self.m.referent <-- @anaphora
       self.m.number <-- @plural    
+      
+      
+ /*
+ REFLEXIVES
+ */
+ general construction ReflexivePronoun  // 2/13/13
+   subcase of Pronoun
+   meaning  //RD
+   		
+construction Himself  // he wanted himself to move
+   subcase of ReflexivePronoun, Singular, ThirdPerson 
+   constructional
+     constraints
+       self.features.case <-- "dat"
+   form
+      constraints
+         self.f.orth <-- "himself"
+   meaning
+   constraints
+      self.m.ontological-category <-- @person 
+      self.m.number <-- @singular
+	  self.m.gender <-- @male
+	  self.m.referent <-- @antecedent 

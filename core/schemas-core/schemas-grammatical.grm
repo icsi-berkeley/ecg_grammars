@@ -25,7 +25,7 @@ schema RD // meaning of NP
 	gender: @genderValues
 	bounding // @determinate, etc.
 	scale: @scale 
-	//hedge: @hedgeVal  // @fake, etc  
+	hedge: @hedgeVal  // @fake, etc  
 	//continuity: @continuityValues 
     amount: Amount // schemas for quantifiers, etc. 
     extensions //: Extensions //  schemas for affordances, etc

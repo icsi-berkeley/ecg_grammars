@@ -633,6 +633,8 @@ DEFS:
 
 (type anger sub emotionKind)  // 3/29/13 verb
 
+(type happiness sub emotionKind)
+
 // Properties
 
 (type object-property sub shared)

@@ -15,7 +15,9 @@ These really give us a lot of mileage:
 
 */
 
+//package core
 package metaphor
+import metaphor-schemas
 
 // reconstrues an RD's ontological-category to the source domain
 schema MetaphoricalRD  

@@ -1,3 +1,10 @@
+/*
+Adverbial cxns, taken mostly from base. 
+
+(ST, 5/11/16)
+
+*/
+
 package core
 
 general construction Adverbial  // can be a phrase as well
@@ -109,7 +116,9 @@ construction IntensifiedAjective
    	constraints
 		self.m <--> second.m
 		first.m.modifiedThing <--> second.m  
-		
+
+
+// quickly and carefully		
 construction CoordinatedAdverb
    subcase of ComplexAdverbial 
    	constructional 
@@ -125,3 +134,22 @@ construction CoordinatedAdverb
    	constraints
 		self.m <--> second.m
 		first.m.modifiedThing <--> second.m.modifiedThing
+		
+		
+// comparative adverb
+construction ComparativeAdverbPhrase  // Xed faster than John (Xed)
+   subcase of Adverbial, RootType
+   	constructional 
+   		constituents
+          	first: Adverb
+	    	than: Than //serial Conj. now  12/9/13 ************
+	    	base: NP
+	form
+      constraints
+       	first.f meets than.f
+       	than.f meets base.f
+   meaning
+   	constraints
+   		self.m.kind <-- @comparative
+		self.m <--> first.m
+		

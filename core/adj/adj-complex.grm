@@ -1,3 +1,13 @@
+/*
+Complex adverb phrases, including:
+-Serial adverbs ("big red")
+-Comparative phrases ("bigger than the box")
+-Post-modified adjectives ("as big as the box")
+
+(ST, 5/11/16)
+
+*/
+
 package core
 import core-modification
 
@@ -26,7 +36,7 @@ construction ComparativeAdjectivePhrase
 	constructional
 	  constituents
 	    comp: Adjective
-	    than: SerialConjunction
+	    than: Than
 	    ground: NP
 	form
 	  constraints
@@ -64,6 +74,7 @@ construction PostModifiedAdjective  // red as a block ; only predicatively
 		//mm.modifier <-> second.m
 		self.m.base <--> second.m
 		self.m <--> first.m
+		self.m.kind <-- @comparative
 		self.m.direction <-- @equal
 		//self.m.modifiedThing <--> 
  

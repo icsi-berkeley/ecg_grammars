@@ -17,7 +17,6 @@ construction  KernelAdj // literal case
   subcase of Kernel 
   constructional
     constituents
-     // Why was Adjective "property adjective"?
       ap: Adjective //PropertyAdjective // not optional PropertyAdj 4/26/13
       n: Nominal
     constraints

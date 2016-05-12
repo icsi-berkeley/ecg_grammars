@@ -79,19 +79,41 @@ schema ComparativeAdjModifier
 	  direction //: @comparison // more, less, the same?
 	constraints
 	  //base.ontological-category <--> domain		  
+	  
+	  
+	  
+/*
+Emotions pick out different values for polarity
+*/	  
+schema EmotionModifier 
+	subcase of ScalarModifier  // does not use modifier role
+   	roles
+   		polarity //  +/_
+   		// value ~ intensity	
 
 
+/*
+HEDGES: testing (5/12/16, sT)
+*/	  
+schema HedgeModifier 
+	subcase of AdjectiveModification  // does not use modifier role
+	roles 
+	  hedgeValue: @hedgeVal
+	constraints
+	  hedgeValue <--> modifiedThing.hedge
 
-		  
-// Interim (ST, 10/14/15)
+
+/*
+CHANGE
+*/	  
+//  (ST, 10/14/15)
 schema ChangedState
 	subcase of ScalarModifier // testing, instead of PropertyModifier
 	roles
 	  oldValue: @propValue
 	  temporality: @bounded
 
-
-
+//  (ST, 10/14/15)
 schema ChangedScale
 	subcase of ChangedState
 	roles
@@ -101,14 +123,19 @@ schema ChangedScale
 	  			// E.g. "grow" suggests an increase, 
 	  			// but doesn't necessarily imply oldValue <-- @small
 	  
-// Interim (ST, 10/15/15)
+/*
+General notion of noun-noun modification, without more semantics
+*/
 schema NounNounModifier
 	subcase of Modification
 	roles
 	  modifier: RD
 	  modifiedThing: RD	  
 	  
-	  
+
+/*
+Used for adjunct-vps, like "he ran for 4 hours."
+*/	  
 schema AdjunctModification
 	subcase of Modification
 	roles

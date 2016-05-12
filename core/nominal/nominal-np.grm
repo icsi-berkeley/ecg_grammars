@@ -104,7 +104,7 @@ construction DeterminerPlusKernel
     constituents   
       s: Determiner  
 
-
+// 2 red boxes, etc.
 construction QuantityNP
   subcase of SpecifierPlusKernel
   constructional
@@ -126,6 +126,21 @@ construction QuantityNP
       self.m.extras.quantity.units <--> self.m.ontological-category
 
 
+// 2 of the red boxes, etc.
+construction QuantityOfNP  //  2 of the red blocks
+	subcase of QuantityNP
+  	constructional
+    	constituents
+	  		o1: OF-Modifier
+	  		th1: The
+  	form
+    	constraints
+    		q.f meets o1.f
+    		o1.f meets th1.f
+    		th1.f meets k.f
+      		q.f before k.f   		
+  	
+  	
 
 //  we now also have "his" as Possessive-NP, 
 

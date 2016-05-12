@@ -40,7 +40,7 @@ construction Then-Serial
        self.m.value <-- @then
         
 construction Than
-	subcase of SerialConjunction
+	subcase of Conjunction
 	form
 	  constraints
 	    self.f.orth <-- "than"

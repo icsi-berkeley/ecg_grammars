@@ -45,7 +45,7 @@ Or: "the idea ran through his mind". Here, there are three potential metaphors:
 -mind as container
 
 */
-package metaphor
+package metaphor-schemas
 //package metaphor
 		
 schema MetaphorSchema // in progress  

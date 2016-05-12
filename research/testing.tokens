@@ -121,3 +121,7 @@ mud :: SubstanceType :: self.m.ontological-category <-- @mud
 steel :: MaterialNoun :: self.m.ontological-category <-- @steel
 field :: BoundedRegionNoun :: self.m.ontological-category <-- @field
 convert :: ChangeType :: self.m.actionary <-- @convert
+fast :: ScalarAdverbType :: self.m.property <-- @speed :: self.m.value <-- ".7"
+angry :: EmotionAdjectiveType :: self.m.value <-- ".5" :: self.m.property <-- @anger :: self.m.polarity <-- "-"
+fake :: HedgeAdjectiveType :: self.m.hedgeValue <-- @fake
+happy :: EmotionAdjectiveType :: self.m.property <-- @happiness :: self.m.polarity <-- "+" :: self.m.value <-- ".5"
