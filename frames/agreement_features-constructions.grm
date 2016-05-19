@@ -15,6 +15,8 @@ general construction HasVerbFeatures
 general construction HasNominalFeatures
   	subcase of HasAgreementFeatures
   	constructional: NominalFeatures
+  	meaning
+  	 evokes RDFeatures as rd
 
 
 general construction Singular

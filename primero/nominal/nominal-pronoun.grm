@@ -111,7 +111,7 @@ general construction DOPronoun
 	     self.features.case <-- "acc"
 	meaning
 	   constraints
-	      self.m.ontological-category <-- @person
+	      //self.m.ontological-category <-- @person
 	            
 construction DO_Masculine
    subcase of DOPronoun, Singular, ThirdPerson
@@ -120,7 +120,7 @@ construction DO_Masculine
          self.f.orth <-- "lo"
    meaning
     constraints
-      self.m.ontological-category <-- @physicalEntity
+      //self.m.ontological-category <-- @item
       self.m.number <-- @singular
       self.m.gender  <-- @male
       self.m.referent <-- @antecedent
@@ -132,7 +132,7 @@ construction DO_Feminine
          self.f.orth <-- "la"
    meaning
     constraints
-      self.m.ontological-category <-- @physicalEntity
+     // self.m.ontological-category <-- @physicalEntity
       self.m.referent <-- @antecedent
       self.m.number <-- @singular
       self.m.gender  <-- @female    

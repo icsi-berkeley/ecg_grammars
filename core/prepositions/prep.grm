@@ -231,13 +231,6 @@ construction OF-Modifier
 	  constraints
 	    self.f.orth <-- "of"
 
-
-construction Up-Marker
-	subcase of Word // Preposition?
-	form
-	  constraints
-	    self.f.orth <-- "up"
-
 // 1/5/16 (ST) added from base
 construction BY-Agent
 	subcase of Preposition

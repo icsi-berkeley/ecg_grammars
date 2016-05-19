@@ -33,6 +33,7 @@ TOKEN_PATH ::==
 	./frames/tokens/kill.tokens
 	./frames/tokens/purchase.tokens
 	./frames/tokens/transitive_action.tokens
+	./frames/tokens/celex.tokens
 ;
 
 // 

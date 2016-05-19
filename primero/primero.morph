@@ -31,7 +31,7 @@ FirstPerson,PastTense,Singular :: self.pf.tense, @past :: LexicalVerbType
 PresentTense,SecondPerson,Singular :: self.pf.tense, @present :: LexicalVerbType
 Plural,PresentTense,ThirdPerson :: self.pf.tense, @present :: LexicalVerbType
 PastTense,Plural :: self.pf.tense, @past :: LexicalVerbType
-PresentTense,Singular,ThirdPerson :: self.pf.tense, @present :: LexicalVerbType
+PresentTense,Singular,ThirdPerson :: self.m.protagonist.number, @singular, self.pf.tense, @present :: LexicalVerbType
 Comparative :: self.m.kind, @comparative :: Adjective
 Superlative :: self.m.kind, @superlative :: Adjective
 Imperative,Singular,ThirdPerson :: , :: LexicalVerbType

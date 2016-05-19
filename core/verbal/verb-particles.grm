@@ -27,10 +27,13 @@ construction UP-Particle
  
  
  /*
-This cxn restricts it to be "Motion", as it does in base.
-Not sure if this is correct.
+Redone (5/12/16, ST) to have meaning of Process, and general cxn.
+Defines general relation between particle and verb.
+This can be extended for specific cases, like "Motion" (he moved up)
+or "Manipulation". In the latter case, you can constrain the particle 
+to be a specific particle ("up", like "pick up"). 
 */     
-construction VplusParticle  //moved up X
+general construction VplusParticle  //moved up X
   subcase of Verb
   	constructional
     	constituents
@@ -42,14 +45,32 @@ construction VplusParticle  //moved up X
    form
     	constraints
        		v.f before prep.f 
-    meaning: Motion
+    meaning: Process //Motion
     	constraints
     		self.m <--> v.m
     		self.m.p-features.particle <--> prep.m.value
-    		self.m.heading.tag <--> prep.m.value
+    		//self.m.heading.tag <--> prep.m.value
+
+/*
+This will work with motion verbs, e.g.:
+"he moved up"
+*/
+construction VPlusParticleMotion
+	subcase of VplusParticle
+	meaning: Motion
+
+
+
+/*
+Constructions for VP + Particle, in which it doesn't split the verb from the NP.
+
+A general VPPlusParticiple cxn defines the structure of a VP and a particle.
+We are testing a constraint in which the self
+
+*/
 
 // also restricts MEANING to motion    		
-construction VPplusParticle  // moved X up TODO  maybe not needed now
+general construction VPplusParticle  // moved X up TODO  maybe not needed now
   subcase of VP
   	constructional 
     	constituents
@@ -63,5 +84,21 @@ construction VPplusParticle  // moved X up TODO  maybe not needed now
        		vp.f meets prep.f  
     meaning
     	constraints
-    		self.m <--> vp.m
+    		self.m <--> vp.m  // this is a test: it accesses verb meaning, instead of VP (like CauseEffect)
       		self.m.p-features.particle <--> prep.m
+      		
+      		
+// he picked the box up    		
+construction VPplusParticleManipulation  // moved X up TODO  maybe not needed now
+  subcase of VPplusParticle
+    meaning: Manipulation
+
+    
+// he slid the box up    		
+construction VPplusParticleMotion  // moved X up TODO  maybe not needed now
+  subcase of VPplusParticle
+    meaning //: Motion
+     evokes MotionPath as mp
+     constraints 
+       vp.v.m <--> mp
+    

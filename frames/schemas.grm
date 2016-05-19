@@ -28780,6 +28780,7 @@ schema Transitive_action
        Duration 
        Frequency 
        Timespan 
+       Instrument // is this right (5/17/16, ST: testing for instrument-vp)
      constraints 
        Manner <--> Manner 
        Place <--> Place 
