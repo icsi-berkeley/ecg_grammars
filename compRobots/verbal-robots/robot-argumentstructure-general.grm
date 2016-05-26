@@ -1,9 +1,12 @@
 package robots
 import active-transitives
+//import auxiliaries
+//import passive-transitives
 import copula
 import intransitive
 //import ditransitive
 //import mental
 import modals
+import indirect
 
 
