@@ -174,7 +174,7 @@ DEFS:
 
 (type conditional_imperative sub conditional)
 
-(type conditional_declarative sub conditional)
+(type conditional_assertion sub conditional)
 
 (type serial sub event-kind)
 
