@@ -75,12 +75,11 @@ general construction ConditionalStatement
 	 constituents
 	   condition: ConditionalClause
 	   core: S 
-	   optional else: AlternativeClause
     meaning: ConditionalED
      constraints
        self.m <--> condition.m
        self.m.conclusion <--> core.m
-       self.m.alternative <--> else.m.alternative
+       //self.m.alternative <--> else.m.alternative
 
 general construction ConditionalImperative
 	subcase of ConditionalStatement, Imperative
@@ -157,9 +156,11 @@ general construction ConditionalDeclarative
 	    optional then: Then-Conditional
 	    core: Declarative
 	    optional c2: Comma
+	    optional else: AlternativeClause
 	 meaning: ConditionalED
 	  constraints
 	    self.m.profiledParticipant <--> core.m.profiledParticipant
+	    self.m.alternative <--> else.m.alternative
 
 
 construction StandardConditionalDeclarative
@@ -174,18 +175,26 @@ construction StandardConditionalDeclarative
 
 
 
-/*
-construction StandardConditionalDeclarative
-	subcase of ConditionalDeclarative
-	form
+
+// ConditionalDeclarative
+// if he builds a house, will it be red?
+general construction ConditionalQuestion
+	subcase of ConditionalStatement, Question
+	constructional
+	  constituents
+	    optional c: Comma
+	    optional then: Then-Conditional
+	    core: Question
+	    optional c2: Comma
+	 meaning: ConditionalED
 	  constraints
-	    cond.f meets bool.f
-	    bool.f meets then2.f
-	    bool.f before core.f
-	    core.f before else.f
-	meaning
-	  constraints
-	   	self.m.ed1 <--> bool.m
-	    self.m.ed2 <--> core.m	
-	    //self.m.ed3 <--> else.m    
-*/	          
+	    self.m.profiledParticipant <--> core.m.profiledParticipant
+
+
+construction StandardConditionalQuestion-YN
+	subcase of ConditionalQuestion, YN-Question
+	form 
+	 constraints
+	   condition.f before c.f
+	   c.f before then.f
+	   then.f before core.f

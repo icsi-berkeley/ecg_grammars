@@ -16,6 +16,7 @@ construction WHQuesUtterance
         constraints
             self.m.mood <-- "WH-Question" // this is where we want mood
  			self.m.content <--> core.m
+ 			self.m.speechAct <-- @direct // maybe
  			
 construction SubjWH-Question
     subcase of WH-Question, S-With-Subj
@@ -114,8 +115,6 @@ construction DeclarativeUtterance
 	subcase of Utterance
 	constructional
 	   constituents
-	     //optional addr: NP
-	     //optional comma: Comma
 	     core: Declarative
 	     end: PMark
 	form
@@ -125,6 +124,7 @@ construction DeclarativeUtterance
 	   constraints
 	      //self.m.addressee <--> addr.m
 	      self.m.mood <-- "Declarative"
+	      self.m.speechAct <-- @direct  // testing
 	      //core.m.profiledParticipant <--> self.m.addressee 
 	      
 // Imperative 
@@ -150,7 +150,11 @@ construction AddressedSimpleImperative
 	   constraints
 	      self.m.addressee <--> addr.m
 	      self.m.mood <-- "Imperative"
+	      self.m.speechAct <-- @direct
 	      core.m.profiledParticipant <--> self.m.addressee	
+	      
+	      
+
 	      
 // Conditional imperative
 construction AddressedConditionalImperative
@@ -170,6 +174,7 @@ construction AddressedConditionalImperative
 	   constraints
 	      self.m.addressee <--> addr.m
 	      self.m.content <--> core.m
+	      self.m.speechAct <-- @direct
 	      self.m.mood <-- "Conditional-Imperative"
 	      core.m.profiledParticipant <--> self.m.addressee
 	      core.m.complexKind <-- @conditional_imperative	                 
@@ -206,7 +211,9 @@ general construction Utterance
     meaning: DiscourseElement
         constraints
           self.m.content <--> core.m
-          
+
+
+// is the block red?          
 construction YNQuesUtterance  
     subcase of Utterance
     constructional 
@@ -220,6 +227,7 @@ construction YNQuesUtterance
         constraints
             self.m.mood <-- "YN-Question" // this is where we want mood	
             self.m.content <--> core.m
+            self.m.speechAct <-- @direct
             
 general construction EMark  
     subcase of Word
@@ -255,6 +263,7 @@ schema DiscourseElement //meaning of Utterance
         attentional_focus  
         content: EventDescriptor
         mood: @mood			// one of declarative, imperative, ...
+        speechAct // direct, indirect?
     constraints
 		speaker.ontological-category <-- @sentient
 		addressee.ontological-category <-- @sentient

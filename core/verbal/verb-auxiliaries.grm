@@ -285,6 +285,20 @@ construction S-With-BeProgressive-Inversion
     meaning  
         constraints 
 			fin.m.progressive <-- @yes
+			
+
+
+// was the box pushed by the man?
+construction S-With-Passive-Inversion
+    subcase of S-With-Aux-Inversion 
+    constructional
+        constituents
+        fin: BeAux 
+        constraints
+         vp.voice <-- Passive
+    meaning  
+        constraints 
+		    vp.m.p-features.voice <-- @passive	
 
 // 1/11/16 (ST): testing from base			
 general construction AuxPlusNot

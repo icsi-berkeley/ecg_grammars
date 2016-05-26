@@ -166,4 +166,6 @@ DEFS:
 
 (type convert sub change  shared)
 
+(type know sub think  shared)
+
 INSTS:

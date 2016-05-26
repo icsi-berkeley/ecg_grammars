@@ -77,8 +77,8 @@ schema Perception  // "he saw the box"
    constraints
     	thinker <--> protagonist
 		thinker.ontological-category <-- @sentient
-		content <--> perceivedProcess.protagonist
-		perceivedEvent.eventProcess <--> perceivedProcess
+		content <--> perceivedProcess.protagonist // should this be commented out, and only appear in cxns?
+		perceivedEvent.eventProcess <--> perceivedProcess // should this be commented out, and only appear in cxns?
 
 
 schema ComplexProcess  // later make sub of CoProcess
@@ -459,6 +459,8 @@ schema Communication
     constraints
      thinker <--> protagonist
      thinker.ontological-category <-- @sentient
+     
+
      
  // transfer: he gave John the box
  

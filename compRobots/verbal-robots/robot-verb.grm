@@ -9,6 +9,7 @@ construction ReturnType
 	 constraints
 	   self.m.actionary <-- @move
 	   self.m.spg.goal <-- @home
+	   self.m.speed <-- @scalarValue
 	   self.m.speed <-- ".5"
 
 

@@ -17858,7 +17858,7 @@ schema Mass_motion
        Degree 
        Area 
        Time 
-       Speed 
+       Speed  
        Source 
        Path 
        Goal 

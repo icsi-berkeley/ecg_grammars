@@ -8,6 +8,7 @@ schema ConjunctionValue
 	subcase of Value
 	roles
 	  value: @conjunction 
+	  frame
 
 general construction Conjunction
    subcase of Word
@@ -104,9 +105,10 @@ construction But-Conjunction
 	meaning
 	  evokes Concessive as concessive
 	  constraints
-	    coordinated_event.ed1 <--> concessive.conceded_state_of_affairs
-	    coordinated_event.ed2 <--> concessive.main_assertion
+	    coordinated_event.ed2 <--> concessive.conceded_state_of_affairs
+	    coordinated_event.ed1 <--> concessive.main_assertion
 	    self.m.value <-- @but
+	    self.m.frame <--> concessive
 	    	    
 construction That-Subordinating
 	subcase of Conjunction

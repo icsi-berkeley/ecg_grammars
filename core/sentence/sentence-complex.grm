@@ -10,7 +10,7 @@ Package for complex sentences. Currently just contains "Serial S", e.g.:
 
 package sentence-complex
 
-//package core
+package core
 
 general construction ComplexS // several kinds
     subcase of S 

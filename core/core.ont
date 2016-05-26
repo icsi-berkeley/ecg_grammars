@@ -243,6 +243,14 @@ DEFS:
 (type neutral sub epistemicStance)
 
 
+//testing, 5/24/16, ST
+(type speechAct)
+
+(type direct sub speechAct)
+
+(type indirect sub speechAct)
+
+
 // metaphors
 
 (type metaphors sub sharedEnumeration)
