@@ -14,11 +14,12 @@ PACKAGE_NAME ::==
 
 ONTOLOGY_PATHS ::==
 	./frames/semtypes.ont
-	./frames/core.ont
+	./core/core.ont
 ;
 
 IMPORT_PATHS ::==
 	./frames
+	./core
 ;
 
 

@@ -29,6 +29,7 @@ schema RD // meaning of NP
 	//continuity: @continuityValues 
     amount: Amount // schemas for quantifiers, etc. 
     extensions //: Extensions //  schemas for affordances, etc
+    // rename to "frame"?
     extras: RDExtras // testing (1/6/16)
     
 schema RDExtras

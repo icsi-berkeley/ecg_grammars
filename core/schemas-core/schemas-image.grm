@@ -50,6 +50,8 @@ schema BoundedObject
 		boundedObject.ontological-category <-- @container
 		entity <--> boundedObject
 
+
+
 schema Relation
 	roles
 	  entity1

@@ -1,5 +1,4 @@
-package universal-constructions
-import universal-schemas
+package core
 
 
 construction ROOT
