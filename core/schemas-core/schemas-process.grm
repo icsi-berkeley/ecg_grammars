@@ -38,6 +38,9 @@ schema TemporalStage
 	  medial
 	  final
 
+
+
+
 schema Motion
    subcase of Process 
    roles
@@ -50,7 +53,7 @@ schema Motion
      
      
 
-     
+    
    
 
 schema MotionPath // (bounded) translational motion

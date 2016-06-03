@@ -25,14 +25,18 @@ general construction IndirectSpeechAct
 // could you push the box north?
 // would you push the box north?
 // add optional addressee?
+
 construction Illocutionary-Modal-Command
 	subcase of IndirectSpeechAct
 	constructional
 	 constituents
 	   core: S-With-Modal-Inversion
-	   end: QMark
+	   optional end: QMark
 	meaning
 	 constraints
 	   self.m.mood <-- "Imperative"
 	   self.m.addressee <--> core.m.profiledParticipant
 	   self.m.speechAct <-- @indirect
+	   
+	   
+	   
