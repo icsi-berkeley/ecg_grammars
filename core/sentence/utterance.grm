@@ -8,7 +8,7 @@ construction WHQuesUtterance
     constructional 
         constituents
             core: WH-Question
-            end: QMark  //    ?
+            optional end: QMark  //    ?
     form
         constraints
             core.f meets end.f 
@@ -226,7 +226,7 @@ construction YNQuesUtterance
     constructional 
         constituents
             core: YN-Question
-            end: QMark    
+            optional end: QMark    
     form
         constraints
             core.f meets end.f 
