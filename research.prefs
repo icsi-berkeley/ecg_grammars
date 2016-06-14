@@ -13,13 +13,12 @@ PACKAGE_NAME ::==
 ;
 
 ONTOLOGY_PATHS ::==
-	./universal/core.ont 
+	./core/core.ont 
 	./research/research.ont
 ;
 
 IMPORT_PATHS ::==
 	./research
-	./universal
 	./core
 ;
 
@@ -28,11 +27,6 @@ MORPHOLOGY_PATH ::==
 	./core/celex.ecgmorph
 ;
 
-IMPORT_PATHS ::==
-	./research
-	./universal
-	./core
-;
 
 
 TOKEN_PATH ::==
@@ -48,6 +42,7 @@ TABLE_PATH = ./core/core.morph
 
 ROBUST = FALSE 
 BEAM_SIZE = 50
+VARIABLE_BEAM=FALSE
 DEFAULT_OMISSION_PROB = .1
 DEBUG = FALSE
 //DEBUG = TRUE

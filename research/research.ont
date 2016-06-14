@@ -10,7 +10,7 @@ DEFS:
 
 (type InstitutionAsPerson sub metaphors)
 
-(type IdeaAsPhysicalEntity sub metaphors)
+(type AbstractEntityAsPhysicalEntity sub metaphors)
 
 (type ScaleMetaphor sub metaphors)
 
@@ -72,11 +72,11 @@ DEFS:
 
 (type john sub person)
 
-(type paint sub create  shared)
+(type paint sub change  shared)
 
 (type make_create sub create  shared)
 
-(type make_cause sub cause  shared)
+(type make_change sub change  shared)
 
 (type cat sub sentient)
 
@@ -150,15 +150,24 @@ DEFS:
 
 (type crime sub socialProblem  shared)
 
-<<<<<<< HEAD
-=======
-(type bill sub abstract idea shared)
+(type bill sub abstractEntity idea shared)
 
 (type politician sub sentient person shared)
 
-(type law sub abstract  shared)
+(type law sub abstractEntity  shared)
 
-(type legislation sub abstract law shared)
+(type legislation sub abstractEntity law shared)
 
->>>>>>> b043b7cc9d528cc68f6c643295c55e46057485f7
+(type have sub possess  shared)
+
+(type own sub possess  shared)
+
+(type fuel sub object-property substance measure shared)
+
+(type field sub region physicalEntity shared)
+
+(type convert sub change  shared)
+
+(type know sub think  shared)
+
 INSTS:

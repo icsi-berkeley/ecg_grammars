@@ -40,6 +40,9 @@ general construction Killing_pattern0
 		ed.profiledParticipant <--> self.m.Killer
 		self.m.Instrument <--> instrument-pp.m
 		
+
+
+
 		
 construction Killing_pattern0_active
 	subcase of Killing_pattern0, ActiveTransitive

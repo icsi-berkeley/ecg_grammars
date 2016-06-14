@@ -1,0 +1,102 @@
+/* 
+
+Schemas for defining mental spaces. Instead of having a "space" primitive,
+they can be defined as a lattice of schemas.
+
+Currently testing, in development. (4/29/216, ST)
+(See the Mok/Bryant/Feldman, 2004 paper for details). 
+
+*/
+
+package core
+
+
+schema Concessive 
+    // nevokes Communication as communication 
+    roles 
+       conceded_state_of_affairs
+       topic
+       main_assertion 
+
+	 
+
+
+schema MentalSpace
+	roles
+	 parent: MentalSpace
+	 alternatives: MentalSpace
+	 cms: CompressedMentalSpace
+	 local-content
+	constraints
+	 parent <--> cms.parentSpace
+
+schema CompressedMentalSpace
+	roles
+	  ums: MentalSpace
+	  parentSpace: MentalSpace
+	  status
+	constraints
+	  self <--> ums.cms
+
+schema ConditionalSpace
+	subcase of MentalSpace
+	roles
+	  premise: EventDescriptor
+	  conclusion: EventDescriptor
+	  epistemicStance
+
+
+
+
+// depending on the conjunction, the premise could be P or ~P (see Feldman/Mok/Bryant, 2004)
+schema ConditionalSchema
+	subcase of CompressedMentalSpace
+	roles
+	  ums: ConditionalSpace
+	  condition: EventDescriptor // maps onto condition
+	  conditionalValue: @temporality // needs work, but this should differentiate between "if" and "while"
+	  premise: EventDescriptor
+	  conclusion: EventDescriptor
+	  alternative: EventDescriptor
+	  epistemicStance: @epistemicStance // degree of commitment to condition happening	  
+	constraints
+	  epistemicStance <--> ums.epistemicStance
+	  premise <--> ums.premise
+	  conclusion <--> ums.conclusion
+	  //premise.localTo <--> ums
+	  //conclusion.localTo <--> ums
+	  
+
+schema Prediction
+	roles
+	 predictedEvent: EventDescriptor
+	 likelihood
+	 basisOfPrediction: EventDescriptor
+	constraints
+	 predictedEvent.e-features.tense <-- @future
+/*	 
+	 
+construction Prediction
+	subcase of Declarative-S
+	meaning
+	 evokes Prediction as p
+	 constraints
+	   self.m.e-features.tense <-- @future
+	   p.predictedEvent <--> self.m
+	   
+	   
+construction ConditionalPrediction
+	subcase of ConditionalStatement
+	constructional
+	 constituents 
+	   core: Prediction
+	meaning
+	 evokes GeneralCausation as ce-primary
+	 evokes GeneralCausation as ce-alternative
+	 constraints
+	  ce-primary.effect <--> self.m.conclusion
+	  ce-primary.cause <--> self.m.premise
+	  // ce-alternative.cause <--> not (self.m.conclusion)
+	  // ce-alternative.effect <--> not (self.m.conclusion)
+*/	  
+	   

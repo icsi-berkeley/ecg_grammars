@@ -1,10 +1,45 @@
 package core
 import adverbs
 //import adjunct
-import serial
+//import serial
 //
 // vp.grm
 
+
+general construction VP
+ subcase of HasVerbFeatures //not currently a RootType *****************
+  meaning: Process 
+    evokes EventDescriptor as ed
+    constraints
+      self.m <--> ed.eventProcess
+	  self.m.ed <--> ed // pointer from process to EventDescriptor
+
+
+// subcases of ArgumentStructure are in individual argstruct.grm files
+general construction ArgumentStructure 
+  subcase of VP
+  constructional
+    constituents
+      v : Verb 
+    constraints
+      self.features <--> v.features
+      self.verbform <--> v.verbform
+      self.voice <--> v.voice
+   meaning
+     evokes A123 as s  
+     constraints
+       v.m  <--> ed.profiledProcess
+       self.m.p-features <--> v.m.p-features 
+      
+
+// The A123 schema serves as a way to refer to up to 3 argument roles within an Argument Structure cxn.  
+//Additional semantic constraints on these roles arise via binding to other schema roles
+
+schema A123 //  evoked by ArgumentStructure cxn
+	roles
+		a1:RD
+		a2:RD
+		a3		
 
 
 //To add: VP-participle-VP: "he walked into the room pushing a box".
@@ -47,6 +82,8 @@ construction StagedVP
 	    self.m.stageRole <--> v.m.actionary
 	    ed.profiledProcess <--> vp.m
 	    ed.profiledParticipant <--> vp.ed.profiledParticipant
+	    self.m.process <--> vp.m
+	    self.m <--> v.m
 
 
 // Infinitives
@@ -88,7 +125,8 @@ general construction AdjunctVP   // general for other coda, purpose, etc.
 		adjunct.modifiedThing <--> self.m
     	adjunct.modifier <--> pp.m
 
-    	// he walked/ran for 2 hours
+/*
+// he walked/ran for 2 hours
 construction TemporalVP   // walked for/in 2 minutes, needs work
   subcase of AdjunctVP
   constructional
@@ -104,3 +142,4 @@ construction TemporalVP   // walked for/in 2 minutes, needs work
       ed.e-features.duration <--> pp.m.ti // TemporalInterval
       ed.e-features.telicity <--> pp.m.telicity // @bounded,
       //adj.kind <-- @temporal gone
+      */

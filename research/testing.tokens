@@ -7,7 +7,7 @@ move    :: SelfMotionType  :: self.m.actionary <-- @move :: self.m.speed <-- ".5
 walk    :: SelfMotionType  :: self.m.actionary <-- @walk :: self.m.speed <-- ".3" :: self.argform <-- NotTransitive
 run     :: SelfMotionType  :: self.m.actionary <-- @run  :: self.m.speed <-- ".7" :: self.argform <-- NotTransitive
 box     :: ContainerNoun  :: self.m.ontological-category <-- @box
-room    :: ArtifactNoun  :: self.m.ontological-category <-- @room
+room    :: ContainerNoun  :: self.m.ontological-category <-- @room
 be      :: BeCopulaType  :: self.m.actionary <-- @be
 see     :: PerceptionType :: self.m.actionary <-- @see
 sprint  :: SelfMotionType  :: self.m.actionary <-- @run  :: self.m.speed <-- ".8" :: self.argform <-- NotTransitive
@@ -45,14 +45,15 @@ heavy :: ScalarAdjectiveType :: self.m.value <-- ".7" :: self.m.property <-- @we
 hefty :: ScalarAdjectiveType :: self.m.value <-- ".8" :: self.m.property <-- @weight
 light :: ScalarAdjectiveType :: self.m.value <-- ".3" :: self.m.property <-- @weight
 become :: ChangeType :: self.m.actionary <-- @become
-#change :: StateChangeType :: self.m.actionary <-- @change
+change :: ChangeType :: self.m.actionary <-- @change
 grow :: ScaleChangeType :: self.m.actionary <-- @grow :: self.mod.property <-- @size :: self.m.direction <-- @increase :: self.mod.value <-- ".7"
+grow :: ScaleChangeType :: self.m.actionary <-- @grow :: self.m.direction <-- @increase :: self.mod.value <-- ".7"
 shrink :: ScaleChangeType :: self.m.actionary <-- @shrink :: self.mod.property <-- @size :: self.m.direction <-- @decrease :: self.mod.value <-- ".3"
 team :: SentientNoun :: self.m.ontological-category <-- @person :: self.m.number <-- @plural
-paint :: CreationType :: self.m.actionary <-- @paint
+paint :: CauseChangeType :: self.m.actionary <-- @paint
 make :: CreationType :: self.m.actionary <-- @make_create
 create :: CreationType :: self.m.actionary <-- @create
-make :: CauseEffectType :: self.m.actionary <-- @make_cause
+make :: CauseChangeType :: self.m.actionary <-- @make_change
 prevent :: ForceDynamicType :: self.m.fdType <-- @prevent :: self.expectedVerbForm <-- PresentParticiple :: self.m.actionary <-- @prevent
 cause :: ForceDynamicType :: self.m.fdType <-- @cause :: self.m.actionary <-- @cause :: self.expectedVerbForm <-- Infinitive
 storm :: EventNoun :: self.m.ontological-category <-- @storm
@@ -82,7 +83,7 @@ kick :: ApplyForceType :: self.m.actionary <-- @kick
 table :: ArtifactNoun :: self.m.ontological-category <-- @table
 wall :: ArtifactNoun :: self.m.ontological-category <-- @wall
 hour :: UnitType :: self.m.ontological-category <-- @hour :: self.m.extras.quantity.property <-- @time
-hammer :: InstrumentNoun :: self.m.ontological-category <-- @hammer :: instrument.actionary <-- @create
+hammer :: InstrumentNoun :: self.m.ontological-category <-- @hammer :: extensions.actionary <-- @create
 minute :: UnitType :: self.m.ontological-category <-- @minute :: self.m.extras.quantity.property <-- @time
 second :: UnitType :: self.m.ontological-category <-- @second :: self.m.extras.quantity.property <-- @time
 foot :: UnitType :: self.m.ontological-category <-- @foot :: self.m.extras.quantity.property <-- @distance
@@ -95,7 +96,7 @@ slide :: CauseMotionType :: self.m.actionary <-- @complexxnet
 ball :: ArtifactNoun :: self.m.ontological-category <-- @ball
 go :: SelfMotionType :: self.m.actionary <-- @go
 #scale :: InstrumentNoun :: instrument.actionary <-- @weigh :: self.m.ontological-category <-- @scale_noun
-shoe :: InstrumentNoun :: self.m.ontological-category <-- @shoe :: instrument.actionary <-- @move
+shoe :: InstrumentNoun :: self.m.ontological-category <-- @shoe :: extensions.actionary <-- @move
 idea :: AbstractNoun :: self.m.ontological-category <-- @idea
 problem :: AbstractNoun :: self.m.ontological-category <-- @problem
 stumble :: SelfMotionType :: self.m.actionary <-- @stumble
@@ -111,3 +112,17 @@ disease :: DiseaseType :: self.m.ontological-category <-- @disease
 poverty :: SocialProblemType :: self.m.ontological-category <-- @poverty
 nation :: InstitutionType :: self.m.ontological-category <-- @nation
 crime :: SocialProblemType :: self.m.ontological-category <-- @crime
+have :: PossessionType :: self.m.actionary <-- @have :: self.voice <-- NotPassive
+own :: PossessionType :: self.m.actionary <-- @own
+fuel :: SubstanceType :: self.m.ontological-category <-- @fuel
+time :: AbstractNoun :: self.m.ontological-category <-- @time
+water :: SubstanceType :: self.m.ontological-category <-- @water
+mud :: SubstanceType :: self.m.ontological-category <-- @mud
+steel :: MaterialNoun :: self.m.ontological-category <-- @steel
+field :: BoundedRegionNoun :: self.m.ontological-category <-- @field
+convert :: ChangeType :: self.m.actionary <-- @convert
+fast :: ScalarAdverbType :: self.m.property <-- @speed :: self.m.value <-- ".7"
+angry :: EmotionAdjectiveType :: self.m.value <-- ".5" :: self.m.property <-- @anger :: self.m.polarity <-- "-"
+fake :: HedgeAdjectiveType :: self.m.hedgeValue <-- @fake
+happy :: EmotionAdjectiveType :: self.m.property <-- @happiness :: self.m.polarity <-- "+" :: self.m.value <-- ".5"
+know :: ThoughtType :: self.m.actionary <-- @know

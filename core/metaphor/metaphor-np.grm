@@ -7,7 +7,7 @@ so this reestablishes many of the necessary cxns to make that work.
 
    
 //package metaphor
-package core
+package metaphor
 
 
 general construction MetaphoricalNP // 10/26/12
@@ -40,7 +40,7 @@ construction InstitutionAsPerson_NP
 construction IdeaAsObject_NP
  	subcase of MetaphoricalNP
  	meaning
- 	 evokes IdeasAsPhysicalEntities as met
+ 	 evokes AbstractEntitesAsPhysicalEntities as met
 
  	   
  	   

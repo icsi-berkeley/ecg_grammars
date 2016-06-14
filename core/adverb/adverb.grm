@@ -1,6 +1,16 @@
+/*
+Adverbial cxns, taken mostly from base. 
+
+(ST, 5/11/16)
+
+*/
+
 package core
 
+general construction AVP
+
 general construction Adverbial  // can be a phrase as well
+  subcase of AVP
   meaning: AdverbModification
   
 
@@ -11,15 +21,27 @@ general construction Adverb
 // maybe a scale or multiplier?
 general construction Intensifier
 	subcase of Adverb
+	meaning: IntensifierModification
+	
 	
 construction Very // 
   subcase of Intensifier
   form
     constraints
        self.f.orth <-- "very"
-  meaning: AdverbModification
+  meaning
 	constraints
 		self.m.modifier <-- "very"
+		self.m.kind <-- @unmarked
+
+construction Too // 
+  subcase of Intensifier
+  form
+    constraints
+       self.f.orth <-- "too"
+  meaning: AdverbModification
+	constraints
+		self.m.modifier <-- "too"
 		self.m.kind <-- @unmarked
 
 
@@ -97,7 +119,9 @@ construction IntensifiedAjective
    	constraints
 		self.m <--> second.m
 		first.m.modifiedThing <--> second.m  
-		
+
+
+// quickly and carefully		
 construction CoordinatedAdverb
    subcase of ComplexAdverbial 
    	constructional 
@@ -113,3 +137,22 @@ construction CoordinatedAdverb
    	constraints
 		self.m <--> second.m
 		first.m.modifiedThing <--> second.m.modifiedThing
+		
+		
+// comparative adverb
+construction ComparativeAdverbPhrase  // Xed faster than John (Xed)
+   subcase of Adverbial, RootType
+   	constructional 
+   		constituents
+          	first: Adverb
+	    	than: Than //serial Conj. now  12/9/13 ************
+	    	base: NP
+	form
+      constraints
+       	first.f meets than.f
+       	than.f meets base.f
+   meaning
+   	constraints
+   		self.m.kind <-- @comparative
+		self.m <--> first.m
+		

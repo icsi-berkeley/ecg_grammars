@@ -1,3 +1,26 @@
+/*
+// Neutral transitive package
+// Defines general semantics for different transitive constructions
+// Then, CoreActiveTransitive and CorePassiveTransitive can extend these.
+
+Currently orthogonal to the transitive-testing package, which uses TransitiveAction schema.
+
+Includes argument-structure for:
+-Perception
+-"Cause Effect"
+	-Change property ("paint the house blue")
+	-Caused change location ("move the box into the room")
+	-Cause Change location with causal action ("push the box into the room")
+-Creation ("built the box")
+-Change location ("enter the room")
+-Manipulation ("picked up the box") (still in testing...)
+-Object Transfer ("give THEME to RECIPIENT")
+-Supply ("provided the bread")
+
+
+*/
+
+
 package core
 
 
@@ -20,10 +43,7 @@ general construction ArgumentStructure
        self.m.p-features <--> v.m.p-features 
 */
 
-// Neutral transitive package
-// Defines general semantics for different transitive constructions
-// Then, CoreActiveTransitive and CorePassiveTransitive can extend these.
-// Still in testing stage (1/8/16, ST).
+
 
 general construction TransitivePerception  // 8/21/13 he saw the block, the block was seen by him
 	subcase of ArgumentStructure
@@ -48,34 +68,9 @@ general construction TransitiveCauseEffect_central  // he pushed the block
 	meaning
       constraints
 		v.m <--> self.m 
-  		
-// "he painted the house blue", "he made the house bigger" (actives)
-// "the house was painted blue by him" (passive)
-// This is somewhat too specific? (1/6/16, ST)
-general construction TransitiveChangeProperty
-	subcase of TransitiveCauseEffect
-	constructional
-	  constituents
-	    adj: Adjective
-	    //np: NP
-	form
-	  constraints
-	  // v.f before adj.f
-	meaning: CauseEffect //: Creation
-	   evokes Change as change
-	   evokes Creation as creation
-	   evokes Modification as mod
-	   constraints
-	     self.m.causalProcess <--> v.m
-	     v.m <--> creation
-	     self.m.affectedProcess <--> change
-	     change.state <--> adj.m
-	     change.state <--> mod
-	     self.m.affectedEntity <--> mod.modifiedThing
-	     creation.createdThing <--> self.m.affectedEntity
 
 
-
+// move the box into the room
 general construction Trans_CauseChangeLocation 
   subcase of TransitiveCauseEffect
   constructional
@@ -95,7 +90,7 @@ general construction Trans_CauseChangeLocation
        	self.m.affectedProcess <--> mp
        	self.m.affectedEntity <--> mp.mover 
     	self.m.affectedEntity <--> mp.spg.trajector
-    	self.m.protagonist.ontological-category <-- @animate
+    	// self.m.protagonist.ontological-category <-- @animate  // this isn't right, it excludes robots
     	mp.spg <--> pp.m 
    		mp.spg.distance <--> dis.m 
 	    mp.heading <--> dir.m
@@ -193,3 +188,12 @@ general construction TransitiveSupply
 	    self.m.recipient <--> to.m.landmark
 
 
+// Possession: he owns the box, the box is owned by him
+// e.g. he had/owned the box
+general construction TransitivePossession  // 10/4/13
+	subcase of ArgumentStructure
+	meaning: PossProcess
+      constraints
+		v.verbkind <-- PossessionKind
+		s.a1 <--> self.m.protagonist	
+		s.a2 <--> self.m.possessed

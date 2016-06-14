@@ -1,26 +1,17 @@
 package core
-<<<<<<< HEAD
-import active-transitives
-import intransitive
-import auxiliaries
-=======
 //import active-transitives
 import intransitive
 //import auxiliaries
->>>>>>> b043b7cc9d528cc68f6c643295c55e46057485f7
 //import explicit-causation
 //import passive-transitives
 //import ditransitive 
 //import control
-//import copula
+import copula
 //import mental
 //import transitive-test
-<<<<<<< HEAD
 import modals
-import auxiliaries
-=======
-//import modals
-//import auxiliaries
->>>>>>> b043b7cc9d528cc68f6c643295c55e46057485f7
+//import catenatives
+//import change
+
 	
 

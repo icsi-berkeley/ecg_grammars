@@ -29,8 +29,8 @@ PresentTense,SecondPerson,Singular :: self.pf.tense, @present :: LexicalVerbType
 Plural,PresentTense :: self.pf.tense, @present :: LexicalVerbType
 PastTense,Plural :: self.pf.tense, @past :: LexicalVerbType
 PresentTense,Singular,ThirdPerson :: self.pf.tense, @present :: LexicalVerbType
-Comparative :: self.m.kind, @comparative :: Adjective
-Superlative :: self.m.kind, @superlative :: Adjective
+Comparative :: self.m.kind, @comparative :: Adjective, Adverb
+Superlative :: self.m.kind, @superlative :: Adjective, Adverb
 Infinitive :: , :: LexicalVerbType
 Positive :: , :: Adjective, DirectionalType, Adverb
 Participle,PresentTense :: self.pf.tense, @tense, self.pf.temporality, @ongoing :: LexicalVerbType

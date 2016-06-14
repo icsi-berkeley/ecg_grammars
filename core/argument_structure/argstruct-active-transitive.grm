@@ -57,6 +57,7 @@ construction ActiveTransitivePerception  // 8/21/13 he saw the block
 	subcase of CoreActiveTransitive, TransitivePerception
 
 
+
 // Should be more general: "transitive measure?"
 // x costs {}, x weighs {}, etc.
 // A separate construction is necessary for: "he weighed the box"
@@ -88,16 +89,6 @@ construction ActiveTransitiveExperienceHarm
 // he entered the room
 construction ActiveTransitiveChangeLocation 
 	subcase of CoreActiveTransitive, TransitiveChangeLocation
-
-
-// "he painted the box blue", "he made the box big"
-construction ActiveTransitiveChangeProperty
-	subcase of TransitiveChangeProperty, ActiveTransitive
-	form 
-	 constraints
-	    v.f before np.f
-	    np.f before adj.f
-
 
 /** Added from dropbox "robots" by Sean Trott, 2/4/15. */
 general construction ActiveTrans_CauseChangeLocation 
@@ -140,6 +131,10 @@ construction ActiveTransitiveManipulation
 construction ActiveTransitiveObjectTransfer
 	subcase of CoreActiveTransitive, TransitiveObjectTransfer
 
+
+// he gave the box to the man     
+construction ActiveTransitivePossession
+	subcase of CoreActiveTransitive, TransitivePossession
 	
 // he provided the service 
 construction ActiveTransitiveSupply

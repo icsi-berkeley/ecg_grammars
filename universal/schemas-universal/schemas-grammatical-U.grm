@@ -1,6 +1,8 @@
 package universal-schemas
 
-// grammaticalschemas.grm
+
+  		  
+ // grammaticalschemas.grm
 //
 // A simple schema for the orthographic form associated with Word cxns
 schema WordForm 
@@ -55,7 +57,9 @@ schema EventDescriptor // meaning of S
 		profiledProcess: Process	
 		profiledParticipant: RD 		
 		eventForm: @EventKind 
-		modifiedThing: RD // 10/1/15, testing			
+		modifiedThing: RD // 10/1/15, testing	
+		//localTo // testing (4/29/16, ST, for mental spaces: as in, "this schema is local to this space")	
+
 
 schema EventFeatures  // voice: @voice   also in Process - Dropped here, maybe not used // 7/29/15
 	roles
@@ -69,6 +73,7 @@ schema EventFeatures  // voice: @voice   also in Process - Dropped here, maybe n
 		place
 
 
+
 // RD
 
 
@@ -80,4 +85,3 @@ schema QuantitySchema  // numerical, some, "a few", etc.
   roles
   	value: @scalarValue  // numbers ++
   	number: @RDnumberValues
-  		  

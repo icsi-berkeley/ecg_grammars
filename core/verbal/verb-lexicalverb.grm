@@ -30,7 +30,7 @@ construction MeasurePredicationType
 	    self.m.dimension <-- @measure
 
 
-// Used for measure/dimension: "the box weighs 5 pounds"
+// Used for transitive measuring: "he weighed the box"
 construction MeasureProcessType
 	subcase of LexicalVerbType
 	meaning: MeasureProcess
@@ -46,7 +46,7 @@ construction ChangeType
 	    self.argform <-- ArgForm
 	meaning: Change
 	  constraints
-	    self.m.actionary <-- @statechange
+	    self.m.actionary <-- @change
 	    //self.m.state.property <-- @object-property
 	    //self.m.state.oldValue <-- @propValue
 	
@@ -94,7 +94,14 @@ construction CauseMotionType
 	meaning: CauseMotion
 	  constraints
 	    self.m.actionary <-- @complexxnet
-	    
+
+
+// he painted the house blue
+construction CauseChangeType
+	subcase of LexicalVerbType, GeneralTypeCxn
+	meaning: CauseChange
+	  constraints
+	    self.m.actionary <-- @change	    
 	    
 // "push the box north"
 construction ApplyForceType
@@ -134,6 +141,18 @@ construction TransferType
 	 constraints
 	   self.m.protagonist.ontological-category <-- @agent
 	   self.m.actionary <-- @objecttransfer
+
+
+// Possession Process
+construction PossessionType
+	subcase of LexicalVerbType
+	meaning: PossProcess
+	 constraints
+	   self.m.protagonist.ontological-category <-- @agent
+	   self.m.actionary <-- @possess
+	   self.verbkind <-- PossessionKind  // 10/3/13
+       self.argform <-- Transitive
+       self.voice <-- PassiveOrNotPassive
 
 // he created the box
 construction CreationType

@@ -1,0 +1,174 @@
+/*
+Package for "change" argument structure. Still in development, attempting to reconcile with "base" analyses. 
+
+Sentences: 
+-the box became red
+-the box became bigger than the man
+-the man grew
+
+*/
+
+package change
+
+//package core
+
+// Constructions for VP-change: "the box changed from red to blue"
+// "the box changed to blue"
+// "the plant grew" (BareIntransitive)
+general construction VPChange
+   subcase of IntransitiveArgumentStructure
+   constructional
+	  constituents
+	    v: Verb
+	  constraints
+	    self.features <--> v.features
+	meaning: Change
+	  constraints
+	    self.m <--> v.m
+	    self.m.temporality <-- @bounded
+	    self.m.protagonist <--> ed.profiledParticipant
+   
+
+/* the box became red
+   the box became bigger
+TO DO: stop "the box changed red" from unifying
+*/
+construction VPChangeAdj
+	subcase of VPChange
+	constructional
+	  constituents
+	    adj: Adjective
+	 form
+	   constraints
+	     v.f before adj.f
+	meaning: Change
+	  constraints
+	    self.m.temporality <-- @bounded
+	    ed.profiledParticipant <--> adj.m.modifiedThing
+	    self.m.state <--> adj.m
+
+// he changed into a man
+construction VPChangeGoal
+	subcase of VPChange
+	constructional
+	  constituents
+	    pp: Path-PP
+	 form
+	   constraints
+	     v.f before pp.f
+	meaning: Change
+	  constraints
+	    self.m.temporality <-- @bounded
+	    self.m.finalValue <--> pp.m.goal
+	    self.m.initialState <--> pp.m.source
+
+// general construction to define change, should include:
+// "changed X (from P1) to P2", "made X P1", "painted X P1", etc.
+// What about "change INTO P1" (where P1 can be a nominal, etc.)
+general construction TransitiveChange
+	subcase of TransitiveCauseEffect
+	meaning
+	 evokes Change as change
+	 constraints
+	   self.m.affectedProcess <--> change
+	   
+
+// change X TO P1
+general construction TransitivePropertyChange 
+	subcase of TransitiveChange
+	constructional
+	 constituents
+	  prep: TO-Path
+	  adj: PropertyAdjective
+	form
+	 constraints
+	  prep.f meets adj.f
+    meaning
+     evokes StateChange as change
+     constraints
+      change.state <--> adj.m
+      change.protagonist <--> adj.m.modifiedThing
+      change <--> v.m
+    
+
+// change X into S1
+// still testing, but the idea is that the "goal" of the path-pp is the goal of the state change
+general construction TransitiveStateChange 
+	subcase of TransitiveChange
+	constructional
+	 constituents
+	  pp: Path-PP
+    meaning
+     evokes StateChange as change
+     constraints
+      //change.state <--> adj.m
+      //change.protagonist <--> adj.m.modifiedThing
+      change.finalValue <--> pp.m.goal
+      change <--> v.m
+      change.initialState <--> pp.m.source
+
+// Verb is explicitly about causing change ("paint", "make", etc.)
+// change X TO P1
+general construction TransitiveCauseChange 
+	subcase of TransitiveChange
+	constructional
+	 constituents
+	  adj: PropertyAdjective
+    meaning: CauseChange
+     evokes StateChange as change
+     constraints
+      change.state <--> adj.m
+      change.protagonist <--> adj.m.modifiedThing
+      self.m <--> v.m	
+
+
+construction ActiveTransitiveStateChange // he painted it red
+   subcase of ActiveTransitive, TransitiveStateChange
+	form
+     constraints
+	  	np.f before pp.f
+
+// he painted it red
+construction ActiveTransitiveCauseChange // he painted it red
+   subcase of ActiveTransitive, TransitiveCauseChange
+	form
+     constraints
+	  	np.f before adj.f
+
+// he changed it (from red) to blue
+construction ActiveTransitivePropertyChange // he changed it (from red) to blue 2/20/13
+   subcase of ActiveTransitive, TransitivePropertyChange
+	form
+     constraints
+	  	np.f before prep.f
+
+import passive-transitives
+import auxiliaries
+
+// it was changed to blue (by the man)
+construction PassiveTransitivePropertyChange // he changed it (from red) to blue 2/20/13
+   subcase of PassiveTransitive, TransitivePropertyChange
+
+		
+
+
+        
+        
+// the plant grew to the ceiling
+/*
+// ** Currently not working, since "Modification" as state is incompatible with TrajectorLandmark
+construction VPScaleChange
+	subcase of VPChange
+	constructional
+	  constituents
+	    v: Verb // inherited, should be tighter for ScaleChange
+	    pp: Path-PP
+	 form
+	   constraints
+	     v.f before pp.f
+	meaning: ScaleChange
+	  constraints
+	    //self.m.temporality <-- @bounded
+	    self.m.state <--> pp.m
+	    ed.profiledParticipant <--> pp.m.trajector
+*/	    

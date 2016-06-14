@@ -1,48 +1,40 @@
 package core
+//package multiwords
 
+import particles
 
 construction PickType
 	subcase of LexicalVerbType
-	meaning: Process
+	meaning: Manipulation // Process?
 	  constraints
 	    self.m.actionary <-- @process
 	   
 construction PickUp
-	subcase of Verb
+	subcase of VplusParticle
 	constructional
 	 constituents
-	   pick: PickType
-	   up: Up-Marker
+	   v: PickType
+	   prep: UP-Particle
 	 constraints
-	   pick.verbform <-- Finite
-	   self.features <--> pick.features
-	form
-	  constraints
-	    pick.f before up.f
+	   //pick.verbform <-- Finite
+	   //self.features <--> pick.features
     meaning: Manipulation
       constraints
         self.m.actionary <-- @pickup
-        self.m <--> pick.m
+
 /*        
+// direct object pronoun alternation
+// testing, doesn't actually work...        
 construction PickItUp
-	subcase of ArgumentStructure
+	subcase of VplusParticle
 	constructional
 	  constituents
-	    pick: PickType
-	    it: Pronoun
-	    up: Up-Marker
-	
-	 constraints
-	   pick.verbform <-- Finite
-	   self.features <--> pick.features
-	
-	form
-	  constraints
-	    pick.f before it.f
-	    it.f before up.f
+	    v: PickType
+	    prep: UP-Particle
 	meaning: Manipulation
 	 constraints
-	   self.m <--> pick.m
-	   s.a1 <--> self.m.actor
-	   it.m <--> s.a2
-	   it.m <--> self.m.manipulated_entity*/
+	   //self.m <--> pick.m
+	   //s.a1 <--> self.m.actor
+	   //it.m <--> s.a2
+	   //it.m <--> self.m.manipulated_entity
+*/	   

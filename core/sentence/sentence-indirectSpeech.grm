@@ -1,0 +1,42 @@
+/*
+In development, this package could cover indirect speech acts like:
+"could you push the blue box into the room?"
+In addition to the normal interpretation as a Y/N utterance, this could be
+interpreted as a command, with the "illucotionary force" being the desire
+that [you] push the blue box into the room. Thus, the "mood" of the SemSpec
+could be interpreted as a command, instead of a YN-Question.
+
+Other types of indirect speech acts:
+1) "Do you know if box1 is red?" ==> "is box1 red?"
+2) 
+
+(5/24/16, ST) 
+
+*/
+
+package indirect
+import modals 
+
+
+general construction IndirectSpeechAct
+	subcase of Utterance
+	
+
+// could you push the box north?
+// would you push the box north?
+// add optional addressee?
+
+construction Illocutionary-Modal-Command
+	subcase of IndirectSpeechAct
+	constructional
+	 constituents
+	   core: S-With-Modal-Inversion
+	   optional end: QMark
+	meaning
+	 constraints
+	   self.m.mood <-- "Imperative"
+	   self.m.addressee <--> core.m.profiledParticipant
+	   self.m.speechAct <-- @indirect
+	   
+	   
+	   

@@ -9,6 +9,34 @@ as well as modified Proper Nouns, e.g. "southern France".
 ******************************************************************************/
 
  
+general construction UndeterminedNP  // various uses including:  white as snow 
+  subcase of NP  
+  meaning: RD
+    constraints
+      self.m.givenness <-- @typeIdentifiable // Michael
+	  self.m.bounding <-- @indeterminate   
+	  
+general construction NP 
+   subcase of RootType, HasNominalFeatures
+   meaning: RD
+
+
+// This is the root of nouns and noun noun compounds
+
+general construction Nominal 
+   subcase of HasNominalFeatures
+   meaning: RD 
+
+
+general construction Noun
+   subcase of Word, Nominal 
+
+
+
+general construction  Kernel // both RD and Nominal
+	subcase of HasNominalFeatures //, RootType  // for testing only 
+	meaning: RD
+ 
 
 // Not sure that this is the analysis we want, but it works: "cats are small", "boxes are red"
 // 
@@ -76,7 +104,7 @@ construction DeterminerPlusKernel
     constituents   
       s: Determiner  
 
-
+// 2 red boxes, etc.
 construction QuantityNP
   subcase of SpecifierPlusKernel
   constructional
@@ -98,6 +126,21 @@ construction QuantityNP
       self.m.extras.quantity.units <--> self.m.ontological-category
 
 
+// 2 of the red boxes, etc.
+construction QuantityOfNP  //  2 of the red blocks
+	subcase of QuantityNP
+  	constructional
+    	constituents
+	  		o1: OF-Modifier
+	  		th1: The
+  	form
+    	constraints
+    		q.f meets o1.f
+    		o1.f meets th1.f
+    		th1.f meets k.f
+      		q.f before k.f   		
+  	
+  	
 
 //  we now also have "his" as Possessive-NP, 
 

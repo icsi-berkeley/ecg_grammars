@@ -1,3 +1,14 @@
+/*
+This file defines different types of adjectives. These are primarily lexical adjectives 
+(vs. complex, phrasal adjectives, found in adj-complex.grm), and span various categories
+of modification:
+-PropertyAdjectives: mark a discrete property (red, blue, etc.)
+-ScalarAdjectives: describe a point on a scale of a continuous property (big, heavy)
+-
+
+*/
+
+
 package core
 
 import core-modification
@@ -14,6 +25,11 @@ general construction Adjective  // parallel to Verb, etc. \
 
 general construction LexicalAdjective
    subcase of Adjective, Word
+ 
+ 
+/**
+PROPERTIES
+*/ 
     
 general construction PropertyAdjective  // parallel to Verb, etc. \
 	subcase of  LexicalAdjective
@@ -37,9 +53,15 @@ construction ColorType  //subcase of non-scale Adj
 	   //self.m.domain <= @person 
 	   self.m.value <-- @colorValue
 
+/**
+SCALES
+*/ 
+
 general construction ScalarAdjective
    subcase of PropertyAdjective
    meaning: ScalarModifier
+
+      
    
 construction ScalarAdjectiveType
    subcase of GeneralTypeCxn, ScalarAdjective
@@ -47,30 +69,14 @@ construction ScalarAdjectiveType
      constraints
         self.m.value <-- @scalarValue //@propValue
         self.m.property <-- @object-property
-        self.m.scale.measure <--> self.m.property
-        self.m.scale.value <--> self.m.value
         self.m.domain <-- @item
      
-/*  
-construction SizeType
-	subcase of ScalarAdjective, GeneralTypeCxn
-	meaning
-	  constraints
-	    self.m.value <-- @sizeValue
-	    //self.m.property <-- @size
-	    //self
-	    //self.m.kind <-- @unmarked
 
-construction WeightType
-	subcase of ScalarAdjective, GeneralTypeCxn
-	meaning
-	  constraints
-	    self.m.value <-- @weightValue
-	    self.m.property <-- @weight
-	    //self.m.kind <-- @unmarked
-
+/*
+Overspecified, but useful for robot domain. Used to denote adjectival descriptors
+like "north" in "north side of the box". Is connected to notion of metonymy,
+which needs more work in the grammar.
 */
-
 construction SideAdj-Type
 	subcase of GeneralTypeCxn, PropertyAdjective
 	meaning
@@ -80,3 +86,37 @@ construction SideAdj-Type
 	    self.m.domain <-- @part	
 
  
+/*
+EMOTIONS
+*/ 
+general construction EmotionAdjective  // e.g. angry
+	subcase of  ScalarAdjective
+	meaning: EmotionModifier	
+	
+	
+construction EmotionAdjectiveType
+  subcase of EmotionAdjective, GeneralTypeCxn
+   meaning: EmotionModifier
+    constraints
+       self.m.value <-- @scalarValue // inherited ~ intensity; 
+       self.m.property <-- @emotionKind // @anger, etc.
+	   self.m.domain <-- @person // @person
+	   self.m.polarity <-- "*"  // should be either + or - for tokens
+	   
+	   
+	   
+/*
+HEDGES
+Testing, no implementation in "base"
+5/12/16 (ST)
+"fake", etc.
+*/
+general construction HedgeAdjective  // 4/8/13
+	subcase of  LexicalAdjective
+	meaning: HedgeModifier
+	
+construction HedgeAdjectiveType 
+	subcase of HedgeAdjective, GeneralTypeCxn
+	meaning
+	 constraints
+	   self.m.hedgeValue <-- @hedgeVal

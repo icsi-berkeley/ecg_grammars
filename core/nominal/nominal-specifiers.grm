@@ -38,25 +38,34 @@ construction The
          self.m.number <-- @singular
    		 self.m.bounding <-- @determinate 
 
+
+// Demonstratives
+general construction Demonstrative // this, etc.
+   subcase of Determiner
+
+    
+
 // should actually be a Demonstrative?
 construction This
-   subcase of Determiner, Singular
+   subcase of Demonstrative, Singular
    form
       constraints
          self.f.orth <-- "this"
    meaning
       constraints
-         self.m.givenness <-- @inFocus
+         self.m.givenness <-- @inFocus 
+         self.m.extras.deicticValue <-- @this 
 
 // should actually be a demonstrative?
 construction These
-   subcase of Determiner, Plural
+   subcase of Demonstrative, Plural
    form
       constraints
          self.f.orth <-- "these"
    meaning
       constraints
          self.m.givenness <-- @inFocus
+         self.m.extras.deicticValue <-- @this 
 
 
 construction A

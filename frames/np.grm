@@ -78,9 +78,10 @@ construction A-Determiner
 	   self.rd.number <-- @singular
 	   self.rd.bounding <-- @determinate
 
-general construction NP
-	subcase of RootType, Nominal
-	meaning //: Entity
+
+general construction NP 
+   subcase of RootType, HasNominalFeatures
+   meaning
 
 
 construction DeterminedNP
@@ -88,7 +89,7 @@ construction DeterminedNP
    constructional
      constituents
        d: Determiner
-       n: Nominal
+       n: Kernel
      constraints
        self.features <--> n.features
     form

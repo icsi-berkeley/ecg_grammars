@@ -82,6 +82,24 @@ construction TO-Path
         self.m.landmark <--> self.m.goal
  
  
+ // through the room
+construction THROUGH-Path
+   subcase of PathPreposition
+   form
+      constraints
+         self.f.orth <-- "through"
+   meaning: SPG  
+     constraints
+        self.m.landmark <--> self.m.path  
+        
+// did x to do y
+// add more semantics here?
+construction TO-Purpose
+   subcase of Preposition
+   form
+      constraints
+         self.f.orth <-- "to" 
+ 
 construction FROM-Path
    subcase of PathPreposition
    form
@@ -121,7 +139,7 @@ construction  INTO-Path // container 11/5/13
    meaning: SPG  
       evokes BoundedObject as bo
       constraints 
-         self.m.landmark.ontological-category <-- @container           // 2/22/14 commented out for m4 test 
+         //self.m.landmark.ontological-category <-- @container           // 2/22/14 commented out for m4 test 
          //self.m.landmark <--> bo.boundedObject
          self.m.landmark.extensions <--> bo //testing!
          self.m.goal <--> bo.interior
@@ -177,6 +195,13 @@ construction TO-Infinitive-Marker
 	form
 	  constraints
 	    self.f.orth <-- "to"
+
+
+construction AS-Marker
+   subcase of Preposition
+   form
+      constraints
+         self.f.orth <-- "as"
 	    
 construction FROM-Marker  // FDArgStructFrom
    subcase of Preposition
@@ -205,13 +230,6 @@ construction OF-Modifier
 	form
 	  constraints
 	    self.f.orth <-- "of"
-
-
-construction Up-Marker
-	subcase of Word // Preposition?
-	form
-	  constraints
-	    self.f.orth <-- "up"
 
 // 1/5/16 (ST) added from base
 construction BY-Agent

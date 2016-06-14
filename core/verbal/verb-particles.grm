@@ -1,0 +1,104 @@
+/*
+Package for particles, e.g. "up". Taken from base, not really used downstream at all yet.
+
+See notes from Pullum chapter 4, section 6.2: pg. 280
+Particle + NP vs. Prep + NP:
+"she took off the label" vs. "she jumped off the wall"
+(Particle / "intransitive prep") functions as complement of the verb.
+(ST, 5/11/16)
+
+*/
+
+package particles
+
+general construction Particle // Value is a string
+   	subcase of Preposition			
+	meaning: Value 
+     	//constraints
+      
+construction UP-Particle
+   subcase of Particle
+   form
+      constraints
+         self.f.orth <-- "up"
+   meaning: Value 
+     constraints
+      self.m.value <-- "up"  
+ 
+ 
+ /*
+Redone (5/12/16, ST) to have meaning of Process, and general cxn.
+Defines general relation between particle and verb.
+This can be extended for specific cases, like "Motion" (he moved up)
+or "Manipulation". In the latter case, you can constrain the particle 
+to be a specific particle ("up", like "pick up"). 
+*/     
+general construction VplusParticle  //moved up X
+  subcase of Verb
+  	constructional
+    	constituents
+      		prep: Particle
+      		v: Verb
+      	constraints
+  			self.features <--> v.features
+  			self.verbform <--> v.verbform
+   form
+    	constraints
+       		v.f before prep.f 
+    meaning: Process //Motion
+    	constraints
+    		self.m <--> v.m
+    		self.m.p-features.particle <--> prep.m.value
+    		//self.m.heading.tag <--> prep.m.value
+
+/*
+This will work with motion verbs, e.g.:
+"he moved up"
+*/
+construction VPlusParticleMotion
+	subcase of VplusParticle
+	meaning: Motion
+
+
+
+/*
+Constructions for VP + Particle, in which it doesn't split the verb from the NP.
+
+A general VPPlusParticiple cxn defines the structure of a VP and a particle.
+We are testing a constraint in which the self
+
+*/
+
+// also restricts MEANING to motion    		
+general construction VPplusParticle  // moved X up TODO  maybe not needed now
+  subcase of VP
+  	constructional 
+    	constituents
+      		prep: Particle
+      		vp: ArgumentStructure
+      	constraints
+  			self.features <--> vp.features
+  			self.verbform <--> vp.verbform
+   	form
+    	constraints
+       		vp.f meets prep.f  
+    meaning
+    	constraints
+    		self.m <--> vp.m  // this is a test: it accesses verb meaning, instead of VP (like CauseEffect)
+      		self.m.p-features.particle <--> prep.m
+      		
+      		
+// he picked the box up    		
+construction VPplusParticleManipulation  // moved X up TODO  maybe not needed now
+  subcase of VPplusParticle
+    meaning: Manipulation
+
+    
+// he slid the box up    		
+construction VPplusParticleMotion  // moved X up TODO  maybe not needed now
+  subcase of VPplusParticle
+    meaning //: Motion
+     evokes MotionPath as mp
+     constraints 
+       vp.v.m <--> mp
+    

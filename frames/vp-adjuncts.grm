@@ -1,0 +1,71 @@
+package adjuncts
+package frames
+
+general construction AdjunctVP   // general for other coda, purpose, etc.
+ subcase of VP
+  constructional
+    constituents
+      vp: VP
+      pp: AdjunctPP
+   constraints        
+  	  self.features <--> vp.features
+ 	meaning      
+      evokes AdjunctModification as adjunct     
+  	constraints
+		self.m <--> vp.m   
+      	ed <--> vp.ed
+		adjunct.modifiedThing <--> self.m
+    	adjunct.modifier <--> pp.m
+      
+
+construction InstrumentVP  
+  subcase of AdjunctVP   
+  constructional
+    constituents
+    	pp: InstrumentPP  //sub AdjunctPP
+   meaning: Transitive_action 
+	constraints
+		self.m.Instrument <--> pp.np.m
+		
+
+
+      
+ general construction AdjunctPP 
+    subcase of PP  
+    form
+		constraints
+			prep.f before np.f
+			
+			
+
+
+
+
+construction InstrumentPP 
+    subcase of AdjunctPP 
+    constructional
+    	constituents
+      		prep: InstrumentPreposition  // with, ...
+	meaning
+    	constraints
+    		np.rd.ontological-category <-- @instrument
+    		
+    		
+  general construction InstrumentPreposition
+   subcase of Preposition
+
+   
+ 
+construction WITH-Instrument
+   subcase of InstrumentPreposition
+   form
+      constraints
+         self.f.orth <-- "with"			
+			
+
+      	
+ schema AdjunctModification // for AdjunctVP, used 12/13/12
+	subcase of Modification
+	roles
+		kind // adjunct kind  instrument, etc.
+		adjunct  //unyped here

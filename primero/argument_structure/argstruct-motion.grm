@@ -54,41 +54,30 @@ Should be Intransitive b/c there is prepositional phrase, but more meaning shoul
 It was originally made to be inherited by "motion co-process", in which the protagonist is engaged in both motion
 and a co-event.
 */
-general construction CoProcess
-	subcase of ArgumentStructure
+general construction CoProcessCxn
+	subcase of VP
 	constructional
 	   constituents
-	     gerund: Verb
+	     vp1: VP
+	     vp2: Verb // gerund?
 	   constraints
-	     v.voice <-- NotPassive
-	     gerund.verbform <-- PresentParticiple
+	     vp1.voice <-- NotPassive
+	     vp2.verbform <-- PresentParticiple
 	form
 	   constraints
-	      v.f before gerund
-	meaning
+	      vp1.f before vp2.f
+	meaning: CoProcess
 	   evokes CoProcess as cop
 	   constraints
-	     self.cop.process1 <--> v.m
-	     self.cop.process2 <--> gerund.m
+	     self.m.process1 <--> vp1.m
+	     self.m.process2 <--> vp2.m
 	
 /* This is an attempt to capture motion co processes, such as "he entered the room running",
 or "he went down the hall whistling". The form binds the first process to the verb,
 and the second process to the gerund following the verb. */
 construction MotionCoProcess
-	subcase of CoProcess, ActiveMotionPath_VerbalPath// ActiveTransitiveChangeLocation
-	constructional
-		constituents
-		  optional pp: Path-PP
-		constraints
-		  v.voice <-- NotPassive
-	form
-	    constraints
-	      //v.f before pp.f
-	      //pp.f before gerund
-	 meaning
-	     constraints
-		  //self.m.spg <--> pp.m
+	subcase of CoProcessCxn // ActiveTransitiveChangeLocation
+	 meaning: CoProcess_MotionPath
 
-	     // self.m.landmark <--> np.m
 
 			

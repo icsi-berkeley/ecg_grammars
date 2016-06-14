@@ -1,5 +1,5 @@
 package noun-noun
-
+//package core
 
 construction NounNounCompound
 	subcase of Nominal
@@ -18,6 +18,48 @@ construction NounNounCompound
 	     self.m <--> head.m
 	     nnm.modifiedThing <--> head.m
 	     nnm.modifier <--> mod.m
+
+// a steel box	
+construction MaterialArtifactCompound  // trying new design 8/21/12 
+   subcase of Nominal
+   constructional
+      constituents
+        mod: Nominal 
+        head: Nominal
+      constraints
+        self.features <--> head.features
+  form
+     constraints
+       mod.f meets head.f
+    meaning
+      evokes Artifact as art  // hack, but seems OK
+     constraints
+       head.m.ontological-category <-- @artifact
+       self.m <--> head.m
+       mod.m.ontological-category <-- @material
+       art.material  <--> mod.m  //sets value directly
+       self.m.extensions <--> art 
+
+// a beer box
+construction ContainerContentsCompound  // trying new design 8/21/12  
+   subcase of Nominal
+   constructional
+      constituents
+        mod: Nominal 
+        head: Nominal
+      constraints
+        self.features <--> head.features
+  form
+     constraints
+       mod.f meets head.f
+    meaning
+      evokes Container as cont  
+     constraints
+       head.m.ontological-category <-- @container
+       self.m <--> head.m
+       //mod.m.bounding <-- @indeterminate // physicalEntity
+	   self.m.extensions <--> cont
+	    cont.contents <-> mod.m	
 	
 	
 // 2 inch box, 2 man team	

@@ -1,3 +1,23 @@
+/*
+Package with several VP cxns to allow analysis of complex VPs like:
+-"he ran to the box before/after pushing it"
+-"he built the house then painted it"
+
+The design is compositional, so that the conjunctions (after/before)
+do much of the temporal binding, and the phrasal cxns match the constituents
+to placeholders ("SerialProcessArgs"). 
+
+The analysis also contains a "TemporalSequence" (time1, time2), which isn't used downstream,
+but could potentially enrich analysis for some domains.
+
+TO DO: 
+-create general serialVP cxn, which maps a VP onto a clausalVP?
+-purpose VP
+-conjoined VP / coordinated VP
+
+*/
+
+
 //package serial
 package serial
 import conjunctions
@@ -11,6 +31,8 @@ general construction ComplexVP
 	 constraints
 	   v1.features <--> self.features
    meaning: ComplexProcess
+   
+   
 
 
 construction SerialVP
@@ -37,13 +59,13 @@ construction SerialVP
 	   self.m.connective <--> conj.m.value
 	   ed.profiledParticipant <--> self.m.protagonist
 
-
+// could probably binarize these to make them more compositional
 construction SerialVP2
 	subcase of ComplexVP
 	constructional
 	 constituents
 	   v1: VP
-	   conj: After-Serial
+	   conj: SerialConjunction // constraint to be of "after"/"before" type
 	   v2: VP
 	 constraints
 	   self.features <--> v1.features
@@ -58,7 +80,57 @@ construction SerialVP2
 	   self.m <--> conj.sp
 	   self.m.protagonist <--> v1.m.protagonist
 	   v2.m.protagonist <--> v1.m.protagonist
-	   self.m.process2 <--> v1.m
-	   self.m.process1 <--> v2.m
+	   //self.m.process2 <--> v1.m
+	   //self.m.process1 <--> v2.m
+	   self.m.pa.p1 <--> v1.m
+	   self.m.pa.p2 <--> v2.m
 	   self.m.connective <--> conj.m.value
 	   ed.profiledParticipant <--> self.m.protagonist
+
+	   
+// he built the house in order to live in it
+// he moved to the box to push it
+// (should also include "so that"...)
+// Question: Should it be a process or an ED?
+// maybe just use VP with Infinitive Verbform? 
+construction PurposeVP 
+	subcase of ComplexVP 
+ 	constructional 
+        constituents
+        	v1:VP
+        	optional inorder: InOrder // not optional 1/7/13
+         	conj:TO-Purpose
+          	v2:VP
+        constraints
+         	self.features <--> v1.features
+         	v2.verbform <-- Base // ipmerative
+       form 
+        constraints
+	       v1.f before inorder.f
+	       inorder.f before  conj.f
+	       conj.f before v2.f
+       meaning: PurposeProcess
+       	constraints
+       	    self.m.means <--> v1.m
+       	    self.m.purpose <--> v2.m
+       		self.m.protagonist.ontological-category <-- @sentient
+       		self.m.connective <--> conj.m
+       		ed.profiledParticipant <--> self.m.protagonist  // move to VP?
+  			self.m.protagonist <--> v2.m.protagonist
+  			self.m.protagonist <--> v1.m.protagonist
+
+// changed this to a multi-word cxn 			
+construction  InOrder // used only above
+     constructional
+      constituents
+        in: IN-Locative
+        order: OrderWord
+     form
+      constraints
+        in.f meets order.f
+        
+construction OrderWord
+	subcase of Word
+    form
+      constraints
+        self.f.orth <-- "order"	   

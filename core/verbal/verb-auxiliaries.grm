@@ -237,6 +237,7 @@ construction PassiveAuxPlusVerb
 	    main.verbform <-- PastParticiple
 	    self.verbform <--> aux.verbform
 	    self.voice <-- Passive
+	    self.voice <--> main.voice // is this right? ST, 4/27/16 (to prevent "the box was had by John")
 	meaning
 	  constraints
 	     aux.m.voice <-- @passive
@@ -284,6 +285,20 @@ construction S-With-BeProgressive-Inversion
     meaning  
         constraints 
 			fin.m.progressive <-- @yes
+			
+
+
+// was the box pushed by the man?
+construction S-With-Passive-Inversion
+    subcase of S-With-Aux-Inversion 
+    constructional
+        constituents
+        fin: BeAux 
+        constraints
+         vp.voice <-- Passive
+    meaning  
+        constraints 
+		    vp.m.p-features.voice <-- @passive	
 
 // 1/11/16 (ST): testing from base			
 general construction AuxPlusNot

@@ -1,23 +1,345 @@
 package core
 import universal-schemas
 
+schema Process 
+	roles
+    	protagonist: RD 
+      	actionary: @process	
+      	p-features: ProcessFeatures 
+      	ed:EventDescriptor 		
 
-	 
-	
+
+schema ProcessFeatures // some values are set by Aux cxns
+	roles
+		tense: @tense 	// one of past, present, future
+		perfect 		// yes or blank
+		progressive 	// yes or blank
+		//lexicalAspect 	// state, punctual, activity, achievement, accomplishment
+		particle  // for particle before or after
+		//timeUnits: @temporal-units  //@minutes, @seconds 3/22/13
+		temporality
+		voice: @voice	
+		negated  		// yes or blank	
+
+
+/// Testing (3/16/16, ST)
+schema TransitiveAction
+	subcase of Process
+	roles
+	 agent: RD
+	 patient: RD
+	constraints
+	 agent <--> protagonist
+
+// Testing
+schema TemporalStage
+	roles
+	  initial
+	  medial
+	  final
+
+
+
+
+schema Motion
+   subcase of Process 
+   roles
+      mover: RD  
+      speed          // scale
+      heading: HeadingSchema		// untyped, North, towards Box2 
+      actionary: @motion
+   constraints
+     mover <--> protagonist 
+     
+     
+
+    
+   
+
+schema MotionPath // (bounded) translational motion
+   subcase of Motion  
+   evokes SPG as spg
+   roles
+      direction //:RD  // 10/15/13  source or goal
+      distance
+   constraints  
+      mover <--> spg.trajector
+      distance <--> spg.distance
+      //mover.ontological-category <-- @physicalEntity       
+      
+      
+
+
+schema Perception  // "he saw the box"  
+   subcase of Process //  10/7/13
+   roles
+    	thinker: RD
+		perceivedProcess: Process ///for "he saw him running"
+    	content : RD // perceivedEntity  
+    	perceivedEvent: EventDescriptor
+   constraints
+    	thinker <--> protagonist
+		thinker.ontological-category <-- @sentient
+		content <--> perceivedProcess.protagonist // should this be commented out, and only appear in cxns?
+		perceivedEvent.eventProcess <--> perceivedProcess // should this be commented out, and only appear in cxns?
+
+
+schema ComplexProcess  // later make sub of CoProcess
+   subcase of Process
+   roles
+   	  complexKind: @process-kind
+   	  connective: @connective
+   	  relation // causation?	
+      //actionary//: @complexxnet  not used??
+      process1: Process
+      process2: Process
+      protagonist2: RD
+   constraints
+      protagonist <--> process1.protagonist
+      protagonist2 <--> process2.protagonist
+
+
+schema CauseEffectProcess
+   subcase of ComplexProcess 
+   roles
+      causer: RD
+      affected: RD
+      causalProcess
+      affectedProcess
+   constraints
+      causer <--> protagonist // binding to inherited role
+      affected <--> protagonist2 // binding to inherited role
+      causalProcess <--> process1 // binding to inherited role
+      affectedProcess <--> process2 // binding to inherited role
+      complexKind <-- @causal
+ 
+
+// Stasis -- used as the meaning of the copular use of 'be'
+schema Stasis
+   subcase of Process 
+   roles
+      protagonist: RD 	// 4/26/13
+      state 		// untyped here
+      actionary: @stasis // copula, etc.
+      temporality
+   constraints
+
+
+//TESTING SECTION  2/10/14
+
+schema EmbeddedProcess 
+  subcase of Process
+    roles
+      embeddedProcess: Process 
+      // actionary: @embeddedProcess	??
+ 
+    
+schema GeneralCausation // most general or abstract causation schema
+   subcase of Process
+   roles
+   	cause // untyped – could be force, process, or event?
+	effect // untyped – event or state (outcome)?
+	fdType // e.g. cause, prevent, enable. Default value could be ‘cause’ 
+
+
+// e.g. The explosion caused the damage; His kicking caused the damage
+schema CausalEvent // ‘cause’ is protagonist
+   subcase of GeneralCausation, Process  // or ComplexEvent
+   roles
+   	 cause: RD // or EventRD?
+     effect: RD // or EventRD?
+   constraints
+     cause <--> protagonist
+     cause.ontological-category <-- @eventTop
+
+// e.g. The explosion moved the box; The explosion caused the box to move
+schema CausedProcess // elaborated effect, general cause
+   subcase of GeneralCausation, EmbeddedProcess
+   roles
+   	affectedEntity: RD  // physical entity
+    affectedProcess: Process
+    //causedProcessType:
+     cause: RD // Or EventRD? Or add tighter constraints in cxns?
+	//effect – could define as EventRD and bind aff Entity and process roles
+   constraints
+      affectedProcess <--> embeddedProcess
+      cause.ontological-category <-- @eventTop
+      affectedEntity <--> 	affectedProcess.protagonist
+      cause <--> protagonist
+
+// e.g. He caused the damage 
+schema CausalAction // elaborated cause, general effect
+   subcase of GeneralCausation, Process
+   roles
+   	causalAgent: RD // in central case, is sentient entity 
+    effect: RD // Or EventRD?
+     //causalActionType: 
+   constraints
+      causalAgent <--> protagonist
+     // causalAgent.ontolo
+      //causalAgent.ontological-category <-- @entity
+      //cause - could define as EventRD and bind causalAgent and Process roles
+
+
+/* Unsure if this is final version of causation. */ 
+schema CauseEffect   // Direct Physical Causation
+   subcase of ComplexProcess, GeneralCausation 
+   roles
+      causalAgent: RD 
+      affectedEntity: RD
+      causalProcess: Process
+      affectedProcess: Process
+      actionary//: @cause
+   constraints
+      causalAgent <--> protagonist // binding to inherited role
+      affectedEntity <--> protagonist2 // binding to inherited role
+      causalProcess <--> process1 // binding to inherited role
+      affectedProcess <--> process2 // binding to inherited role
+      causalAgent.ontological-category <-- @entity
+      cause <--> causalProcess
+      effect <--> affectedProcess
+      complexKind <-- @causal
+ 
+ 
+ schema CauseChange
+ 	subcase of CausalTransitiveAction
+ 	roles
+ 	 process2: Change
+ 
+ schema CauseMotion
+  subcase of CauseEffect //, TransitiveAction
+  roles
+    process2: MotionPath 
+    /*
+  constraints
+    causalAgent <--> agent
+    affectedEntity <--> patient
+*/
+      
+ schema MotorControl
+   subcase of Process
+   roles
+      actor: RD 
+      effector: RD
+      effort
+      routine : @process
+   constraints
+   	  //actor.ontological-category <-- @agent //  12/21/12
+      actor <--> protagonist  // protagonist inherited from Process
+      routine <--> actionary
+
+schema ForceTransfer 
+   evokes Contact as cont
+   roles
+      supplier: RD // @entity    
+      recipient: RD // @entity
+      amount  // name conflict ********
+   constraints 
+   	  // no replacement for the above since Contact constrains
+   	  // entity{1,2}.referent to @entity
+      supplier <--> cont.entity1
+      recipient <--> cont.entity2   
+
+schema ForceApplication
+   subcase of MotorControl     
+   evokes ForceTransfer as ft 
+   roles
+      actedUpon: RD // @entity
+      routine : @forceapplication
+      instrument: RD // @instrument
+   constraints
+      actor <-->  ft.supplier
+      actedUpon <--> ft.recipient
+      //other   <-->   ft.recipient // 4/30/13 ********    
+      instrument <--> effector
+      effort <-->  ft.amount    
+      actionary <-- @forceapplication
+
+      
+      
+ // he stopped running
+schema StagedProcess
+	subcase of Process
+	  roles
+	    stageRole: @stage
+	    process: Process
+
+// he entered the room
+schema ChangeLocation // protagonist changes location wrt a LM
+   subcase of Process  
+   evokes SPG as spg
+   roles
+      mover:RD
+      landmark: RD
+   constraints  
+      mover <--> spg.trajector 
+	  mover <--> protagonist
+      landmark <--> spg.landmark
+      mover.ontological-category <-- @physicalEntity  // hack 10/23/12
+
+
+// Manipulation: "grasp", "pick up", "push on", etc.
+schema Manipulation
+	subcase of MotorControl, TransitiveAction //? 
+	roles
+	  instrument: RD
+	  bodypart_of_agent // which bodypart is used for manipulation
+	  manipulated_entity: RD
+	constraints
+	 // manipulated_entity <--> protagonist2
+	  actionary <-- @establishhold
+	  manipulated_entity <--> patient
+	  agent <--> actor
+
+
+// These are used for bindings in the conjunctions
+// Initially used "TemporalOrder", but this got confusing
+// because "first" and "second" placeholders weren't chronologically first and second, always.
+schema SerialProcessArgs
+	roles
+	  p1
+	  p2	 
+
+
+// from first-testing; currently not used downstream, but it's used in SerialProcess
+// to enrich / clarify the SemSpec
+schema TemporalSequence
+//subcase of ???  should this be subcase of Process? X-net?? some other Time-related schema?
+  roles  
+   time1
+   time2
+
 
 // Serial Process
 schema SerialProcess
 	subcase of ComplexProcess
+	evokes SerialProcessArgs as pa
+	evokes TemporalSequence as ts
 	roles
 	 connective
 	 process1: Process
 	 process2: Process
 	constraints
+	  ts.time1 <--> process1
+	  ts.time2 <--> process2
 	 complexKind <-- @serial
 	 protagonist <--> process1.protagonist
 	 protagonist2 <--> process2.protagonist
 	 protagonist <--> protagonist2
 
+
+// purposive process
+schema PurposeProcess   
+   subcase of SerialProcess
+   roles
+      purpose: Process
+      means: Process
+   constraints
+      protagonist <--> process1.protagonist
+	  protagonist <--> protagonist2
+	  purpose <--> process2
+	  means <--> process1
+	  complexKind <-- @purpose
 	
 // Should be more general type, e.g. "MeasureProcess" 
 // The ticket costs 6 bucks, the box weighs 5 pounds, etc.
@@ -56,28 +378,38 @@ schema Change
 	subcase of Process
 	roles
 	  state //: Modification //: ChangedState
-	  actionary: @statechange
+	  initialState // testing
+	  actionary: @change
 	  temporality: @bounded
 	  oldValue //: @propValue
-	constraints
-	  actionary <-- @statechange
+	  finalValue
+	  property
+
 	  
 // State Change processes: "the box changed from red to blue"
 schema StateChange
 	subcase of Change
 	roles
-	  state //: ChangedState
+	  state: PropertyModifier
 	  actionary: @statechange
 	  temporality: @bounded
+	constraints
+	  finalValue <--> state.value
+	  property <--> state.property
+	  protagonist <--> state.modifiedThing
 	
 // Scale Change processes: "the box grew"
 schema ScaleChange
 	subcase of Change
 	roles
-	  state // ScalarModifier //: ChangedScale
+	  state: ScalarModifier // ScalarModifier //: ChangedScale
 	  actionary: @scalechange
 	  temporality: @bounded
 	  direction
+	constraints
+	  finalValue <--> state.value
+	  property <--> state.property
+	  protagonist <--> state.modifiedThing
 
 // Creation (he created the box)
 schema Creation
@@ -98,7 +430,17 @@ schema EmbeddedEventProcessSimple
 	roles
 	  event: Process
 
-	  
+// try, attempt
+schema Attempt
+	subcase of EmbeddedEventProcessSimple 
+	roles
+	 agent
+	 goal
+    constraints
+     agent <--> protagonist
+     goal <--> event
+
+
 	  
 // Communication: he said that...
 schema Communication
@@ -122,6 +464,8 @@ schema Communication
      thinker <--> protagonist
      thinker.ontological-category <-- @sentient
      
+
+     
  // transfer: he gave John the box
  
 //POSSESSION
@@ -133,6 +477,7 @@ schema PossProcess
    constraints
      extra.possessed <--> possessed
      extra.possessor <--> protagonist
+     possessed.ontological-category <-- @physicalEntity
      
 schema ObjectTransfer
 	subcase of ComplexProcess, A123
@@ -170,7 +515,7 @@ schema Supply
 	subcase of Process, TransitiveAction
 	roles
 	  supplier: RD
-	  imposed_purpose
+	  intended_purpose
 	  theme: RD
 	  recipient: RD
 	constraints
@@ -190,6 +535,7 @@ schema CausalTransitiveAction
 	constraints
 	  affectedProcess.protagonist <--> patient
 	  causalAgent <--> protagonist	  
+	  causalProcess.protagonist <--> causalAgent
 	  
 // cause harm, testing relation between transitive action and causation
 schema CauseHarm

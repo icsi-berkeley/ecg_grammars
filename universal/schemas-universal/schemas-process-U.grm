@@ -1,6 +1,7 @@
 package universal-schemas
 // 
 
+
 /// Testing (3/16/16, ST)
 schema TransitiveAction
 	subcase of Process
@@ -71,12 +72,14 @@ schema Perception  // "he saw the box"
    subcase of Process //  10/7/13
    roles
     	thinker: RD
-		//perceivedProcess: Process  for "he saw him running"
+		perceivedProcess: Process ///for "he saw him running"
     	content : RD // perceivedEntity  
+    	perceivedEvent: EventDescriptor
    constraints
     	thinker <--> protagonist
 		thinker.ontological-category <-- @sentient
-		//content <--> perceivedProcess.protagonist
+		content <--> perceivedProcess.protagonist
+		perceivedEvent.eventProcess <--> perceivedProcess
 
 
 schema ComplexProcess  // later make sub of CoProcess
@@ -250,6 +253,7 @@ schema StagedProcess
 	subcase of Process
 	  roles
 	    stageRole: @stage
+	    process: Process
 
 
 schema ChangeLocation // protagonist changes location wrt a LM

@@ -1,3 +1,19 @@
+/*
+Package for defining passive variants of Transitive cxns.
+
+(5/5/16, ST)
+
+Includes:
+-the box was seen by the man
+-the box was painted (by the man)
+-the box was moved (by the man)
+-the box was pushed into the room (by the man)
+-the house was built (by the man)
+-the box was picked up (by the man)
+-the box was given to him (by the man)
+
+*/
+
 package passive-transitives
 import auxiliaries
 import transitives
@@ -34,18 +50,8 @@ general construction CorePassiveTransitive
 // the block was seen by him
 construction PassiveTransitivePerception  
 	subcase of CorePassiveTransitive, TransitivePerception
-		
 
-// "the box was painted blue by John", "the box was made big by John"
-// TODO: Not working?
-construction PassiveTransitiveChangeProperty
-	subcase of TransitiveChangeProperty, PassiveTransitive
-	form 
-	constraints
-	  adj.f before byPhrase.f
    
-	    
-
 // "the room was entered by him"
 construction PassiveTransitiveChangeLocation
 	subcase of CorePassiveTransitive, TransitiveChangeLocation
@@ -64,6 +70,10 @@ construction PassiveTrans_CauseChangeLoc_causalAction
 construction PassiveTransitiveCreation
 	subcase of CorePassiveTransitive, TransitiveCreation    
 	    
+// "the box is owned by the man"
+construction PassiveTransitivePossession
+	subcase of CorePassiveTransitive, TransitivePossession    
+
 
 
 // the box was picked up by the man

@@ -21,20 +21,3 @@ construction AdjectiveType
 	  self.mod.value <-- "*"
 	
 
-construction KernelAdjective
-	subcase of Nominal
-	constructional
-	  constituents
-	    a: Adjective
-	    n: Nominal
-	  constraints
-	    self.features <--> n.features
-	form
-	 constraints
-	  a.f before n.f
-	meaning
-	 constraints
-	   self.m <--> n.m
-	   self.rd <--> n.rd
-	   a.mod.modifier <--> a.m
-	   a.mod.modifiedThing <--> n.m

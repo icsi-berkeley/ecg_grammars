@@ -45,7 +45,6 @@ position :: PropertyNoun :: self.m.ontological-category <-- @position
 location :: PropertyNoun :: self.m.ontological-category <-- @position
 orientation :: PropertyNoun :: self.m.ontological-category <-- @orientation
 turn :: SelfMotionType :: self.m.speed <-- ".2" :: self.m.actionary <-- @turn
-water :: SubstanceType :: self.m.ontological-category <-- @water
 coffee :: SubstanceType :: self.m.ontological-category <-- @coffee
 mug :: ContainerNoun :: self.m.ontological-category <-- @mug
 dining :: PropertyAdjectiveType :: self.m.property <-- @function :: self.m.value <-- @dining 
@@ -58,3 +57,4 @@ fall :: SelfMotionType :: self.m.actionary <-- @fall
 floor :: ArtifactNoun :: self.m.ontological-category <-- @floor
 new :: PropertyAdjectiveType :: self.m.value <-- @new
 marker :: ArtifactNoun :: self.m.ontological-category <-- @marker
+gallon :: UnitType :: self.m.ontological-category <-- @gallon :: self.m.extras.quantity.property <-- @fuel

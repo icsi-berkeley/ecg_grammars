@@ -114,7 +114,9 @@ DEFS:
 
 (type group sub socialEntity)
 
-//(type deictic sub enumeration)  // ??
+(type deictic sub enumeration)  // ??
+
+(type this sub deictic)
 
 (type EventKind sub enumeration)
 
@@ -136,17 +138,33 @@ DEFS:
 
 (type causal sub process-kind)
 
+/// connectives and conjunctions
+
 (type connective)
 
 (type conjunction sub connective)
 
-(type then sub conjunction)
+(type serialConjunction sub conjunction)
+
+(type then sub serialConjunction)
 
 (type than sub conjunction)
 
-(type after sub conjunction)
+(type after sub serialConjunction)
 
-(type before sub conjunction)
+(type before sub serialConjunction)
+
+(type logicalConjunction sub conjunction)
+
+(type and sub logicalConjunction)
+
+(type or sub logicalConjunction)
+
+(type concessiveConjunction sub logicalConjunction)
+
+(type but sub concessiveConjunction)
+
+/// event-kinds: conditionals, etc.
 
 (type interaction sub process-kind)
 
@@ -156,7 +174,7 @@ DEFS:
 
 (type conditional_imperative sub conditional)
 
-(type conditional_declarative sub conditional)
+(type conditional_assertion sub conditional)
 
 (type serial sub event-kind)
 
@@ -223,6 +241,14 @@ DEFS:
 (type epistemicStance)
 
 (type neutral sub epistemicStance)
+
+
+//testing, 5/24/16, ST
+(type speechAct)
+
+(type direct sub speechAct)
+
+(type indirect sub speechAct)
 
 
 // metaphors
@@ -395,7 +421,7 @@ DEFS:
 
 (type container sub  artifact location entity)  //11/4/1/3
 
-(type box sub container moveable)
+(type box sub container moveable artifact)
 
 (type boxes sub container)
 
@@ -415,7 +441,7 @@ DEFS:
 
 (type coffee sub substance artifact)
 
-(type mud sub mass)
+(type mud sub mass substance)
 
 (type material sub mass)
 
@@ -533,9 +559,11 @@ DEFS:
 
 (type objecttransfer sub complexxnet)
 
-(type statechange sub process stasis)  //2/28/13
+(type change sub process)
 
-(type scalechange sub statechange)
+(type statechange sub change)  //2/28/13
+
+(type scalechange sub change)
 
 (type make sub statechange)
 
@@ -612,6 +640,8 @@ DEFS:
 (type emotionKind sub scale)
 
 (type anger sub emotionKind)  // 3/29/13 verb
+
+(type happiness sub emotionKind)
 
 // Properties
 
@@ -716,6 +746,8 @@ DEFS:
 (type increase sub comparison)
 
 (type decrease sub comparison)
+
+(type equal sub comparison)
 
 (type weight sub object-property scale measure)
 
