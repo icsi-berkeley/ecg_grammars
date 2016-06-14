@@ -193,6 +193,9 @@ general construction ConditionalQuestion
 
 construction StandardConditionalQuestion-YN
 	subcase of ConditionalQuestion, YN-Question
+	constructional
+	 constituents
+	   core: YN-Question
 	form 
 	 constraints
 	   condition.f before c.f

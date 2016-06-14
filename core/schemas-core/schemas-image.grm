@@ -204,7 +204,7 @@ schema Sidedness
 	  back.ontological-category <-- @back 
 
 schema HeadingSchema
-   roles
+   roles 
      tag: @heading
      landmark: RD
 

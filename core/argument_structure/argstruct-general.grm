@@ -9,10 +9,10 @@ import active-transitives
 //import passive-transitives
 //import ditransitive 
 //import control
-//import copula
+import copula
 //import mental
 //import transitive-test
-//import modals
+import modals
 //import catenatives
 //import change
 
