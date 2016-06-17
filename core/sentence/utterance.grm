@@ -236,6 +236,10 @@ construction YNQuesUtterance
             self.m.content <--> core.m
             self.m.speechAct <-- @direct
             
+ 
+
+            
+            
 general construction EMark  
     subcase of Word
 
