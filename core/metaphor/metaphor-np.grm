@@ -51,13 +51,16 @@ construction StatesAreLocations_Cxn_NP
  	 evokes StatesAreLocations_Metaphor as met
 
  	 
-// reconstrues ideas as physical objects 	   
+// reconstrues social problems are diseases ("poverty infected the nation")	   
 construction SocialProblemsAreDiseases_Cxn_NP
  	subcase of MetaphoricalNP
  	meaning
  	 evokes SocialProblemsAreDiseases_Metaphor as met
  	 
- 	 
- 	 
- 	 
+
+// reconstrues social problem as animate agent 	 
+construction SocialProblemsAreAnimateAgents_Cxn_NP
+ 	subcase of MetaphoricalNP
+ 	meaning	 
+ 	 evokes SocialProblemsAreAnimateAgents_Metaphor as met
  	 

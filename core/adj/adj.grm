@@ -50,7 +50,7 @@ construction ColorType  //subcase of non-scale Adj
    meaning: PropertyModifier
     constraints
        self.m.property <-- @color 
-	   self.m.domain <-- @physicalEntity 
+	   //self.m.domain <= @person 
 	   self.m.value <-- @colorValue
 
 /**

@@ -149,7 +149,7 @@ construction It
          self.f.orth <-- "it"
    meaning
     constraints
-      self.m.ontological-category <-- @entity  
+      //self.m.ontological-category <-- @entity  
       self.m.number <-- @singular
       self.m.gender <-- @neuter
       self.m.referent <-- @antecedent
@@ -180,7 +180,7 @@ construction One-Anaphora
          self.f.orth <-- "one"
    meaning
     constraints
-      self.m.ontological-category <-- @entity  
+      //self.m.ontological-category <-- @entity  
       self.m.referent <-- @anaphora
       self.m.number <-- @singular    
       
@@ -195,7 +195,7 @@ construction One-Anaphora
          self.f.orth <-- "ones"
    meaning
     constraints
-      self.m.ontological-category <-- @entity  
+      //self.m.ontological-category <-- @entity  
       self.m.referent <-- @anaphora
       self.m.number <-- @plural    
       

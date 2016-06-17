@@ -116,7 +116,13 @@ schema StatesAreLocations_Metaphor
 	  target <-- @socialProblem
 	  source <-- @disease
 	  	   
-
+ 	   
+ schema SocialProblemsAreAnimateAgents_Metaphor
+	subcase of MetaphorSchema
+	constraints
+	  name <-- @SocialProblemsAreAnimateAgents
+	  target <-- @socialProblem
+	  source <-- @animate
  
 
 	   

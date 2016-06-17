@@ -371,7 +371,7 @@ schema MeasureProcess
 	  measurement: RD //: QuantifiedRD
 	  dimension
 	constraints
-	  protagonist.ontological-category <-- @agent // Pretty sure this is correct  
+	  protagonist.ontological-category <= @agent // Pretty sure this is correct  
 	  object <--> patient
 	
 schema Change
@@ -416,11 +416,12 @@ schema Creation
 	subcase of TransitiveAction
 	roles
 	  creator
-	  createdThing
+	  createdThing: RD
 	  intended_recipient // "he built the house FOR John"
 	constraints
      protagonist <--> creator
      createdThing <--> patient
+     createdThing.ontological-category <= @physicalEntity
 
 
 // he tried to push the box
@@ -519,6 +520,8 @@ schema Supply
 	  recipient: RD
 	constraints
 	  supplier <--> protagonist
+	  theme.ontological-category <= @physicalEntity
+	  theme <--> patient
 	  //patient <--> 
 	  // is the patient the theme or the recipient? 
 	  // "he was provided with weapons", "he provided the weapons TO him", "the weapons were provided to him"
@@ -542,7 +545,7 @@ schema CauseHarm
 	  victim: RD
 	constraints
 	  victim <--> patient
-	  protagonist.ontological-category <-- @animate
+	  protagonist.ontological-category <= @animate
 	  victim.ontological-category <-- @animate
 
 
@@ -554,7 +557,7 @@ schema Infect
 	  victim: RD
 	constraints
 	  victim <--> patient
-	  causalAgent.ontological-category <= @disease
+	  causalAgent.ontological-category <= @disease // uses unidirectional constraint
 	  victim.ontological-category <-- @animate	  
 	
 // some Protagonist experiences harm, e.g. "the man broke his arm"

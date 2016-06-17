@@ -20,6 +20,8 @@ DEFS:
 
 (type ImportanceIsWeight sub ScaleMetaphor)
 
+(type SocialProblemsAreAnimateAgents sub metaphors)
+
 (type importance sub scale)
 
 (type StatesAreLocations sub metaphors)
