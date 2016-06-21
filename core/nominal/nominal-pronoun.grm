@@ -73,6 +73,22 @@ construction HerDat
          self.m.number <-- @singular
          self.m.gender <-- @female       
 
+
+construction MeDat
+   subcase of Pronoun, Singular, FirstPerson
+   constructional
+    constraints
+      self.features.case <-- "dat"
+   form
+      constraints
+         self.f.orth <-- "me"
+   meaning
+      constraints
+         self.m.ontological-category <-- @person
+         self.m.number <-- @singular
+         self.m.referent <-- @speaker
+ 
+
 general construction  Possessive-NP
 	subcase of NP
 
@@ -121,6 +137,7 @@ construction I-Pronoun
       self.m.ontological-category <-- @person  
       self.m.number <-- @singular
       self.m.gender <-- @genderValues  
+      self.m.referent <-- @speaker
  
  
  construction You-Pronoun
