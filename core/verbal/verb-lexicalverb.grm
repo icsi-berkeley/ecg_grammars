@@ -107,12 +107,9 @@ construction CauseChangeType
 construction ApplyForceType
 	subcase of LexicalVerbType
 	meaning: ForceApplication
-	//evokes ForceApplication as fa
 	  constraints
-	  	 //self.fa <--> self.m.causalProcess
 	  	 self.m.actionary <-- @forceapplication
 	  	 self.argform <-- Transitive
-	    //self.fa.actedUpon <--> self.m.affectedEntity
 
 // he grasped the box  
 construction ManipulationType
@@ -127,7 +124,7 @@ construction ManipulationType
 // involves causing motion
 construction EstablishHoldType
 	subcase of LexicalVerbType
-	meaning: EstablishHold // MotorControl?
+	meaning: EstablishHold 
 	  constraints
 	     self.m.protagonist.ontological-category <-- @agent
 	     self.m.actionary <-- @establishhold

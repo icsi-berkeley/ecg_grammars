@@ -344,4 +344,6 @@ DEFS:
 
 (type gallon sub measure fuel shared)
 
+(type grab sub establishhold  shared)
+
 INSTS:
