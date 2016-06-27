@@ -78,13 +78,14 @@ construction ActiveTransitiveMeasure  // Interim (ST, 10/14/15)
 
 // he broke his arm (reflexive case)
 // these can't really be passivized
+/*
 construction ActiveTransitiveExperienceHarm
 	subcase of CoreActiveTransitive
 	meaning: ExperienceHarm
 	  constraints
 	    np.m <--> self.m.bodypart
 	    s.a1 <--> self.m.experiencer
-	
+	*/
 		
 // he entered the room
 construction ActiveTransitiveChangeLocation 
