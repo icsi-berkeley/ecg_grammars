@@ -40,7 +40,7 @@ TABLE_PATH = ./core/core.morph
 //	./core/test.sem
 //;
 
-ROBUST = FALSE 
+ROBUST = TRUE 
 BEAM_SIZE = 50
 VARIABLE_BEAM=FALSE
 DEFAULT_OMISSION_PROB = .1
