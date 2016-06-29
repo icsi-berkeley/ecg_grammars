@@ -291,7 +291,7 @@ schema DiscourseElement //meaning of Utterance
         speechAct // direct, indirect?
     constraints
 		speaker.ontological-category <-- @sentient
-		//addressee.ontological-category <-- @sentient
+		addressee.ontological-category <-- @sentient
 
 
          			
