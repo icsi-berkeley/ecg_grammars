@@ -160,6 +160,20 @@ construction AddressedImperative
 	      
 	      
 
+construction UnaddressedImperative
+	subcase of Utterance
+    constructional
+	   constituents
+		 core: Imperative 
+	     optional end: IMark
+	form
+	   constraints
+	      core.f meets end.f
+	meaning
+	   constraints
+	      self.m.mood <-- "Imperative"
+	      self.m.speechAct <-- @direct
+	      core.m.profiledParticipant <--> self.m.addressee	
 	      
 // addressed conditional imperative
 construction AddressedConditionalImperative
@@ -277,7 +291,7 @@ schema DiscourseElement //meaning of Utterance
         speechAct // direct, indirect?
     constraints
 		speaker.ontological-category <-- @sentient
-		addressee.ontological-category <-- @sentient
+		//addressee.ontological-category <-- @sentient
 
 
          			
