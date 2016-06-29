@@ -138,14 +138,14 @@ construction DeclarativeUtterance
 // NOTE: As of 5/26/16 (ST), this no longer requires SimpleImperative. 
 // I am testing having the Problem Solver combine the mood ("Imperative") and the complex kind ("conditional")
 // still not working for conditionals, e.g. "John, if the box is big, build a house!"
-/*
+
 construction AddressedImperative
 	subcase of Utterance
 	constructional
 	   constituents
 	     addr: NP // optional?
 	     optional comma: Comma
-	     core: Imperative 
+	     core: SimpleImperative 
 	     optional end: IMark
 	form
 	   constraints
@@ -158,7 +158,7 @@ construction AddressedImperative
 	      self.m.mood <-- "Imperative"
 	      self.m.speechAct <-- @direct
 	      core.m.profiledParticipant <--> self.m.addressee	
-*/
+
 
    
 	      
@@ -177,7 +177,8 @@ construction ImperativeUtterance
 	      self.m.mood <-- "Imperative"
 	      self.m.speechAct <-- @direct
 	      core.m.profiledParticipant <--> self.m.addressee	
-     
+ 
+
 // addressed conditional imperative
 construction AddressedConditionalImperative
 	subcase of Utterance
