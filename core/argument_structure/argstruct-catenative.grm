@@ -20,6 +20,9 @@ general construction CatenativeVP
 	constructional
 	 constituents
 	  vp: VP
+    form
+     constraints
+       v.f before vp.f
 
 general construction CatenativeVP_PresentParticiple
 	subcase of CatenativeVP

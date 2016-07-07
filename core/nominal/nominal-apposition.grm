@@ -1,5 +1,6 @@
 
 package relative-clause
+//package core
 
 construction RelativizedNP
 	subcase of NP
@@ -10,6 +11,8 @@ construction RelativizedNP
 	  description: VP
 	 constraints
 	   self.features <--> core.features
+       core.features.person <--> description.features.person
+       core.features.number <--> description.features.number
    form
     constraints
       core.f meets specific.f

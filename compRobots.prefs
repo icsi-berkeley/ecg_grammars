@@ -10,6 +10,7 @@ PACKAGE_NAME ::==
 	universal-schemas
 	universal-constructions
 	motion
+	utterance-text
 ;
 
 ONTOLOGY_PATHS ::==

@@ -52,6 +52,15 @@ construction While
      self.m.conditionalValue <-- @ongoing
 
 
+construction Whenever
+  subcase of ConditionalConjunction
+  form
+    constraints
+      self.f.orth <-- "whenever"
+  meaning
+   constraints
+     self.m.conditionalValue <-- @whenever
+
 // contains a conjunction ("if", "while") and a general declarative
 // "if it rains", "while it is raining", "if he pushes the box"
 construction ConditionalClause
