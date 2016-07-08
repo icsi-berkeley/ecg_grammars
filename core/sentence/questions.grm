@@ -1,0 +1,97 @@
+package core
+
+general construction WH-Question  
+	subcase of  Question
+	
+
+ 			
+construction SubjWH-Question
+    subcase of WH-Question, S-With-Subj
+    constructional
+        constituents
+           subj: WH-NP
+    	   fin: VP
+        constraints
+    form
+        constraints
+	       subj.f before fin.f
+    meaning
+        constraints
+	       self.m <--> fin.ed 				
+
+
+	   
+// Construction for "WH"-questions - testing (added from Base or written here, 7/14/14, ST)
+
+general construction WH-NP
+   subcase of NP
+
+general construction WH-Specifier  // TODO these need work, questionRD?
+   	subcase of Specifier
+   	
+construction WhSpecifierPlusKernel
+  subcase of Specifier2PlusKernel, WH-NP
+  constructional
+    constituents   
+      s: WH-Specifier
+      k: Kernel
+   meaning
+	constraints
+		s.m <-> k.m
+
+
+construction What-Specifier
+   subcase of WH-Specifier
+   form
+      constraints
+         self.f.orth <-- "what"
+   meaning: RD
+      constraints
+ 		self.m.extras.specificWh <-- @what
+
+
+construction Who-NP
+	subcase of WH-NP, Word
+	form
+	 constraints
+	   self.f.orth <-- "who"
+    meaning: RD
+     constraints
+       self.m.extras.specificWh <-- @who
+
+construction Which-Specifer
+   subcase of WH-Specifier
+   form
+      constraints
+         self.f.orth <-- "which"
+   meaning: RD
+      constraints
+ 		self.m.extras.specificWh <-- @which
+ 
+ 
+construction Which-NP
+   subcase of WH-NP, Word
+   form
+      constraints
+         self.f.orth <-- "which"
+   meaning: RD
+      constraints
+ 		self.m.extras.specificWh <-- @which
+ 		 			
+construction What-WH-NP
+   subcase of WH-NP, Word
+   form
+      constraints
+         self.f.orth <-- "what"
+   meaning: RD
+      constraints
+ 		self.m.extras.specificWh <-- @what
+ 		
+construction Where-WH-NP
+   subcase of WH-NP, Word
+   form
+      constraints
+         self.f.orth <-- "where"
+   meaning: RD
+      constraints
+ 		self.m.extras.specificWh <-- @where 

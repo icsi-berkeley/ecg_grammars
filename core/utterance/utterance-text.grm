@@ -1,0 +1,178 @@
+/*
+7/7/16, ST
+
+*/
+
+package utterance-text
+import utterance
+
+
+//  Utterance, Discourse Element -- Questions
+// Uncomment all this below to fully analyze "was the block red ? "
+general construction Utterance
+    subcase of RootType 
+    constructional 
+        constituents
+           optional addr: NP
+           optional comma: Comma
+            core: S
+            end: EMark  // punctuation like . ! ?
+    form 
+        constraints  
+            addr.f meets comma.f
+            comma.f meets core.f
+            core.f meets end.f
+    meaning: DiscourseElement
+        constraints
+          self.m.content <--> core.m
+          self.m.addressee <--> addr.m
+
+
+
+
+construction WHQuesUtterance  
+    subcase of Utterance
+    constructional 
+        constituents
+            core: WH-Question
+            end: QMark  //    ?
+    form
+        constraints
+            core.f meets end.f 
+    meaning
+        constraints
+            self.m.mood <-- "WH-Question" // this is where we want mood
+ 			self.m.content <--> core.m
+ 			self.m.speechAct <-- @direct // maybe
+
+// Declarative
+construction DeclarativeUtterance
+	subcase of Utterance
+	constructional
+	   constituents
+	     core: Declarative
+	     end: PMark
+	form
+	   constraints
+	      core.f meets end.f
+	meaning
+	   constraints
+	      //self.m.addressee <--> addr.m
+	      self.m.mood <-- "Declarative"
+	      self.m.speechAct <-- @direct  // testing
+	      //core.m.profiledParticipant <--> self.m.addressee 
+	      
+// Imperative 
+
+// This construction requires a SimpleImperative. The reasoning
+// is that for the robot commands, conditional imperatives would often
+// be subsumed under this construction, so the mood wouldn't be specified
+// properly - this impacts the Specializer routing/n-tuple creation.
+// There might be a better way to do this down the line.
+
+// NOTE: As of 5/26/16 (ST), this no longer requires SimpleImperative. 
+// I am testing having the Problem Solver combine the mood ("Imperative") and the complex kind ("conditional")
+// still not working for conditionals, e.g. "John, if the box is big, build a house!"
+
+construction AddressedImperative
+	subcase of Utterance
+	constructional
+	   constituents
+	     addr: NP // optional?
+	     optional comma: Comma
+	     core: SimpleImperative 
+	     end: IMark
+	form
+	   constraints
+	      addr.f meets comma.f
+	      comma.f meets core.f
+	      core.f meets end.f
+	meaning
+	   constraints
+	      self.m.addressee <--> addr.m
+	      self.m.mood <-- "Imperative"
+	      self.m.speechAct <-- @direct
+	      core.m.profiledParticipant <--> self.m.addressee	
+
+
+   
+	      
+
+construction ImperativeUtterance
+	subcase of Utterance
+    constructional
+	   constituents
+		 core: Imperative 
+	     end: IMark
+	form
+	   constraints
+	      core.f meets end.f
+	meaning
+	   constraints
+	      self.m.mood <-- "Imperative"
+	      self.m.speechAct <-- @direct
+	      core.m.profiledParticipant <--> self.m.addressee	
+ 
+
+// addressed conditional imperative
+construction AddressedConditionalImperative
+	subcase of Utterance
+	constructional
+	   constituents
+	     addr: NP
+	     optional comma: Comma
+	     core: ConditionalImperative
+	     end: IMark
+	form
+	   constraints
+	      addr.f meets comma.f
+	      comma.f meets core.f
+	      core.f meets end.f
+	meaning
+	   constraints
+	      self.m.addressee <--> addr.m
+	      self.m.speechAct <-- @direct
+	      self.m.mood <-- "Imperative"
+	      core.m.profiledParticipant <--> self.m.addressee
+	      core.m.complexKind <-- @conditional	                 
+
+
+// Conditional imperative
+// no longer necessary, can be subsumed under Declarative-Utterance
+/*
+construction ConditionalDeclarativeUtterance
+	subcase of Utterance
+	constructional
+	   constituents
+	     core: ConditionalDeclarative
+	     end: EMark
+	form
+	   constraints
+	      core.f meets end.f
+	meaning
+	   constraints
+	      self.m.mood <-- "Conditional-Declarative"
+	      self.m.content <--> core.m
+	      //core.m.profiledParticipant <--> self.m.addressee
+	      core.m.complexKind <-- @conditional_declarative		 
+*/	      
+	      
+
+
+
+// is the block red?          
+construction YNQuesUtterance  
+    subcase of Utterance
+    constructional 
+        constituents
+            core: YN-Question
+            end: QMark    
+    form
+        constraints
+            core.f meets end.f 
+    meaning 
+        constraints
+            self.m.mood <-- "YN-Question" // this is where we want mood	
+            self.m.content <--> core.m
+            self.m.speechAct <-- @direct
+         			

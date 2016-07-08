@@ -54,8 +54,19 @@ construction This
    meaning
       constraints
          self.m.givenness <-- @inFocus 
-         self.m.extras.deicticValue <-- @this 
-
+         self.m.extras.deicticValue <-- @this
+ 
+ // should actually be a Demonstrative?
+construction That
+   subcase of Demonstrative, Singular
+   form
+      constraints
+         self.f.orth <-- "that"
+   meaning
+      constraints
+         self.m.givenness <-- @inFocus 
+         self.m.extras.deicticValue <-- @that
+         
 // should actually be a demonstrative?
 construction These
    subcase of Demonstrative, Plural
@@ -67,6 +78,18 @@ construction These
          self.m.givenness <-- @inFocus
          self.m.extras.deicticValue <-- @this 
 
+
+// should actually be a demonstrative?
+construction Those
+   subcase of Demonstrative, Plural
+   form
+      constraints
+         self.f.orth <-- "those"
+   meaning
+      constraints
+         self.m.givenness <-- @inFocus
+         self.m.extras.deicticValue <-- @that
+          
 
 construction A
    subcase of Determiner, Singular

@@ -138,6 +138,7 @@ construction I-Pronoun
       self.m.number <-- @singular
       self.m.gender <-- @genderValues  
       self.m.referent <-- @speaker
+      //self.de.speaker <--> self.m
  
  
  construction You-Pronoun
@@ -154,6 +155,7 @@ construction I-Pronoun
       self.m.number <-- @singular
       self.m.gender <-- @genderValues  
       self.m.referent <-- @addressee
+      //self.de.addressee <--> self.m
  
       
 construction It

@@ -30,6 +30,7 @@ general construction ArgumentStructure
      constraints
        v.m  <--> ed.profiledProcess
        self.m.p-features <--> v.m.p-features 
+
       
 
 // The A123 schema serves as a way to refer to up to 3 argument roles within an Argument Structure cxn.  

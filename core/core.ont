@@ -118,6 +118,8 @@ DEFS:
 
 (type this sub deictic)
 
+(type that sub deictic)
+
 (type EventKind sub enumeration)
 
 (type lexicalORgerund sub EventKind)
