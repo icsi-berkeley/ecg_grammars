@@ -5,24 +5,22 @@ GRAMMAR_EXTENSIONS = grm
 
 
 PACKAGE_NAME ::==
-  core
-  serial
   winograd
-  active-transitive
   location
   universal-schemas
   universal-constructions
   motion
+  utterance-text
 ;
 
 ONTOLOGY_PATHS ::==
   ./winograd/winograd.ont
-  ./universal/core.ont
+  ./core/core.ont
+  ./research/research.ont
 ;
 
 IMPORT_PATHS ::==
   ./winograd
-  ./universal
   ./core
   ./research
 ;
@@ -34,8 +32,8 @@ MORPHOLOGY_PATH ::==
 ;
 
 TOKEN_PATH ::==
-  ./research/testing.tokens
   ./winograd/winograd.tokens
+  ./research/testing.tokens
 ;
 
 MAPPING_PATH = ./winograd/winograd.mappings
