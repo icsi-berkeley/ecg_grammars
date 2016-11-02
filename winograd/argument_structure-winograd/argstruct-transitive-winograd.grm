@@ -1,0 +1,24 @@
+package winograd
+import core
+
+construction ActiveTransitiveThank
+	subcase of CoreActiveTransitive, ArgumentStructure
+	constructional
+	 constituents
+	   optional for: For-PP
+	meaning: ThankSchema
+	  constraints
+	    for.np.m <--> self.m.theme
+	    s.a1 <--> self.m.agent
+	    s.a2 <--> self.m.patient
+
+
+// jane gave the box to mary	   
+// he gave the box to the man
+/*
+construction ActiveTransitiveObjectTransferExtraposed
+	subcase of ActiveTransitiveObjectTransfer
+	constructional
+	  constituents
+	    extraposed np: NP
+*/

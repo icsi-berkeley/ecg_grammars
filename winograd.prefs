@@ -5,35 +5,35 @@ GRAMMAR_EXTENSIONS = grm
 
 
 PACKAGE_NAME ::==
-  winograd
-  location
-  universal-schemas
-  universal-constructions
-  motion
-  utterance-text
+    winograd
+    location
+    universal-schemas
+    universal-constructions
+    motion
+    utterance-text
 ;
 
 ONTOLOGY_PATHS ::==
-  ./winograd/winograd.ont
-  ./core/core.ont
-  ./research/research.ont
+    ./winograd/winograd.ont
+    ./core/core.ont
+    ./research/research.ont
 ;
 
 IMPORT_PATHS ::==
-  ./winograd
-  ./core
-  ./research
+    ./winograd
+    ./core
+    ./research
 ;
 
 
 MORPHOLOGY_PATH ::==
-  ./core/celex.ecgmorph
-  ./winograd/winograd.ecgmorph
+    ./core/celex.ecgmorph
+    ./winograd/winograd.ecgmorph
 ;
 
 TOKEN_PATH ::==
-  ./winograd/winograd.tokens
-  ./research/testing.tokens
+    ./winograd/winograd.tokens
+    ./research/testing.tokens
 ;
 
 MAPPING_PATH = ./winograd/winograd.mappings
@@ -41,8 +41,9 @@ MAPPING_PATH = ./winograd/winograd.mappings
 TABLE_PATH = ./core/core.morph
 
 ROBUST = FALSE
-BEAM_SIZE = 20
+BEAM_SIZE = 40
 DEFAULT_OMISSION_PROB = .1
+VARIABLE_BEAM = FALSE
 BEAM_WIDTH = 10
 BEAM_SIZE = 10
 DEBUG = FALSE

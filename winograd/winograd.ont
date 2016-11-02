@@ -4,6 +4,14 @@
 
 //
 
+(type bridgeKind sub unshared)
+
+(type thanks sub bridgeKind)
+
+(type response sub bridgeKind)
+
+(type repetition sub bridgeKind)
+
 DEFS:
 
 //
@@ -14,6 +22,8 @@ DEFS:
 
 (type john-instance sub person)
 
+(type jane sub person)
+
 (type box1 sub box)  // needs to be done right *************
 
 (type box2 sub box)
@@ -23,6 +33,7 @@ DEFS:
 (type block2-instance sub block)
 
 (type block3-instance sub block)
+
 //
 
 (type joint sub process-kind)
@@ -46,6 +57,10 @@ DEFS:
 (type front sub side)
 
 (type antecedent sub physicalEntity)
+
+(type value sub process)
+
+(type valuableEntity sub entity)
 
 //
 
@@ -282,5 +297,13 @@ DEFS:
 (type position sub object-property  shared)
 
 (type orientation sub object-property shared)
+
+(type thank sub communication  shared)
+
+(type question sub idea)
+
+(type respond sub tell)
+
+(type repeat sub tell)
 
 INSTS:

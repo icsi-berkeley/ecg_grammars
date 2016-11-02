@@ -56,7 +56,7 @@ general construction TransitivePerception  // 8/21/13 he saw the block, the bloc
 
 /** Added from dropbox "robots" by Sean Trott, 2/4/15. */
 general construction TransitiveCauseEffect
-  subcase of ArgumentStructure
+  subcase of Trans_TransitiveAction
 	meaning: CauseEffect
       constraints
 		s.a1 <--> self.m.causalAgent
@@ -165,7 +165,7 @@ general construction TransitiveObjectTransfer
 	subcase of ArgumentStructure
 	constructional
 	 constituents
-	   pp: Path-PP
+	   optional pp: Path-PP
 	meaning: ObjectTransfer
 	  constraints
 	    s.a1 <--> self.m.giver

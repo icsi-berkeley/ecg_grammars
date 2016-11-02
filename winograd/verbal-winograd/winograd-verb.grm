@@ -1,3 +1,30 @@
 package winograd
 import core
 
+// he values the violin
+construction ValueVerbType
+	subcase of LexicalVerbType
+	meaning: ValueSchema
+	  constraints
+	     self.m.actionary <-- @value
+	     
+// jane thanked mary for the violin
+construction ThankVerbType
+	subcase of LexicalVerbType
+	meaning: ThankSchema
+	  constraints
+	     self.m.actionary <-- @thank
+
+// jane answered the question
+construction ResponseVerbType
+	subcase of CommunicationType
+	meaning: DiscourseResponse
+	  constraints
+	     self.m.actionary <-- @respond
+
+// jane repeated the question
+construction RepeatVerbType
+	subcase of CommunicationType
+	meaning: DiscourseRepeat
+	  constraints
+	     self.m.actionary <-- @repeat

@@ -1,2 +1,50 @@
 package winograd
 import core
+
+// Value (he valued the violin)
+schema ValueSchema
+	subcase of TransitiveAction
+	roles
+	  evaluator
+	  valuedThing: RD
+	constraints
+     protagonist <--> evaluator
+     patient <--> valuedThing
+     valuedThing.ontological-category <-- @valuableEntity
+     
+schema ThankSchema
+	subcase of TransitiveAction, BridgeSchema
+	roles
+	  actionary: @thank
+	  theme: RD // "he thanked John FOR the box"
+	constraints
+     bridgePatient <--> agent
+     bridgeAgent <--> patient
+     kind <-- @thanks
+     
+schema BridgeSchema
+	roles
+		kind: @bridgeKind
+		bridgePatient
+		bridgeAgent
+		bridgeTheme
+		
+schema DiscourseResponse
+	subcase of Communication, BridgeSchema
+	roles
+		actionary: @respond
+	constraints
+		bridgePatient <--> speaker
+		bridgeAgent <--> listener
+		bridgeTheme <--> media
+		kind <-- @response
+		
+schema DiscourseRepeat
+	subcase of Communication, BridgeSchema
+	roles
+		actionary: @repeat
+	constraints
+		bridgeAgent <--> speaker
+		bridgePatient <--> listener
+		bridgeTheme <--> media
+		kind <-- @repetition
