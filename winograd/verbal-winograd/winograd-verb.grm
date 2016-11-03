@@ -3,34 +3,57 @@ import core
 
 // he values the violin
 construction ValueVerbType
-	subcase of LexicalVerbType
-	meaning: ValueSchema
-	  constraints
-	     self.m.actionary <-- @value
-	     
+  subcase of LexicalVerbType
+  meaning: ValueSchema
+    constraints
+       self.m.actionary <-- @value
+
 // jane thanked mary for the violin
 construction ThankVerbType
-	subcase of LexicalVerbType
-	meaning: ThankSchema
-	  constraints
-	     self.m.actionary <-- @thank
+  subcase of LexicalVerbType
+  meaning: ThankSchema
+    constraints
+       self.m.actionary <-- @thank
 
 // jane answered the question
 construction ResponseVerbType
-	subcase of CommunicationType
-	meaning: DiscourseResponse
-	  constraints
-	     self.m.actionary <-- @respond
+  subcase of CommunicationType
+  meaning: DiscourseResponse
+    constraints
+       self.m.actionary <-- @respond
 
 // jane repeated the question
 construction RepeatVerbType
-	subcase of CommunicationType
-	meaning: DiscourseRepeat
-	  constraints
-	     self.m.actionary <-- @repeat
+  subcase of CommunicationType
+  meaning: DiscourseRepeat
+    constraints
+       self.m.actionary <-- @repeat
 
 construction BirthVerbType
-	subcase of LexicalVerbType
-	meaning: ChildBearing
-		constraints
-			self.m.actionary <-- @bear
+  subcase of LexicalVerbType
+  meaning: ChildBearing
+    constraints
+      self.m.actionary <-- @bear
+
+construction CleaningVerbType
+  subcase of LexicalVerbType
+  meaning: CleaningSchema
+    constraints
+      self.m.actionary <-- @clean
+
+
+construction RemovingVerbType
+  subcase of LexicalVerbType
+  meaning: RemovingSchema
+    constraints
+      self.m.actionary <-- @remove
+
+
+construction CreateObstacleType
+  subcase of LexicalVerbType
+  constructional
+   constraints
+     self.argform <-- Transitive
+  meaning: CreateObstacleSchema
+    constraints
+      self.m.actionary <-- @clog

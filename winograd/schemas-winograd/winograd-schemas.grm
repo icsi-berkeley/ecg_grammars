@@ -3,73 +3,106 @@ import core
 
 // Value (he valued the violin)
 schema ValueSchema
-	subcase of TransitiveAction
-	roles
-	  evaluator
-	  valuedThing: RD
-	constraints
+  subcase of TransitiveAction
+  roles
+    evaluator
+    valuedThing: RD
+  constraints
      protagonist <--> evaluator
      patient <--> valuedThing
      valuedThing.ontological-category <-- @valuableEntity
-     
+
 schema ThankSchema
-	subcase of TransitiveAction, BridgeSchema
-	roles
-	  actionary: @thank
-	  theme: RD // "he thanked John FOR the box"
-	constraints
+  subcase of TransitiveAction, BridgeSchema
+  roles
+    actionary: @thank
+    theme: RD // "he thanked John FOR the box"
+  constraints
      bridgePatient <--> agent
      bridgeAgent <--> patient
      kind <-- @thanks
-     
+
 schema BridgeSchema
-	roles
-		kind: @bridgeKind
-		bridgePatient
-		bridgeAgent
-		bridgeTheme
-		
+  roles
+    kind: @bridgeKind
+    bridgePatient
+    bridgeAgent
+    bridgeTheme
+
 schema DiscourseResponse
-	subcase of Communication, BridgeSchema
-	roles
-		actionary: @respond
-	constraints
-		bridgePatient <--> speaker
-		bridgeAgent <--> listener
-		bridgeTheme <--> media
-		kind <-- @response
-		
+  subcase of Communication, BridgeSchema
+  roles
+    actionary: @respond
+  constraints
+    bridgePatient <--> speaker
+    bridgeAgent <--> listener
+    bridgeTheme <--> media
+    kind <-- @response
+
 schema DiscourseRepeat
-	subcase of Communication, BridgeSchema
-	roles
-		actionary: @repeat
-	constraints
-		bridgeAgent <--> speaker
-		bridgePatient <--> listener
-		bridgeTheme <--> media
-		kind <-- @repetition
-		
+  subcase of Communication, BridgeSchema
+  roles
+    actionary: @repeat
+  constraints
+    bridgeAgent <--> speaker
+    bridgePatient <--> listener
+    bridgeTheme <--> media
+    kind <-- @repetition
+
 schema ChildBearing
-	subcase of TransitiveAction
-	roles
-		mother: RD
-		child: RD
-	constraints
-		mother <--> agent
-		child <--> patient
-		mother.ontological-category <-- @parent
-		child.ontological-category <-- @baby
-		mother.gender <-- @female
-		
+  subcase of TransitiveAction
+  roles
+    mother: RD
+    child: RD
+  constraints
+    mother <--> agent
+    child <--> patient
+    mother.ontological-category <-- @parent
+    child.ontological-category <-- @baby
+    mother.gender <-- @female
+
 schema Music
-	subcase of TransitiveAction
-	roles
-		musician: RD
-		piece: RD
-		method: RD
-	constraints
-		musician <--> agent
-		piece <--> patient
-		musician.ontological-category <-- @person
-		method.ontological-category <-- @musicalInstrument
-		
+  subcase of TransitiveAction
+  roles
+    musician: RD
+    piece: RD
+    method: RD
+  constraints
+    musician <--> agent
+    piece <--> patient
+    musician.ontological-category <-- @person
+    method.ontological-category <-- @musicalInstrument
+
+/* Causing Clogging */
+schema CreateObstacleSchema
+  subcase of CausalTransitiveAction
+  roles
+    portal: RD
+  constraints
+    portal <--> patient
+    causalAgent.ontological-category <-- @removableEntity // <= @physicalEntity // Not sure about <= arrow, or should be new @obstacle?
+    portal.ontological-category <-- @portal
+
+
+/* Cleaning a portal (ex: drain) */
+schema CleaningSchema
+  subcase of TransitiveAction
+  roles
+    cleaner
+    portal: RD
+  constraints
+     protagonist <--> cleaner
+     patient <--> portal
+     portal.ontological-category <-- @portal
+
+
+/* Removing an obstacle (ex: hair) */
+schema RemovingSchema
+  subcase of TransitiveAction
+  roles
+    remover
+    obstacle: RD
+  constraints
+     protagonist <--> remover
+     patient <--> obstacle
+     obstacle.ontological-category <-- @removableEntity
