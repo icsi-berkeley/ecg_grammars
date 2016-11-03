@@ -28,7 +28,8 @@ clean :: CleaningVerbType :: self.m.actionary <-- @clean
 remove :: RemovingVerbType :: self.m.actionary <-- @remove
 drain :: NounType :: self.m.ontological-category <-- @portal
 hair :: NounType :: self.m.ontological-category <-- @removableEntity
-clog :: CreateObstacleType :: self.m.actionary <-- @clogvalue :: ValueVerbType :: self.m.actionary <-- @value
+clog :: CreateObstacleType :: self.m.actionary <-- @clog
+value :: ValueVerbType :: self.m.actionary <-- @value
 love :: ValueVerbType :: self.m.actionary <-- @value
 flute :: InstrumentNoun :: self.m.ontological-category <-- @musicalInstrument :: extensions.actionary <-- @play
 violin :: NounType :: self.m.ontological-category <-- @musicalInstrument
