@@ -183,6 +183,27 @@ DEFS:
 
 (type prevent sub process)  // 1/22/13
 
+
+
+// 
+
+// Winograd Drain Example - 11/2/16
+
+//
+
+(type clean sub process)
+
+(type remove sub process)
+
+(type portal sub entity)
+
+(type removableEntity sub physicalEntity)
+
+(type clog sub process)
+
+
+
+
 //
 
 // Distances

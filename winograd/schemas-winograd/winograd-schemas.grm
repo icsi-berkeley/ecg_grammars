@@ -1,2 +1,37 @@
 package winograd
 import core
+
+
+/* Causing Clogging */
+schema CreateObstacleSchema
+	subcase of CausalTransitiveAction
+	roles
+	  portal: RD
+	constraints
+	  portal <--> patient
+	  causalAgent.ontological-category <-- @removableEntity // <= @physicalEntity // Not sure about <= arrow, or should be new @obstacle?
+	  portal.ontological-category <-- @portal
+
+	  	
+/* Cleaning a portal (ex: drain) */  
+schema CleaningSchema
+	subcase of TransitiveAction
+	roles
+	  cleaner
+	  portal: RD
+	constraints
+     protagonist <--> cleaner
+     patient <--> portal
+     portal.ontological-category <-- @portal
+     
+     
+/* Removing an obstacle (ex: hair) */  
+schema RemovingSchema
+	subcase of TransitiveAction
+	roles
+	  remover
+	  obstacle: RD
+	constraints
+     protagonist <--> remover
+     patient <--> obstacle
+     obstacle.ontological-category <-- @removableEntity

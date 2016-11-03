@@ -1,3 +1,25 @@
 package winograd
 import core
 
+construction CleaningVerbType
+	subcase of LexicalVerbType
+	meaning: CleaningSchema
+	  constraints
+	    self.m.actionary <-- @clean
+	    
+	    
+construction RemovingVerbType
+	subcase of LexicalVerbType
+	meaning: RemovingSchema
+	  constraints
+	    self.m.actionary <-- @remove
+	    
+	    
+construction CreateObstacleType
+	subcase of LexicalVerbType
+	constructional
+	 constraints
+	   self.argform <-- Transitive
+	meaning: CreateObstacleSchema
+	  constraints
+	    self.m.actionary <-- @clog
