@@ -28,3 +28,9 @@ construction RepeatVerbType
 	meaning: DiscourseRepeat
 	  constraints
 	     self.m.actionary <-- @repeat
+
+construction BirthVerbType
+	subcase of LexicalVerbType
+	meaning: ChildBearing
+		constraints
+			self.m.actionary <-- @bear

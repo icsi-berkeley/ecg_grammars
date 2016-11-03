@@ -14,6 +14,12 @@
 
 DEFS:
 
+(type value sub process)
+
+(type valuableEntity sub entity)
+
+(type musicalInstrument sub instrument)
+
 //
 
 // Instances
@@ -21,6 +27,14 @@ DEFS:
 //
 
 (type john-instance sub person)
+
+(type adult sub person)
+
+(type parent sub adult)
+
+(type child sub person)
+
+(type baby sub child)
 
 (type jane sub person)
 
@@ -57,10 +71,6 @@ DEFS:
 (type front sub side)
 
 (type antecedent sub physicalEntity)
-
-(type value sub process)
-
-(type valuableEntity sub entity)
 
 //
 
@@ -197,6 +207,10 @@ DEFS:
 (type enlarge sub process)
 
 (type prevent sub process)  // 1/22/13
+
+(type bear sub process)
+
+(type play sub process)
 
 //
 

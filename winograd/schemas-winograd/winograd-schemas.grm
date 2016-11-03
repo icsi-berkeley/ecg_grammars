@@ -48,3 +48,28 @@ schema DiscourseRepeat
 		bridgePatient <--> listener
 		bridgeTheme <--> media
 		kind <-- @repetition
+		
+schema ChildBearing
+	subcase of TransitiveAction
+	roles
+		mother: RD
+		child: RD
+	constraints
+		mother <--> agent
+		child <--> patient
+		mother.ontological-category <-- @parent
+		child.ontological-category <-- @baby
+		mother.gender <-- @female
+		
+schema Music
+	subcase of TransitiveAction
+	roles
+		musician: RD
+		piece: RD
+		method: RD
+	constraints
+		musician <--> agent
+		piece <--> patient
+		musician.ontological-category <-- @person
+		method.ontological-category <-- @musicalInstrument
+		

@@ -26,12 +26,18 @@ orientation :: PropertyNoun :: self.m.ontological-category <-- @orientation
 turn :: SelfMotionType :: self.m.speed <-- ".2" :: self.m.actionary <-- @turn
 value :: ValueVerbType :: self.m.actionary <-- @value
 love :: ValueVerbType :: self.m.actionary <-- @value
-violin :: NounType :: self.m.ontological-category <-- @valuableEntity
-clarinet :: NounType :: self.m.ontological-category <-- @valuableEntity
+flute :: InstrumentNoun :: self.m.ontological-category <-- @musicalInstrument :: extensions.actionary <-- @play
+violin :: NounType :: self.m.ontological-category <-- @musicalInstrument
+#flute :: NounType :: self.m.ontological-category <-- @musicalInstrument
+clarinet :: NounType :: self.m.ontological-category <-- @musicalInstrument
+song :: NounType :: self.m.ontological-category <-- @valuableEntity
 jane :: ProperNPInstance :: self.m.referent <-- @jane :: self.m.gender <-- @female :: self.m.ontological-category <-- @person :: self.m.number <-- @singular
 thank :: ThankVerbType :: self.m.actionary <-- @thank
 ask :: CommunicationType :: self.m.actionary <-- @tell :: self.argform <-- DiTransitive
 question :: AbstractNoun :: self.m.ontological-category <-- @question
 answer :: ResponseVerbType :: self.m.actionary <-- @respond :: self.argform <-- DiTransitive
 repeat :: RepeatVerbType :: self.m.actionary <-- @repeat :: self.argform <-- DiTransitive
-
+baby :: SentientNoun :: self.m.ontological-category <-- @baby
+woman :: SentientNoun :: self.m.ontological-category <-- @adult :: self.m.gender <-- @female
+daughter :: SentientNoun :: self.m.ontological-category <-- @child :: self.m.gender <-- @female
+bear :: BirthVerbType :: self.m.actionary <-- @bear
