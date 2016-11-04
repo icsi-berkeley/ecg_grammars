@@ -24,15 +24,16 @@ schema StrengthSchema
 		
 		
 schema ContainSchema
-	subcase of Motion//, TransitiveAction   //Artifact, BoundedObject 
+	subcase of Motion
     evokes SPG as spg
 	roles
 		container: RD
 		containedObject: RD
 	constraints
-		container.size <-- ".7" // added back size in schemaRD
+		container.size <-- ".7" 
 		containedObject.size <-- ".3"
 		containedObject <--> mover
-		containedObject <--> spg.trajector
 		container <--> spg.landmark
-		container <--> spg.goal
+		container.ontological-category <-- @container
+		containedObject.ontological-category <-- @physicalEntity
+		

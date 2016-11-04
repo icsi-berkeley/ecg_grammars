@@ -19,10 +19,3 @@ construction ContainVerbType
 	constraints
 		self.m.actionary <-- @contain
 
-
-
-//construction SizeType 
-//  subcase of PropertyAdjective, GeneralTypeCxn 
-//   meaning: PropertyModifier
-//    constraints
-//	   self.m.value <-- ".5"

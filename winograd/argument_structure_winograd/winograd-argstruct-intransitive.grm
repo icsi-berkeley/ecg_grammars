@@ -1,4 +1,4 @@
- construction ContainPath   // he moved to the block
+construction ContainPath  
   subcase of IntransitiveArgumentStructure 
   constructional
     constituents
@@ -12,3 +12,5 @@
     constraints 
       self.m <--> v.m
       self.m.spg <--> pp.m
+      
+      
