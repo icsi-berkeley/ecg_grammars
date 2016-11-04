@@ -227,6 +227,8 @@ DEFS:
 
 (type removableEntity sub physicalEntity)
 
+(type hair sub removableEntity)
+
 (type clog sub process)
 
 

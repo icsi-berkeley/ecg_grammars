@@ -27,7 +27,7 @@ turn :: SelfMotionType :: self.m.speed <-- ".2" :: self.m.actionary <-- @turn
 clean :: CleaningVerbType :: self.m.actionary <-- @clean
 remove :: RemovingVerbType :: self.m.actionary <-- @remove
 drain :: NounType :: self.m.ontological-category <-- @portal
-hair :: NounType :: self.m.ontological-category <-- @removableEntity
+hair :: NounType :: self.m.ontological-category <-- @hair
 clog :: CreateObstacleType :: self.m.actionary <-- @clog
 value :: ValueVerbType :: self.m.actionary <-- @value
 love :: ValueVerbType :: self.m.actionary <-- @value
