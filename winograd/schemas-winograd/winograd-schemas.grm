@@ -27,14 +27,12 @@ schema ContainSchema
 	subcase of Motion//, TransitiveAction   //Artifact, BoundedObject 
     evokes SPG as spg
 	roles
-		container//: RD
+		container: RD
 		containedObject: RD
-		distance
 	constraints
-		//container.size <-- ".7" // added back size in schemaRD
+		container.size <-- ".7" // added back size in schemaRD
 		containedObject.size <-- ".3"
-		mover <--> spg.trajector
 		containedObject <--> mover
-		distance <--> spg.distance
-		//container <--> spg.landmark
+		containedObject <--> spg.trajector
+		container <--> spg.landmark
 		container <--> spg.goal
