@@ -8,6 +8,19 @@ DEFS:
 
 //
 
+(type contain sub motion) //process)
+
+(type strength sub process)
+
+(type weakEntity sub entity)
+
+(type strongPerson sub person)
+
+(type value sub process)
+
+(type valuableEntity sub entity)
+
+
 // Instances
 
 //

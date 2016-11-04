@@ -12,6 +12,10 @@ DEFS:
 
 //
 
+//(type flower sub prettyObject)
+
+//(type prettyObject sub physicalEntity)
+
 (type desk sub physicalEntity artifact)
 
 (type desk1 sub desk)
@@ -33,6 +37,10 @@ DEFS:
 (type robot1 sub robot)
 
 (type robot2 sub robot)
+
+(type kelly sub robot)
+
+//(type human sub agent)
 
 //
 

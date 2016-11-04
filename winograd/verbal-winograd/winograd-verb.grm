@@ -1,3 +1,28 @@
 package winograd
 import core
 
+construction ValueVerbType
+	subcase of LexicalVerbType
+	meaning: ValueSchema
+	  constraints
+	     self.m.actionary <-- @value
+	     
+construction StrengthVerbType
+	subcase of LexicalVerbType
+	meaning: StrengthSchema
+	  constraints
+	     self.m.actionary <-- @strength
+
+construction ContainVerbType
+	subcase of LexicalVerbType
+	meaning: ContainSchema
+	constraints
+		self.m.actionary <-- @contain
+
+
+
+//construction SizeType 
+//  subcase of PropertyAdjective, GeneralTypeCxn 
+//   meaning: PropertyModifier
+//    constraints
+//	   self.m.value <-- ".5"

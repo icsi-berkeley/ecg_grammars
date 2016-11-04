@@ -1,2 +1,40 @@
 package winograd
 import core
+
+schema ValueSchema
+	subcase of TransitiveAction
+	roles
+	  evaluator
+	  valuedThing: RD
+	constraints
+     	  protagonist <--> evaluator
+     	  patient <--> valuedThing
+     	  valuedThing.ontological-category <-- @valuableEntity 
+     	  
+schema StrengthSchema
+	subcase of TransitiveAction
+	roles
+		agent
+		comparingObject: RD // not necessarily?
+	constraints
+		protagonist <--> agent 
+		patient <--> comparingObject
+		agent.ontological-category <-- @strongPerson
+		comparingObject.ontological-category <-- @weakEntity
+		
+		
+schema ContainSchema
+	subcase of Motion//, TransitiveAction   //Artifact, BoundedObject 
+    evokes SPG as spg
+	roles
+		container//: RD
+		containedObject: RD
+		distance
+	constraints
+		//container.size <-- ".7" // added back size in schemaRD
+		containedObject.size <-- ".3"
+		mover <--> spg.trajector
+		containedObject <--> mover
+		distance <--> spg.distance
+		//container <--> spg.landmark
+		container <--> spg.goal

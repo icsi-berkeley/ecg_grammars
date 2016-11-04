@@ -1,21 +1,21 @@
 package core
 import active-transitives
 import intransitive
-//import auxiliaries
-//import explicit-causation
+import auxiliaries
+import explicit-causation
 import passive-transitives
-//import ditransitive 
-//import control
+import ditransitive 
+import control
 import copula
-//import mental
-//import transitive-test
-//import modals
-// import catenatives
-//import change
+import mental
+import transitive-test
+import modals
+import catenatives
+import change
 
-//import indirect
+import indirect
 
-//import catenatives
-//import object-control
+import catenatives
+import object-control
 	
 

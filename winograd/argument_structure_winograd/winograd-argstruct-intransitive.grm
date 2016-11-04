@@ -1,0 +1,14 @@
+ construction ContainPath   // he moved to the block
+  subcase of IntransitiveArgumentStructure 
+  constructional
+    constituents
+       optional pp: Path-PP
+  constraints
+        v.voice <-- NotPassive  
+  form 
+    constraints 
+      v.f before pp.f   
+  meaning: ContainSchema
+    constraints 
+      self.m <--> v.m
+      self.m.spg <--> pp.m

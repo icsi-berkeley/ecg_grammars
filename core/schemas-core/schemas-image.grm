@@ -177,6 +177,7 @@ schema Container // short version
 	subcase of Artifact, BoundedObject  //  6/24/13
 	roles
 		contents: RD // @entity
+		container: RD
 	constraints
 		//contents.bounding <-- @indeterminate  // not for plurals
 		entityType <-- @container

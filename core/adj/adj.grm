@@ -53,6 +53,7 @@ construction ColorType  //subcase of non-scale Adj
 	   //self.m.domain <= @person 
 	   self.m.value <-- @colorValue
 
+
 /**
 SCALES
 */ 

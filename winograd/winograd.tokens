@@ -24,3 +24,17 @@ position :: PropertyNoun :: self.m.ontological-category <-- @position
 location :: PropertyNoun :: self.m.ontological-category <-- @position
 orientation :: PropertyNoun :: self.m.ontological-category <-- @orientation
 turn :: SelfMotionType :: self.m.speed <-- ".2" :: self.m.actionary <-- @turn
+
+love :: ValueVerbType :: self.m.actionary <-- @value
+violin :: NounType :: self.m.ontological-category <-- @valuableEntity
+
+hate :: ValueVerbType :: self.m.actionary <-- @value
+song :: NounType :: self.m.ontological-category <-- @valuableEntity
+
+lift :: StrengthVerbType :: self.m.actionary <-- @strength
+book :: NounType :: self.m.ontological-category <-- @weakEntity
+kelly :: ProperNPInstance :: self.m.ontological-category <-- @strongPerson
+
+trophy :: NounType :: self.m.ontological-category <-- @physicalEntity
+suitcase :: NounType :: self.m.ontological-category <-- @physicalEntity
+fit :: ContainVerbType :: self.m.actionary <-- @contain

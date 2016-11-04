@@ -25,6 +25,10 @@ DEFS:
 (type physicalEntity sub entity location)  // 8/28/15: just physical in SUMO
 
 
+(type valueEntity sub entity) // added
+
+(type musicalInstrument sub valueEntity) // token editor handles violin -> musicalInstrument?
+
 
 (type disease sub physicalEntity) //physicalEntity) // animate?
 
