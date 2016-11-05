@@ -60,9 +60,11 @@ schema ScalarModifier
 	subcase of PropertyModifier  // does not use modifier role
    	roles
      	  scale: Scale
+     	  scaleDirection: @direction
 	 constraints 
 	   scale.value <--> value
 	   scale.measure <--> property
+
 
 schema ScalarAdverbModifier 
 	subcase of AdverbModification  // does not use modifier role

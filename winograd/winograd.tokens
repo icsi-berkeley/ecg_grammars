@@ -24,25 +24,42 @@ position :: PropertyNoun :: self.m.ontological-category <-- @position
 location :: PropertyNoun :: self.m.ontological-category <-- @position
 orientation :: PropertyNoun :: self.m.ontological-category <-- @orientation
 turn :: SelfMotionType :: self.m.speed <-- ".2" :: self.m.actionary <-- @turn
+
+jane :: ProperNPInstance :: self.m.referent <-- @jane :: self.m.gender <-- @female :: self.m.ontological-category <-- @person :: self.m.number <-- @singular
+thank :: GratitudeVerbType :: self.m.actionary <-- @thank
+
 clean :: CleaningVerbType :: self.m.actionary <-- @clean
 remove :: RemovingVerbType :: self.m.actionary <-- @remove
 drain :: NounType :: self.m.ontological-category <-- @portal
 hair :: NounType :: self.m.ontological-category <-- @hair
 clog :: CreateObstacleType :: self.m.actionary <-- @clog
+
 value :: ValueVerbType :: self.m.actionary <-- @value
 love :: ValueVerbType :: self.m.actionary <-- @value
-flute :: InstrumentNoun :: self.m.ontological-category <-- @musicalInstrument :: extensions.actionary <-- @play
-violin :: NounType :: self.m.ontological-category <-- @musicalInstrument
-#flute :: NounType :: self.m.ontological-category <-- @musicalInstrument
-clarinet :: NounType :: self.m.ontological-category <-- @musicalInstrument
-song :: NounType :: self.m.ontological-category <-- @valuableEntity
-jane :: ProperNPInstance :: self.m.referent <-- @jane :: self.m.gender <-- @female :: self.m.ontological-category <-- @person :: self.m.number <-- @singular
-thank :: ThankVerbType :: self.m.actionary <-- @thank
+flute :: InstrumentNoun :: self.m.ontological-category <-- @flute :: extensions.actionary <-- @play
+play :: MusicalVerbType :: self.m.actionary <-- @play
+song :: NounType :: self.m.ontological-category <-- @song
+
 ask :: CommunicationType :: self.m.actionary <-- @tell :: self.argform <-- DiTransitive
 question :: AbstractNoun :: self.m.ontological-category <-- @question
 answer :: ResponseVerbType :: self.m.actionary <-- @respond :: self.argform <-- DiTransitive
 repeat :: RepeatVerbType :: self.m.actionary <-- @repeat :: self.argform <-- DiTransitive
+
 baby :: SentientNoun :: self.m.ontological-category <-- @baby
 woman :: SentientNoun :: self.m.ontological-category <-- @adult :: self.m.gender <-- @female
 daughter :: SentientNoun :: self.m.ontological-category <-- @child :: self.m.gender <-- @female
 bear :: BirthVerbType :: self.m.actionary <-- @bear
+
+lift :: StrengthVerbType :: self.m.actionary <-- @strength
+book :: NounType :: self.m.ontological-category <-- @weakEntity
+kelly :: ProperNPInstance :: self.m.ontological-category <-- @strongPerson
+
+trophy :: NounType :: self.m.ontological-category <-- @trophy
+suitcase :: NounType :: self.m.ontological-category <-- @suitcase
+fit :: ContainVerbType :: self.m.actionary <-- @contain
+big :: ScalarAdjectiveType :: self.m.value <-- ".7" :: self.m.property <-- @size :: self.m.domain <-- @physicalEntity :: self.m.scaleDirection <-- @up
+small :: ScalarAdjectiveType :: self.m.value <-- ".3" :: self.m.property <-- @size :: self.m.scaleDirection <-- @down
+
+pass :: RelativeMotionVerbType :: self.m.actionary <-- @pass
+fast :: ScalarAdjectiveType :: self.m.property <-- @speed :: self.m.value <-- ".7" :: self.m.scaleDirection <-- @up
+slow :: ScalarAdjectiveType :: self.m.property <-- @speed :: self.m.value <-- ".3" :: self.m.scaleDirection <-- @down
