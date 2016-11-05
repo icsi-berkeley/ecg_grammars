@@ -12,7 +12,7 @@ schema ValueSchema
      patient <--> valuedThing
      valuedThing.ontological-category <-- @valuableEntity
 
-schema ThankSchema
+schema GratitudeSchema
   subcase of TransitiveAction, BridgeSchema
   roles
     actionary: @thank
@@ -61,7 +61,7 @@ schema ChildBearing
     child.ontological-category <-- @baby
     mother.gender <-- @female
 
-schema Music
+schema MusicSchema
   subcase of TransitiveAction
   roles
     musician: RD
@@ -106,3 +106,60 @@ schema RemovingSchema
      protagonist <--> remover
      patient <--> obstacle
      obstacle.ontological-category <-- @removableEntity
+
+schema StrengthSchema
+  subcase of TransitiveAction
+  roles
+    agent
+    comparingObject: RD // not necessarily?
+  constraints
+    protagonist <--> agent
+    patient <--> comparingObject
+    agent.ontological-category <-- @strongPerson
+    comparingObject.ontological-category <-- @weakEntity
+
+schema RelativeScale
+	subcase of Relation
+	roles
+		larger
+		smaller
+		property
+	constraints
+		larger <--> entity1
+		smaller <--> entity2
+		relation <--> property
+		relation <-- @size
+
+schema ContainSchema
+  subcase of Motion
+    evokes SPG as spg
+    evokes RelativeScale as rsc
+  roles
+    container: RD
+    containedObject: RD
+  constraints
+    container <--> rsc.larger
+    containedObject <--> rsc.smaller
+    containedObject <--> mover
+    container <--> spg.landmark
+    container.ontological-category <-- @container
+    containedObject.ontological-category <-- @physicalEntity
+ 
+schema RelativeMotion
+	subcase of Motion, TransitiveAction
+	evokes SPG as spg
+	evokes RelativeScale as rsc
+	roles
+		object1: RD
+		object2: RD
+	constraints
+		object1 <--> agent
+		object2 <--> patient
+		object1 <--> mover
+		object1 <--> spg.trajector
+		object2 <--> spg.landmark
+		rsc.relation <-- @speed
+		object1 <--> rsc.larger
+		object2 <--> rsc.smaller
+		
+		

@@ -9,9 +9,9 @@ construction ValueVerbType
        self.m.actionary <-- @value
 
 // jane thanked mary for the violin
-construction ThankVerbType
+construction GratitudeVerbType
   subcase of LexicalVerbType
-  meaning: ThankSchema
+  meaning: GratitudeSchema
     constraints
        self.m.actionary <-- @thank
 
@@ -35,19 +35,23 @@ construction BirthVerbType
     constraints
       self.m.actionary <-- @bear
 
+construction MusicalVerbType
+  subcase of LexicalVerbType
+  meaning: MusicSchema
+    constraints
+      self.m.actionary <-- @play
+
 construction CleaningVerbType
   subcase of LexicalVerbType
   meaning: CleaningSchema
     constraints
       self.m.actionary <-- @clean
 
-
 construction RemovingVerbType
   subcase of LexicalVerbType
   meaning: RemovingSchema
     constraints
       self.m.actionary <-- @remove
-
 
 construction CreateObstacleType
   subcase of LexicalVerbType
@@ -57,3 +61,21 @@ construction CreateObstacleType
   meaning: CreateObstacleSchema
     constraints
       self.m.actionary <-- @clog
+
+construction StrengthVerbType
+  subcase of LexicalVerbType
+  meaning: StrengthSchema
+    constraints
+       self.m.actionary <-- @strength
+
+construction ContainVerbType
+  subcase of LexicalVerbType
+  meaning: ContainSchema
+  constraints
+    self.m.actionary <-- @contain
+
+construction RelativeMotionVerbType
+  subcase of LexicalVerbType
+  meaning: RelativeMotion
+  constraints
+    self.m.actionary <-- @pass

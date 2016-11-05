@@ -18,10 +18,25 @@ DEFS:
 
 (type valuableEntity sub entity)
 
+(type song sub valuableEntity)
+
 (type musicalInstrument sub instrument)
+
+(type flute sub musicalInstrument)
 
 //
 
+(type contain sub motion)
+
+(type strength sub process)
+
+(type weakEntity sub entity)
+
+(type strongPerson sub person)
+
+(type suitcase sub container)
+
+(type trophy sub physicalEntity)
 // Instances
 
 //
@@ -211,6 +226,8 @@ DEFS:
 (type bear sub process)
 
 (type play sub process)
+
+(type pass sub motion)
 
 
 //

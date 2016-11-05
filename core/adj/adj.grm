@@ -53,6 +53,7 @@ construction ColorType  //subcase of non-scale Adj
 	   //self.m.domain <= @person 
 	   self.m.value <-- @colorValue
 
+
 /**
 SCALES
 */ 
@@ -70,6 +71,7 @@ construction ScalarAdjectiveType
         self.m.value <-- @scalarValue //@propValue
         self.m.property <-- @object-property
         self.m.domain <-- @item
+        self.m.scaleDirection <-- @direction
      
 
 /*
