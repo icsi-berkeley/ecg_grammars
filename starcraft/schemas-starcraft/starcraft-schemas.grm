@@ -1,0 +1,11 @@
+package starcraft
+import core
+
+schema GatherResource
+	subcase of Process
+	roles
+	  resource: RD
+	  gatherer
+	  //source
+	constraints
+     protagonist <--> gatherer

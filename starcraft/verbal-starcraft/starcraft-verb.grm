@@ -1,0 +1,10 @@
+package starcraft
+import core
+
+construction MineType
+	subcase of LexicalVerbType, GeneralTypeCxn
+	meaning: GatherResource
+	  //evokes GatherResource as gr
+	  constraints
+	     self.m.actionary <-- @mine
+	     //self.gr.resource <-- @mineral
