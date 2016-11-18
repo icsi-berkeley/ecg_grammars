@@ -1,6 +1,6 @@
 
 package relative-clause
-//package core
+package core
 
 construction RelativizedNP
 	subcase of NP
@@ -22,7 +22,7 @@ construction RelativizedNP
    	  self.m <--> core.m
    	  self.m.extras.event <--> description.m.ed
    	  description.ed.modifiedThing <--> core.m
-   	  description.ed.profiledParticipant <--> core.m
+   	  //description.ed.profiledParticipant <--> core.m 
 
 package apposition   	  
 construction Embedded-WH-Clause

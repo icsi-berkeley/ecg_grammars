@@ -15,9 +15,6 @@ jog  :: SelfMotionType  :: self.m.actionary <-- @run  :: self.m.speed <-- ".6" :
 enter :: PathVerbIn   :: self.m.actionary <-- @enter :: self.m.landmark.ontological-category <-- @container
 exit :: PathVerbOut   :: self.m.actionary <-- @exit :: self.m.landmark.ontological-category <-- @container
 man :: SentientNoun :: self.m.ontological-category <-- @person :: self.m.gender <-- @male
-woman :: SentientNoun :: self.m.ontological-category <-- @person :: self.m.gender <-- @female
-big :: ScalarAdjectiveType :: self.m.value <-- ".7" :: self.m.property <-- @size :: self.m.domain <-- @physicalEntity
-small :: ScalarAdjectiveType :: self.m.value <-- ".3" :: self.m.property <-- @size
 john :: ProperNPInstance :: self.m.referent <-- @john :: self.m.gender <-- @male :: self.m.ontological-category <-- @person :: self.m.number <-- @singular
 mary :: ProperNPInstance :: self.m.referent <-- @mary :: self.m.gender <-- @female :: self.m.ontological-category <-- @person :: self.m.number <-- @singular
 push :: ApplyForceType :: self.m.actionary <-- @push_move

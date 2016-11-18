@@ -12,7 +12,7 @@ construction InstrumentVP
     constituents
     	pp: InstrumentPP  //sub AdjunctPP
     constraints
-      //vp.v.argform <-- Transitive // is this right? (testing)
+      vp.v.argform <-- Transitive // is this right? (testing)
       // we want to avoid using this with copulas, e.g. "the box is red with the hammer"...
    meaning
 	constraints

@@ -71,7 +71,8 @@ construction HerDat
       constraints
          self.m.ontological-category <-- @person
          self.m.number <-- @singular
-         self.m.gender <-- @female       
+         self.m.gender <-- @female
+         self.m.referent <-- @antecedent
 
 
 construction MeDat

@@ -1,228 +1,232 @@
 package core
 import universal-schemas
 
-schema TrajectorLandmark  
-	roles
-		trajector: RD
-		landmark: RD
-		profiledArea: RD //  defined with respect to Landmark  
-		temporality: @temporality // for expressing @atemporal/@bounded relations
-		negated: @boolean
-	constraints
-		trajector.ontological-category <-- @physicalEntity 
-		landmark.ontological-category <-- @region  // added for 2/22/14 m4 test  
-		profiledArea.ontological-category <-- @location 
+schema TrajectorLandmark
+  roles
+    trajector: RD
+    landmark: RD
+    profiledArea: RD //  defined with respect to Landmark
+    temporality: @temporality // for expressing @atemporal/@bounded relations
+    negated: @boolean
+  constraints
+    trajector.ontological-category <-- @physicalEntity
+    landmark.ontological-category <-- @region  // added for 2/22/14 m4 test
+    profiledArea.ontological-category <-- @location
 
-schema SPG   
-	subcase of TrajectorLandmark
-	roles
-		source: RD
-		path: RD
-		goal: RD
-		distance  // ???*********7/17/13
+schema SPG
+  subcase of TrajectorLandmark
+  roles
+    source: RD
+    path: RD
+    goal: RD
+    distance  // ???*********7/17/13
 
 
 schema SPG2
-	subcase of SPG
-	roles
-	  spg2: SPG
+  subcase of SPG
+  roles
+    spg2: SPG
     constraints
       //source <--> spg2.source
       //path <--> spg2.path
       //goal <--> spg2.goal
 
 schema BoundedRegion
-	subcase of PhysicalEntity
-	roles
-		boundary: RD 
-		interior: RD 
-		exterior: RD 
-	constraints
-		boundary.ontological-category <-- @closedCurve
-		interior.ontological-category <-- @region
-		exterior.ontological-category <-- @region
-		
+  subcase of PhysicalEntity
+  roles
+    boundary: RD
+    interior: RD
+    exterior: RD
+  constraints
+    boundary.ontological-category <-- @closedCurve
+    interior.ontological-category <-- @region
+    exterior.ontological-category <-- @region
+
 schema BoundedObject
-	subcase of BoundedRegion
-	roles
-		boundedObject: RD
-	constraints
-		boundedObject.ontological-category <-- @container
-		entity <--> boundedObject
+  subcase of BoundedRegion
+  roles
+    boundedObject: RD
+  constraints
+    boundedObject.ontological-category <-- @container
+    entity <--> boundedObject
 
 
 
 schema Relation
-	roles
-	  entity1
-	  entity2
-	  relation: @relation
-	  temporality: @temporality
+  roles
+    entity1
+    entity2
+    relation: @relation
+    temporality: @temporality
 
 
 schema TernaryRelation
-	subcase of Relation
-	roles
-	  entity3	 
+  subcase of Relation
+  roles
+    entity3
 
 schema SpatialRelation  //???????
-	subcase of Relation
+  subcase of Relation
 
-schema Proximity	
-	subcase of SpatialRelation
-	roles
-		center
-		proximalArea
+schema Proximity
+  subcase of SpatialRelation
+  roles
+    center
+    proximalArea
 
 schema Contact // short version
-	subcase of SpatialRelation 
-	roles
-		entity1: RD // @entity 
-		entity2: RD // @entity
-	constraints
-		entity1.ontological-category <-- @entity
-		entity2.ontological-category <-- @entity
+  subcase of SpatialRelation
+  roles
+    entity1: RD // @entity
+    entity2: RD // @entity
+  constraints
+    entity1.ontological-category <-- @entity
+    entity2.ontological-category <-- @entity
 
 
 schema Accompaniment
-	subcase of Relation
-	roles
-	  participant: RD
-	  co-participant: RD
-	constraints
-	  participant <--> entity1
-	  co-participant <--> entity2		
-	  
-	  
+  subcase of Relation
+  roles
+    participant: RD
+    co-participant: RD
+  constraints
+    participant <--> entity1
+    co-participant <--> entity2
+
+
 
 
 schema Possession  //revised 11/30/12
    roles
        negated: @boolean
-   	   kind:@possessionKind
-	   possessor:RD
-	   possessed:RD
-		
+        kind:@possessionKind
+     possessor:RD
+     possessed:RD
+
 
 schema RefRelation
-	subcase of Relation
+  subcase of Relation
    roles
      first: RD
      second: RD
     constraints
       first <--> entity1
       second <--> entity2
-     
+
 schema RefIdentity
-	subcase of RefRelation
-	roles
-	 temporality: @temporality
-	constraints
-	  //first.ontological-category <--> second.ontological-category
-	  first.referent <--> second.referent
-	  first.number <--> second.number
-	  first.gender <--> second.gender
-	  
-	  
+  subcase of RefRelation
+  roles
+   temporality: @temporality
+  constraints
+    //first.ontological-category <--> second.ontological-category
+    first.referent <--> second.referent
+    first.number <--> second.number
+    first.gender <--> second.gender
+
+
 // Scale
 schema Scale
    roles
      measure // weight
      units // pound
      value // .7
-     
+
  // entity
  schema Entity
-	roles
-	  name
-	  entityType: @entity
-	  entity: RD
-	  
-	  
+  roles
+    name
+    entityType: @entity
+    entity: RD
+
+
 schema PhysicalEntity
-	subcase of Entity
-	
+  subcase of Entity
+
 schema AnimateEntity
-	subcase of PhysicalEntity
-	roles
-	   entity: RD
-	constraints
-	  entity.ontological-category <-- @animate
+  subcase of PhysicalEntity
+  roles
+     entity: RD
+  constraints
+    entity.ontological-category <-- @animate
 
 
 //artifact
 schema Artifact
-	subcase of PhysicalEntity
-	roles
-	  creator
-	  material
-	constraints
-	  entityType <-- @artifact 
-     
+  subcase of PhysicalEntity
+  roles
+    creator
+    material
+  constraints
+    entityType <-- @artifact
+
 // Instrument schema, testing (ST, 3/24/16)
 // This is useful for the Specializer: used for "Instrument-PP"
 schema Instrument
     subcase of Artifact // is this right?
-	roles
-	  instrument: RD
-	  user: RD
-	  // add actionary: @move
-	   actionary: @process // could either be actionary (@move) or schema (Motion)
-	constraints
-	  entityType <-- @instrument
-	  entity <--> instrument
+  roles
+    instrument: RD
+    user: RD
+    // add actionary: @move
+     actionary: @process // could either be actionary (@move) or schema (Motion)
+  constraints
+    entityType <-- @instrument
+    entity <--> instrument
 
 
 schema Container // short version
-	subcase of Artifact, BoundedObject  //  6/24/13
-	roles
-		contents: RD // @entity
-	constraints
-		//contents.bounding <-- @indeterminate  // not for plurals
-		entityType <-- @container
+  subcase of Artifact, BoundedObject  //  6/24/13
+  roles
+    contents: RD // @entity
+    scale: Scale
+  constraints
+    //contents.bounding <-- @indeterminate  // not for plurals
+    entityType <-- @container
+    scale.value <-- ".7"
+    scale.measure <-- @size
+    contents.ontological-category <-- @small
 
-// metonymy	 
+// metonymy
 
-schema Metonymy 
+schema Metonymy
 
 schema PartWhole
-	subcase of Metonymy, Extensions
-	roles
-	  whole
-	  part
-	  
+  subcase of Metonymy, Extensions
+  roles
+    whole
+    part
+
 schema Sidedness
-	subcase of Extensions
-	evokes PartWhole as pw
-	roles
-	  front: RD
-	  back: RD
-	  obj
-	constraints
-	  obj <--> pw.whole
-	  front.ontological-category <-- @front
-	  back.ontological-category <-- @back 
+  subcase of Extensions
+  evokes PartWhole as pw
+  roles
+    front: RD
+    back: RD
+    obj
+  constraints
+    obj <--> pw.whole
+    front.ontological-category <-- @front
+    back.ontological-category <-- @back
 
 schema HeadingSchema
-   roles 
+   roles
      tag: @heading
      landmark: RD
 
 
 schema ByLandmark
-	roles
-	  landmark: RD	
-	  
-	
-	  
+  roles
+    landmark: RD
+
+
+
 schema TemporalModifier
-	roles
-	 telicity
-	 ti: TemporalInterval
-	 
+  roles
+   telicity
+   ti: TemporalInterval
+
 schema TemporalInterval
-	roles
-	 start
-	 end
-	 length
-	 timeUnits: @temporal-units	
+  roles
+   start
+   end
+   length
+   timeUnits: @temporal-units

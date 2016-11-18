@@ -1,0 +1,75 @@
+package winograd
+import core
+
+// jane thanked mary for the box that had been given to her
+construction ActiveTransitiveGratitude
+	subcase of CoreActiveTransitive, ArgumentStructure
+	constructional
+		constituents
+			for: For-PP
+	form
+		constraints
+			np.f before for.f
+	meaning: GratitudeSchema
+		constraints
+			for.np.m <--> self.m.theme
+			s.a1 <--> self.m.agent
+			s.a2 <--> self.m.patient
+	    
+/*
+construction ActiveTransitiveThank
+	subcase of CoreActiveTransitive, ArgumentStructure
+	constructional
+	 constituents
+	   optional for: For-PP
+	meaning: ThankSchema
+	  constraints
+	    for.np.m <--> self.m.theme
+	    s.a1 <--> self.m.agent
+	    s.a2 <--> self.m.patient
+*/
+
+construction ContainPath  
+	subcase of IntransitiveArgumentStructure 
+	constructional
+		constituents
+			optional pp: Path-PP
+	constraints
+		v.voice <-- NotPassive  
+	form 
+		constraints 
+			v.f before pp.f   
+	meaning: ContainSchema
+		constraints 
+			self.m <--> v.m
+			self.m.spg <--> pp.m
+
+construction InstrumentAction
+	subcase of CoreActiveTransitive, ArgumentStructure
+	constructional
+		constituents
+			with: InstrumentPP
+	form
+		constraints
+			np.f before with.f
+	meaning: MusicSchema
+		constraints
+			with.np.m <--> self.m.method
+			s.a1 <--> self.m.agent
+			s.a2 <--> self.m.patient
+
+/*
+construction MusicInstrument
+	subcase of CoreActiveTransitive, ArgumentStructure
+	constructional
+		constituents
+			optional with: InstrumentPP // This is wrong but InstrumentPP keeps randomly disappearing so AccompanimentPP might be better
+	form
+		constraints
+			np.f before with.f
+	meaning: MusicSchema
+		constraints
+		 	with.np.m <--> self.m.method
+		    s.a1 <--> self.m.agent
+		    s.a2 <--> self.m.patient
+*/

@@ -183,7 +183,7 @@ schema CausalAction // elaborated cause, general effect
 
 /* Unsure if this is final version of causation. */ 
 schema CauseEffect   // Direct Physical Causation
-   subcase of ComplexProcess, GeneralCausation 
+   subcase of ComplexProcess, GeneralCausation, TransitiveAction
    roles
       causalAgent: RD 
       affectedEntity: RD
@@ -199,6 +199,8 @@ schema CauseEffect   // Direct Physical Causation
       cause <--> causalProcess
       effect <--> affectedProcess
       complexKind <-- @causal
+      causalAgent <--> agent
+      affectedEntity <--> patient
  
  
  schema CauseChange
@@ -480,7 +482,7 @@ schema PossProcess
      possessed.ontological-category <-- @physicalEntity
      
 schema ObjectTransfer
-	subcase of ComplexProcess, A123
+	subcase of ComplexProcess, A123, TransitiveAction
 	roles
 	 process1: ReleaseHold
 	 process2: EstablishHold
@@ -489,6 +491,8 @@ schema ObjectTransfer
 	 theme: RD
 	 actionary: @objecttransfer
    constraints
+   	 agent <--> giver
+   	 patient <--> getter
      a1 <--> giver
      a2 <--> theme
      a3 <--> getter

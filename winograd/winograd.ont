@@ -4,15 +4,54 @@
 
 //
 
+(type bridgeKind sub unshared)
+
+(type thanks sub bridgeKind)
+
+(type response sub bridgeKind)
+
+(type repetition sub bridgeKind)
+
 DEFS:
+
+(type value sub process)
+
+(type valuableEntity sub entity)
+
+(type song sub valuableEntity)
+
+(type musicalInstrument sub instrument)
+
+(type flute sub musicalInstrument)
 
 //
 
+(type contain sub motion)
+
+(type strength sub process)
+
+(type weakEntity sub entity)
+
+(type strongPerson sub person)
+
+(type suitcase sub container)
+
+(type trophy sub physicalEntity)
 // Instances
 
 //
 
 (type john-instance sub person)
+
+(type adult sub person)
+
+(type parent sub adult)
+
+(type child sub person)
+
+(type baby sub child)
+
+(type jane sub person)
 
 (type box1 sub box)  // needs to be done right *************
 
@@ -23,6 +62,7 @@ DEFS:
 (type block2-instance sub block)
 
 (type block3-instance sub block)
+
 //
 
 (type joint sub process-kind)
@@ -183,6 +223,33 @@ DEFS:
 
 (type prevent sub process)  // 1/22/13
 
+(type bear sub process)
+
+(type play sub process)
+
+(type pass sub motion)
+
+
+//
+
+// Winograd Drain Example - 11/2/16
+
+//
+
+(type clean sub process)
+
+(type remove sub process)
+
+(type portal sub entity)
+
+(type removableEntity sub physicalEntity)
+
+(type hair sub removableEntity)
+
+(type clog sub process)
+
+
+
 //
 
 // Distances
@@ -282,5 +349,13 @@ DEFS:
 (type position sub object-property  shared)
 
 (type orientation sub object-property shared)
+
+(type thank sub communication  shared)
+
+(type question sub idea)
+
+(type respond sub tell)
+
+(type repeat sub tell)
 
 INSTS:

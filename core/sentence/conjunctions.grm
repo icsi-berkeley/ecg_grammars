@@ -1,5 +1,5 @@
 package core
-
+ 
 schema Value
    roles
      value
@@ -90,6 +90,15 @@ construction Or-Conjunction
 	  constraints
 	    self.m.value <-- @or
 
+construction semicolon-Conjunction
+	subcase of CoordinatingConjunction
+	form
+	  constraints
+	    self.f.orth <-- ";"
+	meaning
+	  constraints
+	    self.m.value <-- @and
+
 /*
 *** ST, Concessives, 5/6/16
 *** Is the mapping between events correct? 
@@ -115,3 +124,6 @@ construction That-Subordinating
 	form
 	  constraints
 	     self.f.orth <-- "that"
+	meaning
+     constraints
+       self.m.value <-- @that
