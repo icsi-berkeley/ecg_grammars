@@ -1,0 +1,26 @@
+north :: DirectionalType :: self.m.tag <-- @north
+south :: DirectionalType :: self.m.tag <-- @south
+east :: DirectionalType :: self.m.tag <-- @east
+west :: DirectionalType :: self.m.tag <-- @west
+box1 :: ProperNPInstance :: self.m.referent <-- @box1 :: self.m.ontological-category <-- @box
+box2 :: ProperNPInstance :: self.m.referent <-- @box2 :: self.m.ontological-category <-- @box
+box3 :: ProperNPInstance :: self.m.referent <-- @box3 :: self.m.ontological-category <-- @box
+green :: ColorType :: self.m.value <-- @green
+black :: ColorType :: self.m.value <-- @black
+purple :: ColorType :: self.m.value <-- @purple
+one :: NumberType :: self.m.value <-- "1"
+two :: NumberType :: self.m.value <-- "2"
+orange :: ColorType :: self.m.value <-- @orange
+magenta :: ColorType :: self.m.value <-- @magenta
+north :: SideAdj-Type :: self.m.value <-- @northSide
+south :: SideAdj-Type :: self.m.value <-- @southSide
+east :: SideAdj-Type :: self.m.value <-- @eastSide
+west :: SideAdj-Type :: self.m.value <-- @westSide
+white :: ColorType :: self.m.value <-- @white
+pink :: ColorType :: self.m.value <-- @pink
+large :: ScalarAdjectiveType :: self.m.value <-- ".7"
+team :: ProperNPInstance :: self.m.ontological-category <-- @physicalEntity :: self.m.number <-- @plural :: self.m.referent <-- @team-instance
+position :: PropertyNoun :: self.m.ontological-category <-- @position
+location :: PropertyNoun :: self.m.ontological-category <-- @position
+orientation :: PropertyNoun :: self.m.ontological-category <-- @orientation
+turn :: SelfMotionType :: self.m.speed <-- ".2" :: self.m.actionary <-- @turn

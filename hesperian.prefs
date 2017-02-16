@@ -1,0 +1,59 @@
+
+
+
+GRAMMAR_EXTENSIONS = grm
+
+
+PACKAGE_NAME ::==
+    hesperian
+    location
+    universal-schemas
+    universal-constructions
+    motion
+    utterance-text
+;
+
+ONTOLOGY_PATHS ::==
+    ./hesperian/hesperian.ont
+    ./core/core.ont
+    ./research/research.ont
+;
+
+IMPORT_PATHS ::==
+    ./hesperian
+    ./core
+    ./research
+;
+
+
+MORPHOLOGY_PATH ::==
+    ./core/celex.ecgmorph
+    ./hesperian/hesperian.ecgmorph
+;
+
+TOKEN_PATH ::==
+    ./hesperian/hesperian.tokens
+    ./research/testing.tokens
+;
+
+MAPPING_PATH = ./hesperian/hesperian.mappings
+
+TABLE_PATH = ./core/core.morph
+
+ROBUST = FALSE
+BEAM_SIZE = 40
+DEFAULT_OMISSION_PROB = .1
+VARIABLE_BEAM = TRUE
+BEAM_WIDTH = 10
+BEAM_SIZE = 10
+DEBUG = FALSE
+//DEBUG = TRUE
+ANALYZE_IN_CONTEXT = FALSE
+//ANALYZE_IN_CONTEXT = TRUE
+NUM_ANALYSES_RETURNED = 4
+MULTI_ROOT_PENALTY = -3
+
+EXAMPLE_SENTENCES ::==
+
+hesperian
+;

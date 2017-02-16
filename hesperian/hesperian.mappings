@@ -1,0 +1,14 @@
+@violet :: $blue
+@walk :: $move
+@run :: $move
+@drive :: $move
+@block :: $box
+@large :: $big
+@box1 :: $box1_instance
+@box2 :: $box2_instance
+@box3 :: $box3_instance
+@position :: $pos
+@location :: $pos
+@weigh_predication :: $be
+@cost_predication :: $be
+@be2 :: $be
