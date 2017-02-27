@@ -1,0 +1,15 @@
+package hesperian
+import core
+
+schema Symptom
+  subcase of RD
+  roles
+    experiencer: RD
+    symptom: RD
+    location: RD
+    disease: RD
+  constraints
+    experiencer.ontological-category <-- @person
+    symptom.ontological-category <-- @symptom
+    location.ontological-category <-- @bodyPart
+    disease.ontological-category <-- @disease
