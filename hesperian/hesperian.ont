@@ -8,6 +8,10 @@ DEFS:
 
 (type value sub process)
 
+(type symptom sub physicalEntity)
+
+(type bodyPart sub physicalEntity)
+
 // Instances
 
 //
@@ -23,16 +27,6 @@ DEFS:
 (type baby sub child)
 
 (type jane sub person)
-
-(type box1 sub box)  // needs to be done right *************
-
-(type box2 sub box)
-
-(type block1-instance sub block)
-
-(type block2-instance sub block)
-
-(type block3-instance sub block)
 
 //
 
@@ -99,8 +93,6 @@ DEFS:
 (type stop sub stage shared)
 
 (type continue sub stage shared)
-
-// (type inchoativestasis sub stasis)
 
 (type become sub stasis) // 2/14/13
 
@@ -200,27 +192,6 @@ DEFS:
 
 (type pass sub motion)
 
-
-//
-
-// Winograd Drain Example - 11/2/16
-
-//
-
-(type clean sub process)
-
-(type remove sub process)
-
-(type portal sub entity)
-
-(type removableEntity sub physicalEntity)
-
-(type hair sub removableEntity)
-
-(type clog sub process)
-
-
-
 //
 
 // Distances
@@ -275,8 +246,6 @@ DEFS:
 
 // Tokens
 
-(type box3 sub box)
-
 (type green sub colorValue)
 
 (type black sub colorValue)
@@ -328,5 +297,16 @@ DEFS:
 (type respond sub tell)
 
 (type repeat sub tell)
+
+(type pain sub symptom)
+
+(type fever sub symptom)
+
+(type abdomen sub bodyPart)
+
+(type malaria sub disease)
+
+(type alcoholism sub disease)
+
 
 INSTS:
