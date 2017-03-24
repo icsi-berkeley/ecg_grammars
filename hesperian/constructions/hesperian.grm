@@ -1,0 +1,40 @@
+package hesperian
+import core
+
+// Construction for a Symptom
+construction SymptomNoun
+	subcase of AbstractNoun
+	meaning: RD
+		constraints
+			self.m.ontological-category <-- @symptom
+			//self.m.experiencer <-- @person
+    		//self.m.symptom <-- @symptom
+    		//self.m.location <-- @bodyPart
+    		//self.m.disease <-- @disease
+    		//self.m.severity <-- @severity
+    		
+construction LocatedSymptom
+  subcase of NP
+  constructional
+    constituents
+      loc: PhysicalEntityNoun
+      symp: SymptomNoun
+  form
+    constraints
+      loc.f meets symp.f
+  meaning: Symptom
+    constraints
+      symp.m <--> self.m.symptom
+      loc.m <--> self.m.location
+
+
+construction DiseaseSymptom
+  subcase of NP
+  constructional
+    constituents
+      symp: SymptomNoun
+      dis: DiseaseType
+  meaning: Symptom
+    constraints
+      symp.m <--> self.m.symptom
+      dis.m <--> self.m.disease
