@@ -1,24 +1,41 @@
 package hesperian
 import core
 
-// Construction for a Symptom
-construction SymptomNoun
+// Construction for a Symptom.  This is a building block
+// for the constructions below.
+construction SymptomType
 	subcase of AbstractNoun
 	meaning: RD
 		constraints
 			self.m.ontological-category <-- @symptom
-			//self.m.experiencer <-- @person
-    		//self.m.symptom <-- @symptom
-    		//self.m.location <-- @bodyPart
-    		//self.m.disease <-- @disease
-    		//self.m.severity <-- @severity
+			
+// Construction for when symptoms used alone. This acts 
+// as a wrapper for the above construction in analysis		
+construction Symptom
+	subcase of NP
+ 	constructional
+    	constituents
+     		symp: SymptomType
+	meaning: Symptom
+		constraints
+			symp.m <--> self.m.symptom
+	
+// Construction for when diseases used alone		
+construction Disease
+  subcase of NP
+  constructional
+    constituents
+      dis: DiseaseType
+  meaning: Symptom
+    constraints
+      dis.m <--> self.m.disease
     		
 construction LocatedSymptom
   subcase of NP
   constructional
     constituents
       loc: PhysicalEntityNoun
-      symp: SymptomNoun
+      symp: SymptomType
   form
     constraints
       loc.f meets symp.f
@@ -32,7 +49,7 @@ construction DiseaseSymptom
   subcase of NP
   constructional
     constituents
-      symp: SymptomNoun
+      symp: SymptomType
       dis: DiseaseType
   meaning: Symptom
     constraints

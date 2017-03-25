@@ -21,7 +21,7 @@ position :: PropertyNoun :: self.m.ontological-category <-- @position
 location :: PropertyNoun :: self.m.ontological-category <-- @position
 orientation :: PropertyNoun :: self.m.ontological-category <-- @orientation
 turn :: SelfMotionType :: self.m.speed <-- ".2" :: self.m.actionary <-- @turn
-pain :: SymptomNoun :: self.m.ontological-category <-- @pain
+pain :: SymptomType :: self.m.ontological-category <-- @pain
 severity :: ScalarAdjectiveType :: self.m.value <-- @scalarValue
 bad :: ScalarAdjectiveType :: self.m.value <-- ".7"
 chest :: PhysicalEntityNoun :: self.m.ontological-category <-- @chest
