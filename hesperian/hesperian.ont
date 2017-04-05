@@ -308,6 +308,12 @@ DEFS:
 
 (type alcoholism sub disease)
 
+(type severity sub scalarValue)
+
+(type bad sub scalarValue)
+
+(type chest sub bodyPart)
+
 (type anorexia sub disease)
 
 (type hiv sub disease)
@@ -347,14 +353,5 @@ DEFS:
 (type chlamydia sub disease)
 
 (type flu sub disease)
-
-
-(type severity sub scalarValue)
-
-(type bad sub scalarValue)
-
-(type chest sub bodyPart)
-
-
 
 INSTS:

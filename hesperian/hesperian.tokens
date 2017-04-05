@@ -21,6 +21,13 @@ position :: PropertyNoun :: self.m.ontological-category <-- @position
 location :: PropertyNoun :: self.m.ontological-category <-- @position
 orientation :: PropertyNoun :: self.m.ontological-category <-- @orientation
 turn :: SelfMotionType :: self.m.speed <-- ".2" :: self.m.actionary <-- @turn
+<<<<<<< HEAD
+=======
+pain :: SymptomNoun :: self.m.ontological-category <-- @pain
+severity :: ScalarAdjectiveType :: self.m.value <-- @scalarValue
+bad :: ScalarAdjectiveType :: self.m.value <-- ".7"
+chest :: PhysicalEntityNoun :: self.m.ontological-category <-- @chest
+>>>>>>> a75830cff71bff261ed154cbf7aeaff121030f25
 hiv :: DiseaseType :: self.m.ontological-category <-- @hiv
 alcoholism :: DiseaseType :: self.m.ontological-category <-- @alcoholism
 malaria :: DiseaseType :: self.m.ontological-category <-- @malaria
@@ -42,8 +49,11 @@ hypertension :: DiseaseType :: self.m.ontological-category <-- @hypertension
 arthritis :: DiseaseType :: self.m.ontological-category <-- @arthritis
 gonorrhea :: DiseaseType :: self.m.ontological-category <-- @gonorrhea
 chlamydia :: DiseaseType :: self.m.ontological-category <-- @chlamydia
+<<<<<<< HEAD
 flu :: DiseaseType :: self.m.ontological-category <-- @flu
 pain :: SymptomNoun :: self.m.ontological-category <-- @pain
 severity :: ScalarAdjectiveType :: self.m.value <-- @scalarValue
 bad :: ScalarAdjectiveType :: self.m.value <-- ".7"
 chest :: PhysicalEntityNoun :: self.m.ontological-category <-- @chest
+=======
+>>>>>>> a75830cff71bff261ed154cbf7aeaff121030f25
