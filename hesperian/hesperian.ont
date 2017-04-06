@@ -308,5 +308,49 @@ DEFS:
 
 (type alcoholism sub disease)
 
+(type severity sub scalarValue)
+
+(type bad sub scalarValue)
+
+(type chest sub bodyPart)
+
+(type anorexia sub disease)
+
+(type hiv sub disease)
+
+(type aids sub disease)
+
+(type herpes sub disease)
+
+(type asthma sub disease)
+
+(type hemorrhoid sub disease)
+
+(type dengue sub disease)
+
+(type cholera sub disease)
+
+(type cancer sub disease)
+
+(type palsy sub disease)
+
+(type chickenpox sub disease)
+
+(type appendicitis sub disease)
+
+(type anemia sub disease)
+
+(type diabetes sub disease)
+
+(type autism sub disease)
+
+(type hypertension sub disease)
+
+(type arthritis sub disease)
+
+(type gonorrhea sub disease)
+
+(type chlamydia sub disease)
+
 
 INSTS:

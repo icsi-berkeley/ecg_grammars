@@ -8,8 +8,22 @@ schema Symptom
     symptom: RD
     location: RD
     disease: RD
+    severity: RD
   constraints
     experiencer.ontological-category <-- @person
     symptom.ontological-category <-- @symptom
     location.ontological-category <-- @bodyPart
     disease.ontological-category <-- @disease
+    severity.ontological-category <-- @severity
+    
+schema Disease
+  subcase of RD
+  roles
+    experiencer: RD
+    location: RD
+    agent: RD
+  constraints
+    experiencer.ontological-category <-- @person
+    location.ontological-category <-- @bodyPart
+    agent.ontological-category <-- @agent
+    
