@@ -352,5 +352,6 @@ DEFS:
 
 (type chlamydia sub disease)
 
+(type flu sub disease)
 
 INSTS:
