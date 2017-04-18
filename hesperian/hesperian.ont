@@ -12,6 +12,9 @@ DEFS:
 
 (type bodyPart sub physicalEntity)
 
+(type drug sub physicalEntity)
+
+
 // Instances
 
 //
@@ -351,6 +354,16 @@ DEFS:
 (type gonorrhea sub disease)
 
 (type chlamydia sub disease)
+
+(type flu sub disease)
+
+(type antibiotic sub drug)
+
+(type clindamycin sub drug)
+
+(type amoxicillin sub drug)
+
+(type ampicillin sub drug)
 
 
 INSTS:

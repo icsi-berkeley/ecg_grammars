@@ -55,3 +55,57 @@ construction DiseaseSymptom
     constraints
       symp.m <--> self.m.symptom
       dis.m <--> self.m.disease
+      
+construction DrugType
+	subcase of AbstractNoun
+	meaning: RD
+		constraints
+			self.m.ontological-category <-- @drug
+      
+construction Drug
+	subcase of NP
+ 	constructional
+    	constituents
+     		dru: DrugType
+	meaning: Drug
+		constraints
+			dru.m <--> self.m.drug
+      
+general construction CanAux
+	subcase of LexicalAux
+	constructional
+	  constraints
+	    self.expectedVerbForm <-- Base
+
+construction DoAuxPresent
+	subcase of DoAux, PresentTense
+	form
+	  constraints
+	     self.f.orth <-- "does"
+	meaning
+      constraints
+         pf <--> self.m
+
+construction CanAuxPast
+	subcase of CanAux, PastTense
+	form
+	  constraints
+	     self.f.orth <-- "could"
+	meaning
+      constraints
+         pf <--> self.m
+      
+construction CanAuxPresent
+	subcase of CanAux, PresentTense
+	form
+	  constraints
+	     self.f.orth <-- "can"
+	meaning
+      constraints
+         pf <--> self.m
+         
+construction S-With-Can-Inversion
+	subcase of S-With-Aux-Inversion 
+	constructional
+	  constituents
+	    fin: CanAux
