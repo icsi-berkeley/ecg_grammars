@@ -19,10 +19,12 @@ schema Symptom
 schema Disease
   subcase of RD
   roles
+  	disease: RD
     experiencer: RD
     location: RD
     agent: RD
   constraints
+  	disease.ontological-category <-- @disease
     experiencer.ontological-category <-- @person
     location.ontological-category <-- @bodyPart
     agent.ontological-category <-- @agent
