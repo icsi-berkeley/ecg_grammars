@@ -29,3 +29,11 @@ schema Disease
     location.ontological-category <-- @bodyPart
     agent.ontological-category <-- @agent
     
+schema Drug
+  subcase of RD
+  roles
+    drug: RD
+  constraints
+    drug.ontological-category <-- @drug
+    
+    

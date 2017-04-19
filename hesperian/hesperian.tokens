@@ -46,3 +46,8 @@ hypertension :: DiseaseType :: self.m.ontological-category <-- @hypertension
 arthritis :: DiseaseType :: self.m.ontological-category <-- @arthritis
 gonorrhea :: DiseaseType :: self.m.ontological-category <-- @gonorrhea
 chlamydia :: DiseaseType :: self.m.ontological-category <-- @chlamydia
+flu :: DiseaseType :: self.m.ontological-category <-- @flu
+antibiotic :: DrugType :: self.m.ontological-category <-- @antibiotic
+clindamycin :: DrugType :: self.m.ontological-category <-- @clindamycin
+amoxicillin :: DrugType :: self.m.ontological-category <-- @amoxicillin
+ampicillin :: DrugType :: self.m.ontological-category <-- @ampicillin
