@@ -303,6 +303,8 @@ DEFS:
 
 (type pain sub symptom)
 
+(type diarrhea sub symptom)
+
 (type fever sub symptom)
 
 (type abdomen sub bodyPart)
@@ -316,6 +318,8 @@ DEFS:
 (type bad sub scalarValue)
 
 (type chest sub bodyPart)
+
+(type stomach sub bodyPart)
 
 (type anorexia sub disease)
 
@@ -364,6 +368,8 @@ DEFS:
 (type amoxicillin sub drug)
 
 (type ampicillin sub drug)
+
+(type medicine sub drug)
 
 
 INSTS:
