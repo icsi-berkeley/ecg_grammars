@@ -1,35 +1,27 @@
 package hesperian
 import core
-
-// Construction for a Symptom.  This is a building block
-// for the constructions below.
+   
+// Construction for symptoms            
 construction SymptomType
-	subcase of AbstractNoun
-	meaning: RD
-		constraints
-			self.m.ontological-category <-- @symptom
-			
-// Construction for when symptoms used alone. This acts 
-// as a wrapper for the above construction in analysis		
-construction Symptom
-	subcase of NP
- 	constructional
-    	constituents
-     		symp: SymptomType
+	subcase of NounType, NP
 	meaning: Symptom
 		constraints
-			symp.m <--> self.m.symptom
+			self.m.ontological-category <-- @symptom 
 	
-// Construction for when diseases used alone		
-construction Disease
-  subcase of NP
-  constructional
-    constituents
-      dis: DiseaseType
-  meaning: Disease
-    constraints
-      dis.m <--> self.m.disease
-    		
+// Construction for diseases			
+construction DiseaseType
+	subcase of NounType, NP
+	meaning: Disease
+		constraints
+			self.m.ontological-category <-- @disease
+			
+// Construction for drugs		
+construction DrugType
+	subcase of NounType, NP
+	meaning: Drug
+		constraints
+			self.m.ontological-category <-- @drug  
+			                  
 construction LocatedSymptom
   subcase of NP
   constructional
@@ -41,10 +33,9 @@ construction LocatedSymptom
       loc.f meets symp.f
   meaning: Symptom
     constraints
-      symp.m <--> self.m.symptom
+      //symp.m <--> self.m.symptom
       loc.m <--> self.m.location
-
-
+      
 construction DiseaseSymptom
   subcase of NP
   constructional
@@ -53,59 +44,80 @@ construction DiseaseSymptom
       dis: DiseaseType
   meaning: Symptom
     constraints
-      symp.m <--> self.m.symptom
+      //symp.m <--> self.m.symptom
       dis.m <--> self.m.disease
-      
-construction DrugType
-	subcase of AbstractNoun
-	meaning: RD
-		constraints
-			self.m.ontological-category <-- @drug
-      
-construction Drug
-	subcase of NP
- 	constructional
-    	constituents
-     		dru: DrugType
-	meaning: Drug
-		constraints
-			dru.m <--> self.m.drug
-      
+			      
 general construction CanAux
-	subcase of LexicalAux
-	constructional
-	  constraints
-	    self.expectedVerbForm <-- Base
-
+    subcase of LexicalAux
+    constructional
+      constraints
+        self.expectedVerbForm <-- Base
+        
 construction DoAuxPresent
-	subcase of DoAux, PresentTense
-	form
-	  constraints
-	     self.f.orth <-- "does"
-	meaning
+    subcase of DoAux, PresentTense
+    form
+      constraints
+         self.f.orth <-- "does"
+    meaning
       constraints
          pf <--> self.m
-
+         
 construction CanAuxPast
-	subcase of CanAux, PastTense
-	form
-	  constraints
-	     self.f.orth <-- "could"
-	meaning
+    subcase of CanAux, PastTense
+    form
+      constraints
+         self.f.orth <-- "could"
+    meaning
       constraints
          pf <--> self.m
       
 construction CanAuxPresent
-	subcase of CanAux, PresentTense
-	form
-	  constraints
-	     self.f.orth <-- "can"
-	meaning
+    subcase of CanAux, PresentTense
+    form
+      constraints
+         self.f.orth <-- "can"
+    meaning
       constraints
          pf <--> self.m
          
 construction S-With-Can-Inversion
-	subcase of S-With-Aux-Inversion 
-	constructional
-	  constituents
-	    fin: CanAux
+    subcase of S-With-Aux-Inversion 
+    constructional
+      constituents
+        fin: CanAux
+        
+construction Drug-For-Disease
+    subcase of PP
+    constructional
+      constituents
+        prep: For-Recipient
+        disease: DiseaseType
+        np: DrugType
+    form
+     constraints
+       prep.f before disease.f
+       np.f before prep.f
+       
+construction Drug-For-Symptom
+    subcase of PP
+    constructional
+      constituents
+        prep: For-Recipient
+        symp: SymptomType
+        np: DrugType
+    form
+     constraints
+       prep.f before symp.f
+       np.f before prep.f
+       
+construction Drug-For-Person
+    subcase of PP
+    constructional
+      constituents
+        prep: For-Recipient
+        person: SentientNoun
+        np: DrugType
+    form
+     constraints
+       prep.f before person.f
+       np.f before prep.f
