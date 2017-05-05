@@ -5,13 +5,11 @@ schema Symptom
   subcase of RD
   roles
     experiencer: Patient
-    //symptom: RD
     location: RD
     disease: Disease
     severity: ScalarModifier
   constraints
     experiencer.ontological-category <-- @person
-    //symptom.ontological-category <-- @symptom
     location.ontological-category <-- @bodyPart
     disease.ontological-category <-- @disease
     severity.value <-- @scalarValue
@@ -22,13 +20,11 @@ schema Disease
     experiencer: Patient
     location: RD
     agent: RD
-    //disease: RD
     symptom: Symptom
   constraints
     experiencer.ontological-category <-- @person
     location.ontological-category <-- @bodyPart
     agent.ontological-category <-- @agent
-    //disease.ontological-category <-- @disease
     symptom.ontological-category <-- @symptom
     
 schema Treatment

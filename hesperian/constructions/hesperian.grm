@@ -40,7 +40,7 @@ construction LocatedSymptom
       loc.f meets symp.f
   meaning: Symptom
     constraints
-      //symp.m <--> self.m.symptom
+      symp.m <--> self.m
       loc.m <--> self.m.location
  
 construction SymptomSeverity
@@ -65,7 +65,7 @@ construction DiseaseSymptom
   meaning: Disease
     constraints
       symp.m <--> self.m.symptom
-      //dis.m <--> self.m.disease
+      dis.m <--> self.m
       
 construction LocatedDisease
   subcase of NP
