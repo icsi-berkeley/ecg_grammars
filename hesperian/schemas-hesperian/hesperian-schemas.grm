@@ -4,34 +4,47 @@ import core
 schema Symptom
   subcase of RD
   roles
-    experiencer: RD
-    symptom: RD
+    experiencer: Patient
     location: RD
-    disease: RD
-    severity: RD
+    disease: Disease
+    severity: ScalarModifier
   constraints
     experiencer.ontological-category <-- @person
-    symptom.ontological-category <-- @symptom
     location.ontological-category <-- @bodyPart
     disease.ontological-category <-- @disease
-    severity.ontological-category <-- @severity
+    severity.value <-- @scalarValue
     
 schema Disease
   subcase of RD
   roles
-    experiencer: RD
+    experiencer: Patient
     location: RD
     agent: RD
+    symptom: Symptom
   constraints
     experiencer.ontological-category <-- @person
     location.ontological-category <-- @bodyPart
     agent.ontological-category <-- @agent
+    symptom.ontological-category <-- @symptom
     
-schema Drug
+schema Treatment
   subcase of RD
   roles
     drug: RD
+    user: Patient
+    location: RD
   constraints
     drug.ontological-category <-- @drug
+    user.ontological-category <-- @person
+    location.ontological-category <-- @bodyPart
+    
+schema Patient
+  subcase of RD
+  roles
+	name: @name
+	age: @scalarValue
+	gender: @genderValues
+
+		 
     
     

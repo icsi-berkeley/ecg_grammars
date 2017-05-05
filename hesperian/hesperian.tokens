@@ -23,7 +23,6 @@ orientation :: PropertyNoun :: self.m.ontological-category <-- @orientation
 turn :: SelfMotionType :: self.m.speed <-- ".2" :: self.m.actionary <-- @turn
 pain :: SymptomType :: self.m.ontological-category <-- @pain
 diarrhea :: SymptomType :: self.m.ontological-category <-- @diarrhea
-severity :: ScalarAdjectiveType :: self.m.value <-- @scalarValue
 bad :: ScalarAdjectiveType :: self.m.value <-- ".7"
 chest :: PhysicalEntityNoun :: self.m.ontological-category <-- @chest
 stomach :: PhysicalEntityNoun :: self.m.ontological-category <-- @stomach
@@ -54,3 +53,4 @@ clindamycin :: DrugType :: self.m.ontological-category <-- @clindamycin
 amoxicillin :: DrugType :: self.m.ontological-category <-- @amoxicillin
 medicine :: DrugType :: self.m.ontological-category <-- @medicine
 drug :: DrugType :: self.m.ontological-category <-- @drug
+advil :: DrugType :: self.m.ontological-category <-- @drug
