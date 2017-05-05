@@ -33,7 +33,7 @@ construction LocatedSymptom
       loc.f meets symp.f
   meaning: Symptom
     constraints
-      //symp.m <--> self.m.symptom
+      symp.m <--> self.m
       loc.m <--> self.m.location
       
 construction DiseaseSymptom
@@ -44,7 +44,7 @@ construction DiseaseSymptom
       dis: DiseaseType
   meaning: Symptom
     constraints
-      //symp.m <--> self.m.symptom
+      symp.m <--> self.m
       dis.m <--> self.m.disease
 			      
 general construction CanAux
