@@ -44,7 +44,3 @@ schema Patient
 	name: @name
 	age: @scalarValue
 	gender: @genderValues
-
-		 
-    
-    

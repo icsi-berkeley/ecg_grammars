@@ -193,4 +193,5 @@ construction SocialProblemType
 	subcase of NounType, MassNoun
 	meaning: RD
 	 constraints
-	   self.m.ontological-category <-- @socialProblem 	       
+	   self.m.ontological-category <-- @socialProblem 	
+	          
