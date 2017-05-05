@@ -8,6 +8,8 @@ DEFS:
 
 (type value sub process)
 
+(type treatment sub process)
+
 (type symptom sub physicalEntity)
 
 (type bodyPart sub physicalEntity)

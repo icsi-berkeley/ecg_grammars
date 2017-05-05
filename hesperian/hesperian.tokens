@@ -48,9 +48,9 @@ arthritis :: DiseaseType :: self.m.ontological-category <-- @arthritis
 gonorrhea :: DiseaseType :: self.m.ontological-category <-- @gonorrhea
 chlamydia :: DiseaseType :: self.m.ontological-category <-- @chlamydia
 flu :: DiseaseType :: self.m.ontological-category <-- @flu
-antibiotic :: DrugType :: self.m.ontological-category <-- @antibiotic
-clindamycin :: DrugType :: self.m.ontological-category <-- @clindamycin
-amoxicillin :: DrugType :: self.m.ontological-category <-- @amoxicillin
-medicine :: DrugType :: self.m.ontological-category <-- @medicine
-drug :: DrugType :: self.m.ontological-category <-- @drug
-advil :: DrugType :: self.m.ontological-category <-- @drug
+antibiotic :: DrugType :: self.m.drug.ontological-category <-- @antibiotic
+clindamycin :: DrugType :: self.m.drug.ontological-category <-- @clindamycin
+amoxicillin :: DrugType :: self.m.drug.ontological-category <-- @amoxicillin
+medicine :: DrugType :: self.m.drug.ontological-category <-- @medicine
+drug :: DrugType :: self.m.drug.ontological-category <-- @drug
+advil :: DrugType :: self.m.drug.ontological-category <-- @advil

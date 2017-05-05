@@ -20,7 +20,8 @@ construction DrugType
 	subcase of NounType, NP
 	meaning: Treatment
 		constraints
-			self.m.ontological-category <-- @drug
+			self.m.ontological-category <-- @treatment
+			self.m.drug.ontological-category <-- @drug
 			
 // Construction for patients	
 construction PatientType
