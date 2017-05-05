@@ -182,11 +182,11 @@ construction AbstractStateType
 	   
 	   
 // "depression", "recession"
-construction DiseaseType
-	subcase of NounType
-	meaning: RD
-	 constraints
-	   self.m.ontological-category <-- @disease 	
+//construction DiseaseType
+//	subcase of NounType
+//	meaning: RD
+//	 constraints
+//	   self.m.ontological-category <-- @disease 	
 	   
 // "depression", "recession"
 construction SocialProblemType

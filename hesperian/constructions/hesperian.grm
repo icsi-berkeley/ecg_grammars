@@ -55,6 +55,7 @@ construction SymptomSeverity
   meaning: Symptom
     constraints
       sev.m <--> self.m.severity
+      symp.m <--> self.m
       
 construction DiseaseSymptom
   subcase of NP
@@ -78,7 +79,7 @@ construction LocatedDisease
       loc.f meets dis.f
   meaning: Disease
     constraints
-      //symp.m <--> self.m.symptom
+      dis.m <--> self.m
       loc.m <--> self.m.location
       
 construction LocatedTreatment
@@ -92,7 +93,7 @@ construction LocatedTreatment
       loc.f meets dru.f
   meaning: Treatment
     constraints
-      //symp.m <--> self.m.symptom
+      dru.m <--> self.m
       loc.m <--> self.m.location
 
 construction Prep-Locative-Disease
@@ -108,6 +109,8 @@ construction Prep-Locative-Disease
 	    prep.f before loc.f
 	meaning: Disease
 	  constraints
+	  	loc.m <--> self.m.location
+	  	dis.m <--> self.m
 			      
 general construction CanAux
     subcase of LexicalAux
