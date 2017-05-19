@@ -1,0 +1,15 @@
+package starcraft
+import core
+
+construction GatherVerbType
+  subcase of LexicalVerbType
+  meaning: GatherResource
+    constraints
+       self.m.actionary <-- @gather
+
+/*construction CauseProcessType
+  subcase of LexicalVerbType, GeneralTypeCxn
+  meaning: CausedProcess
+    constraints
+      self.m.actionary <-- @cause_process
+*/

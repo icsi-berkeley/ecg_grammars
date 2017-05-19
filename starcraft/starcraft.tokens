@@ -1,0 +1,31 @@
+commander :: ProperNPInstance :: self.m.ontological-category <-- @robot :: self.m.referent <-- @commander :: self.m.gender <-- @male
+
+be      :: BeCopulaType  :: self.m.actionary <-- @be
+blue :: ColorType :: self.m.value <-- @blue
+
+barracks :: PhysicalEntityNoun :: self.m.ontological-category <-- @barracks
+marine :: PhysicalEntityNoun :: self.m.ontological-category <-- @marine
+SCV :: PhysicalEntityNoun :: self.m.ontological-category <-- @scv
+build :: CreationType :: self.m.actionary <-- @build
+construct :: CreationType :: self.m.actionary <-- @build
+cause :: ForceDynamicType :: self.m.fdType <-- @cause :: self.m.actionary <-- @cause :: self.expectedVerbForm <-- Infinitive
+
+mineral :: PhysicalEntityNoun :: self.m.ontological-category <-- @mineral
+gas :: PhysicalEntityNoun :: self.m.ontological-category <-- @mineral
+gather :: GatherVerbType :: self.m.actionary <-- @gather
+mine :: GatherVerbType :: self.m.actionary <-- @gather
+collect :: GatherVerbType :: self.m.actionary <-- @gather
+
+north :: DirectionalType :: self.m.tag <-- @north
+south :: DirectionalType :: self.m.tag <-- @south
+east :: DirectionalType :: self.m.tag <-- @east
+west :: DirectionalType :: self.m.tag <-- @west
+north :: SideAdj-Type :: self.m.value <-- @northSide
+south :: SideAdj-Type :: self.m.value <-- @southSide
+east :: SideAdj-Type :: self.m.value <-- @eastSide
+west :: SideAdj-Type :: self.m.value <-- @westSide
+team :: ProperNPInstance :: self.m.ontological-category <-- @physicalEntity :: self.m.number <-- @plural :: self.m.referent <-- @team-instance
+position :: PropertyNoun :: self.m.ontological-category <-- @position
+location :: PropertyNoun :: self.m.ontological-category <-- @position
+orientation :: PropertyNoun :: self.m.ontological-category <-- @orientation
+turn :: SelfMotionType :: self.m.speed <-- ".2" :: self.m.actionary <-- @turn

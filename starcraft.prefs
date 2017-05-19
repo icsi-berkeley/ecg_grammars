@@ -1,0 +1,67 @@
+
+
+
+GRAMMAR_EXTENSIONS = grm
+
+
+PACKAGE_NAME ::==
+  starcraft
+  location
+  universal-schemas
+  universal-constructions
+  motion
+;
+
+ONTOLOGY_PATHS ::==
+  ./starcraft/starcraft.ont
+  ./core/core.ont
+  ./research/research.ont
+;
+
+IMPORT_PATHS ::==
+  ./starcraft
+  ./core
+  ./research
+;
+
+
+MORPHOLOGY_PATH ::==
+  ./core/celex.ecgmorph
+  ./starcraft/starcraft.ecgmorph
+;
+
+TOKEN_PATH ::==
+  ./starcraft/starcraft.tokens
+;
+
+MAPPING_PATH = ./starcraft/starcraft.mappings
+
+TABLE_PATH = ./core/core.morph
+
+ROBUST = FALSE
+BEAM_SIZE = 20
+DEFAULT_OMISSION_PROB = .1
+VARIABLE_BEAM = TRUE
+BEAM_WIDTH = 10
+BEAM_SIZE = 10
+DEBUG = FALSE
+//DEBUG = TRUE
+ANALYZE_IN_CONTEXT = FALSE
+//ANALYZE_IN_CONTEXT = TRUE
+NUM_ANALYSES_RETURNED = 4
+MULTI_ROOT_PENALTY = -3
+
+EXAMPLE_SENTENCES ::==
+
+barracks
+marine
+build a barracks!
+build 5 barracks!
+build an SCV and a barracks!
+build an SCV and make it build a barracks!
+after building 5 SCVs, build a barracks!
+if an SCV is idle, make it mine gas!
+if you reach the population limit, build a supply depot!
+build 5 SCVs and make the last 2 harvest gas!
+
+;

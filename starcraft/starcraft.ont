@@ -1,0 +1,308 @@
+//
+
+// ontology.ont
+
+//
+
+DEFS:
+
+//
+
+// Instances
+
+//
+
+(type john-instance sub person)
+
+(type box1 sub box)  // needs to be done right *************
+
+(type box2 sub box)
+
+(type block1-instance sub block)
+
+(type block2-instance sub block)
+
+(type block3-instance sub block)
+
+(type commander sub robot)
+
+(type starcraftunit sub animate instrument)
+
+(type starcraftbuilding sub moveable)
+
+(type starcraftresource sub moveable)
+
+(type marine sub starcraftunit)
+
+(type scv sub starcraftunit)
+
+(type barracks sub starcraftbuilding)
+
+(type gather sub try bring)
+
+(type mineral sub starcraftresource)
+
+(type gas sub starcraftresource)
+
+(type cause_process sub cause)
+//
+
+(type joint sub process-kind)
+
+//
+
+// Regions
+
+//
+
+(type home sub location)
+
+//Metonymy
+
+(type part sub physicalEntity)
+
+(type side sub part location)
+
+(type back sub side)
+
+(type front sub side)
+
+(type antecedent sub physicalEntity)
+
+//
+
+// directions
+
+//
+
+(type heading sub enumeration space)
+
+(type towards sub heading)
+
+(type direction sub heading)
+
+(type straight sub direction)
+
+(type north sub direction)
+
+(type south sub direction)
+
+(type east sub direction)
+
+(type west sub direction)
+
+(type up sub direction)
+
+(type down sub direction)
+
+(type right sub direction)
+
+(type left sub direction)
+
+(type up sub direction)
+
+//================== process stages
+
+(type stage sub process)  // rename  *************
+
+(type start sub stage shared)
+
+(type stop sub stage shared)
+
+(type continue sub stage shared)
+
+// (type inchoativestasis sub stasis)
+
+(type become sub stasis) // 2/14/13
+
+(type complexxnet sub process)
+
+(type routine sub process)
+
+(type motion sub process)
+
+(type perception sub process)
+
+(type see sub perception)  // 2/7/13  perception
+
+(type change sub statechange) // 2/17/13 ? subtype of ?
+
+(type effectormotion sub complexxnet)
+
+(type forceapplication sub routine)  // ?? why needed  2/28/13
+
+(type forcefulmotionaction sub complexxnet)
+
+(type agentiveimpactaction sub forcefulmotionaction)
+
+(type causeEffect sub complexxnet)
+
+// (type cut sub causeEffect)
+
+(type slap sub forcefulmotionaction)
+
+(type hit sub agentiveimpactaction)
+
+(type assault sub agentiveimpactaction)
+
+(type infect sub causeEffect)
+
+(type kick sub agentiveimpactaction)
+
+(type move sub motion)
+
+(type walk sub motion)
+
+(type exit sub motion)  //  7/8/15
+
+(type run sub motion)
+
+(type drive sub motion)  // 5/28/13
+
+(type push sub forceapplication )
+
+(type releasehold sub forceapplication)
+
+(type establishhold sub forceapplication)
+
+(type throw sub complexxnet)
+
+(type objecttransfer sub complexxnet)
+
+(type statechange sub routine)  //2/28/13
+
+(type make sub statechange)
+
+(type mentalProcess sub process)
+
+(type say sub mentalProcess)
+
+(type think sub mentalProcess)
+
+(type give sub objecttransfer)
+
+(type give-light  sub process)
+
+(type take sub objecttransfer)
+
+(type take-light  sub process)
+
+(type possess sub process)
+
+(type tell sub process)  // 8/15/13
+
+(type emotionKind sub scale)
+
+(type anger sub emotionKind)  // 3/29/13 verb
+
+(type help sub process)
+
+(type want sub process)
+
+(type cause sub process)
+
+(type enlarge sub process)
+
+(type prevent sub process)  // 1/22/13
+
+//
+
+// Distances
+
+//
+
+(type distance sub space)  // relate this to scales ****
+
+(type centimeter sub distance spatial-units)
+
+(type inch sub distance spatial-units)
+
+(type square sub distance spatial-units)  // for simple robot world
+
+(type squares sub distance spatial-units)
+
+// Units
+
+(type units sub entity shared)
+
+(type temporal-units sub time units)
+
+(type nontemporal-units sub units)
+
+(type spatial-units sub space nontemporal-units)
+
+//
+
+(type tense)
+
+(type present sub tense)
+
+(type past sub tense)
+
+(type future sub tense)
+
+//
+
+// Mood
+
+//
+
+(type mood)  // all of these are moodValue
+
+(type declarative sub mood)
+
+(type imperative sub mood)
+
+(type wh-question sub mood)
+
+(type yn-question sub mood)
+
+// Tokens
+
+(type box3 sub box)
+
+(type green sub colorValue)
+
+(type black sub colorValue)
+
+(type purple sub colorValue)
+
+(type big sub sizeValue)
+
+(type small sub sizeValue)
+
+(type push_move sub motion push)
+
+(type orange sub colorValue)
+
+(type magenta sub colorValue)
+
+(type northSide sub sideValue)
+
+(type southSide sub sideValue)
+
+(type eastSide sub sideValue)
+
+(type westSide sub sideValue)
+
+(type violet sub colorValue)
+
+(type white sub colorValue)
+
+(type pink sub colorValue)
+
+(type large sub sizeValue)
+
+(type turn sub motion)
+
+(type team-instance sub entity)
+
+(type indigo sub colorValue)
+
+(type darwin sub robot)
+
+(type position sub object-property  shared)
+
+(type orientation sub object-property shared)
+
+INSTS:
