@@ -1,15 +1,3 @@
 package starcraft
 import core
 
-/*construction StarcraftUnitType
-	subcase of PhysicalEntityNoun
-	meaning
-	  constraints
-		self.m.ontological-category <-- @starcraftunit
-
-construction StarcraftBuildingType
-	subcase of PhysicalEntityNoun
-	meaning
-	  constraints
-		self.m.ontological-category <-- @starcraftbuilding
-*/

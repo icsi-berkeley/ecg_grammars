@@ -133,12 +133,17 @@ general construction TransitiveCreation
 	constructional
 	 constituents
 	   optional for: For-PP
+	   optional at: Loc-PP
+	   optional with: InstrumentPP
 	meaning: Creation
 	  constraints
 	    //self.m <--> v.m
 	    for.np.m <--> self.m.intended_recipient
+	    at.np.m <--> self.m.location
+	    with.np.m <--> self.m.tool
 	    s.a1 <--> self.m.protagonist
-	    s.a2 <--> self.m.createdThing	
+	    s.a2 <--> self.m.createdThing
+
 	    
 // "John entered the room"
 // "the room was entered by John	    

@@ -102,6 +102,13 @@ construction A
          self.m.number <-- @singular
          self.m.bounding <-- @determinate
 
+construction An
+   subcase of A
+      form
+      constraints
+         self.f.orth <-- "an"
+
+
  
  // possession
  // requires 's tag to have space between it and np, e.g. "the man 's box"

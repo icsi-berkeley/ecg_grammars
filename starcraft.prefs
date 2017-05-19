@@ -5,10 +5,7 @@ GRAMMAR_EXTENSIONS = grm
 
 
 PACKAGE_NAME ::==
-  core
-  serial
   starcraft
-  active-transitive
   location
   universal-schemas
   universal-constructions
@@ -17,12 +14,12 @@ PACKAGE_NAME ::==
 
 ONTOLOGY_PATHS ::==
   ./starcraft/starcraft.ont
-  ./universal/core.ont
+  ./core/core.ont
+  ./research/research.ont
 ;
 
 IMPORT_PATHS ::==
   ./starcraft
-  ./universal
   ./core
   ./research
 ;
@@ -34,7 +31,6 @@ MORPHOLOGY_PATH ::==
 ;
 
 TOKEN_PATH ::==
-  ./research/testing.tokens
   ./starcraft/starcraft.tokens
 ;
 
@@ -45,6 +41,7 @@ TABLE_PATH = ./core/core.morph
 ROBUST = FALSE
 BEAM_SIZE = 20
 DEFAULT_OMISSION_PROB = .1
+VARIABLE_BEAM = TRUE
 BEAM_WIDTH = 10
 BEAM_SIZE = 10
 DEBUG = FALSE

@@ -2,10 +2,11 @@ package starcraft
 import core
 
 schema GatherResource
-	subcase of Process
-	roles
-	  resource: RD
-	  gatherer
-	  //source
-	constraints
-     protagonist <--> gatherer
+  subcase of TransitiveAction
+  roles
+    gatherer
+    resource: RD
+  constraints
+    agent <--> gatherer
+    patient <--> resource
+    resource.ontological-category <-- @starcraftresource

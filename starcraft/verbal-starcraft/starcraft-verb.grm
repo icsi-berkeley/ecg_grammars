@@ -1,10 +1,15 @@
 package starcraft
 import core
 
-construction MineType
-	subcase of LexicalVerbType, GeneralTypeCxn
-	meaning: GatherResource
-	  //evokes GatherResource as gr
-	  constraints
-	     self.m.actionary <-- @mine
-	     //self.gr.resource <-- @mineral
+construction GatherVerbType
+  subcase of LexicalVerbType
+  meaning: GatherResource
+    constraints
+       self.m.actionary <-- @gather
+
+/*construction CauseProcessType
+  subcase of LexicalVerbType, GeneralTypeCxn
+  meaning: CausedProcess
+    constraints
+      self.m.actionary <-- @cause_process
+*/

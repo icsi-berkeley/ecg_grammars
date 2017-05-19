@@ -26,11 +26,11 @@ DEFS:
 
 (type commander sub robot)
 
-(type starcraftunit sub animate)
+(type starcraftunit sub animate instrument)
 
 (type starcraftbuilding sub moveable)
 
-(type starcraftresource sub entity)
+(type starcraftresource sub moveable)
 
 (type marine sub starcraftunit)
 
@@ -38,9 +38,13 @@ DEFS:
 
 (type barracks sub starcraftbuilding)
 
-(type mine sub try bring)
+(type gather sub try bring)
 
 (type mineral sub starcraftresource)
+
+(type gas sub starcraftresource)
+
+(type cause_process sub cause)
 //
 
 (type joint sub process-kind)

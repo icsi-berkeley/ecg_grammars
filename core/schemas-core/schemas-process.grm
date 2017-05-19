@@ -415,12 +415,14 @@ schema ScaleChange
 
 // Creation (he created the box)
 schema Creation
-	subcase of TransitiveAction
-	roles
-	  creator
-	  createdThing: RD
-	  intended_recipient // "he built the house FOR John"
-	constraints
+  subcase of TransitiveAction
+  roles
+    creator
+    createdThing: RD
+    intended_recipient // "he built the house FOR John"
+    location // "he built the model AT the workshop"
+    tool // "he built the chair with the hammer"
+  constraints
      protagonist <--> creator
      createdThing <--> patient
      createdThing.ontological-category <= @physicalEntity
