@@ -55,9 +55,9 @@ chlamydia :: DiseaseType :: self.m.ontological-category <-- @chlamydia
 flu :: DiseaseType :: self.m.ontological-category <-- @flu
 tapeworm :: DiseaseType :: self.m.ontological-category <-- @tapeworm
 
-antibiotic :: DrugType :: self.m.drug.ontological-category <-- @antibiotic
+antibiotic :: DrugType :: self.m.ontological-category <-- @antibiotic
 clindamycin :: DrugType :: self.m.ontological-category <-- @clindamycin
 amoxicillin :: DrugType :: self.m.ontological-category <-- @amoxicillin
 medicine :: DrugType :: self.m.ontological-category <-- @drug
 drug :: DrugType :: self.m.ontological-category <-- @drug
-advil :: DrugType :: self.m.drug.ontological-category <-- @advil
+advil :: DrugType :: self.m.ontological-category <-- @advil
