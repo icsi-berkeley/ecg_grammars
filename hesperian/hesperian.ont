@@ -8,6 +8,8 @@ DEFS:
 
 (type value sub process)
 
+(type treatment sub process)
+
 (type symptom sub physicalEntity)
 
 (type bodyPart sub physicalEntity)
@@ -313,8 +315,6 @@ DEFS:
 
 (type alcoholism sub disease)
 
-(type severity sub scalarValue)
-
 (type bad sub scalarValue)
 
 (type chest sub bodyPart)
@@ -370,6 +370,8 @@ DEFS:
 (type ampicillin sub drug)
 
 (type medicine sub drug)
+
+(type advil sub drug)
 
 
 INSTS:

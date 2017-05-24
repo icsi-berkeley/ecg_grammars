@@ -18,9 +18,17 @@ construction DiseaseType
 // Construction for drugs		
 construction DrugType
 	subcase of NounType, NP
-	meaning: Drug
+	meaning: Treatment
 		constraints
-			self.m.ontological-category <-- @drug  
+			self.m.ontological-category <-- @treatment
+			self.m.drug.ontological-category <-- @drug
+			
+// Construction for patients	
+construction PatientType
+	subcase of SentientNoun, NP
+	meaning: Patient
+		constraints
+			self.m.ontological-category <-- @person    
 			                  
 construction LocatedSymptom
   subcase of NP
@@ -35,6 +43,20 @@ construction LocatedSymptom
     constraints
       symp.m <--> self.m
       loc.m <--> self.m.location
+ 
+construction SymptomSeverity
+  subcase of NP
+  constructional
+    constituents
+      symp: SymptomType
+      sev: ScalarAdjectiveType
+  form
+  	constraints
+  	  sev.f meets symp.f
+  meaning: Symptom
+    constraints
+      sev.m <--> self.m.severity
+      symp.m <--> self.m
       
 construction DiseaseSymptom
   subcase of NP
@@ -42,10 +64,54 @@ construction DiseaseSymptom
     constituents
       symp: SymptomType
       dis: DiseaseType
-  meaning: Symptom
+  meaning: Disease
     constraints
-      symp.m <--> self.m
-      dis.m <--> self.m.disease
+      symp.m <--> self.m.symptom
+      dis.m <--> self.m
+      
+construction LocatedDisease
+  subcase of NP
+  constructional
+    constituents
+      loc: PhysicalEntityNoun
+      dis: DiseaseType
+  form
+    constraints
+      loc.f meets dis.f
+  meaning: Disease
+    constraints
+      dis.m <--> self.m
+      loc.m <--> self.m.location
+      
+construction LocatedTreatment
+  subcase of NP
+  constructional
+    constituents
+      loc: PhysicalEntityNoun
+      dru: DrugType
+  form
+    constraints
+      loc.f meets dru.f
+  meaning: Treatment
+    constraints
+      dru.m <--> self.m
+      loc.m <--> self.m.location
+
+construction Prep-Locative-Disease
+	subcase of RootType
+	constructional
+	  constituents
+	    loc: PhysicalEntityNoun
+	    prep: LocativePreposition
+		dis: DiseaseType
+	form
+	  constraints
+	    dis.f before prep.f
+	    prep.f before loc.f
+	meaning: Disease
+	  constraints
+	  	loc.m <--> self.m.location
+	  	dis.m <--> self.m
 			      
 general construction CanAux
     subcase of LexicalAux
