@@ -26,7 +26,6 @@ pain :: SymptomType :: self.m.ontological-category <-- @pain
 diarrhea :: SymptomType :: self.m.ontological-category <-- @diarrhea
 bleeding :: SymptomType :: self.m.ontological-category <-- @bleeding
 
-severity :: ScalarAdjectiveType :: self.m.value <-- @scalarValue
 bad :: ScalarAdjectiveType :: self.m.value <-- ".7"
 
 chest :: PhysicalEntityNoun :: self.m.ontological-category <-- @chest
@@ -61,3 +60,4 @@ clindamycin :: DrugType :: self.m.ontological-category <-- @clindamycin
 amoxicillin :: DrugType :: self.m.ontological-category <-- @amoxicillin
 medicine :: DrugType :: self.m.ontological-category <-- @medicine
 drug :: DrugType :: self.m.ontological-category <-- @drug
+advil :: DrugType :: self.m.drug.ontological-category <-- @advil

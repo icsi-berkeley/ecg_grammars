@@ -8,13 +8,14 @@ DEFS:
 
 (type value sub process)
 
+(type treatment sub process)
+
 (type symptom sub physicalEntity)
 
 (type bodyPart sub physicalEntity)
 
 (type drug sub physicalEntity)
 
-(type treatment sub process)
 
 // Instances
 
@@ -308,13 +309,13 @@ DEFS:
 
 (type fever sub symptom)
 
+(type bleeding sub symptom)
+
 (type abdomen sub bodyPart)
 
 (type malaria sub disease)
 
 (type alcoholism sub disease)
-
-(type severity sub scalarValue)
 
 (type bad sub scalarValue)
 
@@ -362,6 +363,8 @@ DEFS:
 
 (type flu sub disease)
 
+(type tapeworm sub disease)
+
 (type antibiotic sub drug)
 
 (type clindamycin sub drug)
@@ -372,8 +375,4 @@ DEFS:
 
 (type medicine sub drug)
 
-(type tapeworm sub disease  shared)
-
-(type bleeding sub symptom)
-
-INSTS:
+(type advil sub drug)
