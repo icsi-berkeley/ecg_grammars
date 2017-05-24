@@ -14,6 +14,7 @@ DEFS:
 
 (type drug sub physicalEntity)
 
+(type treatment sub process)
 
 // Instances
 
@@ -371,5 +372,8 @@ DEFS:
 
 (type medicine sub drug)
 
+(type tapeworm sub disease  shared)
+
+(type bleeding sub symptom)
 
 INSTS:

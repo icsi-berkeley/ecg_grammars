@@ -20,7 +20,7 @@ construction DrugType
 	subcase of NounType, NP
 	meaning: Drug
 		constraints
-			self.m.ontological-category <-- @drug  
+			self.m.drug.ontological-category <-- @drug  
 			                  
 construction LocatedSymptom
   subcase of NP

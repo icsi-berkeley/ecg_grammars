@@ -21,12 +21,17 @@ position :: PropertyNoun :: self.m.ontological-category <-- @position
 location :: PropertyNoun :: self.m.ontological-category <-- @position
 orientation :: PropertyNoun :: self.m.ontological-category <-- @orientation
 turn :: SelfMotionType :: self.m.speed <-- ".2" :: self.m.actionary <-- @turn
+
 pain :: SymptomType :: self.m.ontological-category <-- @pain
 diarrhea :: SymptomType :: self.m.ontological-category <-- @diarrhea
+bleeding :: SymptomType :: self.m.ontological-category <-- @bleeding
+
 severity :: ScalarAdjectiveType :: self.m.value <-- @scalarValue
 bad :: ScalarAdjectiveType :: self.m.value <-- ".7"
+
 chest :: PhysicalEntityNoun :: self.m.ontological-category <-- @chest
 stomach :: PhysicalEntityNoun :: self.m.ontological-category <-- @stomach
+
 hiv :: DiseaseType :: self.m.ontological-category <-- @hiv
 alcoholism :: DiseaseType :: self.m.ontological-category <-- @alcoholism
 malaria :: DiseaseType :: self.m.ontological-category <-- @malaria
@@ -49,7 +54,9 @@ arthritis :: DiseaseType :: self.m.ontological-category <-- @arthritis
 gonorrhea :: DiseaseType :: self.m.ontological-category <-- @gonorrhea
 chlamydia :: DiseaseType :: self.m.ontological-category <-- @chlamydia
 flu :: DiseaseType :: self.m.ontological-category <-- @flu
-antibiotic :: DrugType :: self.m.ontological-category <-- @antibiotic
+tapeworm :: DiseaseType :: self.m.ontological-category <-- @tapeworm
+
+antibiotic :: DrugType :: self.m.drug.ontological-category <-- @antibiotic
 clindamycin :: DrugType :: self.m.ontological-category <-- @clindamycin
 amoxicillin :: DrugType :: self.m.ontological-category <-- @amoxicillin
 medicine :: DrugType :: self.m.ontological-category <-- @medicine

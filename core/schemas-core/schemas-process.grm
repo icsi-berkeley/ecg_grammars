@@ -425,7 +425,7 @@ schema Creation
   constraints
      protagonist <--> creator
      createdThing <--> patient
-     createdThing.ontological-category <= @physicalEntity
+     createdThing.ontological-category <-- @physicalEntity
 
 
 // he tried to push the box
