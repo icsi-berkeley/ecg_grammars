@@ -58,6 +58,6 @@ tapeworm :: DiseaseType :: self.m.ontological-category <-- @tapeworm
 antibiotic :: DrugType :: self.m.drug.ontological-category <-- @antibiotic
 clindamycin :: DrugType :: self.m.ontological-category <-- @clindamycin
 amoxicillin :: DrugType :: self.m.ontological-category <-- @amoxicillin
-medicine :: DrugType :: self.m.ontological-category <-- @medicine
+medicine :: DrugType :: self.m.ontological-category <-- @drug
 drug :: DrugType :: self.m.ontological-category <-- @drug
 advil :: DrugType :: self.m.drug.ontological-category <-- @advil

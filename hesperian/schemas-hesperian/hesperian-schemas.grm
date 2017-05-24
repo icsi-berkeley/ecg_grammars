@@ -13,7 +13,7 @@ schema Symptom
     location.ontological-category <-- @bodyPart
     disease.ontological-category <-- @disease
     severity.value <-- @scalarValue
-    
+
 schema Disease
   subcase of RD
   roles
@@ -26,7 +26,7 @@ schema Disease
     location.ontological-category <-- @bodyPart
     agent.ontological-category <-- @agent
     symptom.ontological-category <-- @symptom
-    
+
 schema Treatment
   subcase of RD
   roles
@@ -37,10 +37,10 @@ schema Treatment
     drug.ontological-category <-- @drug
     user.ontological-category <-- @person
     location.ontological-category <-- @bodyPart
-    
+
 schema Patient
   subcase of RD
   roles
-	name: @name
-	age: @scalarValue
-	gender: @genderValues
+  	name: @name
+  	age: @scalarValue
+  	gender: @genderValues
