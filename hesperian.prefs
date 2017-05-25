@@ -11,6 +11,7 @@ PACKAGE_NAME ::==
     universal-constructions
     motion
     utterance-text
+    serial
 ;
 
 ONTOLOGY_PATHS ::==

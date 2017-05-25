@@ -21,6 +21,7 @@ position :: PropertyNoun :: self.m.ontological-category <-- @position
 location :: PropertyNoun :: self.m.ontological-category <-- @position
 orientation :: PropertyNoun :: self.m.ontological-category <-- @orientation
 turn :: SelfMotionType :: self.m.speed <-- ".2" :: self.m.actionary <-- @turn
+week :: UnitType :: self.m.ontological-category <-- @week :: self.m.extras.quantity.property <-- @time
 
 pain :: SymptomType :: self.m.ontological-category <-- @pain
 diarrhea :: SymptomType :: self.m.ontological-category <-- @diarrhea
@@ -61,3 +62,5 @@ amoxicillin :: DrugType :: self.m.ontological-category <-- @amoxicillin
 medicine :: DrugType :: self.m.ontological-category <-- @drug
 drug :: DrugType :: self.m.ontological-category <-- @drug
 advil :: DrugType :: self.m.ontological-category <-- @advil
+
+abortion :: ProcedureType :: self.m.ontological-category <-- @abortion

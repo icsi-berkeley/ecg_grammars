@@ -8,7 +8,7 @@ DEFS:
 
 (type value sub process)
 
-(type treatment sub process)
+(type procedure sub process)
 
 (type symptom sub physicalEntity)
 
@@ -303,6 +303,8 @@ DEFS:
 
 (type repeat sub tell)
 
+(type week sub measure temporal-units shared)
+
 (type pain sub symptom)
 
 (type diarrhea sub symptom)
@@ -376,3 +378,5 @@ DEFS:
 (type medicine sub drug)
 
 (type advil sub drug)
+
+(type abortion sub procedure)
