@@ -8,6 +8,8 @@ schema Symptom
     location: RD
     disease: Disease
     severity: ScalarModifier
+    duration: RD
+    trigger: RD
   constraints
     experiencer.ontological-category <-- @person
     location.ontological-category <-- @bodyPart
@@ -33,16 +35,14 @@ schema Treatment
     drug: RD
     user: Patient
     location: RD
-    procedure: RD
   constraints
     drug.ontological-category <-- @drug
     user.ontological-category <-- @person
     location.ontological-category <-- @bodyPart
-    procedure.ontological-category <-- @procedure
 
 schema Patient
   subcase of RD
   roles
   	name: @name
   	age: @scalarValue
-  	gender: @genderValues
+  	gender: @genderValues  

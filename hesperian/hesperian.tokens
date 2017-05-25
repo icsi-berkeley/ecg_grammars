@@ -7,6 +7,7 @@ black :: ColorType :: self.m.value <-- @black
 purple :: ColorType :: self.m.value <-- @purple
 one :: NumberType :: self.m.value <-- "1"
 two :: NumberType :: self.m.value <-- "2"
+four :: NumberType :: self.m.value <-- "4"
 orange :: ColorType :: self.m.value <-- @orange
 magenta :: ColorType :: self.m.value <-- @magenta
 north :: SideAdj-Type :: self.m.value <-- @northSide
@@ -22,6 +23,7 @@ location :: PropertyNoun :: self.m.ontological-category <-- @position
 orientation :: PropertyNoun :: self.m.ontological-category <-- @orientation
 turn :: SelfMotionType :: self.m.speed <-- ".2" :: self.m.actionary <-- @turn
 week :: UnitType :: self.m.ontological-category <-- @week :: self.m.extras.quantity.property <-- @time
+affect :: CauseEffectType :: self.m.actionary <-- @affect
 
 pain :: SymptomType :: self.m.ontological-category <-- @pain
 diarrhea :: SymptomType :: self.m.ontological-category <-- @diarrhea
@@ -31,6 +33,7 @@ bad :: ScalarAdjectiveType :: self.m.value <-- ".7"
 
 chest :: PhysicalEntityNoun :: self.m.ontological-category <-- @chest
 stomach :: PhysicalEntityNoun :: self.m.ontological-category <-- @stomach
+scalp :: PhysicalEntityNoun :: self.m.ontological-category <-- @scalp
 
 hiv :: DiseaseType :: self.m.ontological-category <-- @hiv
 alcoholism :: DiseaseType :: self.m.ontological-category <-- @alcoholism
@@ -55,6 +58,7 @@ gonorrhea :: DiseaseType :: self.m.ontological-category <-- @gonorrhea
 chlamydia :: DiseaseType :: self.m.ontological-category <-- @chlamydia
 flu :: DiseaseType :: self.m.ontological-category <-- @flu
 tapeworm :: DiseaseType :: self.m.ontological-category <-- @tapeworm
+hookworm :: DiseaseType :: self.m.ontological-category <-- @hookworm
 
 antibiotic :: DrugType :: self.m.ontological-category <-- @antibiotic
 clindamycin :: DrugType :: self.m.ontological-category <-- @clindamycin

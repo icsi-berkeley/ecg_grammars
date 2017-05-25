@@ -305,6 +305,8 @@ DEFS:
 
 (type week sub measure temporal-units shared)
 
+(type four sub number)
+
 (type pain sub symptom)
 
 (type diarrhea sub symptom)
@@ -324,6 +326,8 @@ DEFS:
 (type chest sub bodyPart)
 
 (type stomach sub bodyPart)
+
+(type scalp sub bodyPart)
 
 (type anorexia sub disease)
 
@@ -367,6 +371,8 @@ DEFS:
 
 (type tapeworm sub disease)
 
+(type hookworm sub disease)
+
 (type antibiotic sub drug)
 
 (type clindamycin sub drug)
@@ -380,3 +386,6 @@ DEFS:
 (type advil sub drug)
 
 (type abortion sub procedure)
+
+(type affect sub cause)
+

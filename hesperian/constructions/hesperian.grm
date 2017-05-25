@@ -207,21 +207,18 @@ construction After-PP
   form
    constraints
      prep.f before np.f
-
- construction TemporalQuantityNPPP // stands alone, no Specifier
-  subcase of UnitsNP
   meaning: RD
     constraints
-      k.m.ontological-category <-- @temporal-units
+      self.m <--> np.m
 
 construction TemporalQuantityNP2
   subcase of TemporalQuantityNP
   constructional
     constituents
-      pp: PP
+      temporal-landmark: PP
   form
     constraints
-      k.f before pp.f
+      k.f before temporal-landmark.f
 
 construction Symptom-For-Time
   subcase of PP
@@ -234,4 +231,9 @@ construction Symptom-For-Time
     constraints
       symp.f before prep.f
       prep.f before np.f
+  meaning: Symptom
+    constraints
+      self.m <--> symp.m
+      self.m.duration <--> np.m
+      self.m.trigger <--> np.temporal-landmark.m
 
