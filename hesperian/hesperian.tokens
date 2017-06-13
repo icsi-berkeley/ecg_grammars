@@ -68,3 +68,4 @@ drug :: DrugType :: self.m.ontological-category <-- @drug
 advil :: DrugType :: self.m.ontological-category <-- @advil
 
 abortion :: ProcedureType :: self.m.ontological-category <-- @abortion
+zika :: DiseaseType :: self.m.ontological-category <-- @zika

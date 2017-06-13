@@ -16,7 +16,6 @@ DEFS:
 
 (type drug sub physicalEntity)
 
-
 // Instances
 
 //
@@ -389,3 +388,6 @@ DEFS:
 
 (type affect sub cause)
 
+(type zika sub disease)
+
+INSTS:
