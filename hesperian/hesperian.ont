@@ -390,4 +390,6 @@ DEFS:
 
 (type zika sub disease)
 
+(type pink_eye sub disease)
+
 INSTS:

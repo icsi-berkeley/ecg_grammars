@@ -69,3 +69,5 @@ advil :: DrugType :: self.m.ontological-category <-- @advil
 
 abortion :: ProcedureType :: self.m.ontological-category <-- @abortion
 zika :: DiseaseType :: self.m.ontological-category <-- @zika
+pink_eye :: DiseaseType :: self.m.ontological-category <-- @pink_eye
+ache :: SymptomType :: self.m.ontological-category <-- @pain
