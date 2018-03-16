@@ -6,10 +6,7 @@ GRAMMAR_PATHS ::==
 ;
 
 PACKAGE_NAME ::== 
-	core
-	motion
-	universal-schemas
-	universal-constructions
+	base
 	utterance-text
 ;
 

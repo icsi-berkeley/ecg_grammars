@@ -1,0 +1,16 @@
+// This is intended to be the minimal package, with only the components that every English grammar
+// would require. Import other packages contained in the core grammar as needed.
+package base
+
+import root
+import adjective
+import adverb
+import agreement_features
+import nominal
+import preposition
+import prepositional-phrase
+import schemas-core
+import utterance-punctuation
+import verb
+import argstruct
+import sentence

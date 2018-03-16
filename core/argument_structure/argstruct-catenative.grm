@@ -1,62 +1,60 @@
-/*
-Package for catenative cxns.
+// Package for catenative cxns.
+//
+// This defines several high-level CatenativeVP cxns, then subclasses compositionally for the Transitive-Perception case, e.g.:
+// -he saw the man running into the room
+// -he was seen running into the room by the man
+// -he saw the box being pushed into the room by the man
+//
+// (Created 4/29/16, Sean Trott [ST]).
 
-This defines several high-level CatenativeVP cxns, then subclasses compositionally for the Transitive-Perception case, e.g.:
--he saw the man running into the room
--he was seen running into the room by the man
--he saw the box being pushed into the room by the man
-
-
-(Created 4/29/16, Sean Trott [ST]). 
-*/
-//package core
-package catenatives 
+package argstruct-catenative
+import base
 import active-transitives
 import passive-transitives
 
 
 general construction CatenativeVP
-	subcase of ArgumentStructure
-	constructional
-	 constituents
-	  vp: VP
-    form
-     constraints
-       v.f before vp.f
+  subcase of ArgumentStructure
+  constructional
+    constituents
+      vp: VP
+      form
+    constraints
+      v.f before vp.f
 
 general construction CatenativeVP_PresentParticiple
-	subcase of CatenativeVP
-	constructional
-	  constraints
-	    vp.verbform <-- PresentParticiple
-	    
+  subcase of CatenativeVP
+  constructional
+    constraints
+      vp.verbform <-- PresentParticiple
+
 general construction CatenativeVP_Base
-	subcase of CatenativeVP
-	constructional
-	  constraints
-	    vp.verbform <-- Base
-	    
-	    
+  subcase of CatenativeVP
+  constructional
+    constraints
+      vp.verbform <-- Base
+
+
 general construction TransitivePerception_Catenative
-	subcase of TransitivePerception, CatenativeVP
-	meaning
-	 constraints
-	   self.m.perceivedEvent <--> vp.ed
-	   
+  subcase of TransitivePerception, CatenativeVP
+  meaning
+    constraints
+      self.m.perceivedEvent <--> vp.ed
+
 general construction TransitivePerception_CatenativeBase
-	subcase of TransitivePerception_Catenative, CatenativeVP_Base
-	
+  subcase of TransitivePerception_Catenative, CatenativeVP_Base
+
 general construction TransitivePerception_CatenativePresentParticiple
-	subcase of TransitivePerception_Catenative, CatenativeVP_PresentParticiple 
-	    
+  subcase of TransitivePerception_Catenative, CatenativeVP_PresentParticiple
+
 // he saw the man run into the room
 construction ActiveTransitivePerception_CatenativeBase  // 8/21/13 he saw the block moving
-	subcase of CoreActiveTransitive, TransitivePerception_CatenativeBase
+  subcase of CoreActiveTransitive, TransitivePerception_CatenativeBase
 
 // he saw the man running into the room
 construction ActiveTransitivePerceptionEvent_CatenativePresentParticiple  // 8/21/13 he saw the block moving
-	subcase of CoreActiveTransitive, TransitivePerception_CatenativePresentParticiple
+  subcase of CoreActiveTransitive, TransitivePerception_CatenativePresentParticiple
 
 // he was seen running into the room by the man
 construction PassiveTransitivePerceptionEvent_CatenativePresentParticiple  // 8/21/13 he saw the block moving
-	subcase of CorePassiveTransitive, TransitivePerception_CatenativePresentParticiple
+  subcase of CorePassiveTransitive, TransitivePerception_CatenativePresentParticiple

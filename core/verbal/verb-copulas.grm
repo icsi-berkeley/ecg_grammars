@@ -1,36 +1,32 @@
-package core
-
-//
-// copulas.grm
-//  	
+package verb
+import base
 
 general construction BeCopula
-	subcase of LexicalVerb
-	 constructional
-	   constraints
-  		 argform <-- Copula_All
-     meaning: Stasis 
-		constraints
-        	self.m.actionary <-- @be
+  subcase of LexicalVerb
+  constructional
+    constraints
+      argform <-- Copula_All
+  meaning: Stasis
+    constraints
+      self.m.actionary <-- @be
 
 construction BeCopulaType
-	subcase of LexicalVerbType, BeCopula
-
+  subcase of LexicalVerbType, BeCopula
 
 
 construction NegatedBeCopula
-	subcase of LexicalVerb
-     constructional
-       constituents
-          neg: Not-event
-          v: BeCopula
-        constraints
-          self.verbform <--> v.verbform
-     form
-       constraints
-         v.f meets neg.f
-     meaning: Stasis 
-		constraints
-        	v.m.p-features <--> neg.m
-        	self.m <--> v.m
-        	//self.m.state.negated <-- @yes
+  subcase of LexicalVerb
+  constructional
+    constituents
+      neg: Not-event
+      v: BeCopula
+    constraints
+      self.verbform <--> v.verbform
+  form
+    constraints
+      v.f meets neg.f
+  meaning: Stasis
+    constraints
+      v.m.p-features <--> neg.m
+      self.m <--> v.m
+      //self.m.state.negated <-- @yes

@@ -1,110 +1,93 @@
-package core
-import adjectives
+// This file contains  constructions for noun phrases, with determiners and without determiners,
+// as well as modified Proper Nouns, e.g. "southern France".
 
-/******************************************************************************
-This file contains  constructions for noun phrases, with determiners and without determiners,
-as well as modified Proper Nouns, e.g. "southern France". 
+package nominal
+import base
 
-
-******************************************************************************/
-
- 
-general construction UndeterminedNP  // various uses including:  white as snow 
-  subcase of NP  
+general construction NP
+  subcase of RootType, HasNominalFeatures
   meaning: RD
-    constraints
-      self.m.givenness <-- @typeIdentifiable // Michael
-	  self.m.bounding <-- @indeterminate   
-	  
-general construction NP 
-   subcase of RootType, HasNominalFeatures
-   meaning: RD
 
+// Proper Nouns
+general construction ProperNounNP
+  subcase of NP, Word
 
-// This is the root of nouns and noun noun compounds
-
-general construction Nominal 
-   subcase of HasNominalFeatures
-   meaning: RD 
-
-
-general construction Noun
-   subcase of Word, Nominal 
-
-
-
-general construction  Kernel // both RD and Nominal
-	subcase of HasNominalFeatures //, RootType  // for testing only 
-	meaning: RD
- 
-
-// Not sure that this is the analysis we want, but it works: "cats are small", "boxes are red"
-// 
-construction UndeterminedNP_Kernel  // various uses including:  white as snow 
-  subcase of UndeterminedNP
+// Stuff for argstruct-transitive
+general construction UnitsNP
+  subcase of NP
   constructional
     constituents
-      k: Kernel  
+      num: Quantifier
+      k: Noun
+    constraints
+      self.features <--> k.features
+  form
+    constraints
+      num.f meets k.f
+  meaning: RD
+    constraints
+      self.m <--> k.m
+      num.m <--> self.m.extras.quantity.amount
+      self.m.extras.quantity.units <-> k.m.ontological-category
+
+// stands alone, no Specifier
+construction SpatialQuantityNP
+  subcase of UnitsNP
+  meaning: RD
+    constraints
+      k.m.ontological-category <-- @spatial-units
+
+// stands alone, no Specifier
+construction WeightQuantityNP
+  subcase of UnitsNP
+  meaning: RD
+    constraints
+      k.m.ontological-category <-- @weight
+
+// stands alone, no Specifier
+construction PriceQuantityNP
+  subcase of UnitsNP
+  meaning: RD
+    constraints
+      k.m.ontological-category <-- @price
+
+// stands alone, no Specifier
+construction TemporalQuantityNP
+  subcase of UnitsNP
+  meaning: RD
+    constraints
+      k.m.ontological-category <-- @temporal-units
+
+// various uses including:  white as snow
+general construction UndeterminedNP
+  subcase of NP
   meaning: RD
     constraints
       self.m.givenness <-- @typeIdentifiable // Michael
-	  self.m.bounding <-- @indeterminate   
-	  self.m <--> k.m
-	  
-// these constraints should be tighter	  
+      self.m.bounding <-- @indeterminate
+
+
+// these constraints should be tighter
 // the purpose of this is really for things like "southern France"
 construction ModifiedProperNoun
-	subcase of NP
-	constructional
-	 constituents
-	   adj: Adjective
-	   np: ProperNounNP
-	 constraints
-	  self.features <--> np.features
-   form
+  subcase of NP
+  constructional
+    constituents
+      adj: Adjective
+      np: ProperNounNP
+    constraints
+      self.features <--> np.features
+  form
     constraints
       adj.f meets np.f
-   meaning: RD
-     constraints
-       adj.m.modifiedThing <--> np.m
-       self.m <--> np.m
-       np.m.ontological-category <-- @location
-	  
-
- 
-
-
-// 	   SpecifierPlusKernel, 
-
-
-general construction SpecifierPlusKernel  // also subs Specifier3, QuantityNP(2)
-  subcase of NP
- 
-general construction Specifier2PlusKernel   //also see Determiner, Wh, Possesive PN
-  subcase of SpecifierPlusKernel
-  constructional
-    constituents   
-      s: SpecifierPhrase                 //12/30/12
-      k: Kernel
+  meaning: RD
     constraints
-      self.features <--> k.features
-      self.features <--> s.features
-  form
-    constraints 
-      s.f before k.f
-  meaning
-    constraints
-      self.m <--> k.m
-      self.m <--> s.m
+      adj.m.modifiedThing <--> np.m
+      self.m <--> np.m
+      np.m.ontological-category <-- @location
 
 
-construction DeterminerPlusKernel 
-  subcase of Specifier2PlusKernel
-  constructional
-    constituents   
-      s: Determiner  
-
-// 2 red boxes, etc.
+// e.g. 2 red boxes, etc.
 construction QuantityNP
   subcase of SpecifierPlusKernel
   constructional
@@ -113,45 +96,27 @@ construction QuantityNP
       k: Kernel
     constraints
       self.features <--> k.features
-      //q.features.number <--> k.features.number
   form
     constraints
       q.f before k.f
   meaning: RD
     constraints
       self.m <--> k.m
-      //self.m.number <--> q.m.number
       self.m.extras.quantity.amount <--> q.m
       self.m.givenness <-- @uniquelyIdentifiable
       self.m.extras.quantity.units <--> self.m.ontological-category
 
 
-// 2 of the red boxes, etc.
-construction QuantityOfNP  //  2 of the red blocks
-	subcase of QuantityNP
-  	constructional
-    	constituents
-	  		o1: OF-Modifier
-	  		th1: The
-  	form
-    	constraints
-    		q.f meets o1.f
-    		o1.f meets th1.f
-    		th1.f meets k.f
-      		q.f before k.f   		
-  	
-  	
-
-//  we now also have "his" as Possessive-NP, 
-
-construction PossessivePronounPlusKernel // 
-  subcase of Specifier2PlusKernel
+// e.g. 2 of the red boxes, etc.
+construction QuantityOfNP
+  subcase of QuantityNP
   constructional
-    constituents   
-      s: PossessivePronoun // no need to check case
-      k: Kernel 
-	meaning
-		constraints
-			s.m <-> k.m 
-
-
+    constituents
+      o1: OF-Modifier
+      th1: The
+  form
+    constraints
+      q.f meets o1.f
+      o1.f meets th1.f
+      th1.f meets k.f
+      q.f before k.f

@@ -1,0 +1,68 @@
+package argstruct-extended
+import base
+import schemas-process-extended
+
+// e.g. he picked up the box
+general construction TransitiveManipulation
+  subcase of ArgumentStructure
+  meaning: Manipulation
+    constraints
+      s.a1 <--> self.m.actor
+      s.a2 <--> self.m.manipulated_entity
+
+// e.g. "he picked up the box"
+construction ActiveTransitiveManipulation
+  subcase of CoreActiveTransitive, TransitiveManipulation
+
+// e.g. "the box was picked up by the man"
+construction PassiveTransitiveManipulation
+  subcase of CorePassiveTransitive, TransitiveManipulation
+
+
+
+// e.g. he created the box, the box was created by John
+general construction TransitiveCreation
+  subcase of ArgumentStructure
+  constructional
+    constituents
+      optional for: For-PP
+      optional at: Loc-PP
+      optional with: InstrumentPP
+  meaning: Creation
+    constraints
+      //self.m <--> v.m
+      for.np.m <--> self.m.intended_recipient
+      at.np.m <--> self.m.location
+      with.np.m <--> self.m.tool
+      s.a1 <--> self.m.protagonist
+      s.a2 <--> self.m.createdThing
+
+// e.g. "he created the box"
+construction ActiveTransitiveCreation
+  subcase of CoreActiveTransitive, TransitiveCreation
+  form
+    constraints
+      np.f before for.f
+      np.f before at.f
+
+// e.g. "the box was created by the man"
+construction PassiveTransitiveCreation
+  subcase of CorePassiveTransitive, TransitiveCreation
+
+
+
+// e.g. x costs {}, x weighs {}, etc.
+// Should be more general: "transitive measure?"
+// A separate construction is necessary for: "he weighed the box"
+// No Passive version of this construction: "2 pounds was weighed by the box" doesn't make sense
+// But a passive version is necessary for agentive-measurement.
+construction ActiveTransitiveMeasure
+  subcase of CoreActiveTransitive
+  constructional
+    constituents
+      np: UnitsNP
+  meaning: MeasurePredication
+    constraints
+      s.a1 <--> self.m.object
+      np.m <--> self.m.measurement
+      self.m.dimension <--> self.m.measurement.extras.quantity.property

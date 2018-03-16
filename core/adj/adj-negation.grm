@@ -1,17 +1,17 @@
-package adjective-negation
+package adjective-extended
+import base
 
-import core-modification
-
+// e.g. not red
 construction NegatedAdjective
-   subcase of ComplexAdjective
-   constructional 
+  subcase of ComplexAdjective
+  constructional
     constituents
-          first: Not-event
-    	  second: Adjective 
-   form 
-     constraints
-       first.f meets second.f
-   meaning
-      constraints 
-		self.m <--> second.m 
-		self.m.negated <-- @yes
+      first: Not-event
+      second: Adjective
+  form
+    constraints
+      first.f meets second.f
+  meaning
+    constraints
+      self.m <--> second.m
+      self.m.negated <-- @yes

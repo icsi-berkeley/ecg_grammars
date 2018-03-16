@@ -1,0 +1,82 @@
+// This file defines different types of adjectives. These are primarily lexical adjectives
+// (vs. complex, phrasal adjectives, found in adj-complex.grm), and span various categories
+// of modification:
+// - PropertyAdjectives: mark a discrete property (red, blue, etc.)
+// - ScalarAdjectives: describe a point on a scale of a continuous property (big, heavy)
+
+package adjective-extended
+import base
+
+// PROPERTIES
+// subcase of non-scale Adj
+// e.g. red
+construction ColorType
+  subcase of PropertyAdjective, GeneralTypeCxn
+  meaning: PropertyModifier
+    constraints
+      self.m.property <-- @color
+      self.m.domain <= @person
+      self.m.value <-- @colorValue
+
+
+// SCALES
+general construction ScalarAdjective
+  subcase of PropertyAdjective
+  meaning: ScalarModifier
+
+// e.g. big
+construction ScalarAdjectiveType
+  subcase of GeneralTypeCxn, ScalarAdjective
+  meaning: ScalarModifier
+    constraints
+      self.m.value <-- @scalarValue //@propValue
+      self.m.property <-- @object-property
+      self.m.domain <-- @item
+      self.m.scaleDirection <-- @direction
+
+
+
+// Overspecified, but useful for robot domain. Used to denote adjectival descriptors
+// like "north" in "north side of the box". Is connected to notion of metonymy,
+// which needs more work in the grammar.
+// e.g. north
+construction SideAdj-Type
+  subcase of GeneralTypeCxn, PropertyAdjective
+  meaning
+    constraints
+      self.m.value <-- @sideValue
+      self.m.property <-- @side
+      self.m.domain <-- @part
+
+
+
+// EMOTIONS
+// e.g. angry
+general construction EmotionAdjective
+  subcase of  ScalarAdjective
+  meaning: EmotionModifier
+
+construction EmotionAdjectiveType
+  subcase of EmotionAdjective, GeneralTypeCxn
+  meaning: EmotionModifier
+    constraints
+      self.m.value <-- @scalarValue // inherited ~ intensity;
+      self.m.property <-- @emotionKind // @anger, etc.
+      self.m.domain <-- @person
+      self.m.polarity <-- "*"  // should be either + or - for tokens
+
+
+
+// HEDGES
+// Testing, no implementation in "base"
+// 5/12/16 (ST)
+// e.g. "fake"
+general construction HedgeAdjective
+  subcase of  LexicalAdjective
+  meaning: HedgeModifier
+
+construction HedgeAdjectiveType
+  subcase of HedgeAdjective, GeneralTypeCxn
+  meaning
+    constraints
+      self.m.hedgeValue <-- @hedgeVal

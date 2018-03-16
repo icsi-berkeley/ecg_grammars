@@ -1,5 +1,5 @@
-package core
-import universal-schemas
+package schemas-core
+import base
 
 schema TrajectorLandmark
   roles
@@ -10,7 +10,7 @@ schema TrajectorLandmark
     negated: @boolean
   constraints
     trajector.ontological-category <-- @physicalEntity
-    landmark.ontological-category <-- @region  // added for 2/22/14 m4 test
+    landmark.ontological-category <-- @region
     profiledArea.ontological-category <-- @location
 
 schema SPG
@@ -19,7 +19,7 @@ schema SPG
     source: RD
     path: RD
     goal: RD
-    distance  // ???*********7/17/13
+    distance
 
 
 schema SPG2
@@ -27,7 +27,7 @@ schema SPG2
   roles
     spg2: SPG
     constraints
-      //source <--> spg2.source
+      //source <--> spg2.source  // 5/16 ST
       //path <--> spg2.path
       //goal <--> spg2.goal
 
@@ -51,7 +51,6 @@ schema BoundedObject
     entity <--> boundedObject
 
 
-
 schema Relation
   roles
     entity1
@@ -65,7 +64,7 @@ schema TernaryRelation
   roles
     entity3
 
-schema SpatialRelation  //???????
+schema SpatialRelation
   subcase of Relation
 
 schema Proximity
@@ -74,7 +73,8 @@ schema Proximity
     center
     proximalArea
 
-schema Contact // short version
+// short version
+schema Contact
   subcase of SpatialRelation
   roles
     entity1: RD // @entity
@@ -94,29 +94,27 @@ schema Accompaniment
     co-participant <--> entity2
 
 
-
-
-schema Possession  //revised 11/30/12
-   roles
-       negated: @boolean
-        kind:@possessionKind
-     possessor:RD
-     possessed:RD
+schema Possession
+  roles
+    negated: @boolean
+    kind:@possessionKind
+    possessor:RD
+    possessed:RD
 
 
 schema RefRelation
   subcase of Relation
-   roles
-     first: RD
-     second: RD
+  roles
+    first: RD
+    second: RD
     constraints
-      first <--> entity1
-      second <--> entity2
+    first <--> entity1
+    second <--> entity2
 
 schema RefIdentity
   subcase of RefRelation
   roles
-   temporality: @temporality
+    temporality: @temporality
   constraints
     //first.ontological-category <--> second.ontological-category
     first.referent <--> second.referent
@@ -126,13 +124,13 @@ schema RefIdentity
 
 // Scale
 schema Scale
-   roles
-     measure // weight
-     units // pound
-     value // .7
+  roles
+    measure // weight
+    units // pound
+    value // .7
 
- // entity
- schema Entity
+// entity
+schema Entity
   roles
     name
     entityType: @entity
@@ -145,7 +143,7 @@ schema PhysicalEntity
 schema AnimateEntity
   subcase of PhysicalEntity
   roles
-     entity: RD
+    entity: RD
   constraints
     entity.ontological-category <-- @animate
 
@@ -162,19 +160,19 @@ schema Artifact
 // Instrument schema, testing (ST, 3/24/16)
 // This is useful for the Specializer: used for "Instrument-PP"
 schema Instrument
-    subcase of Artifact // is this right?
+  subcase of Artifact // is this right?
   roles
     instrument: RD
     user: RD
     // add actionary: @move
-     actionary: @process // could either be actionary (@move) or schema (Motion)
+    actionary: @process // could either be actionary (@move) or schema (Motion)
   constraints
     entityType <-- @instrument
     entity <--> instrument
 
 
 schema Container // short version
-  subcase of Artifact, BoundedObject  //  6/24/13
+  subcase of Artifact, BoundedObject
   roles
     contents: RD // @entity
     scale: Scale
@@ -208,15 +206,14 @@ schema Sidedness
     back.ontological-category <-- @back
 
 schema HeadingSchema
-   roles
-     tag: @heading
-     landmark: RD
+  roles
+    tag: @heading
+    landmark: RD
 
 
 schema ByLandmark
   roles
     landmark: RD
-
 
 
 schema TemporalModifier
@@ -226,7 +223,16 @@ schema TemporalModifier
 
 schema TemporalInterval
   roles
-   start
-   end
-   length
-   timeUnits: @temporal-units
+    start
+    end
+    length
+    timeUnits: @temporal-units
+
+schema Support
+  subcase of TrajectorLandmark
+  roles
+    supporter
+    supported
+  constraints
+    landmark <--> supporter
+    supported <--> trajector

@@ -1,220 +1,208 @@
-/*
-Explicit causation package. This has mostly been imported from "First-testing".
-Explicit causation refers mostly to transitive constructions in which the verb
-explicitly lays out some causality, e.g.:
-* he caused John to move
-
-Depends on active-transitive package, as well as gerunds, for phrases like "the crossing of the river".
-
-Example sentences:
-- he caused John to move (ObjectControl_AgentEffectCausation) --> CauseEffect
-- he prevented John from moving (ObjectControl_AgentEffectPrevention) --> CauseEffect
-- he caused the crisis (AgentEventCausation) --> CausalAction
-- the storm moved the block (EffectCausation_EffectProcess) --> CausedProcess
-	-(Note that this also unifies with the CauseChangeLocation_mp, which uses "CauseEffect")
-- the storm caused the block to move (ObjecControl_EventEffectCausation) --> CausedProcess
-	-(Note that this also unifies with AgentEffectCausation, above, even if you put a @sentient constraint on protagonist)
-- his moving caused the crisis (Trans_EventCausation) --> CausalEvent
-	-(Note that this also unifies with Trans_AgentEventCausation, above, with a meaning of CausalAction)
-- the storm prevented John from moving (ActiveTrans_ObjectControl_EventEffectPrevention) --> Caused Process
-
-
-NOTES:
-- Can these be passive? ("the box was caused to move by John")
-
-*/
-
-package explicit-causation
-import gerunds
-//import active-transitive
-
-//package core
+// Explicit causation package. This has mostly been imported from "First-testing".
+// Explicit causation refers mostly to transitive constructions in which the verb
+// explicitly lays out some causality, e.g.:
+// * he caused John to move
+//
+// Depends on active-transitive package, as well as gerunds, for phrases like "the crossing of the river".
+//
+// Example sentences:
+// - he caused John to move (ObjectControl_AgentEffectCausation) --> CauseEffect
+// - he prevented John from moving (ObjectControl_AgentEffectPrevention) --> CauseEffect
+// - he caused the crisis (AgentEventCausation) --> CausalAction
+// - the storm moved the block (EffectCausation_EffectProcess) --> CausedProcess
+// 	-(Note that this also unifies with the CauseChangeLocation_mp, which uses "CauseEffect")
+// - the storm caused the block to move (ObjecControl_EventEffectCausation) --> CausedProcess
+// 	-(Note that this also unifies with AgentEffectCausation, above, even if you put a @sentient constraint on protagonist)
+// - his moving caused the crisis (Trans_EventCausation) --> CausalEvent
+// 	-(Note that this also unifies with Trans_AgentEventCausation, above, with a meaning of CausalAction)
+// - the storm prevented John from moving (ActiveTrans_ObjectControl_EventEffectPrevention) --> Caused Process
+//
+//
+// NOTES:
+// - Can these be passive? ("the box was caused to move by John")
 
 
-general construction Trans_AgentEffectCausation //  added 2/11/14
+package argstruct-explicit-causation
+import vp-gerund
+import base
+
+general construction Trans_AgentEffectCausation
   subcase of ArgumentStructure // or sub of some more general transitive causal cxn?
-    meaning: CauseEffect 
-     //evokes A123 as s
-     constraints
-	    s.a1 <--> self.m.causalAgent
-        s.a2 <--> self.m.affectedEntity
+    meaning: CauseEffect
+    //evokes A123 as s
+    constraints
+      s.a1 <--> self.m.causalAgent
+      s.a2 <--> self.m.affectedEntity
 
 //Causing TO
-general construction ObjectControl_AgentEffectCausation // he caused John to move 
-   subcase of Trans_AgentEffectCausation
-   constructional
-     constituents
-       vp: VP
-    constraints 
-        vp.verbform <-- Infinitive
-        v.verbkind <-- ForceDynamic
-        v.expectedVerbForm <-->  vp.verbform // need to decide if this is necessary
-      // self.argform <-- ComplexCatenative
-   form 
-     constraints
-	    v.f before vp.f	
+general construction ObjectControl_AgentEffectCausation // he caused John to move
+  subcase of Trans_AgentEffectCausation
+  constructional
+    constituents
+      vp: VP
+  constraints
+    vp.verbform <-- Infinitive
+    v.verbkind <-- ForceDynamic
+    v.expectedVerbForm <-->  vp.verbform // need to decide if this is necessary
+    // self.argform <-- ComplexCatenative
+  form
+    constraints
+      v.f before vp.f
   meaning
-     constraints
-       	//self.m.protagonist.ontological-category <-- @sentient // maybe from verb
-		s.a2 <--> vp.ed.profiledParticipant
-		vp.m  <--> self.m.affectedProcess
-		self.m <--> v.m
-		
+    constraints
+      //self.m.protagonist.ontological-category <-- @sentient // maybe from verb
+      s.a2 <--> vp.ed.profiledParticipant
+      vp.m  <--> self.m.affectedProcess
+      self.m <--> v.m
 
 
 construction ActiveTrans_ObjectControl_AgentEffectCausation  // he caused the block to move
   subcase of ActiveTransitive, ObjectControl_AgentEffectCausation
-    form
-     constraints
-     v.f before np.f
-	   np.f before vp.f  
+  form
+    constraints
+      v.f before np.f
+      np.f before vp.f
 
 //Preventing FROM
-general construction ObjectControl_AgentEffectPrevention // he prevented John from moving 
-   subcase of Trans_AgentEffectCausation
-   constructional
-     constituents
-       tag1: FROM-Marker 
-       vp: VP
-    constraints 
-        vp.verbform <-- PresentParticiple
-        v.verbkind <-- ForceDynamic
-        v.expectedVerbForm <-->  vp.verbform // need to decide if this is necessary
-   form 
-     constraints
-	   tag1.f before vp.f	
+general construction ObjectControl_AgentEffectPrevention // he prevented John from moving
+  subcase of Trans_AgentEffectCausation
+  constructional
+    constituents
+      tag1: FROM-Marker
+      vp: VP
+  constraints
+    vp.verbform <-- PresentParticiple
+    v.verbkind <-- ForceDynamic
+    v.expectedVerbForm <-->  vp.verbform // need to decide if this is necessary
+  form
+    constraints
+      tag1.f before vp.f
   meaning
-     constraints
-       	//self.m.protagonist.ontological-category <-- @sentient // maybe from verb
-		s.a2 <--> vp.ed.profiledParticipant
-		vp.m  <--> self.m.affectedProcess
-		self.m <--> v.m
+    constraints
+      //self.m.protagonist.ontological-category <-- @sentient // maybe from verb
+      s.a2 <--> vp.ed.profiledParticipant
+      vp.m  <--> self.m.affectedProcess
+      self.m <--> v.m
 
 construction ActiveTrans_ObjectControl_AgentEffectPrevention  // he prevented the block from moving
   subcase of ActiveTransitive, ObjectControl_AgentEffectPrevention
-    form
-     constraints
-	   v.f before np.f
-	   np.f before tag1.f 
-	   
+  form
+    constraints
+      v.f before np.f
+      np.f before tag1.f
+
 
 // Agent causing an event: "he caused the crisis"
-general construction Trans_AgentEventCausation //  
+general construction Trans_AgentEventCausation //
   subcase of ArgumentStructure // or sub of some more general transitive causal cxn?
-   constructional  
-    	constraints
-    		v.verbkind <-- ForceDynamic //this should constrain this cxn to 'causal' verbs, e.g. cause, prevent
+  constructional
+    constraints
+      v.verbkind <-- ForceDynamic //this should constrain this cxn to 'causal' verbs, e.g. cause, prevent
   meaning: CausalAction
-     //evokes A123 as s
-     constraints
-	    v.m <--> self.m
-        s.a1 <--> self.m.causalAgent
-        s.a2 <--> self.m.effect
-        //self.m.causalAgent.ontological-category <-- @agent
-           
+    //evokes A123 as s
+    constraints
+      v.m <--> self.m
+      s.a1 <--> self.m.causalAgent
+      s.a2 <--> self.m.effect
+      //self.m.causalAgent.ontological-category <-- @agent
 
-construction ActiveTrans_AgentEventCausation //he caused the crisis 
-  subcase of ActiveTransitive, Trans_AgentEventCausation  
+
+construction ActiveTrans_AgentEventCausation //he caused the crisis
+  subcase of ActiveTransitive, Trans_AgentEventCausation
 
 
 // Event effect causation:
-general construction Trans_effectCausation // 
+general construction Trans_effectCausation //
   subcase of ArgumentStructure // or sub of more general cxn
-    meaning: CausedProcess
-     //evokes A123 as s
-     constraints
-	    s.a1 <--> self.m.cause // currently constrained in schema to be EventRD
-        s.a2 <--> self.m.affectedEntity
+  meaning: CausedProcess
+    //evokes A123 as s
+    constraints
+      s.a1 <--> self.m.cause // currently constrained in schema to be EventRD
+      s.a2 <--> self.m.affectedEntity
 
-general construction Trans_effectCausation_effectProcess // e.g. move 
+general construction Trans_effectCausation_effectProcess // e.g. move
   subcase of Trans_effectCausation
-   constructional
-  	constraints
-   		v.argform <-- AmbiTransitive // this should exclude, e.g., 'cut' and 'go'
+  constructional
+    constraints
+      v.argform <-- AmbiTransitive // this should exclude, e.g., 'cut' and 'go'
   meaning
     constraints
-        v.m <--> self.m.affectedProcess
+      v.m <--> self.m.affectedProcess
 
 construction ActiveTrans_effectCausation_effectProcess //e.g. "the storm moved the block"
-  subcase of ActiveTransitive, Trans_effectCausation_effectProcess 
-  
-  
+  subcase of ActiveTransitive, Trans_effectCausation_effectProcess
+
+
  // Causal event
 
-  general construction Trans_EventCausation 
+general construction Trans_EventCausation
   subcase of ArgumentStructure // or sub of some more general transitive causal cxn?
-   constructional  
-    	constraints
-    		v.verbkind <-- ForceDynamic //this should constrain this cxn to 'causal' verbs, e.g. cause, prevent
+  constructional
+    constraints
+      v.verbkind <-- ForceDynamic //this should constrain this cxn to 'causal' verbs, e.g. cause, prevent
   meaning: CausalEvent
-     //evokes A123 as s
-     constraints
-	       s.a1 <--> self.m.cause
-           s.a2 <--> self.m.effect
-           v.m <--> self.m
-       // need to add constraint that restricts this to causal verbs 
+    //evokes A123 as s
+    constraints
+      s.a1 <--> self.m.cause
+      s.a2 <--> self.m.effect
+      v.m <--> self.m
+      // need to add constraint that restricts this to causal verbs
 
 construction ActiveTrans_EventCausation // his moving caused a crisis
-  subcase of ActiveTransitive, Trans_EventCausation  	   
-	   
+  subcase of ActiveTransitive, Trans_EventCausation
 
 
-general construction ObjectControl_EventEffectCausation // the storm caused John to move 
-   subcase of ArgumentStructure
-   constructional
-     constituents
-       vp: VP
-    constraints 
-        vp.verbform <-- Infinitive
-        v.verbkind <-- ForceDynamic
-        v.expectedVerbForm <-->  vp.verbform // need to decide if this is necessary
-   form 
-     constraints
-	    v.f before vp.f	
+general construction ObjectControl_EventEffectCausation // the storm caused John to move
+  subcase of ArgumentStructure
+  constructional
+    constituents
+      vp: VP
+    constraints
+      vp.verbform <-- Infinitive
+      v.verbkind <-- ForceDynamic
+      v.expectedVerbForm <-->  vp.verbform // need to decide if this is necessary
+  form
+    constraints
+      v.f before vp.f
   meaning: CausedProcess
-     constraints
-        s.a2 <--> vp.ed.profiledParticipant
-		vp.m  <--> self.m.affectedProcess
-		self.m <--> v.m
-		s.a1 <--> self.m.cause 
-        s.a2 <--> self.m.affectedEntity
+    constraints
+      s.a2 <--> vp.ed.profiledParticipant
+      vp.m  <--> self.m.affectedProcess
+      self.m <--> v.m
+      s.a1 <--> self.m.cause
+      s.a2 <--> self.m.affectedEntity
 
 construction ActiveTrans_ObjectControl_EventEffectCausation  // the storm caused the block to move
   subcase of ActiveTransitive, ObjectControl_EventEffectCausation
-    form
-     constraints
-	   np.f before vp.f  	
+  form
+    constraints
+      np.f before vp.f
 
 
-general construction ObjectControl_EventEffectPrevention // the storm prevented John from moving 
-   subcase of ArgumentStructure
-   constructional
-     constituents
-       tag1: FROM-Marker 
-       vp: VP
-    constraints 
-        vp.verbform <-- PresentParticiple
-        v.verbkind <-- ForceDynamic
-        v.expectedVerbForm <-->  vp.verbform // need to decide if this is necessary
-   form 
-     constraints
-	   tag1.f before vp.f	
+general construction ObjectControl_EventEffectPrevention // the storm prevented John from moving
+  subcase of ArgumentStructure
+  constructional
+    constituents
+      tag1: FROM-Marker
+      vp: VP
+  constraints
+    vp.verbform <-- PresentParticiple
+    v.verbkind <-- ForceDynamic
+    v.expectedVerbForm <-->  vp.verbform // need to decide if this is necessary
+  form
+    constraints
+      tag1.f before vp.f
   meaning: CausedProcess
-     constraints
-        s.a2 <--> vp.ed.profiledParticipant
-		vp.m  <--> self.m.affectedProcess
-		self.m <--> v.m
-		s.a1 <--> self.m.cause 
-        s.a2 <--> self.m.affectedEntity
+    constraints
+      s.a2 <--> vp.ed.profiledParticipant
+      vp.m  <--> self.m.affectedProcess
+      self.m <--> v.m
+      s.a1 <--> self.m.cause
+      s.a2 <--> self.m.affectedEntity
 
 construction ActiveTrans_ObjectControl_EventEffectPrevention  // the storm prevented the block from moving
   subcase of ActiveTransitive, ObjectControl_EventEffectPrevention
-    form
-     constraints
-	    v.f before np.f
-	    np.f before tag1.f    	
-
-
- 
-
-	                     
+  form
+    constraints
+      v.f before np.f
+      np.f before tag1.f

@@ -1,164 +1,126 @@
-package core
+// Specifiers (Determiners,  not RD)
 
-/***
- ***
- *** Specifiers (Determiners,  not RD)
- ***
- ***/
+package nominal
+import base
 
 general construction SpecifierPhrase
   subcase of HasNominalFeatures
   meaning: RD
-  
+
 general construction Specifier
   subcase of Word, SpecifierPhrase
   meaning: RD
 
 general construction Determiner
    subcase of Specifier
- 
+
 construction The
-   subcase of Determiner
-   form
-      constraints
-         self.f.orth <-- "the"
-   meaning
-      constraints
-         self.m.givenness <-- @uniquelyIdentifiable
+  subcase of Determiner
+  form
+    constraints
+      self.f.orth <-- "the"
+  meaning
+    constraints
+      self.m.givenness <-- @uniquelyIdentifiable
 
-
-  construction Another //  another big block, cf. another 2 blocks ~ 2 more blocks
-   subcase of Determiner, Singular
-      form
-      constraints
-         self.f.orth <-- "another"
-   meaning
-      constraints
-         self.m.givenness <-- @distinct 
-         self.m.number <-- @singular
-   		 self.m.bounding <-- @determinate 
+// e.g. another big block, cf. another 2 blocks ~ 2 more blocks
+construction Another
+  subcase of Determiner, Singular
+  form
+    constraints
+      self.f.orth <-- "another"
+  meaning
+    constraints
+      self.m.givenness <-- @distinct
+      self.m.number <-- @singular
+      self.m.bounding <-- @determinate
 
 
 // Demonstratives
-general construction Demonstrative // this, etc.
-   subcase of Determiner
+// e.g. this, etc.
+general construction Demonstrative
+  subcase of Determiner
 
-    
-
-// should actually be a Demonstrative?
 construction This
-   subcase of Demonstrative, Singular
-   form
-      constraints
-         self.f.orth <-- "this"
-   meaning
-      constraints
-         self.m.givenness <-- @inFocus 
-         self.m.extras.deicticValue <-- @this
- 
- // should actually be a Demonstrative?
+  subcase of Demonstrative, Singular
+  form
+    constraints
+      self.f.orth <-- "this"
+  meaning
+    constraints
+      self.m.givenness <-- @inFocus
+      self.m.extras.deicticValue <-- @this
+
 construction That
-   subcase of Demonstrative, Singular
-   form
-      constraints
-         self.f.orth <-- "that"
-   meaning
-      constraints
-         self.m.givenness <-- @inFocus 
-         self.m.extras.deicticValue <-- @that
-         
-// should actually be a demonstrative?
+  subcase of Demonstrative, Singular
+  form
+    constraints
+      self.f.orth <-- "that"
+  meaning
+    constraints
+      self.m.givenness <-- @inFocus
+      self.m.extras.deicticValue <-- @that
+
 construction These
-   subcase of Demonstrative, Plural
-   form
-      constraints
-         self.f.orth <-- "these"
-   meaning
-      constraints
-         self.m.givenness <-- @inFocus
-         self.m.extras.deicticValue <-- @this 
+  subcase of Demonstrative, Plural
+  form
+    constraints
+      self.f.orth <-- "these"
+  meaning
+    constraints
+      self.m.givenness <-- @inFocus
+      self.m.extras.deicticValue <-- @this
 
-
-// should actually be a demonstrative?
 construction Those
-   subcase of Demonstrative, Plural
-   form
-      constraints
-         self.f.orth <-- "those"
-   meaning
-      constraints
-         self.m.givenness <-- @inFocus
-         self.m.extras.deicticValue <-- @that
-          
+  subcase of Demonstrative, Plural
+  form
+    constraints
+      self.f.orth <-- "those"
+  meaning
+    constraints
+      self.m.givenness <-- @inFocus
+      self.m.extras.deicticValue <-- @that
+
 
 construction A
-   subcase of Determiner, Singular
-      form
-      constraints
-         self.f.orth <-- "a"
-   meaning
-      constraints
-         self.m.givenness <-- @typeIdentifiable
-         self.m.number <-- @singular
-         self.m.bounding <-- @determinate
+  subcase of Determiner, Singular
+  form
+    constraints
+      self.f.orth <-- "a"
+  meaning
+    constraints
+      self.m.givenness <-- @typeIdentifiable
+      self.m.number <-- @singular
+      self.m.bounding <-- @determinate
 
 construction An
-   subcase of A
-      form
-      constraints
-         self.f.orth <-- "an"
+  subcase of A
+  form
+    constraints
+      self.f.orth <-- "an"
 
 
- 
- // possession
- // requires 's tag to have space between it and np, e.g. "the man 's box"
- /*
- construction SpecifierPhrasePossessive
-  subcase of NP
-  constructional 
-    	constituents
-	  		np: NP
-      		poss: PossTag		
-      		k: Kernel
-	form
-    	constraints
-			np.f meets poss.f
-	meaning: RD 
-	 evokes Possession as possession
-	 constraints
-	   self.m <--> k.m
-	   self.m <--> possession.possessed
-	   np.m <--> possession.possessor
-	   
-
-construction PossTag
-	subcase of Word
-	form
-      constraints
-         self.f.orth <-- "'s"
- */
-         
 // for unitsNP
-// Numbers added 3/28/14
-general construction Quantifier // different meaning than Specifier  
-	subcase of Word, HasNominalFeatures
-	meaning: QuantitySchema
-	
-construction Some 
-   subcase of Quantifier 
-     form
-      constraints
-         self.f.orth <-- "some"
-   meaning: QuantitySchema
-      constraints
-         self.m.value <-- @some  // new 8/23/12
-         
-         
+// different meaning than Specifier
+general construction Quantifier
+  subcase of Word, HasNominalFeatures
+  meaning: QuantitySchema
+
+construction Some
+  subcase of Quantifier
+  form
+    constraints
+      self.f.orth <-- "some"
+  meaning: QuantitySchema
+    constraints
+      self.m.value <-- @some
+
+
 construction No
-   subcase of Quantifier 
-     form
-      constraints
-         self.f.orth <-- "no"
-   meaning: QuantitySchema
-      constraints
-         self.m.value <-- @no  // new 8/23/12
+  subcase of Quantifier
+  form
+    constraints
+      self.f.orth <-- "no"
+  meaning: QuantitySchema
+    constraints
+      self.m.value <-- @no

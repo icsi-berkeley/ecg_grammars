@@ -1,0 +1,84 @@
+// These are tests for transitive action, using high-level cxns to do the bindings,
+// and having the verb flesh out the more specific schemas.
+//
+// These are in development, but the hope is that they'll reduce the number of argument structure
+// cxns necessary for core (ST, 3/23/16).
+
+package transitive-test
+import auxiliaries
+
+
+// high-level "Transitive-action cxn"
+general construction Trans_TransitiveAction
+  subcase of ArgumentStructure
+  constructional
+    constraints
+      v.argform <-- Transitive
+  meaning: TransitiveAction
+
+
+//Binds agent/patient to profiled-participant and NP, respectively.
+general construction ActiveTrans_TransitiveAction  // 5/14/13
+  subcase of Trans_TransitiveAction
+  constructional
+    constituents
+      np: NP [1.0, .9]   // probabilities, check this !!
+    constraints
+      v.voice <-- NotPassive  // 2/1/13
+  form
+    constraints
+      v.f before np.f
+  meaning: TransitiveAction  //  5/14/13
+    evokes A123 as s //5/14/13 *****************
+    constraints
+      self.m.agent <--> ed.profiledParticipant
+      self.m.patient <--> np.m
+      s.a1 <--> ed.profiledParticipant	//2/20/13
+      s.a2 <--> np.m
+      v.m.p-features.voice <-- @active // 2/1/13
+
+
+// "Core" Active Transitive, binds self.m to verb meaning
+general construction CoreActiveTrans_TransitiveAction  // 8/21/13
+  subcase of ActiveTrans_TransitiveAction
+  meaning
+    constraints
+    self.m <--> v.m
+
+
+// Passive Transitive, binds agent to byPhrase, and patient to profiled participant
+general construction PassiveTrans_TransitiveAction // 5/14/13
+  subcase of Trans_TransitiveAction
+  constructional
+    constituents
+      optional byPhrase: ByAgentPhrase
+    constraints
+      v.voice <-- Passive  // 2/1/13
+  form
+    constraints
+      v.f before byPhrase.f
+  meaning
+    evokes A123 as s
+    constraints
+      self.m.agent <--> byPhrase.m.landmark
+      self.m.patient <--> ed.profiledParticipant
+      // s.a1 <--> byPhrase.m.landmark
+      //s.a2 <--> ed.profiledParticipant
+      v.m.p-features.voice <-- @passive
+
+// This binds the self.m with the verb's meaning.
+general construction CorePassiveTrans_TransitiveAction
+  subcase of PassiveTrans_TransitiveAction
+  meaning
+    constraints
+      self.m <--> v.m
+      //self.m.protagonist <--> s.a1
+
+
+// "Central" Active Transitive, inherits self.m <--> v.m
+construction ActiveTrans_Central
+  subcase of CoreActiveTrans_TransitiveAction
+
+// "Central" Active Transitive, inherits self.m <--> v.m
+construction PassiveTrans_Central
+  subcase of CorePassiveTrans_TransitiveAction

@@ -1,13 +1,14 @@
-package core
+package schemas-discourse
+import base
 
 schema DiscourseElement //meaning of Utterance
-    roles
-        speaker: RD 	
-        addressee: RD 	
-        attentional_focus  
-        content: EventDescriptor
-        mood: @mood			// one of declarative, imperative, ...
-        speechAct // direct, indirect?
-    constraints
-		speaker.ontological-category <-- @sentient
-		addressee.ontological-category <-- @sentient
+  roles
+    speaker: RD
+    addressee: RD
+    attentional_focus
+    content: EventDescriptor
+    mood: @mood // one of declarative, imperative, ...
+    speechAct // direct, indirect?
+  constraints
+    speaker.ontological-category <-- @sentient
+    addressee.ontological-category <-- @sentient

@@ -1,0 +1,9 @@
+package verb
+
+/*
+general construction BaseOrPresentForm
+   subcase of VerbConjugation
+   constructional
+     constraints
+        self.features.verbform <-- BaseOrPresent
+*/

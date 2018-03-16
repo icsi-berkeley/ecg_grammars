@@ -1,95 +1,42 @@
-package core
+package nominal
+import base
 
-//
+// This is the root of nouns and noun noun compounds
+general construction Nominal
+  subcase of HasNominalFeatures
+  meaning: RD
+
+general construction Noun
+  subcase of Word, Nominal
+
+
 // Singular Count Nouns
-//
-
 general construction SingularNoun
   subcase of Noun, Singular
-   constructional
-     constraints
-      self.features.number <-- "singular"  
-   meaning
+  constructional
     constraints
-      //self.m.number <-- @singular
-	  //self.m.bounding <-- @determinate
+      self.features.number <-- "singular"
 
-//
 // Plural Count Nouns
-//
 general construction PluralNoun
   subcase of Noun, Plural
-   constructional
-     constraints
-      self.features.number <-- "plural" 
-   meaning
+  constructional
     constraints
-      //self.m.ontological-category <-- @multiplex // might restrict some
+      self.features.number <-- "plural"
+  meaning
+    constraints
       self.m.number <-- @plural
       self.m.bounding <-- @indeterminate
 
 
 // MassNouns (water, poverty)
-general construction MassNoun  // can be undetermined NP 11/15/12
-  subcase of NP, Noun, Singular //NP, Noun, Singular
-   meaning
+general construction MassNoun
+  subcase of NP, Noun, Singular
+  meaning
     constraints
-      self.m.bounding <-- @indeterminate  // may want to change this 11/17/12
+      self.m.bounding <-- @indeterminate
       self.m.number <-- @noNumber
-	  
-// Proper Nouns
-general construction ProperNounNP
-    subcase of NP, Word
-
-// Stuff for argstruct-transitive       
-general construction UnitsNP // stands alone, no Specifier  11/24/12
-  subcase of NP
-  constructional
-	constituents
-  		num: Quantifier	//
-  		k: Noun 
-	constraints
-  		self.features <--> k.features
-  form
-	constraints
-  		num.f meets k.f
-  meaning: RD
-    constraints
-    	self.m <--> k.m
-    	num.m <--> self.m.extras.quantity.amount
-    	//k.m.ontological-category <-- @spatial-units   generalized
-		self.m.extras.quantity.units <-> k.m.ontological-category
-		//self.m.amount.value <--> num.m.value
-		
- construction SpatialQuantityNP // stands alone, no Specifier
-  subcase of UnitsNP
-  meaning: RD
-    constraints
-    	k.m.ontological-category <-- @spatial-units // only difference *** generalize 11/24/12  
-	    
-
-
- construction WeightQuantityNP // stands alone, no Specifier
-  subcase of UnitsNP
-  meaning: RD
-    constraints
-    	k.m.ontological-category <-- @weight
-
- construction PriceQuantityNP // stands alone, no Specifier
-  subcase of UnitsNP
-  meaning: RD
-    constraints
-    	k.m.ontological-category <-- @price
-
- construction TemporalQuantityNP // stands alone, no Specifier
-  subcase of UnitsNP
-  meaning: RD
-    constraints
-    	k.m.ontological-category <-- @temporal-units
-
-
-
 
 
 general construction Directional
-  meaning: HeadingSchema	    
+  meaning: HeadingSchema

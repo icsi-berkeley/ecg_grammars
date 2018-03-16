@@ -1,229 +1,176 @@
-package core
-
+package prepositional-phrase
+import base
 
 // no np, could be subclassed with adjectives, etc.
 general construction PP_all
-	subcase of RootType // answer to question, etc.   
-	constructional
-		constituents
-			prep: Preposition  
+  subcase of RootType // answer to question, etc.
+  constructional
+    constituents
+      prep: Preposition
 
 // standard PP-cxn
 general construction PP
-	subcase of RootType // answer to question, etc.   
-	constructional
-		constituents
-			prep: Preposition  
-			np: NP //[1.0, .9]
-	
+  subcase of RootType
+  constructional
+    constituents
+      prep: Preposition
+      np: NP
+
 
 construction For-PP
-	subcase of PP
-	constructional
-	  constituents
-	    prep: For-Recipient
-	form
-	 constraints
-	   prep.f before np.f
+  subcase of PP
+  constructional
+    constituents
+      prep: For-Recipient
+  form
+    constraints
+      prep.f before np.f
 
 
-
-    
-// Spatial PPs					 
-general construction Spatial-PP  //literal
-	subcase of PP
-	constructional
-		constituents
-			prep: SpatialPreposition 
-			//optional np: NP  // overkill  11/26/12 *************
-	form
-		constraints
-			prep.f before np.f
-	meaning: TrajectorLandmark
-		constraints
-			self.m <--> prep.m
-			self.m.landmark  <--> np.m 
-			np.m.ontological-category <-- @region  //11/4/13 
+// Spatial PPs
+// literal
+general construction Spatial-PP
+  subcase of PP
+  constructional
+    constituents
+      prep: SpatialPreposition
+  form
+    constraints
+      prep.f before np.f
+  meaning: TrajectorLandmark
+    constraints
+      self.m <--> prep.m
+      self.m.landmark  <--> np.m
+      np.m.ontological-category <-- @region
 
 
-construction Path-PP  // central case 
-	subcase of PP 
-	constructional
-		constituents
-			prep: PathPreposition // e.g. into, to, from, through
-	form
-		constraints
-			prep.f before np.f
-	meaning: SPG
-		constraints
-		    // np.m.ontological-category <-- @container
-			self.m <--> prep.m	
-		    self.m.landmark  <--> np.m
-		    // self.m.landmark.ontological-category <--> np.m.ontological-category 
- 
- 
- 
- // testing, 5/9/16 (ST)
- // this binds the two path-pps together
- // it allows a full expression of source, path, and goal (though only one of each)
- // e.g. "from the house through the field to the store"
- // the nice thing about this analysis is that it combines the SPG schemas together into one "Gestalt", as opposed to embedding them with the "SPG2" schema
- construction Path-PP-SPG // 12/13/12 
-	subcase of Path-PP
-	constructional
-		constituents // inherits np, prep			
-			pp2: Path-PP
-		 	optional conj:Comma  // also and, then, etc.
-	form
-		constraints		
-	      		np.f meets conj.f  // np from first PP
-	      		conj.f  meets pp2.f
-	meaning //: SPG2  // serial path plus
-		constraints
-			//self.m <--> prep.m inherited
-			//self.m.spg2 <--> pp2.m 
-			self.m <--> pp2.m
+// central case
+construction Path-PP
+  subcase of PP
+  constructional
+    constituents
+      prep: PathPreposition // e.g. into, to, from, through
+  form
+    constraints
+      prep.f before np.f
+  meaning: SPG
+    constraints
+      self.m <--> prep.m
+      self.m.landmark  <--> np.m
 
 
-// This cxn would be better for serial PPs involving multiple goals
-/*
- construction Path-PP-Serial // 12/13/12 
-	subcase of Path-PP
-	constructional
-		constituents // inherits np, prep			
-			pp2: Path-PP
-		 	optional conj:Comma  // also and, then, etc.
-	form
-		constraints		
-	      		np.f meets conj.f  // np from first PP
-	      		conj.f  meets pp2.f
-	meaning: SPG2  // serial path plus
-		constraints
-			self.m.spg2 <--> pp2.m 
-			//self.m <--> pp2.m
- */
- 
- 
-construction Loc-PP  // static location 
-	subcase of Spatial-PP 
-	constructional
-		constituents
-			prep: LocativePreposition // e.g. at, in, inside, on, 
-	meaning //: TrajectorLandmark
-		constraints
-		np.m.ontological-category <-- @region  //11/4/13	      
-			// self.m <--> prep.m  inherited
-			//self.m.trajector <-- @physicalEntity  inherited
-			
+// testing, 5/9/16 (ST)
+// this binds the two path-pps together
+// it allows a full expression of source, path, and goal (though only one of each)
+// e.g. "from the house through the field to the store"
+// the nice thing about this analysis is that it combines the SPG schemas together into one
+// "Gestalt", as opposed to embedding them with the "SPG2" schema
+construction Path-PP-SPG
+  subcase of Path-PP
+  constructional
+    constituents // inherits np, prep
+      pp2: Path-PP
+      optional conj:Comma  // also and, then, etc.
+  form
+    constraints
+      np.f meets conj.f  // np from first PP
+      conj.f  meets pp2.f
+  meaning //: SPG2  // serial path plus
+    constraints
+      //self.m <--> prep.m inherited
+      //self.m.spg2 <--> pp2.m
+      self.m <--> pp2.m
 
-// (the color) of the box
-// (the size) of the building			
+
+// static location
+construction Loc-PP
+  subcase of Spatial-PP
+  constructional
+    constituents
+      prep: LocativePreposition // e.g. at, in, inside, on,
+  meaning
+    constraints
+      np.m.ontological-category <-- @region
+
+
+// e.g. (the color) of the box
+// e.g. (the size) of the building
 construction ModifierPP
-	subcase of PP
-	constructional
-	 constituents
-	   prep: ModifierPreposition
-	form
-	  constraints
-	    prep.f before np.f
-	meaning: Modification
-	  constraints
-	     prep.m <--> self.m
-	     np.m <--> self.m.modifiedThing
-	     self.m.temporality <-- @atemporal
-	  			
+  subcase of PP
+  constructional
+    constituents
+      prep: ModifierPreposition
+  form
+    constraints
+      prep.f before np.f
+  meaning: Modification
+    constraints
+      prep.m <--> self.m
+      np.m <--> self.m.modifiedThing
+      self.m.temporality <-- @atemporal
 
-	  			
+
 // ST (1/4/16, added from Base)
 construction ByAgentPhrase
-	subcase of PP
-	constructional
-	  constituents
-	    prep: BY-Agent
-	    np: NP
-	form
-	  constraints
-	    prep.f meets np.f
-	meaning: ByLandmark
-	  constraints
-	    np.m <--> self.m.landmark
+  subcase of PP
+  constructional
+    constituents
+      prep: BY-Agent
+      np: NP
+  form
+    constraints
+      prep.f meets np.f
+  meaning: ByLandmark
+    constraints
+      np.m <--> self.m.landmark
 
 
 // ST (3/16/16, added from base)
 general construction AdjunctPP
-	subcase of PP
-	form
-	 constraints
-	   prep.f before np.f
+  subcase of PP
+  form
+    constraints
+      prep.f before np.f
 
 // ST (3/16/16, added from base)
 construction InstrumentPP
-	subcase of AdjunctPP
-	constructional
-	 constituents
-	   prep: InstrumentPreposition
-	meaning: Instrument
-	 constraints
-	  np.m.ontological-category <-- @instrument // is this right?
-	  // this might over-constraint...
-	  self.m <--> prep.m
-	  np.m <--> self.m.instrument
-	  //self.m <--> np.m.extensions
+  subcase of AdjunctPP
+  constructional
+    constituents
+      prep: InstrumentPreposition
+  meaning: Instrument
+    constraints
+      np.m.ontological-category <-- @instrument // is this right?
+      self.m <--> prep.m
+      np.m <--> self.m.instrument
+      //self.m <--> np.m.extensions // commented out for Winograd paper 11/5/16 VR
 
 
-
-	  
 // ST (3/16/16)
 construction AccompanimentPP
-	subcase of AdjunctPP
-	constructional
-	 constituents
-	   prep: AccompanimentPreposition
-	meaning: Accompaniment
-	  constraints
-	    np.m <--> self.m.co-participant
-	    self.m <--> prep.m
+  subcase of AdjunctPP
+  constructional
+    constituents
+      prep: AccompanimentPreposition
+  meaning: Accompaniment
+    constraints
+      np.m <--> self.m.co-participant
+      self.m <--> prep.m
 
 
 // ST (3/16/16, added from base)
-construction TemporalPhrase	
-	subcase of AdjunctPP
-	constructional
-	 constituents
-	  prep: TemporalPreposition
-	  np: TemporalQuantityNP // restrain to unitsNP?
-   form
+construction TemporalPhrase
+  subcase of AdjunctPP
+  constructional
+    constituents
+      prep: TemporalPreposition
+      np: TemporalQuantityNP // restrain to unitsNP?
+  form
     constraints
       prep.f before np.f
-   meaning: TemporalModifier
-   	constraints
-   	 np.m.ontological-category <-- @temporal-units
-   	 self.m <--> prep.m
-   	 self.m.ti.timeUnits <--> np.m.extras.quantity.units
-   	 self.m.ti.length <--> np.m.extras.quantity.amount
-	  
-
-// ST, 4/26/16, testing: "he built the house in 1976", "he built the house last year", etc.
-/*
-construction TimePP
-	subcase of PP
-	constructional
-	  constituents
-	   prep: IN-Temporal
-	   np: YearType
-	meaning: EventFeatures
-	 constraints
-	   self.m.time <--> np.m.extras.quantity.amount
-	   
-
-
-construction YearType
-	subcase of NP
-	constructional
-	 constituents
-	  k: NumberType
-	meaning
-	 constraints
-	   self.m.ontological-category <-- @time
-	   self.m.extras.quantity.amount <--> k.m	  	
-*/    
+  meaning: TemporalModifier
+    constraints
+      np.m.ontological-category <-- @temporal-units
+      self.m <--> prep.m
+      self.m.ti.timeUnits <--> np.m.extras.quantity.units
+      self.m.ti.length <--> np.m.extras.quantity.amount

@@ -1,43 +1,37 @@
-package adjunct
+package vp-adjunct
+import base
 
-
-
-    	
-
-
-
-construction InstrumentVP  
-  subcase of AdjunctVP   
+construction InstrumentVP
+  subcase of AdjunctVP
   constructional
     constituents
-    	pp: InstrumentPP  //sub AdjunctPP
+      pp: InstrumentPP  //sub AdjunctPP
     constraints
       vp.v.argform <-- Transitive // is this right? (testing)
       // we want to avoid using this with copulas, e.g. "the box is red with the hammer"...
-   meaning
-	constraints
-		vp.m.protagonist <--> pp.m.user
-		//vp.m.actionary <--> pp.m.actionary
-		//pp.m.actionary <--> vp.m.actionary
+  meaning
+    constraints
+      vp.m.protagonist <--> pp.m.user
+      //vp.m.actionary <--> pp.m.actionary
+      //pp.m.actionary <--> vp.m.actionary
 
 // he did X with Y
 // should this have more complex semantics, e.g. to suggest that Y is a co-participant?
 // currently constraints Y to be an "agent"
-construction AccompanimentVP  
-  subcase of AdjunctVP   
+construction AccompanimentVP
+  subcase of AdjunctVP
   constructional
     constituents
-    	pp: AccompanimentPP  //sub AdjunctPP
-   meaning
-	constraints
-		adjunct.kind <-- @animate  // Modification schema	
-		pp.m.participant <--> vp.m.protagonist //ed.profiledParticipant
-		//pp.m.participant <--> ed.profiledParticipant
-		pp.m.co-participant.ontological-category <-- @agent
-	
+      pp: AccompanimentPP  //sub AdjunctPP
+  meaning
+    constraints
+      adjunct.kind <-- @animate  // Modification schema
+      pp.m.participant <--> vp.m.protagonist //ed.profiledParticipant
+      //pp.m.participant <--> ed.profiledParticipant
+      pp.m.co-participant.ontological-category <-- @agent
 
 
-construction LocativeVP   // walked 
+construction LocativeVP   // walked
   subcase of AdjunctVP
   constructional
     constituents
@@ -45,13 +39,9 @@ construction LocativeVP   // walked
   form
     constraints
       vp.f meets pp.f  // could eliminate order
-  meaning  
+  meaning
     constraints
       self.m <--> vp.m
       ed <--> vp.ed
       ed.e-features.place <--> pp.m
       ed.profiledParticipant <--> pp.m.trajector
-      
-      
-      
-      

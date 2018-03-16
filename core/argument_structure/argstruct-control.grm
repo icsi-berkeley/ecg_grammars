@@ -1,34 +1,31 @@
-/*
-Control package. Dependencies are either internal to package or part of "core".
+// Control package. Dependencies are either internal to package or part of "core".
+//
+// Example sentences (simple control):
+// -he wanted to move
+// -he tried to move
+// -he tried walking
 
-Example sentences (simple control):
--he wanted to move
--he tried to move
--he tried walking
+package argstruct
+import base
 
-*/
-
-package control
-
-
-// Added from base
-construction SubjectControl  // simple 1/5/13, he wanted to move, he tried walking
-   subcase of ArgumentStructure
-   constructional
-     constituents
-        v: Verb
-        vp: ArgumentStructure // for testing -- will need to make more general 1/23/14
-     constraints
-        vp.verbform <-- PresentParticipleOrInfinitive // usually Infinitive
-        v.argform <-- Control
-        v.expectedVerbForm <--> vp.verbform //1/8/13
-   form 
-     constraints
-       v.f before vp.f
-   meaning: EmbeddedEventProcessSimple
-     constraints
-       	self.m.protagonist <--> ed.profiledParticipant
-       	vp.m.protagonist.ontological-category <-- @sentient // should work, 12/20/12
-       	vp.ed.profiledParticipant <--> ed.profiledParticipant
-		self.m <--> v.m
-		self.m.event <--> vp.m  // untyped event role - a problem ?? 1/5/13
+// e.g. he wanted to move, he tried walking
+construction SubjectControl
+  subcase of ArgumentStructure
+  constructional
+    constituents
+      v: Verb
+      vp: ArgumentStructure // for testing -- will need to make more general 1/23/14
+    constraints
+      vp.verbform <-- PresentParticipleOrInfinitive // usually Infinitive
+      v.argform <-- Control
+      v.expectedVerbForm <--> vp.verbform //1/8/13
+  form
+    constraints
+      v.f before vp.f
+  meaning: EmbeddedEventProcessSimple
+    constraints
+      self.m.protagonist <--> ed.profiledParticipant
+      vp.m.protagonist.ontological-category <-- @sentient
+      vp.ed.profiledParticipant <--> ed.profiledParticipant
+      self.m <--> v.m
+      self.m.event <--> vp.m  // untyped event role - a problem ?? 1/5/13

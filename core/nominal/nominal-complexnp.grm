@@ -1,41 +1,39 @@
-package complexNP
-//import core
+package nominal-complexNP
+import base
 
 general construction ComplexNP
-	subcase of NP
-	meaning: ComplexRD
+  subcase of NP
+  meaning: ComplexRD
 
 construction ConjNP
-	subcase of ComplexNP
-	constructional
-	  constituents
-	     connective: LogicalConjunction
-	     first: NP
-	     second: NP
-	  constraints
-	     self.features.number <-- "plural"
-	form 
-	   constraints
-	      first.f meets connective.f
-	      connective.f meets second.f
- 	meaning: ConjRD
- 	   constraints
- 	      first.m <--> self.m.rd1
- 	      second.m <--> self.m.rd2
- 	      self.m.number <-- @plural
- 	      self.m.bounding <--> first.m.bounding
- 	      self.m.givenness <--> first.m.givenness
- 	      //self.m.ontological-category <--> first.m.ontological-category
- 	      connective.m <--> self.m.connective
+  subcase of ComplexNP
+  constructional
+    constituents
+      connective: LogicalConjunction
+      first: NP
+      second: NP
+    constraints
+      self.features.number <-- "plural"
+  form
+    constraints
+      first.f meets connective.f
+      connective.f meets second.f
+  meaning: ConjRD
+    constraints
+      first.m <--> self.m.rd1
+      second.m <--> self.m.rd2
+      self.m.number <-- @plural
+      self.m.bounding <--> first.m.bounding
+      self.m.givenness <--> first.m.givenness
+      connective.m <--> self.m.connective
 
 
 // Necessary to get "robot1 and robot2, push the box west" to parse.
 // Addressed-imperative requires "ProperNounNP".
 construction ConjProperNP
-	subcase of ConjNP, ProperNounNP
-	constructional
-	  constituents
-	     connective: LogicalConjunction
-	     first: ProperNounNP
-	     second: ProperNounNP
-	    	        
+  subcase of ConjNP, ProperNounNP
+  constructional
+    constituents
+      connective: LogicalConjunction
+      first: ProperNounNP
+      second: ProperNounNP

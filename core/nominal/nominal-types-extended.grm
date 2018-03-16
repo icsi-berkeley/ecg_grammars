@@ -1,0 +1,38 @@
+package nominal-types-extended
+import base
+
+// "group type": "the crew", "the company"
+construction GroupType
+  subcase of NounType
+  meaning: RD
+    constraints
+      self.m.ontological-category <-- @group
+
+// "depression", "recession"
+construction AbstractStateType
+  subcase of NounType
+  meaning: RD
+    constraints
+      self.m.ontological-category <-- @abstractState
+
+
+// "the economy", "the government", "the business"
+construction InstitutionType
+  subcase of NounType
+  meaning: RD
+    constraints
+      self.m.ontological-category <-- @institution
+
+//"depression", "recession"
+construction DiseaseType
+  subcase of NounType
+  meaning: RD
+   constraints
+     self.m.ontological-category <-- @disease
+
+// "depression", "recession"
+construction SocialProblemType
+  subcase of NounType, MassNoun
+  meaning: RD
+   constraints
+     self.m.ontological-category <-- @socialProblem

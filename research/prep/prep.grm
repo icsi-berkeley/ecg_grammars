@@ -1,0 +1,55 @@
+package prep
+
+construction  IN-Path // container 11/5/13
+   subcase of PathPreposition
+   form
+      constraints
+         self.f.orth <-- "in"
+   meaning: SPG
+      evokes BoundedObject as bo
+      constraints
+         self.m.landmark.ontological-category <-- @container           // 2/22/14 commented out for m4 test
+         //self.m.landmark <--> bo.boundedObject
+         self.m.landmark.extensions <--> bo //testing!
+         self.m.goal <--> bo.interior
+         self.m.source <--> bo.exterior
+
+
+
+// This cxn would be better for serial PPs involving multiple goals
+ construction Path-PP-Serial // 12/13/12
+  subcase of Path-PP
+  constructional
+    constituents // inherits np, prep
+      pp2: Path-PP
+       optional conj:Comma  // also and, then, etc.
+  form
+    constraints
+            np.f meets conj.f  // np from first PP
+            conj.f  meets pp2.f
+  meaning: SPG2  // serial path plus
+    constraints
+      self.m.spg2 <--> pp2.m
+      //self.m <--> pp2.m
+
+
+// ST, 4/26/16, testing: "he built the house in 1976", "he built the house last year", etc.
+construction TimePP
+  subcase of PP
+  constructional
+    constituents
+     prep: IN-Temporal
+     np: YearType
+  meaning: EventFeatures
+   constraints
+     self.m.time <--> np.m.extras.quantity.amount
+
+construction YearType
+  subcase of NP
+  constructional
+   constituents
+    k: NumberType
+  meaning
+   constraints
+     self.m.ontological-category <-- @time
+     self.m.extras.quantity.amount <--> k.m

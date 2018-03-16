@@ -1,83 +1,38 @@
-package noun-noun
-//package core
+// Formerly called the noun-noun package, 2/25/18 VR
+package nominal-modification
 
 construction NounNounCompound
-	subcase of Nominal
-	constructional
-	  constituents
-	    mod: Nominal
-	    head: Nominal
-	  constraints
-	    self.features <--> head.features
-	form
-	  constraints
-	    mod.f before head.f
-	meaning
-	  evokes NounNounModifier as nnm
-	   constraints
-	     self.m <--> head.m
-	     nnm.modifiedThing <--> head.m
-	     nnm.modifier <--> mod.m
-
-// a steel box	
-construction MaterialArtifactCompound  // trying new design 8/21/12 
-   subcase of Nominal
-   constructional
-      constituents
-        mod: Nominal 
-        head: Nominal
-      constraints
-        self.features <--> head.features
+  subcase of Nominal
+  constructional
+    constituents
+      mod: Nominal
+      head: Nominal
+    constraints
+      self.features <--> head.features
   form
-     constraints
-       mod.f meets head.f
-    meaning
-      evokes Artifact as art  // hack, but seems OK
-     constraints
-       head.m.ontological-category <-- @artifact
-       self.m <--> head.m
-       mod.m.ontological-category <-- @material
-       art.material  <--> mod.m  //sets value directly
-       self.m.extensions <--> art 
+    constraints
+      mod.f before head.f
+  meaning
+    evokes NounNounModifier as nnm
+    constraints
+      self.m <--> head.m
+      nnm.modifiedThing <--> head.m
+      nnm.modifier <--> mod.m
 
-// a beer box
-construction ContainerContentsCompound  // trying new design 8/21/12  
-   subcase of Nominal
-   constructional
-      constituents
-        mod: Nominal 
-        head: Nominal
-      constraints
-        self.features <--> head.features
-  form
-     constraints
-       mod.f meets head.f
-    meaning
-      evokes Container as cont  
-     constraints
-       head.m.ontological-category <-- @container
-       self.m <--> head.m
-       //mod.m.bounding <-- @indeterminate // physicalEntity
-	   self.m.extensions <--> cont
-	    cont.contents <-> mod.m	
-	
-	
-// 2 inch box, 2 man team	
+
+// 2 inch box, 2 man team
 construction QuantityNounCompound
-	subcase of Nominal	
-	constructional
-	  constituents
-	    mod: QuantityNP
-	    head: Nominal
-	  constraints
-	    self.features <--> head.features
-	form
-	  constraints
-	    mod.f before head.f
-	meaning
-	  constraints
-	    self.m <--> head.m
-	    //self.m.amount <--> mod.m.amount
-	
-	
-	
+  subcase of Nominal
+  constructional
+    constituents
+      mod: QuantityNP
+      head: Nominal
+    constraints
+      self.features <--> head.features
+  form
+    constraints
+      mod.f before head.f
+  meaning
+    constraints
+      self.m <--> head.m
+      //self.m.amount <--> mod.m.amount

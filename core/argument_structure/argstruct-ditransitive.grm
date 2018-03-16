@@ -1,75 +1,72 @@
-/*
-Ditransitive package. Contains Ditransitive constructions, which can be used for Transfer
-and Communication.
+// Ditransitive package. Contains Ditransitive constructions, which can be used for Transfer
+// and Communication.
+//
+// Examples:
+// -he gave John the box
 
-Examples:
--he gave John the box
-
-
-*/
-
-package ditransitive
+package argstruct-ditransitive
+import base
 
 general construction ActiveDitransitive
-	subcase of ArgumentStructure
-	constructional
-	 constituents
-	  np1: NP
-	  np2: NP
-	 constraints
-	  v.argform <-- DiTransitive
-	  v.voice <-- NotPassive
-	  np1.features.case <-- "dat"
-	  np2.features.case <-- "acc"
-	form
-	 constraints
-	  v.f before np1.f
-	  np1.f before np2.f
-	meaning: Process
-	  evokes A123 as s
-	  constraints
-	   s.a1 <--> ed.profiledParticipant
-	   s.a2 <--> np1.m
-	   s.a3 <--> np2.m
+  subcase of ArgumentStructure
+  constructional
+    constituents
+      np1: NP
+      np2: NP
+    constraints
+      v.argform <-- DiTransitive
+      v.voice <-- NotPassive
+      np1.features.case <-- "dat"
+      np2.features.case <-- "acc"
+  form
+    constraints
+      v.f before np1.f
+      np1.f before np2.f
+  meaning: Process
+    evokes A123 as s
+    constraints
+      s.a1 <--> ed.profiledParticipant
+      s.a2 <--> np1.m
+      s.a3 <--> np2.m
 
 // (ST, 3/23/16). General notion of object transfer for ditransitive
 // crucially, does not bind self.v <--> v.m, so this structure can be repurposed elsewhere
 general construction ActiveDitransitiveTransfer
-	subcase of ActiveDitransitive
-	meaning: ObjectTransfer
-	 constraints
-	   self.m.giver <--> ed.profiledParticipant
-	   self.m.getter <--> np1.m
-	   self.m.theme <--> np2.m
+  subcase of ActiveDitransitive
+  meaning: ObjectTransfer
+    constraints
+      self.m.giver <--> ed.profiledParticipant
+      self.m.getter <--> np1.m
+      self.m.theme <--> np2.m
 
-// Binds self.m <--> v.m, so verb must be of type ObjectTransfer	   
+// Binds self.m <--> v.m, so verb must be of type ObjectTransfer
 construction CentralActiveDitransitiveTransfer
-	subcase of ActiveDitransitiveTransfer
-	meaning: ObjectTransfer
-	 constraints
-	   self.m <--> v.m
+  subcase of ActiveDitransitiveTransfer
+  meaning: ObjectTransfer
+    constraints
+      self.m <--> v.m
 
-	   
+
 // 2/15/16 (ST), binds NP1 to intended_recipient
 // maybe it should actually inherit from DitransitiveTransfer, and then bind the v.m differently?
 construction CentralActiveDitransitiveCreation
-	subcase of ActiveDitransitive
-	meaning: Creation
-	 constraints
-	   self.m <--> v.m
-	   self.m.creator <--> ed.profiledParticipant
-	   self.m.intended_recipient <--> np1.m
-	   self.m.createdThing <--> np2.m
-	   
-	   
+  subcase of ActiveDitransitive
+  meaning: Creation
+    constraints
+      self.m <--> v.m
+      self.m.creator <--> ed.profiledParticipant
+      self.m.intended_recipient <--> np1.m
+      self.m.createdThing <--> np2.m
+
+
 // taken from base, 3/23/16, testing
 // "he tossed John the ball"
 construction ActiveDitransitiveCauseMotion
   subcase of ActiveDitransitiveTransfer
   meaning
-    evokes CauseMotion as cm //formerly CauseMotionPathAction 
+    evokes CauseMotion as cm //formerly CauseMotionPathAction
     constraints
       cm <--> v.m
       cm.process1 <--> self.m.process1
-	  self.m.getter <--> cm.process2.spg.goal  
-	  self.m.theme <--> cm.affectedEntity // added (ST, 3/23/16)
+      self.m.getter <--> cm.process2.spg.goal
+      self.m.theme <--> cm.affectedEntity // added (ST, 3/23/16)

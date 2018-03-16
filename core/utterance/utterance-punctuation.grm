@@ -1,36 +1,29 @@
-package utterance
+package utterance-punctuation
+import base
 
-
- 		
-            
-general construction EMark  
-    subcase of Word
+general construction EMark
+  subcase of Word
 
 construction IMark
-   subcase of EMark
-   form
-      constraints
-         self.f.orth <-- "!"
-         
+  subcase of EMark
+  form
+    constraints
+      self.f.orth <-- "!"
+
 construction PMark
-	subcase of EMark
-	form
-	  constraints
-	    self.f.orth <-- "."         
+  subcase of EMark
+  form
+    constraints
+      self.f.orth <-- "."
 
 construction Comma
-	subcase of Word
-	form
-	   constraints
-	      self.f.orth <-- ","
+  subcase of Word
+  form
+    constraints
+      self.f.orth <-- ","
 
 construction QMark
-    subcase of EMark 
-    form 
-        constraints
-            self.f.orth <-- "?" 
-
-
-
-
-         			
+  subcase of EMark
+  form
+    constraints
+      self.f.orth <-- "?"

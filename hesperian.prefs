@@ -6,12 +6,8 @@ GRAMMAR_EXTENSIONS = grm
 
 PACKAGE_NAME ::==
     hesperian
-    location
-    universal-schemas
-    universal-constructions
-    motion
+    base
     utterance-text
-    serial
 ;
 
 ONTOLOGY_PATHS ::==

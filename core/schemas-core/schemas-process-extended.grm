@@ -1,0 +1,130 @@
+package schemas-process-extended
+import base
+
+// Manipulation: "grasp", "pick up", "push on", etc.
+schema Manipulation
+  subcase of MotorControl, TransitiveAction //?
+  roles
+    instrument: RD
+    bodypart_of_agent // which bodypart is used for manipulation
+    manipulated_entity: RD
+  constraints
+    // manipulated_entity <--> protagonist2
+    actionary <-- @establishhold
+    manipulated_entity <--> patient
+    agent <--> actor
+
+
+// Should be more general type, e.g. "MeasureProcess"
+// The ticket costs 6 bucks, the box weighs 5 pounds, etc.
+// This is distinct from "weigh-assess" ("he weighed the evidence", "he weighed the box")
+schema Measure // Interim (ST, 10/14/15)
+  subcase of Process
+  roles
+    object: RD
+    measurement: RD //: QuantifiedRD
+    dimension
+
+schema MeasurePredication
+  subcase of Measure //, Stasis
+  roles
+    object: RD
+    measurement: RD //: QuantifiedRD
+    dimension
+    state
+  constraints
+    object <--> protagonist
+    state <--> measurement
+    //measurement.ontological-category <-- @units
+
+// "he weighed the box"
+schema MeasureProcess
+  subcase of Measure, TransitiveAction
+  roles
+    object: RD
+    measurement: RD //: QuantifiedRD
+    dimension
+  constraints
+    protagonist.ontological-category <= @agent // Pretty sure this is correct
+    object <--> patient
+
+// Creation (he created the box)
+schema Creation
+  subcase of TransitiveAction
+  roles
+    creator
+    createdThing: RD
+    intended_recipient // "he built the house FOR John"
+    location // "he built the model AT the workshop"
+    tool // "he built the chair with the hammer"
+  constraints
+    protagonist <--> creator
+    createdThing <--> patient
+    createdThing.ontological-category <-- @physicalEntity
+
+
+// try, attempt
+schema Attempt
+  subcase of EmbeddedEventProcessSimple
+  roles
+    agent
+    goal
+  constraints
+    agent <--> protagonist
+    goal <--> event
+
+
+// Communication: he said that...
+schema Communication
+  subcase of Process
+  roles
+    speaker: RD
+    listener: RD
+    content
+    media
+  constraints
+    speaker <--> protagonist
+    listener.ontological-category <-- @sentient
+
+// he thought that ...
+schema Thought
+  subcase of Process
+  roles
+    thinker: RD
+    content
+  constraints
+    thinker <--> protagonist
+    thinker.ontological-category <-- @sentient
+
+
+// cause harm, testing relation between transitive action and causation
+schema CauseHarm
+  subcase of CausalTransitiveAction
+  roles
+    affectedProcess: ExperienceHarm
+    victim: RD
+  constraints
+    victim <--> patient
+    protagonist.ontological-category <= @animate
+    victim.ontological-category <-- @animate
+
+
+// cause harm, testing relation between transitive action and causation
+schema Infect
+  subcase of CausalTransitiveAction
+  roles
+    affectedProcess: ExperienceHarm
+    victim: RD
+  constraints
+    victim <--> patient
+    causalAgent.ontological-category <= @disease // uses unidirectional constraint
+    victim.ontological-category <-- @animate
+
+// some Protagonist experiences harm, e.g. "the man broke his arm"
+schema ExperienceHarm
+  subcase of Process
+  roles
+    bodypart
+    experiencer: RD
+  constraints
+    experiencer <--> protagonist

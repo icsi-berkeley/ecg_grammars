@@ -1,146 +1,80 @@
-/*
-Package active-transitives
-This package imports the transitives package. The transitives package
-defines most of the semantics and bindings for transitive constructions,
-and the transitive package uses a notion of "ActiveTransitive" and more frame-specific
-transitive cxns to create cxns like "ActiveTransitivePerception".
+// This package depends on the transitives package. The transitives package
+// defines most of the semantics and bindings for transitive constructions,
+// and the transitive package uses a notion of "ActiveTransitive" and more frame-specific
+// transitive cxns to create cxns like "ActiveTransitivePerception".
+//
+// Example sentences (as of 3/4/16):
+// -he saw the box
+// -he weighed the box
+// -he entered the room
+// -he painted the house blue
+// -he moved the box
+// -he pushed the box into the room
+// -he built the house
+// -he picked up the box
+// -he gave the box to the man
 
-Notes:
--It's possible that this 
-
-Example sentences (as of 3/4/16):
--he saw the box
--he weighed the box
--he entered the room
--he painted the house blue
--he moved the box
--he pushed the box into the room
--he built the house
--he picked up the box
--he gave the box to the man
-
-*/
-
-package active-transitives
-import transitives
-
+package argstruct
+import base
 
 //GENERAL TRANSITIVE CONSTRUCTIONS
-general construction ActiveTransitive  // 5/14/13
+general construction ActiveTransitive
   subcase of ArgumentStructure
   constructional
     constituents
       np: NP [1.0, .9]   // probabilities, check this !!
     constraints
       v.argform <-- Transitive
-      v.voice <-- NotPassive  // 2/1/13
+      v.voice <-- NotPassive
   form
-    constraints 
-      v.f before np.f
-  meaning: Process  //  5/14/13
-     evokes A123 as s //5/14/13 *****************
     constraints
-      s.a1 <--> ed.profiledParticipant	//2/20/13 
-      s.a2 <--> np.m 
-	  v.m.p-features.voice <-- @active // 2/1/13 
+      v.f before np.f
+  meaning: Process
+    evokes A123 as s
+    constraints
+      s.a1 <--> ed.profiledParticipant
+      s.a2 <--> np.m
+      v.m.p-features.voice <-- @active
 
-   
+general construction CoreActiveTransitive
+  subcase of ActiveTransitive
+  meaning
+    constraints
+      self.m <--> v.m
 
-general construction CoreActiveTransitive  // 8/21/13
-	subcase of ActiveTransitive
-	meaning
-		constraints
-		self.m <--> v.m
-		
+// e.g. "he saw the block"
+construction ActiveTransitivePerception
+  subcase of CoreActiveTransitive, TransitivePerception
 
-construction ActiveTransitivePerception  // 8/21/13 he saw the block
-	subcase of CoreActiveTransitive, TransitivePerception
+// e.g. he entered the room
+construction ActiveTransitiveChangeLocation
+  subcase of CoreActiveTransitive, TransitiveChangeLocation
 
-
-
-// Should be more general: "transitive measure?"
-// x costs {}, x weighs {}, etc.
-// A separate construction is necessary for: "he weighed the box"
-// No Passive version of this construction: "2 pounds was weighed by the box" doesn't make sense
-// But a passive version is necessary for agentive-measurement.
-construction ActiveTransitiveMeasure  // Interim (ST, 10/14/15)
-	subcase of CoreActiveTransitive
-	constructional 
-	  constituents
-	    np: UnitsNP //QuantityNP [1.0, .9]
-	meaning: MeasurePredication
-	  constraints
-		//self.m <--> v.m
-		s.a1 <--> self.m.object	
-		np.m <--> self.m.measurement
-		self.m.dimension <--> self.m.measurement.extras.quantity.property
-		//self.m.measurement.extras.quantity.units <-- @units
-
-// he broke his arm (reflexive case)
-// these can't really be passivized
-/*
-construction ActiveTransitiveExperienceHarm
-	subcase of CoreActiveTransitive
-	meaning: ExperienceHarm
-	  constraints
-	    np.m <--> self.m.bodypart
-	    s.a1 <--> self.m.experiencer
-	*/
-		
-// he entered the room
-construction ActiveTransitiveChangeLocation 
-	subcase of CoreActiveTransitive, TransitiveChangeLocation
-
-/** Added from dropbox "robots" by Sean Trott, 2/4/15. */
-general construction ActiveTrans_CauseChangeLocation 
+general construction ActiveTrans_CauseChangeLocation
   subcase of ActiveTransitive, TransitiveCauseEffect
 
 // he moved the box
 construction ActiveTrans_CauseChangeLocation_mp
-	subcase of ActiveTransitive, Trans_CauseChangeLocation_mp
+  subcase of ActiveTransitive, Trans_CauseChangeLocation_mp
 
 
-
-/*
-construction ActiveTrans_CauseEffect
-	subcase of CoreActiveTransitive, TransitiveCauseEffect
-*/
-
-
-// he pushed the box into the room
+// e.g. "he pushed the box into the room"
 construction ActiveTrans_CauseChangeLoc_causalAction
-	subcase of ActiveTransitive, Trans_CauseChangeLoc_causalAction
-	
-/* he pushed the box
-construction ActiveTrans_CauseChangeLocation_causeMotion
-	subcase of CoreActiveTransitive, Trans_CauseChangeLocation_causeMotion
-*/
-
-// "he created the box"
-construction ActiveTransitiveCreation
-  subcase of CoreActiveTransitive, TransitiveCreation
-  form 
-   constraints
-     np.f before for.f
-     np.f before at.f
-
-// he picked up the box
-construction ActiveTransitiveManipulation
-	subcase of CoreActiveTransitive, TransitiveManipulation
+  subcase of ActiveTransitive, Trans_CauseChangeLoc_causalAction
 
 
-// he gave the box to the man     
+// e.g. "he gave the box to the man"
 construction ActiveTransitiveObjectTransfer
-	subcase of CoreActiveTransitive, TransitiveObjectTransfer
+  subcase of CoreActiveTransitive, TransitiveObjectTransfer
 
 
-// he gave the box to the man     
+// e.g "he gave the box to the man"
 construction ActiveTransitivePossession
-	subcase of CoreActiveTransitive, TransitivePossession
-	
-// he provided the service 
+  subcase of CoreActiveTransitive, TransitivePossession
+
+// e.g. "he provided the service"
 construction ActiveTransitiveSupply
-	subcase of CoreActiveTransitive, TransitiveSupply
-	form
-	 constraints
-	   np.f before to.f
+  subcase of CoreActiveTransitive, TransitiveSupply
+  form
+    constraints
+      np.f before to.f

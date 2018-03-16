@@ -1,269 +1,246 @@
-package core
+package preposition
+import base
 
 general construction Preposition
    subcase of Word
 
-general construction AccompanimentPreposition // the man with the guitar
-	subcase of Preposition
-	meaning: Accompaniment
-   
- general construction InstrumentPreposition
- 	subcase of Preposition
- 	meaning: Instrument
- 
- general construction SpatialPreposition
-   subcase of Preposition
-   meaning: TrajectorLandmark  
+// e.g. the man with the guitar
+general construction AccompanimentPreposition
+  subcase of Preposition
+  meaning: Accompaniment
 
+general construction InstrumentPreposition
+  subcase of Preposition
+  meaning: Instrument
+
+general construction SpatialPreposition
+  subcase of Preposition
+  meaning: TrajectorLandmark
 
 general construction PathPreposition
-   subcase of SpatialPreposition 
-   meaning: SPG 
-
+  subcase of SpatialPreposition
+  meaning: SPG
 
 general construction LocativePreposition
-   	subcase of SpatialPreposition
+  subcase of SpatialPreposition
+
+construction IN-Locative
+  subcase of LocativePreposition
+  form
+    constraints
+      self.f.orth <-- "in"
+  meaning: TrajectorLandmark // inherited
+    evokes BoundedObject as bo
+    constraints
+      self.m.landmark.ontological-category <-- @container
+      //self.m.landmark <--> bo.boundedObject
+      self.m.landmark.extensions <--> bo
+      self.m.profiledArea <--> bo.interior
 
 
-construction IN-Locative // 11/4/13
-   subcase of LocativePreposition
-   form
-      constraints
-         self.f.orth <-- "in" 
-   meaning: TrajectorLandmark // inherited
-     evokes BoundedObject as bo
-     constraints
-         self.m.landmark.ontological-category <-- @container  // 2/22/14 commented out for m4 test
-         //self.m.landmark <--> bo.boundedObject
-         self.m.landmark.extensions <--> bo // testing!
-         self.m.profiledArea <--> bo.interior
-
-//Testing
-schema Support 
-	subcase of TrajectorLandmark
-	roles
-	  supporter
-	  supported
-	constraints
-	  landmark <--> supporter
-	  supported <--> trajector
- 
- construction On-Prep	
- 	subcase of LocativePreposition
- 	form
- 	 constraints
- 	   self.f.orth <-- "on"
+construction On-Prep
+  subcase of LocativePreposition
+  form
+    constraints
+      self.f.orth <-- "on"
     meaning: Support
       constraints
-       self.m.landmark.ontological-category <-- @physicalEntity
-       self.m.profiledArea <--> self.m.supporter
-             
- 
- construction AT-Locative
-   subcase of LocativePreposition 
-   form
-      constraints
-         self.f.orth <-- "at"
-   meaning 
-      evokes Proximity as p
-      constraints
-       self.m.landmark.ontological-category <--@region
-       self.m.profiledArea <--> p.proximalArea 
-       self.m.landmark <--> p.center   
+        self.m.landmark.ontological-category <-- @physicalEntity
+        self.m.profiledArea <--> self.m.supporter
+
+
+construction AT-Locative
+  subcase of LocativePreposition
+  form
+    constraints
+      self.f.orth <-- "at"
+  meaning
+    evokes Proximity as p
+    constraints
+      self.m.landmark.ontological-category <--@region
+      self.m.profiledArea <--> p.proximalArea
+      self.m.landmark <--> p.center
 
 
 construction TO-Path
-   subcase of PathPreposition
-   form
-      constraints
-         self.f.orth <-- "to"
-   meaning: SPG  
-     constraints
-        self.m.landmark <--> self.m.goal
- 
- 
- // through the room
+  subcase of PathPreposition
+  form
+    constraints
+      self.f.orth <-- "to"
+  meaning: SPG
+    constraints
+      self.m.landmark <--> self.m.goal
+
+
+// e.g. through the room
 construction THROUGH-Path
-   subcase of PathPreposition
-   form
-      constraints
-         self.f.orth <-- "through"
-   meaning: SPG  
-     constraints
-        self.m.landmark <--> self.m.path  
-        
-// did x to do y
-// add more semantics here?
+  subcase of PathPreposition
+  form
+    constraints
+      self.f.orth <-- "through"
+  meaning: SPG
+    constraints
+      self.m.landmark <--> self.m.path
+
+// Note: add more semantics here?
+// e.g. did x to do y
 construction TO-Purpose
-   subcase of Preposition
-   form
-      constraints
-         self.f.orth <-- "to" 
- 
+  subcase of Preposition
+  form
+    constraints
+      self.f.orth <-- "to"
+
 construction FROM-Path
-   subcase of PathPreposition
-   form
-      constraints
-         self.f.orth <-- "from"
-   meaning: SPG  
-     constraints
-        self.m.landmark <--> self.m.source        
+  subcase of PathPreposition
+  form
+    constraints
+      self.f.orth <-- "from"
+  meaning: SPG
+    constraints
+      self.m.landmark <--> self.m.source
 
 construction AGAINST-Path
-   subcase of PathPreposition
-   form
-      constraints
-         self.f.orth <-- "against"
-   meaning: SPG  
-     evokes Contact as c
-     constraints
-        self.m.landmark <--> self.m.goal   
-        self.c.entity1 <--> self.m.trajector
-        self.c.entity2 <--> self.m.landmark     
+  subcase of PathPreposition
+  form
+    constraints
+      self.f.orth <-- "against"
+  meaning: SPG
+    evokes Contact as c
+    constraints
+      self.m.landmark <--> self.m.goal
+      self.c.entity1 <--> self.m.trajector
+      self.c.entity2 <--> self.m.landmark
 
 
 construction OFF-Path
-   subcase of PathPreposition
-   form
-      constraints
-         self.f.orth <-- "off"
-   meaning: SPG  
-     constraints
-        self.m.landmark <--> self.m.source 
+  subcase of PathPreposition
+  form
+    constraints
+      self.f.orth <-- "off"
+  meaning: SPG
+    constraints
+      self.m.landmark <--> self.m.source
 
-construction  INTO-Path // container 11/5/13
-   subcase of PathPreposition
-   form
-      constraints
-         self.f.orth <-- "into"
-   meaning: SPG  
-      evokes BoundedObject as bo
-      constraints 
-         //self.m.landmark.ontological-category <-- @container           // 2/22/14 commented out for m4 test 
-         //self.m.landmark <--> bo.boundedObject
-         self.m.landmark.extensions <--> bo //testing!
-         self.m.goal <--> bo.interior
-         self.m.source <--> bo.exterior
- 
- /* 
-construction  IN-Path // container 11/5/13
-   subcase of PathPreposition
-   form
-      constraints
-         self.f.orth <-- "in"
-   meaning: SPG  
-      evokes BoundedObject as bo
-      constraints 
-         self.m.landmark.ontological-category <-- @container           // 2/22/14 commented out for m4 test 
-         //self.m.landmark <--> bo.boundedObject
-         self.m.landmark.extensions <--> bo //testing!
-         self.m.goal <--> bo.interior
-         self.m.source <--> bo.exterior
-*/
+construction  INTO-Path
+  subcase of PathPreposition
+  form
+    constraints
+      self.f.orth <-- "into"
+  meaning: SPG
+    evokes BoundedObject as bo
+    constraints
+      //self.m.landmark <--> bo.boundedObject
+      self.m.landmark.extensions <--> bo //testing!
+      self.m.goal <--> bo.interior
+      self.m.source <--> bo.exterior
+
 
 construction NEAR-Locative
-   subcase of LocativePreposition 
-   form
-      constraints
-         self.f.orth <-- "near"
-   meaning 
-      evokes Proximity as p
-      constraints
-       self.m.landmark.ontological-category <--@region
-       self.m.profiledArea <--> p.proximalArea 
-       self.m.landmark <--> p.center   
+  subcase of LocativePreposition
+  form
+    constraints
+      self.f.orth <-- "near"
+  meaning
+    evokes Proximity as p
+    constraints
+      self.m.landmark.ontological-category <--@region
+      self.m.profiledArea <--> p.proximalArea
+      self.m.landmark <--> p.center
 
 
 construction BEHIND-Path
-	subcase of PathPreposition
-	form
-	  constraints
-	    self.f.orth <-- "behind"
-	meaning: SPG
-	  evokes Proximity as p
-	  evokes Sidedness as side
-	    constraints
-	  	side.back <--> self.m.goal
-	  	self.m.landmark <--> self.side.obj
-	  	self.m.landmark <--> self.p.center
-	  	self.m.goal <--> p.proximalArea
-	  	self.m.goal.ontological-category <-- @region 
- 
-// taken from Base, 3/30/15  
+  subcase of PathPreposition
+  form
+    constraints
+      self.f.orth <-- "behind"
+  meaning: SPG
+    evokes Proximity as p
+    evokes Sidedness as side
+    constraints
+      side.back <--> self.m.goal
+      self.m.landmark <--> self.side.obj
+      self.m.landmark <--> self.p.center
+      self.m.goal <--> p.proximalArea
+      self.m.goal.ontological-category <-- @region
+
+
 construction TO-Infinitive-Marker
-	subcase of Word
-	form
-	  constraints
-	    self.f.orth <-- "to"
+  subcase of Word
+  form
+    constraints
+      self.f.orth <-- "to"
 
 
 construction AS-Marker
-   subcase of Preposition
-   form
-      constraints
-         self.f.orth <-- "as"
-	    
-construction FROM-Marker  // FDArgStructFrom
-   subcase of Preposition
-   form
-      constraints
-         self.f.orth <-- "from"
+  subcase of Preposition
+  form
+    constraints
+      self.f.orth <-- "as"
 
-construction With-Instrument  // FDArgStructFrom
-   subcase of InstrumentPreposition
-   form
-      constraints
-         self.f.orth <-- "with"
+// FDArgStructFrom
+construction FROM-Marker
+  subcase of Preposition
+  form
+    constraints
+      self.f.orth <-- "from"
 
-construction With-Accompaniment  // FDArgStructFrom
-   subcase of AccompanimentPreposition
-   form
-      constraints
-         self.f.orth <-- "with"
-	    
+// FDArgStructFrom
+construction With-Instrument
+  subcase of InstrumentPreposition
+  form
+    constraints
+      self.f.orth <-- "with"
+
+// FDArgStructFrom
+construction With-Accompaniment
+  subcase of AccompanimentPreposition
+  form
+    constraints
+      self.f.orth <-- "with"
+
 general construction ModifierPreposition
-	subcase of Preposition
-	meaning: Modification
+  subcase of Preposition
+  meaning: Modification
 
 construction OF-Modifier
-	subcase of ModifierPreposition
-	form
-	  constraints
-	    self.f.orth <-- "of"
+  subcase of ModifierPreposition
+  form
+    constraints
+      self.f.orth <-- "of"
 
 // 1/5/16 (ST) added from base
 construction BY-Agent
-	subcase of Preposition
-	form
-	  constraints
-	    self.f.orth <-- "by"
-	    
+  subcase of Preposition
+  form
+    constraints
+      self.f.orth <-- "by"
+
 // For-preposition ("recipient"), e.g. "he built it for the man".
 construction For-Recipient
-	subcase of Preposition
-	form 
-	 constraints
-	   self.f.orth <-- "for"
-	   
+  subcase of Preposition
+  form
+    constraints
+      self.f.orth <-- "for"
+
 // TEmporal Phrases
 general construction TemporalPreposition
-	subcase of Preposition
-	meaning: TemporalModifier
-	
+  subcase of Preposition
+  meaning: TemporalModifier
+
 construction FOR-Temporal
-	subcase of TemporalPreposition
-	form
-	 constraints
-	   self.f.orth <-- "for"
-    meaning
-     constraints
-       self.m.telicity <-- @ongoing
+  subcase of TemporalPreposition
+  form
+    constraints
+      self.f.orth <-- "for"
+  meaning
+    constraints
+      self.m.telicity <-- @ongoing
 
 construction IN-Temporal
-	subcase of TemporalPreposition
-	form
-	 constraints
-	   self.f.orth <-- "in"
-    meaning
-     constraints
-       self.m.telicity <-- @bounded       
+  subcase of TemporalPreposition
+  form
+    constraints
+      self.f.orth <-- "in"
+  meaning
+    constraints
+      self.m.telicity <-- @bounded

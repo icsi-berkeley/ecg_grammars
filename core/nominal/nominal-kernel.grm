@@ -1,23 +1,78 @@
-package core
-import adjectives
+// This file contains  constructions for kernel noun phrases.
+//
+// The assumption is that each NP has an RD structure as its meaning.
+// This implies that proper nouns, pronouns, and mass/plural nouns make
+// RD their meaning. For sake of uniformity, we also assume that common
+// count nouns (which are not NPs) also denote an RD.
 
-/******************************************************************************
-This file contains  constructions for kernel noun phrases.
+package nominal
+import base
 
-The assumption is that each NP has an RD structure as its meaning.
-This implies that proper nouns, pronouns, and mass/plural nouns make
-RD their meaning. For sake of uniformity, we also assume that common
-count nouns (which are not NPs) also denote an RD.
+// both RD and Nominal
+general construction Kernel
+  subcase of HasNominalFeatures
+  meaning: RD
 
 
-******************************************************************************/
-
- 
-construction  KernelAdj // literal case
-  subcase of Kernel 
+// Not sure that this is the analysis we want, but it works: "cats are small", "boxes are red"
+construction UndeterminedNP_Kernel
+  subcase of UndeterminedNP
   constructional
     constituents
-      ap: Adjective //PropertyAdjective // not optional PropertyAdj 4/26/13
+      k: Kernel
+  meaning: RD
+    constraints
+      self.m.givenness <-- @typeIdentifiable // Michael
+      self.m.bounding <-- @indeterminate
+      self.m <--> k.m
+
+
+// also subs Specifier3, QuantityNP(2)
+general construction SpecifierPlusKernel
+  subcase of NP
+
+
+//also see Determiner, Wh, Possesive PN
+general construction Specifier2PlusKernel
+  subcase of SpecifierPlusKernel
+  constructional
+    constituents
+      s: SpecifierPhrase
+      k: Kernel
+    constraints
+      self.features <--> k.features
+      self.features <--> s.features
+  form
+    constraints
+      s.f before k.f
+  meaning
+    constraints
+      self.m <--> k.m
+      self.m <--> s.m
+
+construction DeterminerPlusKernel
+  subcase of Specifier2PlusKernel
+  constructional
+    constituents
+      s: Determiner
+
+construction PossessivePronounPlusKernel
+  subcase of Specifier2PlusKernel
+  constructional
+    constituents
+      s: PossessivePronoun
+      k: Kernel
+  meaning
+    constraints
+      s.m <-> k.m
+
+
+// literal case
+construction KernelAdj
+  subcase of Kernel
+  constructional
+    constituents
+      ap: Adjective
       n: Nominal
     constraints
       self.features <--> n.features
@@ -29,15 +84,13 @@ construction  KernelAdj // literal case
       self.m <--> n.m
       self.m <--> ap.m.modifiedThing
       ap.m.temporality <-- @atemporal
-      //ap.m.property <--> n.m.scale  //4/26/13  ***** n.m.scale is implicit, e.g inch
-      //ap.m.domain <--> n.m.ontological-category //constraint
- 
- // the running man
- construction  KernelParticiple //   10/16/13
-  subcase of Kernel 
+
+// e.g. the running man
+construction  KernelParticiple
+  subcase of Kernel
   constructional
     constituents
-      ap: Verb // is this right?
+      ap: Verb
       n: Nominal
     constraints
       self.features <--> n.features
@@ -50,48 +103,27 @@ construction  KernelAdj // literal case
     constraints
       self.m <--> n.m
       self.m <--> pm.modifiedThing
-      ap.m <--> pm.modifier 
-      //ap.m.property <--> n.m.scale  //4/26/13  ***** n.m.scale is implicit, e.g inch
-      //ap.m.domain <--> n.m.ontological-category //constraint NOT here    
+      ap.m <--> pm.modifier
 
 
- // the man near the box
+// e.g. the man near the box
 construction Kernel-LocPP
-   subcase of Kernel
-   constructional
-     constituents
-       n: Kernel
-       pp: Loc-PP
-   form
-     constraints
-       n.f meets pp.f
-   meaning
-     constraints 
-       self.m <--> n.m
-       n.m <--> pp.m.trajector
-       pp.m.temporality <-- @atemporal
+  subcase of Kernel
+  constructional
+    constituents
+      n: Kernel
+      pp: Loc-PP
+  form
+    constraints
+      n.f meets pp.f
+  meaning
+    constraints
+      self.m <--> n.m
+      n.m <--> pp.m.trajector
+      pp.m.temporality <-- @atemporal
 
 
-
-
-// the man with the coat
-/*
-construction Kernel-AccompanimentPP
-   subcase of Kernel
-   constructional
-     constituents
-       n: Kernel
-       pp: AccompanimentPP
-   form
-     constraints
-       n.f meets pp.f
-   meaning
-     constraints 
-       self.m <--> n.m
-       n.m <--> pp.m.participant
-*/
-
-// bare kernel, e.g. "man"       
+// bare kernel, e.g. "man"
 construction  KernelNoAdj // no adjective
   subcase of Kernel
   constructional
@@ -104,83 +136,57 @@ construction  KernelNoAdj // no adjective
       self.m <--> n.m
 
 
-
 // Modifier NP-PP
 // general form: "the {X} of the {Y}
 general construction Kernel-ModifierPP
-	subcase of Kernel
-	constructional
-	  constituents
-	    k: Nominal
-	    mod: ModifierPP
-	  constraints
+  subcase of Kernel
+  constructional
+    constituents
+      k: Nominal
+      mod: ModifierPP
+    constraints
        self.features <--> k.features
-	form
-	  constraints
-	    k.f before mod.f
-	    
+  form
+    constraints
+      k.f before mod.f
+
 
 // genitive: dependent noun modifies head
-// the weight of the box
-// the color of the building
+// e.g. the weight of the box
+// e.g. the color of the building
 construction PropertyModifierPP
-	subcase of Kernel-ModifierPP
-	meaning
-	  constraints
-	    k.m.ontological-category <-- @object-property
-	   self.m <--> mod.np.m
-	   k.m <--> mod.m.modifier
+  subcase of Kernel-ModifierPP
+  meaning
+    constraints
+      k.m.ontological-category <-- @object-property
+      self.m <--> mod.np.m
+      k.m <--> mod.m.modifier
 
 
 // generic part of whole cxn: "the {PART} of {WHOLE}"
 // "a member of the crew"
 construction Part-of-Whole
-	subcase of Kernel-ModifierPP
-	constructional
-	  constraints
-	    self.features <--> k.features
-	meaning
-	  evokes PartWhole as pw
-	  constraints
-	    k.m.ontological-category <-- @part
-	   //self.m <--> mod.np.m	
-	   self.m <--> k.m
-	    self.m <--> self.pw.part
-  		mod.np.m <--> self.pw.whole
-  		self.m.extensions <--> self.pw	
+  subcase of Kernel-ModifierPP
+  constructional
+    constraints
+      self.features <--> k.features
+  meaning
+    evokes PartWhole as pw
+    constraints
+      k.m.ontological-category <-- @part
+      self.m <--> k.m
+      self.m <--> self.pw.part
+      mod.np.m <--> self.pw.whole
+      self.m.extensions <--> self.pw
 
-	   
+
 // 10 gallons of fuel
 construction QuantityOfUnitType
-	subcase of Kernel-ModifierPP
-	constructional
-	 constituents
-	  k: UnitType
-	  mod: ModifierPP
-    meaning
-     constraints
-       self.m <--> k.m
-	
-	  
-// box of steel 
-construction NP-ModifierPP-Material 
-  subcase of Kernel-ModifierPP  
+  subcase of Kernel-ModifierPP
+  constructional
+    constituents
+      k: UnitType
+      mod: ModifierPP
   meaning
-  	evokes Artifact as art  // hack, seems to be needed
-  	constraints
-  	  self.m <--> k.m  // percolate 
-  	  k.m.ontological-category <-- @artifact // applies only to artifacts
-      mod.np.m.ontological-category <-- @material
-      art.material <--> mod.np.m
-      self.m.extensions <--> art
-
- // box of beer, box of blocks, etc.     
-construction NP-ModifierPP-Container
-  subcase of Kernel-ModifierPP  
-  meaning
-  	evokes Container as cont  // hack, seems to be needed
-  	constraints
-  	  self.m <--> k.m  // percolate 
-  	  k.m.ontological-category <-- @container // applies only to artifacts
-      cont.contents <--> mod.np.m
-      self.m.extensions <--> cont    
+    constraints
+      self.m <--> k.m

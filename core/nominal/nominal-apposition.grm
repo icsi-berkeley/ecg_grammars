@@ -1,92 +1,86 @@
-
-package relative-clause
-package core
+// Formerly called the relative-clause package 2/25/18 VR
+package nominal-apposition
+import base
 
 construction RelativizedNP
-	subcase of NP
-	constructional
-	 constituents
-	  core: NP
-	  specific: That-Subordinating
-	  description: VP
-	 constraints
-	   self.features <--> core.features
-       core.features.person <--> description.features.person
-       core.features.number <--> description.features.number
-   form
+  subcase of NP
+  constructional
+    constituents
+      core: NP
+      specific: That-Subordinating
+      description: VP
+  constraints
+    self.features <--> core.features
+    core.features.person <--> description.features.person
+    core.features.number <--> description.features.number
+  form
     constraints
       core.f meets specific.f
       core.f before description.f
-   meaning: RD//RelativizedRD 
-   	constraints
-   	  self.m <--> core.m
-   	  self.m.extras.event <--> description.m.ed
-   	  description.ed.modifiedThing <--> core.m
-   	  //description.ed.profiledParticipant <--> core.m 
+  meaning: RD
+    constraints
+      self.m <--> core.m
+      self.m.extras.event <--> description.m.ed
+      description.ed.modifiedThing <--> core.m
+      //description.ed.profiledParticipant <--> core.m // 11/2/16 VR, needed for bridging schemas
 
-package apposition   	  
 construction Embedded-WH-Clause
-	constructional
-	  constituents
-	    optional subj: WH-NP
-	    optional be: BeCopula
-	    modifier: NP
-	
+  constructional
+    constituents
+      optional subj: WH-NP
+      optional be: BeCopula
+      modifier: NP
 
 construction WH-Clause
-	constructional 
-	 constituents
-	   subj: WH-NP
-	   fin: VP
-	meaning
-	  constraints
-	    subj.m <--> fin.ed.profiledParticipant
-	    subj.m <--> fin.ed.modifiedThing
-	    //subj.m.extras.event <--> fin.ed
-	    
-construction NP-EmbeddedClause
-	subcase of NP
-	constructional
-	  constituents
-	    head: NP
-	    c1: Comma
-	    embedded: WH-Clause
-	    c2: Comma
-	  constraints
-	    self.features <--> head.features
-	form
-	  constraints
-	    head.f before c1.f
-	    c1.f before embedded.f
-	    embedded.f before c2.f
-	meaning
-	  constraints
-	    self.m <--> head.m
-	    head.m <--> embedded.subj.m
-	    //ri.first <--> head.m
-	    //ri.second <--> embedded.modifier.m
+  constructional
+    constituents
+      subj: WH-NP
+      fin: VP
+  meaning
+    constraints
+      subj.m <--> fin.ed.profiledParticipant
+      subj.m <--> fin.ed.modifiedThing
 
+construction NP-EmbeddedClause
+  subcase of NP
+  constructional
+    constituents
+      head: NP
+      c1: Comma
+      embedded: WH-Clause
+      c2: Comma
+    constraints
+      self.features <--> head.features
+  form
+    constraints
+      head.f before c1.f
+      c1.f before embedded.f
+      embedded.f before c2.f
+  meaning
+    constraints
+      self.m <--> head.m
+      head.m <--> embedded.subj.m
 
 
 construction NP-Apposition
-	subcase of NP
-	constructional
-	  constituents
-	    head: NP
-	    c1: Comma
-	    embedded: NP
-	    c2: Comma 
-	  constraints 
-	   self.features <--> head.features
-	form
-	 constraints
-	  	 head.f before c1.f
-	    c1.f before embedded.f
-	    embedded.f before c2.f
-	meaning
-	 evokes RefIdentity as ri
-	 constraints
-	   self.m <--> head.m
-	   ri.first <--> head.m
-	   ri.second <--> embedded.m
-	   ri.temporality <-- @atemporal
+  subcase of NP
+  constructional
+    constituents
+      head: NP
+      c1: Comma
+      embedded: NP
+      c2: Comma
+    constraints
+      self.features <--> head.features
+  form
+    constraints
+      head.f before c1.f
+      c1.f before embedded.f
+      embedded.f before c2.f
+  meaning
+    evokes RefIdentity as ri
+    constraints
+      self.m <--> head.m
+      ri.first <--> head.m
+      ri.second <--> embedded.m
+      ri.temporality <-- @atemporal
