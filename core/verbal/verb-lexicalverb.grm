@@ -1,297 +1,206 @@
-package core
-import auxiliaries
-
+package verb
+import base
 
 // STAGE VERBS
 general construction StageVerb
-	subcase of LexicalVerb
-	constructional 
-	 constraints
-	   self.verbkind <-- Stage
-	   self.expectedVerbForm <-- PresentParticipleOrInfinitive 
+  subcase of LexicalVerb
+  constructional
+    constraints
+      self.verbkind <-- Stage
+      self.expectedVerbForm <-- PresentParticipleOrInfinitive
 
 
 construction StageVerbType
-	subcase of StageVerb, LexicalVerbType
-	constructional
-	  constraints
-	    self.expectedVerbForm <-- PresentParticipleOrInfinitive
-	meaning
-	  constraints
-	    self.m.actionary <-- @stage
+  subcase of StageVerb, LexicalVerbType
+  constructional
+    constraints
+      self.expectedVerbForm <-- PresentParticipleOrInfinitive
+  meaning
+    constraints
+      self.m.actionary <-- @stage
 
-
-// Used for measure/dimension: "the box weighs 5 pounds"
-construction MeasurePredicationType
-	subcase of LexicalVerbType
-	meaning: MeasurePredication
-	  constraints
-	    self.m.actionary <-- @process
-	    self.m.dimension <-- @measure
-
-
-// Used for transitive measuring: "he weighed the box"
-construction MeasureProcessType
-	subcase of LexicalVerbType
-	meaning: MeasureProcess
-	  constraints
-	    self.m.actionary <-- @process
-	    self.m.dimension <-- @measure
 
 // State Change Type: become, etc.
 construction ChangeType
-	subcase of LexicalVerbType
-	constructional 
-	  constraints
-	    self.argform <-- ArgForm
-	meaning: Change
-	  constraints
-	    self.m.actionary <-- @change
-	    //self.m.state.property <-- @object-property
-	    //self.m.state.oldValue <-- @propValue
-	
+  subcase of LexicalVerbType
+  constructional
+    constraints
+      self.argform <-- ArgForm
+  meaning: Change
+    constraints
+      self.m.actionary <-- @change
+      //self.m.state.property <-- @object-property
+      //self.m.state.oldValue <-- @propValue
+
 
 // provide, supply
 construction SupplyType
-	subcase of LexicalVerbType
-	constructional 
-	  constraints
-	    self.argform <-- Transitive
-	meaning: Supply
-	  constraints
-	    self.m.actionary <-- @supply
+  subcase of LexicalVerbType
+  constructional
+    constraints
+      self.argform <-- Transitive
+  meaning: Supply
+    constraints
+      self.m.actionary <-- @supply
 
-	
-	// ST Testing (1/4/16)    
+
+  // ST Testing (1/4/16)
 // Scale Change Type: grow, increase, etc.
 construction ScaleChangeType
-	subcase of LexicalVerbType
-	constructional 
-	  constraints
-	    self.argform <-- ArgForm
-	meaning: ScaleChange
-	  evokes ScalarModifier as mod
-	  constraints
-	    self.m.actionary <-- @scalechange
-	    self.mod.property <-- @object-property
-	    self.mod.kind <-- @comparative
-	    self.m.direction <-- @comparison
-	    self.mod.value <-- @scalarValue
-	    self.m.state <--> mod
-	    //self.m.state.oldValue <-- @propValue
+  subcase of LexicalVerbType
+  constructional
+    constraints
+      self.argform <-- ArgForm
+  meaning: ScaleChange
+    evokes ScalarModifier as mod
+    constraints
+      self.m.actionary <-- @scalechange
+      self.mod.property <-- @object-property
+      self.mod.kind <-- @comparative
+      self.m.direction <-- @comparison
+      self.mod.value <-- @scalarValue
+      self.m.state <--> mod
+      //self.m.state.oldValue <-- @propValue
 
 // he pushed the box north
 construction CauseEffectType
-	subcase of LexicalVerbType, GeneralTypeCxn
-	meaning: CauseEffect
-	  constraints
-	    self.m.actionary <-- @cause
+  subcase of LexicalVerbType, GeneralTypeCxn
+  meaning: CauseEffect
+    constraints
+      self.m.actionary <-- @cause
 
 
 // he pushed the box north
 construction CauseMotionType
-	subcase of LexicalVerbType, GeneralTypeCxn
-	meaning: CauseMotion
-	  constraints
-	    self.m.actionary <-- @complexxnet
+  subcase of LexicalVerbType, GeneralTypeCxn
+  meaning: CauseMotion
+    constraints
+      self.m.actionary <-- @complexxnet
 
 
 // he painted the house blue
 construction CauseChangeType
-	subcase of LexicalVerbType, GeneralTypeCxn
-	meaning: CauseChange
-	  constraints
-	    self.m.actionary <-- @change	    
-	    
+  subcase of LexicalVerbType, GeneralTypeCxn
+  meaning: CauseChange
+    constraints
+      self.m.actionary <-- @change
+
 // "push the box north"
 construction ApplyForceType
-	subcase of LexicalVerbType
-	meaning: ForceApplication
-	  constraints
-	  	 self.m.actionary <-- @forceapplication
-	  	 self.argform <-- Transitive
+  subcase of LexicalVerbType
+  meaning: ForceApplication
+    constraints
+       self.m.actionary <-- @forceapplication
+       self.argform <-- Transitive
 
-// he grasped the box  
-construction ManipulationType
-	subcase of LexicalVerbType
-	meaning: Manipulation
-	  constraints
-	     self.m.protagonist.ontological-category <-- @agent
-	     self.m.actionary <-- @forceapplication
 
 
 // "he carried the glass to the table"
 // involves causing motion
 construction EstablishHoldType
-	subcase of LexicalVerbType
-	meaning: EstablishHold 
-	  constraints
-	     self.m.protagonist.ontological-category <-- @agent
-	     self.m.actionary <-- @establishhold
-	     self.argform <-- Transitive
+  subcase of LexicalVerbType
+  meaning: EstablishHold
+    constraints
+       self.m.protagonist.ontological-category <-- @agent
+       self.m.actionary <-- @establishhold
+       self.argform <-- Transitive
 
 
 // Object transfer type
 construction TransferType
-	subcase of LexicalVerbType
-	meaning: ObjectTransfer
-	 constraints
-	   self.m.protagonist.ontological-category <-- @agent
-	   self.m.actionary <-- @objecttransfer
+  subcase of LexicalVerbType
+  meaning: ObjectTransfer
+    constraints
+      self.m.protagonist.ontological-category <-- @agent
+      self.m.actionary <-- @objecttransfer
 
 
 // Possession Process
 construction PossessionType
-	subcase of LexicalVerbType
-	meaning: PossProcess
-	 constraints
-	   self.m.protagonist.ontological-category <-- @agent
-	   self.m.actionary <-- @possess
-	   self.verbkind <-- PossessionKind  // 10/3/13
-       self.argform <-- Transitive
-       self.voice <-- PassiveOrNotPassive
-
-// he created the box
-construction CreationType
-	subcase of LexicalVerbType, GeneralTypeCxn
-	meaning: Creation
-	  constraints
-	     self.m.actionary <-- @create
+  subcase of LexicalVerbType
+  meaning: PossProcess
+    constraints
+      self.m.protagonist.ontological-category <-- @agent
+      self.m.actionary <-- @possess
+      self.verbkind <-- PossessionKind  // 10/3/13
+      self.argform <-- Transitive
+      self.voice <-- PassiveOrNotPassive
 
 
 // Control verbs (added from base)
 general construction ControlVerbSimple
-	subcase of LexicalVerb
-	constructional
-	  constraints
-	    argform <-- Control
-	meaning: EmbeddedEventProcessSimple
-	  constraints 
-	    self.m.actionary <-- @process
-	    self.m.protagonist.ontological-category <-- @entity
+  subcase of LexicalVerb
+  constructional
+    constraints
+      argform <-- Control
+  meaning: EmbeddedEventProcessSimple
+    constraints
+      self.m.actionary <-- @process
+      self.m.protagonist.ontological-category <-- @entity
 
 
 // He tried to move
 // he wanted to walk
 construction SimpleControlType
-	subcase of LexicalVerbType, ControlVerbSimple
-	meaning
-	 constraints
-	   self.m.actionary <-- @process
-	   
-// Mental verbs (added from base, 2/7/16)
-general construction MentalVerb
-	subcase of LexicalVerb
-	meaning
-	 constraints
-	  self.m.protagonist.ontological-category <-- @sentient
-	  self.verbkind <-- Mental
-	  self.m.actionary <-- @mentalProcess
-
-// say, said, says, etc.
-construction CommunicationType
-	subcase of MentalVerb, LexicalVerbType
-	meaning: Communication
-	 constraints
-	   self.m.actionary <-- @communication
-	   self.argform <-- ArgForm 
-	   //ignore self.verbkind <-- Mental // why?
-	   self.verbkind <-- Communicational
+  subcase of LexicalVerbType, ControlVerbSimple
+  meaning
+    constraints
+      self.m.actionary <-- @process
 
 
-// say, said, says, etc.
-construction ThoughtType
-	subcase of MentalVerb, LexicalVerbType
-	meaning: Thought
-	 constraints
-	   self.m.actionary <-- @think
-	   self.argform <-- NotTransitive
-
-	   	
 // he ran into the room
 construction SelfMotionType
-	subcase of LexicalVerbType
-	meaning: MotionPath
-      constraints
-         self.m.actionary <-- @motion
-         self.m.speed <-- @scalarValue
-         self.m.speed <-- ".5"
-         self.argform <-- ArgForm
-        
+  subcase of LexicalVerbType
+  meaning: MotionPath
+    constraints
+      self.m.actionary <-- @motion
+      self.m.speed <-- @scalarValue
+      self.m.speed <-- ".5"
+      self.argform <-- ArgForm
+
 // he saw the box
 // the box was seen by him
 construction PerceptionType
-   subcase of LexicalVerbType
-   meaning: Perception
-     constraints
-        self.m.actionary <-- @perception
-        self.argform <-- Transitive
-        self.verbkind <-- Perceptual
+  subcase of LexicalVerbType
+  meaning: Perception
+    constraints
+      self.m.actionary <-- @perception
+      self.argform <-- Transitive
+      self.verbkind <-- Perceptual
 
 
 // Path Verbs: "Enter", "Exit", etc.
 general construction PathVerbType
-   subcase of LexicalVerbType  // 7/8/15
-   meaning: ChangeLocation
+  subcase of LexicalVerbType  // 7/8/15
+  meaning: ChangeLocation
     evokes BoundedObject as bo
-     constraints 
-       self.m.actionary <-- @motion
-       self.m.landmark.ontological-category <-- @location
-       self.m.landmark <--> bo.boundedObject 
-       
-  construction PathVerbIn  //7/8/15
-	subcase of  PathVerbType  
-       meaning: ChangeLocation
-       constraints
-       self.m.spg.goal <--> bo.interior
-       
- construction PathVerbOut  //7/8/15
-	subcase of  PathVerbType  
-       meaning: ChangeLocation
-       constraints
-       self.m.spg.goal <--> bo.exterior
-       
-// More causation (ST, 10/30/15)
+    constraints
+      self.m.actionary <-- @motion
+      self.m.landmark.ontological-category <-- @location
+      self.m.landmark <--> bo.boundedObject
 
-construction ForceDynamicType   // 5/20/13 test
-   	subcase of LexicalVerbType
-     constructional
-        constraints
-         self.argform <-- Transitive
-         self.verbkind <-- ForceDynamic // added for testing 5/15/14 
-         self.expectedVerbForm <-- FiniteOrNonFinite// used to constrain which catenative cxns this will occur with   
-     meaning: GeneralCausation 
-         constraints
-         	self.m.fdType <-- @forceDynamic
-         	self.m.actionary <-- @process
-      
+construction PathVerbIn
+  subcase of PathVerbType
+  meaning: ChangeLocation
+    constraints
+      self.m.spg.goal <--> bo.interior
 
-// Testing, "he hurt the man"
-// "she broke his arm" (transitive)
-construction CauseHarmType
-	subcase of LexicalVerbType
-	constructional
-	 constraints
-	   self.argform <-- Transitive
-	meaning: CauseHarm
-	  constraints
-	    self.m.actionary <-- @process       
+construction PathVerbOut
+  subcase of  PathVerbType
+  meaning: ChangeLocation
+    constraints
+      self.m.spg.goal <--> bo.exterior
 
-// Testing, "he hurt the man"
-// "she broke his arm" (transitive)
-construction InfectType
-	subcase of LexicalVerbType
-	constructional
-	 constraints
-	   self.argform <-- Transitive
-	meaning: Infect
-	  constraints
-	    self.m.actionary <-- @process   
 
-// Testing, "he broke his arm"	(reflexive)    
-construction ExperienceHarmType
-	subcase of LexicalVerbType
-	meaning: ExperienceHarm
-	 constraints
-	   self.m.actionary <-- @process
-
+construction ForceDynamicType
+  subcase of LexicalVerbType
+  constructional
+    constraints
+      self.argform <-- Transitive
+      self.verbkind <-- ForceDynamic // added for testing 5/15/14
+      self.expectedVerbForm <-- FiniteOrNonFinite
+      // used to constrain which catenative cxns this will occur with
+  meaning: GeneralCausation
+    constraints
+      self.m.fdType <-- @forceDynamic
+      self.m.actionary <-- @process

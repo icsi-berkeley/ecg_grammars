@@ -1,7 +1,5 @@
-package core
-
-
-// Constructional Agreement Features  Make separate file 1/6/13
+package agreement_features
+import base
 
 schema AgreementFeatureSet
   roles
@@ -13,15 +11,13 @@ schema AgreementFeatures
     features: AgreementFeatureSet
 
 
-// NominalFeatureSet is different for English and Spanish, but other agreement feature
+// Note: NominalFeatureSet is different for English and Spanish, but other agreement feature
 // schemas are shared. This particular schema is language-dependent.
-/*
 schema NominalFeatureSet
   subcase of AgreementFeatureSet
   roles
     case
-    reflexive  // 1/19/13  semantic feature??
-*/
+    reflexive
 
 schema NominalFeatures
   subcase of AgreementFeatures
@@ -29,31 +25,24 @@ schema NominalFeatures
     features: NominalFeatureSet
 
 
-schema AuxFeatures  // 1/28/13
-	subcase of VerbFeatures
-
 schema VerbFeatures
   subcase of AgreementFeatures
   roles
     verbform: FiniteOrNonFinite
     voice: PassiveOrNotPassive
     verbkind: VerbKind
-	expectedVerbForm: FiniteOrNonFinite  //1/6/13
-	argform: ArgForm //10/3/13
+    expectedVerbForm: FiniteOrNonFinite
+    argform: ArgForm
 
+schema AuxFeatures
+  subcase of VerbFeatures
 
 
 // schemas for 'voice' role of VerbFeatures	schema
-schema PassiveOrNotPassive  // 7/29/15  do we want to keep this style ????
-   
-schema NotPassive
-  subcase of  PassiveOrNotPassive 
-  
-schema Passive
-  subcase of  PassiveOrNotPassive 
+schema PassiveOrNotPassive
 
-schema NominalFeatureSet
-  subcase of AgreementFeatureSet
-  roles
-    case
-    reflexive  // 1/19/13  semantic feature??
+schema NotPassive
+  subcase of  PassiveOrNotPassive
+
+schema Passive
+  subcase of  PassiveOrNotPassive

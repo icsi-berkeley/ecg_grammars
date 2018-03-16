@@ -1,168 +1,158 @@
-/*
-Package for copulas and "change" cxns. Requires the intransitive package.
+// Package for copulas and "change" cxns. Requires the intransitive package.
+//
+// This should allow a grammar to deal with basic copulas and notions of change (provided
+// the correct types/tokens are in the grammar):
+//
+// Copulas (all mean "Stasis"):
+// * the box is in the room (locative)
+// * the box is red (adjective/property-modification)
+// * the color of the box is red (property adjectives)
+// * he is a doctor (nominal, "RefIdentity")
+// * {X} is NOT {Y} (general notion of negated-BeCopula)
+//
+// Change (subcase of Stasis):
+// * the box became red (Property-Change)
+// * the box became bigger (Scalar-Change)
+// * the box grew (BareIntransitive, ScaleChange)
+//
+// TO DO:
+// -Path-PP Change (e.g., "the plant grew to the ceiling)
+//
+// [This description was written 3/21/16, ST]
 
-This should allow a grammar to deal with basic copulas and notions of change (provided 
-the correct types/tokens are in the grammar):
-
-Copulas (all mean "Stasis"):
-* the box is in the room (locative)
-* the box is red (adjective/property-modification)
-* the color of the box is red (property adjectives)
-* he is a doctor (nominal, "RefIdentity")
-* {X} is NOT {Y} (general notion of negated-BeCopula)
-
-Change (subcase of Stasis):
-* the box became red (Property-Change)
-* the box became bigger (Scalar-Change)
-* the box grew (BareIntransitive, ScaleChange)
-
-TO DO:
--Path-PP Change (e.g., "the plant grew to the ceiling)
-
-[This description was written 3/21/16, ST]
-
-*/
-
-package copula
-import intransitive
+package argstruct
+import base
 
 // General cxn for copulas, others (adjective, locative, etc.) inherit from this.
 general construction CopularVP
-	subcase of VP
-	constructional
-	  constituents 
-	    cop: Verb
-	  constraints
-	    self.features <--> cop.features
-	    cop.argform <-- Copula
-	    self.verbform <--> cop.verbform
-	meaning: Stasis
-	  constraints
-	     self.m <--> cop.m
-	     self.m.protagonist <--> ed.profiledParticipant
-	     
+  subcase of VP
+  constructional
+    constituents
+      cop: Verb
+    constraints
+      self.features <--> cop.features
+      cop.argform <-- Copula
+      self.verbform <--> cop.verbform
+  meaning: Stasis
+    constraints
+      self.m <--> cop.m
+      self.m.protagonist <--> ed.profiledParticipant
 
 
-// Used to analyze, e.g. "the block is in the room" 
+// Used to analyze, e.g. "the block is in the room"
 construction CopularVPLocative
   subcase of CopularVP
   constructional
     constituents
-       	pred: Loc-PP
-  	constraints
-  		cop.argform <-- Copula_Loc 
+      pred: Loc-PP
+    constraints
+      cop.argform <-- Copula_Loc
   form
     constraints
-      cop.f before pred.f  
+      cop.f before pred.f
   meaning: Stasis
     constraints
-        ed.profiledParticipant <--> pred.m.trajector 
-        self.m.p-features.negated <--> pred.m.negated
-        self.m.state <--> pred.m 
-        pred.m.temporality <-- @bounded
-      
+      ed.profiledParticipant <--> pred.m.trajector
+      self.m.p-features.negated <--> pred.m.negated
+      self.m.state <--> pred.m
+      pred.m.temporality <-- @bounded
+
 //Used to analyze, e.g., "the block is red"
-construction CopularVPAdjective  
+construction CopularVPAdjective
   subcase of CopularVP
-  constructional  
+  constructional
     constituents
-      	adj: Adjective
-  	constraints
-  		cop.argform <-- Copula_Adj 
+      adj: Adjective
+    constraints
+      cop.argform <-- Copula_Adj
   form
     constraints
-      	cop.f meets adj.f
-  meaning: Stasis 
+      cop.f meets adj.f
+  meaning: Stasis
     constraints
-        self.m.state <--> adj.m
-        self.m.p-features.negated <--> adj.m.negated
-        self.adj.m.modifiedThing <--> ed.profiledParticipant  // might be enough for Adj-N agreement 10/27/12
- 		self.adj.m.domain <--> ed.profiledParticipant.ontological-category // Adj-N agreement 10/27/12
-		adj.m.temporality <-- @bounded
+      self.m.state <--> adj.m
+      self.m.p-features.negated <--> adj.m.negated
+      self.adj.m.modifiedThing <--> ed.profiledParticipant // might be enough for Adj-N agreement 10/27/12
+      self.adj.m.domain <--> ed.profiledParticipant.ontological-category // Adj-N agreement 10/27/12
+      adj.m.temporality <-- @bounded
 
 //the color is red, the color of the box is red, etc.
 construction CopularVPPropertyAdjective
   subcase of CopularVP
-  constructional  
+  constructional
     constituents
-      	adj: PropertyAdjective
-  	constraints
-  		cop.argform <-- Copula_Adj 
-	form
+      adj: PropertyAdjective
     constraints
-      	cop.f meets adj.f
-  meaning: Stasis 
-    constraints
-        self.m.state <--> adj.m
-        self.adj.m.property <--> ed.profiledParticipant.ontological-category 
-        
- /*
-Nominal copulas (e.g. "it is a box") could be analyzed using a CopuluarVPNominal cxn
-such as the one shown below, whcih is a subcase of the general CopularVP cxn above.
-Note that the current first grammar does not contain the RefIdentity schema referred to by this cxn.
-*/
-construction CopularVPNominal // 2/14/13
-  subcase of CopularVP
-  constructional  
-    constituents
-      	nominal: NP
+      cop.argform <-- Copula_Adj
   form
     constraints
-      	cop.f meets nominal.f
+      cop.f meets adj.f
+  meaning: Stasis
+    constraints
+      self.m.state <--> adj.m
+      self.adj.m.property <--> ed.profiledParticipant.ontological-category
+
+
+// Nominal copulas (e.g. "it is a box") could be analyzed using a CopuluarVPNominal cxn
+// such as the one shown below, whcih is a subcase of the general CopularVP cxn above.
+// Note that the current first grammar does not contain the RefIdentity schema referred
+// to by this cxn.
+construction CopularVPNominal
+  subcase of CopularVP
+  constructional
+    constituents
+      nominal: NP
+  form
+    constraints
+      cop.f meets nominal.f
   meaning: Stasis
     evokes RefIdentity as ri
-   constraints
-        self.verbform <--> cop.verbform
-        self.m.state <--> ri
-        ri.first <--> ed.profiledParticipant
-        ri.second <--> nominal.m   
-        ri.temporality <-- @bounded
-        ri.second.ontological-category <-- @entity
- 
+    constraints
+      self.verbform <--> cop.verbform
+      self.m.state <--> ri
+      ri.first <--> ed.profiledParticipant
+      ri.second <--> nominal.m
+      ri.temporality <-- @bounded
+      ri.second.ontological-category <-- @entity
 
- construction CopularVPNominalModification // 2/14/13
+
+construction CopularVPNominalModification
   subcase of CopularVP
-  constructional  
+  constructional
     constituents
-      	nominal: UnitsNP
+      nominal: UnitsNP
   form
     constraints
-      	cop.f meets nominal.f
+      cop.f meets nominal.f
   meaning: Stasis   //MeasurePredication
    constraints
-        self.m.state <--> nominal.m
-        //self.m.measurement <--> nominal.m
-        self.m.temporality <-- @bounded
-        //self.m.dimension <--> nominal.m.extras.quantity.property
+      self.m.state <--> nominal.m
+      //self.m.measurement <--> nominal.m
+      self.m.temporality <-- @bounded
+      //self.m.dimension <--> nominal.m.extras.quantity.property
 
- 
-/*
-Sentences such as "he is moving" can potentially be analyzed in various ways.
-One way is through the use of a CopularVPParticiple cxn such as the one shown below.
-   */
- 
-construction CopularVPParticiple // 10/16/13
+
+// Sentences such as "he is moving" can potentially be analyzed in various ways.
+// One way is through the use of a CopularVPParticiple cxn such as the one shown below.
+construction CopularVPParticiple
   subcase of VP
-  constructional  
+  constructional
     constituents
-      	cop: Verb
-      	pp: Verb
-      	//pp: PresentParticiple
-  	constraints
-  		self.features <--> cop.features
-  		pp.verbform <-- PresentParticiple
-  		cop.argform <-- Copula  // check this ********** 
-	form
+      cop: Verb
+      pp: Verb
+      //pp: PresentParticiple
     constraints
-      	cop.f meets pp.f
+      self.features <--> cop.features
+      pp.verbform <-- PresentParticiple
+      cop.argform <-- Copula  // check this **********
+  form
+    constraints
+      cop.f meets pp.f
   meaning: Stasis
-     evokes ParticipleModification as pm 
+    evokes ParticipleModification as pm
     constraints
-    	self.m <--> cop.m
-        self.m.protagonist <--> ed.profiledParticipant
-        self.m.state <--> pm
-        pm.modifier <--> pp.m
-        pm.modifiedThing <--> ed.profiledParticipant  // might be enough for Adj-N agreement 10/27/12
-
- 		
- 
+      self.m <--> cop.m
+      self.m.protagonist <--> ed.profiledParticipant
+      self.m.state <--> pm
+      pm.modifier <--> pp.m
+      pm.modifiedThing <--> ed.profiledParticipant  // might be enough for Adj-N agreement 10/27/12

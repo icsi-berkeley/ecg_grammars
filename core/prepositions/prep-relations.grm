@@ -1,69 +1,65 @@
-/* Testing package, for prepositions without a clearly defined meaning, e.g. "between".
-The idea is that some Problem Solver will receive a "Relation" n-tuple, e.g.:
-{relation: 'between', landmark: {entity1: box1, entity2: box2}}
-And then determine what "between" means in that application domain. 
-
-The main issue with defining these this way is that they won't unify with the existin locative-PP
-cxns, like CopularVPLocative or S-with-copula-inversion-locPP, e.g.:
--the box is between box1 and box2
--is box1 between box2 and box3?
-
-I had to create a special Kernel-RelationPP cxn for things like:
--the box between box1 and box2
-
-This is really useful only as a test of the notion of an application figuring out the meaning of a relation.
-
-*/
-//package core
-//import prep-relations
+// Testing package, for prepositions without a clearly defined meaning, e.g. "between".
+// The idea is that some Problem Solver will receive a "Relation" n-tuple, e.g.:
+// {relation: 'between', landmark: {entity1: box1, entity2: box2}}
+// And then determine what "between" means in that application domain.
+//
+// The main issue with defining these this way is that they won't unify with the existin locative-PP
+// cxns, like CopularVPLocative or S-with-copula-inversion-locPP, e.g.:
+// -the box is between box1 and box2
+// -is box1 between box2 and box3?
+//
+// I had to create a special Kernel-RelationPP cxn for things like:
+// -the box between box1 and box2
+//
+// This is really useful only as a test of the notion of an application figuring out the meaning of a relation.
 
 package prep-relations
-import complexNP
+import nominal-complexNP
 
 general construction RelationPreposition
-	subcase of Preposition
-	meaning: Relation
+  subcase of Preposition
+  meaning: Relation
 
 
 construction Between-Relation
-	subcase of RelationPreposition
-	form
-	 constraints
-	  self.f.orth <-- "between"
-	meaning: TernaryRelation
-	 constraints
-	   self.m.relation <-- @between
-	   
+  subcase of RelationPreposition
+  form
+    constraints
+      self.f.orth <-- "between"
+  meaning: TernaryRelation
+    constraints
+      self.m.relation <-- @between
+
 
 general construction PP-Relation
-	subcase of PP
-	meaning: Relation
-	 constraints
-	   self.m <--> prep.m
+  subcase of PP
+  meaning: Relation
+    constraints
+      self.m <--> prep.m
 
 construction PP-RelationComplexNP
-	subcase of PP-Relation
-	constructional
-	 constituents
-	  np: ConjNP
-	meaning: TernaryRelation
-	 constraints
-	   self.m.entity2 <--> np.first.m
-	   self.m.entity3 <--> np.second.m
+  subcase of PP-Relation
+  constructional
+    constituents
+      np: ConjNP
+  meaning: TernaryRelation
+    constraints
+      self.m.entity2 <--> np.first.m
+      self.m.entity3 <--> np.second.m
 
 
- // for general relations
+// for general relations
 construction Kernel-RelationPP
-   subcase of Kernel
-   constructional
-     constituents
-       n: Kernel
-       pp: PP-Relation
-   form
-     constraints
-       n.f meets pp.f
-   meaning
-     constraints 
-       self.m <--> n.m
-       n.m <--> pp.m.entity1
-       pp.m.temporality <-- @atemporal	   
+  subcase of Kernel
+  constructional
+    constituents
+      n: Kernel
+      pp: PP-Relation
+  form
+    constraints
+      n.f meets pp.f
+  meaning
+    constraints
+      self.m <--> n.m
+      n.m <--> pp.m.entity1
+      pp.m.temporality <-- @atemporal

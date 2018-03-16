@@ -1,0 +1,22 @@
+package argstruct-active-transitive
+
+// he broke his arm (reflexive case)
+// these can't really be passivized
+/*
+construction ActiveTransitiveExperienceHarm
+  subcase of CoreActiveTransitive
+  meaning: ExperienceHarm
+    constraints
+      np.m <--> self.m.bodypart
+      s.a1 <--> self.m.experiencer
+*/
+
+/*
+construction ActiveTrans_CauseEffect
+  subcase of CoreActiveTransitive, TransitiveCauseEffect
+*/
+
+/* he pushed the box
+construction ActiveTrans_CauseChangeLocation_causeMotion
+  subcase of CoreActiveTransitive, Trans_CauseChangeLocation_causeMotion
+*/

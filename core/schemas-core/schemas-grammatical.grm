@@ -1,50 +1,47 @@
-package core
-//import universal-schemas
+package schemas-core
+import base
 
-
- // grammaticalschemas.grm
-//
 // A simple schema for the orthographic form associated with Word cxns
-schema WordForm 
+schema WordForm
   roles
-    orth 
+    orth
     lemma
   constraints
-     lemma <-- "*"
-     //orth <-- "*"
+    lemma <-- "*"
+    //orth <-- "*"
 
 
 // REFERENT DESCRIPTOR (RD) schemas
-
-schema RD // meaning of NP 
+// meaning of NP
+schema RD
   roles
-    ontological-category  
-    givenness: @givennessValues  
-    referent 
-    number 
-	gender: @genderValues
-	bounding // @determinate, etc.
-	scale: @scale 
-	size: @size
-	hedge: @hedgeVal  // @fake, etc  
-	//continuity: @continuityValues 
-    amount: Amount // schemas for quantifiers, etc. 
+    ontological-category
+    givenness: @givennessValues
+    referent
+    number
+    gender: @genderValues
+    bounding // @determinate, etc.
+    scale: @scale
+    size: @size
+    hedge: @hedgeVal  // @fake, etc
+    //continuity: @continuityValues
+    amount: Amount // schemas for quantifiers, etc.
     extensions //: Extensions //  schemas for affordances, etc
     // rename to "frame"?
     extras: RDExtras // testing (1/6/16)
-    
+
 schema RDExtras
   roles
     event: EventDescriptor
     specificWh: @wh-word
     quantity: Quantity
     deicticValue: @deictic
-	  
+
 schema Quantity
   roles
-  	amount: QuantitySchema //subcases include numbers, “several”, etc. ****name?**
-	units	 
-	property
+    amount: QuantitySchema //subcases include numbers, “several”, etc. ****name?**
+    units
+    property
 
 schema Extensions
   roles
@@ -52,81 +49,90 @@ schema Extensions
 
 
 // EVENT DESCRIPTOR (ED) schemas
-
-schema EventDescriptor // meaning of S
-	roles
-		eventProcess: Process		
-		e-features: EventFeatures
-		profiledProcess: Process	
-		profiledParticipant: RD 		
-		eventForm: @EventKind 
-		modifiedThing: RD // 10/1/15, testing	
-		//localTo // testing (4/29/16, ST, for mental spaces: as in, "this schema is local to this space")	
-
-
-schema EventFeatures  // voice: @voice   also in Process - Dropped here, maybe not used // 7/29/15
-	roles
-		subord  // subordinating conjunction, 
-		telicity	// USED in temporal in/for  (bounded, ongoing)
-		duration  // USED in TemporalVP  
-		time // "he built the house in 1976"
-		tense: @tense  // USED
-		modality: @modality  // USED
-		negated: @boolean  // USED
-		place
+// meaning of S
+schema EventDescriptor
+  roles
+    eventProcess: Process
+    e-features: EventFeatures
+    profiledProcess: Process
+    profiledParticipant: RD
+    eventForm: @EventKind
+    modifiedThing: RD
+    //localTo // testing (4/29/16, ST, for mental spaces: as in, "this schema is local to this space")
 
 
+schema EventFeatures
+  roles
+    subord  // subordinating conjunction,
+    telicity	// USED in temporal in/for  (bounded, ongoing)
+    duration  // USED in TemporalVP
+    time // "he built the house in 1976"
+    tense: @tense  // USED
+    modality: @modality  // USED
+    negated: @boolean  // USED
+    place
 
-// RD
 
-
-
-schema Amount   // general schema parent of all
+schema Amount // general schema parent of all
 
 schema QuantitySchema  // numerical, some, "a few", etc.
   subcase of Amount
   roles
-  	value: @scalarValue  // numbers ++
-  	number: @RDnumberValues
+    value: @scalarValue  // numbers ++
+    number: @RDnumberValues
 
 schema ComplexED
-	subcase of EventDescriptor
-	roles
-	  complexKind: @event-kind
-	  connective: @connective
-	  ed1: EventDescriptor
-	  ed2: EventDescriptor
- 
+  subcase of EventDescriptor
+  roles
+    complexKind: @event-kind
+    connective: @connective
+    ed1: EventDescriptor
+    ed2: EventDescriptor
+
+schema Concessive
+  roles
+    conceded_state_of_affairs
+    topic
+    main_assertion
+
+schema ConditionalSchema
+  roles
+    condition: EventDescriptor // maps onto condition
+    conditionalValue: @temporality // needs work, but this should differentiate between "if" and "while"
+    premise: EventDescriptor
+    conclusion: EventDescriptor
+    alternative: EventDescriptor
+    epistemicStance: @epistemicStance // degree of commitment to condition happening
+
 schema ConditionalED
-	subcase of ComplexED, ConditionalSchema
-	roles
-	  ed3: EventDescriptor // "else push it north"
-	  conditionalValue // bounded, ongoing, etc.
-	constraints
-	  ed1 <--> condition
-	  ed2 <--> conclusion
-	  ed3 <--> alternative
-	  complexKind <-- @conditional
-	  
+  subcase of ComplexED, ConditionalSchema
+  roles
+    ed3: EventDescriptor // "else push it north"
+    conditionalValue // bounded, ongoing, etc.
+  constraints
+    ed1 <--> condition
+    ed2 <--> conclusion
+    ed3 <--> alternative
+    complexKind <-- @conditional
+
 
 schema SerialED
-   subcase of ComplexED
-   roles
-    	connective //: SerialConjunction 
-	constraints  
-		profiledParticipant <--> ed1.profiledParticipant
-		e-features	<--> ed1.e-features
+  subcase of ComplexED
+  roles
+    connective //: SerialConjunction
+  constraints
+    profiledParticipant <--> ed1.profiledParticipant
+    e-features	<--> ed1.e-features
 
 // RD
-// added 8/4/14 (ST) from base
 schema ComplexRD
-   subcase of RD 
-   roles
-   complexKind // : NPkind
-   
+  subcase of RD
+  roles
+  complexKind // : NPkind
+
 schema ConjRD
-   subcase of ComplexRD
-   roles
-   		connective   // and or etc.
-      	rd1: RD
-     	rd2: RD	  
+  subcase of ComplexRD
+  roles
+    connective   // and or etc.
+    rd1: RD
+    rd2: RD

@@ -1,150 +1,129 @@
-package core
-//import utterance-text
-// import utterance-speech
-import utterance
-import conditionals
+package sentence
+import base
 
+// used with Adj, Adv
+construction Not-event
+  subcase of Word
+  form
+    constraints
+      self.f.orth <-- "not"
+  meaning: ProcessFeatures
+    constraints
+      self.m.negated <-- @yes
 
-
-construction Not-event  // used with Adj, Adv
-	subcase of Word
-  	form
-      constraints
-        self.f.orth <-- "not"
-   	meaning: ProcessFeatures
-   	  constraints
-   	     self.m.negated <-- @yes
-
-//
-// sentence.grm
-//
 // The general cxn S is the root of most (all?) speech acts /
-
 general construction S
-    subcase of RootType 
-    meaning: EventDescriptor
+  subcase of RootType
+  meaning: EventDescriptor
 
 
 // This general cxn does the agreement between subj and verb
-general construction S-With-Subj  
-    subcase of S
-    constructional
-        constituents
-            subj: NP
-            fin: HasVerbFeatures  // for modals, not VP
-        constraints
-        	fin.verbform <-- Finite	//features.
-        	subj.features.person <--> fin.features.person
-        	subj.features.number <--> fin.features.number
-            subj.features.case <-- "nom"
-    meaning
-        constraints
-	       subj.m <--> self.m.profiledParticipant
- 	
- 	
+general construction S-With-Subj
+  subcase of S
+  constructional
+    constituents
+      subj: NP
+      fin: HasVerbFeatures  // for modals, not VP
+    constraints
+      fin.verbform <-- Finite //features.
+      subj.features.person <--> fin.features.person
+      subj.features.number <--> fin.features.number
+      subj.features.case <-- "nom"
+  meaning
+    constraints
+      subj.m <--> self.m.profiledParticipant
+
+
 general construction Declarative
-    subcase of S
-    
+  subcase of S
+
 construction Declarative-S
-	subcase of S-With-Subj, Declarative
-    constructional
-        constituents
-	       fin: VP
-    form
-        constraints
-	       subj.f before fin.f
-    meaning
-        constraints
-           self.m <--> fin.ed
-		   fin.ed.profiledParticipant.ontological-category <--> subj.m.ontological-category  
-	
-	   
-// Some Question types
-
-general construction Question  // both Aux and Finite inversions
-	subcase of S  
-
-general construction YN-Question  
-	subcase of  Question
-
-general construction S-With-Finite-Inversion  
-	subcase of S-With-Subj, YN-Question
-
+  subcase of S-With-Subj, Declarative
+  constructional
+    constituents
+      fin: VP
+  form
+    constraints
+      subj.f before fin.f
+  meaning
+    constraints
+      self.m <--> fin.ed
+      fin.ed.profiledParticipant.ontological-category <--> subj.m.ontological-category
 
 
 general construction S-With-Copula-Inversion
-	 subcase of S-With-Finite-Inversion
-	 constructional
-       constituents
-       	 optional neg: Not-event
-	    fin: BeCopula
-	 form
-	  constraints
-	    fin.f meets subj.f
-	    subj.f before neg.f
-	meaning
-	  constraints
-	    fin.m.actionary <-- @be2
-	    fin.m.p-features <--> neg.m // Testing, 1/12/16 (ST)
-	   	subj.m <--> self.m.profiledParticipant  // from S-With-Subj
-        fin.m.protagonist <--> subj.m
-        self.m.eventProcess <--> fin.m
-	
+  subcase of S-With-Finite-Inversion
+  constructional
+    constituents
+      optional neg: Not-event
+      fin: BeCopula
+  form
+    constraints
+      fin.f meets subj.f
+      subj.f before neg.f
+  meaning
+    constraints
+      fin.m.actionary <-- @be2
+      fin.m.p-features <--> neg.m // Testing, 1/12/16 (ST)
+      subj.m <--> self.m.profiledParticipant  // from S-With-Subj
+      fin.m.protagonist <--> subj.m
+      self.m.eventProcess <--> fin.m
+
 construction  S-With-Copula-Inversion-PP //special case
-    subcase of S-With-Copula-Inversion
-    constructional
-       constituents
-    	  pp: Loc-PP   
-    form
-      constraints
-        subj.f before pp.f
-    meaning
-      constraints
-            pp.m.trajector <--> subj.m
-            fin.m.state <--> pp.m
-            pp.m.temporality <-- @bounded
-            
-construction S-With-Copula-Inversion-Adj // tested 10/29/12
-    subcase of S-With-Copula-Inversion
-    constructional
-        constituents
-    	   adj: Adjective 
-    form
-        constraints
-            subj.f before adj.f
-    meaning
-        constraints
-        	self.adj.m.modifiedThing <--> self.m.profiledParticipant
-        	self.adj.m.domain <--> self.m.profiledParticipant.ontological-category
-			self.fin.m.state <--> adj.m
-			adj.m.temporality <-- @bounded
-	
-construction S-With-Copula-Inversion-Nominal // tested 10/29/12
-    subcase of S-With-Copula-Inversion
-    constructional
-        constituents
-    	   nominal: NP 
-    	   //optional end: QMark  // punctuation   ?
-        constraints
-            //fin.features.expectedVerbForm <--> vp.features.verbform 
-    form
-        constraints
-            fin.f meets subj.f 
-            subj.f before nominal.f
-    meaning
-        evokes RefIdentity as ri
-        constraints
-            fin.m.state <--> ri
-        	ri.first <--> self.m.profiledParticipant
-        	ri.second <--> nominal.m   
-        	ri.temporality <-- @bounded
-				
+  subcase of S-With-Copula-Inversion
+  constructional
+    constituents
+      pp: Loc-PP
+  form
+    constraints
+      subj.f before pp.f
+  meaning
+    constraints
+      pp.m.trajector <--> subj.m
+      fin.m.state <--> pp.m
+      pp.m.temporality <-- @bounded
+
+construction S-With-Copula-Inversion-Adj
+  subcase of S-With-Copula-Inversion
+  constructional
+    constituents
+      adj: Adjective
+  form
+    constraints
+      subj.f before adj.f
+  meaning
+    constraints
+      self.adj.m.modifiedThing <--> self.m.profiledParticipant
+      self.adj.m.domain <--> self.m.profiledParticipant.ontological-category
+      self.fin.m.state <--> adj.m
+      adj.m.temporality <-- @bounded
+
+construction S-With-Copula-Inversion-Nominal
+  subcase of S-With-Copula-Inversion
+  constructional
+    constituents
+      nominal: NP
+      //optional end: QMark  // punctuation   ?
+    constraints
+      //fin.features.expectedVerbForm <--> vp.features.verbform
+  form
+    constraints
+      fin.f meets subj.f
+      subj.f before nominal.f
+  meaning
+    evokes RefIdentity as ri
+    constraints
+      fin.m.state <--> ri
+      ri.first <--> self.m.profiledParticipant
+      ri.second <--> nominal.m
+      ri.temporality <-- @bounded
+
 // Simple imperative, testing
 general construction Imperative
   subcase of S
   constructional
     constituents
-     // end: IMark
+      // end: IMark
 
 
 construction SimpleImperative
@@ -156,5 +135,4 @@ construction SimpleImperative
       vp.verbform <-- Base
   meaning
     constraints
-      self.m <--> vp.ed  
-
+      self.m <--> vp.ed

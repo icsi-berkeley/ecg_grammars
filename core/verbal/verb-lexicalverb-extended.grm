@@ -1,0 +1,94 @@
+package verb-lexicalverb-extended
+import base
+
+// Used for measure/dimension: "the box weighs 5 pounds"
+construction MeasurePredicationType
+  subcase of LexicalVerbType
+  meaning: MeasurePredication
+    constraints
+      self.m.actionary <-- @process
+      self.m.dimension <-- @measure
+
+
+// Used for transitive measuring: "he weighed the box"
+construction MeasureProcessType
+  subcase of LexicalVerbType
+  meaning: MeasureProcess
+    constraints
+      self.m.actionary <-- @process
+      self.m.dimension <-- @measure
+
+
+// he grasped the box
+construction ManipulationType
+  subcase of LexicalVerbType
+  meaning: Manipulation
+    constraints
+       self.m.protagonist.ontological-category <-- @agent
+       self.m.actionary <-- @forceapplication
+
+// he created the box
+construction CreationType
+  subcase of LexicalVerbType, GeneralTypeCxn
+  meaning: Creation
+    constraints
+       self.m.actionary <-- @create
+
+
+// Mental verbs (added from base, 2/7/16)
+general construction MentalVerb
+  subcase of LexicalVerb
+  meaning
+    constraints
+      self.m.protagonist.ontological-category <-- @sentient
+      self.verbkind <-- Mental
+      self.m.actionary <-- @mentalProcess
+
+// say, said, says, etc.
+construction CommunicationType
+  subcase of MentalVerb, LexicalVerbType
+  meaning: Communication
+    constraints
+      self.m.actionary <-- @communication
+      self.argform <-- ArgForm
+      //ignore self.verbkind <-- Mental // why?
+      self.verbkind <-- Communicational
+
+
+// say, said, says, etc.
+construction ThoughtType
+  subcase of MentalVerb, LexicalVerbType
+  meaning: Thought
+    constraints
+      self.m.actionary <-- @think
+      self.argform <-- NotTransitive
+
+
+// Testing, "he hurt the man"
+// "she broke his arm" (transitive)
+construction CauseHarmType
+  subcase of LexicalVerbType
+  constructional
+    constraints
+      self.argform <-- Transitive
+  meaning: CauseHarm
+    constraints
+      self.m.actionary <-- @process
+
+// Testing, "he hurt the man"
+// "she broke his arm" (transitive)
+construction InfectType
+  subcase of LexicalVerbType
+  constructional
+    constraints
+      self.argform <-- Transitive
+  meaning: Infect
+    constraints
+      self.m.actionary <-- @process
+
+// Testing, "he broke his arm"	(reflexive)
+construction ExperienceHarmType
+  subcase of LexicalVerbType
+  meaning: ExperienceHarm
+    constraints
+      self.m.actionary <-- @process

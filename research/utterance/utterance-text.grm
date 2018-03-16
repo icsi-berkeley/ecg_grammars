@@ -1,0 +1,21 @@
+package utterance-text
+
+// Conditional imperative
+// no longer necessary, can be subsumed under Declarative-Utterance
+/*
+construction ConditionalDeclarativeUtterance
+  subcase of Utterance
+  constructional
+     constituents
+       core: ConditionalDeclarative
+       end: EMark
+  form
+     constraints
+        core.f meets end.f
+  meaning
+     constraints
+        self.m.mood <-- "Conditional-Declarative"
+        self.m.content <--> core.m
+        //core.m.profiledParticipant <--> self.m.addressee
+        core.m.complexKind <-- @conditional_declarative
+*/

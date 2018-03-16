@@ -1,197 +1,154 @@
-/**
-This package defines a series of nominal types. We will need to partition these more later, but they don't
-cause too much strain to the Analyzer, so it shouldn't matter too much yet. The final "core" will have these better packaged.
+// This package defines a series of nominal types. We will need to partition these more later,
+// but they don't cause too much strain to the Analyzer, so it shouldn't matter too much yet.
+// The final "core" will have these better packaged.
 
-*/
-
-
-package core
-
+package nominal
+import base
 
 construction DirectionalType
-	subcase of Directional, GeneralTypeCxn
-	meaning: HeadingSchema
-	  constraints
-	    self.m.tag <-- @heading
-	    
+  subcase of Directional, GeneralTypeCxn
+  meaning: HeadingSchema
+    constraints
+      self.m.tag <-- @heading
+
 
 construction NumberType   //rename, check digits
-	subcase of Quantifier, GeneralTypeCxn
-   	meaning: QuantitySchema
-   	  constraints
-   	    self.m.value <-- "?"
-   	    self.m.number <-- @RDnumberValues
+  subcase of Quantifier, GeneralTypeCxn
+  meaning: QuantitySchema
+    constraints
+      self.m.value <-- "?"
+      self.m.number <-- @RDnumberValues
 
 construction ProperNPInstance
-	subcase of ProperNounNP, ThirdPerson, Singular, GeneralTypeCxn // Third person testing here ("Robot1")
-	meaning
-	  constraints
-		self.m.referent <-- @entity
-		self.m.ontological-category <-- @entity
-		self.m.gender <-- @genderValues
-		self.m.number <-- @RDnumberValues
+  subcase of ProperNounNP, ThirdPerson, Singular, GeneralTypeCxn // Third person testing here ("Robot1")
+  meaning
+    constraints
+      self.m.referent <-- @entity
+      self.m.ontological-category <-- @entity
+      self.m.gender <-- @genderValues
+      self.m.number <-- @RDnumberValues
 
 // E.g., "coffee", "water"
 construction SubstanceType
-	subcase of NounType, MassNoun
-	meaning
-	 constraints
-	   self.m.ontological-category <-- @substance
+  subcase of NounType, MassNoun
+  meaning
+    constraints
+      self.m.ontological-category <-- @substance
 
 // E.g., "hammer", etc.
 // evokes Instrument schema, and can put tighter constraints on actionary
 construction InstrumentNoun
-	subcase of PhysicalEntityNoun
-	meaning
-	 evokes Instrument as extensions
-	 constraints
-	   extensions.actionary <-- @process
-	   self.m.ontological-category <-- @instrument
-
-
+  subcase of PhysicalEntityNoun
+  meaning
+    evokes Instrument as extensions
+    constraints
+      extensions.actionary <-- @process
+      self.m.ontological-category <-- @instrument
 
 
 // e.g. "what color is box1?"
 construction PropertyNoun
-	subcase of NounType
-	meaning
-	  constraints
-	     self.m.ontological-category <-- @object-property
-   
-   
+  subcase of NounType
+  meaning
+    constraints
+      self.m.ontological-category <-- @object-property
+
+
  // e.g. "what color is box1?"
 construction UnitType
-	subcase of NounType
-	meaning: RD
-	  constraints
-	     self.m.ontological-category <-- @measure
-	     self.m.extras.quantity.property <-- @measure
-	     
-	        
+  subcase of NounType
+  meaning: RD
+    constraints
+      self.m.ontological-category <-- @measure
+      self.m.extras.quantity.property <-- @measure
+
+
 // "Type" constructions
 construction NounType
-   subcase of Noun, GeneralTypeCxn, ThirdPerson
-   meaning
-      constraints
-        self.m.number <-- @RDnumberValues
-        self.m.gender <-- @genderValues
-        self.m.ontological-category <-- @entity
-        self.m.scale <-- @scale
-        
-//
+  subcase of Noun, GeneralTypeCxn, ThirdPerson
+  meaning
+    constraints
+      self.m.number <-- @RDnumberValues
+      self.m.gender <-- @genderValues
+      self.m.ontological-category <-- @entity
+      self.m.scale <-- @scale
+
+
 construction AbstractNoun
-	subcase of NounType
-	meaning
-	  constraints 
-	    self.m.ontological-category <-- @abstract     
+  subcase of NounType
+  meaning
+    constraints
+      self.m.ontological-category <-- @abstract
 
 // "Type" constructions
 construction PhysicalEntityNoun
-   subcase of NounType
-   meaning
-      evokes PhysicalEntity as extensions
-      constraints
-         self.m.extensions <--> extensions
-         //self.m <--> extensions.entity  // this recursion seems to cause some issues
-        self.m.ontological-category <-- @physicalEntity
+  subcase of NounType
+  meaning
+    evokes PhysicalEntity as extensions
+    constraints
+      self.m.extensions <--> extensions
+      //self.m <--> extensions.entity  // this recursion seems to cause some issues
+      self.m.ontological-category <-- @physicalEntity
 
- 
+
 // "Type" constructions
 construction ArtifactNoun
-   subcase of PhysicalEntityNoun
-   meaning
-      evokes Artifact as extensions
-      constraints
-        self.m.ontological-category <-- @artifact 
- 
- 
- // "Type" constructions
+  subcase of PhysicalEntityNoun
+  meaning
+    evokes Artifact as extensions
+    constraints
+      self.m.ontological-category <-- @artifact
+
+
+// "Type" constructions
 construction MaterialNoun
-   subcase of PhysicalEntityNoun, MassNoun
-   meaning
-      //evokes Artifact as extensions
-      constraints
-        self.m.ontological-category <-- @material 
- 
+  subcase of PhysicalEntityNoun, MassNoun
+  meaning
+    //evokes Artifact as extensions
+    constraints
+      self.m.ontological-category <-- @material
+
 // "Type" constructions
 construction ContainerNoun
-   subcase of PhysicalEntityNoun
-   meaning
-      evokes Container as extensions
-      constraints
-        self.m.ontological-category <-- @container 
-        self.m.extensions <--> extensions
- 
- 
+  subcase of PhysicalEntityNoun
+  meaning
+    evokes Container as extensions
+    constraints
+      self.m.ontological-category <-- @container
+      self.m.extensions <--> extensions
+
+
 // "Type" constructions: "field", etc.
 construction BoundedRegionNoun
-   subcase of PhysicalEntityNoun 
-   meaning
-      evokes BoundedRegion as extensions
-      constraints
-        self.m.ontological-category <-- @region 
-        self.m.extensions <--> extensions 
-                
+  subcase of PhysicalEntityNoun
+  meaning
+    evokes BoundedRegion as extensions
+    constraints
+      self.m.ontological-category <-- @region
+      self.m.extensions <--> extensions
+
 // "Type" constructions
 construction SentientNoun
-   subcase of PhysicalEntityNoun
-   meaning
-      constraints
-        self.m.ontological-category <-- @sentient  
-        self.m.referent <-- @sentient
-        
-        
+  subcase of PhysicalEntityNoun
+  meaning
+    constraints
+      self.m.ontological-category <-- @sentient
+      self.m.referent <-- @sentient
+
+
 // Lexicalized events: "storm", etc.
 construction EventNoun
-	subcase of NounType
-	meaning: RD
-	  constraints
-	    self.m.ontological-category <-- @eventTop
-	    self.m.scale <-- @size
-	    self.m.extras.event.eventForm <-- @lexical
-	    
+  subcase of NounType
+  meaning: RD
+    constraints
+      self.m.ontological-category <-- @eventTop
+      self.m.scale <-- @size
+      self.m.extras.event.eventForm <-- @lexical
+
 
 // "part type": "member of the company", etc.
 construction PartType
-	subcase of NounType
-	meaning: RD
-	  constraints
-	    self.m.ontological-category <-- @part
-
-// "group type": "the crew", "the company"
-construction GroupType
-	subcase of NounType
-	meaning: RD
-	 constraints
-	   self.m.ontological-category <-- @group	    
-
-
-// "the economy", "the government", "the business"
-construction InstitutionType
-	subcase of NounType
-	meaning: RD
-	 constraints
-	   self.m.ontological-category <-- @institution	 		 
-	   
-// "depression", "recession"
-construction AbstractStateType
-	subcase of NounType
-	meaning: RD
-	 constraints
-	   self.m.ontological-category <-- @abstractState	
-	   
-	   
-// "depression", "recession"
-//construction DiseaseType
-//	subcase of NounType
-//	meaning: RD
-//	 constraints
-//	   self.m.ontological-category <-- @disease 	
-	   
-// "depression", "recession"
-construction SocialProblemType
-	subcase of NounType, MassNoun
-	meaning: RD
-	 constraints
-	   self.m.ontological-category <-- @socialProblem 	
-	          
+  subcase of NounType
+  meaning: RD
+    constraints
+      self.m.ontological-category <-- @part

@@ -1,0 +1,41 @@
+package nominal-kernel
+
+// the man with the coat
+/*
+construction Kernel-AccompanimentPP
+   subcase of Kernel
+   constructional
+     constituents
+       n: Kernel
+       pp: AccompanimentPP
+   form
+     constraints
+       n.f meets pp.f
+   meaning
+     constraints
+       self.m <--> n.m
+       n.m <--> pp.m.participant
+*/
+
+// box of steel
+construction NP-ModifierPP-Material
+  subcase of Kernel-ModifierPP
+  meaning
+    evokes Artifact as art  // hack, seems to be needed
+    constraints
+      self.m <--> k.m  // percolate
+      k.m.ontological-category <-- @artifact // applies only to artifacts
+      mod.np.m.ontological-category <-- @material
+      art.material <--> mod.np.m
+      self.m.extensions <--> art
+
+ // box of beer, box of blocks, etc.
+construction NP-ModifierPP-Container
+  subcase of Kernel-ModifierPP
+  meaning
+    evokes Container as cont  // hack, seems to be needed
+    constraints
+      self.m <--> k.m  // percolate
+      k.m.ontological-category <-- @container // applies only to artifacts
+      cont.contents <--> mod.np.m
+      self.m.extensions <--> cont

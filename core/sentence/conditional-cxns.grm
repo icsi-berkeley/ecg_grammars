@@ -1,20 +1,16 @@
-package conditionals
-import conjunctions
+package sentence
+import base
 
-
-
-
-
-	  
 // Alternatively, this could evoke two ConditionalSchemas
 // the first would be for the "main" condition
-// the second would be for the alternative, in which the condition is negated, and some inference is drawn about the conclusion 	    
+// the second would be for the alternative, in which the condition is negated,
+// and some inference is drawn about the conclusion
 general construction ConditionalConjunction
   subcase of Word
   meaning: ConditionalSchema
-   constraints 
-     self.m.condition <--> self.m.premise
-  
+    constraints
+      self.m.condition <--> self.m.premise
+
 
 construction Then-Conditional
   subcase of Word
@@ -28,9 +24,9 @@ construction If
     constraints
       self.f.orth <-- "if"
   meaning
-   constraints
-     self.m.conditionalValue <-- @bounded
-     self.m.epistemicStance <-- @neutral
+    constraints
+      self.m.conditionalValue <-- @bounded
+      self.m.epistemicStance <-- @neutral
 
 construction Unless
   subcase of ConditionalConjunction
@@ -38,9 +34,9 @@ construction Unless
     constraints
       self.f.orth <-- "unless"
   meaning
-   constraints
-     self.m.conditionalValue <-- @bounded
-     self.m.epistemicStance <-- @neutral
+    constraints
+      self.m.conditionalValue <-- @bounded
+      self.m.epistemicStance <-- @neutral
 
 construction While
   subcase of ConditionalConjunction
@@ -48,8 +44,8 @@ construction While
     constraints
       self.f.orth <-- "while"
   meaning
-   constraints
-     self.m.conditionalValue <-- @ongoing
+    constraints
+      self.m.conditionalValue <-- @ongoing
 
 
 construction Whenever
@@ -58,155 +54,153 @@ construction Whenever
     constraints
       self.f.orth <-- "whenever"
   meaning
-   constraints
-     self.m.conditionalValue <-- @whenever
+    constraints
+      self.m.conditionalValue <-- @whenever
 
 // contains a conjunction ("if", "while") and a general declarative
 // "if it rains", "while it is raining", "if he pushes the box"
 construction ConditionalClause
-	subcase of RootType
-	constructional
-	 constituents
-	  cond: ConditionalConjunction
-	  bool: Declarative
-    form
-     constraints
+  subcase of RootType
+  constructional
+    constituents
+      cond: ConditionalConjunction
+      bool: Declarative
+  form
+    constraints
       cond.f meets bool.f
-    meaning: ConditionalSchema
-     constraints
-       self.m <--> cond.m
-       self.m.condition <--> bool.m
-       
+  meaning: ConditionalSchema
+    constraints
+      self.m <--> cond.m
+      self.m.condition <--> bool.m
+
 
 general construction ConditionalStatement
-	subcase of S
-	constructional
-	 constituents
-	   condition: ConditionalClause
-	   core: S 
-    meaning: ConditionalED
-     constraints
-       self.m <--> condition.m
-       self.m.conclusion <--> core.m
-       //self.m.alternative <--> else.m.alternative
+  subcase of S
+  constructional
+    constituents
+      condition: ConditionalClause
+      core: S
+  meaning: ConditionalED
+    constraints
+      self.m <--> condition.m
+      self.m.conclusion <--> core.m
+      //self.m.alternative <--> else.m.alternative
 
 general construction ConditionalImperative
-	subcase of ConditionalStatement, Imperative
-	constructional
-	  constituents
-	    optional c: Comma
-	    optional then: Then-Conditional
-	    core: SimpleImperative
-	    optional c2: Comma
-	    optional else: AlternativeClause
-	  constraints
-	    core.vp.verbform <-- Base
-	 form
-	  constraints
-	    core.f before c2.f
-	    c2.f before else.f
-	 meaning: ConditionalED
-	  constraints
-	    self.m.profiledParticipant <--> core.m.profiledParticipant
-	    self.m.profiledParticipant <--> else.m.alternative.profiledParticipant
-	    self.m.alternative <--> else.m.alternative
+  subcase of ConditionalStatement, Imperative
+  constructional
+    constituents
+      optional c: Comma
+      optional then: Then-Conditional
+      core: SimpleImperative
+      optional c2: Comma
+      optional else: AlternativeClause
+    constraints
+      core.vp.verbform <-- Base
+  form
+    constraints
+      core.f before c2.f
+      c2.f before else.f
+  meaning: ConditionalED
+    constraints
+      self.m.profiledParticipant <--> core.m.profiledParticipant
+      self.m.profiledParticipant <--> else.m.alternative.profiledParticipant
+      self.m.alternative <--> else.m.alternative
 
 construction StandardConditionalImperative
-	subcase of ConditionalImperative
-	form
-	  constraints
-	    condition.f meets c.f
-		c.f meets then.f
-	    condition.f before core.f
-	    core.f before else.f
+  subcase of ConditionalImperative
+  form
+    constraints
+      condition.f meets c.f
+      c.f meets then.f
+      condition.f before core.f
+      core.f before else.f
 
 
-construction InverseConditional	
-	subcase of ConditionalImperative 
-	form
-	  constraints
-	  	core.f meets condition.f
+construction InverseConditional
+  subcase of ConditionalImperative
+  form
+    constraints
+      core.f meets condition.f
 
-   
-// Constructions for the "else-clause", e.g. "otherwise do X", or "otherwise X will happen" 
+
+// Constructions for the "else-clause", e.g. "otherwise do X", or "otherwise X will happen"
 construction AlternativeClause
-	subcase of RootType
-	constructional
-	  constituents
-	    else: AlternativeConjunction
-	    core: S
-	meaning: ConditionalSchema
-	  constraints
-	    self.m.alternative <--> core.m
+  subcase of RootType
+  constructional
+    constituents
+      else: AlternativeConjunction
+      core: S
+  meaning: ConditionalSchema
+    constraints
+      self.m.alternative <--> core.m
 
 general construction AlternativeConjunction
-	subcase of Conjunction
+  subcase of Conjunction
 
 construction Else
-	subcase of AlternativeConjunction
-	form
-	 constraints
-	   self.f.orth <-- "else"
+  subcase of AlternativeConjunction
+  form
+    constraints
+      self.f.orth <-- "else"
 
 construction Otherwise
-	subcase of AlternativeConjunction
-	form
-	 constraints
-	   self.f.orth <-- "otherwise"	
+  subcase of AlternativeConjunction
+  form
+    constraints
+      self.f.orth <-- "otherwise"
 
 
 // ConditionalDeclarative
 // if he builds a house, it will be red
 general construction ConditionalDeclarative
-	subcase of ConditionalStatement, Declarative
-	constructional
-	  constituents
-	    optional c: Comma
-	    optional then: Then-Conditional
-	    core: Declarative
-	    optional c2: Comma
-	    optional else: AlternativeClause
-	 meaning: ConditionalED
-	  constraints
-	    self.m.profiledParticipant <--> core.m.profiledParticipant
-	    self.m.alternative <--> else.m.alternative
+  subcase of ConditionalStatement, Declarative
+  constructional
+    constituents
+      optional c: Comma
+      optional then: Then-Conditional
+      core: Declarative
+      optional c2: Comma
+      optional else: AlternativeClause
+  meaning: ConditionalED
+    constraints
+      self.m.profiledParticipant <--> core.m.profiledParticipant
+      self.m.alternative <--> else.m.alternative
 
 
 construction StandardConditionalDeclarative
-	subcase of ConditionalDeclarative
-	form
-	  constraints
-	    condition.f meets c.f
-	    c.f meets then.f
-	    then.f meets core.f
-	    core.f meets c2.f
-	    c2.f meets else.f
-
-
+  subcase of ConditionalDeclarative
+  form
+    constraints
+      condition.f meets c.f
+      c.f meets then.f
+      then.f meets core.f
+      core.f meets c2.f
+      c2.f meets else.f
 
 
 // ConditionalDeclarative
 // if he builds a house, will it be red?
 general construction ConditionalQuestion
-	subcase of ConditionalStatement, Question
-	constructional
-	  constituents
-	    optional c: Comma
-	    optional then: Then-Conditional
-	    core: Question
-	    optional c2: Comma
-	 meaning: ConditionalED
-	  constraints
-	    self.m.profiledParticipant <--> core.m.profiledParticipant
+  subcase of ConditionalStatement, Question
+  constructional
+    constituents
+      optional c: Comma
+      optional then: Then-Conditional
+      core: Question
+      optional c2: Comma
+  meaning: ConditionalED
+    constraints
+      self.m.profiledParticipant <--> core.m.profiledParticipant
 
 
 construction StandardConditionalQuestion-YN
-	subcase of ConditionalQuestion, YN-Question
-	constructional
-	 constituents
-	   core: YN-Question
-	form 
-	 constraints
-	   condition.f before c.f
-	   c.f before then.f
-	   then.f before core.f
+  subcase of ConditionalQuestion, YN-Question
+  constructional
+    constituents
+      core: YN-Question
+  form
+    constraints
+      condition.f before c.f
+      c.f before then.f
+      then.f before core.f

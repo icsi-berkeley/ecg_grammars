@@ -1,80 +1,69 @@
-/*
-Complex adverb phrases, including:
--Serial adverbs ("big red")
--Comparative phrases ("bigger than the box")
--Post-modified adjectives ("as big as the box")
+// Complex adverb phrases, including:
+// -Serial adverbs ("big red")
+// -Comparative phrases ("bigger than the box")
+// -Post-modified adjectives ("as big as the box")
+//
+// (ST, 5/11/16)
 
-(ST, 5/11/16)
-
-*/
-
-package core
-import core-modification
+package adjective-extended
+import base
 
 general construction ComplexAdjective
-	subcase of Adjective
+  subcase of Adjective
 
+// e.g. big red car
 construction SerialAdjective
-	subcase of ComplexAdjective
-	constructional
-	  constituents
-	    first: Adjective
-	    second: Adjective
-	form
-	  constraints
-	    first.f meets second.f
-	meaning
-	  constraints
-	    self.m <--> first.m
-	    second.m.temporality <-- @atemporal
-	    self.m.modifiedThing <--> second.m.modifiedThing
+  subcase of ComplexAdjective
+  constructional
+    constituents
+      first: Adjective
+      second: Adjective
+  form
+    constraints
+      first.f meets second.f
+  meaning
+    constraints
+      self.m <--> first.m
+      second.m.temporality <-- @atemporal
+      self.m.modifiedThing <--> second.m.modifiedThing
 
 
 // Uses comparative modifier, which is subcase of "scalar modifier".
+// e.g. bigger than my car
 construction ComparativeAdjectivePhrase
-	subcase of ComplexAdjective
-	constructional
-	  constituents
-	    comp: Adjective
-	    than: Than
-	    ground: NP
-	form
-	  constraints
-	    comp.f meets than.f
-	    than.f meets ground.f
-	meaning: ComparativeAdjModifier
-	  constraints 
-	    self.m.base <--> ground.m
-	    self.m <--> comp.m
-	    self.m.kind <-- @comparative
-	    //self.m.modifiedThing <-->
+  subcase of ComplexAdjective
+  constructional
+    constituents
+      comp: Adjective
+      than: Than
+      ground: NP
+  form
+    constraints
+      comp.f meets than.f
+      than.f meets ground.f
+  meaning: ComparativeAdjModifier
+    constraints
+      self.m.base <--> ground.m
+      self.m <--> comp.m
+      self.m.kind <-- @comparative
 
 
-// red as a block
-// Taken from base, maybe should have more detailed semantics?
-// could use ComparativeAdjModifier instead: but there needs to be a way to assert "equality" in the property value
-// vs. ("bigger than")
-construction PostModifiedAdjective  // red as a block ; only predicatively
-   subcase of ComplexAdjective
-   	constructional 
-   	 constituents
- 		optional opt: AS-Marker
-      	first: Adjective
-    	link: AS-Marker
+// e.g. red as a block
+construction PostModifiedAdjective
+  subcase of ComplexAdjective
+  constructional
+  	constituents
+      optional opt: AS-Marker
+      first: Adjective
+      link: AS-Marker
     	second: NP
-	form
-      constraints
-   		first.f meets link.f
-   		link.f meets second.f
-   meaning: ComparativeAdjModifier
-   	  //evokes Modification as mm
-   	  constraints
-		self.m <--> first.m
-		//mm.modifiedThing <-> first.m
-		//mm.modifier <-> second.m
-		self.m.base <--> second.m
-		self.m <--> first.m
-		self.m.kind <-- @comparative
-		self.m.direction <-- @equal
-		//self.m.modifiedThing <--> 
- 
+  form
+    constraints
+  		first.f meets link.f
+  		link.f meets second.f
+  meaning: ComparativeAdjModifier
+    constraints
+      self.m <--> first.m
+      self.m.base <--> second.m
+      self.m.kind <-- @comparative
+      self.m.direction <-- @equal

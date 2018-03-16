@@ -1,40 +1,38 @@
-/*
-Gerunds package. Allows VPs with a PresentParticiple verbform to be used as NPs, e.g.:
+// Gerunds package. Allows VPs with a PresentParticiple verbform to be used as NPs, e.g.:
+//
+// "his pushing the box"
+//
+// 5/5/16, ST
 
-"his pushing the box"
-
-5/5/16, ST
-*/
-
-
-package gerunds
+package vp-gerund
+import base
 
 general construction Gerund
-	subcase of NP
-	constructional 
-	 constituents
-	   vp: ArgumentStructure
-	 constraints
-	   vp.verbform <-- PresentParticiple
-	   vp.features.number <-- "singular"
-	meaning: RD
-	  constraints
-	    self.m.extras.event <--> vp.m.ed
-	    self.m.ontological-category <-- @eventTop
-	    self.m.number <-- @singular
-	    self.m.extras.event.eventForm <-- @gerund
-        
- construction BareGerund
- 	subcase of Gerund
- 	
- construction PossGerund
- 	subcase of Gerund
- 	constructional
- 	  constituents
- 	    s: PossessivePronoun
-   form
-     constraints
-       s.f before vp.f
-   meaning
-     constraints
-       self.m.extras.event.profiledParticipant <--> s.possessor
+  subcase of NP
+  constructional
+    constituents
+      vp: ArgumentStructure
+    constraints
+      vp.verbform <-- PresentParticiple
+      vp.features.number <-- "singular"
+  meaning: RD
+    constraints
+      self.m.extras.event <--> vp.m.ed
+      self.m.ontological-category <-- @eventTop
+      self.m.number <-- @singular
+      self.m.extras.event.eventForm <-- @gerund
+
+construction BareGerund
+  subcase of Gerund
+
+construction PossGerund
+  subcase of Gerund
+  constructional
+    constituents
+      s: PossessivePronoun
+  form
+    constraints
+      s.f before vp.f
+  meaning
+    constraints
+      self.m.extras.event.profiledParticipant <--> s.possessor

@@ -1,129 +1,126 @@
-package core
- 
+package sentence
+import base
+
 schema Value
-   roles
-     value
+  roles
+    value
 
 schema ConjunctionValue
-	subcase of Value
-	roles
-	  value: @conjunction 
-	  frame
+  subcase of Value
+  roles
+    value: @conjunction
+    frame
 
 general construction Conjunction
-   subcase of Word
-   meaning: ConjunctionValue
-   
+  subcase of Word
+  meaning: ConjunctionValue
+
 general construction LogicalConjunction
-	subcase of Conjunction
+  subcase of Conjunction
 
 
 general construction CoordinatingConjunction
-	subcase of LogicalConjunction
-	meaning
-	  evokes ComplexED as coordinated_event
-	
+  subcase of LogicalConjunction
+  meaning
+    evokes ComplexED as coordinated_event
+
 general construction SerialConjunction
-   subcase of Conjunction
-   meaning
+  subcase of Conjunction
+  meaning
     evokes SerialProcess as sp
 
-    
- 
-
 construction Then-Serial
-   subcase of SerialConjunction
-   form
-      constraints
-        self.f.orth <-- "then"
-   meaning
-     constraints
-       self.m.value <-- @then
-        
+  subcase of SerialConjunction
+  form
+    constraints
+      self.f.orth <-- "then"
+  meaning
+    constraints
+      self.m.value <-- @then
+
 construction Than
-	subcase of Conjunction
-	form
-	  constraints
-	    self.f.orth <-- "than"
-	meaning
-     constraints
-       self.m.value <-- @than
-       
+  subcase of Conjunction
+  form
+    constraints
+      self.f.orth <-- "than"
+  meaning
+    constraints
+      self.m.value <-- @than
 
 construction Before-Serial
-	subcase of SerialConjunction
-	form
-	  constraints
-	    self.f.orth <-- "before"
-	meaning
-     constraints
-       self.m.value <-- @before
-       sp.pa.p1 <--> sp.process1
-       sp.pa.p2 <--> sp.process2
+  subcase of SerialConjunction
+  form
+    constraints
+      self.f.orth <-- "before"
+  meaning
+    constraints
+      self.m.value <-- @before
+      sp.pa.p1 <--> sp.process1
+      sp.pa.p2 <--> sp.process2
 
 construction After-Serial
-	subcase of SerialConjunction
-	form
-	  constraints
-	    self.f.orth <-- "after"
-	meaning
-     constraints
-       self.m.value <-- @after
-       sp.pa.p1 <--> sp.process2
-       sp.pa.p2 <--> sp.process1 
-	    	    
+  subcase of SerialConjunction
+  form
+    constraints
+      self.f.orth <-- "after"
+  meaning
+    constraints
+      self.m.value <-- @after
+      sp.pa.p1 <--> sp.process2
+      sp.pa.p2 <--> sp.process1
+
 construction And-Conjunction
-	subcase of CoordinatingConjunction
-	form
-	  constraints
-	    self.f.orth <-- "and"
-	meaning
-	  constraints
-	    self.m.value <-- @and
+  subcase of CoordinatingConjunction
+  form
+    constraints
+      self.f.orth <-- "and"
+  meaning
+    constraints
+      self.m.value <-- @and
 
 construction Or-Conjunction
-	subcase of CoordinatingConjunction
-	form
-	  constraints
-	    self.f.orth <-- "or"
-	meaning
-	  constraints
-	    self.m.value <-- @or
+  subcase of CoordinatingConjunction
+  form
+    constraints
+      self.f.orth <-- "or"
+  meaning
+    constraints
+      self.m.value <-- @or
 
 construction semicolon-Conjunction
-	subcase of CoordinatingConjunction
-	form
-	  constraints
-	    self.f.orth <-- ";"
-	meaning
-	  constraints
-	    self.m.value <-- @and
+  subcase of CoordinatingConjunction
+  form
+    constraints
+      self.f.orth <-- ";"
+  meaning
+    constraints
+      self.m.value <-- @and
 
-/*
-*** ST, Concessives, 5/6/16
-*** Is the mapping between events correct? 
-*** [the man tried to push the box]<conceded> but [it was too heavy]<main assertion>
-*** Compare with: [despite wanting to push the box]<conceded>, [it was too heavy]<main assertion>
-*** Compare with: [although he wanted to push the box]<conceded>, [it was too heavy]<main assertion>. 
-*/
+
+// ST, Concessives, 5/6/16
+// Is the mapping between events correct?
+// [the man tried to push the box]<conceded> but [it was too heavy]<main assertion>
+// Compare with: [despite wanting to push the box]<conceded>, [it was too heavy]<main assertion>
+// Compare with: [although he wanted to push the box]<conceded>, [it was too heavy]<main assertion>.
+
 construction But-Conjunction
-	subcase of CoordinatingConjunction
-	form
-	  constraints
-	    self.f.orth <-- "but"
-	meaning
-	  evokes Concessive as concessive
-	  constraints
-	    coordinated_event.ed2 <--> concessive.conceded_state_of_affairs
-	    coordinated_event.ed1 <--> concessive.main_assertion
-	    self.m.value <-- @but
-	    self.m.frame <--> concessive
-	    	    
+  subcase of CoordinatingConjunction
+  form
+    constraints
+      self.f.orth <-- "but"
+  meaning
+    evokes Concessive as concessive
+    constraints
+      coordinated_event.ed2 <--> concessive.conceded_state_of_affairs
+      coordinated_event.ed1 <--> concessive.main_assertion
+      self.m.value <-- @but
+      self.m.frame <--> concessive
+
 construction That-Subordinating
-	subcase of Conjunction
-	form
-	  constraints
-	     self.f.orth <-- "that"
-	meaning
-     constraints
-       self.m.value <-- @that
+  subcase of Conjunction
+  form
+    constraints
+      self.f.orth <-- "that"
+  meaning
+    constraints
+      self.m.value <-- @that

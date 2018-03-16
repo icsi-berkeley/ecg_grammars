@@ -1,131 +1,126 @@
-/*
-Mental verb package. Dependencies are either internal to package or part of "core".
- 
-Example sentences (mental):
--he said that the box is in the room
--he thought that the box is in the room
+// Mental verb package. Dependencies are either internal to package or part of "core".
+//
+// Example sentences (mental):
+// -he said that the box is in the room
+// -he thought that the box is in the room
+//
+// -he told John the story (Ditransitive-communication-NP)
+// -he told a story to John (CommunicationNP-Alternation)
 
--he told John the story (Ditransitive-communication-NP)
--he told a story to John (CommunicationNP-Alternation)
-*/
 
-package mental
-import ditransitive
-import intransitive
-
+package argstruct-mental
+import argstruct-ditransitive
+import argstruct-intransitive
+import base
 
 general construction CommunicationCxN
-	subcase of ArgumentStructure
-	meaning: Communication
-	 evokes A123 as s
-	 constraints
-	   s.a1 <--> self.m.speaker
-	   s.a3 <--> self.m.listener 
-	   v.m.actionary <--> self.m.actionary
+  subcase of ArgumentStructure
+  meaning: Communication
+    evokes A123 as s
+    constraints
+      s.a1 <--> self.m.speaker
+      s.a3 <--> self.m.listener
+      v.m.actionary <--> self.m.actionary
 
 construction SubordinateDeclarativeThat
-	subcase of RootType
-	constructional
-	 constituents
-	  conj: That-Subordinating
-	  core: Declarative
-	form
-	 constraints
-	   conj.f meets core.f
-	meaning: EventDescriptor
-	 constraints
-	   self.m <--> core.m
-	   core.m.e-features.subord <--> conj.m
+  subcase of RootType
+  constructional
+    constituents
+      conj: That-Subordinating
+      core: Declarative
+  form
+    constraints
+      conj.f meets core.f
+  meaning: EventDescriptor
+    constraints
+      self.m <--> core.m
+      core.m.e-features.subord <--> conj.m
 
 construction IntransitiveCommunication
-	subcase of IntransitiveArgumentStructure
-	constructional
-	 constituents
-	  v: Verb
-	  //optional conj: That-Subordinating
-	  core: SubordinateDeclarativeThat
-	  // optional ToPhrase: Path-PP ("to the man")
-   form
+  subcase of IntransitiveArgumentStructure
+  constructional
+    constituents
+      v: Verb
+      //optional conj: That-Subordinating
+      core: SubordinateDeclarativeThat
+      // optional ToPhrase: Path-PP ("to the man")
+  form
     constraints
       v.f before core.f
-   meaning: Communication
+  meaning: Communication
     constraints
-     core.m <--> self.m.content
-     self.m <--> v.m
-     //self.m.listener <--> ToPhrase.m.landmark ??
+      core.m <--> self.m.content
+      self.m <--> v.m
+      //self.m.listener <--> ToPhrase.m.landmark ??
 
-import ditransitive
-//this requires ditransitive package
 
-// he 
+// he
 construction DitransitiveCommunication-NP
-	subcase of ActiveDitransitive
-	form 
-	 constraints
-	   v.f before np1.f
-	meaning: Communication
-	 constraints
-	  self.m <--> v.m
-	  s.a3 <--> self.m.media
-	  s.a1 <--> self.m.speaker
-	  s.a2 <--> self.m.listener
-	  //v.m.actionary <--> self.m.actionary
+  subcase of ActiveDitransitive
+  form
+    constraints
+      v.f before np1.f
+  meaning: Communication
+    constraints
+      self.m <--> v.m
+      s.a3 <--> self.m.media
+      s.a1 <--> self.m.speaker
+      s.a2 <--> self.m.listener
+      //v.m.actionary <--> self.m.actionary
 
 // Alternation
 construction DativeCommunicationNP-Alternation
-	subcase of ActiveTransitive
-	constructional
-	 constituents 
-	  optional pp: Path-PP
-	form 
-	 constraints
-	   v.f before np.f
-	meaning: Communication
-	 constraints
-	  self.m <--> v.m
-	  s.a2 <--> self.m.media
-	  s.a1 <--> self.m.speaker
-	  s.a3 <--> self.m.listener
-	  s.a3 <--> pp.np.m
-	  //v.m.actionary <--> self.m.actionary
+  subcase of ActiveTransitive
+  constructional
+    constituents
+      optional pp: Path-PP
+  form
+    constraints
+      v.f before np.f
+  meaning: Communication
+    constraints
+      self.m <--> v.m
+      s.a2 <--> self.m.media
+      s.a1 <--> self.m.speaker
+      s.a3 <--> self.m.listener
+      s.a3 <--> pp.np.m
+      //v.m.actionary <--> self.m.actionary
 
 // he told John that {EVENT}
 // note: make this passivisable?
 construction Communication-S
-	subcase of CommunicationCxN
-	constructional
-	 constituents
-	   v: Verb
-	   np1: NP
-	   core: SubordinateDeclarativeThat
-	 constraints
-	  v.argform <-- Transitive
-	  np1.features.case <-- "dat"
-	form 
-	 constraints
-	   v.f before np1.f
-	   np1.f before core.f
-	meaning: Communication
-	 constraints
-	  self.m <--> v.m
-	  core.m <--> self.m.content
-	  ed.profiledParticipant <--> self.m.speaker
-	  np1.m <--> self.m.listener
-	  v.verbkind <-- Communicational
-	 
+  subcase of CommunicationCxN
+  constructional
+    constituents
+      v: Verb
+      np1: NP
+      core: SubordinateDeclarativeThat
+    constraints
+      v.argform <-- Transitive
+      np1.features.case <-- "dat"
+  form
+    constraints
+      v.f before np1.f
+      np1.f before core.f
+  meaning: Communication
+    constraints
+      self.m <--> v.m
+      core.m <--> self.m.content
+      ed.profiledParticipant <--> self.m.speaker
+      np1.m <--> self.m.listener
+      v.verbkind <-- Communicational
+
 
 construction IntransitiveThought
-	subcase of IntransitiveArgumentStructure //BareIntransitive
-	constructional
-	 constituents
-	  v: MentalVerb
-	  core: SubordinateDeclarativeThat
-   form
+  subcase of IntransitiveArgumentStructure //BareIntransitive
+  constructional
+    constituents
+      v: MentalVerb
+      core: SubordinateDeclarativeThat
+  form
     constraints
       v.f before core.f
-   meaning: Thought
+  meaning: Thought
     constraints
-     core.m <--> self.m.content
-	self.m <--> v.m
-
-
+      core.m <--> self.m.content
+      self.m <--> v.m

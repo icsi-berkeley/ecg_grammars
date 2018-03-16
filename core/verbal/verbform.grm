@@ -1,6 +1,7 @@
-package core
+package verb
+import base
 
-//******** Verb Form Schemas //change to ontology items?
+// Verb Form Schemas //change to ontology items?
 
 schema FiniteOrNonFinite
 
@@ -24,88 +25,64 @@ schema Infinitive subcase of  PresentParticipleOrInfinitive, BaseOrInfinitive
 
 schema BaseOrInfinitive subcase of NonFinite
 
-schema Base subcase of BaseOrInfinitive 
+schema Base subcase of BaseOrInfinitive
 
-schema FromGerund subcase of NonFinite  // 1/20/13, also parents
-
-	
-// ************ General Verb constructions
-// genearl construction HasVerbFeatures is in agreement_features-constructions.grm
+schema FromGerund subcase of NonFinite
 
 
+// General Verb constructions
+// general construction HasVerbFeatures is in agreement_features-constructions.grm
 general construction VerbConjugation
-   	subcase of HasVerbFeatures
-	meaning
-		evokes ProcessFeatures as pf						
+  subcase of HasVerbFeatures
+  meaning
+    evokes ProcessFeatures as pf
 
 general construction PastTense
-   subcase of VerbConjugation
-   constructional
-     constraints
-        self.verbform <-- Past
-        self.voice <-- NotPassive
-        //can put stuff about an action wrt speech time here
-	meaning 
-		constraints
-			pf.tense <-- @past
-			 
-general construction PresentTense
-   subcase of VerbConjugation
-   constructional
-     constraints
-        self.verbform <-- Present
-         self.voice <-- NotPassive
-	meaning 
-		constraints
-			pf.tense <-- @present
+  subcase of VerbConjugation
+  constructional
+    constraints
+      self.verbform <-- Past
+      self.voice <-- NotPassive
+      // Note: can put stuff about an action wrt speech time here
+  meaning
+    constraints
+      pf.tense <-- @past
 
-/*
-general construction BaseOrPresentForm
-   subcase of VerbConjugation
-   constructional
-     constraints
-        self.features.verbform <-- BaseOrPresent
-*/
+general construction PresentTense
+  subcase of VerbConjugation
+  constructional
+    constraints
+      self.verbform <-- Present
+      self.voice <-- NotPassive
+  meaning
+    constraints
+      pf.tense <-- @present
 
 general construction BaseForm
-   subcase of VerbConjugation
-   constructional
-     constraints
-        self.verbform <-- Base
-         self.voice <-- NotPassive
-        
+  subcase of VerbConjugation
+  constructional
+    constraints
+      self.verbform <-- Base
+      self.voice <-- NotPassive
+
 general construction PresentParticiple
-   subcase of VerbConjugation
-   constructional
-     constraints
-        self.verbform <-- PresentParticiple
-        self.voice <-- NotPassive
-	meaning 
-		constraints
-			//pf.temporality <-- @ongoing
+  subcase of VerbConjugation
+  constructional
+    constraints
+      self.verbform <-- PresentParticiple
+      self.voice <-- NotPassive
+  meaning
+    constraints
+      //pf.temporality <-- @ongoing
 
 general construction PastParticiple
-   subcase of VerbConjugation
-   constructional
-     constraints
-        self.verbform <-- PastParticiple
-	meaning 
-		constraints
-			//pf.temporality <-- @bounded
+  subcase of VerbConjugation
+  constructional
+    constraints
+      self.verbform <-- PastParticiple
+  meaning
+    constraints
+      //pf.temporality <-- @bounded
 
 general construction ThirdPersonSingular
-   subcase of ThirdPerson, Singular
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  subcase of ThirdPerson, Singular

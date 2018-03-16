@@ -1,86 +1,66 @@
-/*
-Package for defining passive variants of Transitive cxns.
+// Package for defining passive variants of Transitive cxns.
+//
+// (5/5/16, ST)
+//
+// Includes:
+// -the box was seen by the man
+// -the box was painted (by the man)
+// -the box was moved (by the man)
+// -the box was pushed into the room (by the man)
+// -the house was built (by the man)
+// -the box was picked up (by the man)
+// -the box was given to him (by the man)
 
-(5/5/16, ST)
-
-Includes:
--the box was seen by the man
--the box was painted (by the man)
--the box was moved (by the man)
--the box was pushed into the room (by the man)
--the house was built (by the man)
--the box was picked up (by the man)
--the box was given to him (by the man)
-
-*/
-
-package passive-transitives
+package argstruct-passive-transitive
+import base
 import auxiliaries
-import transitives
 
-
-general construction PassiveTransitive // 5/14/13
+general construction PassiveTransitive
   subcase of ArgumentStructure
   constructional
     constituents
-     v:Verb // inherited
-     optional byPhrase: ByAgentPhrase
+      v:Verb // inherited
+      optional byPhrase: ByAgentPhrase
     constraints
       v.argform <-- Transitive
-      v.voice <-- Passive  // 2/1/13
- form
+      v.voice <-- Passive
+  form
     constraints
       v.f before byPhrase.f
-  meaning: Process  
-     evokes A123 as s
-     constraints
-	   s.a1 <--> byPhrase.m.landmark 
-	   s.a2 <--> ed.profiledParticipant
-	   v.m.p-features.voice <-- @passive 
+  meaning: Process
+    evokes A123 as s
+    constraints
+      s.a1 <--> byPhrase.m.landmark
+      s.a2 <--> ed.profiledParticipant
+      v.m.p-features.voice <-- @passive
 
 // This binds the self.m with the verb's meaning.
 general construction CorePassiveTransitive
-	subcase of PassiveTransitive
-	meaning
-	  constraints
-	    self.m <--> v.m
-	    //self.m.protagonist <--> s.a1
-	    
-	  
-// the block was seen by him
-construction PassiveTransitivePerception  
-	subcase of CorePassiveTransitive, TransitivePerception
+  subcase of PassiveTransitive
+  meaning
+    constraints
+      self.m <--> v.m
 
-   
-// "the room was entered by him"
+// e.g. the block was seen by him
+construction PassiveTransitivePerception
+  subcase of CorePassiveTransitive, TransitivePerception
+
+// e.g. "the room was entered by him"
 construction PassiveTransitiveChangeLocation
-	subcase of CorePassiveTransitive, TransitiveChangeLocation
+  subcase of CorePassiveTransitive, TransitiveChangeLocation
 
-
-// the box was moved into the room by John
+// e.g. "the box was moved into the room by John"
 construction PassiveTrans_CauseChangeLocation_mp
   subcase of PassiveTransitive, Trans_CauseChangeLocation_mp
-	   
 
-// the box was pushed into the room
+// e.g. "the box was pushed into the room"
 construction PassiveTrans_CauseChangeLoc_causalAction
-	subcase of PassiveTransitive, Trans_CauseChangeLoc_causalAction	    
+  subcase of PassiveTransitive, Trans_CauseChangeLoc_causalAction
 
-// "the box was created by the man"
-construction PassiveTransitiveCreation
-	subcase of CorePassiveTransitive, TransitiveCreation    
-	    
-// "the box is owned by the man"
+// e.g. "the box is owned by the man"
 construction PassiveTransitivePossession
-	subcase of CorePassiveTransitive, TransitivePossession    
+  subcase of CorePassiveTransitive, TransitivePossession
 
-
-
-// the box was picked up by the man
-construction PassiveTransitiveManipulation
-	subcase of CorePassiveTransitive, TransitiveManipulation	
-	
-	
-// the box was given to John by the man   
+// e.g. "the box was given to John by the man"
 construction PassiveTransitiveObjectTransfer
-	subcase of CorePassiveTransitive, TransitiveObjectTransfer    
+  subcase of CorePassiveTransitive, TransitiveObjectTransfer

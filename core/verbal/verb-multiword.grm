@@ -1,40 +1,41 @@
-package core
-//package multiwords
+// Specific to adjacent words, as opposed to particles which can appear later in a sentence.
 
-import particles
+package verb-multiword
+import verb-particles
+import base
 
 construction PickType
-	subcase of LexicalVerbType
-	meaning: Manipulation // Process?
-	  constraints
-	    self.m.actionary <-- @process
-	   
-construction PickUp
-	subcase of VplusParticle
-	constructional
-	 constituents
-	   v: PickType
-	   prep: UP-Particle
-	 constraints
-	   //pick.verbform <-- Finite
-	   //self.features <--> pick.features
-    meaning: Manipulation
-      constraints
-        self.m.actionary <-- @pickup
+  subcase of LexicalVerbType
+  meaning: Manipulation // Process?
+    constraints
+      self.m.actionary <-- @process
 
-/*        
+construction PickUp
+  subcase of VplusParticle
+  constructional
+   constituents
+     v: PickType
+     prep: UP-Particle
+   constraints
+     //pick.verbform <-- Finite
+     //self.features <--> pick.features
+  meaning: Manipulation
+    constraints
+      self.m.actionary <-- @pickup
+
+/*
 // direct object pronoun alternation
-// testing, doesn't actually work...        
+// testing, doesn't actually work...
 construction PickItUp
-	subcase of VplusParticle
-	constructional
-	  constituents
-	    v: PickType
-	    prep: UP-Particle
-	meaning: Manipulation
-	 constraints
-	   //self.m <--> pick.m
-	   //s.a1 <--> self.m.actor
-	   //it.m <--> s.a2
-	   //it.m <--> self.m.manipulated_entity
-*/	   
+  subcase of VplusParticle
+  constructional
+    constituents
+      v: PickType
+      prep: UP-Particle
+  meaning: Manipulation
+   constraints
+     //self.m <--> pick.m
+     //s.a1 <--> self.m.actor
+     //it.m <--> s.a2
+     //it.m <--> self.m.manipulated_entity
+*/

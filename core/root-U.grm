@@ -1,40 +1,35 @@
-package core
-
+package root
 
 construction ROOT
-	constructional
-    	constituents
-	  		rootconstituent: RootType
-	meaning
-    	constraints
-	  		self.m <--> rootconstituent.m
+  constructional
+    constituents
+    	rootconstituent: RootType
+  meaning
+    constraints
+    	self.m <--> rootconstituent.m
 
 general construction RootType
 
-//A cxn for unknown orthographic strings, i.e. those that don't match
+// A cxn for unknown orthographic strings, i.e. those that don't match
 // the word forms of any of the Word cxns in the current grammar
-
-construction UnknownWord 
-	subcase of Word, RootType
-  	form  
-    	constraints
-        	self.f.orth <-- "UNKNOWN-ITEM"
-
+construction UnknownWord
+  subcase of Word, RootType
+	form
+  	constraints
+      self.f.orth <-- "UNKNOWN-ITEM"
 
 
-    
-general construction Word // ? add role for ontological-category
-  	subcase of RootType
-   		form: WordForm
+// Q:add role for ontological-category?
+general construction Word
+	subcase of RootType
+ 	form: WordForm
 
 
-//For additional subcases of RootType, see individual files.  
-
+// For additional subcases of RootType, see individual files.
 
 // "Type" construction: all types are subcase
 construction GeneralTypeCxn
-	subcase of Word
-	form 
-	  constraints
-	    self.f.orth <-- "*"
-
+  subcase of Word
+  form
+    constraints
+      self.f.orth <-- "*"
