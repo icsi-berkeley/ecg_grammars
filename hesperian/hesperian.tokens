@@ -108,3 +108,5 @@ spotting :: SymptomType :: self.m.ontological-category <-- @spotting
 backache :: SymptomType :: self.m.ontological-category <-- @backache
 constipation :: SymptomType :: self.m.ontological-category <-- @constipation
 symptom :: SymptomType :: self.m.ontological-category <-- @symptom
+treat :: TreatmentActionType :: self.m.actionary <-- @treat
+push :: ApplyForceType :: self.m.actionary <-- @push_move

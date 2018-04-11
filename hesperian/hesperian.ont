@@ -26,10 +26,24 @@ DEFS:
 
 (type patient sub hesperian person)
 
+(type treatmentVerb sub verb hesperian process)
+
+// Age Groups
+
 (type ageGroup sub abstract)
 
 (type infant sub ageGroup)
 
+(type child sub ageGroup)
+
+(type teenager sub ageGroup)
+
+(type adult sub ageGroup)
+
+(type elderly sub ageGroup)
+
+
+(type how sub wh-word eventTop)
 // Instances
 
 //
@@ -447,5 +461,7 @@ DEFS:
 (type backache sub symptom  shared)
 
 (type constipation sub symptom  shared)
+
+(type treat sub treatmentVerb  shared)
 
 INSTS:

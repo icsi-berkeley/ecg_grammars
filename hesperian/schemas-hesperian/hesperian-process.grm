@@ -1,0 +1,14 @@
+package hesperian
+import base
+
+schema TreatmentProcess
+	subcase of Process
+	roles
+		trmt: Treatment
+		patient: Patient
+		condition: Condition
+		actionary: @treatmentVerb
+	constraints
+		patient <--> trmt.patient
+		condition <--> trmt.condition
+		condition.experiencer <--> patient

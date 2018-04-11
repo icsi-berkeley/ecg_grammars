@@ -1,0 +1,9 @@
+package hesperian
+import base
+
+construction TreatmentActionType
+  subcase of LexicalVerbType
+  meaning: TreatmentProcess
+    constraints
+      self.m.actionary <-- @treatmentVerb
+      self.argform <-- Transitive

@@ -1,0 +1,25 @@
+package hesperian
+import base
+
+construction How-Manner
+  subcase of WH-NP, Word
+  form
+   constraints
+     self.f.orth <-- "how"
+  meaning: RD
+    constraints
+      self.m.extras.specificWh <-- @how
+
+construction Process-Question
+  subcase of WH-Question, S
+  constructional
+    constituents
+      subj: How-Manner
+      fin: VP
+  form
+    constraints
+      subj.f before fin.f
+  meaning
+    constraints
+      self.m <--> fin.ed
+      fin.ed.profiledParticipant <--> subj.m

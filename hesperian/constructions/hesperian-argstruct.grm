@@ -1,0 +1,12 @@
+package hesperian
+import base
+
+general construction TransitiveTreatment
+  subcase of ArgumentStructure
+  meaning: TreatmentProcess
+    constraints
+      s.a1 <--> self.m.trmt
+      s.a2 <--> self.m.condition
+
+construction ActiveTransitiveTreatment
+  subcase of CoreActiveTransitive, TransitiveTreatment, RootType

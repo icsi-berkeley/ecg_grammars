@@ -39,12 +39,12 @@ schema Treatment
   subcase of RD
   roles
     drug: RD
-    user: Patient
+    patient: Patient
     location: RD
     condition: Condition
   constraints
     drug.ontological-category <-- @drug
-    user.ontological-category <-- @person
+    patient.ontological-category <-- @person
     location.ontological-category <-- @bodyPart2
     condition.ontological-category <-- @condition
 
