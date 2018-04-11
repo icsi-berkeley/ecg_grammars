@@ -1,187 +1,127 @@
 package hesperian
-import core
+import base
 
-// Construction for symptoms
-construction SymptomType
-  subcase of NounType, NP
-  meaning: Symptom
-  constraints
-    self.m.ontological-category <-- @symptom
-
-// Construction for diseases
-construction DiseaseType
-  subcase of NounType, NP
-  meaning: Disease
-  constraints
-    self.m.ontological-category <-- @disease
-
-// Construction for drugs
-construction DrugType
-  subcase of NounType, NP
-  meaning: Treatment
-    constraints
-      self.m.ontological-category <-- @drug
-
-// Construction for medical procedures
-construction ProcedureType
-  subcase of NounType, NP
-  meaning: Treatment
-    constraints
-      self.m.ontological-category <-- @procedure
-
-// Construction for patients
-construction PatientType
-  subcase of SentientNoun, NP
-  meaning: Patient
-    constraints
-      self.m.ontological-category <-- @person
-
-construction LocatedSymptom
+general construction ConditionPhrase
   subcase of NP
+
+// e.g. stomach pain
+construction LocatedCondition
+  subcase of NounNounCompound, ConditionPhrase
+  meaning: Condition
+    constraints
+      self.m <--> head.m
+      self.m.location <--> mod.m
+      head.m.ontological-category <-- @condition
+      mod.m.ontological-category <-- @bodyPart2
+
+// e.g. severe pain
+construction ConditionSeverity
+  subcase of ConditionPhrase
   constructional
     constituents
-      loc: PhysicalEntityNoun
-      symp: SymptomType
-  form
-    constraints
-      loc.f meets symp.f
-  meaning: Symptom
-    constraints
-      symp.m <--> self.m
-      loc.m <--> self.m.location
-
-construction SymptomSeverity
-  subcase of NP
-  constructional
-    constituents
-      symp: SymptomType
+      symp: ConditionPhrase
       sev: ScalarAdjectiveType
   form
   	constraints
   	  sev.f meets symp.f
-  meaning: Symptom
+  meaning: Condition
     constraints
+      self.m <--> symp.m
       sev.m <--> self.m.severity
 
+// e.g. cancer pain
 construction DiseaseSymptom
-  subcase of NP
+  subcase of ConditionPhrase
   constructional
     constituents
-      symp: SymptomType
-      dis: DiseaseType
+      symp: ConditionPhrase
+      dis: ConditionPhrase
   meaning: Disease
     constraints
-      symp.m <--> self.m.symptom
       dis.m <--> self.m
+      symp.m <--> self.m.symptom
+      symp.m.ontological-category <-- @symptom
+      dis.m.ontological-category <-- @disease
 
-construction LocatedDisease
-  subcase of NP
+// e.g. pain in stomach
+construction Prep-Locative-Condition
+  subcase of ConditionPhrase
   constructional
     constituents
-      loc: PhysicalEntityNoun
-      dis: DiseaseType
+      loc: HasNominalFeatures // This is probably way too loose but needed to accomodate kernels, e.g. "left abdomen"
+      prep: LocativePreposition
+      cond: ConditionPhrase
   form
     constraints
-      loc.f meets dis.f
-  meaning: Disease
+      cond.f before prep.f
+      prep.f before loc.f
+  meaning: Condition
     constraints
-      //dis.m <--> self.m
-      loc.m <--> self.m.location
+   	  self.m <--> cond.m
+   	  self.m.location <--> loc.m
 
-construction LocatedTreatment
-  subcase of NP
+// DOES NOT WORK. FIX ME
+/*construction Treatment-For-Condition
   constructional
     constituents
-      loc: PhysicalEntityNoun
-      dru: DrugType
+      trt: DrugType
+      for: For-PP
   form
     constraints
-      loc.f meets dru.f
+      trt.f before for.f
   meaning: Treatment
     constraints
-      //dru.m <--> self.m
-      loc.m <--> self.m.location
+      self.m <--> trt.m
+     // self.m.condition <--> for.np.m
+     // for.np.m.ontological-category <-- @condition
+*/
 
-construction Prep-Locative-Disease
-  subcase of RootType
+// e.g. stomach medicine
+construction LocatedTreatment
+  subcase of NounNounCompound, NP
+  meaning: Treatment
+    constraints
+      self.m <--> head.m
+      self.m.location <--> mod.m
+      mod.m.ontological-category <-- @bodyPart2
+      head.m.ontological-category <-- @treatment
+
+// e.g. cancer medicine
+construction ConditionTreatment
+  subcase of NounNounCompound, NP
+  meaning: Treatment
+    constraints
+      self.m <--> head.m
+      self.m.condition <--> mod.m
+      mod.m.ontological-category <-- @condition
+      head.m.ontological-category <-- @treatment
+
+// Copied from NounNounCompound
+// e.g. abortion pills
+construction ProcedureDrug
+  subcase of Nominal, NP
   constructional
     constituents
-      loc: PhysicalEntityNoun
-      prep: LocativePreposition
-  dis: DiseaseType
+      mod: Nominal
+      head: Nominal
+    constraints
+      self.features <--> head.features
   form
     constraints
-      dis.f before prep.f
-      prep.f before loc.f
-  meaning: Disease
+      mod.f before head.f
+  meaning: Treatment
+    evokes NounNounModifier as nnm
     constraints
-    	loc.m <--> self.m.location
-    	dis.m <--> self.m
+      nnm.modifiedThing <--> head.m
+      nnm.modifier <--> mod.m
+      self.m <--> mod.m
+      self.m.drug <--> head.m
+      head.m.ontological-category <-- @drug
+      mod.m.ontological-category <-- @procedure
 
-general construction CanAux
-  subcase of LexicalAux
-  constructional
-    constraints
-      self.expectedVerbForm <-- Base
 
-construction DoAuxPresent
-  subcase of DoAux, PresentTense
-  form
-    constraints
-      self.f.orth <-- "does"
-  meaning
-    constraints
-      pf <--> self.m
-
-construction CanAuxPast
-  subcase of CanAux, PastTense
-  form
-    constraints
-      self.f.orth <-- "could"
-  meaning
-    constraints
-      pf <--> self.m
-
-construction CanAuxPresent
-  subcase of CanAux, PresentTense
-  form
-    constraints
-      self.f.orth <-- "can"
-  meaning
-    constraints
-      pf <--> self.m
-
-construction S-With-Can-Inversion
-  subcase of S-With-Aux-Inversion
-  constructional
-    constituents
-      fin: CanAux
-
-construction Drug-For-Disease
-  subcase of PP
-  constructional
-    constituents
-      prep: For-Recipient
-      disease: DiseaseType
-      np: DrugType
-  form
-    constraints
-      prep.f before disease.f
-      np.f before prep.f
-
-construction Drug-For-Symptom
-  subcase of PP
-  constructional
-    constituents
-      prep: For-Recipient
-      symp: SymptomType
-      np: DrugType
-  form
-    constraints
-      prep.f before symp.f
-      np.f before prep.f
-
-construction Drug-For-Person
+// ALSO DOESN'T WORK. FIX ME
+/*construction Drug-For-Person
   subcase of PP
   constructional
     constituents
@@ -192,7 +132,7 @@ construction Drug-For-Person
     constraints
       prep.f before person.f
       np.f before prep.f
-
+*/
 construction After-Event
   subcase of Preposition
   form
@@ -207,33 +147,52 @@ construction After-PP
   form
    constraints
      prep.f before np.f
-  meaning: RD
+  meaning
     constraints
       self.m <--> np.m
 
-construction TemporalQuantityNP2
-  subcase of TemporalQuantityNP
+// e.g. bleeding for four weeks
+construction Condition-For-Time
+  subcase of ConditionPhrase
   constructional
     constituents
-      temporal-landmark: PP
-  form
-    constraints
-      k.f before temporal-landmark.f
-
-construction Symptom-For-Time
-  subcase of PP
-  constructional
-    constituents
-      symp: SymptomType
-      prep: For-Recipient
-      np: TemporalQuantityNP2
+      symp: ConditionPhrase
+      optional prep: For-Recipient
+      np: TemporalQuantityNP
   form
     constraints
       symp.f before prep.f
       prep.f before np.f
-  meaning: Symptom
+  meaning: Condition
     constraints
       self.m <--> symp.m
       self.m.duration <--> np.m
-      self.m.trigger <--> np.temporal-landmark.m
 
+// e.g. bleeding after abortion
+construction ConditionAfterTreatment
+  subcase of ConditionPhrase
+  constructional
+    constituents
+      cond: ConditionPhrase
+      trigger: After-PP
+  meaning: Condition
+    constraints
+      self.m <--> cond.m
+      self.m.trigger <--> trigger.m
+
+construction HesperianBag
+  subcase of RootType
+  constructional
+    constituents
+      np: NP
+      optional cc: CoordinatingConjunction
+      optional hb: HesperianBag
+  form
+    constraints
+      np.f before cc.f
+      cc.f before hb.f
+  meaning: HesperianBagSchema
+    constraints
+      self.m.this <--> np.m
+      self.m.next <--> hb.m
+      self.m.this.ontological-category <-- @hesperian

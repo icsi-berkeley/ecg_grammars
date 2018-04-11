@@ -1,31 +1,37 @@
 package hesperian
-import core
+import base
 
-schema Symptom
+schema HesperianBagSchema
+  roles
+    this: RD
+    next: HesperianBagSchema
+
+schema Condition
   subcase of RD
   roles
-    experiencer: Patient
     location: RD
-    disease: Disease
+    experiencer: Patient
     severity: ScalarModifier
     duration: RD
     trigger: RD
   constraints
     experiencer.ontological-category <-- @person
-    location.ontological-category <-- @bodyPart
-    disease.ontological-category <-- @disease
     severity.value <-- @scalarValue
+    location.ontological-category <-- @bodyPart2
+
+schema Symptom
+  subcase of Condition
+  roles
+    disease: Disease
+  constraints
+    disease.ontological-category <-- @disease
 
 schema Disease
-  subcase of RD
+  subcase of Condition
   roles
-    experiencer: Patient
-    location: RD
     agent: RD
     symptom: Symptom
   constraints
-    experiencer.ontological-category <-- @person
-    location.ontological-category <-- @bodyPart
     agent.ontological-category <-- @agent
     symptom.ontological-category <-- @symptom
 
@@ -35,14 +41,21 @@ schema Treatment
     drug: RD
     user: Patient
     location: RD
+    condition: Condition
   constraints
     drug.ontological-category <-- @drug
     user.ontological-category <-- @person
-    location.ontological-category <-- @bodyPart
+    location.ontological-category <-- @bodyPart2
+    condition.ontological-category <-- @condition
 
 schema Patient
   subcase of RD
   roles
-  	name: @name
-  	age: @scalarValue
-  	gender: @genderValues  
+  	name
+  	age
+  	gender
+  constraints
+    name <-- @name
+    age <-- @ageGroup
+    gender <-- @genderValues
+

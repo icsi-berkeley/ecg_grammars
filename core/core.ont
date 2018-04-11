@@ -26,8 +26,6 @@ DEFS:
 
 
 
-(type disease sub physicalEntity) //physicalEntity) // animate?
-
 (type abstract sub entity)
 
 (type social sub entity)

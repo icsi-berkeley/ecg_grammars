@@ -1,0 +1,52 @@
+package hesperian
+import base
+
+// Construction for physical conditions
+construction ConditionType
+  subcase of NounType, ConditionPhrase
+  meaning: Condition
+  constraints
+    self.m.ontological-category <-- @condition
+
+// Construction for symptoms
+construction SymptomType
+  subcase of ConditionType
+  meaning: Symptom
+  constraints
+    self.m.ontological-category <-- @symptom
+
+// Construction for diseases
+construction DiseaseType
+  subcase of ConditionType
+  meaning: Disease
+  constraints
+    self.m.ontological-category <-- @disease
+
+// Construction for drugs
+construction DrugType
+  subcase of NounType, NP
+  meaning: Treatment
+    constraints
+      self.m.ontological-category <-- @drug
+
+// Construction for medical procedures
+construction ProcedureType
+  subcase of NounType, NP
+  meaning: Treatment
+    constraints
+      self.m.ontological-category <-- @procedure
+
+// Construction for patients
+construction PatientType
+  subcase of SentientNoun, NP
+  meaning: Patient
+    constraints
+      self.m.ontological-category <-- @patient
+      self.m.age <-- @ageGroup
+
+// Construction for body parts
+construction BodyPartType
+  subcase of PhysicalEntityNoun, NP
+  meaning: RD
+    constraints
+      self.m.ontological-category <-- @bodyPart2

@@ -6,15 +6,29 @@
 
 DEFS:
 
+(type hesperian)
+
 (type value sub process)
 
-(type procedure sub process)
+(type treatment sub abstract hesperian)
 
-(type symptom sub physicalEntity)
+(type procedure sub process treatment)
 
-(type bodyPart sub physicalEntity)
+(type condition sub physicalEntity hesperian)
 
-(type drug sub physicalEntity)
+(type disease sub condition physicalEntity)
+
+(type symptom sub condition physicalEntity)
+
+(type bodyPart2 sub part shaped physicalEntity hesperian)
+
+(type drug sub physicalEntity treatment)
+
+(type patient sub hesperian person)
+
+(type ageGroup sub abstract)
+
+(type infant sub ageGroup)
 
 // Instances
 
@@ -22,11 +36,11 @@ DEFS:
 
 (type john-instance sub person)
 
-(type adult sub person)
+(type adult sub person patient)
 
 (type parent sub adult)
 
-(type child sub person)
+(type child sub person patient)
 
 (type baby sub child)
 
@@ -86,7 +100,9 @@ DEFS:
 
 (type left sub direction)
 
-(type up sub direction)
+(type upper sub direction)
+
+(type lower sub direction)
 
 //================== process stages
 
@@ -274,6 +290,14 @@ DEFS:
 
 (type westSide sub sideValue)
 
+(type rightSide sub sideValue)
+
+(type leftSide sub sideValue)
+
+(type upperSide sub sideValue)
+
+(type lowerSide sub sideValue)
+
 (type violet sub colorValue)
 
 (type white sub colorValue)
@@ -314,7 +338,7 @@ DEFS:
 
 (type bleeding sub symptom)
 
-(type abdomen sub bodyPart)
+(type abdomen sub bodyPart2)
 
 (type malaria sub disease)
 
@@ -322,11 +346,11 @@ DEFS:
 
 (type bad sub scalarValue)
 
-(type chest sub bodyPart)
+(type chest sub bodyPart2)
 
-(type stomach sub bodyPart)
+(type stomach sub bodyPart2)
 
-(type scalp sub bodyPart)
+(type scalp sub bodyPart2)
 
 (type anorexia sub disease)
 
@@ -391,5 +415,37 @@ DEFS:
 (type zika sub disease)
 
 (type pink_eye sub disease)
+
+(type blood sub bodyPart2  shared)
+
+(type clot sub symptom  shared)
+
+(type blood_clot sub symptom  shared)
+
+(type month sub measure temporal-units shared)
+
+(type breast sub bodyPart2  shared)
+
+(type hardness sub scale  shared)
+
+(type urine sub bodyPart2  shared)
+
+(type blister sub symptom  shared)
+
+(type tongue sub bodyPart2  shared)
+
+(type mouth sub bodyPart2  shared)
+
+(type lip sub bodyPart2  shared)
+
+(type pregnant sub condition  shared)
+
+(type period sub symptom  shared)
+
+(type spotting sub symptom  shared)
+
+(type backache sub symptom  shared)
+
+(type constipation sub symptom  shared)
 
 INSTS:

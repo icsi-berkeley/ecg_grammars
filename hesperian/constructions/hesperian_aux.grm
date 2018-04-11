@@ -1,0 +1,41 @@
+package hesperian
+import base
+
+general construction CanAux
+  subcase of LexicalAux
+  constructional
+    constraints
+      self.expectedVerbForm <-- Base
+
+construction DoAuxPresent
+  subcase of DoAux, PresentTense
+  form
+    constraints
+      self.f.orth <-- "does"
+  meaning
+    constraints
+      pf <--> self.m
+
+construction CanAuxPast
+  subcase of CanAux, PastTense
+  form
+    constraints
+      self.f.orth <-- "could"
+  meaning
+    constraints
+      pf <--> self.m
+
+construction CanAuxPresent
+  subcase of CanAux, PresentTense
+  form
+    constraints
+      self.f.orth <-- "can"
+  meaning
+    constraints
+      pf <--> self.m
+
+construction S-With-Can-Inversion
+  subcase of S-With-Aux-Inversion
+  constructional
+    constituents
+      fin: CanAux

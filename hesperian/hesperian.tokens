@@ -2,6 +2,11 @@ north :: DirectionalType :: self.m.tag <-- @north
 south :: DirectionalType :: self.m.tag <-- @south
 east :: DirectionalType :: self.m.tag <-- @east
 west :: DirectionalType :: self.m.tag <-- @west
+left :: DirectionalType :: self.m.tag <-- @left
+right :: DirectionalType :: self.m.tag <-- @right
+lower :: DirectionalType :: self.m.tag <-- @lower
+upper :: DirectionalType :: self.m.tag <-- @upper
+
 green :: ColorType :: self.m.value <-- @green
 black :: ColorType :: self.m.value <-- @black
 purple :: ColorType :: self.m.value <-- @purple
@@ -14,6 +19,10 @@ north :: SideAdj-Type :: self.m.value <-- @northSide
 south :: SideAdj-Type :: self.m.value <-- @southSide
 east :: SideAdj-Type :: self.m.value <-- @eastSide
 west :: SideAdj-Type :: self.m.value <-- @westSide
+left :: SideAdj-Type :: self.m.value <-- @leftSide
+right :: SideAdj-Type :: self.m.value <-- @rightSide
+lower :: SideAdj-Type :: self.m.value <-- @lowerSide
+upper :: SideAdj-Type :: self.m.value <-- @upperSide
 white :: ColorType :: self.m.value <-- @white
 pink :: ColorType :: self.m.value <-- @pink
 large :: ScalarAdjectiveType :: self.m.value <-- ".7"
@@ -28,12 +37,17 @@ affect :: CauseEffectType :: self.m.actionary <-- @affect
 pain :: SymptomType :: self.m.ontological-category <-- @pain
 diarrhea :: SymptomType :: self.m.ontological-category <-- @diarrhea
 bleeding :: SymptomType :: self.m.ontological-category <-- @bleeding
+ache :: SymptomType :: self.m.ontological-category <-- @pain
+clot :: SymptomType :: self.m.ontological-category <-- @clot
+blood_clot :: SymptomType :: self.m.ontological-category <-- @blood_clot
 
 bad :: ScalarAdjectiveType :: self.m.value <-- ".7"
+severe :: ScalarAdjectiveType :: self.m.value <-- "0.99"
+light :: ScalarAdjectiveType :: self.m.value <-- "0.1"
 
-chest :: PhysicalEntityNoun :: self.m.ontological-category <-- @chest
-stomach :: PhysicalEntityNoun :: self.m.ontological-category <-- @stomach
-scalp :: PhysicalEntityNoun :: self.m.ontological-category <-- @scalp
+chest :: BodyPartType :: self.m.ontological-category <-- @chest
+stomach :: BodyPartType :: self.m.ontological-category <-- @stomach
+scalp :: BodyPartType :: self.m.ontological-category <-- @scalp
 
 hiv :: DiseaseType :: self.m.ontological-category <-- @hiv
 alcoholism :: DiseaseType :: self.m.ontological-category <-- @alcoholism
@@ -59,6 +73,8 @@ chlamydia :: DiseaseType :: self.m.ontological-category <-- @chlamydia
 flu :: DiseaseType :: self.m.ontological-category <-- @flu
 tapeworm :: DiseaseType :: self.m.ontological-category <-- @tapeworm
 hookworm :: DiseaseType :: self.m.ontological-category <-- @hookworm
+zika :: DiseaseType :: self.m.ontological-category <-- @zika
+pink_eye :: DiseaseType :: self.m.ontological-category <-- @pink_eye
 
 antibiotic :: DrugType :: self.m.ontological-category <-- @antibiotic
 clindamycin :: DrugType :: self.m.ontological-category <-- @clindamycin
@@ -68,6 +84,27 @@ drug :: DrugType :: self.m.ontological-category <-- @drug
 advil :: DrugType :: self.m.ontological-category <-- @advil
 
 abortion :: ProcedureType :: self.m.ontological-category <-- @abortion
-zika :: DiseaseType :: self.m.ontological-category <-- @zika
-pink_eye :: DiseaseType :: self.m.ontological-category <-- @pink_eye
-ache :: SymptomType :: self.m.ontological-category <-- @pain
+be :: BeCopulaType :: self.m.actionary <-- @be
+blood :: BodyPartType :: self.m.ontological-category <-- @blood
+eight :: NumberType :: self.m.value <-- "8"
+month :: UnitType :: self.m.ontological-category <-- @month :: self.m.extras.quantity.property <-- @time
+abdomen :: BodyPartType :: self.m.ontological-category <-- @abdomen
+box :: ContainerNoun :: self.m.ontological-category <-- @box
+pill :: DrugType :: self.m.ontological-category <-- @drug
+cause :: ForceDynamicType :: self.m.fdType <-- @cause :: self.m.actionary <-- @cause :: self.expectedVerbForm <-- Infinitive
+breast :: BodyPartType :: self.m.ontological-category <-- @breast
+urine :: BodyPartType :: self.m.ontological-category <-- @urine
+baby :: PatientType :: self.m.age <-- @infant
+fever :: SymptomType :: self.m.ontological-category <-- @fever
+blister :: SymptomType :: self.m.ontological-category <-- @blister
+tummy :: BodyPartType :: self.m.ontological-category <-- @stomach
+tongue :: BodyPartType :: self.m.ontological-category <-- @tongue
+mouth :: BodyPartType :: self.m.ontological-category <-- @mouth
+lip :: BodyPartType :: self.m.ontological-category <-- @lip
+feverish :: SymptomType :: self.m.ontological-category <-- @fever
+pregnant :: ConditionType :: self.m.ontological-category <-- @pregnant
+period :: SymptomType :: self.m.ontological-category <-- @period
+spotting :: SymptomType :: self.m.ontological-category <-- @spotting
+backache :: SymptomType :: self.m.ontological-category <-- @backache
+constipation :: SymptomType :: self.m.ontological-category <-- @constipation
+symptom :: SymptomType :: self.m.ontological-category <-- @symptom

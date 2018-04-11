@@ -8,7 +8,7 @@ Currently testing, in development. (4/29/216, ST)
 
 */
 
-package core
+package schemas-space
 
 
 schema Concessive 

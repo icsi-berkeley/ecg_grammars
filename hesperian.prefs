@@ -8,6 +8,13 @@ PACKAGE_NAME ::==
     hesperian
     base
     utterance-text
+    utterance-punctuation
+    verb-auxiliaries
+    adjective-extended
+    schemas-discourse
+    transitive-test
+    nominal-modification
+    argstruct-explicit-causation
 ;
 
 ONTOLOGY_PATHS ::==
@@ -30,7 +37,6 @@ MORPHOLOGY_PATH ::==
 
 TOKEN_PATH ::==
     ./hesperian/hesperian.tokens
-    ./research/testing.tokens
 ;
 
 MAPPING_PATH = ./hesperian/hesperian.mappings
@@ -40,9 +46,8 @@ TABLE_PATH = ./core/core.morph
 ROBUST = FALSE
 BEAM_SIZE = 40
 DEFAULT_OMISSION_PROB = .1
-VARIABLE_BEAM = TRUE
+VARIABLE_BEAM = FALSE
 BEAM_WIDTH = 10
-BEAM_SIZE = 10
 DEBUG = FALSE
 //DEBUG = TRUE
 ANALYZE_IN_CONTEXT = FALSE
@@ -52,5 +57,87 @@ MULTI_ROOT_PENALTY = -3
 
 EXAMPLE_SENTENCES ::==
 
-hesperian
+what is a tapeworm?
+can hookworms affect the scalp?
+blisters fever baby
+blisters fever baby or tummy
+blisters fever baby tummy
+blisters on to tongue on lips and around mouth feverish runny tummy among 2 years old
+blisters or tongue or lips or mouth or feverish or tummy
+blisters tongue lips mouth feverish runny tummy
+blisters tongue lips mouth feverish runny tummy 2 years
+blisters tongue lips mouth feverish runny tummy 2 years old
+blisters tongue lips mouth feverish tummy
+bleeding 4 weeks after abortion
+bleeding 5 weeks after abortion
+bleeding after abortion
+bleeding at a abortion
+bleeding for four weeks after an abortion
+bleeding four weeks after abortion
+bleeding weeks after abortion
+pregnancy missed person spotting lower backache constipation
+pregnant and symptoms
+pregnant missed period spotting 1 day lower backache constipation
+pregnant missed period spotting lower backache constipation
+pregnant not bleeding symptoms
+pregnant or symptoms
+pregnant period spotting backache constipation
+pregnant period spotting lower backache constipation
+pregnant period spotting or backache constipation
+pregnant period spotting or backache or constipation
+after giving birth how many years should i start giving birth again
+after mining birth how many yeast solid i start mining birth again
+for how long can we wait to get pregnant after c section operation
+for how long can we wait to have another baby after c section operation
+pain in lower part of stomach
+pain in my abdomen after 8 months of abortion
+pain in right side extending to leg
+pain in the right lower abdomen after an abortion
+what can i give a 2 year old for diarrhea
+abortion pills causes any pain in lower abdomen after year
+abortion pills causes pain in left abdomen
+abortion pills causes seeds pain in left abdomen
+abortion pills causes severe pain in left abdomen
+after take the medicine to destroy the one month pregnancy
+can a breast feeding mother use implant method of family planning
+can tape worm cause malnutrition for my child and how do i know its tapeworm
+which crops are green most successfully in organic farming
+which crops are grown most successfully in organic farming
+after abortion nausea and sore breast
+severe acute abdominal pain
+signs that labor has started
+stomach ulcers that causes vomiting
+what are bad signs after giving birth with operation
+what confirms that abortion was successful
+what happens when ovulation stops
+which tablet help get abortion
+i am not worth anything
+i don't feel confident
+light blood clots after an abortion
+open soars on the out side of child's vagina
+open sores on the out side of child vagina
+procedure for surgical abortion
+symptoms of abortion after on month
+what are the name of abortion pills
+what is family planning
+when is it safe for a woman who had previously had a cesarean section
+when is it safe for a women who had previously had a cesarean section
+when is it safe for a women who had previously had a cesarean section to have a baby
+when is the right time for someone who already give birth by operation to get fall pregnant again
+when is the right time to fall pregnant again if you are a cesarean person
+when is the right time to fall pregnant again if you are a cesarean poison
+when is the right time to fall pregnant again if you are cesarean person
+check if pregnant
+check yourself to see if you are pregnant
+hard breast and pain after abortion
+how should the bleeding be after an abortion
+how to give injection in vein
+how to give intravenous injection
+how to terminate pregnancy
+how to treat malaria
+bleeding in urine
+can i conceive again after an abortion
+my breast hurts and i have difficulty in urinating
+symptoms of aids
+what can cause a woman to menstruate for two months during her pregnancy
 ;
