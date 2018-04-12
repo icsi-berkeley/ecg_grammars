@@ -110,3 +110,7 @@ constipation :: SymptomType :: self.m.ontological-category <-- @constipation
 symptom :: SymptomType :: self.m.ontological-category <-- @symptom
 treat :: TreatmentActionType :: self.m.actionary <-- @treat
 push :: ApplyForceType :: self.m.actionary <-- @push_move
+acute :: ScalarAdjectiveType :: self.m.value <-- ".9"
+abdominal :: BodyPartAdjectiveType :: self.m.value <-- @abdomen
+ulcer :: SymptomType :: self.m.ontological-category <-- @ulcer
+vomiting :: SymptomType :: self.m.ontological-category <-- @vomiting

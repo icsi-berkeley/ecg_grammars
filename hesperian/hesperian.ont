@@ -42,8 +42,8 @@ DEFS:
 
 (type elderly sub ageGroup)
 
-
 (type how sub wh-word eventTop)
+
 // Instances
 
 //
@@ -463,5 +463,9 @@ DEFS:
 (type constipation sub symptom  shared)
 
 (type treat sub treatmentVerb  shared)
+
+(type ulcer sub symptom  shared)
+
+(type vomiting sub symptom  shared)
 
 INSTS:

@@ -1,0 +1,10 @@
+package hesperian
+import base
+
+//e.g. abdominal, intravenous
+construction BodyPartAdjectiveType
+  subcase of PropertyAdjective, GeneralTypeCxn
+  meaning: PropertyModifier
+    constraints
+      self.m.property <-- @bodyPart2
+      self.m.value <-- @bodyPart2

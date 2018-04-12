@@ -14,21 +14,6 @@ construction LocatedCondition
       head.m.ontological-category <-- @condition
       mod.m.ontological-category <-- @bodyPart2
 
-// e.g. severe pain
-construction ConditionSeverity
-  subcase of ConditionPhrase
-  constructional
-    constituents
-      symp: ConditionPhrase
-      sev: ScalarAdjectiveType
-  form
-  	constraints
-  	  sev.f meets symp.f
-  meaning: Condition
-    constraints
-      self.m <--> symp.m
-      sev.m <--> self.m.severity
-
 // e.g. cancer pain
 construction DiseaseSymptom
   subcase of ConditionPhrase
@@ -196,3 +181,33 @@ construction HesperianBag
       self.m.this <--> np.m
       self.m.next <--> hb.m
       self.m.this.ontological-category <-- @hesperian
+
+// e.g. severe pain
+// Note: Undetermined_KernelNP should take care of this but for some reason does not
+construction Undetermined_Kernel
+  subcase of NP
+  constructional
+    constituents
+      k: Kernel
+    constraints
+      self.features <--> k.features
+  meaning
+    constraints
+      self.m <--> k.m
+
+
+// e.g. severe pain
+/* Handled by above
+construction ConditionSeverity
+  subcase of ConditionPhrase
+  constructional
+    constituents
+      symp: ConditionPhrase
+      sev: ScalarAdjectiveType
+  form
+    constraints
+      sev.f meets symp.f
+  meaning: Condition
+    constraints
+      self.m <--> symp.m
+      sev.m <--> self.m.severity*/
