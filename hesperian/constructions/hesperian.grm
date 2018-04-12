@@ -1,12 +1,9 @@
 package hesperian
 import base
 
-general construction ConditionPhrase
-  subcase of NP
-
 // e.g. stomach pain
 construction LocatedCondition
-  subcase of NounNounCompound, ConditionPhrase
+  subcase of NounNounCompound, NP
   meaning: Condition
     constraints
       self.m <--> head.m
@@ -16,11 +13,11 @@ construction LocatedCondition
 
 // e.g. cancer pain
 construction DiseaseSymptom
-  subcase of ConditionPhrase
+  subcase of NP
   constructional
     constituents
-      symp: ConditionPhrase
-      dis: ConditionPhrase
+      symp: NP
+      dis: NP
   meaning: Disease
     constraints
       dis.m <--> self.m
@@ -30,7 +27,7 @@ construction DiseaseSymptom
 
 // e.g. pain in stomach
 construction Prep-Locative-Condition
-  subcase of ConditionPhrase
+  subcase of NP
   constructional
     constituents
       loc: NP
@@ -145,11 +142,11 @@ construction After-PP
 
 // e.g. bleeding for four weeks
 construction Condition-For-Time
-  subcase of ConditionPhrase
+  subcase of NP
   constructional
     constituents
-      symp: ConditionPhrase
-      optional prep: For-Recipient // This shoul de For-Temporal
+      symp: NP
+      optional prep: For-Recipient // This should be For-Temporal
       np: TemporalQuantityNP
   form
     constraints
@@ -159,18 +156,20 @@ construction Condition-For-Time
     constraints
       self.m <--> symp.m
       self.m.duration <--> np.m
+      symp.m.ontological-category <-- @condition
 
 // e.g. bleeding after abortion
 construction ConditionAfterTreatment
-  subcase of ConditionPhrase
+  subcase of NP
   constructional
     constituents
-      cond: ConditionPhrase
+      cond: NP
       trigger: After-PP
   meaning: Condition
     constraints
       self.m <--> cond.m
       self.m.trigger <--> trigger.m
+      cond.m.ontological-category <-- @condition
 
 construction HesperianBag
   subcase of RootType

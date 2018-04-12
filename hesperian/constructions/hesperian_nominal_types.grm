@@ -3,7 +3,7 @@ import base
 
 // Construction for physical conditions
 construction ConditionType
-  subcase of NounType, ConditionPhrase
+  subcase of NounType, NP
   meaning: Condition
   constraints
     self.m.ontological-category <-- @condition
