@@ -94,7 +94,7 @@ pill :: DrugType :: self.m.ontological-category <-- @drug
 cause :: ForceDynamicType :: self.m.fdType <-- @cause :: self.m.actionary <-- @cause :: self.expectedVerbForm <-- Infinitive
 breast :: BodyPartType :: self.m.ontological-category <-- @breast
 urine :: BodyPartType :: self.m.ontological-category <-- @urine
-baby :: PatientType :: self.m.age <-- @infant
+baby :: PatientType :: self.m.age <-- @infantGroup :: self.m.ontological-category <-- @baby
 fever :: SymptomType :: self.m.ontological-category <-- @fever
 blister :: SymptomType :: self.m.ontological-category <-- @blister
 tummy :: BodyPartType :: self.m.ontological-category <-- @stomach
@@ -123,3 +123,7 @@ name :: PropertyNoun :: self.m.ontological-category <-- @name
 sore :: ScalarAdjectiveType :: self.m.value <-- ".4" :: self.m.property <-- @pain :: self.m.domain <-- @bodyPart2
 nausea :: SymptomType :: self.m.ontological-category <-- @nausea
 symptom :: SymptomType :: self.m.ontological-category <-- @symptom
+birth :: ConditionType :: self.m.ontological-category <-- @birth
+cough :: SymptomType :: self.m.ontological-category <-- @cough
+man :: PatientType :: self.m.ontological-category <-- @adult :: self.m.age <-- @adultGroup :: self.m.gender <-- @male
+ampicillin :: DrugType :: self.m.ontological-category <-- @ampicillin

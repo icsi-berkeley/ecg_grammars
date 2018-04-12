@@ -32,15 +32,15 @@ DEFS:
 
 (type ageGroup sub abstract)
 
-(type infant sub ageGroup)
+(type infantGroup sub ageGroup)
 
-(type child sub ageGroup)
+(type childGroup sub ageGroup)
 
-(type teenager sub ageGroup)
+(type teenagerGroup sub ageGroup)
 
-(type adult sub ageGroup)
+(type adultGroup sub ageGroup)
 
-(type elderly sub ageGroup)
+(type elderlyGroup sub ageGroup)
 
 (type how sub wh-word eventTop)
 
@@ -473,5 +473,9 @@ DEFS:
 (type injection sub procedure  shared)
 
 (type nausea sub symptom  shared)
+
+(type birth sub condition  shared)
+
+(type cough sub symptom  shared)
 
 INSTS:

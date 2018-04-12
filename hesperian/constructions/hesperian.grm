@@ -46,21 +46,23 @@ construction Prep-Locative-Condition
    	  self.m.location <--> loc.m
    	  self.m.ontological-category <-- @condition
 
-// DOES NOT WORK. FIX ME
-/*construction Treatment-For-Condition
+// e.g. medicine for cough
+construction Treatment-For-Condition
+  subcase of NP
   constructional
     constituents
-      trt: DrugType
+      trmt: NP
       for: For-PP
   form
     constraints
-      trt.f before for.f
+      trmt.f before for.f
   meaning: Treatment
     constraints
-      self.m <--> trt.m
-     // self.m.condition <--> for.np.m
-     // for.np.m.ontological-category <-- @condition
-*/
+      self.m <--> trmt.m
+      trmt.m.ontological-category <-- @treatment
+      self.m.condition <--> for.np.m
+      for.np.m.ontological-category <-- @condition
+
 
 // e.g. stomach medicine
 construction LocatedTreatment
@@ -106,19 +108,23 @@ construction ProcedureDrug
       mod.m.ontological-category <-- @procedure
 
 
-// ALSO DOESN'T WORK. FIX ME
-/*construction Drug-For-Person
-  subcase of PP
+// e.g. ampicillin for men
+construction Treatment-For-Person
+  subcase of NP
   constructional
     constituents
-      prep: For-Recipient
-      person: SentientNoun
-      np: DrugType
+      trmt: NP
+      for: For-PP
   form
     constraints
-      prep.f before person.f
-      np.f before prep.f
-*/
+      trmt.f before for.f
+  meaning: Treatment
+    constraints
+      self.m <--> trmt.m
+      trmt.m.ontological-category <-- @treatment
+      self.m.patient <--> for.np.m
+      for.np.m.ontological-category <-- @patient
+
 construction After-Event
   subcase of Preposition
   form
@@ -143,7 +149,7 @@ construction Condition-For-Time
   constructional
     constituents
       symp: ConditionPhrase
-      optional prep: For-Recipient
+      optional prep: For-Recipient // This shoul de For-Temporal
       np: TemporalQuantityNP
   form
     constraints
