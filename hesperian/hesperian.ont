@@ -10,9 +10,9 @@ DEFS:
 
 (type value sub process)
 
-(type treatment sub abstract hesperian)
+(type treatment sub physicalEntity hesperian)
 
-(type procedure sub process treatment)
+(type procedure sub process physicalEntity treatment)
 
 (type condition sub physicalEntity hesperian)
 
@@ -467,5 +467,9 @@ DEFS:
 (type ulcer sub symptom  shared)
 
 (type vomiting sub symptom  shared)
+
+(type vein sub bodyPart2  shared)
+
+(type injection sub procedure  shared)
 
 INSTS:

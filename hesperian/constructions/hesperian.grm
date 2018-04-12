@@ -33,9 +33,9 @@ construction Prep-Locative-Condition
   subcase of ConditionPhrase
   constructional
     constituents
-      loc: HasNominalFeatures // This is probably way too loose but needed to accomodate kernels, e.g. "left abdomen"
+      loc: NP
       prep: LocativePreposition
-      cond: ConditionPhrase
+      cond: NP
   form
     constraints
       cond.f before prep.f
@@ -44,6 +44,7 @@ construction Prep-Locative-Condition
     constraints
    	  self.m <--> cond.m
    	  self.m.location <--> loc.m
+   	  self.m.ontological-category <-- @condition
 
 // DOES NOT WORK. FIX ME
 /*construction Treatment-For-Condition
@@ -195,6 +196,23 @@ construction Undetermined_Kernel
     constraints
       self.m <--> k.m
 
+// e.g. injection in vein
+construction Prep-Locative-Treatment
+  subcase of NP
+  constructional
+    constituents
+      loc: NP
+      prep: LocativePreposition
+      trmt: NP
+  form
+    constraints
+      trmt.f before prep.f
+      prep.f before loc.f
+  meaning: Treatment
+    constraints
+      self.m <--> trmt.m
+      self.m.location <--> loc.m
+      trmt.m.ontological-category <-- @treatment
 
 // e.g. severe pain
 /* Handled by above

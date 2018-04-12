@@ -114,3 +114,8 @@ acute :: ScalarAdjectiveType :: self.m.value <-- ".9"
 abdominal :: BodyPartAdjectiveType :: self.m.value <-- @abdomen
 ulcer :: SymptomType :: self.m.ontological-category <-- @ulcer
 vomiting :: SymptomType :: self.m.ontological-category <-- @vomiting
+give :: TransferType :: self.m.actionary <-- @give
+intravenous :: BodyPartAdjectiveType :: self.m.value <-- @vein
+injection :: ProcedureType :: self.m.ontological-category <-- @injection
+vein :: BodyPartType :: self.m.ontological-category <-- @vein
+hard :: ScalarAdjectiveType :: self.m.value <-- "0.9" :: self.m.property <-- @hardness :: self.m.domain <-- @physicalEntity
