@@ -18,7 +18,7 @@ DEFS:
 
 (type disease sub condition physicalEntity)
 
-(type symptom sub condition physicalEntity)
+(type symptom sub condition physicalEntity object-property)
 
 (type bodyPart2 sub part shaped physicalEntity hesperian)
 
@@ -471,5 +471,7 @@ DEFS:
 (type vein sub bodyPart2  shared)
 
 (type injection sub procedure  shared)
+
+(type nausea sub symptom  shared)
 
 INSTS:

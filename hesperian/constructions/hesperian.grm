@@ -133,7 +133,7 @@ construction After-PP
   form
    constraints
      prep.f before np.f
-  meaning
+  meaning: RD
     constraints
       self.m <--> np.m
 

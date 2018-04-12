@@ -107,7 +107,7 @@ period :: SymptomType :: self.m.ontological-category <-- @period
 spotting :: SymptomType :: self.m.ontological-category <-- @spotting
 backache :: SymptomType :: self.m.ontological-category <-- @backache
 constipation :: SymptomType :: self.m.ontological-category <-- @constipation
-symptom :: SymptomType :: self.m.ontological-category <-- @symptom
+symptom :: PropertyNoun :: self.m.ontological-category <-- @symptom
 treat :: TreatmentActionType :: self.m.actionary <-- @treat
 push :: ApplyForceType :: self.m.actionary <-- @push_move
 acute :: ScalarAdjectiveType :: self.m.value <-- ".9"
@@ -119,3 +119,7 @@ intravenous :: BodyPartAdjectiveType :: self.m.value <-- @vein
 injection :: ProcedureType :: self.m.ontological-category <-- @injection
 vein :: BodyPartType :: self.m.ontological-category <-- @vein
 hard :: ScalarAdjectiveType :: self.m.value <-- "0.9" :: self.m.property <-- @hardness :: self.m.domain <-- @physicalEntity
+name :: PropertyNoun :: self.m.ontological-category <-- @name
+sore :: ScalarAdjectiveType :: self.m.value <-- ".4" :: self.m.property <-- @pain :: self.m.domain <-- @bodyPart2
+nausea :: SymptomType :: self.m.ontological-category <-- @nausea
+symptom :: SymptomType :: self.m.ontological-category <-- @symptom
