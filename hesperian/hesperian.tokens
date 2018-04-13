@@ -127,3 +127,5 @@ birth :: ConditionType :: self.m.ontological-category <-- @birth
 cough :: SymptomType :: self.m.ontological-category <-- @cough
 man :: PatientType :: self.m.ontological-category <-- @adult :: self.m.age <-- @adultGroup :: self.m.gender <-- @male
 ampicillin :: DrugType :: self.m.ontological-category <-- @ampicillin
+endometriosis :: DiseaseType :: self.m.ontological-category <-- @endometriosis
+best :: ScalarAdjectiveType :: self.m.value <-- ".99" :: self.m.property <-- @quality

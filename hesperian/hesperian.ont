@@ -478,4 +478,8 @@ DEFS:
 
 (type cough sub symptom  shared)
 
+(type endometriosis sub disease  shared)
+
+(type quality sub object-property  shared)
+
 INSTS:
