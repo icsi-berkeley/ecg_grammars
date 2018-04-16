@@ -28,6 +28,8 @@ DEFS:
 
 (type treatmentVerb sub verb hesperian process)
 
+(type end sub verb hesperian process)
+
 // Age Groups
 
 (type ageGroup sub abstract)
@@ -481,5 +483,11 @@ DEFS:
 (type endometriosis sub disease  shared)
 
 (type quality sub object-property  shared)
+
+(type family_planning sub procedure  shared)
+
+(type year_old sub patient  shared)
+
+(type terminate sub end  shared)
 
 INSTS:

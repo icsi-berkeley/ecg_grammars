@@ -49,14 +49,14 @@ construction CentralActiveDitransitiveTransfer
 
 // 2/15/16 (ST), binds NP1 to intended_recipient
 // maybe it should actually inherit from DitransitiveTransfer, and then bind the v.m differently?
-construction CentralActiveDitransitiveCreation
+/*construction CentralActiveDitransitiveCreation
   subcase of ActiveDitransitive
   meaning: Creation
     constraints
       self.m <--> v.m
       self.m.creator <--> ed.profiledParticipant
       self.m.intended_recipient <--> np1.m
-      self.m.createdThing <--> np2.m
+      self.m.createdThing <--> np2.m*/ // Commented out by VR 4/15 to avoid having to import the Creation schema
 
 
 // taken from base, 3/23/16, testing

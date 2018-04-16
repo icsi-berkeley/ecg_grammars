@@ -7,3 +7,10 @@ construction TreatmentActionType
     constraints
       self.m.actionary <-- @treatmentVerb
       self.argform <-- Transitive
+
+construction EndActionType
+  subcase of LexicalVerbType
+  meaning: CauseToEnd
+    constraints
+      self.m.actionary <-- @end
+      self.argform <-- Transitive

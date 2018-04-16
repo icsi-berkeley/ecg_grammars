@@ -1,16 +1,6 @@
 package hesperian
 import base
 
-// e.g. stomach pain
-construction LocatedCondition
-  subcase of NounNounCompound, NP
-  meaning: Condition
-    constraints
-      self.m <--> head.m
-      self.m.location <--> mod.m
-      head.m.ontological-category <-- @condition
-      mod.m.ontological-category <-- @bodyPart2
-
 // e.g. cancer pain
 construction DiseaseSymptom
   subcase of NP
@@ -59,51 +49,6 @@ construction Treatment-For-Condition
       trmt.m.ontological-category <-- @treatment
       self.m.condition <--> for.np.m
       for.np.m.ontological-category <-- @condition
-
-
-// e.g. stomach medicine
-construction LocatedTreatment
-  subcase of NounNounCompound, NP
-  meaning: Treatment
-    constraints
-      self.m <--> head.m
-      self.m.location <--> mod.m
-      mod.m.ontological-category <-- @bodyPart2
-      head.m.ontological-category <-- @treatment
-
-// e.g. cancer medicine
-construction ConditionTreatment
-  subcase of NounNounCompound, NP
-  meaning: Treatment
-    constraints
-      self.m <--> head.m
-      self.m.condition <--> mod.m
-      mod.m.ontological-category <-- @condition
-      head.m.ontological-category <-- @treatment
-
-// Copied from NounNounCompound
-// e.g. abortion pills
-construction ProcedureDrug
-  subcase of Nominal, NP
-  constructional
-    constituents
-      mod: Nominal
-      head: Nominal
-    constraints
-      self.features <--> head.features
-  form
-    constraints
-      mod.f before head.f
-  meaning: Treatment
-    evokes NounNounModifier as nnm
-    constraints
-      nnm.modifiedThing <--> head.m
-      nnm.modifier <--> mod.m
-      self.m <--> mod.m
-      self.m.drug <--> head.m
-      head.m.ontological-category <-- @drug
-      mod.m.ontological-category <-- @procedure
-
 
 // e.g. ampicillin for men
 construction Treatment-For-Person
@@ -218,19 +163,3 @@ construction Prep-Locative-Treatment
       self.m <--> trmt.m
       self.m.location <--> loc.m
       trmt.m.ontological-category <-- @treatment
-
-// e.g. severe pain
-/* Handled by above
-construction ConditionSeverity
-  subcase of ConditionPhrase
-  constructional
-    constituents
-      symp: ConditionPhrase
-      sev: ScalarAdjectiveType
-  form
-    constraints
-      sev.f meets symp.f
-  meaning: Condition
-    constraints
-      self.m <--> symp.m
-      sev.m <--> self.m.severity*/

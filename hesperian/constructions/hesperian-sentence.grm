@@ -23,3 +23,17 @@ construction Process-Question
     constraints
       self.m <--> fin.ed
       fin.ed.profiledParticipant <--> subj.m
+
+construction S-With-Can-Inversion
+  subcase of S-With-Aux-Inversion
+  constructional
+    constituents
+      fin: CanAux
+/*
+construction WH-Can
+  subcase of WH-Question, S
+  constructional
+    constituents
+      subj: WH-NP
+      fin: S-With-Can-Inversion
+*/

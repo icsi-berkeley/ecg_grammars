@@ -2,13 +2,35 @@ package hesperian
 import base
 
 schema TreatmentProcess
-	subcase of Process
-	roles
-		trmt: Treatment
-		patient: Patient
-		condition: Condition
-		actionary: @treatmentVerb
-	constraints
-		patient <--> trmt.patient
-		condition <--> trmt.condition
-		condition.experiencer <--> patient
+  subcase of Process
+  roles
+    trmt: Treatment
+    patient: Patient
+    condition: Condition
+    actionary: @treatmentVerb
+  constraints
+    patient <--> trmt.patient
+    condition <--> trmt.condition
+    condition.experiencer <--> patient
+
+schema CauseToEnd
+  subcase of Process
+  roles
+    endedThing
+
+schema AbortionProcess
+  subcase of CauseToEnd
+  roles
+    trmt: Abortion
+    patient: Patient
+    condition: Condition
+    actionary: @end
+  constraints
+    patient <--> trmt.patient
+    condition <--> trmt.condition
+    condition.experiencer <--> patient
+    condition.ontological-category <-- @pregnant
+    trmt.ontological-category <-- @abortion
+    patient.gender <-- @female
+    endedThing <--> condition
+    protagonist <--> patient

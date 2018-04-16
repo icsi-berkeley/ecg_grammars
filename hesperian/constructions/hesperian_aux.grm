@@ -33,9 +33,3 @@ construction CanAuxPresent
   meaning
     constraints
       pf <--> self.m
-
-construction S-With-Can-Inversion
-  subcase of S-With-Aux-Inversion
-  constructional
-    constituents
-      fin: CanAux

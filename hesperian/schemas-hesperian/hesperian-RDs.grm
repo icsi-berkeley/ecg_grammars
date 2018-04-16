@@ -47,15 +47,23 @@ schema Treatment
     patient.ontological-category <-- @person
     location.ontological-category <-- @bodyPart2
     condition.ontological-category <-- @condition
+    condition.experiencer <--> patient
 
 schema Patient
   subcase of RD
   roles
   	name
   	age
+  	numericalAge: QuantitySchema
   	gender
   constraints
     name <-- @name
     age <-- @ageGroup
     gender <-- @genderValues
 
+schema Abortion
+  subcase of Treatment
+  constraints
+    patient.gender <-- @female
+    condition.ontological-category <-- @pregnant
+    ontological-category <-- @abortion

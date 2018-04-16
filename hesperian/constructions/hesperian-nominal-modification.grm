@@ -1,0 +1,71 @@
+package hesperian
+import base
+
+// e.g. stomach pain
+construction LocatedCondition
+  subcase of NounNounCompound, NP
+  meaning: Condition
+    constraints
+      self.m <--> head.m
+      self.m.location <--> mod.m
+      head.m.ontological-category <-- @condition
+      mod.m.ontological-category <-- @bodyPart2
+
+// e.g. stomach medicine
+construction LocatedTreatment
+  subcase of NounNounCompound, NP
+  meaning: Treatment
+    constraints
+      self.m <--> head.m
+      self.m.location <--> mod.m
+      mod.m.ontological-category <-- @bodyPart2
+      head.m.ontological-category <-- @treatment
+
+// e.g. cancer medicine
+construction ConditionTreatment
+  subcase of NounNounCompound, NP
+  meaning: Treatment
+    constraints
+      self.m <--> head.m
+      self.m.condition <--> mod.m
+      mod.m.ontological-category <-- @condition
+      head.m.ontological-category <-- @treatment
+
+// e.g. two year old
+construction AgedPerson
+  subcase of Nominal, NP
+  constructional
+    constituents
+      mod: NumberType
+      head: Nominal
+  form
+    constraints
+      mod.f before head.f
+  meaning: Patient
+    constraints
+      self.m <--> head.m
+      self.m.numericalAge <--> mod.m
+      head.m.ontological-category <-- @patient
+
+// Copied from NounNounCompound
+// e.g. abortion pills
+construction ProcedureDrug
+  subcase of Nominal, NP
+  constructional
+    constituents
+      mod: Nominal
+      head: Nominal
+    constraints
+      self.features <--> head.features
+  form
+    constraints
+      mod.f before head.f
+  meaning: Treatment
+    evokes NounNounModifier as nnm
+    constraints
+      nnm.modifiedThing <--> head.m
+      nnm.modifier <--> mod.m
+      self.m <--> mod.m
+      self.m.drug <--> head.m
+      head.m.ontological-category <-- @drug
+      mod.m.ontological-category <-- @procedure

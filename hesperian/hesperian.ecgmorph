@@ -35,3 +35,9 @@ pregnant		  pregnant Singular
 vomiting      vomiting Singular
 endometriosis endometriosis Singular
 best          best Positive
+blood_clot    blood_clot Singular
+family_planning	family_planning Singular
+down's_syndromes	down's_syndrome Plural
+down's_syndrome	down's_syndrome Singular
+year_old	year_old Singular
+year_olds	year_old Plural

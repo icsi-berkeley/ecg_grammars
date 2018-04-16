@@ -129,3 +129,7 @@ man :: PatientType :: self.m.ontological-category <-- @adult :: self.m.age <-- @
 ampicillin :: DrugType :: self.m.ontological-category <-- @ampicillin
 endometriosis :: DiseaseType :: self.m.ontological-category <-- @endometriosis
 best :: ScalarAdjectiveType :: self.m.value <-- ".99" :: self.m.property <-- @quality
+family_planning :: ProcedureType :: self.m.ontological-category <-- @family_planning
+year_old :: PatientType :: self.m.ontological-category <-- @year_old
+terminate :: EndActionType :: self.m.actionary <-- @terminate
+pregnancy :: ConditionType :: self.m.ontological-category <-- @pregnant

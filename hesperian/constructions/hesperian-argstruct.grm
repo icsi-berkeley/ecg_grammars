@@ -8,5 +8,23 @@ general construction TransitiveTreatment
       s.a1 <--> self.m.trmt
       s.a2 <--> self.m.condition
 
+general construction TransitiveCauseToEnd
+  subcase of ArgumentStructure
+  meaning: CauseToEnd
+    constraints
+      s.a2 <--> self.m.endedThing
+
+general construction TransitiveAbortion
+  subcase of TransitiveCauseToEnd
+  meaning: AbortionProcess
+    constraints
+      s.a2.ontological-category <-- @pregnant
+
 construction ActiveTransitiveTreatment
   subcase of CoreActiveTransitive, TransitiveTreatment, RootType
+
+construction ActiveTransitiveCauseToEnd
+  subcase of CoreActiveTransitive, TransitiveCauseToEnd, RootType
+
+construction ActiveTransitiveAbortion
+  subcase of CoreActiveTransitive, TransitiveAbortion, RootType
