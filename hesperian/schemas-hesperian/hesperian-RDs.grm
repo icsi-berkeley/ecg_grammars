@@ -60,10 +60,3 @@ schema Patient
     name <-- @name
     age <-- @ageGroup
     gender <-- @genderValues
-
-schema Abortion
-  subcase of Treatment
-  constraints
-    patient.gender <-- @female
-    condition.ontological-category <-- @pregnant
-    ontological-category <-- @abortion

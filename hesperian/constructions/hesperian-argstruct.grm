@@ -18,7 +18,7 @@ general construction TransitiveAbortion
   subcase of TransitiveCauseToEnd
   meaning: AbortionProcess
     constraints
-      s.a2.ontological-category <-- @pregnant
+      s.a2.ontological-category <-- @pregnancy
 
 construction ActiveTransitiveTreatment
   subcase of CoreActiveTransitive, TransitiveTreatment, RootType

@@ -74,7 +74,7 @@ flu :: DiseaseType :: self.m.ontological-category <-- @flu
 tapeworm :: DiseaseType :: self.m.ontological-category <-- @tapeworm
 hookworm :: DiseaseType :: self.m.ontological-category <-- @hookworm
 zika :: DiseaseType :: self.m.ontological-category <-- @zika
-pink_eye :: DiseaseType :: self.m.ontological-category <-- @pink_eye
+
 
 antibiotic :: DrugType :: self.m.ontological-category <-- @antibiotic
 clindamycin :: DrugType :: self.m.ontological-category <-- @clindamycin
@@ -83,7 +83,6 @@ medicine :: DrugType :: self.m.ontological-category <-- @drug
 drug :: DrugType :: self.m.ontological-category <-- @drug
 advil :: DrugType :: self.m.ontological-category <-- @advil
 
-abortion :: ProcedureType :: self.m.ontological-category <-- @abortion
 be :: BeCopulaType :: self.m.actionary <-- @be
 blood :: BodyPartType :: self.m.ontological-category <-- @blood
 eight :: NumberType :: self.m.value <-- "8"
@@ -102,10 +101,8 @@ tongue :: BodyPartType :: self.m.ontological-category <-- @tongue
 mouth :: BodyPartType :: self.m.ontological-category <-- @mouth
 lip :: BodyPartType :: self.m.ontological-category <-- @lip
 feverish :: SymptomType :: self.m.ontological-category <-- @fever
-pregnant :: ConditionType :: self.m.ontological-category <-- @pregnant
 period :: SymptomType :: self.m.ontological-category <-- @period
 spotting :: SymptomType :: self.m.ontological-category <-- @spotting
-backache :: SymptomType :: self.m.ontological-category <-- @backache
 constipation :: SymptomType :: self.m.ontological-category <-- @constipation
 symptom :: PropertyNoun :: self.m.ontological-category <-- @symptom
 treat :: TreatmentActionType :: self.m.actionary <-- @treat
@@ -132,4 +129,9 @@ best :: ScalarAdjectiveType :: self.m.value <-- ".99" :: self.m.property <-- @qu
 family_planning :: ProcedureType :: self.m.ontological-category <-- @family_planning
 year_old :: PatientType :: self.m.ontological-category <-- @year_old
 terminate :: EndActionType :: self.m.actionary <-- @terminate
-pregnancy :: ConditionType :: self.m.ontological-category <-- @pregnant
+pregnancy :: ConditionType :: self.m.ontological-category <-- @pregnancy
+abortion :: ProcedureType :: self.m.patient.gender <-- @female :: self.m.ontological-category <-- @abortion :: self.m.condition.ontological-category <-- @pregnancy
+pregnant :: ConditionType :: self.m.ontological-category <-- @pregnancy :: self.m.experiencer.gender <-- @female
+pink_eye :: DiseaseType :: self.m.ontological-category <-- @pink_eye :: self.m.location.ontological-category <-- @eye
+backache :: SymptomType :: self.m.location.ontological-category <-- @backBodyPart :: self.m.ontological-category <-- @backache
+period :: SymptomType :: self.m.ontological-category <-- @period :: self.m.experiencer.gender <-- @female

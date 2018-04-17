@@ -21,7 +21,7 @@ schema CauseToEnd
 schema AbortionProcess
   subcase of CauseToEnd
   roles
-    trmt: Abortion
+    trmt: Treatment
     patient: Patient
     condition: Condition
     actionary: @end
@@ -29,7 +29,7 @@ schema AbortionProcess
     patient <--> trmt.patient
     condition <--> trmt.condition
     condition.experiencer <--> patient
-    condition.ontological-category <-- @pregnant
+    condition.ontological-category <-- @pregnancy
     trmt.ontological-category <-- @abortion
     patient.gender <-- @female
     endedThing <--> condition

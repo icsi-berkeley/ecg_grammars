@@ -7,6 +7,9 @@ construction ConditionType
   meaning: Condition
   constraints
     self.m.ontological-category <-- @condition
+    self.m.experiencer.gender <-- @genderValues
+    self.m.experiencer.age <-- @ageGroup
+    self.m.location.ontological-category <-- @bodyPart2
 
 // Construction for symptoms
 construction SymptomType
@@ -28,6 +31,9 @@ construction DrugType
   meaning: Treatment
     constraints
       self.m.ontological-category <-- @drug
+      self.m.patient.gender <-- @genderValues
+      self.m.condition.ontological-category <-- @condition
+      self.m.location.ontological-category <-- @bodyPart2
 
 // Construction for medical procedures
 construction ProcedureType
@@ -35,6 +41,9 @@ construction ProcedureType
   meaning: Treatment
     constraints
       self.m.ontological-category <-- @procedure
+      self.m.patient.gender <-- @genderValues
+      self.m.condition.ontological-category <-- @condition
+      self.m.location.ontological-category <-- @bodyPart2
 
 // Construction for patients
 construction PatientType

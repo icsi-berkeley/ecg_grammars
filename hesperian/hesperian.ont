@@ -454,8 +454,6 @@ DEFS:
 
 (type lip sub bodyPart2  shared)
 
-(type pregnant sub condition  shared)
-
 (type period sub symptom  shared)
 
 (type spotting sub symptom  shared)
@@ -489,5 +487,11 @@ DEFS:
 (type year_old sub patient  shared)
 
 (type terminate sub end  shared)
+
+(type pregnancy sub condition  shared)
+
+(type eye sub bodyPart2  shared)
+
+(type backBodyPart sub bodyPart2 shared)
 
 INSTS:
