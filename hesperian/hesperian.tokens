@@ -40,14 +40,46 @@ bleeding :: SymptomType :: self.m.ontological-category <-- @bleeding
 ache :: SymptomType :: self.m.ontological-category <-- @pain
 clot :: SymptomType :: self.m.ontological-category <-- @clot
 blood_clot :: SymptomType :: self.m.ontological-category <-- @blood_clot
+fever :: SymptomType :: self.m.ontological-category <-- @fever
+blister :: SymptomType :: self.m.ontological-category <-- @blister
+feverish :: SymptomType :: self.m.ontological-category <-- @fever
+period :: SymptomType :: self.m.ontological-category <-- @period
+spotting :: SymptomType :: self.m.ontological-category <-- @spotting
+constipation :: SymptomType :: self.m.ontological-category <-- @constipation
+ulcer :: SymptomType :: self.m.ontological-category <-- @ulcer
+vomiting :: SymptomType :: self.m.ontological-category <-- @vomiting
+backache :: SymptomType :: self.m.location.ontological-category <-- @backBodyPart :: self.m.ontological-category <-- @backache
+period :: SymptomType :: self.m.ontological-category <-- @period :: self.m.patient.gender <-- @female
+nausea :: SymptomType :: self.m.ontological-category <-- @nausea
+symptom :: SymptomType :: self.m.ontological-category <-- @symptom
+cough :: SymptomType :: self.m.ontological-category <-- @cough
+runny_tummy :: SymptomType :: self.m.ontological-category <-- @diarrhea
 
-bad :: ScalarAdjectiveType :: self.m.value <-- ".7"
-severe :: ScalarAdjectiveType :: self.m.value <-- "0.99"
-light :: ScalarAdjectiveType :: self.m.value <-- "0.1"
+
+bad :: ScalarAdjectiveType :: self.m.value <-- ".7" :: self.m.property <-- @intensityScale
+severe :: ScalarAdjectiveType :: self.m.value <-- "0.99" :: self.m.property <-- @intensityScale
+light :: ScalarAdjectiveType :: self.m.value <-- "0.1" :: self.m.property <-- @intensityScale
+sore :: ScalarAdjectiveType :: self.m.value <-- "0.6" :: self.m.property <-- @sore
+hard :: ScalarAdjectiveType :: self.m.value <-- "0.9" :: self.m.property <-- @hard :: self.m.domain <-- @physicalEntity
+best :: ScalarAdjectiveType :: self.m.value <-- ".99" :: self.m.property <-- @quality
+
 
 chest :: BodyPartType :: self.m.ontological-category <-- @chest
 stomach :: BodyPartType :: self.m.ontological-category <-- @stomach
 scalp :: BodyPartType :: self.m.ontological-category <-- @scalp
+blood :: BodyPartType :: self.m.ontological-category <-- @blood
+abdomen :: BodyPartType :: self.m.ontological-category <-- @abdomen
+breast :: BodyPartType :: self.m.ontological-category <-- @breast
+urine :: BodyPartType :: self.m.ontological-category <-- @urine
+tummy :: BodyPartType :: self.m.ontological-category <-- @stomach
+tongue :: BodyPartType :: self.m.ontological-category <-- @tongue
+mouth :: BodyPartType :: self.m.ontological-category <-- @mouth
+lip :: BodyPartType :: self.m.ontological-category <-- @lip
+vein :: BodyPartType :: self.m.ontological-category <-- @vein
+
+abdominal :: BodyPartAdjectiveType :: self.m.value <-- @abdomen
+intravenous :: BodyPartAdjectiveType :: self.m.value <-- @vein
+
 
 hiv :: DiseaseType :: self.m.ontological-category <-- @hiv
 alcoholism :: DiseaseType :: self.m.ontological-category <-- @alcoholism
@@ -74,64 +106,46 @@ flu :: DiseaseType :: self.m.ontological-category <-- @flu
 tapeworm :: DiseaseType :: self.m.ontological-category <-- @tapeworm
 hookworm :: DiseaseType :: self.m.ontological-category <-- @hookworm
 zika :: DiseaseType :: self.m.ontological-category <-- @zika
+pink_eye :: DiseaseType :: self.m.ontological-category <-- @pink_eye :: self.m.location.ontological-category <-- @eye
+endometriosis :: DiseaseType :: self.m.ontological-category <-- @endometriosis
 
 
 antibiotic :: DrugType :: self.m.ontological-category <-- @antibiotic
 clindamycin :: DrugType :: self.m.ontological-category <-- @clindamycin
 amoxicillin :: DrugType :: self.m.ontological-category <-- @amoxicillin
-medicine :: DrugType :: self.m.ontological-category <-- @drug
+medicine :: DrugType :: self.m.ontological-category <-- @medicine
 drug :: DrugType :: self.m.ontological-category <-- @drug
 advil :: DrugType :: self.m.ontological-category <-- @advil
+pill :: DrugType :: self.m.ontological-category <-- @medicine
+ampicillin :: DrugType :: self.m.ontological-category <-- @ampicillin
+
+
+abortion :: ProcedureType :: self.m.patient.gender <-- @female :: self.m.ontological-category <-- @abortion :: self.m.condition.ontological-category <-- @pregnancy
+family_planning :: ProcedureType :: self.m.ontological-category <-- @family_planning
+injection :: ProcedureType :: self.m.ontological-category <-- @injection
+
+
+man :: PatientType :: self.m.ontological-category <-- @adult :: self.m.age <-- @adultGroup :: self.m.gender <-- @male
+year_old :: PatientType :: self.m.ontological-category <-- @year_old
+baby :: PatientType :: self.m.age <-- @infantGroup :: self.m.ontological-category <-- @baby
+
+
+pregnancy :: ConditionType :: self.m.ontological-category <-- @pregnancy
+pregnant :: ConditionType :: self.m.ontological-category <-- @pregnancy :: self.m.patient.gender <-- @female
+birth :: ConditionType :: self.m.ontological-category <-- @birth
+
 
 be :: BeCopulaType :: self.m.actionary <-- @be
-blood :: BodyPartType :: self.m.ontological-category <-- @blood
 eight :: NumberType :: self.m.value <-- "8"
 month :: UnitType :: self.m.ontological-category <-- @month :: self.m.extras.quantity.property <-- @time
-abdomen :: BodyPartType :: self.m.ontological-category <-- @abdomen
 box :: ContainerNoun :: self.m.ontological-category <-- @box
-pill :: DrugType :: self.m.ontological-category <-- @drug
 cause :: ForceDynamicType :: self.m.fdType <-- @cause :: self.m.actionary <-- @cause :: self.expectedVerbForm <-- Infinitive
-breast :: BodyPartType :: self.m.ontological-category <-- @breast
-urine :: BodyPartType :: self.m.ontological-category <-- @urine
-baby :: PatientType :: self.m.age <-- @infantGroup :: self.m.ontological-category <-- @baby
-fever :: SymptomType :: self.m.ontological-category <-- @fever
-blister :: SymptomType :: self.m.ontological-category <-- @blister
-tummy :: BodyPartType :: self.m.ontological-category <-- @stomach
-tongue :: BodyPartType :: self.m.ontological-category <-- @tongue
-mouth :: BodyPartType :: self.m.ontological-category <-- @mouth
-lip :: BodyPartType :: self.m.ontological-category <-- @lip
-feverish :: SymptomType :: self.m.ontological-category <-- @fever
-period :: SymptomType :: self.m.ontological-category <-- @period
-spotting :: SymptomType :: self.m.ontological-category <-- @spotting
-constipation :: SymptomType :: self.m.ontological-category <-- @constipation
 symptom :: PropertyNoun :: self.m.ontological-category <-- @symptom
 treat :: TreatmentActionType :: self.m.actionary <-- @treat
 push :: ApplyForceType :: self.m.actionary <-- @push_move
-acute :: ScalarAdjectiveType :: self.m.value <-- ".9"
-abdominal :: BodyPartAdjectiveType :: self.m.value <-- @abdomen
-ulcer :: SymptomType :: self.m.ontological-category <-- @ulcer
-vomiting :: SymptomType :: self.m.ontological-category <-- @vomiting
+acute :: ScalarAdjectiveType :: self.m.value <-- ".9" :: self.m.property <-- @intensityScale
 give :: TransferType :: self.m.actionary <-- @give
-intravenous :: BodyPartAdjectiveType :: self.m.value <-- @vein
-injection :: ProcedureType :: self.m.ontological-category <-- @injection
-vein :: BodyPartType :: self.m.ontological-category <-- @vein
-hard :: ScalarAdjectiveType :: self.m.value <-- "0.9" :: self.m.property <-- @hardness :: self.m.domain <-- @physicalEntity
 name :: PropertyNoun :: self.m.ontological-category <-- @name
-sore :: ScalarAdjectiveType :: self.m.value <-- ".4" :: self.m.property <-- @pain :: self.m.domain <-- @bodyPart2
-nausea :: SymptomType :: self.m.ontological-category <-- @nausea
-symptom :: SymptomType :: self.m.ontological-category <-- @symptom
-birth :: ConditionType :: self.m.ontological-category <-- @birth
-cough :: SymptomType :: self.m.ontological-category <-- @cough
-man :: PatientType :: self.m.ontological-category <-- @adult :: self.m.age <-- @adultGroup :: self.m.gender <-- @male
-ampicillin :: DrugType :: self.m.ontological-category <-- @ampicillin
-endometriosis :: DiseaseType :: self.m.ontological-category <-- @endometriosis
-best :: ScalarAdjectiveType :: self.m.value <-- ".99" :: self.m.property <-- @quality
-family_planning :: ProcedureType :: self.m.ontological-category <-- @family_planning
-year_old :: PatientType :: self.m.ontological-category <-- @year_old
 terminate :: EndActionType :: self.m.actionary <-- @terminate
-pregnancy :: ConditionType :: self.m.ontological-category <-- @pregnancy
-abortion :: ProcedureType :: self.m.patient.gender <-- @female :: self.m.ontological-category <-- @abortion :: self.m.condition.ontological-category <-- @pregnancy
-pregnant :: ConditionType :: self.m.ontological-category <-- @pregnancy :: self.m.experiencer.gender <-- @female
-pink_eye :: DiseaseType :: self.m.ontological-category <-- @pink_eye :: self.m.location.ontological-category <-- @eye
-backache :: SymptomType :: self.m.location.ontological-category <-- @backBodyPart :: self.m.ontological-category <-- @backache
-period :: SymptomType :: self.m.ontological-category <-- @period :: self.m.experiencer.gender <-- @female
+woman :: PatientType :: self.m.ontological-category <-- @adult :: self.m.gender <-- @female :: self.m.age <-- @adultGroup
+treatment :: ProcedureType :: self.m.ontological-category <-- @treatment

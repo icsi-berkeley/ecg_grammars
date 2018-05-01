@@ -6,9 +6,9 @@ construction ConditionType
   subcase of NounType, NP
   meaning: Condition
   constraints
-    self.m.ontological-category <-- @condition
-    self.m.experiencer.gender <-- @genderValues
-    self.m.experiencer.age <-- @ageGroup
+    self.m.ontological-category <-- @conditionType
+    self.m.patient.gender <-- @genderValues
+    self.m.patient.age <-- @ageGroup
     self.m.location.ontological-category <-- @bodyPart2
 
 // Construction for symptoms
@@ -16,33 +16,33 @@ construction SymptomType
   subcase of ConditionType
   meaning: Symptom
   constraints
-    self.m.ontological-category <-- @symptom
+    self.m.ontological-category <-- @symptomType
 
 // Construction for diseases
 construction DiseaseType
   subcase of ConditionType
   meaning: Disease
   constraints
-    self.m.ontological-category <-- @disease
+    self.m.ontological-category <-- @diseaseType
 
 // Construction for drugs
 construction DrugType
   subcase of NounType, NP
-  meaning: Treatment
+  meaning: Drug
     constraints
-      self.m.ontological-category <-- @drug
+      self.m.ontological-category <-- @drugType
       self.m.patient.gender <-- @genderValues
-      self.m.condition.ontological-category <-- @condition
+      self.m.condition.ontological-category <-- @conditionType
       self.m.location.ontological-category <-- @bodyPart2
 
 // Construction for medical procedures
 construction ProcedureType
   subcase of NounType, NP
-  meaning: Treatment
+  meaning: Procedure
     constraints
-      self.m.ontological-category <-- @procedure
+      self.m.ontological-category <-- @procedureType
       self.m.patient.gender <-- @genderValues
-      self.m.condition.ontological-category <-- @condition
+      self.m.condition.ontological-category <-- @conditionType
       self.m.location.ontological-category <-- @bodyPart2
 
 // Construction for patients
@@ -50,7 +50,7 @@ construction PatientType
   subcase of SentientNoun, NP
   meaning: Patient
     constraints
-      self.m.ontological-category <-- @patient
+      self.m.ontological-category <-- @patientType
       self.m.age <-- @ageGroup
 
 // Construction for body parts

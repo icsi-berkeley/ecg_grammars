@@ -8,7 +8,7 @@ construction LocatedCondition
     constraints
       self.m <--> head.m
       self.m.location <--> mod.m
-      head.m.ontological-category <-- @condition
+      head.m.ontological-category <-- @conditionType
       mod.m.ontological-category <-- @bodyPart2
 
 // e.g. stomach medicine
@@ -19,7 +19,7 @@ construction LocatedTreatment
       self.m <--> head.m
       self.m.location <--> mod.m
       mod.m.ontological-category <-- @bodyPart2
-      head.m.ontological-category <-- @treatment
+      head.m.ontological-category <-- @treatmentType
 
 // e.g. cancer medicine
 construction ConditionTreatment
@@ -28,8 +28,8 @@ construction ConditionTreatment
     constraints
       self.m <--> head.m
       self.m.condition <--> mod.m
-      mod.m.ontological-category <-- @condition
-      head.m.ontological-category <-- @treatment
+      mod.m.ontological-category <-- @conditionType
+      head.m.ontological-category <-- @treatmentType
 
 // e.g. two year old
 construction AgedPerson
@@ -45,7 +45,7 @@ construction AgedPerson
     constraints
       self.m <--> head.m
       self.m.numericalAge <--> mod.m
-      head.m.ontological-category <-- @patient
+      head.m.ontological-category <-- @patientType
 
 // Copied from NounNounCompound
 // e.g. abortion pills
@@ -59,13 +59,13 @@ construction ProcedureDrug
       self.features <--> head.features
   form
     constraints
-      mod.f before head.f
-  meaning: Treatment
+      head.f before mod.f
+  meaning: Procedure
     evokes NounNounModifier as nnm
     constraints
       nnm.modifiedThing <--> head.m
       nnm.modifier <--> mod.m
-      self.m <--> mod.m
-      self.m.drug <--> head.m
-      head.m.ontological-category <-- @drug
-      mod.m.ontological-category <-- @procedure
+      self.m <--> head.m
+      self.m.drug <--> mod.m
+      mod.m.ontological-category <-- @drugType
+      head.m.ontological-category <-- @procedureType

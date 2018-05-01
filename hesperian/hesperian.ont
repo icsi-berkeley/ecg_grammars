@@ -10,25 +10,33 @@ DEFS:
 
 (type value sub process)
 
-(type treatment sub physicalEntity hesperian)
+(type treatmentType sub physicalEntity hesperian)
 
-(type procedure sub process physicalEntity treatment)
+(type procedureType sub process physicalEntity treatmentType)
 
-(type condition sub physicalEntity hesperian)
+(type conditionType sub physicalEntity hesperian)
 
-(type disease sub condition physicalEntity)
+(type diseaseType sub conditionType physicalEntity)
 
-(type symptom sub condition physicalEntity object-property)
+(type symptomType sub conditionType physicalEntity object-property)
 
 (type bodyPart2 sub part shaped physicalEntity hesperian)
 
-(type drug sub physicalEntity treatment)
+(type drugType sub physicalEntity treatmentType)
 
-(type patient sub hesperian person)
+(type patientType sub hesperian person)
 
 (type treatmentVerb sub verb hesperian process)
 
 (type end sub verb hesperian process)
+
+(type symptom sub symptomType)
+
+(type disease sub diseaseType)
+
+(type drug sub drugType)
+
+(type procedure sub procedureType)
 
 // Age Groups
 
@@ -52,11 +60,11 @@ DEFS:
 
 (type john-instance sub person)
 
-(type adult sub person patient)
+(type adult sub person patientType)
 
 (type parent sub adult)
 
-(type child sub person patient)
+(type child sub person patientType)
 
 (type baby sub child)
 
@@ -346,19 +354,19 @@ DEFS:
 
 (type four sub number)
 
-(type pain sub symptom)
+(type pain sub symptomType)
 
-(type diarrhea sub symptom)
+(type diarrhea sub symptomType)
 
-(type fever sub symptom)
+(type fever sub symptomType)
 
-(type bleeding sub symptom)
+(type bleeding sub symptomType)
 
 (type abdomen sub bodyPart2)
 
-(type malaria sub disease)
+(type malaria sub diseaseType)
 
-(type alcoholism sub disease)
+(type alcoholism sub diseaseType)
 
 (type bad sub scalarValue)
 
@@ -368,85 +376,85 @@ DEFS:
 
 (type scalp sub bodyPart2)
 
-(type anorexia sub disease)
+(type anorexia sub diseaseType)
 
-(type hiv sub disease)
+(type hiv sub diseaseType)
 
-(type aids sub disease)
+(type aids sub diseaseType)
 
-(type herpes sub disease)
+(type herpes sub diseaseType)
 
-(type asthma sub disease)
+(type asthma sub diseaseType)
 
-(type hemorrhoid sub disease)
+(type hemorrhoid sub diseaseType)
 
-(type dengue sub disease)
+(type dengue sub diseaseType)
 
-(type cholera sub disease)
+(type cholera sub diseaseType)
 
-(type cancer sub disease)
+(type cancer sub diseaseType)
 
-(type palsy sub disease)
+(type palsy sub diseaseType)
 
-(type chickenpox sub disease)
+(type chickenpox sub diseaseType)
 
-(type appendicitis sub disease)
+(type appendicitis sub diseaseType)
 
-(type anemia sub disease)
+(type anemia sub diseaseType)
 
-(type diabetes sub disease)
+(type diabetes sub diseaseType)
 
-(type autism sub disease)
+(type autism sub diseaseType)
 
-(type hypertension sub disease)
+(type hypertension sub diseaseType)
 
-(type arthritis sub disease)
+(type arthritis sub diseaseType)
 
-(type gonorrhea sub disease)
+(type gonorrhea sub diseaseType)
 
-(type chlamydia sub disease)
+(type chlamydia sub diseaseType)
 
-(type flu sub disease)
+(type flu sub diseaseType)
 
-(type tapeworm sub disease)
+(type tapeworm sub diseaseType)
 
-(type hookworm sub disease)
+(type hookworm sub diseaseType)
 
-(type antibiotic sub drug)
+(type antibiotic sub drugType)
 
-(type clindamycin sub drug)
+(type clindamycin sub drugType)
 
-(type amoxicillin sub drug)
+(type amoxicillin sub drugType)
 
-(type ampicillin sub drug)
+(type ampicillin sub drugType)
 
-(type medicine sub drug)
+(type medicine sub drugType)
 
-(type advil sub drug)
+(type advil sub drugType)
 
-(type abortion sub procedure)
+(type abortion sub procedureType)
 
 (type affect sub cause)
 
-(type zika sub disease)
+(type zika sub diseaseType)
 
-(type pink_eye sub disease)
+(type pink_eye sub diseaseType)
 
 (type blood sub bodyPart2  shared)
 
-(type clot sub symptom  shared)
+(type clot sub symptomType  shared)
 
-(type blood_clot sub symptom  shared)
+(type blood_clot sub symptomType  shared)
 
 (type month sub measure temporal-units shared)
 
 (type breast sub bodyPart2  shared)
 
-(type hardness sub scale  shared)
+(type hard sub object-property symptomType shared)
 
 (type urine sub bodyPart2  shared)
 
-(type blister sub symptom  shared)
+(type blister sub symptomType  shared)
 
 (type tongue sub bodyPart2  shared)
 
@@ -454,44 +462,50 @@ DEFS:
 
 (type lip sub bodyPart2  shared)
 
-(type period sub symptom  shared)
+(type period sub symptomType  shared)
 
-(type spotting sub symptom  shared)
+(type spotting sub symptomType  shared)
 
-(type backache sub symptom  shared)
+(type backache sub symptomType  shared)
 
-(type constipation sub symptom  shared)
+(type constipation sub symptomType  shared)
 
 (type treat sub treatmentVerb  shared)
 
-(type ulcer sub symptom  shared)
+(type ulcer sub symptomType  shared)
 
-(type vomiting sub symptom  shared)
+(type vomiting sub symptomType  shared)
 
 (type vein sub bodyPart2  shared)
 
-(type injection sub procedure  shared)
+(type injection sub procedureType  shared)
 
-(type nausea sub symptom  shared)
+(type nausea sub symptomType  shared)
 
-(type birth sub condition  shared)
+(type birth sub conditionType  shared)
 
-(type cough sub symptom  shared)
+(type cough sub symptomType  shared)
 
-(type endometriosis sub disease  shared)
+(type endometriosis sub diseaseType  shared)
 
 (type quality sub object-property  shared)
 
-(type family_planning sub procedure  shared)
+(type family_planning sub procedureType  shared)
 
-(type year_old sub patient  shared)
+(type year_old sub patientType  shared)
 
 (type terminate sub end  shared)
 
-(type pregnancy sub condition  shared)
+(type pregnancy sub conditionType  shared)
 
 (type eye sub bodyPart2  shared)
 
 (type backBodyPart sub bodyPart2 shared)
+
+(type feeling sub object-property  shared)
+
+(type sore sub scale symptomType  shared)
+
+(type treatment sub procedureType  shared)
 
 INSTS:

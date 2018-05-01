@@ -4,14 +4,14 @@ import base
 schema TreatmentProcess
   subcase of Process
   roles
-    trmt: Treatment
+    treatment: Treatment
     patient: Patient
     condition: Condition
     actionary: @treatmentVerb
   constraints
-    patient <--> trmt.patient
-    condition <--> trmt.condition
-    condition.experiencer <--> patient
+    patient <--> treatment.patient
+    condition <--> treatment.condition
+    condition.patient <--> patient
 
 schema CauseToEnd
   subcase of Process
@@ -21,16 +21,16 @@ schema CauseToEnd
 schema AbortionProcess
   subcase of CauseToEnd
   roles
-    trmt: Treatment
+    treatment: Procedure
     patient: Patient
     condition: Condition
     actionary: @end
   constraints
-    patient <--> trmt.patient
-    condition <--> trmt.condition
-    condition.experiencer <--> patient
+    patient <--> treatment.patient
+    condition <--> treatment.condition
+    condition.patient <--> patient
     condition.ontological-category <-- @pregnancy
-    trmt.ontological-category <-- @abortion
+    treatment.ontological-category <-- @abortion
     patient.gender <-- @female
     endedThing <--> condition
     protagonist <--> patient

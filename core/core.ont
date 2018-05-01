@@ -645,7 +645,7 @@ DEFS:
 
 // Properties
 
-(type object-property sub shared)
+(type object-property sub hesperian shared)
 
 (type color sub object-property )  // cf. size, non-scalar property
 

@@ -12,8 +12,8 @@ construction DiseaseSymptom
     constraints
       dis.m <--> self.m
       symp.m <--> self.m.symptom
-      symp.m.ontological-category <-- @symptom
-      dis.m.ontological-category <-- @disease
+      symp.m.ontological-category <-- @symptomType
+      dis.m.ontological-category <-- @diseaseType
 
 // e.g. pain in stomach
 construction Prep-Locative-Condition
@@ -31,7 +31,7 @@ construction Prep-Locative-Condition
     constraints
    	  self.m <--> cond.m
    	  self.m.location <--> loc.m
-   	  self.m.ontological-category <-- @condition
+   	  self.m.ontological-category <-- @conditionType
 
 // e.g. medicine for cough
 construction Treatment-For-Condition
@@ -46,9 +46,9 @@ construction Treatment-For-Condition
   meaning: Treatment
     constraints
       self.m <--> trmt.m
-      trmt.m.ontological-category <-- @treatment
+      trmt.m.ontological-category <-- @treatmentType
       self.m.condition <--> for.np.m
-      for.np.m.ontological-category <-- @condition
+      for.np.m.ontological-category <-- @conditionType
 
 // e.g. ampicillin for men
 construction Treatment-For-Person
@@ -63,9 +63,9 @@ construction Treatment-For-Person
   meaning: Treatment
     constraints
       self.m <--> trmt.m
-      trmt.m.ontological-category <-- @treatment
+      trmt.m.ontological-category <-- @treatmentType
       self.m.patient <--> for.np.m
-      for.np.m.ontological-category <-- @patient
+      for.np.m.ontological-category <-- @patientType
 
 construction After-Event
   subcase of Preposition
@@ -101,7 +101,7 @@ construction Condition-For-Time
     constraints
       self.m <--> symp.m
       self.m.duration <--> np.m
-      symp.m.ontological-category <-- @condition
+      symp.m.ontological-category <-- @conditionType
 
 // e.g. bleeding after abortion
 construction ConditionAfterTreatment
@@ -114,7 +114,7 @@ construction ConditionAfterTreatment
     constraints
       self.m <--> cond.m
       self.m.trigger <--> trigger.m
-      cond.m.ontological-category <-- @condition
+      cond.m.ontological-category <-- @conditionType
 
 construction HesperianBag
   subcase of RootType
@@ -162,4 +162,22 @@ construction Prep-Locative-Treatment
     constraints
       self.m <--> trmt.m
       self.m.location <--> loc.m
-      trmt.m.ontological-category <-- @treatment
+      trmt.m.ontological-category <-- @treatmentType
+
+// e.g. sore breast, stiff leg
+construction DescribedBodyPart
+  subcase of NP
+  constructional
+    constituents
+      adj: ScalarAdjective
+      bp: NP
+  form
+    constraints
+      adj.f before bp.f
+  meaning: Symptom
+    constraints
+      bp.m.ontological-category <-- @bodyPart2
+      self.m.location <--> bp.m
+      self.m.ontological-category <--> adj.m.property
+      self.m.severity.value <--> adj.m.value
+

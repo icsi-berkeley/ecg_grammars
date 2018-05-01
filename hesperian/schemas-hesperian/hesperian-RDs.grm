@@ -10,12 +10,12 @@ schema Condition
   subcase of RD
   roles
     location: RD
-    experiencer: Patient
+    patient: Patient
     severity: ScalarModifier
     duration: RD
-    trigger: RD
+    trigger: RD // The patient should be tied to the patient/patient of the trigger
   constraints
-    experiencer.ontological-category <-- @person
+    patient.ontological-category <-- @person
     severity.value <-- @scalarValue
     location.ontological-category <-- @bodyPart2
 
@@ -24,30 +24,43 @@ schema Symptom
   roles
     disease: Disease
   constraints
-    disease.ontological-category <-- @disease
+    disease.ontological-category <-- @diseaseType
+    patient <--> disease.patient
 
 schema Disease
   subcase of Condition
   roles
-    agent: RD
+    agent: RD // not sure what this is for
     symptom: Symptom
   constraints
     agent.ontological-category <-- @agent
-    symptom.ontological-category <-- @symptom
+    symptom.ontological-category <-- @symptomType
+    patient <--> symptom.patient
 
 schema Treatment
   subcase of RD
   roles
-    drug: RD
     patient: Patient
     location: RD
     condition: Condition
   constraints
-    drug.ontological-category <-- @drug
     patient.ontological-category <-- @person
     location.ontological-category <-- @bodyPart2
-    condition.ontological-category <-- @condition
-    condition.experiencer <--> patient
+    condition.ontological-category <-- @conditionType
+    condition.patient <--> patient
+
+schema Drug
+  subcase of Treatment
+
+schema Procedure
+  subcase of Treatment
+  roles
+    drug: Drug
+  constraints
+    drug.ontological-category <-- @drugType
+    drug.patient <--> patient
+    drug.condition <--> condition
+    
 
 schema Patient
   subcase of RD
