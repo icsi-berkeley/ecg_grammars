@@ -30,6 +30,8 @@ DEFS:
 
 (type end sub verb hesperian process)
 
+(type die sub verb hesperian process change)
+
 (type symptom sub symptomType)
 
 (type disease sub diseaseType)
@@ -507,5 +509,11 @@ DEFS:
 (type sore sub scale symptomType  shared)
 
 (type treatment sub procedureType  shared)
+
+(type surgery sub procedureType  shared)
+
+(type death sub conditionType  shared)
+
+(type infection sub diseaseType  shared)
 
 INSTS:

@@ -90,7 +90,7 @@ construction Loc-PP
       prep: LocativePreposition // e.g. at, in, inside, on,
   meaning
     constraints
-      np.m.ontological-category <-- @region
+      //np.m.ontological-category <-- @region
 
 
 // e.g. (the color) of the box

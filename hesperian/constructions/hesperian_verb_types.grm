@@ -14,3 +14,10 @@ construction EndActionType
     constraints
       self.m.actionary <-- @end
       self.argform <-- Transitive
+
+construction DeathType
+  subcase of LexicalVerbType
+  meaning: DeathProcess
+    constraints
+      self.m.actionary <-- @die
+      self.argform <-- NotTransitive

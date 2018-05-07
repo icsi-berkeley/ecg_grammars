@@ -8,3 +8,11 @@ construction BodyPartAdjectiveType
     constraints
       self.m.property <-- @bodyPart2
       self.m.value <-- @bodyPart2
+
+//e.g. surgical, medical
+construction TreatmentMethodType
+  subcase of PropertyAdjective, GeneralTypeCxn
+  meaning: PropertyModifier
+    constraints
+      self.m.property <-- @treatmentType
+      self.m.value <-- @treatmentType

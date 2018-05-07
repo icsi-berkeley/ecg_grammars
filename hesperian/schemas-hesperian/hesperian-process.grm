@@ -34,3 +34,16 @@ schema AbortionProcess
     patient.gender <-- @female
     endedThing <--> condition
     protagonist <--> patient
+
+schema DeathProcess
+  subcase of Process
+  roles
+    condition: Condition
+    patient: Patient
+    cause: RD
+    actionary: @die
+  constraints
+    condition.ontological-category <-- @death
+    condition.patient <--> patient
+    cause.ontological-category <-- @hesperian
+    protagonist <--> patient

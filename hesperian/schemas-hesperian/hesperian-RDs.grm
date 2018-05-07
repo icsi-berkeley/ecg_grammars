@@ -6,18 +6,23 @@ schema HesperianBagSchema
     this: RD
     next: HesperianBagSchema
 
-schema Condition
+schema HasPatient
   subcase of RD
   roles
-    location: RD
     patient: Patient
+
+schema Condition
+  subcase of HasPatient
+  roles
+    location: RD
     severity: ScalarModifier
     duration: RD
-    trigger: RD // The patient should be tied to the patient/patient of the trigger
+    trigger: HasPatient // The patient should be tied to the patient/patient of the trigger
   constraints
     patient.ontological-category <-- @person
     severity.value <-- @scalarValue
     location.ontological-category <-- @bodyPart2
+    trigger.patient <--> patient
 
 schema Symptom
   subcase of Condition
@@ -38,9 +43,8 @@ schema Disease
     patient <--> symptom.patient
 
 schema Treatment
-  subcase of RD
+  subcase of HasPatient
   roles
-    patient: Patient
     location: RD
     condition: Condition
   constraints
@@ -55,11 +59,10 @@ schema Drug
 schema Procedure
   subcase of Treatment
   roles
-    drug: Drug
+    method: Treatment
   constraints
-    drug.ontological-category <-- @drugType
-    drug.patient <--> patient
-    drug.condition <--> condition
+    method.patient <--> patient
+    method.condition <--> condition
     
 
 schema Patient

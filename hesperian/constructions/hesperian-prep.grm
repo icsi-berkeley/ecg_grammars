@@ -1,0 +1,185 @@
+package hesperian
+import base
+
+general construction CausalPreposition
+  subcase of Preposition
+  meaning: GeneralCausation
+
+construction From-CAUSAL
+  subcase of CausalPreposition
+  form
+    constraints
+      self.f.orth <-- "from"
+
+construction Causal-PP
+  subcase of PP
+  constructional
+    constituents
+      prep: CausalPreposition
+  form
+    constraints
+      prep.f before np.f
+  meaning: GeneralCausation
+    constraints
+      self.m <--> prep.m
+      prep.m.cause <--> np.m
+
+general construction SequencePreposition
+  subcase of Preposition
+  meaning: Relation
+
+construction After-Sequence
+  subcase of SequencePreposition
+  form
+    constraints
+      self.f.orth <-- "after"
+
+construction After-PP
+  subcase of PP
+  constructional
+    constituents
+      prep: After-Sequence
+  form
+   constraints
+     prep.f before np.f
+  meaning: RD
+    constraints
+      self.m <--> np.m
+      prep.m.entity2 <--> np.m
+
+// e.g. pain in stomach
+construction Prep-Locative-Condition
+  subcase of NP
+  constructional
+    constituents
+      loc: NP
+      prep: LocativePreposition
+      cond: NP
+  form
+    constraints
+      cond.f before prep.f
+      prep.f before loc.f
+  meaning: Condition
+    constraints
+   	  self.m <--> cond.m
+   	  self.m.location <--> loc.m
+   	  self.m.ontological-category <-- @conditionType
+
+// e.g. abdominal pain in women
+construction Condition-Loc-Patient
+  subcase of NP
+  constructional
+    constituents
+      loc: NP
+      prep: LocativePreposition
+      cond: NP
+  form
+    constraints
+      cond.f before prep.f
+      prep.f before loc.f
+  meaning: Condition
+    constraints
+      self.m <--> cond.m
+      self.m.patient <--> loc.m
+      self.m.ontological-category <-- @conditionType
+      loc.m.ontological-category <-- @patientType
+
+// e.g. medicine for cough
+construction Treatment-For-Condition
+  subcase of NP
+  constructional
+    constituents
+      trmt: NP
+      for: For-PP
+  form
+    constraints
+      trmt.f before for.f
+  meaning: Treatment
+    constraints
+      self.m <--> trmt.m
+      trmt.m.ontological-category <-- @treatmentType
+      self.m.condition <--> for.np.m
+      for.np.m.ontological-category <-- @conditionType
+
+// e.g. ampicillin for men
+construction Treatment-For-Person
+  subcase of NP
+  constructional
+    constituents
+      trmt: NP
+      for: For-PP
+  form
+    constraints
+      trmt.f before for.f
+  meaning: Treatment
+    constraints
+      self.m <--> trmt.m
+      trmt.m.ontological-category <-- @treatmentType
+      self.m.patient <--> for.np.m
+      for.np.m.ontological-category <-- @patientType
+
+// e.g. surgery for abortion
+construction Method-For-Procedure
+  subcase of NP
+  constructional
+    constituents
+      method: NP
+      for: For-PP
+  form
+    constraints
+      method.f before for.f
+  meaning: Procedure
+    constraints
+      self.m <--> for.np.m
+      method.m.ontological-category <-- @treatmentType
+      self.m.method <--> method.m
+      for.np.m.ontological-category <-- @procedureType
+
+// e.g. bleeding for four weeks
+construction Condition-For-Time
+  subcase of NP
+  constructional
+    constituents
+      symp: NP
+      optional prep: For-Recipient // This should be For-Temporal
+      np: TemporalQuantityNP
+  form
+    constraints
+      symp.f before prep.f
+      prep.f before np.f
+  meaning: Condition
+    constraints
+      self.m <--> symp.m
+      self.m.duration <--> np.m
+      symp.m.ontological-category <-- @conditionType
+
+// e.g. bleeding after abortion
+construction ConditionAfterTreatment
+  subcase of NP
+  constructional
+    constituents
+      cond: NP
+      trigger: After-PP
+  meaning: Condition
+    constraints
+      self.m <--> cond.m
+      self.m.trigger <--> trigger.m
+      cond.m.ontological-category <-- @conditionType
+
+// e.g. injection in vein
+construction Prep-Locative-Treatment
+  subcase of NP
+  constructional
+    constituents
+      loc: NP
+      prep: LocativePreposition
+      trmt: NP
+  form
+    constraints
+      trmt.f before prep.f
+      prep.f before loc.f
+  meaning: Treatment
+    constraints
+      self.m <--> trmt.m
+      self.m.location <--> loc.m
+      trmt.m.ontological-category <-- @treatmentType

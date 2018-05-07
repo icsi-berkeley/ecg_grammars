@@ -149,3 +149,7 @@ name :: PropertyNoun :: self.m.ontological-category <-- @name
 terminate :: EndActionType :: self.m.actionary <-- @terminate
 woman :: PatientType :: self.m.ontological-category <-- @adult :: self.m.gender <-- @female :: self.m.age <-- @adultGroup
 treatment :: ProcedureType :: self.m.ontological-category <-- @treatment
+surgical :: TreatmentMethodType :: self.m.value <-- @surgery
+surgery :: ProcedureType :: self.m.ontological-category <-- @surgery
+die :: DeathType :: self.m.actionary <-- @die
+infection :: DiseaseType :: self.m.ontological-category <-- @infection

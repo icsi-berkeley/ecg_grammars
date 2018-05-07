@@ -48,8 +48,8 @@ construction AgedPerson
       head.m.ontological-category <-- @patientType
 
 // Copied from NounNounCompound
-// e.g. abortion pills
-construction ProcedureDrug
+// e.g. abortion pills, abortion surgery
+construction ProcedureMethod
   subcase of Nominal, NP
   constructional
     constituents
@@ -66,6 +66,6 @@ construction ProcedureDrug
       nnm.modifiedThing <--> head.m
       nnm.modifier <--> mod.m
       self.m <--> head.m
-      self.m.drug <--> mod.m
-      mod.m.ontological-category <-- @drugType
+      self.m.method <--> mod.m
+      mod.m.ontological-category <-- @treatmentType
       head.m.ontological-category <-- @procedureType
