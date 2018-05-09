@@ -62,3 +62,27 @@ construction DescribedBodyPart
       self.m.ontological-category <--> adj.m.property
       self.m.severity.value <--> adj.m.value
 
+// Note: Pretty hacky but works for this purpose.
+construction Again
+  subcase of Adverb
+  form
+    constraints
+      self.f.orth <-- "again"
+  meaning: AdverbModification
+    constraints
+      self.m.modifier <-- "again"
+
+// Copied from core adverb-extended package
+// e.g. run quickly
+construction ModifiedVerb
+  subcase of Verb
+  constructional
+    constituents
+      modifier: Adverbial
+      modifiedVerb: Verb
+    constraints
+      self.features <--> modifiedVerb.features
+  meaning
+    constraints
+      modifier.m.modifiedThing <--> modifiedVerb.m
+      self.m <--> modifiedVerb.m

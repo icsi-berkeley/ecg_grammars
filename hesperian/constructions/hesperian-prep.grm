@@ -11,6 +11,19 @@ construction From-CAUSAL
     constraints
       self.f.orth <-- "from"
 
+construction Duration-PP
+  subcase of PP
+  constructional
+    constituents
+      optional prep: FOR-Temporal
+      np: TemporalQuantityNP
+  form
+    constraints
+      prep.f before np.f
+  meaning
+    constraints
+      self.m <--> np.m
+
 construction Causal-PP
   subcase of PP
   constructional
@@ -34,11 +47,17 @@ construction After-Sequence
     constraints
       self.f.orth <-- "after"
 
-construction After-PP
+construction During-Sequence
+  subcase of SequencePreposition
+  form
+    constraints
+      self.f.orth <-- "during"
+
+construction Sequence-PP
   subcase of PP
   constructional
     constituents
-      prep: After-Sequence
+      prep: SequencePreposition
   form
    constraints
      prep.f before np.f
@@ -159,7 +178,7 @@ construction ConditionAfterTreatment
   constructional
     constituents
       cond: NP
-      trigger: After-PP
+      trigger: Sequence-PP
   meaning: Condition
     constraints
       self.m <--> cond.m

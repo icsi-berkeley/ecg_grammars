@@ -35,15 +35,26 @@ schema AbortionProcess
     endedThing <--> condition
     protagonist <--> patient
 
-schema DeathProcess
+schema ConditionProcess
   subcase of Process
   roles
     condition: Condition
     patient: Patient
     cause: RD
+    actionary: @conditionVerb
+  constraints
+    cause.ontological-category <-- @hesperian
+    protagonist <--> patient
+    condition.patient <--> patient
+
+/*schema DeathProcess
+  subcase of ConditionProcess
+  roles
     actionary: @die
   constraints
     condition.ontological-category <-- @death
     condition.patient <--> patient
     cause.ontological-category <-- @hesperian
     protagonist <--> patient
+
+*/

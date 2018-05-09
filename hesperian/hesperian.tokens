@@ -151,5 +151,10 @@ woman :: PatientType :: self.m.ontological-category <-- @adult :: self.m.gender 
 treatment :: ProcedureType :: self.m.ontological-category <-- @treatment
 surgical :: TreatmentMethodType :: self.m.value <-- @surgery
 surgery :: ProcedureType :: self.m.ontological-category <-- @surgery
-die :: DeathType :: self.m.actionary <-- @die
+die :: ConditionActionType :: self.m.actionary <-- @die :: self.m.condition.ontological-category <-- @death
 infection :: DiseaseType :: self.m.ontological-category <-- @infection
+color :: PropertyNoun :: self.m.ontological-category <-- @color
+cause :: PropertyNoun :: self.m.ontological-category <-- @cause-property
+obesity :: DiseaseType :: self.m.ontological-category <-- @obesity
+menstruate :: ConditionActionType :: self.m.actionary <-- @menstruate :: self.m.condition.ontological-category <-- @menstruation
+conceive :: ConditionActionType :: self.m.actionary <-- @conceive :: self.m.condition.ontological-category <-- @pregnancy

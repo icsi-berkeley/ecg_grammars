@@ -17,6 +17,8 @@ PACKAGE_NAME ::==
     argstruct-explicit-causation
     argstruct-ditransitive
     argstruct-intransitive
+    verb-modals
+
 ;
 
 ONTOLOGY_PATHS ::==

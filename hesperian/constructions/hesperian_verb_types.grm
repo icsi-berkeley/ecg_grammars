@@ -15,9 +15,17 @@ construction EndActionType
       self.m.actionary <-- @end
       self.argform <-- Transitive
 
-construction DeathType
+construction ConditionActionType
   subcase of LexicalVerbType
+  meaning: ConditionProcess
+    constraints
+      self.m.actionary <-- @conditionVerb
+      self.argform <-- NotTransitive
+      self.m.condition.ontological-category <-- @conditionType
+/*
+construction DeathType
+  subcase of ConditionActionType
   meaning: DeathProcess
     constraints
       self.m.actionary <-- @die
-      self.argform <-- NotTransitive
+*/

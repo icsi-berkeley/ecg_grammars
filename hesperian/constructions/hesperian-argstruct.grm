@@ -29,15 +29,19 @@ construction ActiveTransitiveCauseToEnd
 construction ActiveTransitiveAbortion
   subcase of CoreActiveTransitive, TransitiveAbortion, RootType
 
-construction IntransitiveDeath
+construction IntransitiveCondition
   subcase of BareIntransitive, RootType
   constructional
     constituents
       optional cause: Causal-PP
-  meaning: DeathProcess
+      optional duration: Duration-PP
+      optional trigger: Sequence-PP
+  meaning: ConditionProcess
     evokes HasPatient as hp
     constraints
       self.m.condition <--> cause.m.effect
       self.m.cause <--> cause.m.cause
       cause.m.cause <--> hp
       self.m.patient <--> hp.patient
+      self.m.condition.duration <--> duration.m
+      self.m.condition.trigger <--> trigger.m

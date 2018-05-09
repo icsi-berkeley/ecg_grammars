@@ -1,6 +1,6 @@
 package hesperian
 import base
-
+/*
 general construction CanAux
   subcase of LexicalAux
   constructional
@@ -33,3 +33,4 @@ construction CanAuxPresent
   meaning
     constraints
       pf <--> self.m
+*/

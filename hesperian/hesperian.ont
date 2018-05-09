@@ -28,9 +28,11 @@ DEFS:
 
 (type treatmentVerb sub verb hesperian process)
 
+(type conditionVerb sub verb hesperian process)
+
 (type end sub verb hesperian process)
 
-(type die sub verb hesperian process change)
+(type die sub conditionVerb change)
 
 (type symptom sub symptomType)
 
@@ -515,5 +517,15 @@ DEFS:
 (type death sub conditionType  shared)
 
 (type infection sub diseaseType  shared)
+
+(type cause-property sub object-property  shared)
+
+(type obesity sub diseaseType  shared)
+
+(type menstruate sub conditionVerb  shared)
+
+(type menstruation sub conditionType  shared)
+
+(type conceive sub conditionVerb  shared)
 
 INSTS:
