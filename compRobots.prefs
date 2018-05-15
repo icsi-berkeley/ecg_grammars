@@ -11,6 +11,18 @@ PACKAGE_NAME ::==
 	universal-constructions
 	motion
 	utterance-text
+	
+	adverb-extended
+	adjective-extended
+	argstruct-extended
+	nominal-types-extended
+	schemas-process-extended
+	verb-lexicalverb-extended
+	argstruct-intransitive
+	verb-modals
+	sentence-indirect
+	vp-serial
+	verb-multiword
 ;
 
 ONTOLOGY_PATHS ::==

@@ -1,6 +1,7 @@
 package argstruct-extended
 import base
 import schemas-process-extended
+import argstruct-passive-transitive
 
 // e.g. he picked up the box
 general construction TransitiveManipulation
