@@ -4,14 +4,11 @@
 GRAMMAR_EXTENSIONS = grm
 
 
-PACKAGE_NAME ::== 
+PACKAGE_NAME ::==
+  base 
 	robots
 	location
-	universal-schemas
-	universal-constructions
-	motion
 	utterance-text
-	
 	adverb-extended
 	adjective-extended
 	argstruct-extended
@@ -55,7 +52,7 @@ TABLE_PATH = ./core/core.morph
 ROBUST = FALSE 
 BEAM_SIZE = 40
 DEFAULT_OMISSION_PROB = .1
-VARIABLE_BEAM=FALSE
+VARIABLE_BEAM=TRUE
 BEAM_WIDTH = 10
 BEAM_SIZE = 10
 DEBUG = FALSE
