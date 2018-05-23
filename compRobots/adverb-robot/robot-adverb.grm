@@ -1,6 +1,6 @@
 package robots
-import core
-import adverbs
+import base
+import adverb-extended
 
 schema ProcessAdverbModification
 	subcase of AdverbModification

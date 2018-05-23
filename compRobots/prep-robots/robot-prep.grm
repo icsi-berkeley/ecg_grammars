@@ -1,5 +1,5 @@
 package robots
-import core
+import base
 /*
 construction BETWEEN-Path
 	subcase of PathPreposition
